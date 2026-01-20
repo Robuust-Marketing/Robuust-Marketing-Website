@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Server, Shield } from "lucide-react";
 
 const services = [
   { name: "Design", href: "/diensten#design" },
@@ -145,8 +145,27 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Trust Banner */}
+        <div className="mt-12 rounded-2xl border border-accent/20 bg-accent/5 p-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-center sm:text-left">
+            <div className="flex items-center gap-3">
+              <Server className="h-5 w-5 text-accent" />
+              <span className="text-sm text-white/80">
+                Hosting op dedicated Europese servers (Duitsland/Finland)
+              </span>
+            </div>
+            <div className="hidden sm:block w-px h-6 bg-white/10" />
+            <div className="flex items-center gap-3">
+              <Shield className="h-5 w-5 text-accent" />
+              <span className="text-sm text-white/80">
+                Volledig AVG-compliant
+              </span>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-white/10 pt-8">
+        <div className="mt-8 border-t border-white/10 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             {/* Logo & Copyright */}
             <div className="flex items-center gap-4">

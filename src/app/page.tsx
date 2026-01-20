@@ -1,13 +1,17 @@
 import { Hero } from "@/components/hero";
-import { BentoGrid } from "@/components/bento-grid";
-import { CTASection } from "@/components/cta-section";
+import { SocialProof } from "@/components/social-proof";
+import { PainSolution } from "@/components/pain-solution";
+import { ProductStack } from "@/components/product-stack";
+import { TechStack } from "@/components/tech-stack";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <BentoGrid />
-      <CTASection />
+      <SocialProof />
+      <PainSolution />
+      <ProductStack />
+      <TechStack />
     </>
   );
 }
