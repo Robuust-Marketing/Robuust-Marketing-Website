@@ -5,8 +5,9 @@ const services = [
   { name: "Design", href: "/diensten#design" },
   { name: "Development", href: "/diensten#development" },
   { name: "Hosting", href: "/diensten#hosting" },
+  { name: "Onderhoud", href: "/diensten/onderhoud" },
   { name: "SEO", href: "/diensten#seo" },
-  { name: "Online Marketing", href: "/diensten#marketing" },
+  { name: "Online Marketing", href: "/diensten#online-marketing" },
 ];
 
 const packages = [
@@ -18,13 +19,22 @@ const company = [
   { name: "Over Robuust", href: "/over" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Partners", href: "/partners" },
+  { name: "Werkwijze", href: "/werkwijze" },
   { name: "Contact", href: "/contact" },
 ];
 
+const resources = [
+  { name: "Blog", href: "/blog" },
+  { name: "Kennisbank", href: "/kennisbank" },
+  { name: "FAQ", href: "/faq" },
+  { name: "Tooling", href: "/tooling" },
+];
+
 const legal = [
-  { name: "Privacy Policy", href: "/privacy" },
+  { name: "Privacy", href: "/privacy" },
   { name: "AVG", href: "/avg" },
-  { name: "Algemene Voorwaarden", href: "/voorwaarden" },
+  { name: "Voorwaarden", href: "/voorwaarden" },
+  { name: "Sitemap", href: "/sitemap-page" },
 ];
 
 export function Footer() {
@@ -34,7 +44,7 @@ export function Footer() {
     <footer className="bg-surface border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Column 1: Services */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
@@ -54,7 +64,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 2: Packages */}
+          {/* Column 2: Packages & Company */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
               Pakketten
@@ -90,7 +100,26 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 3: Contact Info */}
+          {/* Column 3: Resources */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
+              Resources
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {resources.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-muted-foreground hover:text-white transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact Info */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
               Contact
@@ -123,7 +152,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Trust Indicators */}
+          {/* Column 5: Trust Indicators */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
               Vertrouwd Door
