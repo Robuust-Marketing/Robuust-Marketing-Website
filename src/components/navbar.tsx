@@ -9,10 +9,9 @@ import { cn } from "@/lib/utils";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Features", href: "#features" },
-  { name: "Services", href: "/diensten" },
+  { name: "Diensten", href: "/diensten" },
   { name: "Portfolio", href: "/portfolio" },
-  { name: "About", href: "/over" },
+  { name: "Over", href: "/over" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -108,7 +107,7 @@ export function Navbar() {
             size="sm"
             className="bg-accent hover:bg-accent-hover text-white font-medium px-6 glow-accent-sm hover:glow-accent transition-all duration-300"
           >
-            <Link href="/contact">Get Started</Link>
+            <Link href="/contact">Aan de slag</Link>
           </Button>
         </motion.div>
       </nav>
@@ -151,7 +150,7 @@ export function Navbar() {
                   className="w-full bg-accent hover:bg-accent-hover text-white font-medium glow-accent-sm"
                 >
                   <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    Get Started
+                    Aan de slag
                   </Link>
                 </Button>
               </motion.div>
