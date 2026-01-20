@@ -1,26 +1,206 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Base colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Fonts */
+  --font-sans: var(--font-inter);
+
+  /* Brand colors - Robuust Marketing */
+  --color-navy: var(--brand-navy);
+  --color-royal-blue: var(--brand-royal-blue);
+  --color-gold: var(--brand-gold);
+  --color-warm-white: var(--brand-warm-white);
+  --color-charcoal: var(--brand-charcoal);
+  --color-slate: var(--brand-slate);
+
+  /* Semantic colors */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Card */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* Popover */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Border radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Custom animations */
+  --animate-fade-in: fade-in 0.5s ease-in-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+  --animate-scale-in: scale-in 0.3s ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.375rem; /* 6px for buttons - modern but not too rounded */
+
+  /* Brand colors - Robuust Marketing */
+  --brand-navy: #0A1628;
+  --brand-royal-blue: #1E3A5F;
+  --brand-gold: #D4AF37;
+  --brand-warm-white: #FAFAF9;
+  --brand-charcoal: #2D3748;
+  --brand-slate: #64748B;
+
+  /* Base colors */
+  --background: #FAFAF9; /* Warm white */
+  --foreground: #2D3748; /* Charcoal for text */
+
+  /* Card */
+  --card: #FFFFFF;
+  --card-foreground: #2D3748;
+
+  /* Popover */
+  --popover: #FFFFFF;
+  --popover-foreground: #2D3748;
+
+  /* Primary (Navy Blue) */
+  --primary: #0A1628;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary (Royal Blue) */
+  --secondary: #1E3A5F;
+  --secondary-foreground: #FFFFFF;
+
+  /* Accent (Gold) */
+  --accent: #D4AF37;
+  --accent-foreground: #0A1628;
+
+  /* Muted */
+  --muted: #F5F5F5;
+  --muted-foreground: #64748B;
+
+  /* Destructive */
+  --destructive: #EF4444;
+
+  /* Border & Input */
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #1E3A5F;
+}
+
+.dark {
+  /* We don't need dark mode for this marketing website,
+     but keeping it for potential future use */
+  --background: #0A1628;
+  --foreground: #FAFAF9;
+  --card: #1E3A5F;
+  --card-foreground: #FAFAF9;
+  --popover: #1E3A5F;
+  --popover-foreground: #FAFAF9;
+  --primary: #D4AF37;
+  --primary-foreground: #0A1628;
+  --secondary: #2D3748;
+  --secondary-foreground: #FAFAF9;
+  --muted: #2D3748;
+  --muted-foreground: #64748B;
+  --accent: #D4AF37;
+  --accent-foreground: #0A1628;
+  --destructive: #EF4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #D4AF37;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Brand color utilities */
+@layer utilities {
+  .text-navy {
+    color: var(--brand-navy);
+  }
+  .text-royal-blue {
+    color: var(--brand-royal-blue);
+  }
+  .text-gold {
+    color: var(--brand-gold);
+  }
+  .text-charcoal {
+    color: var(--brand-charcoal);
+  }
+  .text-slate {
+    color: var(--brand-slate);
+  }
+  .bg-navy {
+    background-color: var(--brand-navy);
+  }
+  .bg-royal-blue {
+    background-color: var(--brand-royal-blue);
+  }
+  .bg-gold {
+    background-color: var(--brand-gold);
+  }
+  .bg-warm-white {
+    background-color: var(--brand-warm-white);
+  }
+  .border-navy {
+    border-color: var(--brand-navy);
+  }
+  .border-gold {
+    border-color: var(--brand-gold);
+  }
+}
+
+/* Custom animations for Robuust Marketing */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

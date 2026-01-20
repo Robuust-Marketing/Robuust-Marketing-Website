@@ -1,65 +1,111 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-navy via-royal-blue to-navy py-24 text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+              High-End Web Development
+              <span className="block text-gold">met Waterdichte SLA's</span>
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-slate">
+              Premium web development en hosting voor MKB bedrijven. 70+
+              websites beheerd, maatwerk oplossingen met React en WordPress.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-4">
+              <Button asChild size="lg" className="bg-gold text-navy hover:bg-gold/90">
+                <Link href="/contact">Start je Project</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Link href="/portfolio">Bekijk Portfolio</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="bg-white py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-navy">70+</div>
+              <div className="mt-2 text-sm text-slate">Websites Beheerd</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-navy">99.9%</div>
+              <div className="mt-2 text-sm text-slate">Uptime Garantie</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-navy">15+</div>
+              <div className="mt-2 text-sm text-slate">Jaar Ervaring</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-navy">24/7</div>
+              <div className="mt-2 text-sm text-slate">Support</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Preview */}
+      <section className="bg-warm-white py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              Onze Diensten
+            </h2>
+            <p className="mt-4 text-lg text-slate">
+              Van design tot deployment, wij regelen alles voor jouw digitale
+              succes.
+            </p>
+          </div>
+          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {["Design", "Development", "Hosting", "SEO", "Marketing", "Onderhoud"].map(
+              (service) => (
+                <div
+                  key={service}
+                  className="rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <h3 className="text-xl font-semibold text-navy">
+                    {service}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate">
+                    High-end {service.toLowerCase()} oplossingen voor jouw
+                    bedrijf.
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+          <div className="mt-12 text-center">
+            <Button asChild>
+              <Link href="/diensten">Alle Diensten Bekijken</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-navy py-16 text-white">
+        <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Klaar voor een high-end website?
+          </h2>
+          <p className="mt-4 text-lg text-slate">
+            Neem contact op voor een vrijblijvend gesprek.
           </p>
+          <div className="mt-8">
+            <Button asChild size="lg" className="bg-gold text-navy hover:bg-gold/90">
+              <Link href="/contact">Neem Contact Op</Link>
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
