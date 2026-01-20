@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { Navbar } from "@/components/navbar";
+import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
@@ -89,7 +89,7 @@ export default function RootLayout({
         )}
 
         {/* Navigation */}
-        <Navbar />
+        <Header />
 
         {/* Main Content */}
         <main>{children}</main>

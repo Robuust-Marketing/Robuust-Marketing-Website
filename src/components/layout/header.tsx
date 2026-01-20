@@ -297,7 +297,7 @@ export function Header() {
     <header
       className={cn(
         "fixed left-0 right-0 z-50 transition-all duration-300",
-        "top-[44px]",
+        "top-0",
         scrolled
           ? "bg-white/95 backdrop-blur-md shadow-sm"
           : "bg-transparent"
