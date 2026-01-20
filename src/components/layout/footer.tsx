@@ -34,7 +34,7 @@ const legal = [
   { name: "Privacy", href: "/privacy" },
   { name: "AVG", href: "/avg" },
   { name: "Voorwaarden", href: "/voorwaarden" },
-  { name: "Sitemap", href: "/sitemap-page" },
+  { name: "Sitemap", href: "/sitemap.xml" },
 ];
 
 export function Footer() {

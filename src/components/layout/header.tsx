@@ -251,7 +251,6 @@ const overOns = [
 
 // Footer links in mega menu
 const footerLinks = [
-  { name: "Sitemap", href: "/sitemap-page" },
   { name: "Privacy", href: "/privacy" },
   { name: "AVG", href: "/avg" },
   { name: "Voorwaarden", href: "/voorwaarden" },
