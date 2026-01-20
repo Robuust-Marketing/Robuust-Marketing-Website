@@ -11,21 +11,18 @@
   /* Fonts */
   --font-sans: var(--font-inter);
 
-  /* Brand colors - Robuust Marketing */
-  --color-navy: var(--brand-navy);
-  --color-royal-blue: var(--brand-royal-blue);
-  --color-gold: var(--brand-gold);
-  --color-warm-white: var(--brand-warm-white);
-  --color-charcoal: var(--brand-charcoal);
-  --color-slate: var(--brand-slate);
+  /* Dark SaaS Theme Colors */
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-glow: var(--accent-glow);
 
   /* Semantic colors */
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
@@ -57,74 +54,46 @@
 }
 
 :root {
-  --radius: 0.375rem; /* 6px for buttons - modern but not too rounded */
+  --radius: 0.75rem; /* 12px - modern rounded corners */
 
-  /* Brand colors - Robuust Marketing */
-  --brand-navy: #0A1628;
-  --brand-royal-blue: #1E3A5F;
-  --brand-gold: #D4AF37;
-  --brand-warm-white: #FAFAF9;
-  --brand-charcoal: #2D3748;
-  --brand-slate: #64748B;
+  /* Dark SaaS Theme - Main Colors */
+  --background: #18242e;        /* Deep Blue/Grey - Main background */
+  --foreground: #ffffff;        /* White text */
+  --surface: #25313b;           /* Lighter Blue/Grey - Card/Surface */
+  --surface-hover: #2d3d49;     /* Surface hover state */
 
-  /* Base colors */
-  --background: #FAFAF9; /* Warm white */
-  --foreground: #2D3748; /* Charcoal for text */
+  /* Primary Accent - Burnt Orange/Red */
+  --accent: #c53c0b;
+  --accent-hover: #d94a18;
+  --accent-glow: rgba(197, 60, 11, 0.4);
 
   /* Card */
-  --card: #FFFFFF;
-  --card-foreground: #2D3748;
+  --card: #25313b;
+  --card-foreground: #ffffff;
 
   /* Popover */
-  --popover: #FFFFFF;
-  --popover-foreground: #2D3748;
+  --popover: #25313b;
+  --popover-foreground: #ffffff;
 
-  /* Primary (Navy Blue) */
-  --primary: #0A1628;
-  --primary-foreground: #FFFFFF;
+  /* Primary (uses accent) */
+  --primary: #c53c0b;
+  --primary-foreground: #ffffff;
 
-  /* Secondary (Royal Blue) */
-  --secondary: #1E3A5F;
-  --secondary-foreground: #FFFFFF;
+  /* Secondary */
+  --secondary: #25313b;
+  --secondary-foreground: #ffffff;
 
-  /* Accent (Gold) */
-  --accent: #D4AF37;
-  --accent-foreground: #0A1628;
-
-  /* Muted */
-  --muted: #F5F5F5;
-  --muted-foreground: #64748B;
+  /* Muted (for body text) */
+  --muted: #1e2a34;
+  --muted-foreground: #94a3b8; /* slate-400 equivalent */
 
   /* Destructive */
-  --destructive: #EF4444;
+  --destructive: #ef4444;
 
   /* Border & Input */
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #1E3A5F;
-}
-
-.dark {
-  /* We don't need dark mode for this marketing website,
-     but keeping it for potential future use */
-  --background: #0A1628;
-  --foreground: #FAFAF9;
-  --card: #1E3A5F;
-  --card-foreground: #FAFAF9;
-  --popover: #1E3A5F;
-  --popover-foreground: #FAFAF9;
-  --primary: #D4AF37;
-  --primary-foreground: #0A1628;
-  --secondary: #2D3748;
-  --secondary-foreground: #FAFAF9;
-  --muted: #2D3748;
-  --muted-foreground: #64748B;
-  --accent: #D4AF37;
-  --accent-foreground: #0A1628;
-  --destructive: #EF4444;
   --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #D4AF37;
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #c53c0b;
 }
 
 @layer base {
@@ -132,55 +101,75 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
 }
 
-/* Brand color utilities */
+/* Dark SaaS theme utilities */
 @layer utilities {
-  .text-navy {
-    color: var(--brand-navy);
+  /* Surface colors */
+  .bg-surface {
+    background-color: var(--surface);
   }
-  .text-royal-blue {
-    color: var(--brand-royal-blue);
+  .bg-surface-hover {
+    background-color: var(--surface-hover);
   }
-  .text-gold {
-    color: var(--brand-gold);
+
+  /* Accent utilities */
+  .text-accent {
+    color: var(--accent);
   }
-  .text-charcoal {
-    color: var(--brand-charcoal);
+  .bg-accent {
+    background-color: var(--accent);
   }
-  .text-slate {
-    color: var(--brand-slate);
+  .bg-accent-hover {
+    background-color: var(--accent-hover);
   }
-  .bg-navy {
-    background-color: var(--brand-navy);
+  .border-accent {
+    border-color: var(--accent);
   }
-  .bg-royal-blue {
-    background-color: var(--brand-royal-blue);
+
+  /* Glow effects */
+  .glow-accent {
+    box-shadow: 0 0 40px var(--accent-glow);
   }
-  .bg-gold {
-    background-color: var(--brand-gold);
+  .glow-accent-sm {
+    box-shadow: 0 0 20px var(--accent-glow);
   }
-  .bg-warm-white {
-    background-color: var(--brand-warm-white);
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(37, 49, 59, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
-  .border-navy {
-    border-color: var(--brand-navy);
+  .glass-darker {
+    background: rgba(24, 36, 46, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
-  .border-gold {
-    border-color: var(--brand-gold);
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #c53c0b 0%, #ff6b3d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
-/* Custom animations for Robuust Marketing */
+/* Custom animations */
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slide-up {
@@ -203,4 +192,20 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

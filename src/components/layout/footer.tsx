@@ -31,13 +31,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy text-white">
+    <footer className="bg-surface border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Services */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
               Diensten
             </h3>
             <ul className="mt-4 space-y-3">
@@ -45,7 +45,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-slate hover:text-white transition-colors"
+                    className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -56,7 +56,7 @@ export function Footer() {
 
           {/* Column 2: Packages */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
               Pakketten
             </h3>
             <ul className="mt-4 space-y-3">
@@ -64,7 +64,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-slate hover:text-white transition-colors"
+                    className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -72,7 +72,7 @@ export function Footer() {
               ))}
             </ul>
             <div className="mt-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
                 Bedrijf
               </h3>
               <ul className="mt-4 space-y-3">
@@ -80,7 +80,7 @@ export function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-slate hover:text-white transition-colors"
+                      className="text-sm text-muted-foreground hover:text-white transition-colors"
                     >
                       {item.name}
                     </Link>
@@ -92,14 +92,14 @@ export function Footer() {
 
           {/* Column 3: Contact Info */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
               Contact
             </h3>
             <ul className="mt-4 space-y-3">
               <li>
                 <a
                   href="mailto:info@robuust.marketing"
-                  className="flex items-center gap-2 text-sm text-slate hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   <Mail className="h-4 w-4" />
                   info@robuust.marketing
@@ -108,18 +108,16 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+31612345678"
-                  className="flex items-center gap-2 text-sm text-slate hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   <Phone className="h-4 w-4" />
                   +31 6 12 34 56 78
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-2 text-sm text-slate">
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 mt-0.5" />
-                  <span>
-                    Nederland
-                  </span>
+                  <span>Nederland</span>
                 </div>
               </li>
             </ul>
@@ -127,19 +125,19 @@ export function Footer() {
 
           {/* Column 4: Trust Indicators */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
               Vertrouwd Door
             </h3>
             <div className="mt-4 space-y-3">
-              <div className="rounded-lg border border-gold/20 bg-royal-blue/30 p-4">
-                <div className="text-3xl font-bold text-gold">70+</div>
-                <div className="mt-1 text-sm text-slate">
+              <div className="rounded-2xl border border-white/10 bg-background p-4 hover:border-accent/30 transition-colors">
+                <div className="text-3xl font-bold text-accent">70+</div>
+                <div className="mt-1 text-sm text-muted-foreground">
                   Websites beheerd
                 </div>
               </div>
-              <div className="rounded-lg border border-gold/20 bg-royal-blue/30 p-4">
-                <div className="text-3xl font-bold text-gold">99.9%</div>
-                <div className="mt-1 text-sm text-slate">
+              <div className="rounded-2xl border border-white/10 bg-background p-4 hover:border-accent/30 transition-colors">
+                <div className="text-3xl font-bold text-accent">99.9%</div>
+                <div className="mt-1 text-sm text-muted-foreground">
                   Uptime garantie
                 </div>
               </div>
@@ -150,10 +148,15 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-white/10 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            {/* Copyright */}
-            <p className="text-sm text-slate">
-              © {currentYear} Robuust Marketing. Alle rechten voorbehouden.
-            </p>
+            {/* Logo & Copyright */}
+            <div className="flex items-center gap-4">
+              <span className="text-xl font-bold text-white">
+                Robuust<span className="text-accent">.</span>
+              </span>
+              <p className="text-sm text-muted-foreground">
+                © {currentYear} Robuust Marketing. Alle rechten voorbehouden.
+              </p>
+            </div>
 
             {/* Legal Links */}
             <div className="flex gap-6">
@@ -161,7 +164,7 @@ export function Footer() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-sm text-slate hover:text-white transition-colors"
+                  className="text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   {item.name}
                 </Link>

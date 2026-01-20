@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { ConversionHeader } from "@/components/layout/conversion-header";
-import { Header } from "@/components/layout/header";
+import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
@@ -76,7 +75,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased bg-background text-foreground">
         {/* Google Tag Manager (noscript) */}
         {GTM_ID && (
           <noscript>
@@ -89,14 +88,11 @@ export default function RootLayout({
           </noscript>
         )}
 
-        {/* Conversion Header (sticky top bar) */}
-        <ConversionHeader />
+        {/* Navigation */}
+        <Navbar />
 
-        {/* Main Header Navigation */}
-        <Header />
-
-        {/* Main Content - padding-top to account for fixed headers */}
-        <main className="pt-[108px]">{children}</main>
+        {/* Main Content */}
+        <main>{children}</main>
 
         {/* Footer */}
         <Footer />
