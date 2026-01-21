@@ -424,7 +424,7 @@ export default function OffertePage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="tel:+31850606">Bel ons direct</Link>
+              <Link href="tel:+31850604877">Bel ons direct</Link>
             </Button>
           </motion.div>
         </div>
