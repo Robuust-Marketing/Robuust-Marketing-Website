@@ -206,47 +206,48 @@ export default function DienstenPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group relative overflow-hidden rounded-3xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-all duration-300"
               >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background:
-                      "radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(197, 60, 11, 0.06), transparent 40%)",
-                  }}
-                />
+                <Link
+                  href={service.href}
+                  className="group relative block h-full overflow-hidden rounded-3xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-all duration-300"
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background:
+                        "radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(197, 60, 11, 0.06), transparent 40%)",
+                    }}
+                  />
 
-                <div className="relative z-10">
-                  <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
-                    <service.icon className="h-6 w-6" />
+                  <div className="relative z-10">
+                    <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
+                      <service.icon className="h-6 w-6" />
+                    </div>
+
+                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                      {service.name}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      {service.description}
+                    </p>
+
+                    <ul className="space-y-2 mb-6">
+                      {service.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-center gap-2 text-sm text-white/70"
+                        >
+                          <Check className="h-4 w-4 text-accent" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <span className="inline-flex items-center gap-2 text-accent text-sm font-medium group-hover:gap-3 transition-all">
+                      Meer info
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
                   </div>
-
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {service.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {service.description}
-                  </p>
-
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-center gap-2 text-sm text-white/70"
-                      >
-                        <Check className="h-4 w-4 text-accent" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    href={service.href}
-                    className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:gap-3 transition-all"
-                  >
-                    Meer info
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>

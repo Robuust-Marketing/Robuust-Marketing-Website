@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { portfolioItems } from "@/data/portfolio";
 
@@ -83,79 +83,71 @@ export default function PortfolioPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300"
               >
-                {/* Image placeholder with gradient */}
-                <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white/20 text-6xl font-bold">
-                      {project.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
-
-                  {/* Project type badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                      project.projectType === "new"
-                        ? "bg-green-500/20 text-green-400"
-                        : "bg-blue-500/20 text-blue-400"
-                    }`}>
-                      {project.projectType === "new" ? "Nieuw gebouwd" : "Redesign"}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-accent text-xs font-medium uppercase tracking-wider">
-                      {project.industry}
-                    </span>
-                    <span className="text-muted-foreground text-xs">
-                      {project.year}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {project.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {project.shortDescription}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-1 rounded-full bg-white/5 text-white/70"
-                      >
-                        {tag}
+                <Link
+                  href={`/portfolio/${project.slug}`}
+                  className="group relative block overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300"
+                >
+                  {/* Image placeholder with gradient */}
+                  <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-white/20 text-6xl font-bold">
+                        {project.name.charAt(0)}
                       </span>
-                    ))}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
+
+                    {/* Project type badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                        project.projectType === "new"
+                          ? "bg-green-500/20 text-green-400"
+                          : "bg-blue-500/20 text-blue-400"
+                      }`}>
+                        {project.projectType === "new" ? "Nieuw gebouwd" : "Redesign"}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Actions */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-white/5">
-                    <Link
-                      href={`/portfolio/${project.slug}`}
-                      className="text-sm font-medium text-accent hover:text-accent-hover transition-colors flex items-center gap-1"
-                    >
-                      Bekijk case study
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-medium text-muted-foreground hover:text-white transition-colors flex items-center gap-1"
-                    >
-                      Bezoek website
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
+                  {/* Content */}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-accent text-xs font-medium uppercase tracking-wider">
+                        {project.industry}
+                      </span>
+                      <span className="text-muted-foreground text-xs">
+                        {project.year}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                      {project.name}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      {project.shortDescription}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs px-2 py-1 rounded-full bg-white/5 text-white/70"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+                      <span className="text-sm font-medium text-accent group-hover:text-accent-hover transition-colors flex items-center gap-1">
+                        Bekijk case study
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -188,46 +180,38 @@ export default function PortfolioPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-accent text-xs font-medium uppercase tracking-wider">
-                      {project.industry}
-                    </span>
-                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                      project.projectType === "new"
-                        ? "bg-green-500/20 text-green-400"
-                        : "bg-blue-500/20 text-blue-400"
-                    }`}>
-                      {project.projectType === "new" ? "Nieuw" : "Redesign"}
-                    </span>
-                  </div>
+                  <Link
+                    href={`/portfolio/${project.slug}`}
+                    className="group block h-full rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors"
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-accent text-xs font-medium uppercase tracking-wider">
+                        {project.industry}
+                      </span>
+                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                        project.projectType === "new"
+                          ? "bg-green-500/20 text-green-400"
+                          : "bg-blue-500/20 text-blue-400"
+                      }`}>
+                        {project.projectType === "new" ? "Nieuw" : "Redesign"}
+                      </span>
+                    </div>
 
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {project.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {project.shortDescription}
-                  </p>
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                      {project.name}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      {project.shortDescription}
+                    </p>
 
-                  <div className="flex items-center gap-4 pt-4 border-t border-white/5">
-                    <Link
-                      href={`/portfolio/${project.slug}`}
-                      className="text-sm font-medium text-accent hover:text-accent-hover transition-colors flex items-center gap-1"
-                    >
-                      Case study
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-medium text-muted-foreground hover:text-white transition-colors flex items-center gap-1"
-                    >
-                      Website
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </div>
+                    <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+                      <span className="text-sm font-medium text-accent group-hover:text-accent-hover transition-colors flex items-center gap-1">
+                        Case study
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>

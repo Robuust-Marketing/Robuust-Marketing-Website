@@ -2,17 +2,17 @@ import Link from "next/link";
 import { Mail, Phone, MapPin, Server, Shield } from "lucide-react";
 
 const services = [
-  { name: "Design", href: "/diensten#design" },
-  { name: "Development", href: "/diensten#development" },
-  { name: "Hosting", href: "/diensten#hosting" },
+  { name: "Design", href: "/diensten/design" },
+  { name: "Development", href: "/diensten/development" },
+  { name: "Hosting", href: "/diensten/hosting" },
   { name: "Onderhoud", href: "/diensten/onderhoud" },
-  { name: "SEO", href: "/diensten#seo" },
-  { name: "Online Marketing", href: "/diensten#online-marketing" },
+  { name: "SEO", href: "/diensten/seo" },
+  { name: "Online Marketing", href: "/diensten/online-marketing" },
 ];
 
 const packages = [
-  { name: "Solid Start", href: "/diensten#solid-start" },
-  { name: "Firm Foundation", href: "/diensten#firm-foundation" },
+  { name: "Solid Start", href: "/tarieven" },
+  { name: "Firm Foundation", href: "/tarieven" },
 ];
 
 const company = [
