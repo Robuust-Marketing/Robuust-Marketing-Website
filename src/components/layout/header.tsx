@@ -414,7 +414,7 @@ export function Header() {
             size="sm"
             className="bg-accent hover:bg-accent-hover text-white font-medium px-6 glow-accent-sm hover:glow-accent transition-all duration-300"
           >
-            <Link href="/contact">Start je project</Link>
+            <Link href="/start-project">Start je project</Link>
           </Button>
         </motion.div>
       </nav>
@@ -913,7 +913,7 @@ export function Header() {
                 {/* CTA */}
                 <div className="px-6 py-6 border-t border-white/10">
                   <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
-                    <Link href="/contact" onClick={closeMobileMenu}>
+                    <Link href="/start-project" onClick={closeMobileMenu}>
                       Start je project
                     </Link>
                   </Button>

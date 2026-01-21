@@ -13,59 +13,21 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { packages } from "@/data/packages";
+import { pricing, formatPrice } from "@/data/pricing";
 import { getFAQsByCategory } from "@/data/faqs";
 
 const tarievenFaqs = getFAQsByCategory("tarieven");
 
-const hostingPlans = [
-  {
-    name: "Basis",
-    price: "€49",
-    period: "/maand",
-    description: "Voor kleine websites met beperkt verkeer",
-    features: [
-      "1 website",
-      "10 GB opslag",
-      "Onbeperkt bandbreedte",
-      "SSL certificaat",
-      "Dagelijkse backups",
-      "Email support",
-    ],
-  },
-  {
-    name: "Professional",
-    price: "€99",
-    period: "/maand",
-    description: "Voor bedrijven met meerdere websites",
-    features: [
-      "5 websites",
-      "50 GB opslag",
-      "Onbeperkt bandbreedte",
-      "SSL certificaten",
-      "Dagelijkse backups",
-      "Prioriteit support",
-      "Staging omgeving",
-      "Performance monitoring",
-    ],
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Op maat",
-    period: "",
-    description: "Voor high-traffic en complexe omgevingen",
-    features: [
-      "Onbeperkt websites",
-      "Onbeperkt opslag",
-      "Dedicated resources",
-      "99.99% uptime SLA",
-      "24/7 support",
-      "Custom infrastructuur",
-      "Load balancing",
-      "DDoS protection",
-    ],
-  },
-];
+// Generate hosting plans from central pricing config
+const hostingPlans = Object.entries(pricing.hosting).map(([id, plan]) => ({
+  id,
+  name: plan.label,
+  price: plan.price ? formatPrice(plan.price) : "Op maat",
+  period: plan.price ? "/maand" : "",
+  description: plan.description,
+  features: plan.features,
+  popular: plan.popular || false,
+}));
 
 
 export default function TarievenPage() {
@@ -320,10 +282,10 @@ export default function TarievenPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "Ontwikkeling", price: "€95/uur", desc: "Custom development" },
-              { name: "Design", price: "€85/uur", desc: "UI/UX design werk" },
-              { name: "Consultancy", price: "€125/uur", desc: "Strategisch advies" },
-              { name: "SEO audit", price: "Vanaf €500", desc: "Complete analyse" },
+              { name: pricing.hourlyRates.development.label, price: `${formatPrice(pricing.hourlyRates.development.rate)}/uur`, desc: pricing.hourlyRates.development.description },
+              { name: pricing.hourlyRates.design.label, price: `${formatPrice(pricing.hourlyRates.design.rate)}/uur`, desc: pricing.hourlyRates.design.description },
+              { name: pricing.hourlyRates.consultancy.label, price: `${formatPrice(pricing.hourlyRates.consultancy.rate)}/uur`, desc: pricing.hourlyRates.consultancy.description },
+              { name: pricing.seoAudit.label, price: `Vanaf ${formatPrice(pricing.seoAudit.price)}`, desc: pricing.seoAudit.description },
             ].map((service, index) => (
               <motion.div
                 key={service.name}

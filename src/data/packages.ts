@@ -1,3 +1,5 @@
+import { pricing } from "./pricing";
+
 export interface Package {
   id: string;
   name: string;
@@ -11,11 +13,11 @@ export interface Package {
 export const packages: Package[] = [
   {
     id: "solid-start",
-    name: "Solid Start",
-    tagline: "Perfect voor starters",
+    name: pricing.packages["solid-start"].name,
+    tagline: pricing.packages["solid-start"].tagline,
     description:
       "Een professionele website met alles wat je nodig hebt om online zichtbaar te zijn.",
-    price: "Vanaf € 2.500",
+    price: pricing.packages["solid-start"].displayPrice,
     features: [
       "Custom design",
       "Responsive website",
@@ -23,14 +25,15 @@ export const packages: Package[] = [
       "Contact formulier",
       "1 jaar hosting inclusief",
     ],
+    popular: pricing.packages["solid-start"].popular,
   },
   {
     id: "firm-foundation",
-    name: "Firm Foundation",
-    tagline: "Voor groeiende bedrijven",
+    name: pricing.packages["firm-foundation"].name,
+    tagline: pricing.packages["firm-foundation"].tagline,
     description:
       "Een complete digitale infrastructuur met geavanceerde functionaliteiten en marketing tools.",
-    price: "Vanaf € 7.500",
+    price: pricing.packages["firm-foundation"].displayPrice,
     features: [
       "Alles van Solid Start",
       "Geavanceerde functionaliteiten",
@@ -38,6 +41,6 @@ export const packages: Package[] = [
       "Analytics dashboard",
       "Premium support",
     ],
-    popular: true,
+    popular: pricing.packages["firm-foundation"].popular,
   },
 ];

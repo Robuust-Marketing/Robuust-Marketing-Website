@@ -83,3 +83,35 @@ export const trackFormSubmission = (formName: string) => {
     label: formName,
   });
 };
+
+// Track onboarding wizard step views
+export const trackOnboardingStep = (stepLabel: string, stepNumber: number) => {
+  trackEvent({
+    action: "onboarding_step_view",
+    category: "onboarding",
+    label: stepLabel,
+    value: stepNumber,
+  });
+};
+
+// Track onboarding wizard completion
+export const trackOnboardingComplete = (
+  packageType: string,
+  estimatedPrice: number
+) => {
+  trackEvent({
+    action: "onboarding_complete",
+    category: "conversion",
+    label: packageType,
+    value: estimatedPrice,
+  });
+};
+
+// Track onboarding wizard abandonment
+export const trackOnboardingAbandonment = (lastStep: string) => {
+  trackEvent({
+    action: "onboarding_abandoned",
+    category: "onboarding",
+    label: lastStep,
+  });
+};
