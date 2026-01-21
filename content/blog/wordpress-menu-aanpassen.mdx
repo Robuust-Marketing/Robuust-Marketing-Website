@@ -1,0 +1,256 @@
+---
+title: "WordPress menu aanpassen: navigatie beheren en optimaliseren"
+excerpt: "Leer hoe je menu's maakt, bewerkt en optimaliseert in WordPress. Van basis navigatie tot dropdown menu's."
+category: "WordPress"
+date: "10 december 2024"
+readTime: "5 min"
+author: "Robuust Marketing"
+---
+
+Een goed menu zorgt dat bezoekers makkelijk vinden wat ze zoeken. In WordPress kun je menu's volledig aanpassen. Deze handleiding legt uit hoe.
+
+## Menu's openen
+
+1. Ga naar **Weergave** → **Menu's**
+2. Of via de Customizer: **Weergave** → **Customizer** → **Menu's**
+
+## Een nieuw menu maken
+
+### Stap 1: Menu aanmaken
+
+1. Klik op **Maak een nieuw menu**
+2. Geef het menu een naam (bijv. "Hoofdmenu" of "Footer menu")
+3. Klik **Menu aanmaken**
+
+### Stap 2: Items toevoegen
+
+Aan de linkerkant zie je bronnen om items uit te kiezen:
+
+**Pagina's:**
+1. Vink pagina's aan die je wilt toevoegen
+2. Klik **Toevoegen aan menu**
+
+**Berichten:**
+1. Klik op **Berichten** om uit te klappen
+2. Vink berichten aan
+3. Klik **Toevoegen aan menu**
+
+**Aangepaste links:**
+1. Klik op **Aangepaste links**
+2. Vul de URL in
+3. Geef een linktekst
+4. Klik **Toevoegen aan menu**
+
+Handig voor externe links of specifieke URL's.
+
+**Categorieën:**
+1. Klik op **Categorieën**
+2. Vink categorieën aan
+3. Klik **Toevoegen aan menu**
+
+### Stap 3: Items ordenen
+
+Sleep items om de volgorde te bepalen:
+
+- **Naar boven/beneden**: Wijzigt de volgorde
+- **Naar rechts inspringen**: Maakt het een submenu-item
+
+### Stap 4: Menu locatie kiezen
+
+Onderaan de pagina:
+
+1. Vink aan waar het menu moet verschijnen:
+   - Primair menu (hoofdnavigatie)
+   - Footer menu
+   - Andere locaties (afhankelijk van je theme)
+
+2. Klik **Menu opslaan**
+
+## Menu items bewerken
+
+### Naam wijzigen
+
+1. Klik op de pijl rechts van het menu-item
+2. Wijzig **Navigatielabel**
+3. Dit is de tekst die bezoekers zien
+
+### URL wijzigen
+
+Bij aangepaste links kun je de URL aanpassen. Bij pagina's/posts verwijst het automatisch naar de juiste plek.
+
+### Item verwijderen
+
+1. Klik op de pijl om het item te openen
+2. Klik **Verwijderen**
+
+## Dropdown menu's maken
+
+Submenu's (dropdowns) maak je door items in te springen:
+
+### Methode 1: Slepen
+
+1. Sleep het item iets naar rechts
+2. Het verspringt onder het bovenliggende item
+3. Een lijntje toont de hiërarchie
+
+### Methode 2: Inspringen
+
+1. Open het menu-item (klik op de pijl)
+2. Gebruik de linkjes **Onder [item]** om te nestelen
+
+### Voorbeeld structuur
+
+```
+├── Home
+├── Diensten
+│   ├── Webdesign
+│   ├── Development
+│   └── Hosting
+├── Over ons
+└── Contact
+```
+
+"Webdesign", "Development" en "Hosting" zijn submenu-items van "Diensten".
+
+## Menu locaties beheren
+
+### Locaties toewijzen
+
+1. Klik op **Locaties beheren** (tabblad bovenaan)
+2. Kies welk menu waar verschijnt:
+   - Primair menu: [Selecteer menu]
+   - Footer menu: [Selecteer menu]
+
+### Meerdere menu's
+
+Je kunt verschillende menu's maken voor verschillende locaties:
+- Uitgebreid hoofdmenu
+- Verkort footer menu
+- Simpel mobiel menu
+
+## Geavanceerde opties
+
+### Extra velden inschakelen
+
+1. Klik op **Schermopties** rechtsboven
+2. Vink extra opties aan:
+   - Linkdoel (openen in nieuw tabblad)
+   - Titeltekst (tooltip)
+   - CSS-classes
+   - Linkrelatie (nofollow)
+   - Beschrijving
+
+### Openen in nieuw tabblad
+
+Voor externe links:
+
+1. Schakel **Linkdoel** in via Schermopties
+2. Open het menu-item
+3. Vink **Link in een nieuw tabblad openen** aan
+
+### CSS class toevoegen
+
+Voor aangepaste styling:
+
+1. Schakel **CSS-classes** in via Schermopties
+2. Open het menu-item
+3. Voer een class naam in
+
+Je kunt deze class dan stylen in je theme CSS.
+
+### Beschrijving toevoegen
+
+Voor menu's die beschrijvingen tonen (bijv. mega menu's):
+
+1. Schakel **Beschrijving** in via Schermopties
+2. Open het menu-item
+3. Vul een korte beschrijving in
+
+Of dit getoond wordt hangt af van je theme.
+
+## Mobiele menu's
+
+De meeste themes tonen automatisch een "hamburger" menu op mobiel. Dit gebruikt hetzelfde menu maar in een compacte weergave.
+
+### Tips voor mobiele menu's
+
+- Houd het menu kort (max 5-7 hoofditems)
+- Zorg dat submenu's niet te diep gaan (max 2 niveaus)
+- Test op een echte telefoon
+
+### Aparte mobiele navigatie
+
+Sommige themes bieden een aparte mobiele menu locatie. Check je theme instellingen.
+
+## Menu via de Customizer
+
+Een alternatieve manier om menu's te bewerken:
+
+1. Ga naar **Weergave** → **Customizer**
+2. Klik op **Menu's**
+3. Kies een menu om te bewerken
+4. Je ziet wijzigingen live in de preview
+
+### Voordelen Customizer
+
+- Live preview van wijzigingen
+- Makkelijk testen zonder publiceren
+- Alternatieve interface
+
+## Veelgestelde vragen
+
+**Hoe maak ik een menu-item dat nergens naar linkt?**
+Maak een aangepaste link met `#` als URL. Dit creëert een niet-klikbaar label, handig als header voor een dropdown.
+
+**Kan ik iconen toevoegen aan menu-items?**
+Niet standaard. Opties:
+- Gebruik een plugin zoals "Menu Icons by ThemeIsle"
+- Voeg iconen toe via CSS classes
+- Sommige themes hebben ingebouwde icon support
+
+**Het submenu verschijnt niet?**
+Controleer:
+- Is het item correct ingesprongen?
+- Ondersteunt je theme dropdown menu's?
+- Conflicteert een plugin met het menu?
+
+**Hoe maak ik een mega menu?**
+Voor uitgebreide dropdown menu's met meerdere kolommen:
+- Gebruik een plugin zoals "Max Mega Menu"
+- Of check of je theme mega menu support heeft
+
+**Menu toont niet na opslaan?**
+- Is het menu toegewezen aan een locatie?
+- Is de cache geleegd?
+- Staat het theme menu op de juiste plek?
+
+## Best practices voor navigatie
+
+### Houd het simpel
+
+- Max 7 items in hoofdmenu
+- Max 2 niveaus diep
+- Duidelijke, beschrijvende labels
+
+### Prioriteer belangrijke pagina's
+
+- Belangrijkste items links (worden eerst gezien)
+- "Contact" of CTA rechts (vaste plek)
+
+### Wees consistent
+
+- Gebruik dezelfde termen als op de pagina's
+- Houd volgorde logisch
+- Mobiel en desktop moeten consistent aanvoelen
+
+### Test met echte gebruikers
+
+- Kunnen ze de belangrijkste pagina's vinden?
+- Is de structuur logisch?
+- Werkt het op alle apparaten?
+
+## Conclusie
+
+Een goed menu is cruciaal voor gebruikerservaring. Neem de tijd om je navigatie te plannen voordat je begint met bouwen. Test regelmatig en pas aan op basis van hoe bezoekers je site gebruiken.
+
+Hulp nodig bij het optimaliseren van je WordPress navigatie? Neem contact met ons op.

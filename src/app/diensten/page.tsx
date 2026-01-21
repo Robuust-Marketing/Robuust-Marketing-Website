@@ -26,7 +26,7 @@ const services = [
     description:
       "Op maat gemaakte UI/UX design die jouw merkidentiteit vastlegt en bezoekers omzet in klanten.",
     features: ["Custom webdesign", "UI/UX optimalisatie", "Brand identity", "Responsive design"],
-    href: "/diensten#design",
+    href: "/diensten/design",
   },
   {
     id: "development",
@@ -35,7 +35,7 @@ const services = [
     description:
       "Moderne websites gebouwd met React, Next.js en TypeScript voor razendsnelle performance.",
     features: ["Next.js & React", "TypeScript", "Headless CMS", "API integraties"],
-    href: "/diensten#development",
+    href: "/diensten/development",
   },
   {
     id: "hosting",
@@ -44,7 +44,7 @@ const services = [
     description:
       "Enterprise-grade infrastructuur met NGINX en Cloudflare op dedicated servers in Europa.",
     features: ["Dedicated servers", "99.9% uptime", "SSL certificaten", "CDN & caching"],
-    href: "/diensten#hosting",
+    href: "/diensten/hosting",
   },
   {
     id: "maintenance",
@@ -62,7 +62,7 @@ const services = [
     description:
       "Geavanceerde analytics met GA4, Meta Pixel en first-party tracking via Taggrs.",
     features: ["GA4 setup", "Meta Pixel", "First-party tracking", "Conversie tracking"],
-    href: "/diensten#tracking",
+    href: "/diensten/tracking",
   },
   {
     id: "email-marketing",
@@ -71,7 +71,7 @@ const services = [
     description:
       "Effectieve email campagnes die converteren. Van nieuwsbrieven tot geautomatiseerde flows.",
     features: ["Email campagnes", "Automatisering", "A/B testing", "Segmentatie"],
-    href: "/diensten#email-marketing",
+    href: "/diensten/email-marketing",
   },
   {
     id: "online-marketing",
@@ -80,7 +80,7 @@ const services = [
     description:
       "Full-stack digital marketing inclusief Meta, TikTok en Google Ads via Hello Its Me.",
     features: ["Google Ads", "Meta Ads", "TikTok Ads", "Remarketing"],
-    href: "/diensten#online-marketing",
+    href: "/diensten/online-marketing",
   },
   {
     id: "branding",
@@ -89,7 +89,7 @@ const services = [
     description:
       "Sterke merkidentiteit die blijft hangen. Van logo tot complete brand guidelines.",
     features: ["Logo design", "Brand guidelines", "Huisstijl", "Visual identity"],
-    href: "/diensten#branding",
+    href: "/diensten/branding",
   },
   {
     id: "seo",
@@ -98,7 +98,7 @@ const services = [
     description:
       "Organisch beter gevonden worden in Google met technische SEO en content optimalisatie.",
     features: ["Technische SEO", "Content optimalisatie", "Linkbuilding", "Local SEO"],
-    href: "/diensten#seo",
+    href: "/diensten/seo",
   },
   {
     id: "crm",
@@ -107,7 +107,7 @@ const services = [
     description:
       "Klantrelaties optimaliseren met slimme CRM integraties en automatiseringen.",
     features: ["CRM setup", "Integraties", "Automatisering", "Lead management"],
-    href: "/diensten#crm",
+    href: "/diensten/crm",
   },
 ];
 

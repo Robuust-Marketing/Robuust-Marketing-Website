@@ -1,0 +1,345 @@
+---
+title: "Website beveiligen met Cloudflare: DDoS bescherming en firewall"
+excerpt: "Bescherm je website tegen aanvallen met Cloudflare's gratis security features. Van DDoS bescherming tot Web Application Firewall."
+category: "Cloudflare"
+date: "22 december 2024"
+readTime: "9 min"
+author: "Robuust Marketing"
+---
+
+Elke website is een potentieel doelwit voor aanvallen. Van simpele brute-force pogingen tot grootschalige DDoS aanvallen - de dreigingen zijn reëel. Cloudflare biedt krachtige bescherming, grotendeels gratis. In dit artikel leggen we uit hoe je dit inricht.
+
+## Waarom website security belangrijk is
+
+De cijfers liegen niet:
+
+- Elke 39 seconden vindt er een cyberaanval plaats
+- 43% van aanvallen richt zich op kleine bedrijven
+- De gemiddelde kosten van een datalek: €4,2 miljoen
+- 94% van malware wordt via e-mail bezorgd
+
+Je denkt misschien: "Wie wil mijn kleine website aanvallen?" Maar aanvallen zijn vaak geautomatiseerd en richten zich op iedereen.
+
+## DDoS bescherming
+
+### Wat is een DDoS aanval?
+
+DDoS (Distributed Denial of Service) is een aanval waarbij duizenden computers tegelijk je server bestoken met verkeer, totdat hij crasht.
+
+**Types DDoS:**
+- **Volumetric**: Overspoelen met data (UDP floods)
+- **Protocol**: Misbruiken van netwerkprotocollen (SYN flood)
+- **Application layer**: Legitiem lijkende requests (HTTP floods)
+
+### Cloudflare's DDoS bescherming
+
+Cloudflare absorbeert en filtert DDoS verkeer automatisch:
+
+- **>197 Tbps netwerkcapaciteit**: Kan vrijwel elke aanval absorberen
+- **Automatische detectie**: Machine learning herkent aanvalspatronen
+- **Gratis inbegrepen**: Zelfs op het gratis plan
+
+Je hoeft hiervoor niets te configureren - het is standaard actief zodra je verkeer via Cloudflare loopt.
+
+### Under Attack Mode
+
+Bij een actieve aanval kun je "I'm Under Attack Mode" activeren:
+
+1. Ga naar Security → Overview
+2. Klik op "Under Attack Mode"
+3. Dit toont een JavaScript challenge aan alle bezoekers
+
+**Gebruik dit alleen bij actieve aanvallen** - het vertraagt legitieme bezoekers.
+
+## Web Application Firewall (WAF)
+
+### Wat doet een WAF?
+
+Een WAF beschermt tegen application-level aanvallen:
+
+- SQL injection
+- Cross-site scripting (XSS)
+- Remote file inclusion
+- Local file inclusion
+- Common exploits
+
+### Managed rulesets
+
+Cloudflare biedt voorgedefinieerde regelsets:
+
+**Cloudflare Managed Ruleset:**
+- Beschermt tegen bekende vulnerabilities
+- Wordt continu bijgewerkt
+- Gratis beschikbaar (beperkt)
+
+**OWASP Core Ruleset:**
+- Gebaseerd op OWASP standaarden
+- Beschermt tegen top 10 web vulnerabilities
+- Beschikbaar in Pro plan en hoger
+
+### WAF activeren
+
+1. Ga naar Security → WAF
+2. Klik op "Managed rules"
+3. Activeer de Cloudflare Managed Ruleset
+4. Review de default actie (Block/Challenge)
+
+### Custom rules maken
+
+Je kunt eigen firewall regels maken:
+
+**Voorbeeld: Block specifieke user agent**
+```
+(http.user_agent contains "BadBot")
+→ Block
+```
+
+**Voorbeeld: Challenge requests naar login**
+```
+(http.request.uri.path contains "/wp-login.php")
+→ Managed Challenge
+```
+
+**Voorbeeld: Allow alleen Nederland**
+```
+(ip.geoip.country ne "NL")
+→ Block
+```
+
+## Bot management
+
+### Bad bots vs Good bots
+
+**Good bots:**
+- Googlebot (search indexing)
+- Bingbot
+- Social media crawlers
+
+**Bad bots:**
+- Scrapers (content stealing)
+- Spambots
+- Vulnerability scanners
+- Credential stuffers
+
+### Bot Fight Mode
+
+Gratis bot bescherming:
+
+1. Ga naar Security → Bots
+2. Activeer "Bot Fight Mode"
+3. Bekende bad bots worden geblokkeerd
+
+### Super Bot Fight Mode (Pro)
+
+Meer controle over bot verkeer:
+
+- Verified bots toestaan
+- Automated traffic challengen
+- Static resource protection
+
+### Challenge passage
+
+Je kunt instellen hoe lang een challenge geldig blijft:
+
+1. Security → Settings
+2. Challenge Passage: 30 minuten (default)
+
+Legitieme bezoekers hoeven na een challenge niet continu opnieuw te verifiëren.
+
+## IP Access Rules
+
+### IP's blokkeren
+
+Blokkeer specifieke IP adressen of ranges:
+
+1. Security → WAF → Tools
+2. Klik "Create a Firewall Rule"
+3. Voer IP of range in
+4. Kies actie: Block
+
+**Voorbeeld:**
+```
+Block: 192.168.1.0/24 (hele subnet)
+Block: AS12345 (hele ISP/hosting provider)
+```
+
+### IP's whitelisten
+
+Sta specifieke IP's altijd toe:
+
+```
+Allow: 198.51.100.1 (je eigen IP)
+Allow: 203.0.113.0/24 (kantoornetwerk)
+```
+
+Dit is handig voor:
+- Je eigen IP (voorkom uitsluiting)
+- Office IP's
+- Monitoring services
+- Betaalproviders
+
+### Country blocking
+
+Blokkeer verkeer uit specifieke landen:
+
+1. Security → WAF → Custom rules
+2. Maak regel: (ip.geoip.country eq "CN") → Block
+
+**Overweeg dit voor:**
+- Landen waar je geen klanten hebt
+- Landen met veel aanvallen
+- Compliance redenen (GDPR)
+
+## Rate limiting
+
+### Wat is rate limiting?
+
+Beperk het aantal requests dat een IP mag doen:
+
+- Beschermt tegen brute force
+- Voorkomt scraping
+- Vermindert server load
+
+### Rate limiting configureren
+
+1. Security → WAF → Rate limiting rules
+2. Maak een nieuwe regel:
+
+**Voorbeeld: Login beschermen**
+```
+If: URI Path equals "/wp-login.php"
+Then: Block for 10 minutes
+When: Exceeds 5 requests per minute
+```
+
+**Voorbeeld: API rate limit**
+```
+If: URI Path starts with "/api/"
+Then: Block for 1 hour
+When: Exceeds 100 requests per minute
+```
+
+## Page Shield
+
+Bescherming tegen supply chain attacks:
+
+- Monitort third-party scripts
+- Detecteert onverwachte wijzigingen
+- Alert bij verdachte activiteit
+
+1. Ga naar Security → Page Shield
+2. Activeer monitoring
+3. Review gedetecteerde scripts
+4. Blokkeer verdachte scripts
+
+## Logging en monitoring
+
+### Security Events
+
+Bekijk alle security events:
+
+1. Security → Events
+2. Filter op type, actie, bron
+3. Analyseer patronen
+
+### Analytics
+
+Security analytics dashboard:
+
+- Geblokkeerde requests
+- Top aanvalstypes
+- Geografische distributie
+- Trends over tijd
+
+### Alerts instellen
+
+Krijg notificaties bij security events:
+
+1. Notifications
+2. Create notification
+3. Kies "Security Events Alert"
+4. Stel drempels in
+
+## SSL/TLS security
+
+### Encryption modes
+
+Kies het juiste niveau:
+
+- **Off**: Geen encryptie (NOOIT gebruiken)
+- **Flexible**: Encrypt tot Cloudflare, HTTP naar origin
+- **Full**: Encrypt volledig, self-signed OK
+- **Full (Strict)**: Encrypt volledig, geldig cert vereist (AANBEVOLEN)
+
+### Always Use HTTPS
+
+Forceer HTTPS voor alle bezoekers:
+
+1. SSL/TLS → Edge Certificates
+2. Activeer "Always Use HTTPS"
+
+### HSTS
+
+HTTP Strict Transport Security:
+
+1. SSL/TLS → Edge Certificates
+2. Activeer HSTS
+3. Stel max-age in (min. 6 maanden)
+
+**Waarschuwing:** HSTS is moeilijk terug te draaien. Test grondig.
+
+### Minimum TLS version
+
+Blokkeer oude, onveilige TLS versies:
+
+1. SSL/TLS → Edge Certificates
+2. Minimum TLS Version: 1.2
+
+TLS 1.0 en 1.1 zijn onveilig en zouden geblokkeerd moeten zijn.
+
+## Security checklist
+
+### Basis (gratis plan)
+
+- [ ] SSL/TLS op Full (Strict)
+- [ ] Always Use HTTPS actief
+- [ ] Bot Fight Mode aan
+- [ ] Security Level: Medium
+- [ ] Browser Integrity Check aan
+- [ ] Je eigen IP gewhitelist
+
+### Geavanceerd (Pro plan)
+
+- [ ] WAF managed rulesets actief
+- [ ] Rate limiting geconfigureerd
+- [ ] Custom firewall rules
+- [ ] OWASP ruleset actief
+- [ ] Security alerts ingesteld
+
+### Expert
+
+- [ ] Page Shield monitoring
+- [ ] Zero Trust access voor admin
+- [ ] API Shield voor API's
+- [ ] Advanced rate limiting
+
+## Veelgemaakte fouten
+
+1. **Origin IP lekt**: Zorg dat je server IP niet vindbaar is
+2. **Bypass via direct IP**: Blokkeer directe toegang tot server
+3. **Te strenge rules**: Test voor productie, voorkom false positives
+4. **Security level te laag**: Medium is goede baseline
+5. **Geen monitoring**: Check regelmatig security events
+
+## Conclusie
+
+Cloudflare biedt enterprise-level security voor iedereen. Zelfs met het gratis plan krijg je:
+
+- Onbeperkte DDoS bescherming
+- Basis WAF bescherming
+- Bot management
+- SSL/TLS encryptie
+
+Begin met de basics, monitor je security events, en voeg geleidelijk meer bescherming toe waar nodig.
+
+Hulp nodig bij het beveiligen van je website? Neem contact op voor een security audit.

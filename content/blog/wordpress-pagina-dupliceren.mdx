@@ -1,0 +1,239 @@
+---
+title: "WordPress pagina of post dupliceren: 3 methodes uitgelegd"
+excerpt: "Wil je een pagina of blogpost kopiëren in WordPress? Ontdek drie manieren om snel content te dupliceren."
+category: "WordPress"
+date: "15 december 2024"
+readTime: "5 min"
+author: "Robuust Marketing"
+---
+
+Soms wil je een bestaande pagina of post als basis gebruiken voor nieuwe content. In WordPress zijn er meerdere manieren om dit te doen. We bespreken drie opties: met plugin, handmatig kopiëren en via code.
+
+## Waarom pagina's dupliceren?
+
+Veelvoorkomende redenen om te dupliceren:
+
+- **Template hergebruiken**: Dezelfde opmaak voor vergelijkbare pagina's
+- **Consistente structuur**: Productpagina's of teamleden
+- **A/B testen**: Twee versies vergelijken
+- **Backup voor grote wijzigingen**: Origineel behouden
+- **Vertaling voorbereiding**: Basis voor andere taalversies
+
+## Methode 1: Met plugin (aanbevolen)
+
+De makkelijkste manier is met een plugin. We raden **Duplicate Post** (van Yoast) aan.
+
+### Installatie
+
+1. Ga naar **Plugins** → **Nieuwe plugin**
+2. Zoek op "Duplicate Post"
+3. Installeer de plugin van Yoast
+4. Klik op **Activeren**
+
+### Pagina dupliceren
+
+Na installatie verschijnen nieuwe opties:
+
+1. Ga naar **Pagina's** → **Alle pagina's**
+2. Beweeg over de pagina die je wilt kopiëren
+3. Je ziet nu extra opties:
+   - **Kloon**: Maakt directe kopie als concept
+   - **Nieuw concept**: Opent de editor met een kopie
+   - **Herschrijven & opnieuw publiceren**: Voor het herzien van een live pagina
+
+4. Klik op **Kloon** voor een snelle kopie
+5. Je kopie verschijnt als concept
+
+### Post dupliceren
+
+Werkt identiek:
+
+1. Ga naar **Berichten** → **Alle berichten**
+2. Beweeg over het bericht
+3. Klik op **Kloon** of **Nieuw concept**
+
+### Plugin instellingen
+
+Pas aan wat er gekopieerd wordt:
+
+1. Ga naar **Instellingen** → **Duplicate Post**
+2. Configureer:
+
+**Wat kopiëren:**
+- Titel (aan)
+- Datum (uit - krijgt nieuwe datum)
+- Status (concept aanbevolen)
+- Slug/permalink (aan)
+- Samenvatting (aan)
+- Inhoud (aan)
+- Uitgelichte afbeelding (aan)
+- Template (aan)
+- Categorieën en tags (naar wens)
+
+**Welk prefix/suffix:**
+- Prefix: "Kopie van" (optioneel)
+- Suffix: "(kopie)" (optioneel)
+
+**Waar tonen:**
+- Berichtenlijst (aan)
+- Bewerkingsscherm (aan)
+- Admin-balk (naar wens)
+
+### Rechten instellen
+
+Bepaal wie mag dupliceren:
+
+1. Ga naar **Instellingen** → **Duplicate Post** → **Rechten**
+2. Vink aan welke gebruikersrollen mogen kopiëren
+3. Kies welke post types (berichten, pagina's, etc.)
+
+## Methode 2: Handmatig kopiëren
+
+Geen plugin nodig? Je kunt ook handmatig kopiëren.
+
+### Via de code editor
+
+1. Open de pagina/post die je wilt kopiëren
+2. Klik rechtsboven op de **drie puntjes** (⋮)
+3. Klik op **Code-editor** (of druk Ctrl/Cmd + Shift + Alt + M)
+4. Selecteer alle code (Ctrl/Cmd + A)
+5. Kopieer (Ctrl/Cmd + C)
+
+Nu een nieuwe pagina maken:
+
+1. Ga naar **Pagina's** → **Nieuwe pagina**
+2. Schakel naar **Code-editor**
+3. Plak de gekopieerde code (Ctrl/Cmd + V)
+4. Schakel terug naar **Visuele editor**
+5. Pas de titel en content aan
+6. Sla op als concept
+
+### Let op bij handmatig kopiëren
+
+Dit kopieert NIET:
+
+- Uitgelichte afbeelding
+- SEO instellingen
+- Categorieën en tags
+- Pagina attributen (template, volgorde, bovenliggende pagina)
+- Custom fields
+
+Deze moet je handmatig opnieuw instellen.
+
+## Methode 3: Via de database (voor developers)
+
+Voor technisch onderlegde gebruikers of developers.
+
+### Waarschuwing
+
+Werk nooit direct op de live database zonder backup. Gebruik deze methode alleen als je weet wat je doet.
+
+### SQL query
+
+```sql
+-- Stap 1: Kopieer de post
+INSERT INTO wp_posts (post_author, post_date, post_date_gmt, post_content,
+post_title, post_excerpt, post_status, comment_status, ping_status,
+post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt,
+post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type,
+comment_count)
+SELECT post_author, NOW(), NOW(), post_content,
+CONCAT(post_title, ' (kopie)'), post_excerpt, 'draft', comment_status,
+ping_status, post_password, CONCAT(post_name, '-kopie'), to_ping, pinged,
+NOW(), NOW(), post_content_filtered, post_parent, '', menu_order, post_type,
+post_mime_type, 0
+FROM wp_posts
+WHERE ID = 123; -- Vervang 123 met het originele post ID
+
+-- Stap 2: Kopieer de post meta
+INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+SELECT LAST_INSERT_ID(), meta_key, meta_value
+FROM wp_postmeta
+WHERE post_id = 123; -- Zelfde originele post ID
+```
+
+### Via WP-CLI
+
+Als je WP-CLI hebt geïnstalleerd:
+
+```bash
+# Installeer een duplicate plugin via CLI
+wp plugin install duplicate-post --activate
+
+# Of exporteer en importeer
+wp post get 123 --format=json > post.json
+# Bewerk post.json (verwijder ID, pas titel aan)
+wp post create post.json --porcelain
+```
+
+## Bulk dupliceren
+
+Moet je veel pagina's tegelijk dupliceren?
+
+### Met Duplicate Post plugin
+
+1. Ga naar **Pagina's** → **Alle pagina's**
+2. Selecteer meerdere pagina's met de checkboxes
+3. Kies **Bulk acties** → **Kloon**
+4. Klik **Toepassen**
+
+### Met WP-CLI (developers)
+
+```bash
+# Dupliceer alle pagina's in een categorie
+for id in $(wp post list --post_type=page --format=ids); do
+  wp post create --post_type=page --post_status=draft \
+    --post_title="$(wp post get $id --field=post_title) (kopie)" \
+    --post_content="$(wp post get $id --field=post_content)"
+done
+```
+
+## Na het dupliceren
+
+### Checklist voor gedupliceerde content
+
+Na het dupliceren, vergeet niet:
+
+- [ ] **Titel** aanpassen
+- [ ] **URL (slug)** wijzigen naar iets unieks
+- [ ] **Uitgelichte afbeelding** controleren/aanpassen
+- [ ] **SEO titel en beschrijving** aanpassen
+- [ ] **Interne links** controleren (verwijzen ze naar de juiste pagina?)
+- [ ] **Datum** controleren (indien relevant)
+- [ ] **Categorie/tags** controleren
+
+### Duplicate content vermijden
+
+Google houdt niet van duplicate content. Zorg dat:
+
+- Elke pagina unieke content heeft
+- De gedupliceerde versie substantieel verschilt
+- Of één van beide "noindex" is tijdens het bewerken
+
+## Veelgestelde vragen
+
+**Worden afbeeldingen ook gedupliceerd?**
+De afbeeldingsblokken worden gekopieerd, maar verwijzen naar dezelfde mediabestanden. De bestanden zelf worden niet gedupliceerd.
+
+**Worden SEO instellingen meegekopieerd?**
+Met Duplicate Post: ja (als je dat aanvinkt in de instellingen). Handmatig: nee.
+
+**Kan ik WooCommerce producten dupliceren?**
+Ja, WooCommerce heeft ingebouwde dupliceerfunctie. Beweeg over een product en klik "Dupliceren".
+
+**Wordt de gepubliceerde pagina aangepast als ik het concept wijzig?**
+Nee, de kopie is een volledig apart bericht. Wijzigingen in de kopie beïnvloeden het origineel niet.
+
+**Hoe dupliceer ik alleen een specifiek deel van een pagina?**
+Selecteer de blokken in de editor, klik op de drie puntjes, kies "Kopieer blokken". Plak in de nieuwe pagina.
+
+## Conclusie
+
+Voor de meeste gebruikers is de Duplicate Post plugin de beste optie:
+
+- Makkelijk te gebruiken
+- Configureerbaar wat er wordt gekopieerd
+- Werkt met bulk acties
+- Gratis en betrouwbaar
+
+Heb je hulp nodig bij WordPress? Neem contact met ons op.

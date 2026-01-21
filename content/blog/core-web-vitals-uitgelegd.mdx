@@ -1,0 +1,263 @@
+---
+title: "Core Web Vitals uitgelegd: wat ze betekenen voor jouw website"
+excerpt: "Google's Core Web Vitals zijn nu een rankingfactor. Leer wat LCP, FID en CLS betekenen en hoe je je scores verbetert."
+category: "Marketing & SEO"
+date: "3 januari 2025"
+readTime: "7 min"
+author: "Robuust Marketing"
+---
+
+Core Web Vitals zijn Google's manier om de gebruikerservaring van een website te meten. Sinds 2021 zijn ze officieel een rankingfactor. Hoe beter je scoort, hoe gunstiger Google je behandelt. Maar wat meten ze precies?
+
+## Wat zijn Core Web Vitals?
+
+Core Web Vitals zijn drie specifieke metrics die samen de laadervaring van een webpagina meten:
+
+1. **LCP** - Largest Contentful Paint (laadsnelheid)
+2. **INP** - Interaction to Next Paint (interactiviteit)
+3. **CLS** - Cumulative Layout Shift (visuele stabiliteit)
+
+*Let op: INP heeft FID (First Input Delay) vervangen sinds maart 2024*
+
+## LCP: Largest Contentful Paint
+
+### Wat meet het?
+
+LCP meet hoe lang het duurt voordat het grootste zichtbare element op de pagina is geladen. Dit is meestal:
+
+- Een hero afbeelding
+- Een grote tekst block
+- Een video thumbnail
+
+Het gaat om wat de gebruiker **ziet**, niet wat er technisch allemaal laadt.
+
+### Wat zijn goede scores?
+
+| Score | Beoordeling |
+|-------|-------------|
+| ≤ 2,5 sec | Goed |
+| 2,5 - 4 sec | Verbetering nodig |
+| > 4 sec | Slecht |
+
+### Hoe verbeter je LCP?
+
+**Server response time optimaliseren:**
+- Kies snellere hosting
+- Gebruik een CDN
+- Implementeer caching
+
+**Render-blocking resources elimineren:**
+- Defer non-critical JavaScript
+- Inline critical CSS
+- Preload belangrijke resources
+
+**Afbeeldingen optimaliseren:**
+- Comprimeer afbeeldingen
+- Gebruik moderne formaten (WebP, AVIF)
+- Implementeer lazy loading
+- Geef width en height attributen op
+
+**Fonts optimaliseren:**
+- Host fonts lokaal
+- Gebruik font-display: swap
+- Preload belangrijke fonts
+
+## INP: Interaction to Next Paint
+
+### Wat meet het?
+
+INP meet hoe snel de website reageert op gebruikersinteracties. Het bekijkt alle interacties tijdens een bezoek (clicks, taps, toetsaanslagen) en rapporteert de slechtste ervaring.
+
+Dit vervangt FID, die alleen de eerste interactie mat.
+
+### Wat zijn goede scores?
+
+| Score | Beoordeling |
+|-------|-------------|
+| ≤ 200 ms | Goed |
+| 200 - 500 ms | Verbetering nodig |
+| > 500 ms | Slecht |
+
+### Hoe verbeter je INP?
+
+**JavaScript optimaliseren:**
+- Splits lange taken op
+- Defer non-essential scripts
+- Gebruik web workers voor zware taken
+- Verwijder ongebruikte code
+
+**Third-party scripts beperken:**
+- Audit alle externe scripts
+- Laad ze async of defer
+- Overweeg alternatieven
+
+**Event handlers optimaliseren:**
+- Gebruik throttling/debouncing
+- Minimaliseer DOM manipulaties
+- Optimaliseer event listeners
+
+## CLS: Cumulative Layout Shift
+
+### Wat meet het?
+
+CLS meet hoeveel de pagina "springt" tijdens het laden. Je kent het wel: je wilt op een link klikken, maar plotseling verschuift alles omdat een advertentie laadt, en je klikt op het verkeerde.
+
+### Wat zijn goede scores?
+
+| Score | Beoordeling |
+|-------|-------------|
+| ≤ 0,1 | Goed |
+| 0,1 - 0,25 | Verbetering nodig |
+| > 0,25 | Slecht |
+
+### Hoe verbeter je CLS?
+
+**Afmetingen opgeven:**
+- Geef altijd width en height aan images
+- Gebruik aspect-ratio voor responsive images
+- Reserveer ruimte voor embeds
+
+**Fonts:**
+- Gebruik font-display: optional of swap
+- Match fallback font aan webfont
+- Preload belangrijke fonts
+
+**Advertenties en embeds:**
+- Reserveer ruimte voor ads
+- Gebruik placeholders
+- Laad niet dynamisch boven bestaande content
+
+**Animaties:**
+- Animeer alleen transform en opacity
+- Vermijd layout-triggerende properties
+- Gebruik will-change spaarzaam
+
+## Hoe meet je Core Web Vitals?
+
+### Field data (echte gebruikers)
+
+**Google Search Console:**
+- Core Web Vitals rapport
+- Geeft overzicht van alle pagina's
+- Toont trends over tijd
+
+**PageSpeed Insights:**
+- Gebruikt Chrome User Experience Report
+- Echte data van Chrome gebruikers
+- Gratis beschikbaar
+
+**Web Vitals JavaScript library:**
+- Meet in je eigen analytics
+- Real-user monitoring
+
+### Lab data (gesimuleerd)
+
+**Lighthouse:**
+- Ingebouwd in Chrome DevTools
+- Geeft specifieke adviezen
+- Simulatie, geen echte gebruikers
+
+**WebPageTest:**
+- Uitgebreide test opties
+- Filmstrip van laden
+- Waterfall analyse
+
+### Verschil field vs lab
+
+- **Field data** is wat Google gebruikt voor rankings
+- **Lab data** is handig voor debugging
+- Scores kunnen verschillen (lab vs real world)
+
+## Impact op SEO
+
+### Directe ranking factor
+
+Core Web Vitals zijn een van de vele ranking factoren. Google heeft gezegd dat content relevantie nog steeds belangrijker is, maar bij gelijke relevantie wint de snellere site.
+
+### Page Experience signalen
+
+Core Web Vitals zijn onderdeel van bredere Page Experience signalen:
+
+- Core Web Vitals (LCP, INP, CLS)
+- Mobile-friendliness
+- HTTPS
+- No intrusive interstitials
+
+### Praktische impact
+
+**Bij competitieve keywords:**
+Als jij en een concurrent vergelijkbare content hebben, kunnen betere Core Web Vitals het verschil maken.
+
+**Bij lokale zoekresultaten:**
+Google toont alleen sites met goede ervaring in het 3-pack.
+
+**In Google Discover:**
+Slechte Core Web Vitals kunnen je uitsluiten van Discover.
+
+## Prioriteiten stellen
+
+Niet alle pagina's zijn even belangrijk. Focus eerst op:
+
+1. **Homepage** - Vaak meest bezocht
+2. **Landingspagina's** - Waar campagnes op landen
+3. **Productpagina's** - Conversie-kritiek
+4. **Blogposts met veel verkeer** - Hoog volume
+
+### Graduale verbetering
+
+Je hoeft niet alles in één keer te fixen:
+
+1. Meet je huidige status
+2. Identificeer de grootste problemen
+3. Fix de makkelijke winst eerst
+4. Meet opnieuw
+5. Pak de volgende issues aan
+
+## Common issues en oplossingen
+
+### Issue: Trage LCP door grote hero image
+
+**Oplossing:**
+```html
+<img
+  src="hero.webp"
+  width="1200"
+  height="600"
+  fetchpriority="high"
+  alt="Hero"
+/>
+```
+
+### Issue: CLS door late font loading
+
+**Oplossing:**
+```css
+@font-face {
+  font-family: 'CustomFont';
+  font-display: swap;
+  src: url('font.woff2') format('woff2');
+}
+```
+
+### Issue: Slechte INP door heavy JavaScript
+
+**Oplossing:**
+- Splits code met dynamic imports
+- Lazy load non-critical componenten
+- Optimaliseer event handlers
+
+## Tools die helpen
+
+- **Squoosh**: Afbeelding compressie
+- **SVGOMG**: SVG optimalisatie
+- **Bundlephobia**: Check npm package grootte
+- **Lighthouse CI**: Automated testing
+- **Calibre/SpeedCurve**: Monitoring over tijd
+
+## Conclusie
+
+Core Web Vitals zijn niet zomaar metrics - ze meten echte gebruikerservaring. Een snelle, stabiele website is beter voor je bezoekers én voor je rankings.
+
+Begin met meten, identificeer je grootste problemen, en pak ze één voor één aan. Perfectie is niet nodig; verbetering wel.
+
+Wil je weten hoe jouw website scoort? Neem contact op voor een gratis Core Web Vitals analyse.

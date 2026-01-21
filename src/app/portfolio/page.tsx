@@ -1,75 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const projects = [
-  {
-    id: "heinen-delfts-blauw",
-    name: "Heinen Delfts Blauw",
-    category: "E-commerce",
-    description:
-      "Complete e-commerce oplossing voor een iconisch Nederlands merk. Van design tot development met custom functionaliteiten.",
-    image: "/portfolio/heinen.jpg",
-    tags: ["Next.js", "E-commerce", "Custom Design"],
-    results: ["40% snellere laadtijd", "25% meer conversies"],
-  },
-  {
-    id: "horeca-interieur",
-    name: "Horeca Interieur",
-    category: "B2B Platform",
-    description:
-      "B2B platform voor horeca-inrichting met productcatalogus, offerte systeem en klantportaal.",
-    image: "/portfolio/horeca.jpg",
-    tags: ["React", "B2B", "Portal"],
-    results: ["60+ actieve klanten", "Volledig geautomatiseerd"],
-  },
-  {
-    id: "restaurant-website",
-    name: "Restaurant Website",
-    category: "Horeca",
-    description:
-      "Moderne website met online reserveringssysteem, menu management en integratie met bezorgsystemen.",
-    image: "/portfolio/restaurant.jpg",
-    tags: ["Next.js", "Reserveringen", "Integraties"],
-    results: ["Online reserveringen +150%", "Minder telefoontjes"],
-  },
-  {
-    id: "advocatenkantoor",
-    name: "Advocatenkantoor",
-    category: "Zakelijke Dienstverlening",
-    description:
-      "Professionele website met focus op vertrouwen en expertise. Inclusief client portal en afsprakenmodule.",
-    image: "/portfolio/advocaat.jpg",
-    tags: ["Corporate", "Portal", "SEO"],
-    results: ["Top 3 Google rankings", "45% meer aanvragen"],
-  },
-  {
-    id: "startup-saas",
-    name: "SaaS Startup",
-    category: "Tech",
-    description:
-      "Marketing website voor innovatieve SaaS startup. Snelle time-to-market met focus op conversie.",
-    image: "/portfolio/saas.jpg",
-    tags: ["Next.js", "Marketing", "Animaties"],
-    results: ["2 weken live", "High-converting design"],
-  },
-  {
-    id: "webshop-mode",
-    name: "Fashion Webshop",
-    category: "E-commerce",
-    description:
-      "Stijlvolle webshop voor modebedrijf met geavanceerde filtering, lookbook en loyalty programma.",
-    image: "/portfolio/fashion.jpg",
-    tags: ["E-commerce", "Custom", "Loyalty"],
-    results: ["30% hogere orderwaarde", "Loyaal klantenbestand"],
-  },
-];
+import { portfolioItems } from "@/data/portfolio";
 
 export default function PortfolioPage() {
+  const featuredProjects = portfolioItems.filter((p) => p.featured);
+  const otherProjects = portfolioItems.filter((p) => !p.featured);
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -112,27 +52,40 @@ export default function PortfolioPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Van startups tot gevestigde merken. Bekijk een selectie van onze
-            recente projecten en ontdek wat wij voor jouw bedrijf kunnen
-            betekenen.
+            Van B2B consultancy tot gastronomisch restaurant. Bekijk een selectie
+            van onze recente WordPress projecten.
           </motion.p>
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Featured Projects Grid */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Uitgelichte projecten
+            </h2>
+            <p className="text-muted-foreground">
+              Projecten waar we extra trots op zijn
+            </p>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-white/10 transition-all duration-300"
+                className="group relative overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300"
               >
-                {/* Image placeholder */}
+                {/* Image placeholder with gradient */}
                 <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-white/20 text-6xl font-bold">
@@ -140,13 +93,27 @@ export default function PortfolioPage() {
                     </span>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
+
+                  {/* Project type badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                      project.projectType === "new"
+                        ? "bg-green-500/20 text-green-400"
+                        : "bg-blue-500/20 text-blue-400"
+                    }`}>
+                      {project.projectType === "new" ? "Nieuw gebouwd" : "Redesign"}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center justify-between mb-3">
                     <span className="text-accent text-xs font-medium uppercase tracking-wider">
-                      {project.category}
+                      {project.industry}
+                    </span>
+                    <span className="text-muted-foreground text-xs">
+                      {project.year}
                     </span>
                   </div>
 
@@ -154,7 +121,7 @@ export default function PortfolioPage() {
                     {project.name}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4">
-                    {project.description}
+                    {project.shortDescription}
                   </p>
 
                   {/* Tags */}
@@ -169,17 +136,158 @@ export default function PortfolioPage() {
                     ))}
                   </div>
 
-                  {/* Results */}
-                  <div className="flex flex-wrap gap-4 pt-4 border-t border-white/5">
-                    {project.results.map((result) => (
-                      <span key={result} className="text-sm text-accent">
-                        {result}
-                      </span>
-                    ))}
+                  {/* Actions */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+                    <Link
+                      href={`/portfolio/${project.slug}`}
+                      className="text-sm font-medium text-accent hover:text-accent-hover transition-colors flex items-center gap-1"
+                    >
+                      Bekijk case study
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-muted-foreground hover:text-white transition-colors flex items-center gap-1"
+                    >
+                      Bezoek website
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
                   </div>
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Other Projects */}
+      {otherProjects.length > 0 && (
+        <section className="py-20 bg-surface/50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <h2 className="text-2xl font-bold text-white mb-2">
+                Meer projecten
+              </h2>
+              <p className="text-muted-foreground">
+                Andere projecten die we hebben gerealiseerd
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-accent text-xs font-medium uppercase tracking-wider">
+                      {project.industry}
+                    </span>
+                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                      project.projectType === "new"
+                        ? "bg-green-500/20 text-green-400"
+                        : "bg-blue-500/20 text-blue-400"
+                    }`}>
+                      {project.projectType === "new" ? "Nieuw" : "Redesign"}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    {project.name}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    {project.shortDescription}
+                  </p>
+
+                  <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+                    <Link
+                      href={`/portfolio/${project.slug}`}
+                      className="text-sm font-medium text-accent hover:text-accent-hover transition-colors flex items-center gap-1"
+                    >
+                      Case study
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-muted-foreground hover:text-white transition-colors flex items-center gap-1"
+                    >
+                      Website
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Stats Section */}
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <div className="text-4xl font-bold text-accent mb-2">
+                {portfolioItems.length}+
+              </div>
+              <div className="text-muted-foreground text-sm">
+                Websites opgeleverd
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="text-4xl font-bold text-accent mb-2">100%</div>
+              <div className="text-muted-foreground text-sm">
+                Tevreden klanten
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="text-4xl font-bold text-accent mb-2">WordPress</div>
+              <div className="text-muted-foreground text-sm">
+                Primaire technologie
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-center"
+            >
+              <div className="text-4xl font-bold text-accent mb-2">2024</div>
+              <div className="text-muted-foreground text-sm">
+                Meeste projecten
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -18,15 +18,6 @@ export const partners: Partner[] = [
     url: "https://cloudflare.com",
   },
   {
-    id: "vercel",
-    name: "Vercel",
-    logo: "/partners/vercel.svg",
-    description:
-      "Platform partner voor Next.js deployments en edge computing.",
-    category: "technology",
-    url: "https://vercel.com",
-  },
-  {
     id: "hetzner",
     name: "Hetzner",
     logo: "/partners/hetzner.svg",

@@ -1,0 +1,373 @@
+---
+title: "Cloudflare DNS beheer voor meerdere klanten: best practices"
+excerpt: "Hoe beheer je DNS voor meerdere websites efficiënt via Cloudflare? Een praktische gids voor webbureaus en resellers."
+category: "Cloudflare"
+date: "28 december 2024"
+readTime: "8 min"
+author: "Robuust Marketing"
+---
+
+Als webbureau beheer je waarschijnlijk DNS voor meerdere klanten. Cloudflare biedt krachtige tools om dit efficiënt te doen. In dit artikel delen we best practices voor het beheren van DNS voor meerdere domeinen.
+
+## Waarom Cloudflare voor DNS?
+
+Cloudflare is een van de populairste DNS providers ter wereld, en met goede redenen:
+
+- **Gratis plan** met uitgebreide mogelijkheden
+- **Snelste DNS resolvers** wereldwijd
+- **DDoS bescherming** inbegrepen
+- **CDN en caching** geïntegreerd
+- **SSL/TLS certificaten** automatisch
+- **Uitgebreide API** voor automatisering
+
+## Account structuur opzetten
+
+### Optie 1: Één account voor alles
+
+Alle klant-domeinen onder jouw eigen Cloudflare account.
+
+**Voordelen:**
+- Eenvoudig overzicht
+- Makkelijk te beheren
+- Alle instellingen op één plek
+
+**Nadelen:**
+- Klant kan niet zelf inloggen
+- Bij overdracht moet je verhuizen
+- Risico als account gecompromitteerd wordt
+
+**Geschikt voor:** Webbureaus die volledige controle willen houden
+
+### Optie 2: Account per klant
+
+Elke klant heeft een eigen Cloudflare account, jij bent toegevoegd als beheerder.
+
+**Voordelen:**
+- Klant is eigenaar van zijn domein
+- Eenvoudige overdracht bij beëindiging samenwerking
+- Betere isolatie bij security issues
+
+**Nadelen:**
+- Meer accounts om te beheren
+- Moet per account inloggen
+
+**Geschikt voor:** Grotere klanten die eigenaarschap willen
+
+### Optie 3: Cloudflare Partners / Reseller
+
+Via het Cloudflare Partners programma kun je klant-accounts beheren vanuit één dashboard.
+
+**Voordelen:**
+- Multi-tenant beheer
+- Klant kan eigen login hebben
+- Professionele oplossing
+
+**Vereisten:**
+- Toelating tot Partners programma
+- Minimum aantal domeinen
+
+## DNS records beheren
+
+### Basis DNS record types
+
+**A Record:**
+Koppelt een domein aan een IPv4 adres.
+```
+example.nl → 192.0.2.1
+```
+
+**AAAA Record:**
+Koppelt een domein aan een IPv6 adres.
+```
+example.nl → 2001:db8::1
+```
+
+**CNAME Record:**
+Alias naar een ander domein.
+```
+www.example.nl → example.nl
+```
+
+**MX Record:**
+Mail server voor het domein.
+```
+example.nl → mail.example.nl (priority 10)
+```
+
+**TXT Record:**
+Tekstuele informatie, vaak voor verificatie.
+```
+example.nl → "v=spf1 include:_spf.google.com ~all"
+```
+
+### Cloudflare Proxy (oranje wolk)
+
+Het belangrijkste concept in Cloudflare is de proxy status:
+
+**Proxied (oranje wolk aan):**
+- Verkeer gaat via Cloudflare
+- IP adres verborgen
+- CDN, caching, security actief
+- SSL via Cloudflare
+
+**DNS only (grijze wolk):**
+- Alleen DNS resolutie
+- Direct verbinding met server
+- Geen Cloudflare features
+
+**Wanneer proxy uit:**
+- Mail servers (MX records)
+- FTP servers
+- SSH toegang
+- Records die niet via HTTP/HTTPS gaan
+
+### Veelgebruikte configuraties
+
+**Standaard website:**
+```
+A    example.nl       192.0.2.1    Proxied
+A    www.example.nl   192.0.2.1    Proxied
+```
+
+**Website met mail:**
+```
+A    example.nl       192.0.2.1    Proxied
+A    www              192.0.2.1    Proxied
+A    mail             192.0.2.2    DNS only
+MX   example.nl       mail.example.nl (10)
+TXT  example.nl       "v=spf1 mx ~all"
+```
+
+**Externe mail (Google Workspace):**
+```
+MX   example.nl       aspmx.l.google.com (1)
+MX   example.nl       alt1.aspmx.l.google.com (5)
+MX   example.nl       alt2.aspmx.l.google.com (5)
+TXT  example.nl       "v=spf1 include:_spf.google.com ~all"
+```
+
+## SSL/TLS configuratie
+
+### SSL modes
+
+**Off:**
+Geen SSL. Niet aanbevolen.
+
+**Flexible:**
+SSL tussen bezoeker en Cloudflare. HTTP naar je server.
+- Alleen gebruiken als server geen SSL ondersteunt
+- Toont wel hangslotje, maar niet volledig veilig
+
+**Full:**
+SSL naar Cloudflare én naar je server.
+- Server heeft self-signed of verouderd certificaat
+- Beter dan Flexible
+
+**Full (Strict):**
+SSL met geldig certificaat op server.
+- Beste optie
+- Vereist geldig certificaat op origin
+
+**Aanbeveling:** Altijd Full (Strict) gebruiken
+
+### Origin certificaten
+
+Cloudflare kan gratis origin certificaten genereren:
+
+1. Ga naar SSL/TLS → Origin Server
+2. Klik "Create Certificate"
+3. Kies hostnames (*.example.nl, example.nl)
+4. Kies geldigheid (15 jaar max)
+5. Installeer op je server
+
+Dit certificaat werkt alleen achter Cloudflare proxy.
+
+### Edge certificaten
+
+Automatische SSL certificaten voor bezoekers:
+
+- Gratis via Universal SSL
+- Automatische vernieuwing
+- Ondersteunt meerdere subdomeinen
+
+## Caching en performance
+
+### Cache levels
+
+**No Query String:**
+Cache alleen als geen query string aanwezig.
+
+**Ignore Query String:**
+Cache ongeacht query string.
+
+**Standard:**
+Cache met volledige URL inclusief query string.
+
+### Page Rules voor caching
+
+Maak specifieke regels per URL patroon:
+
+**Statische assets aggressief cachen:**
+```
+URL: example.nl/wp-content/*
+Cache Level: Cache Everything
+Edge Cache TTL: 1 month
+```
+
+**Admin niet cachen:**
+```
+URL: example.nl/wp-admin/*
+Cache Level: Bypass
+```
+
+**Homepage cachen:**
+```
+URL: example.nl/
+Cache Level: Cache Everything
+Edge Cache TTL: 2 hours
+```
+
+### Browser TTL
+
+Hoe lang browsers content lokaal cachen:
+
+- Statische assets: 1 jaar
+- HTML pagina's: 1-4 uur
+- API responses: geen caching
+
+## Security instellingen
+
+### Firewall basics
+
+**Security Level:**
+- Essentially Off: Minimale controle
+- Low: Alleen ernstige bedreigingen
+- Medium: Bekende bedreigingen (aanbevolen)
+- High: Strenger, meer challenges
+- Under Attack: Bij actieve DDoS
+
+### WAF (Web Application Firewall)
+
+Bescherming tegen aanvallen:
+
+- SQL injection
+- XSS attacks
+- Common exploits
+
+In het gratis plan kun je managed rulesets activeren.
+
+### Bot management
+
+**Bot Fight Mode:**
+- Blokkeert bekende bad bots
+- Gratis beschikbaar
+- Activeer via Security → Bots
+
+### IP Access Rules
+
+Blokkeer of sta specifieke IP's toe:
+
+```
+Block: 192.0.2.0/24
+Challenge: AS1234 (hele ASN)
+Allow: 198.51.100.1 (je eigen IP)
+```
+
+## Bulk operaties en automatisering
+
+### Cloudflare API
+
+Automatiseer taken via de API:
+
+```bash
+# Lijst alle zones
+curl -X GET "https://api.cloudflare.com/client/v4/zones" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json"
+
+# DNS record aanmaken
+curl -X POST "https://api.cloudflare.com/client/v4/zones/ZONE_ID/dns_records" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data '{"type":"A","name":"www","content":"192.0.2.1","ttl":1,"proxied":true}'
+```
+
+### Terraform
+
+Infrastructure as code voor Cloudflare:
+
+```hcl
+resource "cloudflare_zone" "example" {
+  zone = "example.nl"
+}
+
+resource "cloudflare_record" "www" {
+  zone_id = cloudflare_zone.example.id
+  name    = "www"
+  content = "192.0.2.1"
+  type    = "A"
+  proxied = true
+}
+```
+
+### CLI tools
+
+**Flarectl:**
+Officiële Cloudflare CLI tool.
+
+```bash
+flarectl dns list --zone example.nl
+flarectl dns create --zone example.nl --name www --type A --content 192.0.2.1
+```
+
+## Troubleshooting
+
+### DNS propagation checken
+
+Na wijzigingen kan het even duren voordat DNS overal bijgewerkt is:
+
+- **Cloudflare zelf**: Direct
+- **Andere resolvers**: 1 minuut tot 48 uur
+
+Controleer met:
+```bash
+dig example.nl @1.1.1.1
+dig example.nl @8.8.8.8
+```
+
+Of gebruik online tools zoals whatsmydns.net.
+
+### SSL errors
+
+**525 - SSL Handshake Failed:**
+- Certificaat op server ontbreekt of ongeldig
+- SSL mode staat op Full (Strict) maar server heeft geen geldig cert
+
+**526 - Invalid SSL Certificate:**
+- Server certificaat is verlopen
+- Hostname komt niet overeen
+
+**521 - Web Server Is Down:**
+- Server is niet bereikbaar
+- Firewall blokkeert Cloudflare IPs
+
+### Cache proberen
+
+**Development mode:**
+Schakelt caching tijdelijk uit (3 uur).
+
+**Purge cache:**
+- Alles: Purge Everything
+- Specifiek: Purge by URL
+
+## Best practices samenvatting
+
+1. **Gebruik Full (Strict) SSL** voor alle websites
+2. **Proxy aan** voor web traffic, uit voor mail
+3. **Standaardiseer** je DNS record naming
+4. **Documenteer** afwijkende configuraties
+5. **Gebruik API tokens** in plaats van Global API Key
+6. **Monitor** je zones via Cloudflare analytics
+7. **Backup** DNS records regelmatig
+
+Wil je hulp bij het opzetten van Cloudflare voor jouw klanten? Neem contact op voor advies.

@@ -1,0 +1,308 @@
+---
+title: "Google Analytics 4 voor beginners: zo start je met meten"
+excerpt: "GA4 kan overweldigend zijn. In deze beginnersgids leggen we uit hoe je GA4 installeert, configureert en je eerste inzichten haalt."
+category: "Marketing & SEO"
+date: "8 januari 2025"
+readTime: "10 min"
+author: "Robuust Marketing"
+---
+
+Google Analytics 4 (GA4) is de nieuwe standaard voor websiteanalytics. Het vervangt Universal Analytics volledig en werkt fundamenteel anders. In deze beginnersgids helpen we je op weg.
+
+## Wat is Google Analytics 4?
+
+GA4 is Google's nieuwste analytics platform. Het verschilt op belangrijke punten van de oude Universal Analytics:
+
+- **Event-based tracking**: Alles is een event, niet meer gebaseerd op pageviews
+- **Cross-platform**: Volg gebruikers over website én app
+- **Privacy-first**: Beter voorbereid op een wereld zonder cookies
+- **Machine learning**: Automatische inzichten en voorspellingen
+- **Nieuwe interface**: Compleet vernieuwde rapportages
+
+## Stap 1: GA4 account aanmaken
+
+### Nieuw account
+
+1. Ga naar analytics.google.com
+2. Klik op "Meting starten"
+3. Voer je accountnaam in (meestal je bedrijfsnaam)
+4. Configureer data-sharing instellingen
+5. Klik "Volgende"
+
+### Property aanmaken
+
+1. Voer een property naam in (meestal je websitenaam)
+2. Selecteer je tijdzone en valuta
+3. Klik "Volgende"
+4. Vul bedrijfsgegevens in
+5. Accepteer de voorwaarden
+
+### Data stream instellen
+
+1. Kies "Web" als platform
+2. Voer je website URL in
+3. Voer een stream naam in
+4. Enhanced Measurement staat standaard aan (laat dit zo)
+5. Klik "Stream aanmaken"
+
+Je krijgt nu een Measurement ID (begint met G-). Deze heb je nodig voor de installatie.
+
+## Stap 2: GA4 installeren op je website
+
+Er zijn verschillende manieren om GA4 te installeren:
+
+### Optie A: Google Tag Manager (aanbevolen)
+
+1. Maak een Google Tag Manager account aan
+2. Installeer de GTM container code op je website
+3. In GTM: maak een nieuwe tag aan
+4. Kies "Google Analytics: GA4 Configuration"
+5. Voer je Measurement ID in
+6. Trigger: All Pages
+7. Publiceer de container
+
+### Optie B: Direct in je website
+
+Voeg deze code toe in de `<head>` van elke pagina:
+
+```html
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
+
+Vervang G-XXXXXXXXXX door jouw Measurement ID.
+
+### Optie C: WordPress plugins
+
+- **Site Kit by Google**: Officiële Google plugin
+- **MonsterInsights**: Populaire analytics plugin
+- **GA Google Analytics**: Lichtgewicht optie
+
+### Installatie verifiëren
+
+1. Installeer de Chrome extensie "Google Tag Assistant"
+2. Bezoek je website
+3. Controleer of je GA4 tag correct vuurt
+4. Of: check in GA4 onder Realtime of je bezoek zichtbaar is
+
+## Stap 3: Basis configuratie
+
+### Enhanced Measurement
+
+GA4 meet standaard automatisch:
+
+- Pageviews
+- Scrolls (90% van pagina)
+- Outbound clicks
+- Site search
+- Video engagement
+- File downloads
+
+Je kunt deze aan/uit zetten via Admin > Data Streams > je stream > Enhanced measurement.
+
+### Data retention instellen
+
+Standaard bewaart GA4 data 2 maanden. Verander dit:
+
+1. Ga naar Admin
+2. Klik op "Data Settings" > "Data Retention"
+3. Kies 14 maanden
+4. Zet "Reset user data on new activity" aan
+5. Sla op
+
+### Interne traffic filteren
+
+Voorkom dat je eigen bezoeken de data vervuilen:
+
+1. Admin > Data Streams > je stream
+2. Configure tag settings > Define internal traffic
+3. Voeg je IP-adres(sen) toe
+4. Admin > Data Settings > Data Filters
+5. Activeer het "Internal Traffic" filter
+
+### Google Search Console koppelen
+
+1. Admin > Property Settings > Product Links
+2. Klik "Search Console Links"
+3. Klik "Link"
+4. Selecteer je Search Console property
+5. Bevestig de koppeling
+
+Nu zie je Search Console data in je GA4 rapportages.
+
+## Stap 4: Conversies instellen
+
+### Wat is een conversie?
+
+Een conversie is een belangrijke actie die je wilt meten. Voorbeelden:
+
+- Contactformulier verzonden
+- Offerte aangevraagd
+- Aankoop gedaan
+- Nieuwsbrief aanmelding
+- Telefoonnummer geklikt
+
+### Conversie aanmaken
+
+1. Ga naar Admin > Events
+2. Zoek het event dat je als conversie wilt markeren
+3. Zet de schakelaar bij "Mark as conversion" aan
+
+Of maak een nieuw event:
+1. Admin > Events > Create event
+2. Geef het event een naam
+3. Stel de voorwaarden in
+4. Markeer als conversie
+
+### Voorbeeld: Contactformulier tracking
+
+Als je formulier een bedankpagina heeft:
+
+1. Create event
+2. Naam: "contact_form_submitted"
+3. Voorwaarde: page_location contains "/bedankt"
+4. Markeer als conversie
+
+## Stap 5: De interface begrijpen
+
+### Home
+
+Dashboard met snel overzicht:
+- Gebruikers afgelopen 7 dagen
+- Recente conversies
+- Automatische inzichten
+
+### Reports
+
+#### Realtime
+Wat gebeurt er nu op je website? Nuttig voor:
+- Controleren of tracking werkt
+- Campagne monitoring
+- Live evenementen volgen
+
+#### Acquisition
+Hoe komen bezoekers op je site?
+- Traffic acquisition: per kanaal
+- User acquisition: nieuwe vs. terugkerende
+- Google Ads: als gekoppeld
+
+#### Engagement
+Wat doen bezoekers op je site?
+- Pages and screens: populaire pagina's
+- Events: alle gemeten events
+- Conversions: je conversiedoelen
+
+#### Monetization
+Voor e-commerce:
+- Purchase journey
+- Product performance
+
+#### Retention
+Komen bezoekers terug?
+- User retention over tijd
+- Cohort analysis
+
+### Explore
+
+Hier maak je eigen aangepaste rapporten:
+- Free form explorations
+- Funnel analysis
+- Path analysis
+- Segment overlap
+
+### Advertising
+
+Als je Google Ads koppelt:
+- Campaign performance
+- Attribution modeling
+
+## Belangrijke metrics uitgelegd
+
+### Users vs Sessions
+
+- **Users**: Unieke bezoekers (gebaseerd op cookies/device)
+- **Sessions**: Bezoeksessies (eindigt na 30 min inactiviteit)
+- **New users**: Eerste bezoek ooit
+
+### Engagement metrics
+
+- **Engaged sessions**: Sessies langer dan 10 seconden, met conversie, of met 2+ pageviews
+- **Engagement rate**: % engaged sessions
+- **Average engagement time**: Gemiddelde tijd dat de pagina in focus was
+
+### Event count
+
+Aantal keer dat een specifiek event is getriggerd.
+
+## Tips voor beginners
+
+### Start simpel
+
+Je hoeft niet alles meteen te meten. Begin met:
+1. Traffic bronnen begrijpen
+2. Populaire pagina's identificeren
+3. 1-2 belangrijke conversies meten
+
+### Check regelmatig
+
+Kijk minimaal wekelijks naar je analytics:
+- Zijn er grote veranderingen in traffic?
+- Werken je conversies nog?
+- Zijn er opvallende trends?
+
+### Maak aantekeningen
+
+Gebruik de annotatie-functie om belangrijke momenten te markeren:
+- Campagne lancering
+- Website wijziging
+- Externe gebeurtenissen
+
+### Vergelijk periodes
+
+Bekijk data altijd in vergelijking met een vorige periode om trends te herkennen.
+
+### Deel met je team
+
+Maak scheduled reports om teamleden automatisch updates te sturen.
+
+## Veelgemaakte fouten
+
+1. **Geen conversies ingesteld**: Je meet verkeer maar niet wat belangrijk is
+2. **Eigen traffic niet gefilterd**: Je data wordt vervuild
+3. **Alleen naar totalen kijken**: Segmenteer naar bron, apparaat, etc.
+4. **Conclusies trekken met weinig data**: Wacht op voldoende volume
+5. **Data retention op 2 maanden**: Verander dit naar 14 maanden
+
+## Privacy en AVG
+
+GA4 vereist toestemming van bezoekers in de EU:
+
+- Implementeer een cookie consent banner
+- Laad GA4 pas na toestemming
+- Anonimiseer IP-adressen (standaard in GA4)
+- Documenteer je dataverwerking in je privacyverklaring
+
+## Volgende stappen
+
+Als je de basis beheerst:
+
+1. Leer werken met Explorations
+2. Stel audiences in voor remarketing
+3. Koppel Google Ads voor volledige funnel inzicht
+4. Experimenteer met aangepaste events
+5. Bouw een custom dashboard
+
+## Hulp nodig?
+
+GA4 kan complex zijn. Wij helpen je graag met:
+- Correcte installatie en configuratie
+- Conversie tracking opzetten
+- Trainingen voor jou en je team
+- Maandelijkse analytics rapportages
+
+Neem contact op voor een gratis analytics check.

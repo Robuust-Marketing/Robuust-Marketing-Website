@@ -54,6 +54,75 @@ const partners = [
   },
 ];
 
+const toolCategories = [
+  {
+    name: "Advertising & Social",
+    tools: [
+      { name: "Meta", description: "Facebook & Instagram advertenties" },
+      { name: "Google Ads", description: "Search & Display campagnes" },
+      { name: "TikTok", description: "Short-form video advertising" },
+      { name: "LinkedIn", description: "B2B marketing & advertenties" },
+      { name: "Pinterest", description: "Visual discovery advertising" },
+    ],
+  },
+  {
+    name: "CRM & Marketing Automation",
+    tools: [
+      { name: "HubSpot", description: "All-in-one CRM & marketing platform" },
+      { name: "Mailchimp", description: "E-mail marketing & automation" },
+      { name: "Brevo", description: "Marketing automation & transactional email" },
+      { name: "ActiveCampaign", description: "Customer experience automation" },
+      { name: "Klaviyo", description: "E-commerce email & SMS marketing" },
+    ],
+  },
+  {
+    name: "Analytics & Tracking",
+    tools: [
+      { name: "Google Analytics", description: "Website analytics & rapportage" },
+      { name: "Google Tag Manager", description: "Tag management & tracking" },
+      { name: "Microsoft Clarity", description: "Heatmaps & session recordings" },
+      { name: "Hotjar", description: "Behavior analytics & feedback" },
+      { name: "Taggrs", description: "Server-side tracking" },
+    ],
+  },
+  {
+    name: "E-commerce",
+    tools: [
+      { name: "WooCommerce", description: "WordPress e-commerce oplossing" },
+      { name: "FunnelKit", description: "Sales funnels & cart optimization" },
+      { name: "Mollie", description: "Betalingen & checkout" },
+      { name: "Sendcloud", description: "Shipping & fulfillment" },
+    ],
+  },
+  {
+    name: "CMS & Development",
+    tools: [
+      { name: "WordPress", description: "Content management systeem" },
+      { name: "Next.js", description: "React framework voor web apps" },
+      { name: "Sanity", description: "Headless CMS" },
+      { name: "Strapi", description: "Open-source headless CMS" },
+    ],
+  },
+  {
+    name: "Design & Creatie",
+    tools: [
+      { name: "Adobe Creative Cloud", description: "Photoshop, Illustrator, XD" },
+      { name: "Figma", description: "UI/UX design & prototyping" },
+      { name: "Canva", description: "Visual content creation" },
+      { name: "Midjourney", description: "AI image generation" },
+    ],
+  },
+  {
+    name: "Productiviteit & Communicatie",
+    tools: [
+      { name: "Microsoft 365", description: "Office suite & collaboration" },
+      { name: "Google Workspace", description: "Productiviteit & samenwerking" },
+      { name: "Slack", description: "Team communicatie" },
+      { name: "ClickUp", description: "Project & task management" },
+    ],
+  },
+];
+
 const benefits = [
   {
     icon: Handshake,
@@ -199,6 +268,62 @@ export default function PartnersPage() {
                     </span>
                   ))}
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tools & Technologies Section */}
+      <section className="py-20 border-t border-white/5">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4">
+              Tools & Technologieën
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Waarmee wij werken
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Wij werken met de beste tools en platforms in de industrie om jouw
+              bedrijf te laten groeien. Van analytics tot e-commerce, wij hebben
+              de expertise.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {toolCategories.map((category, categoryIndex) => (
+              <motion.div
+                key={category.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: categoryIndex * 0.1 }}
+                className="rounded-2xl bg-surface p-6 border border-white/5"
+              >
+                <h3 className="text-lg font-semibold text-white mb-4">
+                  {category.name}
+                </h3>
+                <ul className="space-y-3">
+                  {category.tools.map((tool) => (
+                    <li key={tool.name} className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                      <div>
+                        <span className="text-white font-medium">
+                          {tool.name}
+                        </span>
+                        <p className="text-sm text-muted-foreground">
+                          {tool.description}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>

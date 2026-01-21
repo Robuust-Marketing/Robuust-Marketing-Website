@@ -127,10 +127,10 @@ const techStack = [
 ];
 
 const additionalTools = [
-  { name: "Vercel", description: "Deployment platform", icon: Globe },
   { name: "GitHub", description: "Version control", icon: Terminal },
   { name: "Figma", description: "Design tool", icon: Palette },
   { name: "Resend", description: "Email API", icon: FileText },
+  { name: "ClickUp", description: "Project management", icon: CheckCircle },
 ];
 
 const whyThisStack = [

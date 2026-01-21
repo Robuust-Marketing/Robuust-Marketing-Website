@@ -1,0 +1,315 @@
+---
+title: "Website sneller maken met Cloudflare CDN: complete handleiding"
+excerpt: "Leer hoe je Cloudflare's gratis CDN inzet om je website significant sneller te maken voor bezoekers wereldwijd."
+category: "Cloudflare"
+date: "25 december 2024"
+readTime: "7 min"
+author: "Robuust Marketing"
+---
+
+Een Content Delivery Network (CDN) kan je website aanzienlijk sneller maken. Cloudflare biedt een krachtige CDN - en het beste nieuws? Het is gratis. In deze handleiding leggen we uit hoe je het optimaal configureert.
+
+## Wat is een CDN?
+
+Een CDN is een netwerk van servers verspreid over de wereld. In plaats van dat elke bezoeker content ophaalt van jouw ene server (misschien in Amsterdam), haalt de bezoeker het op van de dichtstbijzijnde CDN-locatie.
+
+**Zonder CDN:**
+Bezoeker in Sydney → Server in Amsterdam (250ms+ latency)
+
+**Met CDN:**
+Bezoeker in Sydney → CDN edge in Sydney (20ms latency)
+
+### Cloudflare's netwerk
+
+Cloudflare heeft:
+- 310+ datacenters wereldwijd
+- Aanwezigheid in 120+ landen
+- Gemiddeld < 50ms van 95% internetgebruikers
+
+## Cloudflare activeren voor je website
+
+### Stap 1: Account aanmaken
+
+1. Ga naar cloudflare.com
+2. Maak een gratis account aan
+3. Klik "Add a Site"
+4. Voer je domeinnaam in
+
+### Stap 2: DNS importeren
+
+Cloudflare scant je bestaande DNS records en importeert ze automatisch. Controleer:
+
+- Zijn alle records geïmporteerd?
+- Staan de juiste records op "Proxied" (oranje wolk)?
+- Staan mail records op "DNS only" (grijze wolk)?
+
+### Stap 3: Nameservers wijzigen
+
+Cloudflare geeft je twee nameservers:
+```
+ada.ns.cloudflare.com
+bert.ns.cloudflare.com
+```
+
+Wijzig deze bij je domeinregistrar. Dit kan 24-48 uur duren om te propageren.
+
+### Stap 4: Wachten op activatie
+
+Cloudflare controleert automatisch of de nameservers zijn bijgewerkt. Je krijgt een e-mail wanneer je site actief is.
+
+## Caching optimaliseren
+
+### Wat wordt gecached?
+
+Standaard cached Cloudflare alleen statische bestanden:
+
+- Afbeeldingen (jpg, png, gif, webp, svg, ico)
+- Stylesheets (css)
+- JavaScript (js)
+- Fonts (woff, woff2, ttf, eot)
+- Documenten (pdf)
+
+HTML wordt standaard NIET gecached.
+
+### Browser Cache TTL
+
+Hoe lang browsers bestanden lokaal bewaren:
+
+1. Ga naar Caching → Configuration
+2. Stel Browser Cache TTL in
+3. Aanbevolen: 4 uur voor dynamische sites, 1 jaar voor statische assets
+
+### Edge Cache TTL
+
+Hoe lang Cloudflare content bewaart:
+
+**Via Page Rules:**
+```
+URL: example.nl/*.jpg
+Edge Cache TTL: 1 month
+```
+
+**Via Cache-Control headers** (beter):
+Je server stuurt headers mee:
+```
+Cache-Control: public, max-age=31536000
+```
+
+### HTML caching
+
+Wil je ook HTML cachen? Dit kan grote performance winst geven, maar pas op met dynamische content.
+
+**Optie 1: Page Rules**
+```
+URL: example.nl/static-page/*
+Cache Level: Cache Everything
+Edge Cache TTL: 1 day
+```
+
+**Optie 2: Cache Rules (nieuwer)**
+Meer flexibiliteit en controle via Caching → Cache Rules.
+
+### Bypass voor dynamische pagina's
+
+Zorg dat je deze pagina's NIET cached:
+
+- Admin/dashboard (/wp-admin/*, /admin/*)
+- Checkout/cart pagina's
+- Gebruikers-specifieke content
+- API endpoints met auth
+
+## Performance features
+
+### Auto Minify
+
+Automatisch verkleinen van HTML, CSS en JavaScript:
+
+1. Ga naar Speed → Optimization
+2. Activeer Auto Minify voor CSS, JS en HTML
+
+**Let op:** Test altijd na activeren. Sommige scripts kunnen breken.
+
+### Brotli compressie
+
+Brotli is effectiever dan gzip:
+
+1. Speed → Optimization → Content Optimization
+2. Activeer Brotli
+
+Dit is standaard aan - controleer of het actief is.
+
+### Rocket Loader
+
+Optimaliseert JavaScript laden:
+
+- Laadt JS asynchroon
+- Voorkomt render-blocking
+- Kan significante speed boost geven
+
+**Waarschuwing:** Kan JavaScript functionaliteit breken. Test grondig.
+
+### Polish (Pro plan)
+
+Automatische afbeelding optimalisatie:
+
+- Lossless compressie
+- Lossy compressie (agressiever)
+- WebP conversie
+
+Alleen beschikbaar in betaalde plannen.
+
+### Mirage (Pro plan)
+
+Lazy loading voor afbeeldingen:
+
+- Laadt placeholder eerst
+- Volledige afbeelding bij scrollen
+- Verbetert mobile performance
+
+### HTTP/2 en HTTP/3
+
+Cloudflare ondersteunt automatisch:
+
+- **HTTP/2**: Multiplexing, header compressie
+- **HTTP/3**: QUIC protocol, nog sneller
+
+Geen configuratie nodig - werkt automatisch.
+
+## Image optimization (gratis alternatieven)
+
+In het gratis plan kun je images optimaliseren met:
+
+### Cloudflare Images (betaald)
+
+- Resize on-the-fly
+- Format conversie
+- Optimalisatie
+
+### Alternatief: Image CDN
+
+Externe services die je kunt combineren met Cloudflare:
+
+- **imgix**
+- **Cloudinary**
+- **ImageKit**
+
+### Op je server
+
+Optimaliseer images voordat je ze upload:
+
+- TinyPNG/TinyJPG
+- Squoosh
+- ImageOptim
+
+## Performance meten
+
+### Cloudflare Analytics
+
+Ga naar Analytics → Traffic:
+
+- Requests served by Cloudflare
+- Bandwidth saved
+- Cached vs uncached requests
+
+### Cache hit ratio
+
+Streven naar > 90% cache hit ratio voor statische content.
+
+Ga naar Caching → Analytics:
+- Zie cache hit/miss/expired ratio
+- Identificeer uncached resources
+
+### Speed test tools
+
+Meet je werkelijke snelheid:
+
+- **PageSpeed Insights**: Google's tool
+- **GTmetrix**: Uitgebreide analyse
+- **WebPageTest**: Professionele tests
+
+Meet VOOR en NA Cloudflare om het verschil te zien.
+
+## Troubleshooting
+
+### Content wordt niet gecached
+
+Controleer:
+
+1. **Proxy status**: Is de oranje wolk aan?
+2. **Cache-Control header**: Geen no-cache of private?
+3. **Set-Cookie header**: Aanwezig? Voorkomt caching
+4. **Query strings**: Kunnen caching beïnvloeden
+
+### Verouderde content
+
+Bezoekers zien oude versie:
+
+1. **Purge cache**: Caching → Configuration → Purge Cache
+2. **Development Mode**: Tijdelijk caching uitschakelen
+3. **Cache-busting**: Voeg version parameter toe aan URLs
+
+### Website trager geworden
+
+Mogelijk oorzaken:
+
+- Server is ver weg, geen cache hits
+- Misconfiguratie van instellingen
+- SSL mode niet optimaal
+
+Controleer:
+- SSL/TLS staat op Full (Strict)
+- Server locatie vs bezoekers
+- Cache analytics voor hits/misses
+
+## Advanced: Workers
+
+Cloudflare Workers zijn serverless functies op de edge:
+
+**Mogelijkheden:**
+- Custom caching logica
+- A/B testing
+- Redirects
+- Header manipulatie
+
+**Voorbeeld: Cache HTML voor anonieme bezoekers**
+```javascript
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  // Check voor cookies die auth aangeven
+  if (request.headers.get('Cookie')?.includes('logged_in=')) {
+    // Niet cachen voor ingelogde users
+    return fetch(request)
+  }
+
+  // Cache voor anonieme bezoekers
+  return fetch(request, {
+    cf: {
+      cacheTtl: 3600,
+      cacheEverything: true
+    }
+  })
+}
+```
+
+## Checklist: optimale configuratie
+
+- [ ] SSL/TLS op Full (Strict)
+- [ ] Browser Cache TTL ingesteld
+- [ ] Auto Minify actief
+- [ ] Brotli aan
+- [ ] Statische assets proxied
+- [ ] Page rules voor caching
+- [ ] Admin/dynamic pagina's bypassed
+- [ ] Performance gemeten
+- [ ] Cache hit ratio gecontroleerd
+
+## Conclusie
+
+Cloudflare's gratis CDN kan je website significant sneller maken. De basis setup is eenvoudig, maar de echte winst zit in de optimalisatie van caching.
+
+Begin met de basics, meet je resultaten, en optimaliseer stap voor stap. Bij twijfel: test altijd grondig voordat je features activeert op productie.
+
+Hulp nodig bij het optimaliseren van je Cloudflare setup? Neem contact op voor advies.

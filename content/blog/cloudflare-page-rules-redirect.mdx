@@ -1,0 +1,376 @@
+---
+title: "Cloudflare Page Rules en redirects: de complete gids"
+excerpt: "Leer hoe je Page Rules gebruikt voor redirects, caching en andere geavanceerde configuraties in Cloudflare."
+category: "Cloudflare"
+date: "20 december 2024"
+readTime: "8 min"
+author: "Robuust Marketing"
+---
+
+Page Rules zijn een van de krachtigste features in Cloudflare. Hiermee kun je specifiek gedrag instellen per URL-patroon: redirects, caching, security settings en meer. In deze gids leggen we alles uit.
+
+## Wat zijn Page Rules?
+
+Page Rules zijn configuraties die alleen gelden voor URLs die matchen met een patroon. Denk aan:
+
+- Alle URLs die beginnen met /blog/*
+- De exacte URL example.nl/oude-pagina
+- Alles onder een subdomein: api.example.nl/*
+
+Je kunt vervolgens specifieke acties instellen voor die URLs.
+
+## Page Rules vs. nieuwe features
+
+Cloudflare is bezig Page Rules te vervangen door specifieke features:
+
+| Oud (Page Rules) | Nieuw |
+|-----------------|-------|
+| Forwarding URL | Redirect Rules |
+| Cache Level | Cache Rules |
+| Security Level | WAF Custom Rules |
+
+Beide werken nog, maar de nieuwe features bieden meer flexibiliteit. We behandelen beide.
+
+## Page Rules configureren
+
+### Naar Page Rules gaan
+
+1. Log in op Cloudflare
+2. Selecteer je website
+3. Ga naar Rules → Page Rules
+
+### Limiet in gratis plan
+
+Het gratis plan bevat 3 Page Rules. Wil je meer? Overweeg:
+- Pro plan (20 rules)
+- De nieuwe Rules features (meer gratis)
+
+### URL matching
+
+Page Rules gebruiken wildcard matching:
+
+**Exacte URL:**
+```
+example.nl/contact
+```
+
+**Wildcard aan eind:**
+```
+example.nl/blog/*
+```
+Matcht: /blog/, /blog/artikel, /blog/2024/post
+
+**Wildcard aan begin:**
+```
+*.example.nl/
+```
+Matcht alle subdomeinen
+
+**Combinatie:**
+```
+*.example.nl/*
+```
+Matcht alles op alle subdomeinen
+
+## Veelgebruikte Page Rules
+
+### 1. WWW naar non-WWW redirect
+
+Alle www verkeer omleiden naar zonder www:
+
+**URL:** `www.example.nl/*`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://example.nl/$1`
+
+De `$1` pakt alles op wat de `*` matcht.
+
+### 2. Non-WWW naar WWW redirect
+
+Omgekeerd:
+
+**URL:** `example.nl/*`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://www.example.nl/$1`
+
+### 3. HTTP naar HTTPS redirect
+
+Forceer HTTPS voor alles:
+
+**URL:** `http://*example.nl/*`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://$1example.nl/$2`
+
+**Of beter:** Gebruik "Always Use HTTPS" in SSL/TLS settings.
+
+### 4. Oude URL naar nieuwe
+
+Een verhuisde pagina:
+
+**URL:** `example.nl/oude-pagina`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://example.nl/nieuwe-pagina`
+
+### 5. Cache Everything
+
+Statische pagina's volledig cachen:
+
+**URL:** `example.nl/landing/*`
+
+**Settings:**
+- Cache Level: Cache Everything
+- Edge Cache TTL: 1 month
+
+### 6. Bypass Cache
+
+Admin area niet cachen:
+
+**URL:** `example.nl/wp-admin/*`
+
+**Settings:**
+- Cache Level: Bypass
+- Disable Apps (optional)
+- Disable Performance (optional)
+
+### 7. Security verhogen voor login
+
+Extra bescherming voor login pagina:
+
+**URL:** `example.nl/wp-login.php`
+
+**Settings:**
+- Security Level: High
+- Browser Integrity Check: On
+
+### 8. Hele site onder constructie
+
+Tijdelijk alles omleiden:
+
+**URL:** `example.nl/*`
+
+**Setting:** Forwarding URL (302 Temporary)
+
+**Destination:** `https://example.nl/maintenance.html`
+
+**Let op:** Exclude de maintenance pagina zelf!
+
+## Redirect Rules (nieuwe methode)
+
+### Waarom Redirect Rules?
+
+- Geen limiet van 3 rules
+- Meer targeting opties
+- Beter prestaties
+- Gratis 10 rules
+
+### Redirect Rules configureren
+
+1. Ga naar Rules → Redirect Rules
+2. Klik "Create rule"
+3. Configureer de regel
+
+### Voorbeeld: Trailing slash toevoegen
+
+**Als:**
+- URI Path does not end with "/"
+- URI Path does not contain "."
+
+**Dan redirect naar:**
+- `concat(http.request.uri.path, "/")`
+- Status code: 301
+
+### Voorbeeld: Subdirectory redirect
+
+**Als:**
+- URI Path starts with "/blog"
+
+**Dan redirect naar:**
+- `https://blog.example.nl`
+- Status code: 301
+- Preserve query string: Ja
+
+## Cache Rules (nieuwe methode)
+
+### Cache Rules configureren
+
+1. Ga naar Caching → Cache Rules
+2. Klik "Create rule"
+
+### Voorbeeld: Statische assets lang cachen
+
+**Als:**
+- File extension is in ["jpg", "png", "gif", "css", "js"]
+
+**Dan:**
+- Cache eligibility: Eligible for cache
+- Edge TTL: 1 year
+- Browser TTL: 1 year
+
+### Voorbeeld: API responses niet cachen
+
+**Als:**
+- URI Path starts with "/api/"
+
+**Dan:**
+- Cache eligibility: Bypass cache
+
+## Bulk redirects
+
+Voor veel redirects (migraties) gebruik Bulk Redirects:
+
+1. Ga naar Rules → Bulk Redirects
+2. Maak een Redirect List
+3. Upload CSV of voeg handmatig toe
+
+**CSV format:**
+```csv
+/oude-url-1,/nieuwe-url-1,301
+/oude-url-2,/nieuwe-url-2,301
+/product/123,/producten/oud-product,301
+```
+
+Je kunt tot 500 redirects per lijst hebben, 20.000 totaal.
+
+## Transform Rules
+
+Wijzig requests of responses zonder redirect:
+
+### URL Rewrite
+
+Verander de URL intern (bezoeker ziet originele URL):
+
+**Als:**
+- URI Path equals "/home"
+
+**Dan rewrite naar:**
+- `/index.html`
+
+### Header modificatie
+
+Voeg headers toe of wijzig ze:
+
+**Response header toevoegen:**
+- X-Custom-Header: value
+
+**Request header verwijderen:**
+- Remove: X-Unwanted-Header
+
+## Troubleshooting
+
+### Redirect loop
+
+Je krijgt ERR_TOO_MANY_REDIRECTS:
+
+**Oorzaken:**
+1. Rule redirect naar URL die ook matcht
+2. SSL Flexible + force HTTPS op server
+3. Conflicterende rules
+
+**Oplossing:**
+- Check SSL mode (Full Strict)
+- Review alle Page Rules
+- Check server redirects
+
+### Rule werkt niet
+
+**Checklist:**
+1. Is de volgorde correct? (bovenste wint)
+2. Is het URL patroon juist?
+3. Staat DNS op Proxied (oranje wolk)?
+4. Wacht 5 minuten na aanmaken
+
+### Testen van rules
+
+1. Gebruik curl met -I flag:
+```bash
+curl -I https://example.nl/test-url
+```
+
+2. Check response headers:
+- Location header voor redirects
+- CF-Cache-Status voor caching
+
+3. Browser DevTools:
+- Network tab
+- Check redirect chain
+
+## Best practices
+
+### 1. Minimaliseer Page Rules
+
+Met slechts 3 gratis, gebruik ze strategisch:
+- Gebruik "Always Use HTTPS" voor HTTPS redirect
+- Gebruik Redirect Rules voor URL redirects
+- Bewaar Page Rules voor caching configuratie
+
+### 2. Documenteer je rules
+
+Houd bij wat elke rule doet en waarom. Page Rules hebben geen description veld, dus documenteer extern.
+
+### 3. Test voor productie
+
+Test rules op een staging domein of met specifieke test URLs voordat je ze breed toepast.
+
+### 4. Let op volgorde
+
+Rules worden van boven naar beneden geëvalueerd. De eerste match wint.
+
+Verkeerde volgorde:
+```
+1. example.nl/* → Cache Everything
+2. example.nl/admin/* → Bypass Cache ❌ Wordt nooit bereikt!
+```
+
+Juiste volgorde:
+```
+1. example.nl/admin/* → Bypass Cache ✓
+2. example.nl/* → Cache Everything
+```
+
+### 5. Gebruik 301 vs 302 correct
+
+- **301 Permanent**: SEO waarde wordt overgedragen, browsers cachen
+- **302 Temporary**: Geen SEO overdracht, niet gecached
+
+Gebruik 301 voor permanente verhuizingen, 302 voor tijdelijke.
+
+## Voorbeeldconfiguratie
+
+Complete setup voor een WordPress site:
+
+**Rule 1:** Bypass admin
+```
+URL: example.nl/wp-admin/*
+Actions: Cache Level: Bypass
+```
+
+**Rule 2:** Bypass login
+```
+URL: example.nl/wp-login.php
+Actions: Cache Level: Bypass, Security Level: High
+```
+
+**Rule 3:** Cache content
+```
+URL: example.nl/wp-content/*
+Actions: Cache Level: Cache Everything, Edge TTL: 1 month
+```
+
+Plus Redirect Rules voor:
+- WWW naar non-WWW
+- Oude URLs naar nieuwe
+
+## Conclusie
+
+Page Rules en de nieuwere Rules features geven je precieze controle over hoe Cloudflare je site behandelt. Begin met de basis - redirects en caching - en bouw van daaruit.
+
+Met de nieuwe Redirect Rules en Cache Rules heb je meer flexibiliteit dan ooit, zonder de limiet van 3 Page Rules in het gratis plan.
+
+Hulp nodig bij het configureren van je Cloudflare rules? Neem contact met ons op.
