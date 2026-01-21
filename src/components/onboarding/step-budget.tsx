@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
-import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { pricing } from "@/data/pricing";
 import type { OnboardingData } from "@/types/onboarding";
@@ -29,39 +29,45 @@ export function StepBudget() {
             Wat is je budget?
           </label>
           <div className="space-y-2">
-            {pricing.budgetRanges.map((budget, index) => {
+            {pricing.budgetRanges.map((budget) => {
               const isSelected = budgetRange === budget.id;
 
               return (
-                <motion.button
+                <div
                   key={budget.id}
-                  type="button"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.03 }}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => setValue("budgetRange", budget.id, { shouldValidate: true })}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setValue("budgetRange", budget.id, { shouldValidate: true });
+                    }
+                  }}
                   className={cn(
-                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all",
+                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all duration-200 cursor-pointer select-none",
                     isSelected
-                      ? "border-accent bg-accent/20 ring-1 ring-accent/30"
+                      ? "border-accent bg-accent/20 ring-1 ring-accent/30 shadow-md shadow-accent/10"
                       : "border-white/10 hover:border-white/30 hover:bg-white/5"
                   )}
                 >
                   <div
                     className={cn(
-                      "w-4 h-4 rounded-full border-2 transition-colors",
-                      isSelected ? "border-accent bg-accent" : "border-white/30"
+                      "flex w-5 h-5 items-center justify-center rounded-full border-2 transition-all duration-200",
+                      isSelected ? "border-accent bg-accent scale-110" : "border-white/30"
                     )}
-                  />
+                  >
+                    {isSelected && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
+                  </div>
                   <span
                     className={cn(
-                      "text-sm",
+                      "text-sm font-medium transition-colors",
                       isSelected ? "text-white" : "text-white/70"
                     )}
                   >
                     {budget.label}
                   </span>
-                </motion.button>
+                </div>
               );
             })}
           </div>
@@ -73,39 +79,45 @@ export function StepBudget() {
             Wanneer wil je live?
           </label>
           <div className="space-y-2">
-            {pricing.timelines.map((tl, index) => {
+            {pricing.timelines.map((tl) => {
               const isSelected = timeline === tl.id;
 
               return (
-                <motion.button
+                <div
                   key={tl.id}
-                  type="button"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.03 }}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => setValue("timeline", tl.id, { shouldValidate: true })}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setValue("timeline", tl.id, { shouldValidate: true });
+                    }
+                  }}
                   className={cn(
-                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all",
+                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all duration-200 cursor-pointer select-none",
                     isSelected
-                      ? "border-accent bg-accent/20 ring-1 ring-accent/30"
+                      ? "border-accent bg-accent/20 ring-1 ring-accent/30 shadow-md shadow-accent/10"
                       : "border-white/10 hover:border-white/30 hover:bg-white/5"
                   )}
                 >
                   <div
                     className={cn(
-                      "w-4 h-4 rounded-full border-2 transition-colors",
-                      isSelected ? "border-accent bg-accent" : "border-white/30"
+                      "flex w-5 h-5 items-center justify-center rounded-full border-2 transition-all duration-200",
+                      isSelected ? "border-accent bg-accent scale-110" : "border-white/30"
                     )}
-                  />
+                  >
+                    {isSelected && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
+                  </div>
                   <span
                     className={cn(
-                      "text-sm",
+                      "text-sm font-medium transition-colors",
                       isSelected ? "text-white" : "text-white/70"
                     )}
                   >
                     {tl.label}
                   </span>
-                </motion.button>
+                </div>
               );
             })}
           </div>

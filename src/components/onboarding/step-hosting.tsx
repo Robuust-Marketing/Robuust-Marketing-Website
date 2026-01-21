@@ -1,7 +1,6 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
-import { motion } from "framer-motion";
 import { Check, Star, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { pricing, formatPrice } from "@/data/pricing";
@@ -49,30 +48,34 @@ export function StepHosting() {
 
       {/* Hosting options */}
       <div className="grid grid-cols-1 gap-4">
-        {hostingOptions.map((option, index) => {
+        {hostingOptions.map((option) => {
           const isSelected = hostingTier === option.id;
           const isNone = option.id === "none";
 
           return (
-            <motion.button
+            <div
               key={option.id}
-              type="button"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
+              role="button"
+              tabIndex={0}
               onClick={() => setValue("hostingTier", option.id as OnboardingData["hostingTier"], { shouldValidate: true })}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setValue("hostingTier", option.id as OnboardingData["hostingTier"], { shouldValidate: true });
+                }
+              }}
               className={cn(
-                "relative flex items-start gap-4 p-5 rounded-xl border-2 text-left transition-all",
+                "relative flex items-start gap-4 p-5 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer select-none",
                 isSelected
                   ? isNone
                     ? "border-white/40 bg-white/10 ring-2 ring-white/20"
-                    : "border-accent bg-accent/20 ring-2 ring-accent/30"
+                    : "border-accent bg-accent/20 ring-2 ring-accent/30 shadow-lg shadow-accent/20"
                   : "border-white/10 hover:border-white/30 hover:bg-white/5"
               )}
             >
               {/* Popular badge */}
               {option.popular && (
-                <span className="absolute -top-3 left-4 inline-flex items-center gap-1 px-3 py-1 text-xs bg-accent text-white rounded-full">
+                <span className="absolute -top-3 left-4 inline-flex items-center gap-1 px-3 py-1 text-xs bg-accent text-white rounded-full font-medium">
                   <Star className="h-3 w-3" />
                   Meest gekozen
                 </span>
@@ -81,19 +84,19 @@ export function StepHosting() {
               {/* Radio button */}
               <div
                 className={cn(
-                  "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors mt-1",
+                  "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200 mt-1",
                   isSelected
                     ? isNone
-                      ? "border-white/50 bg-white/20"
-                      : "border-accent bg-accent"
+                      ? "border-white/50 bg-white/30 scale-110"
+                      : "border-accent bg-accent scale-110"
                     : "border-white/30"
                 )}
               >
                 {isSelected && (
                   isNone ? (
-                    <X className="h-3 w-3 text-white" />
+                    <X className="h-4 w-4 text-white" strokeWidth={3} />
                   ) : (
-                    <Check className="h-3 w-3 text-white" />
+                    <Check className="h-4 w-4 text-white" strokeWidth={3} />
                   )
                 )}
               </div>
@@ -103,13 +106,16 @@ export function StepHosting() {
                 <div className="flex items-center justify-between mb-1">
                   <span
                     className={cn(
-                      "font-semibold text-lg",
+                      "font-semibold text-lg transition-colors",
                       isSelected ? "text-white" : "text-white/80"
                     )}
                   >
                     {option.label}
                   </span>
-                  <span className="text-lg font-bold text-accent">
+                  <span className={cn(
+                    "text-lg font-bold transition-colors",
+                    isSelected ? "text-accent" : "text-white/60"
+                  )}>
                     {option.custom || option.price === null
                       ? "Op maat"
                       : option.price === 0
@@ -125,7 +131,12 @@ export function StepHosting() {
                     {option.features.slice(0, 4).map((feature) => (
                       <span
                         key={feature}
-                        className="text-xs px-2 py-1 rounded-full bg-white/5 text-white/60"
+                        className={cn(
+                          "text-xs px-2 py-1 rounded-full transition-colors",
+                          isSelected
+                            ? "bg-accent/20 text-accent"
+                            : "bg-white/5 text-white/60"
+                        )}
                       >
                         {feature}
                       </span>
@@ -138,37 +149,53 @@ export function StepHosting() {
                   </div>
                 )}
               </div>
-            </motion.button>
+            </div>
           );
         })}
       </div>
 
       {/* SLA option */}
       {hostingTier && hostingTier !== "none" && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-6 p-4 rounded-xl border border-white/10 bg-white/5"
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={() => setValue("needsSLA", !needsSLA)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setValue("needsSLA", !needsSLA);
+            }
+          }}
+          className={cn(
+            "mt-6 p-4 rounded-xl border-2 cursor-pointer select-none transition-all duration-200",
+            needsSLA
+              ? "border-accent bg-accent/20 ring-2 ring-accent/30"
+              : "border-white/10 bg-white/5 hover:border-white/20"
+          )}
         >
-          <label className="flex items-start gap-3 cursor-pointer">
+          <div className="flex items-start gap-3">
             <div
               className={cn(
-                "flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors mt-0.5",
-                needsSLA ? "border-accent bg-accent" : "border-white/30"
+                "flex h-6 w-6 shrink-0 items-center justify-center rounded border-2 transition-all duration-200 mt-0.5",
+                needsSLA ? "border-accent bg-accent scale-110" : "border-white/30"
               )}
-              onClick={() => setValue("needsSLA", !needsSLA)}
             >
-              {needsSLA && <Check className="h-3 w-3 text-white" />}
+              {needsSLA && <Check className="h-4 w-4 text-white" strokeWidth={3} />}
             </div>
-            <div onClick={() => setValue("needsSLA", !needsSLA)}>
-              <p className="font-medium text-white">Uitgebreide SLA gewenst</p>
+            <div>
+              <p className={cn(
+                "font-medium transition-colors",
+                needsSLA ? "text-white" : "text-white/80"
+              )}>
+                Uitgebreide SLA gewenst
+              </p>
               <p className="text-sm text-white/50">
                 Gegarandeerde responstijden, 24/7 monitoring en prioriteit support.
                 Exact tarief bespreken we in het kennismakingsgesprek.
               </p>
             </div>
-          </label>
-        </motion.div>
+          </div>
+        </div>
       )}
     </div>
   );

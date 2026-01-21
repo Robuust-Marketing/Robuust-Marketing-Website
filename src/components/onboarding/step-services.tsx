@@ -1,7 +1,6 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
-import { motion } from "framer-motion";
 import { Check, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { services } from "@/data/services";
@@ -53,11 +52,7 @@ export function StepServices() {
 
       {/* Basis diensten info - alleen tonen als niet marketing-only */}
       {projectGoal !== "marketing" && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 p-4 rounded-xl bg-accent/10 border border-accent/30"
-        >
+        <div className="mb-6 p-4 rounded-xl bg-accent/10 border border-accent/30">
           <div className="flex items-center gap-2 mb-2">
             <Package className="h-4 w-4 text-accent" />
             <span className="text-sm font-medium text-accent">Inbegrepen in je pakket</span>
@@ -65,7 +60,7 @@ export function StepServices() {
           <p className="text-xs text-white/70">
             Design, Development en Hosting zijn standaard inbegrepen in je website pakket. Selecteer hieronder eventuele extra diensten.
           </p>
-        </motion.div>
+        </div>
       )}
 
       {/* Services grid */}
@@ -78,16 +73,22 @@ export function StepServices() {
           // Skip hosting in de grid (wordt apart gekozen)
           if (service.id === "hosting") return null;
 
+          const ServiceIcon = service.icon;
+
           return (
-            <motion.button
+            <div
               key={service.id}
-              type="button"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.03 }}
+              role="button"
+              tabIndex={0}
               onClick={() => toggleService(service.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggleService(service.id);
+                }
+              }}
               className={cn(
-                "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all",
+                "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all cursor-pointer select-none",
                 isSelected
                   ? "border-accent bg-accent/20 ring-2 ring-accent/30"
                   : "border-white/10 hover:border-white/30 hover:bg-white/5"
@@ -117,11 +118,13 @@ export function StepServices() {
               {/* Checkbox */}
               <div
                 className={cn(
-                  "flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors mt-0.5",
-                  isSelected ? "border-accent bg-accent" : "border-white/30"
+                  "flex h-6 w-6 shrink-0 items-center justify-center rounded border-2 transition-all duration-200 mt-0.5",
+                  isSelected
+                    ? "border-accent bg-accent scale-110"
+                    : "border-white/30 bg-transparent"
                 )}
               >
-                {isSelected && <Check className="h-3 w-3 text-white" />}
+                {isSelected && <Check className="h-4 w-4 text-white" strokeWidth={3} />}
               </div>
 
               {/* Icon and content */}
@@ -129,17 +132,17 @@ export function StepServices() {
                 <div className="flex items-center gap-2">
                   <div
                     className={cn(
-                      "flex h-8 w-8 items-center justify-center rounded-lg transition-colors",
+                      "flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200",
                       isSelected
-                        ? "bg-accent/20 text-accent"
+                        ? "bg-accent text-white scale-105"
                         : "bg-white/5 text-white/60"
                     )}
                   >
-                    <service.icon className="h-4 w-4" />
+                    <ServiceIcon className="h-4 w-4" />
                   </div>
                   <span
                     className={cn(
-                      "font-medium",
+                      "font-medium transition-colors",
                       isSelected ? "text-white" : "text-white/80"
                     )}
                   >
@@ -150,23 +153,20 @@ export function StepServices() {
                   {service.description}
                 </p>
               </div>
-            </motion.button>
+            </div>
           );
         })}
       </div>
 
       {/* Selection summary */}
       {selectedServices.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-6 p-4 rounded-lg bg-white/5 border border-white/10"
-        >
-          <p className="text-sm text-white/70">
-            <span className="text-accent font-medium">{selectedServices.length}</span>{" "}
+        <div className="mt-6 p-4 rounded-lg bg-accent/10 border border-accent/30">
+          <p className="text-sm text-white">
+            <Check className="inline h-4 w-4 text-accent mr-2" />
+            <span className="text-accent font-semibold">{selectedServices.length}</span>{" "}
             {selectedServices.length === 1 ? "dienst" : "diensten"} geselecteerd
           </p>
-        </motion.div>
+        </div>
       )}
     </div>
   );
