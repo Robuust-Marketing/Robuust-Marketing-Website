@@ -173,7 +173,7 @@ export function StepContact() {
       >
         <label className="flex items-start gap-3 cursor-pointer">
           <div
-            onClick={() => setValue("privacyConsent", !privacyConsent, { shouldValidate: true })}
+            onClick={() => setValue("privacyConsent", !privacyConsent as true, { shouldValidate: true })}
             className={cn(
               "flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors mt-0.5",
               privacyConsent ? "border-accent bg-accent" : "border-white/30",
@@ -182,7 +182,7 @@ export function StepContact() {
           >
             {privacyConsent && <Check className="h-3 w-3 text-white" />}
           </div>
-          <div onClick={() => setValue("privacyConsent", !privacyConsent, { shouldValidate: true })}>
+          <div onClick={() => setValue("privacyConsent", !privacyConsent as true, { shouldValidate: true })}>
             <p className="text-sm text-white/80">
               Ik ga akkoord met de{" "}
               <Link
