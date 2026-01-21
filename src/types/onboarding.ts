@@ -53,7 +53,7 @@ export const stepContactSchema = z.object({
   phone: z.string().optional(),
   company: z.string().optional(),
   privacyConsent: z.literal(true, {
-    errorMap: () => ({ message: "Je moet akkoord gaan met de privacyverklaring" }),
+    message: "Je moet akkoord gaan met de privacyverklaring",
   }),
 });
 
