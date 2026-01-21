@@ -18,8 +18,9 @@ const packages = [
 const company = [
   { name: "Over Robuust", href: "/over" },
   { name: "Portfolio", href: "/portfolio" },
+  { name: "Referenties", href: "/referenties" },
   { name: "Partners", href: "/partners" },
-  { name: "Werkwijze", href: "/werkwijze" },
+  { name: "Vacatures", href: "/vacatures" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -27,7 +28,9 @@ const resources = [
   { name: "Blog", href: "/blog" },
   { name: "Kennisbank", href: "/kennisbank" },
   { name: "FAQ", href: "/faq" },
+  { name: "Support", href: "/support" },
   { name: "Tooling", href: "/tooling" },
+  { name: "Tarieven", href: "/tarieven" },
 ];
 
 const legal = [

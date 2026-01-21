@@ -232,10 +232,22 @@ const overOns = [
     icon: Layout,
   },
   {
+    name: "Referenties",
+    description: "Wat klanten zeggen",
+    href: "/referenties",
+    icon: CheckCircle,
+  },
+  {
     name: "Partners",
     description: "Samenwerkingen",
     href: "/partners",
     icon: Handshake,
+  },
+  {
+    name: "Vacatures",
+    description: "Werken bij Robuust",
+    href: "/vacatures",
+    icon: Users,
   },
   {
     name: "Contact",
@@ -500,14 +512,24 @@ export function Header() {
                         ))}
                       </div>
 
-                      <Link
-                        href="/diensten"
-                        className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
-                        onClick={() => setActiveMenu(null)}
-                      >
-                        Bekijk alle diensten
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
+                      <div className="mt-6 flex flex-col gap-2">
+                        <Link
+                          href="/tarieven"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
+                          onClick={() => setActiveMenu(null)}
+                        >
+                          Bekijk alle tarieven
+                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                        <Link
+                          href="/offerte"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors group"
+                          onClick={() => setActiveMenu(null)}
+                        >
+                          Vraag een offerte aan
+                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 )}
