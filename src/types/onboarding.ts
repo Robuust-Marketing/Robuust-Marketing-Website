@@ -52,9 +52,11 @@ export const stepContactSchema = z.object({
   email: z.string().email("Voer een geldig e-mailadres in"),
   phone: z.string().optional(),
   company: z.string().optional(),
-  privacyConsent: z.literal(true, {
-    message: "Je moet akkoord gaan met de privacyverklaring",
-  }),
+  privacyConsent: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "Je moet akkoord gaan met de privacyverklaring",
+    }),
 });
 
 // Gecombineerd schema voor volledige wizard data
