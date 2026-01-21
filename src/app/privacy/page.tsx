@@ -194,10 +194,10 @@ export default function PrivacyPage() {
                 <p className="text-muted-foreground mt-4">
                   U kunt een verzoek indienen via{" "}
                   <a
-                    href="mailto:info@robuust.marketing"
+                    href="mailto:info@robuustmarketing.nl"
                     className="text-accent hover:underline"
                   >
-                    info@robuust.marketing
+                    info@robuustmarketing.nl
                   </a>
                   . Wij reageren binnen 30 dagen.
                 </p>
@@ -225,10 +225,10 @@ export default function PrivacyPage() {
                   verwerking van uw persoonsgegevens? Neem dan contact met ons
                   op via{" "}
                   <a
-                    href="mailto:info@robuust.marketing"
+                    href="mailto:info@robuustmarketing.nl"
                     className="text-accent hover:underline"
                   >
-                    info@robuust.marketing
+                    info@robuustmarketing.nl
                   </a>
                   .
                 </p>

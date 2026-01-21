@@ -20,7 +20,7 @@ export async function sendContactEmail(data: ContactFormData) {
   try {
     const result = await resend.emails.send({
       from: "website@robuust.marketing",
-      to: process.env.CONTACT_EMAIL || "info@robuust.marketing",
+      to: process.env.CONTACT_EMAIL || "info@robuustmarketing.nl",
       replyTo: data.email,
       subject: `Nieuwe contactaanvraag van ${data.name}`,
       html: `
@@ -51,7 +51,7 @@ export async function sendPackageInquiryEmail(data: PackageInquiryData) {
   try {
     const result = await resend.emails.send({
       from: "website@robuust.marketing",
-      to: process.env.CONTACT_EMAIL || "info@robuust.marketing",
+      to: process.env.CONTACT_EMAIL || "info@robuustmarketing.nl",
       replyTo: data.email,
       subject: `Pakket aanvraag: ${packageNames[data.packageName]} - ${data.name}`,
       html: `

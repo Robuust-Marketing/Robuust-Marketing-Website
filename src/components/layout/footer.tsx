@@ -127,20 +127,20 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               <li>
                 <a
-                  href="mailto:info@robuust.marketing"
+                  href="mailto:info@robuustmarketing.nl"
                   className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   <Mail className="h-4 w-4" />
-                  info@robuust.marketing
+                  info@robuustmarketing.nl
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+31612345678"
+                  href="tel:+31850604877"
                   className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   <Phone className="h-4 w-4" />
-                  +31 6 12 34 56 78
+                  +31 85 060 48 77
                 </a>
               </li>
               <li>

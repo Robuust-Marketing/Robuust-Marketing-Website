@@ -65,7 +65,7 @@ Use these via Tailwind utilities: `text-navy`, `bg-gold`, `border-gold`, etc.
 - `NEXT_PUBLIC_GTM_ID` - Google Tag Manager ID
 - `NEXT_PUBLIC_COOKIEBOT_ID` - Cookiebot ID for GDPR consent
 - `RESEND_API_KEY` - Resend API key for emails
-- `CONTACT_EMAIL` - Destination for contact forms (default: info@robuust.marketing)
+- `CONTACT_EMAIL` - Destination for contact forms (default: info@robuustmarketing.nl)
 
 ### Event Tracking
 Use functions from `@/lib/gtm.ts`:

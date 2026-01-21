@@ -209,10 +209,10 @@ export default function AVGPage() {
                 Heb je vragen over AVG-compliance of wil je weten hoe wij jouw
                 website compliant kunnen maken? Neem contact met ons op via{" "}
                 <a
-                  href="mailto:info@robuust.marketing"
+                  href="mailto:info@robuustmarketing.nl"
                   className="text-accent hover:underline"
                 >
-                  info@robuust.marketing
+                  info@robuustmarketing.nl
                 </a>
                 .
               </p>

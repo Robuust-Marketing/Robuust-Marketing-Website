@@ -12,14 +12,14 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "info@robuust.marketing",
-    href: "mailto:info@robuust.marketing",
+    value: "info@robuustmarketing.nl",
+    href: "mailto:info@robuustmarketing.nl",
   },
   {
     icon: Phone,
     title: "Telefoon",
-    value: "+31 6 12 34 56 78",
-    href: "tel:+31612345678",
+    value: "+31 85 060 48 77",
+    href: "tel:+31850604877",
   },
   {
     icon: MapPin,

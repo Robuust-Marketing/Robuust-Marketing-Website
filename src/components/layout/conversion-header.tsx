@@ -36,12 +36,12 @@ export function ConversionHeader() {
         <div className="flex items-center gap-3">
           {/* Phone (Desktop only) */}
           <a
-            href="tel:+31612345678"
+            href="tel:+31850604877"
             className="hidden items-center gap-2 text-sm font-medium transition-colors hover:text-gold lg:flex"
             onClick={() => handleCTAClick("Phone Click")}
           >
             <Phone className="h-4 w-4" />
-            <span>+31 6 12 34 56 78</span>
+            <span>+31 85 060 48 77</span>
           </a>
 
           {/* Primary CTA */}

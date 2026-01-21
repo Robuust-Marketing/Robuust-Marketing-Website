@@ -20,6 +20,21 @@ import { Button } from "@/components/ui/button";
 
 const techStack = [
   {
+    id: "wordpress",
+    name: "WordPress & Avada",
+    icon: Globe,
+    category: "CMS Platform",
+    description:
+      "WordPress met het Avada theme is onze go-to oplossing voor klanten die zelf content willen beheren. Avada biedt uitgebreide designmogelijkheden en een intuïtieve drag-and-drop builder voor maximale flexibiliteit.",
+    benefits: [
+      "Gebruiksvriendelijk contentbeheer",
+      "Krachtige drag-and-drop builder",
+      "Uitgebreide designopties",
+      "Grote plugin ecosysteem",
+    ],
+    useCases: ["Zakelijke websites", "Blogs", "Portfolio sites"],
+  },
+  {
     id: "nextjs",
     name: "Next.js & React",
     icon: Code2,

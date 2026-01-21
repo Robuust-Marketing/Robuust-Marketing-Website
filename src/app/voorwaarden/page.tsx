@@ -272,10 +272,10 @@ export default function VoorwaardenPage() {
                 Voor vragen over deze algemene voorwaarden kunt u contact opnemen
                 via{" "}
                 <a
-                  href="mailto:info@robuust.marketing"
+                  href="mailto:info@robuustmarketing.nl"
                   className="text-accent hover:underline"
                 >
-                  info@robuust.marketing
+                  info@robuustmarketing.nl
                 </a>
                 .
               </p>
