@@ -210,10 +210,10 @@ const kennisbank = [
     icon: HelpCircle,
   },
   {
-    name: "Glossary",
-    description: "Begrippen uitgelegd",
-    href: "/kennisbank/glossary",
-    icon: FileText,
+    name: "Support",
+    description: "Hulp & ondersteuning",
+    href: "/support",
+    icon: Phone,
   },
 ];
 
