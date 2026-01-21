@@ -6,118 +6,70 @@ import {
   ArrowRight,
   BookOpen,
   Code2,
-  Palette,
   Search,
   Server,
-  BarChart3,
-  Shield,
-  Megaphone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
-const categories = [
-  {
-    name: "Development",
-    description: "Alles over webdevelopment, frameworks en best practices",
-    icon: Code2,
-    guides: [
-      "Introductie tot Next.js",
-      "React hooks uitgelegd",
-      "TypeScript voor beginners",
-      "API's bouwen en integreren",
-    ],
-    href: "/kennisbank/development",
-  },
-  {
-    name: "Design",
-    description: "UI/UX principes, tools en design systemen",
-    icon: Palette,
-    guides: [
-      "UI design principes",
-      "Responsive design basics",
-      "Kleur en typografie",
-      "Figma workflow tips",
-    ],
-    href: "/kennisbank/design",
-  },
-  {
-    name: "SEO",
-    description: "Zoekmachine optimalisatie en organische vindbaarheid",
-    icon: Search,
-    guides: [
-      "SEO basis voor beginners",
-      "Technische SEO checklist",
-      "Content strategie",
-      "Local SEO optimalisatie",
-    ],
-    href: "/kennisbank/seo",
-  },
-  {
-    name: "Hosting & Infrastructuur",
-    description: "Servers, performance en beveiliging",
-    icon: Server,
-    guides: [
-      "Hosting kiezen: waar op letten?",
-      "DNS uitgelegd",
-      "SSL certificaten",
-      "Website performance",
-    ],
-    href: "/kennisbank/hosting",
-  },
-  {
-    name: "Analytics",
-    description: "Data, tracking en conversie optimalisatie",
-    icon: BarChart3,
-    guides: [
-      "Google Analytics 4 setup",
-      "Conversie tracking",
-      "UTM parameters",
-      "Dashboard maken",
-    ],
-    href: "/kennisbank/analytics",
-  },
-  {
-    name: "Privacy & Security",
-    description: "AVG, beveiliging en best practices",
-    icon: Shield,
-    guides: [
-      "AVG voor websites",
-      "Cookie consent implementeren",
-      "Website beveiligen",
-      "Privacy by design",
-    ],
-    href: "/kennisbank/privacy",
-  },
-];
+interface GuideMeta {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
+  order?: number;
+}
 
-const featuredGuides = [
-  {
-    title: "De complete gids voor website launches",
-    description:
-      "Van planning tot go-live: alles wat je moet weten voor een succesvolle website lancering.",
-    category: "Development",
-    readTime: "15 min",
-    href: "/kennisbank/website-launch-gids",
-  },
-  {
-    title: "SEO voor developers: Technische optimalisatie",
-    description:
-      "Leer hoe je als developer bijdraagt aan betere SEO resultaten met technische optimalisaties.",
-    category: "SEO",
-    readTime: "12 min",
-    href: "/kennisbank/seo-voor-developers",
-  },
-  {
-    title: "E-commerce conversie optimalisatie",
-    description:
-      "Verhoog je webshop conversie met bewezen technieken en A/B testing strategieën.",
-    category: "Marketing",
-    readTime: "10 min",
-    href: "/kennisbank/ecommerce-conversie",
-  },
-];
+interface CategoryData {
+  slug: string;
+  name: string;
+  description: string;
+  guides: GuideMeta[];
+}
+
+const categoryIcons: Record<string, typeof Code2> = {
+  development: Code2,
+  seo: Search,
+  hosting: Server,
+};
 
 export default function KennisbankPage() {
+  const [categories, setCategories] = useState<CategoryData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("/api/kennisbank");
+        const data = await res.json();
+        setCategories(data.categories);
+      } catch (error) {
+        console.error("Error fetching kennisbank:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  // Get featured guides (first guide from each category)
+  const featuredGuides = categories
+    .filter((cat) => cat.guides.length > 0)
+    .map((cat) => ({
+      ...cat.guides[0],
+      categorySlug: cat.slug,
+    }))
+    .slice(0, 3);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-32 flex items-center justify-center">
+        <div className="text-muted-foreground">Laden...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -160,55 +112,56 @@ export default function KennisbankPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Diepgaande guides, tutorials en best practices over webdevelopment,
-            design en online marketing.
+            Diepgaande guides en tutorials over webdevelopment, SEO en hosting.
           </motion.p>
         </div>
       </section>
 
       {/* Featured Guides */}
-      <section className="py-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white">Populaire guides</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredGuides.map((guide, index) => (
-              <motion.div
-                key={guide.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group rounded-2xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <BookOpen className="h-4 w-4 text-accent" />
-                  <span className="text-xs font-medium text-accent">
-                    {guide.category}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    • {guide.readTime}
-                  </span>
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                  {guide.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {guide.description}
-                </p>
-                <Link
-                  href={guide.href}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
+      {featuredGuides.length > 0 && (
+        <section className="py-12">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-white">Populaire guides</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {featuredGuides.map((guide, index) => (
+                <motion.div
+                  key={guide.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group rounded-2xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
                 >
-                  Lees guide
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </motion.div>
-            ))}
+                  <div className="flex items-center gap-2 mb-3">
+                    <BookOpen className="h-4 w-4 text-accent" />
+                    <span className="text-xs font-medium text-accent">
+                      {guide.category}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      • {guide.readTime}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                    {guide.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {guide.description}
+                  </p>
+                  <Link
+                    href={`/kennisbank/${guide.categorySlug}/${guide.slug}`}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
+                  >
+                    Lees guide
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Categories */}
       <section className="py-20">
@@ -223,101 +176,67 @@ export default function KennisbankPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="rounded-2xl bg-surface border border-white/5 p-6"
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                    <category.icon className="h-6 w-6" />
+            {categories.map((category, index) => {
+              const IconComponent = categoryIcons[category.slug] || BookOpen;
+              return (
+                <motion.div
+                  key={category.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="rounded-2xl bg-surface border border-white/5 p-6"
+                >
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                      <IconComponent className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">
+                        {category.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {category.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">
-                      {category.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {category.description}
+
+                  {category.guides.length > 0 ? (
+                    <ul className="space-y-2 mb-4">
+                      {category.guides.slice(0, 4).map((guide) => (
+                        <li key={guide.slug}>
+                          <Link
+                            href={`/kennisbank/${category.slug}/${guide.slug}`}
+                            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
+                          >
+                            <span className="w-1 h-1 rounded-full bg-accent" />
+                            {guide.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Guides komen binnenkort beschikbaar.
                     </p>
-                  </div>
-                </div>
-
-                <ul className="space-y-2 mb-4">
-                  {category.guides.map((guide) => (
-                    <li key={guide}>
-                      <Link
-                        href="#"
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
-                      >
-                        <span className="w-1 h-1 rounded-full bg-accent" />
-                        {guide}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={category.href}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
-                >
-                  Alle {category.name.toLowerCase()} guides
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Glossary Teaser */}
-      <section className="py-20 bg-surface/50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 p-8 lg:p-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-                  Begrippen uitgelegd
-                </h2>
-                <p className="text-muted-foreground mb-6">
-                  Van API tot z-index: onze glossary legt alle vakjargon
-                  begrijpelijk uit. Perfect voor als je tegen een onbekend
-                  begrip aanloopt.
-                </p>
-                <Button
-                  asChild
-                  className="bg-accent hover:bg-accent-hover text-white"
-                >
-                  <Link href="/kennisbank/glossary">
-                    Naar de glossary
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-              <div className="hidden lg:block">
-                <div className="grid grid-cols-3 gap-3">
-                  {["API", "CDN", "CMS", "DNS", "SEO", "SSL", "UI", "UX", "A/B"].map(
-                    (term) => (
-                      <div
-                        key={term}
-                        className="rounded-lg bg-white/5 p-3 text-center"
-                      >
-                        <span className="font-mono text-accent">{term}</span>
-                      </div>
-                    )
                   )}
-                </div>
-              </div>
-            </div>
+
+                  <Link
+                    href={`/kennisbank/${category.slug}`}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
+                  >
+                    Alle {category.name.toLowerCase()} guides
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 bg-surface/50">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

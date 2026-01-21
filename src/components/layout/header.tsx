@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
@@ -247,19 +247,27 @@ const overOns = [
 
 type MegaMenuSection = "diensten" | "werkwijze" | "tooling" | "kennisbank" | "over" | null;
 
-const menuItems: { name: string; key: MegaMenuSection }[] = [
-  { name: "Diensten", key: "diensten" },
-  { name: "Werkwijze", key: "werkwijze" },
-  { name: "Tooling", key: "tooling" },
-  { name: "Kennisbank", key: "kennisbank" },
-  { name: "Over", key: "over" },
+const menuItems: { name: string; key: MegaMenuSection; href: string }[] = [
+  { name: "Diensten", key: "diensten", href: "/diensten" },
+  { name: "Werkwijze", key: "werkwijze", href: "/werkwijze" },
+  { name: "Tooling", key: "tooling", href: "/tooling" },
+  { name: "Kennisbank", key: "kennisbank", href: "/kennisbank" },
+  { name: "Over", key: "over", href: "/over" },
 ];
+
+interface BlogPostMeta {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+}
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MegaMenuSection>(null);
   const [mobileSubmenu, setMobileSubmenu] = useState<MegaMenuSection>(null);
+  const [recentPosts, setRecentPosts] = useState<BlogPostMeta[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -269,6 +277,19 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    async function fetchRecentPosts() {
+      try {
+        const res = await fetch("/api/blog");
+        const data = await res.json();
+        setRecentPosts(data.posts.slice(0, 2));
+      } catch (error) {
+        console.error("Error fetching recent posts:", error);
+      }
+    }
+    fetchRecentPosts();
   }, []);
 
   const handleMouseEnter = (menu: MegaMenuSection) => {
@@ -348,7 +369,8 @@ export function Header() {
               className="relative"
               onMouseEnter={() => handleMouseEnter(item.key)}
             >
-              <button
+              <Link
+                href={item.href}
                 className={cn(
                   "flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg",
                   activeMenu === item.key
@@ -363,7 +385,7 @@ export function Header() {
                     activeMenu === item.key && "rotate-180"
                   )}
                 />
-              </button>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
@@ -662,22 +684,28 @@ export function Header() {
                         Recente artikelen
                       </p>
                       <div className="grid grid-cols-2 gap-4">
-                        {[
-                          { category: "Development", title: "Next.js 15: Wat is nieuw?", desc: "De belangrijkste updates en features..." },
-                          { category: "SEO", title: "Core Web Vitals in 2025", desc: "Hoe je website sneller maken..." },
-                        ].map((article, index) => (
+                        {recentPosts.length > 0 ? recentPosts.map((post, index) => (
                           <motion.div
-                            key={article.title}
+                            key={post.slug}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 + index * 0.05 }}
-                            className="rounded-xl bg-white/5 border border-white/5 p-4 hover:bg-white/10 hover:border-white/10 transition-all duration-200 cursor-pointer group"
                           >
-                            <span className="text-xs text-accent font-medium">{article.category}</span>
-                            <h4 className="font-medium text-white mt-1 mb-2 group-hover:text-accent transition-colors">{article.title}</h4>
-                            <p className="text-sm text-white/50">{article.desc}</p>
+                            <Link
+                              href={`/blog/${post.slug}`}
+                              className="block rounded-xl bg-white/5 border border-white/5 p-4 hover:bg-white/10 hover:border-white/10 transition-all duration-200 group"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <span className="text-xs text-accent font-medium">{post.category}</span>
+                              <h4 className="font-medium text-white mt-1 mb-2 group-hover:text-accent transition-colors line-clamp-1">{post.title}</h4>
+                              <p className="text-sm text-white/50 line-clamp-2">{post.excerpt}</p>
+                            </Link>
                           </motion.div>
-                        ))}
+                        )) : (
+                          <div className="col-span-2 text-sm text-white/50">
+                            Artikelen laden...
+                          </div>
+                        )}
                       </div>
                       <Link
                         href="/blog"
@@ -812,6 +840,7 @@ export function Header() {
                   {/* Diensten */}
                   <MobileMenuItem
                     name="Diensten"
+                    href="/diensten"
                     isOpen={mobileSubmenu === "diensten"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "diensten" ? null : "diensten")}
                     items={diensten}
@@ -821,6 +850,7 @@ export function Header() {
                   {/* Werkwijze */}
                   <MobileMenuItem
                     name="Werkwijze"
+                    href="/werkwijze"
                     isOpen={mobileSubmenu === "werkwijze"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
                     items={werkwijze}
@@ -830,6 +860,7 @@ export function Header() {
                   {/* Tooling */}
                   <MobileMenuItem
                     name="Tooling"
+                    href="/tooling"
                     isOpen={mobileSubmenu === "tooling"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "tooling" ? null : "tooling")}
                     items={tooling}
@@ -839,6 +870,7 @@ export function Header() {
                   {/* Kennisbank */}
                   <MobileMenuItem
                     name="Kennisbank"
+                    href="/kennisbank"
                     isOpen={mobileSubmenu === "kennisbank"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
                     items={kennisbank}
@@ -848,6 +880,7 @@ export function Header() {
                   {/* Over */}
                   <MobileMenuItem
                     name="Over"
+                    href="/over"
                     isOpen={mobileSubmenu === "over"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
                     items={overOns}
@@ -875,12 +908,14 @@ export function Header() {
 // Mobile menu item component
 function MobileMenuItem({
   name,
+  href,
   isOpen,
   onToggle,
   items,
   onClose,
 }: {
   name: string;
+  href: string;
   isOpen: boolean;
   onToggle: () => void;
   items: { name: string; href: string; icon: React.ComponentType<{ className?: string }> }[];
@@ -888,18 +923,27 @@ function MobileMenuItem({
 }) {
   return (
     <div>
-      <button
-        onClick={onToggle}
-        className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors"
-      >
-        {name}
-        <ChevronDown
-          className={cn(
-            "h-5 w-5 transition-transform duration-200",
-            isOpen && "rotate-180"
-          )}
-        />
-      </button>
+      <div className="flex w-full items-center justify-between rounded-lg text-base font-medium text-white/80 hover:text-white transition-colors">
+        <Link
+          href={href}
+          className="flex-1 px-3 py-2.5 hover:bg-white/5 rounded-lg transition-colors"
+          onClick={onClose}
+        >
+          {name}
+        </Link>
+        <button
+          onClick={onToggle}
+          className="px-3 py-2.5 hover:bg-white/5 rounded-lg transition-colors"
+          aria-label={`${isOpen ? "Sluit" : "Open"} ${name} submenu`}
+        >
+          <ChevronDown
+            className={cn(
+              "h-5 w-5 transition-transform duration-200",
+              isOpen && "rotate-180"
+            )}
+          />
+        </button>
+      </div>
       <AnimatePresence>
         {isOpen && (
           <motion.div

@@ -1,109 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, HelpCircle } from "lucide-react";
+import { ArrowRight, ChevronDown, HelpCircle, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const faqCategories = [
-  {
-    name: "Algemeen",
-    faqs: [
-      {
-        question: "Wat doet Robuust Marketing precies?",
-        answer:
-          "Robuust Marketing is een full-service digitaal bureau gespecialiseerd in webdevelopment, hosting en online marketing. We helpen bedrijven met het bouwen van moderne websites, het beheren van hosting infrastructuur en het opzetten van effectieve marketing strategieën.",
-      },
-      {
-        question: "Voor welke bedrijven werken jullie?",
-        answer:
-          "We werken met bedrijven van alle groottes, van startups tot gevestigde ondernemingen. Onze klanten komen uit diverse sectoren: e-commerce, zakelijke dienstverlening, horeca, tech en meer. De gemene deler is dat ze waarde hechten aan kwaliteit en een professionele online aanwezigheid.",
-      },
-      {
-        question: "Waar zijn jullie gevestigd?",
-        answer:
-          "We zijn gevestigd in Nederland en werken primair met Nederlandse en Belgische klanten. Dankzij moderne communicatiemiddelen werken we ook regelmatig samen met internationale klanten.",
-      },
-    ],
-  },
-  {
-    name: "Projecten & Prijzen",
-    faqs: [
-      {
-        question: "Wat kost een website bij Robuust?",
-        answer:
-          "De kosten hangen af van de complexiteit en functionaliteiten. Een professionele website begint vanaf €2.500 (Solid Start pakket). Voor grotere projecten met geavanceerde functionaliteiten start de investering vanaf €7.500 (Firm Foundation pakket). We maken altijd eerst een op maat gemaakte offerte na een kennismakingsgesprek.",
-      },
-      {
-        question: "Hoe lang duurt het om een website te bouwen?",
-        answer:
-          "Een gemiddeld website project duurt 6-12 weken van start tot lancering. Dit is afhankelijk van de complexiteit, de beschikbaarheid van content en de snelheid van feedback. Eenvoudige websites kunnen sneller, complexe platforms kunnen langer duren.",
-      },
-      {
-        question: "Kan ik een bestaande website laten verbeteren?",
-        answer:
-          "Ja, we helpen regelmatig klanten met het optimaliseren of herontwerpen van bestaande websites. Dit kan variëren van kleine aanpassingen tot een complete redesign en migratie naar een moderner platform.",
-      },
-      {
-        question: "Bieden jullie ook maatwerk oplossingen?",
-        answer:
-          "Absoluut. Naast onze standaard pakketten bouwen we ook volledig op maat gemaakte oplossingen. Denk aan custom portals, integraties met externe systemen, of unieke functionaliteiten die specifiek voor jouw business nodig zijn.",
-      },
-    ],
-  },
-  {
-    name: "Hosting & Onderhoud",
-    faqs: [
-      {
-        question: "Waar staan jullie servers?",
-        answer:
-          "Onze servers staan in Europa, specifiek in Duitsland en Finland. Dit zorgt voor snelle laadtijden voor Europese bezoekers en volledige AVG-compliance.",
-      },
-      {
-        question: "Wat is jullie uptime garantie?",
-        answer:
-          "We garanderen een uptime van 99.9%. Dit betekent maximaal 8,76 uur downtime per jaar, maar in de praktijk liggen we ruim boven deze standaard. Alle websites worden 24/7 gemonitord.",
-      },
-      {
-        question: "Maken jullie backups van mijn website?",
-        answer:
-          "Ja, we maken dagelijks automatische backups die minimaal 30 dagen bewaard worden. Bij onze onderhoudspakketten is dit standaard inbegrepen. In geval van problemen kunnen we snel een backup terugzetten.",
-      },
-      {
-        question: "Wat houdt onderhoud precies in?",
-        answer:
-          "Website onderhoud omvat: security updates, plugin/package updates, performance monitoring, uptime monitoring, backup beheer en kleine content wijzigingen. We bieden verschillende onderhoudscontracten aan afhankelijk van je behoeften.",
-      },
-    ],
-  },
-  {
-    name: "Samenwerking",
-    faqs: [
-      {
-        question: "Hoe verloopt de samenwerking?",
-        answer:
-          "Na een kennismakingsgesprek maken we een projectplan met duidelijke fases: Discovery, Design, Development en Launch. Je krijgt wekelijkse updates en hebt direct contact met de mensen die aan je project werken. We werken transparant en houden je altijd op de hoogte.",
-      },
-      {
-        question: "Moet ik zelf content aanleveren?",
-        answer:
-          "In de basis verwachten we dat je teksten, afbeeldingen en andere content aanlevert. We kunnen je hierbij ondersteunen met tips en richtlijnen, of je doorverwijzen naar partners voor copywriting en fotografie. Ook kunnen we stock fotografie verzorgen indien gewenst.",
-      },
-      {
-        question: "Kan ik zelf mijn website beheren na oplevering?",
-        answer:
-          "Ja, we bouwen websites altijd met een gebruiksvriendelijk CMS zodat je zelf content kunt aanpassen. Je krijgt een handleiding en eventueel een korte training. Voor technische wijzigingen kun je altijd bij ons terecht.",
-      },
-      {
-        question: "Wat als ik niet tevreden ben?",
-        answer:
-          "Klanttevredenheid staat voorop. Tijdens het project bouwen we in feedbackmomenten zodat we tijdig kunnen bijsturen. Mocht je na oplevering ergens niet tevreden over zijn, bespreken we dit en zoeken we samen naar een oplossing.",
-      },
-    ],
-  },
-];
+import { faqs, categoryLabels, getAllCategories, type FAQ } from "@/data/faqs";
 
 function FAQItem({
   question,
@@ -149,6 +52,50 @@ function FAQItem({
 
 export default function FAQPage() {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const categories = getAllCategories();
+
+  // Filter FAQs based on search and category
+  const filteredFaqs = useMemo(() => {
+    return faqs.filter((faq) => {
+      const matchesSearch =
+        searchQuery === "" ||
+        faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchesCategory =
+        selectedCategory === null || faq.categories.includes(selectedCategory);
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchQuery, selectedCategory]);
+
+  // Group filtered FAQs by their first category
+  const groupedFaqs = useMemo(() => {
+    const groups: { category: string; label: string; faqs: FAQ[] }[] = [];
+    const seenFaqIds = new Set<string>();
+
+    categories.forEach((category) => {
+      if (selectedCategory !== null && selectedCategory !== category) return;
+
+      const categoryFaqs = filteredFaqs.filter(
+        (faq) => faq.categories.includes(category) && !seenFaqIds.has(faq.id)
+      );
+
+      if (categoryFaqs.length > 0) {
+        categoryFaqs.forEach((faq) => seenFaqIds.add(faq.id));
+        groups.push({
+          category,
+          label: categoryLabels[category] || category,
+          faqs: categoryFaqs,
+        });
+      }
+    });
+
+    return groups;
+  }, [filteredFaqs, categories, selectedCategory]);
 
   const toggleItem = (id: string) => {
     setOpenItems((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -157,7 +104,7 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
-      <section className="relative pb-20">
+      <section className="relative pb-12">
         <div className="absolute inset-0">
           <motion.div
             initial={{ opacity: 0 }}
@@ -202,41 +149,111 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* FAQ Categories */}
-      <section className="py-20">
+      {/* Search & Filter */}
+      <section className="py-8">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="space-y-12">
-            {faqCategories.map((category, categoryIndex) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: categoryIndex * 0.1 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="space-y-4"
+          >
+            {/* Search */}
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Zoek in veelgestelde vragen..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-surface border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+                  selectedCategory === null
+                    ? "bg-accent text-white"
+                    : "bg-surface text-muted-foreground hover:text-white border border-white/10"
+                }`}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <HelpCircle className="h-5 w-5 text-accent" />
-                  <h2 className="text-xl font-bold text-white">
-                    {category.name}
-                  </h2>
-                </div>
-                <div className="rounded-2xl bg-surface border border-white/5 px-6">
-                  {category.faqs.map((faq, faqIndex) => {
-                    const itemId = `${category.name}-${faqIndex}`;
-                    return (
+                Alle
+              </button>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+                    selectedCategory === category
+                      ? "bg-accent text-white"
+                      : "bg-surface text-muted-foreground hover:text-white border border-white/10"
+                  }`}
+                >
+                  {categoryLabels[category] || category}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Categories */}
+      <section className="py-12">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          {groupedFaqs.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center py-12"
+            >
+              <HelpCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Geen resultaten gevonden
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                Probeer een andere zoekterm of neem contact met ons op.
+              </p>
+              <Button
+                asChild
+                className="bg-accent hover:bg-accent-hover text-white"
+              >
+                <Link href="/contact">Neem contact op</Link>
+              </Button>
+            </motion.div>
+          ) : (
+            <div className="space-y-12">
+              {groupedFaqs.map((group, categoryIndex) => (
+                <motion.div
+                  key={group.category}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: categoryIndex * 0.1 }}
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <HelpCircle className="h-5 w-5 text-accent" />
+                    <h2 className="text-xl font-bold text-white">
+                      {group.label}
+                    </h2>
+                  </div>
+                  <div className="rounded-2xl bg-surface border border-white/5 px-6">
+                    {group.faqs.map((faq) => (
                       <FAQItem
-                        key={itemId}
+                        key={faq.id}
                         question={faq.question}
                         answer={faq.answer}
-                        isOpen={openItems[itemId] || false}
-                        onToggle={() => toggleItem(itemId)}
+                        isOpen={openItems[faq.id] || false}
+                        onToggle={() => toggleItem(faq.id)}
                       />
-                    );
-                  })}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

@@ -1,0 +1,288 @@
+---
+title: "Git en Versiebeheer: Waarom Het Belangrijk Is voor Je Website"
+description: "Een niet-technische uitleg van Git en versiebeheer. Begrijp waarom professionele webdevelopment altijd Git gebruikt."
+category: "development"
+readTime: "7 min"
+order: 4
+icon: "git-branch"
+---
+
+Als je een website laat bouwen, hoor je vaak over "Git" en "versiebeheer". In deze guide leggen we uit wat dit betekent en waarom het belangrijk is voor jouw project.
+
+## Wat is Versiebeheer?
+
+Versiebeheer is een systeem dat alle wijzigingen in code bijhoudt. Vergelijk het met "Track Changes" in Word, maar dan veel krachtiger.
+
+### Het Probleem Zonder Versiebeheer
+
+Zonder versiebeheer zie je vaak dit:
+```
+website_v1.zip
+website_v2.zip
+website_v2_final.zip
+website_v2_final_ECHT_FINAL.zip
+website_v2_final_ECHT_FINAL_2.zip
+```
+
+Dit leidt tot:
+- Verwarring over welke versie actueel is
+- Verlies van werkende code
+- Moeilijk samenwerken
+- Geen idee wat wanneer veranderde
+
+### De Oplossing: Git
+
+Git houdt automatisch bij:
+- Welke wijzigingen gemaakt zijn
+- Wie de wijziging maakte
+- Wanneer het gebeurde
+- Waarom het veranderde (via commit messages)
+
+## Hoe Git Werkt
+
+### Repository (Repo)
+
+Een repository is de "container" voor je project. Het bevat:
+- Alle bestanden van je website
+- De complete geschiedenis van wijzigingen
+- Configuratie en metadata
+
+### Commits
+
+Een commit is een "snapshot" van je code op een bepaald moment:
+
+```
+Commit: "Voeg contact formulier toe"
+Datum: 15 januari 2024
+Auteur: Developer
+Wijzigingen:
+  - Nieuw: contact.tsx
+  - Aangepast: navigation.tsx
+```
+
+### Branches
+
+Branches zijn parallelle versies van je code:
+
+```
+main (productie)
+├── feature/nieuw-design
+├── feature/contact-form
+└── bugfix/menu-probleem
+```
+
+**Voordelen:**
+- Werk aan features zonder de live site te beïnvloeden
+- Test wijzigingen in isolatie
+- Meerdere developers kunnen parallel werken
+
+### Merging
+
+Wanneer een feature klaar is, wordt de branch "gemerged" naar main:
+
+1. Feature ontwikkeld in aparte branch
+2. Code review door team
+3. Tests draaien automatisch
+4. Merge naar main
+5. Deploy naar productie
+
+## Waarom Git Belangrijk Is voor Jouw Website
+
+### 1. Veiligheid
+
+**Nooit meer werk kwijtraken:**
+- Elke wijziging is opgeslagen
+- Herstel naar elke eerdere versie mogelijk
+- Back-up van volledige geschiedenis
+
+**Voorbeeld:** Developer maakt per ongeluk de homepage kapot. Met één commando is de vorige werkende versie terug.
+
+### 2. Samenwerking
+
+**Meerdere developers tegelijk:**
+- Ieder werkt in eigen branch
+- Geen conflicten door gelijktijdig werken
+- Code review voordat wijzigingen live gaan
+
+### 3. Transparantie
+
+**Volledige audit trail:**
+- Zie precies wat wanneer veranderde
+- Begrijp waarom beslissingen gemaakt zijn
+- Accountability voor alle wijzigingen
+
+### 4. Professionaliteit
+
+**Industrie standaard:**
+- Elk serieus development team gebruikt Git
+- Vereist voor moderne development practices
+- Integratie met alle tools en platforms
+
+### 5. Deployment
+
+**Geautomatiseerde releases:**
+- Push naar Git triggert automatische deployment
+- Rollback mogelijk bij problemen
+- Staging environments voor testen
+
+## GitHub, GitLab, Bitbucket
+
+Dit zijn platforms die Git hosting bieden met extra features:
+
+### GitHub (meest populair)
+
+- Eigendom van Microsoft
+- Grootste community
+- Excellent voor open source
+- GitHub Actions voor automatisering
+
+### GitLab
+
+- Zelf te hosten mogelijk
+- Ingebouwde CI/CD
+- Populair bij enterprises
+- Alles-in-één platform
+
+### Bitbucket
+
+- Eigendom van Atlassian
+- Integratie met Jira
+- Goed voor kleine teams
+- Gratis private repos
+
+## Git Workflow in de Praktijk
+
+### Standaard Development Workflow
+
+1. **Developer maakt feature branch**
+   ```
+   git checkout -b feature/nieuwe-diensten-pagina
+   ```
+
+2. **Wijzigingen worden gemaakt**
+   - Code schrijven
+   - Testen
+   - Commits maken met duidelijke beschrijvingen
+
+3. **Pull Request aanmaken**
+   - Beschrijf wat er veranderd is
+   - Link naar ticket/taak
+   - Vraag review aan
+
+4. **Code Review**
+   - Collega bekijkt de code
+   - Feedback en suggesties
+   - Goedkeuring of aanpassingen
+
+5. **Merge en Deploy**
+   - Code gaat naar main branch
+   - Automatische deployment naar staging
+   - Na goedkeuring naar productie
+
+### Hotfix Workflow
+
+Voor urgente bugfixes:
+
+1. Branch direct vanaf productie
+2. Minimale fix implementeren
+3. Versnelde review
+4. Direct naar productie deployen
+5. Later mergen naar development branch
+
+## Wat Je Moet Vragen aan Je Developer
+
+### Bij Project Start
+
+- "Gebruiken jullie Git voor versiebeheer?"
+- "Op welk platform wordt de code gehost?"
+- "Heb ik toegang tot de repository?"
+
+### Tijdens Development
+
+- "Kan ik de commit geschiedenis zien?"
+- "Hoe ziet jullie code review proces eruit?"
+- "Hoe worden features getest voor deployment?"
+
+### Bij Oplevering
+
+- "Krijg ik eigenaarschap van de repository?"
+- "Is de volledige geschiedenis beschikbaar?"
+- "Hoe kan ik toekomstige developers toegang geven?"
+
+## Eigenaarschap van Code
+
+### Waarom Dit Belangrijk Is
+
+Je moet eigenaar zijn van:
+- De repository met alle code
+- De volledige commit geschiedenis
+- Alle branches en versies
+
+### Rode Vlaggen
+
+**Let op als een bureau:**
+- Geen toegang tot Git wil geven
+- Code alleen als ZIP levert
+- Zegt dat versiebeheer "niet nodig" is
+
+### Overdracht bij Einde Samenwerking
+
+Zorg dat je ontvangt:
+1. Volledige toegang tot repository
+2. Eigenaarschap overdracht
+3. Documentatie van de setup
+4. Deployment instructies
+
+## Git voor Niet-Developers
+
+### Je Hoeft Geen Git te Leren
+
+Als website-eigenaar hoef je Git niet te gebruiken. Maar begrijp wel:
+- Dat je developer het gebruikt
+- Dat je recht hebt op de code
+- Dat het kwaliteit waarborgt
+
+### Wanneer Je Git Wel Ziet
+
+Je komt Git tegen bij:
+- Bekijken van project voortgang
+- Goedkeuren van wijzigingen (via GitHub/GitLab interface)
+- Overdracht naar nieuwe developer
+
+### De GitHub Interface
+
+GitHub biedt een gebruiksvriendelijke webinterface:
+- Bekijk bestanden zonder technische kennis
+- Zie wijzigingsgeschiedenis
+- Lees commit beschrijvingen
+- Bekijk pull requests
+
+## Veelgestelde Vragen
+
+**Is Git gratis?**
+Ja, Git zelf is gratis open-source software. Platforms zoals GitHub hebben gratis tiers voor de meeste projecten.
+
+**Wat als mijn developer geen Git gebruikt?**
+Dit is een rode vlag. Professionele development zonder versiebeheer is risicovol. Vraag waarom niet en overweeg een andere partij.
+
+**Kan ik mijn bestaande website in Git zetten?**
+Ja, elke codebase kan in Git. Een developer kan de huidige staat als startpunt nemen.
+
+**Hoe lang wordt de geschiedenis bewaard?**
+Oneindig, tenzij bewust verwijderd. De volledige geschiedenis vanaf het eerste commit blijft beschikbaar.
+
+**Is mijn code veilig op GitHub?**
+Private repositories zijn alleen toegankelijk voor geautoriseerde gebruikers. GitHub heeft enterprise-grade beveiliging.
+
+## Conclusie
+
+Git en versiebeheer zijn fundamenteel voor professionele webdevelopment. Als klant moet je:
+
+1. **Eisen** dat Git gebruikt wordt
+2. **Toegang hebben** tot de repository
+3. **Eigenaar zijn** van alle code
+4. **Begrijpen** dat dit je beschermt
+
+Een developer die geen Git gebruikt of geen toegang wil geven, is geen professionele partner.
+
+Vragen over hoe wij Git en versiebeheer inzetten? Neem gerust contact op.

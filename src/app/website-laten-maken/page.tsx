@@ -530,7 +530,7 @@ export default function WebsiteLatenMakenPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="tel:+31850606"; className="flex items-center gap-2">
+              <Link href="tel:+31850606" className="flex items-center gap-2">
                 <Zap className="h-4 w-4" />
                 Bel direct
               </Link>
