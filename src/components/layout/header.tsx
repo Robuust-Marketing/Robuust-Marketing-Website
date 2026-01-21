@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
   X,
@@ -17,28 +18,21 @@ import {
   Search,
   Users,
   ArrowRight,
-  Lightbulb,
   CheckCircle,
-  Clock,
   FileText,
   BookOpen,
   Newspaper,
   HelpCircle,
-  Map,
-  Shield,
-  Scale,
   Phone,
   Building,
   Handshake,
   Rocket,
   Layers,
   Workflow,
-  Sparkles,
   Database,
   Cloud,
-  Globe,
-  Cpu,
   Layout,
+  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -111,14 +105,16 @@ const diensten = [
 const pakketten = [
   {
     name: "Solid Start",
-    description: "Perfect voor starters - vanaf €2.500",
+    description: "Perfect voor starters",
+    price: "vanaf €2.500",
     href: "/diensten#solid-start",
     icon: Rocket,
     featured: false,
   },
   {
     name: "Firm Foundation",
-    description: "Voor groeiende bedrijven - vanaf €7.500",
+    description: "Voor groeiende bedrijven",
+    price: "vanaf €7.500",
     href: "/diensten#firm-foundation",
     icon: Layers,
     featured: true,
@@ -249,14 +245,15 @@ const overOns = [
   },
 ];
 
-// Footer links in mega menu
-const footerLinks = [
-  { name: "Privacy", href: "/privacy" },
-  { name: "AVG", href: "/avg" },
-  { name: "Voorwaarden", href: "/voorwaarden" },
-];
-
 type MegaMenuSection = "diensten" | "werkwijze" | "tooling" | "kennisbank" | "over" | null;
+
+const menuItems: { name: string; key: MegaMenuSection }[] = [
+  { name: "Diensten", key: "diensten" },
+  { name: "Werkwijze", key: "werkwijze" },
+  { name: "Tooling", key: "tooling" },
+  { name: "Kennisbank", key: "kennisbank" },
+  { name: "Over", key: "over" },
+];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -264,7 +261,6 @@ export function Header() {
   const [activeMenu, setActiveMenu] = useState<MegaMenuSection>(null);
   const [mobileSubmenu, setMobileSubmenu] = useState<MegaMenuSection>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -294,30 +290,36 @@ export function Header() {
   };
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed left-0 right-0 z-50 transition-all duration-300",
-        "top-0",
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+        "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
+        scrolled ? "glass-darker shadow-lg shadow-black/10" : "bg-transparent"
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold text-navy">
-              Robuust<span className="text-gold">.</span>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="flex lg:flex-1"
+        >
+          <Link href="/" className="-m-1.5 p-1.5 group">
+            <span className="text-2xl font-bold text-white transition-colors">
+              Robuust
+              <span className="text-accent group-hover:text-accent-hover transition-colors">.</span>
             </span>
           </Link>
-        </div>
+        </motion.div>
 
         {/* Mobile menu button */}
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-charcoal"
+            className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-white/80 hover:text-white hover:bg-white/5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Menu openen</span>
@@ -330,614 +332,599 @@ export function Header() {
         </div>
 
         {/* Desktop navigation */}
-        <div
-          ref={menuRef}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           className="hidden lg:flex lg:items-center lg:gap-x-1"
           onMouseLeave={handleMouseLeave}
         >
-          {/* Diensten */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("diensten")}
-          >
-            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal transition-colors hover:text-navy rounded-lg hover:bg-gray-50">
-              Diensten
-              <ChevronDown className={cn("h-4 w-4 transition-transform", activeMenu === "diensten" && "rotate-180")} />
-            </button>
-          </div>
-
-          {/* Werkwijze */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("werkwijze")}
-          >
-            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal transition-colors hover:text-navy rounded-lg hover:bg-gray-50">
-              Werkwijze
-              <ChevronDown className={cn("h-4 w-4 transition-transform", activeMenu === "werkwijze" && "rotate-180")} />
-            </button>
-          </div>
-
-          {/* Tooling */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("tooling")}
-          >
-            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal transition-colors hover:text-navy rounded-lg hover:bg-gray-50">
-              Tooling
-              <ChevronDown className={cn("h-4 w-4 transition-transform", activeMenu === "tooling" && "rotate-180")} />
-            </button>
-          </div>
-
-          {/* Kennisbank */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("kennisbank")}
-          >
-            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal transition-colors hover:text-navy rounded-lg hover:bg-gray-50">
-              Kennisbank
-              <ChevronDown className={cn("h-4 w-4 transition-transform", activeMenu === "kennisbank" && "rotate-180")} />
-            </button>
-          </div>
-
-          {/* Over */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("over")}
-          >
-            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-charcoal transition-colors hover:text-navy rounded-lg hover:bg-gray-50">
-              Over
-              <ChevronDown className={cn("h-4 w-4 transition-transform", activeMenu === "over" && "rotate-180")} />
-            </button>
-          </div>
-        </div>
+          {menuItems.map((item, index) => (
+            <motion.div
+              key={item.key}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.05, duration: 0.4 }}
+              className="relative"
+              onMouseEnter={() => handleMouseEnter(item.key)}
+            >
+              <button
+                className={cn(
+                  "flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg",
+                  activeMenu === item.key
+                    ? "text-white bg-white/10"
+                    : "text-white/70 hover:text-white hover:bg-white/5"
+                )}
+              >
+                {item.name}
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 transition-transform duration-200",
+                    activeMenu === item.key && "rotate-180"
+                  )}
+                />
+              </button>
+            </motion.div>
+          ))}
+        </motion.div>
 
         {/* CTA Button */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button asChild size="sm">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="hidden lg:flex lg:flex-1 lg:justify-end"
+        >
+          <Button
+            asChild
+            size="sm"
+            className="bg-accent hover:bg-accent-hover text-white font-medium px-6 glow-accent-sm hover:glow-accent transition-all duration-300"
+          >
             <Link href="/contact">Start je project</Link>
           </Button>
-        </div>
+        </motion.div>
       </nav>
 
-      {/* Mega Menu Dropdowns */}
-      {activeMenu && (
-        <div
-          className="absolute left-0 right-0 top-full hidden lg:block"
-          onMouseEnter={() => handleMouseEnter(activeMenu)}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="bg-white shadow-xl border-t border-gray-100">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
-              {/* Diensten Mega Menu */}
-              {activeMenu === "diensten" && (
-                <div className="grid grid-cols-12 gap-8">
-                  {/* Main services grid */}
-                  <div className="col-span-8">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+      {/* Mega Menu Dropdown */}
+      <AnimatePresence>
+        {activeMenu && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute left-0 right-0 top-full hidden lg:block"
+            onMouseEnter={() => handleMouseEnter(activeMenu)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="glass border-t border-white/5">
+              <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
+                {/* Diensten Mega Menu */}
+                {activeMenu === "diensten" && (
+                  <div className="grid grid-cols-12 gap-8">
+                    {/* Main services grid */}
+                    <div className="col-span-8">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
                         Onze Diensten
-                      </h3>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      {diensten.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="group flex items-start gap-4 rounded-xl p-3 hover:bg-gray-50 transition-colors"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                            <item.icon className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-navy group-hover:text-gold transition-colors">
-                              {item.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              {item.description}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Pakketten sidebar */}
-                  <div className="col-span-4 border-l border-gray-100 pl-8">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Pakketten
-                      </h3>
-                    </div>
-                    <div className="space-y-4">
-                      {pakketten.map((pkg) => (
-                        <Link
-                          key={pkg.name}
-                          href={pkg.href}
-                          className={cn(
-                            "group block rounded-xl p-4 transition-colors",
-                            pkg.featured
-                              ? "bg-gold/5 border border-gold/20 hover:bg-gold/10"
-                              : "bg-gray-50 hover:bg-gray-100"
-                          )}
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <div className="flex items-center gap-3 mb-2">
-                            <pkg.icon className={cn("h-5 w-5", pkg.featured ? "text-gold" : "text-navy")} />
-                            <span className={cn("font-semibold", pkg.featured ? "text-gold" : "text-navy")}>
-                              {pkg.name}
-                            </span>
-                            {pkg.featured && (
-                              <span className="text-xs bg-gold text-white px-2 py-0.5 rounded-full">
-                                Populair
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-gray-600">{pkg.description}</p>
-                        </Link>
-                      ))}
-                    </div>
-
-                    <Link
-                      href="/diensten"
-                      className="mt-6 flex items-center gap-2 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
-                      onClick={() => setActiveMenu(null)}
-                    >
-                      Bekijk alle diensten
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              )}
-
-              {/* Werkwijze Mega Menu */}
-              {activeMenu === "werkwijze" && (
-                <div className="grid grid-cols-12 gap-8">
-                  <div className="col-span-6">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Onze Werkwijze
-                      </h3>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      {werkwijze.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="group flex items-start gap-4 rounded-xl p-3 hover:bg-gray-50 transition-colors"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                            <item.icon className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-navy group-hover:text-gold transition-colors">
-                              {item.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              {item.description}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="col-span-6 border-l border-gray-100 pl-8">
-                    <div className="rounded-2xl bg-gradient-to-br from-navy to-navy/90 p-6 text-white">
-                      <Sparkles className="h-8 w-8 text-gold mb-4" />
-                      <h4 className="text-lg font-semibold mb-2">
-                        Klaar om te starten?
-                      </h4>
-                      <p className="text-white/80 text-sm mb-4">
-                        Plan een gratis kennismakingsgesprek en ontdek hoe wij jouw project kunnen realiseren.
                       </p>
-                      <Button asChild size="sm" variant="secondary" className="bg-white text-navy hover:bg-gray-100">
-                        <Link href="/contact" onClick={() => setActiveMenu(null)}>
-                          Plan een gesprek
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Tooling Mega Menu */}
-              {activeMenu === "tooling" && (
-                <div className="grid grid-cols-12 gap-8">
-                  <div className="col-span-8">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Onze Tech Stack
-                      </h3>
-                    </div>
-                    <div className="grid grid-cols-3 gap-4">
-                      {tooling.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="group flex items-start gap-3 rounded-xl p-3 hover:bg-gray-50 transition-colors"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                            <item.icon className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-navy group-hover:text-gold transition-colors">
-                              {item.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              {item.description}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="col-span-4 border-l border-gray-100 pl-8">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Waarom deze stack?
-                      </h3>
-                    </div>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        Razendsnelle performance
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        SEO-geoptimaliseerd
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        Schaalbaar & onderhoudbaar
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        Toekomstbestendig
-                      </li>
-                    </ul>
-                    <Link
-                      href="/tooling"
-                      className="mt-6 flex items-center gap-2 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
-                      onClick={() => setActiveMenu(null)}
-                    >
-                      Lees meer over onze stack
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              )}
-
-              {/* Kennisbank Mega Menu */}
-              {activeMenu === "kennisbank" && (
-                <div className="grid grid-cols-12 gap-8">
-                  <div className="col-span-5">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Leren & Ontdekken
-                      </h3>
-                    </div>
-                    <div className="space-y-2">
-                      {kennisbank.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="group flex items-start gap-4 rounded-xl p-3 hover:bg-gray-50 transition-colors"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                            <item.icon className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-navy group-hover:text-gold transition-colors">
-                              {item.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              {item.description}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="col-span-7 border-l border-gray-100 pl-8">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Recente artikelen
-                      </h3>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="rounded-xl border border-gray-100 p-4 hover:border-gold/30 transition-colors">
-                        <span className="text-xs text-gold font-medium">Development</span>
-                        <h4 className="font-medium text-navy mt-1 mb-2">Next.js 15: Wat is nieuw?</h4>
-                        <p className="text-sm text-gray-500">De belangrijkste updates en features...</p>
-                      </div>
-                      <div className="rounded-xl border border-gray-100 p-4 hover:border-gold/30 transition-colors">
-                        <span className="text-xs text-gold font-medium">SEO</span>
-                        <h4 className="font-medium text-navy mt-1 mb-2">Core Web Vitals in 2025</h4>
-                        <p className="text-sm text-gray-500">Hoe je website sneller maken...</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {diensten.map((item, index) => (
+                          <motion.div
+                            key={item.name}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.03 }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="group flex items-start gap-3 rounded-xl p-3 hover:bg-white/5 transition-all duration-200"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:bg-accent/20 group-hover:text-accent transition-all duration-200">
+                                <item.icon className="h-5 w-5" />
+                              </div>
+                              <div>
+                                <p className="font-medium text-white group-hover:text-accent transition-colors">
+                                  {item.name}
+                                </p>
+                                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </Link>
+                          </motion.div>
+                        ))}
                       </div>
                     </div>
-                    <Link
-                      href="/blog"
-                      className="mt-6 flex items-center gap-2 text-sm font-medium text-gold hover:text-gold/80 transition-colors"
-                      onClick={() => setActiveMenu(null)}
-                    >
-                      Bekijk alle artikelen
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
+
+                    {/* Pakketten sidebar */}
+                    <div className="col-span-4 border-l border-white/10 pl-8">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        Pakketten
+                      </p>
+                      <div className="space-y-3">
+                        {pakketten.map((pkg, index) => (
+                          <motion.div
+                            key={pkg.name}
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 + index * 0.05 }}
+                          >
+                            <Link
+                              href={pkg.href}
+                              className={cn(
+                                "group block rounded-xl p-4 transition-all duration-200",
+                                pkg.featured
+                                  ? "bg-accent/10 border border-accent/20 hover:bg-accent/20 hover:border-accent/40"
+                                  : "bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10"
+                              )}
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <div className="flex items-center gap-3 mb-2">
+                                <pkg.icon className={cn("h-5 w-5", pkg.featured ? "text-accent" : "text-white/70")} />
+                                <span className={cn("font-semibold", pkg.featured ? "text-accent" : "text-white")}>
+                                  {pkg.name}
+                                </span>
+                                {pkg.featured && (
+                                  <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full border border-accent/30">
+                                    Populair
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-sm text-white/50 mb-1">{pkg.description}</p>
+                              <p className="text-sm font-medium text-white/70">{pkg.price}</p>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      <Link
+                        href="/diensten"
+                        className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
+                        onClick={() => setActiveMenu(null)}
+                      >
+                        Bekijk alle diensten
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* Over Mega Menu */}
-              {activeMenu === "over" && (
-                <div className="grid grid-cols-12 gap-8">
-                  <div className="col-span-6">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Over Robuust
-                      </h3>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      {overOns.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="group flex items-start gap-4 rounded-xl p-3 hover:bg-gray-50 transition-colors"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-white transition-colors">
-                            <item.icon className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-navy group-hover:text-gold transition-colors">
-                              {item.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                              {item.description}
-                            </p>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="col-span-6 border-l border-gray-100 pl-8">
-                    <div className="mb-4">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                        Snelle links
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {footerLinks.map((link) => (
-                        <Link
-                          key={link.name}
-                          href={link.href}
-                          className="px-3 py-1.5 text-sm text-gray-600 bg-gray-50 rounded-full hover:bg-gray-100 hover:text-navy transition-colors"
-                          onClick={() => setActiveMenu(null)}
-                        >
-                          {link.name}
-                        </Link>
-                      ))}
+                {/* Werkwijze Mega Menu */}
+                {activeMenu === "werkwijze" && (
+                  <div className="grid grid-cols-12 gap-8">
+                    <div className="col-span-6">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        Onze Werkwijze
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {werkwijze.map((item, index) => (
+                          <motion.div
+                            key={item.name}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.03 }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="group flex items-start gap-3 rounded-xl p-3 hover:bg-white/5 transition-all duration-200"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:bg-accent/20 group-hover:text-accent transition-all duration-200">
+                                <item.icon className="h-5 w-5" />
+                              </div>
+                              <div>
+                                <p className="font-medium text-white group-hover:text-accent transition-colors">
+                                  {item.name}
+                                </p>
+                                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="rounded-xl bg-gray-50 p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="flex-1">
-                          <p className="font-medium text-navy">Direct contact?</p>
-                          <p className="text-sm text-gray-500">We staan voor je klaar</p>
+                    <div className="col-span-6 border-l border-white/10 pl-8">
+                      <div className="rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20 p-6">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/20 text-accent mb-4">
+                          <Rocket className="h-6 w-6" />
                         </div>
-                        <Button asChild size="sm">
+                        <h4 className="text-lg font-semibold text-white mb-2">
+                          Klaar om te starten?
+                        </h4>
+                        <p className="text-white/60 text-sm mb-4">
+                          Plan een gratis kennismakingsgesprek en ontdek hoe wij jouw project kunnen realiseren.
+                        </p>
+                        <Button asChild size="sm" className="bg-accent hover:bg-accent-hover text-white">
                           <Link href="/contact" onClick={() => setActiveMenu(null)}>
-                            Contact
+                            Plan een gesprek
                           </Link>
                         </Button>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+                )}
 
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden">
-          <div className="fixed inset-0 z-40 bg-black/20" onClick={closeMobileMenu} />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white sm:max-w-sm">
-            <div className="flex items-center justify-between px-6 py-4 border-b">
-              <Link href="/" className="-m-1.5 p-1.5" onClick={closeMobileMenu}>
-                <span className="text-2xl font-bold text-navy">
-                  Robuust<span className="text-gold">.</span>
-                </span>
-              </Link>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-charcoal"
-                onClick={closeMobileMenu}
-              >
-                <span className="sr-only">Menu sluiten</span>
-                <X className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
+                {/* Tooling Mega Menu */}
+                {activeMenu === "tooling" && (
+                  <div className="grid grid-cols-12 gap-8">
+                    <div className="col-span-8">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        Onze Tech Stack
+                      </p>
+                      <div className="grid grid-cols-3 gap-2">
+                        {tooling.map((item, index) => (
+                          <motion.div
+                            key={item.name}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.03 }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="group flex items-start gap-3 rounded-xl p-3 hover:bg-white/5 transition-all duration-200"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:bg-accent/20 group-hover:text-accent transition-all duration-200">
+                                <item.icon className="h-5 w-5" />
+                              </div>
+                              <div>
+                                <p className="font-medium text-white group-hover:text-accent transition-colors">
+                                  {item.name}
+                                </p>
+                                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
 
-            <div className="px-6 py-6">
-              {/* Mobile Navigation */}
-              <div className="space-y-1">
-                {/* Diensten */}
-                <div>
-                  <button
-                    onClick={() => setMobileSubmenu(mobileSubmenu === "diensten" ? null : "diensten")}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold text-charcoal hover:bg-gray-50"
-                  >
-                    Diensten
-                    <ChevronDown className={cn("h-5 w-5 transition-transform", mobileSubmenu === "diensten" && "rotate-180")} />
-                  </button>
-                  {mobileSubmenu === "diensten" && (
-                    <div className="mt-2 space-y-1 pl-4">
-                      {diensten.slice(0, 6).map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                          onClick={closeMobileMenu}
-                        >
-                          <item.icon className="h-4 w-4 text-gold" />
-                          {item.name}
-                        </Link>
-                      ))}
+                    <div className="col-span-4 border-l border-white/10 pl-8">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        Waarom deze stack?
+                      </p>
+                      <ul className="space-y-3">
+                        {[
+                          "Razendsnelle performance",
+                          "SEO-geoptimaliseerd",
+                          "Schaalbaar & onderhoudbaar",
+                          "Toekomstbestendig",
+                        ].map((item, index) => (
+                          <motion.li
+                            key={item}
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 + index * 0.05 }}
+                            className="flex items-center gap-3 text-sm text-white/70"
+                          >
+                            <CheckCircle className="h-4 w-4 text-green-400" />
+                            {item}
+                          </motion.li>
+                        ))}
+                      </ul>
                       <Link
-                        href="/diensten"
-                        className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gold"
-                        onClick={closeMobileMenu}
+                        href="/tooling"
+                        className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
+                        onClick={() => setActiveMenu(null)}
                       >
-                        Alle diensten
-                        <ArrowRight className="h-4 w-4" />
+                        Lees meer over onze stack
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
-                {/* Werkwijze */}
-                <div>
-                  <button
-                    onClick={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold text-charcoal hover:bg-gray-50"
-                  >
-                    Werkwijze
-                    <ChevronDown className={cn("h-5 w-5 transition-transform", mobileSubmenu === "werkwijze" && "rotate-180")} />
-                  </button>
-                  {mobileSubmenu === "werkwijze" && (
-                    <div className="mt-2 space-y-1 pl-4">
-                      {werkwijze.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                          onClick={closeMobileMenu}
-                        >
-                          <item.icon className="h-4 w-4 text-gold" />
-                          {item.name}
-                        </Link>
-                      ))}
+                {/* Kennisbank Mega Menu */}
+                {activeMenu === "kennisbank" && (
+                  <div className="grid grid-cols-12 gap-8">
+                    <div className="col-span-5">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        Leren & Ontdekken
+                      </p>
+                      <div className="space-y-2">
+                        {kennisbank.map((item, index) => (
+                          <motion.div
+                            key={item.name}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.03 }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="group flex items-start gap-3 rounded-xl p-3 hover:bg-white/5 transition-all duration-200"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:bg-accent/20 group-hover:text-accent transition-all duration-200">
+                                <item.icon className="h-5 w-5" />
+                              </div>
+                              <div>
+                                <p className="font-medium text-white group-hover:text-accent transition-colors">
+                                  {item.name}
+                                </p>
+                                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                  )}
-                </div>
 
-                {/* Tooling */}
-                <div>
-                  <button
-                    onClick={() => setMobileSubmenu(mobileSubmenu === "tooling" ? null : "tooling")}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold text-charcoal hover:bg-gray-50"
-                  >
-                    Tooling
-                    <ChevronDown className={cn("h-5 w-5 transition-transform", mobileSubmenu === "tooling" && "rotate-180")} />
-                  </button>
-                  {mobileSubmenu === "tooling" && (
-                    <div className="mt-2 space-y-1 pl-4">
-                      {tooling.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                          onClick={closeMobileMenu}
-                        >
-                          <item.icon className="h-4 w-4 text-gold" />
-                          {item.name}
-                        </Link>
-                      ))}
+                    <div className="col-span-7 border-l border-white/10 pl-8">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        Recente artikelen
+                      </p>
+                      <div className="grid grid-cols-2 gap-4">
+                        {[
+                          { category: "Development", title: "Next.js 15: Wat is nieuw?", desc: "De belangrijkste updates en features..." },
+                          { category: "SEO", title: "Core Web Vitals in 2025", desc: "Hoe je website sneller maken..." },
+                        ].map((article, index) => (
+                          <motion.div
+                            key={article.title}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 + index * 0.05 }}
+                            className="rounded-xl bg-white/5 border border-white/5 p-4 hover:bg-white/10 hover:border-white/10 transition-all duration-200 cursor-pointer group"
+                          >
+                            <span className="text-xs text-accent font-medium">{article.category}</span>
+                            <h4 className="font-medium text-white mt-1 mb-2 group-hover:text-accent transition-colors">{article.title}</h4>
+                            <p className="text-sm text-white/50">{article.desc}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                      <Link
+                        href="/blog"
+                        className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
+                        onClick={() => setActiveMenu(null)}
+                      >
+                        Bekijk alle artikelen
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
-                {/* Kennisbank */}
-                <div>
-                  <button
-                    onClick={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold text-charcoal hover:bg-gray-50"
-                  >
-                    Kennisbank
-                    <ChevronDown className={cn("h-5 w-5 transition-transform", mobileSubmenu === "kennisbank" && "rotate-180")} />
-                  </button>
-                  {mobileSubmenu === "kennisbank" && (
-                    <div className="mt-2 space-y-1 pl-4">
-                      {kennisbank.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                          onClick={closeMobileMenu}
-                        >
-                          <item.icon className="h-4 w-4 text-gold" />
-                          {item.name}
-                        </Link>
-                      ))}
+                {/* Over Mega Menu */}
+                {activeMenu === "over" && (
+                  <div className="grid grid-cols-12 gap-8">
+                    <div className="col-span-6">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        Over Robuust
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {overOns.map((item, index) => (
+                          <motion.div
+                            key={item.name}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.03 }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="group flex items-start gap-3 rounded-xl p-3 hover:bg-white/5 transition-all duration-200"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:bg-accent/20 group-hover:text-accent transition-all duration-200">
+                                <item.icon className="h-5 w-5" />
+                              </div>
+                              <div>
+                                <p className="font-medium text-white group-hover:text-accent transition-colors">
+                                  {item.name}
+                                </p>
+                                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                  )}
-                </div>
 
-                {/* Over */}
-                <div>
-                  <button
-                    onClick={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold text-charcoal hover:bg-gray-50"
-                  >
-                    Over
-                    <ChevronDown className={cn("h-5 w-5 transition-transform", mobileSubmenu === "over" && "rotate-180")} />
-                  </button>
-                  {mobileSubmenu === "over" && (
-                    <div className="mt-2 space-y-1 pl-4">
-                      {overOns.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                          onClick={closeMobileMenu}
-                        >
-                          <item.icon className="h-4 w-4 text-gold" />
-                          {item.name}
-                        </Link>
-                      ))}
+                    <div className="col-span-6 border-l border-white/10 pl-8">
+                      <div className="rounded-xl bg-white/5 border border-white/5 p-5">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium text-white">Direct contact?</p>
+                            <p className="text-sm text-white/50">We staan voor je klaar</p>
+                          </div>
+                          <Button asChild size="sm" className="bg-accent hover:bg-accent-hover text-white">
+                            <Link href="/contact" onClick={() => setActiveMenu(null)}>
+                              Contact
+                            </Link>
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {[
+                          { name: "Privacy", href: "/privacy" },
+                          { name: "AVG", href: "/avg" },
+                          { name: "Voorwaarden", href: "/voorwaarden" },
+                        ].map((link) => (
+                          <Link
+                            key={link.name}
+                            href={link.href}
+                            className="px-3 py-1.5 text-sm text-white/50 bg-white/5 rounded-full hover:bg-white/10 hover:text-white/70 transition-all duration-200"
+                            onClick={() => setActiveMenu(null)}
+                          >
+                            {link.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Footer links */}
-              <div className="mt-6 pt-6 border-t border-gray-100">
-                <div className="flex flex-wrap gap-2">
-                  {footerLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      className="px-3 py-1.5 text-sm text-gray-500 bg-gray-50 rounded-full"
-                      onClick={closeMobileMenu}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-6">
-                <Button asChild className="w-full">
-                  <Link href="/contact" onClick={closeMobileMenu}>
-                    Start je project
-                  </Link>
-                </Button>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-        </div>
-      )}
-    </header>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+              onClick={closeMobileMenu}
+            />
+
+            {/* Menu panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 right-0 z-50 w-full max-w-sm lg:hidden"
+            >
+              <div className="h-full overflow-y-auto bg-surface border-l border-white/10">
+                {/* Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                  <Link href="/" className="-m-1.5 p-1.5" onClick={closeMobileMenu}>
+                    <span className="text-2xl font-bold text-white">
+                      Robuust<span className="text-accent">.</span>
+                    </span>
+                  </Link>
+                  <button
+                    type="button"
+                    className="-m-2.5 rounded-lg p-2.5 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    <span className="sr-only">Menu sluiten</span>
+                    <X className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </div>
+
+                {/* Navigation */}
+                <div className="px-6 py-6 space-y-1">
+                  {/* Diensten */}
+                  <MobileMenuItem
+                    name="Diensten"
+                    isOpen={mobileSubmenu === "diensten"}
+                    onToggle={() => setMobileSubmenu(mobileSubmenu === "diensten" ? null : "diensten")}
+                    items={diensten}
+                    onClose={closeMobileMenu}
+                  />
+
+                  {/* Werkwijze */}
+                  <MobileMenuItem
+                    name="Werkwijze"
+                    isOpen={mobileSubmenu === "werkwijze"}
+                    onToggle={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
+                    items={werkwijze}
+                    onClose={closeMobileMenu}
+                  />
+
+                  {/* Tooling */}
+                  <MobileMenuItem
+                    name="Tooling"
+                    isOpen={mobileSubmenu === "tooling"}
+                    onToggle={() => setMobileSubmenu(mobileSubmenu === "tooling" ? null : "tooling")}
+                    items={tooling}
+                    onClose={closeMobileMenu}
+                  />
+
+                  {/* Kennisbank */}
+                  <MobileMenuItem
+                    name="Kennisbank"
+                    isOpen={mobileSubmenu === "kennisbank"}
+                    onToggle={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
+                    items={kennisbank}
+                    onClose={closeMobileMenu}
+                  />
+
+                  {/* Over */}
+                  <MobileMenuItem
+                    name="Over"
+                    isOpen={mobileSubmenu === "over"}
+                    onToggle={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
+                    items={overOns}
+                    onClose={closeMobileMenu}
+                  />
+                </div>
+
+                {/* CTA */}
+                <div className="px-6 py-6 border-t border-white/10">
+                  <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
+                    <Link href="/contact" onClick={closeMobileMenu}>
+                      Start je project
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </motion.header>
+  );
+}
+
+// Mobile menu item component
+function MobileMenuItem({
+  name,
+  isOpen,
+  onToggle,
+  items,
+  onClose,
+}: {
+  name: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  items: { name: string; href: string; icon: React.ComponentType<{ className?: string }> }[];
+  onClose: () => void;
+}) {
+  return (
+    <div>
+      <button
+        onClick={onToggle}
+        className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors"
+      >
+        {name}
+        <ChevronDown
+          className={cn(
+            "h-5 w-5 transition-transform duration-200",
+            isOpen && "rotate-180"
+          )}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="mt-1 space-y-1 pl-4">
+              {items.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                  onClick={onClose}
+                >
+                  <item.icon className="h-4 w-4 text-accent" />
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
