@@ -41,10 +41,10 @@ export function StepBudget() {
                   transition={{ delay: index * 0.03 }}
                   onClick={() => setValue("budgetRange", budget.id, { shouldValidate: true })}
                   className={cn(
-                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border text-left transition-all",
+                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all",
                     isSelected
-                      ? "border-accent bg-accent/10"
-                      : "border-white/10 hover:border-white/20 hover:bg-white/5"
+                      ? "border-accent bg-accent/20 ring-1 ring-accent/30"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/5"
                   )}
                 >
                   <div
@@ -85,10 +85,10 @@ export function StepBudget() {
                   transition={{ delay: index * 0.03 }}
                   onClick={() => setValue("timeline", tl.id, { shouldValidate: true })}
                   className={cn(
-                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border text-left transition-all",
+                    "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all",
                     isSelected
-                      ? "border-accent bg-accent/10"
-                      : "border-white/10 hover:border-white/20 hover:bg-white/5"
+                      ? "border-accent bg-accent/20 ring-1 ring-accent/30"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/5"
                   )}
                 >
                   <div

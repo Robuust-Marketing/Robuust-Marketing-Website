@@ -62,12 +62,12 @@ export function StepHosting() {
               transition={{ delay: index * 0.05 }}
               onClick={() => setValue("hostingTier", option.id as OnboardingData["hostingTier"], { shouldValidate: true })}
               className={cn(
-                "relative flex items-start gap-4 p-5 rounded-xl border text-left transition-all",
+                "relative flex items-start gap-4 p-5 rounded-xl border-2 text-left transition-all",
                 isSelected
                   ? isNone
-                    ? "border-white/30 bg-white/5"
-                    : "border-accent bg-accent/10"
-                  : "border-white/10 hover:border-white/20 hover:bg-white/5"
+                    ? "border-white/40 bg-white/10 ring-2 ring-white/20"
+                    : "border-accent bg-accent/20 ring-2 ring-accent/30"
+                  : "border-white/10 hover:border-white/30 hover:bg-white/5"
               )}
             >
               {/* Popular badge */}

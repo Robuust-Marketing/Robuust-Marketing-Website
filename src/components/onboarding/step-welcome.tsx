@@ -84,10 +84,10 @@ export function StepWelcome() {
                 transition={{ delay: index * 0.05 }}
                 onClick={() => setValue("projectGoal", goal.id, { shouldValidate: true })}
                 className={cn(
-                  "flex items-start gap-3 p-4 rounded-xl border text-left transition-all",
+                  "flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all",
                   isSelected
-                    ? "border-accent bg-accent/10"
-                    : "border-white/10 hover:border-white/20 hover:bg-white/5"
+                    ? "border-accent bg-accent/20 ring-2 ring-accent/30"
+                    : "border-white/10 hover:border-white/30 hover:bg-white/5"
                 )}
               >
                 <div
@@ -129,10 +129,10 @@ export function StepWelcome() {
                 transition={{ delay: 0.25 + index * 0.05 }}
                 onClick={() => setValue("companySize", size.id, { shouldValidate: true })}
                 className={cn(
-                  "flex flex-col items-center gap-2 p-4 rounded-xl border text-center transition-all",
+                  "flex flex-col items-center gap-2 p-4 rounded-xl border-2 text-center transition-all",
                   isSelected
-                    ? "border-accent bg-accent/10"
-                    : "border-white/10 hover:border-white/20 hover:bg-white/5"
+                    ? "border-accent bg-accent/20 ring-2 ring-accent/30"
+                    : "border-white/10 hover:border-white/30 hover:bg-white/5"
                 )}
               >
                 <div

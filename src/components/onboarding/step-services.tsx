@@ -2,10 +2,25 @@
 
 import { useFormContext } from "react-hook-form";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { services } from "@/data/services";
+import { pricing, formatPrice } from "@/data/pricing";
 import type { OnboardingData } from "@/types/onboarding";
+
+// Prijzen per service voor weergave
+const servicePrices: Record<string, { price: number; type: "one-time" | "monthly" } | null> = {
+  design: null, // Inbegrepen
+  development: null, // Inbegrepen
+  hosting: null, // Inbegrepen (apart gekozen)
+  maintenance: { price: pricing.serviceAddOns.maintenance.price, type: "monthly" },
+  tracking: { price: pricing.serviceAddOns.tracking.price, type: "one-time" },
+  "email-marketing": { price: pricing.serviceAddOns["email-marketing"].price, type: "one-time" },
+  "online-marketing": { price: pricing.serviceAddOns["online-marketing"].price, type: "monthly" },
+  branding: { price: pricing.serviceAddOns.branding.price, type: "one-time" },
+  seo: { price: pricing.serviceAddOns.seo.price, type: "one-time" },
+  crm: { price: pricing.serviceAddOns.crm.price, type: "one-time" },
+};
 
 export function StepServices() {
   const { watch, setValue } = useFormContext<OnboardingData>();
@@ -19,8 +34,9 @@ export function StepServices() {
     setValue("selectedServices", newSelection, { shouldValidate: true });
   };
 
-  // Recommended services based on common combinations
-  const recommendedIds = ["design", "development", "hosting"];
+  // Base services die inbegrepen zijn in het pakket
+  const baseServiceIds = ["design", "development", "hosting"];
+  const projectGoal = watch("projectGoal");
 
   return (
     <div>
@@ -35,11 +51,32 @@ export function StepServices() {
         </p>
       </div>
 
+      {/* Basis diensten info - alleen tonen als niet marketing-only */}
+      {projectGoal !== "marketing" && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 p-4 rounded-xl bg-accent/10 border border-accent/30"
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <Package className="h-4 w-4 text-accent" />
+            <span className="text-sm font-medium text-accent">Inbegrepen in je pakket</span>
+          </div>
+          <p className="text-xs text-white/70">
+            Design, Development en Hosting zijn standaard inbegrepen in je website pakket. Selecteer hieronder eventuele extra diensten.
+          </p>
+        </motion.div>
+      )}
+
       {/* Services grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {services.map((service, index) => {
           const isSelected = selectedServices.includes(service.id);
-          const isRecommended = recommendedIds.includes(service.id);
+          const isBaseService = baseServiceIds.includes(service.id);
+          const priceInfo = servicePrices[service.id];
+
+          // Skip hosting in de grid (wordt apart gekozen)
+          if (service.id === "hosting") return null;
 
           return (
             <motion.button
@@ -50,16 +87,30 @@ export function StepServices() {
               transition={{ delay: index * 0.03 }}
               onClick={() => toggleService(service.id)}
               className={cn(
-                "relative flex items-start gap-3 p-4 rounded-xl border text-left transition-all",
+                "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all",
                 isSelected
-                  ? "border-accent bg-accent/10"
-                  : "border-white/10 hover:border-white/20 hover:bg-white/5"
+                  ? "border-accent bg-accent/20 ring-2 ring-accent/30"
+                  : "border-white/10 hover:border-white/30 hover:bg-white/5"
               )}
             >
-              {/* Recommended badge */}
-              {isRecommended && !isSelected && (
-                <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs bg-accent/20 text-accent rounded-full border border-accent/30">
-                  Aanbevolen
+              {/* Inbegrepen badge voor basis diensten */}
+              {isBaseService && projectGoal !== "marketing" && (
+                <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full border border-green-500/30">
+                  Inbegrepen
+                </span>
+              )}
+
+              {/* Prijs badge voor add-on diensten */}
+              {priceInfo && !isBaseService && (
+                <span className={cn(
+                  "absolute -top-2 -right-2 px-2 py-0.5 text-xs rounded-full border",
+                  isSelected
+                    ? "bg-accent/30 text-accent border-accent/50"
+                    : "bg-white/10 text-white/70 border-white/20"
+                )}>
+                  {priceInfo.type === "monthly"
+                    ? `${formatPrice(priceInfo.price)}/mnd`
+                    : formatPrice(priceInfo.price)}
                 </span>
               )}
 
