@@ -281,3 +281,130 @@ All forms use zod schemas defined in `src/types/`. Wizard form schema in `onboar
 
 ### Deployment
 Build output is `standalone` mode for NGINX + Cloudflare deployment.
+
+---
+
+## Video Generatie met Remotion
+
+Portfolio video's kunnen worden gegenereerd met [Remotion](https://remotion.dev/) - een React-based video creation framework.
+
+### Setup
+
+```bash
+# Maak een apart Remotion project
+cd ..
+npx create-video@latest robuust-portfolio-videos
+cd robuust-portfolio-videos
+
+# Of voeg Remotion toe aan dit project
+npm install remotion @remotion/cli @remotion/player
+```
+
+### Portfolio Video Component
+
+Voorbeeld component die portfolio data gebruikt:
+
+```tsx
+// src/PortfolioVideo.tsx
+import { AbsoluteFill, Img, interpolate, useCurrentFrame, spring, useVideoConfig } from "remotion";
+import { PortfolioItem } from "./data/portfolio";
+
+export const PortfolioVideo: React.FC<{ item: PortfolioItem }> = ({ item }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const titleOpacity = interpolate(frame, [0, 30], [0, 1], { extrapolateRight: "clamp" });
+  const titleY = spring({ frame, fps, from: -50, to: 0 });
+  const imageScale = spring({ frame: frame - 20, fps, from: 0.8, to: 1 });
+  const imageOpacity = interpolate(frame, [20, 50], [0, 1], { extrapolateRight: "clamp" });
+
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#18242e" }}>
+      {/* Branding */}
+      <div style={{ position: "absolute", top: 40, left: 40 }}>
+        <span style={{ color: "#c53c0b", fontSize: 24, fontWeight: "bold" }}>
+          Robuust Marketing
+        </span>
+      </div>
+
+      {/* Titel */}
+      <div style={{
+        position: "absolute", top: 120, left: 40,
+        opacity: titleOpacity, transform: `translateY(${titleY}px)`,
+      }}>
+        <h1 style={{ color: "#fff", fontSize: 64, margin: 0 }}>{item.name}</h1>
+        <p style={{ color: "#c53c0b", fontSize: 24 }}>{item.category}</p>
+      </div>
+
+      {/* Portfolio afbeelding */}
+      <div style={{
+        position: "absolute", top: 280, left: 40, right: 40,
+        opacity: imageOpacity, transform: `scale(${imageScale})`,
+      }}>
+        <Img src={item.image} style={{ width: "100%", borderRadius: 12 }} />
+      </div>
+    </AbsoluteFill>
+  );
+};
+```
+
+### Compositions definiëren
+
+```tsx
+// src/Root.tsx
+import { Composition } from "remotion";
+import { PortfolioVideo } from "./PortfolioVideo";
+import { portfolioItems } from "./data/portfolio";
+
+export const RemotionRoot: React.FC = () => {
+  return (
+    <>
+      {portfolioItems.map((item) => (
+        <Composition
+          key={item.id}
+          id={`portfolio-${item.slug}`}
+          component={PortfolioVideo}
+          durationInFrames={300}  // 10 sec @ 30fps
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ item }}
+        />
+      ))}
+    </>
+  );
+};
+```
+
+### Renderen
+
+```bash
+# Preview in browser
+npm start
+
+# Render individuele video
+npx remotion render portfolio-growteq out/growteq.mp4
+
+# Render alle portfolio video's
+for slug in growteq den-hartog villary idrw bnb-kinderdijk voltra-charging woonstudio-joy; do
+  npx remotion render portfolio-$slug out/$slug.mp4
+done
+```
+
+### Aanbevolen Remotion features
+
+| Feature | Package | Gebruik |
+|---------|---------|---------|
+| Scene transitions | `@remotion/transitions` | Vloeiende overgangen tussen secties |
+| Audio | `<Audio>` component | Achtergrondmuziek toevoegen |
+| Sequences | `<Sequence>` component | Timing van verschillende secties |
+| Springs | `spring()` | Natuurlijke animaties |
+| Captions | `@remotion/captions` | Ondertiteling toevoegen |
+
+### Brand kleuren voor video's
+
+Gebruik de theme kleuren uit `globals.css`:
+- Background: `#18242e`
+- Accent: `#c53c0b`
+- Text: `#ffffff`
+- Muted: `#94a3b8`
