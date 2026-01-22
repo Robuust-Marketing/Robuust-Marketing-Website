@@ -37,17 +37,17 @@ export const pricing = {
     "solid-start": {
       name: "Solid Start",
       tagline: "Perfect voor starters",
-      minPrice: 2500,
-      maxPrice: 5000,
-      displayPrice: "Vanaf € 2.500",
+      minPrice: 4000,
+      maxPrice: 7500,
+      displayPrice: "Vanaf € 4.000",
       popular: false,
     },
     "firm-foundation": {
       name: "Firm Foundation",
       tagline: "Voor groeiende bedrijven",
-      minPrice: 7500,
-      maxPrice: 15000,
-      displayPrice: "Vanaf € 7.500",
+      minPrice: 9000,
+      maxPrice: 17500,
+      displayPrice: "Vanaf € 9.000",
       popular: true,
     },
   } as Record<string, PackagePricing>,
@@ -102,20 +102,23 @@ export const pricing = {
     },
   } as Record<string, HostingPricing>,
 
-  // Uurtarieven
+  // Uurtarief (€120 ex BTW voor alle werkzaamheden)
+  hourlyRate: 120,
+
+  // Uurtarieven per type (allen €120)
   hourlyRates: {
     development: {
-      rate: 95,
+      rate: 120,
       label: "Ontwikkeling",
       description: "Custom development",
     },
     design: {
-      rate: 85,
+      rate: 120,
       label: "Design",
       description: "UI/UX design werk",
     },
     consultancy: {
-      rate: 125,
+      rate: 120,
       label: "Consultancy",
       description: "Strategisch advies",
     },
@@ -124,12 +127,12 @@ export const pricing = {
   // Service add-ons voor de calculator
   serviceAddOns: {
     tracking: {
-      price: 500,
+      price: 600,
       type: "one-time" as const,
       label: "Tracking & Analytics setup",
     },
     "email-marketing": {
-      price: 750,
+      price: 900,
       type: "one-time" as const,
       label: "Email marketing setup",
     },
@@ -139,22 +142,22 @@ export const pricing = {
       label: "Online marketing (maandelijks)",
     },
     branding: {
-      price: 1500,
+      price: 1800,
       type: "one-time" as const,
       label: "Branding & Huisstijl",
     },
     seo: {
-      price: 750,
+      price: 900,
       type: "one-time" as const,
       label: "SEO optimalisatie",
     },
     crm: {
-      price: 1000,
+      price: 1200,
       type: "one-time" as const,
       label: "CRM integratie",
     },
     maintenance: {
-      price: 250,
+      price: 300,
       type: "monthly" as const,
       label: "Onderhoud (maandelijks)",
     },
@@ -162,17 +165,16 @@ export const pricing = {
 
   // SEO audit apart (geen service add-on)
   seoAudit: {
-    price: 500,
+    price: 600,
     label: "SEO audit",
     description: "Complete analyse",
   },
 
-  // Budgetranges voor formulieren
+  // Budgetranges voor formulieren (minimum €4.000)
   budgetRanges: [
-    { id: "1000-2500", label: "€1.000 - €2.500", min: 1000, max: 2500 },
-    { id: "2500-5000", label: "€2.500 - €5.000", min: 2500, max: 5000 },
-    { id: "5000-10000", label: "€5.000 - €10.000", min: 5000, max: 10000 },
-    { id: "10000-25000", label: "€10.000 - €25.000", min: 10000, max: 25000 },
+    { id: "4000-7500", label: "€4.000 - €7.500", min: 4000, max: 7500 },
+    { id: "7500-15000", label: "€7.500 - €15.000", min: 7500, max: 15000 },
+    { id: "15000-25000", label: "€15.000 - €25.000", min: 15000, max: 25000 },
     { id: "25000+", label: "€25.000+", min: 25000, max: null },
     { id: "unknown", label: "Weet ik nog niet", min: null, max: null },
   ],
