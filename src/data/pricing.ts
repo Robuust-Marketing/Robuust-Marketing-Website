@@ -203,7 +203,7 @@ export function formatPriceRange(min: number, max: number): string {
   return `${formatPrice(min)} - ${formatPrice(max)}`;
 }
 
-// Export type voor packages compatibiliteit
+// Export type voor packages compatibiliteit 
 export type PackageId = keyof typeof pricing.packages;
 export type HostingTier = keyof typeof pricing.hosting;
 export type ServiceAddOnId = keyof typeof pricing.serviceAddOns;
