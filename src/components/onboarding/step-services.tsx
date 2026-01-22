@@ -83,7 +83,7 @@ export function StepServices() {
                 "transition-all duration-200",
                 isSelected
                   ? "border-accent bg-accent/20 ring-2 ring-accent/30 shadow-lg shadow-accent/20"
-                  : "border-white/20 hover:border-white/40 hover:bg-white/5"
+                  : "border-white/20 hover:border-white/40 hover:bg-white/5 active:scale-[0.98] active:bg-white/10"
               )}
             >
               {/* Hidden checkbox for state */}

@@ -48,7 +48,7 @@ export function StepBudget() {
                     "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all duration-200 cursor-pointer select-none",
                     isSelected
                       ? "border-accent bg-accent/20 ring-1 ring-accent/30 shadow-md shadow-accent/10"
-                      : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.98] active:bg-white/10"
                   )}
                 >
                   <div
@@ -98,7 +98,7 @@ export function StepBudget() {
                     "flex items-center gap-3 w-full px-4 py-3 rounded-lg border-2 text-left transition-all duration-200 cursor-pointer select-none",
                     isSelected
                       ? "border-accent bg-accent/20 ring-1 ring-accent/30 shadow-md shadow-accent/10"
-                      : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.98] active:bg-white/10"
                   )}
                 >
                   <div

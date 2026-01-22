@@ -91,7 +91,7 @@ export function StepWelcome() {
                   "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer select-none",
                   isSelected
                     ? "border-accent bg-accent/20 ring-2 ring-accent/30 shadow-lg shadow-accent/20"
-                    : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                    : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.98] active:bg-white/10"
                 )}
               >
                 {/* Checkmark indicator */}
@@ -146,7 +146,7 @@ export function StepWelcome() {
                   "relative flex flex-col items-center gap-2 p-4 rounded-xl border-2 text-center transition-all duration-200 cursor-pointer select-none",
                   isSelected
                     ? "border-accent bg-accent/20 ring-2 ring-accent/30 shadow-lg shadow-accent/20"
-                    : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                    : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.98] active:bg-white/10"
                 )}
               >
                 {/* Checkmark indicator */}

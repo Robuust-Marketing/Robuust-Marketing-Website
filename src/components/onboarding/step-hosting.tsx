@@ -70,7 +70,7 @@ export function StepHosting() {
                   ? isNone
                     ? "border-white/40 bg-white/10 ring-2 ring-white/20"
                     : "border-accent bg-accent/20 ring-2 ring-accent/30 shadow-lg shadow-accent/20"
-                  : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                  : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.99] active:bg-white/10"
               )}
             >
               {/* Popular badge */}
@@ -170,7 +170,7 @@ export function StepHosting() {
             "mt-6 p-4 rounded-xl border-2 cursor-pointer select-none transition-all duration-200",
             needsSLA
               ? "border-accent bg-accent/20 ring-2 ring-accent/30"
-              : "border-white/10 bg-white/5 hover:border-white/20"
+              : "border-white/10 bg-white/5 hover:border-white/20 active:scale-[0.99] active:bg-white/10"
           )}
         >
           <div className="flex items-start gap-3">
