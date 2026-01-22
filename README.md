@@ -1,85 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Robuust Marketing Website
+
+Marketing website voor Robuust Marketing - een Nederlands webdevelopment en hosting bureau gespecialiseerd in high-end web development, hosting met waterdichte SLA's, en full-service digitale marketing.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 met React 19 en App Router
+- **React Compiler**: Ingeschakeld (babel-plugin-react-compiler)
+- **Styling**: Tailwind CSS 4 met CSS variabelen
+- **UI Components**: shadcn/ui (new-york style)
+- **Content**: MDX ondersteuning voor blog/kennisbank
+- **Formulieren**: react-hook-form + zod validatie
+- **Animaties**: Framer Motion + tw-animate-css
+- **Email**: Resend voor transactionele emails
+- **CRM**: HubSpot integratie
+- **Analytics**: GTM + Cookiebot (AVG compliance)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Dependencies installeren
+npm install
+
+# Development server starten
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Production build maken
+npm run build
+
+# Production server starten
+npm run start
+
+# Linting uitvoeren
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in je browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structuur
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                        # Next.js App Router pagina's
+│   ├── layout.tsx              # Root layout met GTM, Cookiebot
+│   ├── page.tsx                # Homepage
+│   ├── diensten/               # Dienstenpagina's (10 diensten)
+│   ├── kennisbank/             # Kennisbank met categorieën
+│   ├── blog/                   # Blog met dynamische routes
+│   ├── portfolio/              # Portfolio met case studies
+│   ├── offerte/                # Offerte aanvraag wizard
+│   ├── start-project/          # Project start wizard
+│   └── api/                    # API routes (HubSpot, blog, kennisbank)
+├── components/
+│   ├── ui/                     # shadcn/ui componenten
+│   ├── layout/                 # Header, footer, conversion-header
+│   └── onboarding/             # Wizard componenten (offerte flow)
+├── data/                       # Statische data bestanden
+│   ├── services.ts             # 10 diensten definities
+│   ├── packages.ts             # Solid Start & Firm Foundation pakketten
+│   ├── portfolio.ts            # Portfolio items
+│   ├── partners.ts             # Partner informatie
+│   ├── pricing.ts              # Prijscalculatie data
+│   └── faqs.ts                 # FAQ content
+├── lib/                        # Utilities en helpers
+│   ├── utils.ts                # cn() helper voor classNames
+│   ├── gtm.ts                  # Google Tag Manager utilities
+│   ├── email.ts                # Resend email utilities
+│   ├── hubspot.ts              # HubSpot CRM integratie
+│   ├── pricing.ts              # Prijsberekening logica
+│   ├── blog.ts                 # Blog utilities
+│   └── kennisbank.ts           # Kennisbank utilities
+└── types/                      # TypeScript type definities
+    ├── service.ts              # Service types
+    ├── package.ts              # Package types
+    ├── case-study.ts           # Case study types
+    └── onboarding.ts           # Onboarding wizard types
+```
 
-## Learn More
+## Diensten
 
-To learn more about Next.js, take a look at the following resources:
+1. Design - Websites, huisstijlen, advertenties
+2. Development - WordPress (Avada/Impreza/Salient) en maatwerk (Node.js/React)
+3. Hosting - Dedicated servers (Duitsland/Finland), NGINX, Cloudflare
+4. Onderhoud - SLA garanties en website onderhoud
+5. Tracking - GA4, Snitcher, Meta Pixel, First-party tracking (Taggrs)
+6. E-mailmarketing - Mailchimp, Funnelkit, Brevo, Office 365
+7. Online Marketing - Meta/TikTok/Google Ads via Hello Its Me
+8. Branding - Logo, huisstijl, online profielen
+9. SEO - Ahrefs, AI tooling, Google Search Console
+10. CRM - HubSpot implementaties
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pakketten
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Solid Start** - Starterspakket voor startende ondernemers
+- **Firm Foundation** - Voor bestaande bedrijven die hun digitale fundament willen verstevigen
 
-## Deploy on Vercel
+## Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_GTM_ID=           # Google Tag Manager ID
+NEXT_PUBLIC_COOKIEBOT_ID=     # Cookiebot ID voor AVG consent
+RESEND_API_KEY=               # Resend API key voor emails
+CONTACT_EMAIL=                # Contact formulier bestemming
+HUBSPOT_ACCESS_TOKEN=         # HubSpot API token
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
 
+Build output is `standalone` mode voor deployment op eigen NGINX servers met Cloudflare.
 
-# Robuust-Marketing-Website
+## License
 
-Mijn huidige marketingwebsite is hopeloos verouderd
-Ik heb een nieuwe website nodig, die ik ook kan gebruiken voor presentaties en die laat zien waar Robuust Marketing allemaal voor staat. 
-
-Ik wil me focussen op high end web development en hosting met waterdichte SLA's. 
-Daarin is de realiteit dat dit nu voornamelijk op MKB niveau is, gefocust op bedrijven tussen de 20 - 100 medewerkers.
-
-Mijn dienstenaanbod is in een notendop: 
-1. Design van websites, huisstijlen, advertenties en offline marketingmaterialen
-2. Development van Wordpress websites en webshops met Avada, Impreza of Salient OF maatwerk websites met Node.js en React
-3. Hosting met dedicated Duitse en Finse servers die NGINX draaien in combinatie met Cloudlare OF Varnisch caching
-4. Onderhoud van websites en harde SLA garanties
-5. Tracking (Google GA4, Snitcher bedrijfsherkenning, Meta Pixel, First party tracking met Taggrs)
-6. E-mailmarketing (Mailchimp, Funnelkit, Brevo voor transactional emails, opzetten Office 365 omgevingen en PC's)
-7. Online marketing (Meta ads, Tiktok ads, google ads allemaal deployen via Hello Its Me)
-8. Branding (vormgeven logo en huisstijl, aanmaken profielen op verschillende online platforms)
-9. SEO (samen met Hello Its Me, Ahrefs, AI tooling om blogs te herschrijven, Google search console etc)
-10. Low level CRM implementaties van Hubspot en dit integreren met Wordpress website backends
-
-Ik heb mooie klanten en projecten, waaronder
-Den Hartog Energies nieuwe website gemaakt
-Voltra Charging nieuwe website gemaakt
-Growteq nieuwe website gemaakt met video module
-Woonstudio JOY nieuwe website
-IDRW nieuwe website
-BioBoss nieuwe webshop
-Villary website
-
-
-
-
-
-Host en onderhoud meer dan 70 websites 
-
-
-Ik wil naar buiten treden met een verfijnd aanbod: (in progress)
-- Solid Start 
-Starterspakket voor de startende ondernemer met daarin focus op de prijs kwaliteit verhouding. Splash screen landingspagina website, gelijk goed je ICT regelen, tracking, reporting, eventueel als het om e-commerce gaat een webshop met Woo en funnelkit markeitng uatomations. (it office 365 Cloudflare ai inzetten slimmer en goedkoper dan de concurrent. Voldoen aan de avg, crm, bi, advertentie accounts. 1password, merkbescherming en registratie
-- Firm foundation
-Bestaande bedrijven hun fundament laten controleren en leggen. Cloudflare DNS beheer, website gebouwd op belangrijke design en marketingprincipes, zodat alles nog beter werkt. Security, 0auth, 1password, cloudflare, office 365 veiligheid. Voldoen aan AVG, CRM functionaliteit, BI, advertentie accounts met waterdichte tracking. DKIM en DMARC management, brand protection in de vorm van merkbescherming.
-
-
-Als lead magnets wil ik passende items, online tools maken en blogs schrijven. Uiteindelijk natuurlijk ook leads binnenhalen. 
-
-Ik zou het liefst een schaalbare business bouwen, maar verdien nu al mijn geld met uurtje factuurtje en fixed price projecten. Ook ben ik nu een solopreneur emppowered met AI, maar ben ik nog lang niet zo snel als dat ik zou willen zijn. 
-
+Private - Robuust Marketing

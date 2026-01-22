@@ -76,8 +76,17 @@ export function StepServices() {
           const ServiceIcon = service.icon;
 
           return (
-            <label
+            <div
               key={service.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => toggleService(service.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggleService(service.id);
+                }
+              }}
               className={cn(
                 "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left cursor-pointer select-none",
                 "transition-all duration-200",
@@ -86,13 +95,6 @@ export function StepServices() {
                   : "border-white/20 hover:border-white/40 hover:bg-white/5 active:scale-[0.98] active:bg-white/10"
               )}
             >
-              {/* Hidden checkbox for state */}
-              <input
-                type="checkbox"
-                checked={isSelected}
-                onChange={() => toggleService(service.id)}
-                className="sr-only"
-              />
 
               {/* Inbegrepen badge voor basis diensten */}
               {isBaseService && projectGoal !== "marketing" && (
@@ -158,7 +160,7 @@ export function StepServices() {
                   {service.description}
                 </p>
               </div>
-            </label>
+            </div>
           );
         })}
       </div>
