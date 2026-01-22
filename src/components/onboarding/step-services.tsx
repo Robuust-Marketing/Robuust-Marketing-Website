@@ -76,27 +76,27 @@ export function StepServices() {
           const ServiceIcon = service.icon;
 
           return (
-            <div
+            <label
               key={service.id}
-              role="button"
-              tabIndex={0}
-              onClick={() => toggleService(service.id)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  toggleService(service.id);
-                }
-              }}
               className={cn(
-                "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all cursor-pointer select-none",
+                "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left cursor-pointer select-none",
+                "transition-all duration-200",
                 isSelected
-                  ? "border-accent bg-accent/20 ring-2 ring-accent/30"
-                  : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                  ? "border-accent bg-accent/20 ring-2 ring-accent/30 shadow-lg shadow-accent/20"
+                  : "border-white/20 hover:border-white/40 hover:bg-white/5"
               )}
             >
+              {/* Hidden checkbox for state */}
+              <input
+                type="checkbox"
+                checked={isSelected}
+                onChange={() => toggleService(service.id)}
+                className="sr-only"
+              />
+
               {/* Inbegrepen badge voor basis diensten */}
               {isBaseService && projectGoal !== "marketing" && (
-                <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full border border-green-500/30">
+                <span className="absolute -top-2 -right-2 px-2 py-0.5 text-xs bg-green-500/30 text-green-400 rounded-full border border-green-500/50 font-medium">
                   Inbegrepen
                 </span>
               )}
@@ -104,10 +104,10 @@ export function StepServices() {
               {/* Prijs badge voor add-on diensten */}
               {priceInfo && !isBaseService && (
                 <span className={cn(
-                  "absolute -top-2 -right-2 px-2 py-0.5 text-xs rounded-full border",
+                  "absolute -top-2 -right-2 px-2 py-0.5 text-xs rounded-full border font-medium",
                   isSelected
                     ? "bg-accent/30 text-accent border-accent/50"
-                    : "bg-white/10 text-white/70 border-white/20"
+                    : "bg-white/10 text-white/70 border-white/30"
                 )}>
                   {priceInfo.type === "monthly"
                     ? `${formatPrice(priceInfo.price)}/mnd`
@@ -115,16 +115,21 @@ export function StepServices() {
                 </span>
               )}
 
-              {/* Checkbox */}
+              {/* Custom Checkbox */}
               <div
                 className={cn(
-                  "flex h-6 w-6 shrink-0 items-center justify-center rounded border-2 transition-all duration-200 mt-0.5",
+                  "flex h-6 w-6 shrink-0 items-center justify-center rounded mt-0.5",
+                  "border-2 transition-all duration-200",
                   isSelected
-                    ? "border-accent bg-accent scale-110"
-                    : "border-white/30 bg-transparent"
+                    ? "border-accent bg-accent"
+                    : "border-white/40 bg-transparent"
                 )}
               >
-                {isSelected && <Check className="h-4 w-4 text-white" strokeWidth={3} />}
+                {isSelected && (
+                  <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
               </div>
 
               {/* Icon and content */}
@@ -134,8 +139,8 @@ export function StepServices() {
                     className={cn(
                       "flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200",
                       isSelected
-                        ? "bg-accent text-white scale-105"
-                        : "bg-white/5 text-white/60"
+                        ? "bg-accent text-white"
+                        : "bg-white/10 text-white/60"
                     )}
                   >
                     <ServiceIcon className="h-4 w-4" />
@@ -153,7 +158,7 @@ export function StepServices() {
                   {service.description}
                 </p>
               </div>
-            </div>
+            </label>
           );
         })}
       </div>

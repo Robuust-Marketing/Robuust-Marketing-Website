@@ -128,6 +128,12 @@
   .border-accent {
     border-color: var(--accent);
   }
+  .ring-accent {
+    --tw-ring-color: var(--accent);
+  }
+  .shadow-accent {
+    --tw-shadow-color: var(--accent);
+  }
 
   /* Glow effects */
   .glow-accent {
