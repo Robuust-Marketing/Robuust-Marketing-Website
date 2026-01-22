@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "@/components/motion";
 import { Check } from "lucide-react";
 import { wizardSteps } from "@/types/onboarding";
 import { cn } from "@/lib/utils";

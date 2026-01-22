@@ -1,7 +1,7 @@
 "use client";
 
-import { useFormContext } from "react-hook-form";
-import { Check, Package } from "lucide-react";
+import { useFormContext, useWatch } from "react-hook-form";
+import { Check, Package, Star, X, Server } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { services } from "@/data/services";
 import { pricing, formatPrice } from "@/data/pricing";
@@ -21,9 +21,38 @@ const servicePrices: Record<string, { price: number; type: "one-time" | "monthly
   crm: { price: pricing.serviceAddOns.crm.price, type: "one-time" },
 };
 
+// Hosting options for the wizard
+const hostingOptions = [
+  {
+    id: "basis",
+    ...pricing.hosting.basis,
+  },
+  {
+    id: "professional",
+    ...pricing.hosting.professional,
+  },
+  {
+    id: "enterprise",
+    ...pricing.hosting.enterprise,
+  },
+  {
+    id: "none",
+    label: "Geen hosting nodig",
+    description: "Ik heb al hosting of regel dit zelf",
+    price: 0,
+    features: [],
+    custom: false,
+    popular: false,
+  },
+];
+
 export function StepServices() {
-  const { watch, setValue } = useFormContext<OnboardingData>();
-  const selectedServices = watch("selectedServices") || [];
+  const { setValue, control } = useFormContext<OnboardingData>();
+  // Use useWatch for better reactivity - this ensures re-renders on state changes
+  const selectedServices = useWatch({ control, name: "selectedServices" }) || [];
+  const hostingTier = useWatch({ control, name: "hostingTier" });
+  const needsSLA = useWatch({ control, name: "needsSLA" });
+  const projectGoal = useWatch({ control, name: "projectGoal" });
 
   const toggleService = (serviceId: string) => {
     const newSelection = selectedServices.includes(serviceId)
@@ -35,7 +64,6 @@ export function StepServices() {
 
   // Base services die inbegrepen zijn in het pakket
   const baseServiceIds = ["design", "development", "hosting"];
-  const projectGoal = watch("projectGoal");
 
   return (
     <div>
@@ -175,6 +203,170 @@ export function StepServices() {
           </p>
         </div>
       )}
+
+      {/* Hosting section */}
+      <div className="mt-10 pt-8 border-t border-white/10">
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2">
+            <Server className="h-5 w-5 text-accent" />
+            <h3 className="text-lg font-semibold text-white">Hosting & Onderhoud</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Kies het hostingpakket dat past bij jouw behoeften. Alle pakketten inclusief SSL, backups en support.
+          </p>
+        </div>
+
+        {/* Hosting options */}
+        <div className="grid grid-cols-1 gap-3">
+          {hostingOptions.map((option) => {
+            const isSelected = hostingTier === option.id;
+            const isNone = option.id === "none";
+
+            return (
+              <div
+                key={option.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => setValue("hostingTier", option.id as OnboardingData["hostingTier"], { shouldValidate: true })}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setValue("hostingTier", option.id as OnboardingData["hostingTier"], { shouldValidate: true });
+                  }
+                }}
+                className={cn(
+                  "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all duration-200 cursor-pointer select-none",
+                  isSelected
+                    ? isNone
+                      ? "border-white/40 bg-white/10 ring-2 ring-white/20"
+                      : "border-accent bg-accent/20 ring-2 ring-accent/30 shadow-lg shadow-accent/20"
+                    : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.99] active:bg-white/10"
+                )}
+              >
+                {/* Popular badge */}
+                {option.popular && (
+                  <span className="absolute -top-2.5 left-4 inline-flex items-center gap-1 px-2 py-0.5 text-xs bg-accent text-white rounded-full font-medium">
+                    <Star className="h-3 w-3" />
+                    Populair
+                  </span>
+                )}
+
+                {/* Radio button */}
+                <div
+                  className={cn(
+                    "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200 mt-0.5",
+                    isSelected
+                      ? isNone
+                        ? "border-white/50 bg-white/30"
+                        : "border-accent bg-accent"
+                      : "border-white/30"
+                  )}
+                >
+                  {isSelected && (
+                    isNone ? (
+                      <X className="h-3 w-3 text-white" strokeWidth={3} />
+                    ) : (
+                      <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                    )
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span
+                      className={cn(
+                        "font-semibold transition-colors",
+                        isSelected ? "text-white" : "text-white/80"
+                      )}
+                    >
+                      {option.label}
+                    </span>
+                    <span className={cn(
+                      "text-sm font-bold transition-colors whitespace-nowrap",
+                      isSelected ? "text-accent" : "text-white/60"
+                    )}>
+                      {option.custom || option.price === null
+                        ? "Op maat"
+                        : option.price === 0
+                        ? ""
+                        : `${formatPrice(option.price as number)}/mnd`}
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50">{option.description}</p>
+
+                  {/* Features */}
+                  {option.features.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {option.features.slice(0, 3).map((feature) => (
+                        <span
+                          key={feature}
+                          className={cn(
+                            "text-xs px-2 py-0.5 rounded-full transition-colors",
+                            isSelected
+                              ? "bg-accent/20 text-accent"
+                              : "bg-white/5 text-white/60"
+                          )}
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                      {option.features.length > 3 && (
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-white/5 text-white/60">
+                          +{option.features.length - 3} meer
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* SLA option */}
+        {hostingTier && hostingTier !== "none" && (
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => setValue("needsSLA", !needsSLA)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setValue("needsSLA", !needsSLA);
+              }
+            }}
+            className={cn(
+              "mt-4 p-4 rounded-xl border-2 cursor-pointer select-none transition-all duration-200",
+              needsSLA
+                ? "border-accent bg-accent/20 ring-2 ring-accent/30"
+                : "border-white/10 bg-white/5 hover:border-white/20 active:scale-[0.99] active:bg-white/10"
+            )}
+          >
+            <div className="flex items-start gap-3">
+              <div
+                className={cn(
+                  "flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-all duration-200 mt-0.5",
+                  needsSLA ? "border-accent bg-accent" : "border-white/30"
+                )}
+              >
+                {needsSLA && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
+              </div>
+              <div>
+                <p className={cn(
+                  "font-medium transition-colors",
+                  needsSLA ? "text-white" : "text-white/80"
+                )}>
+                  Uitgebreide SLA gewenst
+                </p>
+                <p className="text-xs text-white/50">
+                  Gegarandeerde responstijden, 24/7 monitoring en prioriteit support.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

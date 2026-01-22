@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/components/motion";
 import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -9,8 +9,6 @@ import { WizardProgress } from "./wizard-progress";
 import { WizardNavigation } from "./wizard-navigation";
 import { StepWelcome } from "./step-welcome";
 import { StepServices } from "./step-services";
-import { StepHosting } from "./step-hosting";
-import { StepBudget } from "./step-budget";
 import { StepContact } from "./step-contact";
 import { StepSummary } from "./step-summary";
 import { PriceCalculator } from "./price-calculator";
@@ -23,7 +21,7 @@ import {
 import { trackEvent } from "@/lib/gtm";
 import { calculatePriceEstimate, formatPriceEstimate } from "@/lib/pricing";
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 4;
 
 const stepVariants = {
   enter: (direction: number) => ({
@@ -56,6 +54,12 @@ function usePriceCalculationData(control: ReturnType<typeof useForm<OnboardingDa
 /**
  * Custom hook to watch fields needed for step validation (canProceed).
  * Each step only watches its own relevant fields.
+ *
+ * New 4-step flow:
+ * 1. Start: projectGoal + companySize + budgetRange
+ * 2. Diensten: selectedServices + hostingTier
+ * 3. Contact: firstName, lastName, email, privacyConsent
+ * 4. Overzicht: always true
  */
 function useStepValidationData(
   control: ReturnType<typeof useForm<OnboardingData>>["control"],
@@ -67,7 +71,6 @@ function useStepValidationData(
   const selectedServices = useWatch({ control, name: "selectedServices" });
   const hostingTier = useWatch({ control, name: "hostingTier" });
   const budgetRange = useWatch({ control, name: "budgetRange" });
-  const timeline = useWatch({ control, name: "timeline" });
   const firstName = useWatch({ control, name: "firstName" });
   const lastName = useWatch({ control, name: "lastName" });
   const email = useWatch({ control, name: "email" });
@@ -76,16 +79,16 @@ function useStepValidationData(
   // Return validation status based on current step
   switch (currentStep) {
     case 1:
-      return Boolean(projectGoal && companySize);
+      // Start: need goal, size, and budget
+      return Boolean(projectGoal && companySize && budgetRange);
     case 2:
-      return selectedServices && selectedServices.length > 0;
+      // Diensten: need at least one service and hosting selection
+      return selectedServices && selectedServices.length > 0 && Boolean(hostingTier);
     case 3:
-      return Boolean(hostingTier);
-    case 4:
-      return Boolean(budgetRange && timeline);
-    case 5:
+      // Contact: need basic contact info and privacy consent
       return Boolean(firstName && lastName && email && privacyConsent);
-    case 6:
+    case 4:
+      // Summary: always allow
       return true;
     default:
       return false;
@@ -194,12 +197,8 @@ export function WizardContainer() {
       case 2:
         return <StepServices />;
       case 3:
-        return <StepHosting />;
-      case 4:
-        return <StepBudget />;
-      case 5:
         return <StepContact />;
-      case 6:
+      case 4:
         return (
           <StepSummary
             priceEstimate={priceEstimate}
@@ -244,7 +243,7 @@ export function WizardContainer() {
                 </AnimatePresence>
 
                 {/* Navigation */}
-                {currentStep < 6 && (
+                {currentStep < 4 && (
                   <WizardNavigation
                     currentStep={currentStep}
                     totalSteps={TOTAL_STEPS}

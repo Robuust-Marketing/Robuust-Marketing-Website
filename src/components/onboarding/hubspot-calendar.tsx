@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/components/motion";
 import { Calendar, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HUBSPOT_MEETING_LINK } from "@/lib/hubspot";

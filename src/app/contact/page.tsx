@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/components/motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -136,6 +136,7 @@ export default function ContactPage() {
                           name="name"
                           placeholder="Je naam"
                           required
+                          autoComplete="name"
                           className="bg-background border-white/10"
                         />
                       </div>
@@ -145,6 +146,7 @@ export default function ContactPage() {
                           id="company"
                           name="company"
                           placeholder="Je bedrijf"
+                          autoComplete="organization"
                           className="bg-background border-white/10"
                         />
                       </div>
@@ -159,6 +161,7 @@ export default function ContactPage() {
                           type="email"
                           placeholder="je@email.nl"
                           required
+                          autoComplete="email"
                           className="bg-background border-white/10"
                         />
                       </div>
@@ -169,6 +172,7 @@ export default function ContactPage() {
                           name="phone"
                           type="tel"
                           placeholder="+31 6 12345678"
+                          autoComplete="tel"
                           className="bg-background border-white/10"
                         />
                       </div>

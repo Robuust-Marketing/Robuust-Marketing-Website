@@ -15,14 +15,12 @@ export const companySizes = [
   { id: "enterprise", label: "Enterprise", description: "50+ medewerkers" },
 ] as const;
 
-// Wizard step labels
+// Wizard step labels (simplified 4-step flow)
 export const wizardSteps = [
-  { id: 1, name: "Welkom", label: "step_1_welcome" },
+  { id: 1, name: "Start", label: "step_1_start" },
   { id: 2, name: "Diensten", label: "step_2_services" },
-  { id: 3, name: "Hosting", label: "step_3_hosting" },
-  { id: 4, name: "Budget", label: "step_4_budget" },
-  { id: 5, name: "Contact", label: "step_5_contact" },
-  { id: 6, name: "Overzicht", label: "step_6_summary" },
+  { id: 3, name: "Contact", label: "step_3_contact" },
+  { id: 4, name: "Overzicht", label: "step_4_summary" },
 ] as const;
 
 // Zod schemas voor elke stap
@@ -42,7 +40,7 @@ export const stepHostingSchema = z.object({
 
 export const stepBudgetSchema = z.object({
   budgetRange: z.string().min(1, "Selecteer een budgetrange"),
-  timeline: z.string().min(1, "Selecteer een tijdlijn"),
+  timeline: z.string().optional(), // Now optional, moved to summary step
   projectDescription: z.string().optional(),
 });
 
@@ -125,7 +123,7 @@ export interface HubSpotSubmission {
   selectedServices: string[];
   hostingTier: string;
   budgetRange: string;
-  timeline: string;
+  timeline?: string; // Now optional
   projectDescription?: string;
   estimatedPrice: string;
   source: string;

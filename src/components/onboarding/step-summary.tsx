@@ -1,7 +1,7 @@
 "use client";
 
-import { useFormContext } from "react-hook-form";
-import { motion } from "framer-motion";
+import { useFormContext, useWatch } from "react-hook-form";
+import { motion } from "@/components/motion";
 import {
   Check,
   Calendar,
@@ -12,6 +12,7 @@ import {
   Server,
   Wallet,
   Clock,
+  FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HubSpotCalendar } from "./hubspot-calendar";
@@ -41,14 +42,15 @@ export function StepSummary({
   isSubmitting,
   isComplete,
 }: StepSummaryProps) {
-  const { watch } = useFormContext<OnboardingData>();
+  const { watch, setValue, register, control } = useFormContext<OnboardingData>();
   const formData = watch();
+  const timeline = useWatch({ control, name: "timeline" });
 
   const selectedGoal = projectGoals.find((g) => g.id === formData.projectGoal);
   const selectedSize = companySizes.find((s) => s.id === formData.companySize);
   const selectedHosting = pricing.hosting[formData.hostingTier as keyof typeof pricing.hosting];
   const selectedBudget = pricing.budgetRanges.find((b) => b.id === formData.budgetRange);
-  const selectedTimeline = pricing.timelines.find((t) => t.id === formData.timeline);
+  const selectedTimeline = pricing.timelines.find((t) => t.id === timeline);
   const packageName = getPackageName(formData.companySize, formData.projectGoal);
 
   const selectedServiceNames = formData.selectedServices
@@ -201,7 +203,7 @@ export function StepSummary({
             </p>
           </motion.div>
 
-          {/* Budget & Timeline */}
+          {/* Budget */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -210,14 +212,94 @@ export function StepSummary({
           >
             <div className="flex items-center gap-2 mb-2">
               <Wallet className="h-4 w-4 text-accent" />
-              <span className="text-sm font-medium text-white">Budget & Planning</span>
+              <span className="text-sm font-medium text-white">Budget</span>
             </div>
             <p className="text-sm text-white/70">
-              {selectedBudget?.label} | {selectedTimeline?.label}
+              {selectedBudget?.label || "-"}
             </p>
           </motion.div>
         </div>
       </div>
+
+      {/* Timeline & Project Description (optional fields) */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="space-y-4 mb-8"
+      >
+        {/* Timeline */}
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <Clock className="h-4 w-4 text-accent" />
+            <label className="text-sm font-medium text-white">
+              Wanneer wil je live?{" "}
+              <span className="text-white/50 font-normal">(optioneel)</span>
+            </label>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {pricing.timelines.map((tl) => {
+              const isSelected = timeline === tl.id;
+
+              return (
+                <div
+                  key={tl.id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setValue("timeline", tl.id, { shouldValidate: true })}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setValue("timeline", tl.id, { shouldValidate: true });
+                    }
+                  }}
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-2 rounded-lg border-2 text-left transition-all duration-200 cursor-pointer select-none",
+                    isSelected
+                      ? "border-accent bg-accent/20 ring-1 ring-accent/30"
+                      : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.98]"
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "flex w-4 h-4 items-center justify-center rounded-full border-2 transition-all duration-200",
+                      isSelected ? "border-accent bg-accent" : "border-white/30"
+                    )}
+                  >
+                    {isSelected && <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />}
+                  </div>
+                  <span
+                    className={cn(
+                      "text-xs font-medium transition-colors",
+                      isSelected ? "text-white" : "text-white/70"
+                    )}
+                  >
+                    {tl.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Project description */}
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <FileText className="h-4 w-4 text-accent" />
+            <label htmlFor="projectDescription" className="text-sm font-medium text-white">
+              Extra informatie{" "}
+              <span className="text-white/50 font-normal">(optioneel)</span>
+            </label>
+          </div>
+          <textarea
+            id="projectDescription"
+            {...register("projectDescription")}
+            rows={3}
+            className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent resize-none text-sm"
+            placeholder="Vertel ons meer over je project, wensen en doelen..."
+          />
+        </div>
+      </motion.div>
 
       {/* Price summary */}
       <motion.div

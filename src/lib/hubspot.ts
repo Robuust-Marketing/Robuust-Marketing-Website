@@ -44,7 +44,7 @@ export async function submitToHubSpot(
     },
     { objectTypeId: "0-1", name: "hosting_tier", value: data.hostingTier },
     { objectTypeId: "0-1", name: "budget_range", value: data.budgetRange },
-    { objectTypeId: "0-1", name: "timeline", value: data.timeline },
+    { objectTypeId: "0-1", name: "timeline", value: data.timeline || "" },
     {
       objectTypeId: "0-1",
       name: "project_description",

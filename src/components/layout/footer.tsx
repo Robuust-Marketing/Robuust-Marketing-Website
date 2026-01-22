@@ -162,13 +162,13 @@ export function Footer() {
             </h3>
             <div className="mt-4 space-y-3">
               <div className="rounded-2xl border border-white/10 bg-background p-4 hover:border-accent/30 transition-colors">
-                <div className="text-3xl font-bold text-accent">70+</div>
+                <div className="text-3xl font-bold text-accent tabular-nums">70+</div>
                 <div className="mt-1 text-sm text-muted-foreground">
                   Websites beheerd
                 </div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-background p-4 hover:border-accent/30 transition-colors">
-                <div className="text-3xl font-bold text-accent">99.9%</div>
+                <div className="text-3xl font-bold text-accent tabular-nums">99.9%</div>
                 <div className="mt-1 text-sm text-muted-foreground">
                   Uptime garantie
                 </div>

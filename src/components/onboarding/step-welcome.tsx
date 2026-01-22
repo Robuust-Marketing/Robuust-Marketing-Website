@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import {
   Globe,
   RefreshCw,
@@ -14,9 +14,11 @@ import {
   Clock,
   MessageSquare,
   Check,
+  Wallet,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { projectGoals, companySizes, type OnboardingData } from "@/types/onboarding";
+import { pricing } from "@/data/pricing";
 
 const goalIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "nieuwe-website": Globe,
@@ -33,9 +35,11 @@ const sizeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export function StepWelcome() {
-  const { watch, setValue } = useFormContext<OnboardingData>();
-  const projectGoal = watch("projectGoal");
-  const companySize = watch("companySize");
+  const { setValue, control } = useFormContext<OnboardingData>();
+  // Use useWatch for better reactivity
+  const projectGoal = useWatch({ control, name: "projectGoal" });
+  const companySize = useWatch({ control, name: "companySize" });
+  const budgetRange = useWatch({ control, name: "budgetRange" });
 
   return (
     <div>
@@ -121,7 +125,7 @@ export function StepWelcome() {
       </div>
 
       {/* Company size */}
-      <div>
+      <div className="mb-8">
         <label className="block text-sm font-medium text-white mb-3">
           Hoe groot is je organisatie?
         </label>
@@ -169,6 +173,59 @@ export function StepWelcome() {
                   </p>
                   <p className="text-xs text-white/50">{size.description}</p>
                 </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Budget */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <Wallet className="h-4 w-4 text-accent" />
+          <label className="text-sm font-medium text-white">
+            Wat is je budget?
+          </label>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {pricing.budgetRanges.map((budget) => {
+            const isSelected = budgetRange === budget.id;
+
+            return (
+              <div
+                key={budget.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => setValue("budgetRange", budget.id, { shouldValidate: true })}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setValue("budgetRange", budget.id, { shouldValidate: true });
+                  }
+                }}
+                className={cn(
+                  "flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-left transition-all duration-200 cursor-pointer select-none",
+                  isSelected
+                    ? "border-accent bg-accent/20 ring-1 ring-accent/30 shadow-md shadow-accent/10"
+                    : "border-white/10 hover:border-white/30 hover:bg-white/5 active:scale-[0.98] active:bg-white/10"
+                )}
+              >
+                <div
+                  className={cn(
+                    "flex w-5 h-5 items-center justify-center rounded-full border-2 transition-all duration-200",
+                    isSelected ? "border-accent bg-accent scale-110" : "border-white/30"
+                  )}
+                >
+                  {isSelected && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
+                </div>
+                <span
+                  className={cn(
+                    "text-sm font-medium transition-colors",
+                    isSelected ? "text-white" : "text-white/70"
+                  )}
+                >
+                  {budget.label}
+                </span>
               </div>
             );
           })}

@@ -95,7 +95,7 @@ async function sendEmailNotification(
     selectedServices: string[];
     hostingTier: string;
     budgetRange: string;
-    timeline: string;
+    timeline?: string;
     projectDescription?: string;
     estimatedPrice: string;
   },
@@ -129,7 +129,7 @@ Organisatiegrootte: ${data.companySize}
 Geselecteerde diensten: ${data.selectedServices.join(", ")}
 Hosting: ${data.hostingTier}
 Budget: ${data.budgetRange}
-Timeline: ${data.timeline}
+Timeline: ${data.timeline || "Niet opgegeven"}
 
 --- BESCHRIJVING ---
 ${data.projectDescription || "Geen beschrijving opgegeven"}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
-import { motion } from "framer-motion";
+import { motion } from "@/components/motion";
 import Link from "next/link";
 import { Check, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -43,6 +43,7 @@ export function StepContact() {
           <input
             type="text"
             id="firstName"
+            autoComplete="given-name"
             {...register("firstName")}
             className={cn(
               "w-full px-4 py-3 rounded-lg bg-background border text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent",
@@ -73,6 +74,7 @@ export function StepContact() {
           <input
             type="text"
             id="lastName"
+            autoComplete="family-name"
             {...register("lastName")}
             className={cn(
               "w-full px-4 py-3 rounded-lg bg-background border text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent",
@@ -103,6 +105,7 @@ export function StepContact() {
           <input
             type="email"
             id="email"
+            autoComplete="email"
             {...register("email")}
             className={cn(
               "w-full px-4 py-3 rounded-lg bg-background border text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent",
@@ -134,6 +137,7 @@ export function StepContact() {
           <input
             type="tel"
             id="phone"
+            autoComplete="tel"
             {...register("phone")}
             className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
             placeholder="06 12345678"
@@ -157,6 +161,7 @@ export function StepContact() {
           <input
             type="text"
             id="company"
+            autoComplete="organization"
             {...register("company")}
             className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
             placeholder="Je bedrijfsnaam"
@@ -173,7 +178,16 @@ export function StepContact() {
       >
         <label className="flex items-start gap-3 cursor-pointer">
           <div
+            role="checkbox"
+            aria-checked={privacyConsent}
+            tabIndex={0}
             onClick={() => setValue("privacyConsent", !privacyConsent as true, { shouldValidate: true })}
+            onKeyDown={(e) => {
+              if (e.key === " " || e.key === "Enter") {
+                e.preventDefault();
+                setValue("privacyConsent", !privacyConsent as true, { shouldValidate: true });
+              }
+            }}
             className={cn(
               "flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors mt-0.5",
               privacyConsent ? "border-accent bg-accent" : "border-white/30",

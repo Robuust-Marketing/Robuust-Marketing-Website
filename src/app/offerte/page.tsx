@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "@/components/motion";
 import { ArrowRight, Check, Clock, Shield, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -203,6 +203,7 @@ export default function OffertePage() {
                     type="text"
                     id="name"
                     required
+                    autoComplete="name"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -221,6 +222,7 @@ export default function OffertePage() {
                   <input
                     type="text"
                     id="company"
+                    autoComplete="organization"
                     value={formData.company}
                     onChange={(e) =>
                       setFormData({ ...formData, company: e.target.value })
@@ -240,6 +242,7 @@ export default function OffertePage() {
                     type="email"
                     id="email"
                     required
+                    autoComplete="email"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -258,6 +261,7 @@ export default function OffertePage() {
                   <input
                     type="tel"
                     id="phone"
+                    autoComplete="tel"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })

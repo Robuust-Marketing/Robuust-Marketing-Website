@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "@/components/motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -217,7 +217,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
               className="text-center"
             >
-              <div className="text-3xl sm:text-4xl font-bold text-white">{stat.value}</div>
+              <div className="text-3xl sm:text-4xl font-bold text-white tabular-nums">{stat.value}</div>
               <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}

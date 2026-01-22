@@ -3,8 +3,6 @@ export { WizardProgress } from "./wizard-progress";
 export { WizardNavigation } from "./wizard-navigation";
 export { StepWelcome } from "./step-welcome";
 export { StepServices } from "./step-services";
-export { StepHosting } from "./step-hosting";
-export { StepBudget } from "./step-budget";
 export { StepContact } from "./step-contact";
 export { StepSummary } from "./step-summary";
 export { PriceCalculator } from "./price-calculator";

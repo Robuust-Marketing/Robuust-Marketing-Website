@@ -32,6 +32,8 @@ export function BlogNewsletter() {
           <input
             type="email"
             placeholder="je@email.nl"
+            aria-label="E-mailadres voor nieuwsbrief"
+            autoComplete="email"
             className="flex-1 px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
           />
           <Button className="bg-accent hover:bg-accent-hover text-white">

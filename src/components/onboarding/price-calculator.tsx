@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/components/motion";
 import { Calculator, TrendingUp, Server, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getPackageName } from "@/lib/pricing";
@@ -107,7 +107,7 @@ export function PriceCalculator({
                     {priceEstimate.breakdown.basePackage && (
                       <div className="flex justify-between text-sm">
                         <span className="text-white/60">{packageName}</span>
-                        <span className="text-white/80">
+                        <span className="text-white/80 tabular-nums">
                           {priceEstimate.breakdown.basePackage.min === priceEstimate.breakdown.basePackage.max
                             ? `€${priceEstimate.breakdown.basePackage.min.toLocaleString("nl-NL")}`
                             : `€${priceEstimate.breakdown.basePackage.min.toLocaleString("nl-NL")} - €${priceEstimate.breakdown.basePackage.max.toLocaleString("nl-NL")}`}
@@ -119,7 +119,7 @@ export function PriceCalculator({
                     {priceEstimate.breakdown.addOns.map((addOn) => (
                       <div key={addOn.name} className="flex justify-between text-sm">
                         <span className="text-white/60">{addOn.name}</span>
-                        <span className="text-white/80">
+                        <span className="text-white/80 tabular-nums">
                           €{addOn.price.toLocaleString("nl-NL")}
                           {addOn.type === "monthly" && "/mo"}
                         </span>
@@ -132,7 +132,7 @@ export function PriceCalculator({
                         <span className="text-white/60">
                           Hosting ({priceEstimate.breakdown.hosting.name})
                         </span>
-                        <span className="text-white/80">
+                        <span className="text-white/80 tabular-nums">
                           €{priceEstimate.breakdown.hosting.price}/mo
                         </span>
                       </div>
