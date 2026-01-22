@@ -1,85 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Robuust Marketing Website
 
-## Getting Started
+De officiële marketing website van **Robuust Marketing** - een full-service webdevelopment en hosting bureau gevestigd in Zwijndrecht, Nederland.
 
-First, run the development server:
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) met React 19 en App Router
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) met CSS variabelen
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/) (new-york style)
+- **Content**: MDX voor blog en kennisbank artikelen
+- **Forms**: react-hook-form + Zod validatie
+- **Animaties**: Framer Motion + tw-animate-css
+- **CRM**: HubSpot integratie
+- **Email**: Resend
+- **Analytics**: Google Tag Manager + Cookiebot (AVG compliant)
+
+## Diensten
+
+De website presenteert 10 diensten:
+
+1. **Design** - UI/UX design en webdesign
+2. **Development** - Next.js, React, WordPress development
+3. **Hosting** - Dedicated servers met NGINX en Cloudflare
+4. **Onderhoud** - Website onderhoud met SLA garanties
+5. **Tracking** - GA4, Meta Pixel, first-party tracking (Taggrs)
+6. **Email Marketing** - Mailchimp, Funnelkit, transactionele emails
+7. **Online Marketing** - Meta, TikTok, Google Ads
+8. **Branding** - Logo, huisstijl, visual identity
+9. **SEO** - Technische SEO en content optimalisatie
+10. **CRM** - HubSpot implementaties
+
+## Pakketten
+
+- **Solid Start** - Starterspakket voor startende ondernemers
+- **Firm Foundation** - Voor bestaande bedrijven die willen groeien
+
+## Quick Start
 
 ```bash
+# Installeer dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | Beschrijving |
+|--------|--------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Maak productie build |
+| `npm run start` | Start productie server |
+| `npm run lint` | Run ESLint |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structuur
 
-## Learn More
+```
+src/
+├── app/            # Next.js App Router pagina's
+├── components/     # React componenten
+│   ├── ui/         # shadcn/ui componenten
+│   ├── layout/     # Header, footer, navigatie
+│   └── onboarding/ # Project intake wizard
+├── data/           # Statische data (prijzen, diensten, etc.)
+├── lib/            # Utility functies
+└── types/          # TypeScript type definities
 
-To learn more about Next.js, take a look at the following resources:
+content/
+├── blog/           # Blog artikelen (MDX)
+└── kennisbank/     # Kennisbank artikelen (MDX)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Maak een `.env.local` bestand aan met:
 
-## Deploy on Vercel
+```env
+# Analytics
+NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+NEXT_PUBLIC_COOKIEBOT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Email
+RESEND_API_KEY=re_xxxxxxxxxx
+CONTACT_EMAIL=info@robuustmarketing.nl
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# CRM
+HUBSPOT_PORTAL_ID=xxxxxxxx
+HUBSPOT_FORM_GUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+```
 
+## Deployment
 
-# Robuust-Marketing-Website
+De website wordt gedeployed via:
+- **Build**: Standalone output mode voor NGINX
+- **Server**: Dedicated servers in Europa
+- **CDN**: Cloudflare voor caching en DDoS protection
 
-Mijn huidige marketingwebsite is hopeloos verouderd
-Ik heb een nieuwe website nodig, die ik ook kan gebruiken voor presentaties en die laat zien waar Robuust Marketing allemaal voor staat. 
+## AI Assistants
 
-Ik wil me focussen op high end web development en hosting met waterdichte SLA's. 
-Daarin is de realiteit dat dit nu voornamelijk op MKB niveau is, gefocust op bedrijven tussen de 20 - 100 medewerkers.
+Zie [CLAUDE.md](./CLAUDE.md) voor uitgebreide documentatie voor AI code assistants.
 
-Mijn dienstenaanbod is in een notendop: 
-1. Design van websites, huisstijlen, advertenties en offline marketingmaterialen
-2. Development van Wordpress websites en webshops met Avada, Impreza of Salient OF maatwerk websites met Node.js en React
-3. Hosting met dedicated Duitse en Finse servers die NGINX draaien in combinatie met Cloudlare OF Varnisch caching
-4. Onderhoud van websites en harde SLA garanties
-5. Tracking (Google GA4, Snitcher bedrijfsherkenning, Meta Pixel, First party tracking met Taggrs)
-6. E-mailmarketing (Mailchimp, Funnelkit, Brevo voor transactional emails, opzetten Office 365 omgevingen en PC's)
-7. Online marketing (Meta ads, Tiktok ads, google ads allemaal deployen via Hello Its Me)
-8. Branding (vormgeven logo en huisstijl, aanmaken profielen op verschillende online platforms)
-9. SEO (samen met Hello Its Me, Ahrefs, AI tooling om blogs te herschrijven, Google search console etc)
-10. Low level CRM implementaties van Hubspot en dit integreren met Wordpress website backends
+## Licentie
 
-Ik heb mooie klanten en projecten, waaronder
-Den Hartog Energies nieuwe website gemaakt
-Voltra Charging nieuwe website gemaakt
-Growteq nieuwe website gemaakt met video module
-Woonstudio JOY nieuwe website
-IDRW nieuwe website
-BioBoss nieuwe webshop
-Villary website
-
-
-
-
-
-Host en onderhoud meer dan 70 websites 
-
-
-Ik wil naar buiten treden met een verfijnd aanbod: (in progress)
-- Solid Start 
-Starterspakket voor de startende ondernemer met daarin focus op de prijs kwaliteit verhouding. Splash screen landingspagina website, gelijk goed je ICT regelen, tracking, reporting, eventueel als het om e-commerce gaat een webshop met Woo en funnelkit markeitng uatomations. (it office 365 Cloudflare ai inzetten slimmer en goedkoper dan de concurrent. Voldoen aan de avg, crm, bi, advertentie accounts. 1password, merkbescherming en registratie
-- Firm foundation
-Bestaande bedrijven hun fundament laten controleren en leggen. Cloudflare DNS beheer, website gebouwd op belangrijke design en marketingprincipes, zodat alles nog beter werkt. Security, 0auth, 1password, cloudflare, office 365 veiligheid. Voldoen aan AVG, CRM functionaliteit, BI, advertentie accounts met waterdichte tracking. DKIM en DMARC management, brand protection in de vorm van merkbescherming.
-
-
-Als lead magnets wil ik passende items, online tools maken en blogs schrijven. Uiteindelijk natuurlijk ook leads binnenhalen. 
-
-Ik zou het liefst een schaalbare business bouwen, maar verdien nu al mijn geld met uurtje factuurtje en fixed price projecten. Ook ben ik nu een solopreneur emppowered met AI, maar ben ik nog lang niet zo snel als dat ik zou willen zijn. 
-
+Proprietary - Robuust Marketing
