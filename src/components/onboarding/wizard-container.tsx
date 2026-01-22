@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { WizardProgress } from "./wizard-progress";
@@ -40,6 +40,58 @@ const stepVariants = {
   }),
 };
 
+/**
+ * Custom hook to watch only the fields needed for price calculation.
+ * This prevents unnecessary re-renders when other form fields change.
+ */
+function usePriceCalculationData(control: ReturnType<typeof useForm<OnboardingData>>["control"]) {
+  const companySize = useWatch({ control, name: "companySize" });
+  const projectGoal = useWatch({ control, name: "projectGoal" });
+  const selectedServices = useWatch({ control, name: "selectedServices" });
+  const hostingTier = useWatch({ control, name: "hostingTier" });
+
+  return { companySize, projectGoal, selectedServices, hostingTier };
+}
+
+/**
+ * Custom hook to watch fields needed for step validation (canProceed).
+ * Each step only watches its own relevant fields.
+ */
+function useStepValidationData(
+  control: ReturnType<typeof useForm<OnboardingData>>["control"],
+  currentStep: number
+) {
+  // Watch all validation fields - React Compiler will optimize these
+  const projectGoal = useWatch({ control, name: "projectGoal" });
+  const companySize = useWatch({ control, name: "companySize" });
+  const selectedServices = useWatch({ control, name: "selectedServices" });
+  const hostingTier = useWatch({ control, name: "hostingTier" });
+  const budgetRange = useWatch({ control, name: "budgetRange" });
+  const timeline = useWatch({ control, name: "timeline" });
+  const firstName = useWatch({ control, name: "firstName" });
+  const lastName = useWatch({ control, name: "lastName" });
+  const email = useWatch({ control, name: "email" });
+  const privacyConsent = useWatch({ control, name: "privacyConsent" });
+
+  // Return validation status based on current step
+  switch (currentStep) {
+    case 1:
+      return Boolean(projectGoal && companySize);
+    case 2:
+      return selectedServices && selectedServices.length > 0;
+    case 3:
+      return Boolean(hostingTier);
+    case 4:
+      return Boolean(budgetRange && timeline);
+    case 5:
+      return Boolean(firstName && lastName && email && privacyConsent);
+    case 6:
+      return true;
+    default:
+      return false;
+  }
+}
+
 export function WizardContainer() {
   const [currentStep, setCurrentStep] = useState(1);
   const [direction, setDirection] = useState(0);
@@ -57,9 +109,13 @@ export function WizardContainer() {
     },
   });
 
-  const formData = methods.watch();
-  const priceEstimate = calculatePriceEstimate(formData);
+  // Use specific watches for price calculation instead of watching entire form
+  const priceData = usePriceCalculationData(methods.control);
+  const priceEstimate = calculatePriceEstimate(priceData);
   const formattedPrice = formatPriceEstimate(priceEstimate);
+
+  // Use specific watches for step validation
+  const canProceed = useStepValidationData(methods.control, currentStep);
 
   // Track step views
   useEffect(() => {
@@ -74,32 +130,8 @@ export function WizardContainer() {
     }
   }, [currentStep]);
 
-  const canProceed = useCallback(() => {
-    switch (currentStep) {
-      case 1:
-        return Boolean(formData.projectGoal && formData.companySize);
-      case 2:
-        return formData.selectedServices && formData.selectedServices.length > 0;
-      case 3:
-        return Boolean(formData.hostingTier);
-      case 4:
-        return Boolean(formData.budgetRange && formData.timeline);
-      case 5:
-        return Boolean(
-          formData.firstName &&
-            formData.lastName &&
-            formData.email &&
-            formData.privacyConsent
-        );
-      case 6:
-        return true;
-      default:
-        return false;
-    }
-  }, [currentStep, formData]);
-
   const goToNextStep = useCallback(() => {
-    if (currentStep < TOTAL_STEPS && canProceed()) {
+    if (currentStep < TOTAL_STEPS && canProceed) {
       setDirection(1);
       setCurrentStep((prev) => prev + 1);
     }
@@ -114,6 +146,9 @@ export function WizardContainer() {
 
   const handleSubmit = async (withBooking: boolean) => {
     setIsSubmitting(true);
+
+    // Get all form values for submission
+    const formData = methods.getValues();
 
     try {
       const response = await fetch("/api/hubspot/submit-lead", {
@@ -213,7 +248,7 @@ export function WizardContainer() {
                   <WizardNavigation
                     currentStep={currentStep}
                     totalSteps={TOTAL_STEPS}
-                    canProceed={canProceed()}
+                    canProceed={canProceed}
                     onNext={goToNextStep}
                     onPrevious={goToPreviousStep}
                   />
@@ -226,7 +261,7 @@ export function WizardContainer() {
               <PriceCalculator
                 priceEstimate={priceEstimate}
                 formattedPrice={formattedPrice}
-                formData={formData}
+                formData={priceData}
               />
             </div>
           </div>

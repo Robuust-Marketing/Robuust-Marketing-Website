@@ -36,24 +36,42 @@ export async function POST(request: Request) {
       source: "start-project-wizard",
     };
 
-    // Submit to HubSpot if configured
-    if (isHubSpotConfigured()) {
-      const result = await submitToHubSpot(
-        hubspotData,
-        `${request.headers.get("origin") || ""}/start-project`
-      );
+    // Run HubSpot submission and email notification in parallel
+    // Both are independent operations that don't depend on each other
+    const results = await Promise.allSettled([
+      // HubSpot submission (if configured)
+      isHubSpotConfigured()
+        ? submitToHubSpot(
+            hubspotData,
+            `${request.headers.get("origin") || ""}/start-project`
+          )
+        : Promise.resolve({ success: true, skipped: true }),
+      // Email notification (always attempt as backup)
+      sendEmailNotification(hubspotData, withBooking),
+    ]);
 
-      if (!result.success) {
-        console.error("HubSpot submission failed:", result.error);
-        // Continue anyway - we don't want to block the user
-      }
-    } else {
-      // Log the lead data for development/testing
-      console.log("Lead data (HubSpot not configured):", hubspotData);
+    // Log results for debugging
+    const [hubspotResult, emailResult] = results;
+
+    if (hubspotResult.status === "rejected") {
+      console.error("HubSpot submission failed:", hubspotResult.reason);
+    } else if (
+      hubspotResult.status === "fulfilled" &&
+      hubspotResult.value &&
+      "success" in hubspotResult.value &&
+      !hubspotResult.value.success
+    ) {
+      console.error("HubSpot submission error:", hubspotResult.value);
     }
 
-    // Send email notification as backup
-    await sendEmailNotification(hubspotData, withBooking);
+    if (emailResult.status === "rejected") {
+      console.error("Email notification failed:", emailResult.reason);
+    }
+
+    // Log the lead data if HubSpot is not configured
+    if (!isHubSpotConfigured()) {
+      console.log("Lead data (HubSpot not configured):", hubspotData);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -82,7 +100,7 @@ async function sendEmailNotification(
     estimatedPrice: string;
   },
   withBooking: boolean
-) {
+): Promise<void> {
   // Use Resend if configured
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
   const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "info@robuustmarketing.nl";
@@ -134,5 +152,6 @@ Automatisch verzonden via de Robuust Marketing website
     console.log("Email notification sent successfully");
   } catch (error) {
     console.error("Failed to send email notification:", error);
+    throw error; // Re-throw to be caught by Promise.allSettled
   }
 }
