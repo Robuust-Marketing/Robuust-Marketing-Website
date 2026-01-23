@@ -1,19 +1,46 @@
+import { setRequestLocale } from "next-intl/server";
 import { getAllBlogPosts, getBlogCategories } from "@/lib/blog";
 import { BlogHero, BlogCategoryFilter, BlogNewsletter } from "@/components/blog";
+import { type Locale } from "@/i18n/config";
 
-export const metadata = {
-  title: "Blog | Robuust Marketing",
-  description:
-    "Tips, trends en diepgaande artikelen over SEO, social media en online marketing.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
-export default async function BlogPage() {
+  const titles = {
+    nl: "Blog | Robuust Marketing",
+    en: "Blog | Robuust Marketing",
+  };
+
+  const descriptions = {
+    nl: "Tips, trends en diepgaande artikelen over SEO, social media en online marketing.",
+    en: "Tips, trends and in-depth articles about SEO, social media and online marketing.",
+  };
+
+  return {
+    title: titles[locale as Locale] || titles.nl,
+    description: descriptions[locale as Locale] || descriptions.nl,
+  };
+}
+
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+
   // Fetch data directly in server component - no API call needed
-  const posts = getAllBlogPosts();
-  const allCategories = getBlogCategories();
+  const posts = getAllBlogPosts(locale as Locale);
+  const allCategories = getBlogCategories(locale as Locale);
 
-  // Filter out "Alle artikelen" from categories for the filter component
-  const categories = allCategories.filter((c) => c.name !== "Alle artikelen");
+  // Filter out "Alle artikelen" / "All articles" from categories for the filter component
+  const allLabel = locale === "en" ? "All articles" : "Alle artikelen";
+  const categories = allCategories.filter((c) => c.name !== allLabel);
 
   return (
     <div className="min-h-screen pt-32">

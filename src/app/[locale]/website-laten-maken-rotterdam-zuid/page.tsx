@@ -40,7 +40,7 @@ const localBenefits = [
     icon: Building2,
     title: "Lokale referenties",
     description:
-      "Bekijk het werk dat we voor andere bedrijven in Rotterdam-Zuid en omgeving hebben gemaakt.",
+      "Bekijk het werk dat we voor andere bedrijven in Rotterdam en omgeving hebben gemaakt.",
   },
 ];
 
@@ -49,7 +49,7 @@ const services = [
     icon: PenTool,
     title: "Webdesign",
     description:
-      "Een uniek ontwerp dat past bij jouw bedrijf en aanspreekt bij je doelgroep in Rotterdam-Zuid.",
+      "Een uniek ontwerp dat past bij jouw bedrijf en aanspreekt bij je doelgroep in Rotterdam.",
   },
   {
     icon: Code,
@@ -61,7 +61,7 @@ const services = [
     icon: Search,
     title: "Lokale SEO",
     description:
-      "Gevonden worden in Rotterdam-Zuid en omgeving. We optimaliseren voor lokale zoekopdrachten.",
+      "Gevonden worden in Rotterdam en omgeving. We optimaliseren voor lokale zoekopdrachten.",
   },
   {
     icon: Shield,
@@ -110,7 +110,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
             >
               <MapPin className="h-4 w-4 text-accent" />
               <span className="text-accent font-medium text-sm uppercase tracking-wider">
-                Rotterdam-Zuid & omgeving
+                Rotterdam & omgeving
               </span>
             </motion.div>
             <motion.h1
@@ -120,7 +120,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
             >
               Website laten maken in{" "}
-              <span className="text-gradient-accent">Rotterdam-Zuid</span>
+              <span className="text-gradient-accent">Rotterdam</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -128,8 +128,8 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-muted-foreground text-lg mb-8"
             >
-              Op zoek naar een webbureau in Rotterdam-Zuid? Wij maken professionele
-              websites voor ondernemers in Rotterdam-Zuid en de regio. Lokaal,
+              Op zoek naar een webbureau in Rotterdam? Wij maken professionele
+              websites voor ondernemers in Rotterdam en de regio. Lokaal,
               persoonlijk en resultaatgericht.
             </motion.p>
             <motion.div
@@ -181,7 +181,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-accent" />
                 <span className="text-sm text-muted-foreground">
-                  Actief in Rotterdam-Zuid en omstreken
+                  Actief in Rotterdam en omstreken
                 </span>
               </div>
             </motion.div>
@@ -202,7 +202,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
               Waarom kiezen voor een lokaal webbureau?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              De voordelen van een website bureau uit Rotterdam-Zuid en omgeving
+              De voordelen van een website bureau uit Rotterdam en omgeving
             </p>
           </motion.div>
 
@@ -243,10 +243,10 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Onze diensten in Rotterdam-Zuid
+              Onze diensten in Rotterdam
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Van ontwerp tot onderhoud, we helpen bedrijven in Rotterdam-Zuid met
+              Van ontwerp tot onderhoud, we helpen bedrijven in Rotterdam met
               al hun online behoeften
             </p>
           </motion.div>
@@ -284,11 +284,11 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Professionele websites voor Rotterdam-Zuid
+                Professionele websites voor Rotterdam
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Als ondernemer in Rotterdam-Zuid weet je hoe belangrijk een goede
+                  Als ondernemer in Rotterdam weet je hoe belangrijk een goede
                   online aanwezigheid is. Of je nu een horeca-onderneming hebt in
                   Feijenoord, een winkel runt in Charlois, een dienstverlener bent
                   in IJsselmonde, een zorginstelling in Lombardijen, een
@@ -299,7 +299,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
                   Wij helpen lokale ondernemers met het bouwen van websites die
                   niet alleen mooi zijn, maar ook gevonden worden. Met lokale
                   SEO zorgen we dat je hoog scoort wanneer iemand zoekt naar jouw
-                  diensten in Rotterdam-Zuid.
+                  diensten in Rotterdam.
                 </p>
                 <p>
                   Door onze lokale aanwezigheid kunnen we snel bij je langskomen
@@ -318,7 +318,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
                 </li>
                 <li className="flex items-center gap-2 text-white">
                   <Check className="h-4 w-4 text-accent" />
-                  Gevonden worden in Rotterdam-Zuid
+                  Gevonden worden in Rotterdam
                 </li>
                 <li className="flex items-center gap-2 text-white">
                   <Check className="h-4 w-4 text-accent" />
@@ -347,7 +347,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
                 ))}
               </div>
               <p className="mt-6 text-muted-foreground text-sm">
-                Naast Rotterdam-Zuid zijn we ook actief in de hele regio en
+                Naast Rotterdam zijn we ook actief in de hele regio en
                 Drechtsteden. Neem contact op voor een vrijblijvend gesprek.
               </p>
             </motion.div>
@@ -364,7 +364,7 @@ export default function WebsiteLatenMakenRotterdamZuidPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Website laten maken in Rotterdam-Zuid?
+            Website laten maken in Rotterdam?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

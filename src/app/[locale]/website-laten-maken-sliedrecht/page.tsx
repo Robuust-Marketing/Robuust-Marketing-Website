@@ -79,7 +79,7 @@ const nearbyAreas = [
   "Barendrecht",
   "Papendrecht",
   "Alblasserdam",
-  "Rotterdam-Zuid",
+  "Rotterdam",
 ];
 
 export default function WebsiteLatenMakenSliedrechtPage() {

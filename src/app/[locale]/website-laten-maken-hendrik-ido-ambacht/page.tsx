@@ -79,7 +79,7 @@ const nearbyAreas = [
   "Papendrecht",
   "Sliedrecht",
   "Alblasserdam",
-  "Rotterdam-Zuid",
+  "Rotterdam",
 ];
 
 export default function WebsiteLatenMakenHendrikIdoAmbachtPage() {

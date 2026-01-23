@@ -1,8 +1,14 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { type Locale, defaultLocale } from "@/i18n/config";
 
-const BLOG_DIR = path.join(process.cwd(), "content/blog");
+function getBlogDir(locale: Locale): string {
+  return path.join(process.cwd(), `content/${locale}/blog`);
+}
+
+// Legacy path for backward compatibility during migration
+const LEGACY_BLOG_DIR = path.join(process.cwd(), "content/blog");
 
 export interface BlogPost {
   slug: string;
@@ -15,6 +21,8 @@ export interface BlogPost {
   author?: string;
   featured?: boolean;
   image?: string;
+  locale: Locale;
+  isFallback?: boolean; // True if showing Dutch content for English locale
 }
 
 export interface BlogPostMeta {
@@ -27,6 +35,8 @@ export interface BlogPostMeta {
   author?: string;
   featured?: boolean;
   image?: string;
+  locale: Locale;
+  isFallback?: boolean;
 }
 
 function calculateReadTime(content: string): string {
@@ -36,17 +46,43 @@ function calculateReadTime(content: string): string {
   return `${minutes} min`;
 }
 
-export function getAllBlogPosts(): BlogPostMeta[] {
-  if (!fs.existsSync(BLOG_DIR)) {
+function getActiveDirectory(locale: Locale): { dir: string; isFallback: boolean } {
+  const localeDir = getBlogDir(locale);
+
+  // First try locale-specific directory
+  if (fs.existsSync(localeDir)) {
+    return { dir: localeDir, isFallback: false };
+  }
+
+  // If locale is not default and locale dir doesn't exist, try fallback to default
+  if (locale !== defaultLocale) {
+    const defaultDir = getBlogDir(defaultLocale);
+    if (fs.existsSync(defaultDir)) {
+      return { dir: defaultDir, isFallback: true };
+    }
+  }
+
+  // Legacy path fallback (during migration)
+  if (fs.existsSync(LEGACY_BLOG_DIR)) {
+    return { dir: LEGACY_BLOG_DIR, isFallback: locale !== defaultLocale };
+  }
+
+  return { dir: localeDir, isFallback: false };
+}
+
+export function getAllBlogPosts(locale: Locale = defaultLocale): BlogPostMeta[] {
+  const { dir, isFallback } = getActiveDirectory(locale);
+
+  if (!fs.existsSync(dir)) {
     return [];
   }
 
-  const files = fs.readdirSync(BLOG_DIR).filter((file) => file.endsWith(".mdx"));
+  const files = fs.readdirSync(dir).filter((file) => file.endsWith(".mdx"));
 
   const posts = files
     .map((file) => {
       const slug = file.replace(".mdx", "");
-      const filePath = path.join(BLOG_DIR, file);
+      const filePath = path.join(dir, file);
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = matter(fileContent);
 
@@ -60,6 +96,8 @@ export function getAllBlogPosts(): BlogPostMeta[] {
         author: data.author,
         featured: data.featured || false,
         image: data.image,
+        locale: isFallback ? defaultLocale : locale,
+        isFallback,
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -67,14 +105,45 @@ export function getAllBlogPosts(): BlogPostMeta[] {
   return posts;
 }
 
-export function getBlogPost(slug: string): BlogPost | null {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+export function getBlogPost(slug: string, locale: Locale = defaultLocale): BlogPost | null {
+  const { dir, isFallback: dirFallback } = getActiveDirectory(locale);
+  const filePath = path.join(dir, `${slug}.mdx`);
 
-  if (!fs.existsSync(filePath)) {
+  // Try locale-specific file first
+  let actualPath = filePath;
+  let isFallback = dirFallback;
+
+  if (!fs.existsSync(actualPath) && locale !== defaultLocale) {
+    // Try fallback to default locale
+    const defaultDir = getBlogDir(defaultLocale);
+    const defaultPath = path.join(defaultDir, `${slug}.mdx`);
+    if (fs.existsSync(defaultPath)) {
+      actualPath = defaultPath;
+      isFallback = true;
+    } else if (fs.existsSync(LEGACY_BLOG_DIR)) {
+      // Try legacy path
+      const legacyPath = path.join(LEGACY_BLOG_DIR, `${slug}.mdx`);
+      if (fs.existsSync(legacyPath)) {
+        actualPath = legacyPath;
+        isFallback = true;
+      }
+    }
+  }
+
+  // Also check legacy path if still not found
+  if (!fs.existsSync(actualPath)) {
+    const legacyPath = path.join(LEGACY_BLOG_DIR, `${slug}.mdx`);
+    if (fs.existsSync(legacyPath)) {
+      actualPath = legacyPath;
+      isFallback = locale !== defaultLocale;
+    }
+  }
+
+  if (!fs.existsSync(actualPath)) {
     return null;
   }
 
-  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const fileContent = fs.readFileSync(actualPath, "utf-8");
   const { data, content } = matter(fileContent);
 
   return {
@@ -88,23 +157,25 @@ export function getBlogPost(slug: string): BlogPost | null {
     author: data.author,
     featured: data.featured || false,
     image: data.image,
+    locale: isFallback ? defaultLocale : locale,
+    isFallback,
   };
 }
 
-export function getBlogPostsByCategory(category: string): BlogPostMeta[] {
-  const allPosts = getAllBlogPosts();
+export function getBlogPostsByCategory(category: string, locale: Locale = defaultLocale): BlogPostMeta[] {
+  const allPosts = getAllBlogPosts(locale);
   return allPosts.filter(
     (post) => post.category.toLowerCase() === category.toLowerCase()
   );
 }
 
-export function getFeaturedBlogPost(): BlogPostMeta | null {
-  const allPosts = getAllBlogPosts();
+export function getFeaturedBlogPost(locale: Locale = defaultLocale): BlogPostMeta | null {
+  const allPosts = getAllBlogPosts(locale);
   return allPosts.find((post) => post.featured) || allPosts[0] || null;
 }
 
-export function getBlogCategories(): { name: string; count: number }[] {
-  const allPosts = getAllBlogPosts();
+export function getBlogCategories(locale: Locale = defaultLocale): { name: string; count: number }[] {
+  const allPosts = getAllBlogPosts(locale);
   const categoryMap = new Map<string, number>();
 
   allPosts.forEach((post) => {
@@ -116,16 +187,26 @@ export function getBlogCategories(): { name: string; count: number }[] {
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count);
 
-  return [{ name: "Alle artikelen", count: allPosts.length }, ...categories];
+  const allLabel = locale === "en" ? "All articles" : "Alle artikelen";
+  return [{ name: allLabel, count: allPosts.length }, ...categories];
 }
 
-export function getAllBlogSlugs(): string[] {
-  if (!fs.existsSync(BLOG_DIR)) {
+export function getAllBlogSlugs(locale: Locale = defaultLocale): string[] {
+  const { dir } = getActiveDirectory(locale);
+
+  if (!fs.existsSync(dir)) {
+    // Try legacy path
+    if (fs.existsSync(LEGACY_BLOG_DIR)) {
+      return fs
+        .readdirSync(LEGACY_BLOG_DIR)
+        .filter((file) => file.endsWith(".mdx"))
+        .map((file) => file.replace(".mdx", ""));
+    }
     return [];
   }
 
   return fs
-    .readdirSync(BLOG_DIR)
+    .readdirSync(dir)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => file.replace(".mdx", ""));
 }
