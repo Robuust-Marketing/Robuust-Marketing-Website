@@ -12,6 +12,7 @@ import { StepServices } from "./step-services";
 import { StepContact } from "./step-contact";
 import { StepSummary } from "./step-summary";
 import { PriceCalculator } from "./price-calculator";
+import { Turnstile } from "@/components/ui/turnstile";
 
 import {
   onboardingSchema,
@@ -100,6 +101,7 @@ export function WizardContainer() {
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const methods = useForm<OnboardingData>({
     resolver: zodResolver(onboardingSchema),
@@ -156,6 +158,7 @@ export function WizardContainer() {
           ...formData,
           estimatedPrice: formattedPrice.firstYear,
           withBooking,
+          turnstileToken,
         }),
       });
 
@@ -204,6 +207,8 @@ export function WizardContainer() {
             onSubmit={handleSubmit}
             isSubmitting={isSubmitting}
             isComplete={isComplete}
+            turnstileToken={turnstileToken}
+            onTurnstileVerify={setTurnstileToken}
           />
         );
       default:

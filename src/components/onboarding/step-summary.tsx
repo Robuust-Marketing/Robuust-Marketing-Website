@@ -15,6 +15,7 @@ import {
   FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Turnstile } from "@/components/ui/turnstile";
 import { HubSpotCalendar } from "./hubspot-calendar";
 import { cn } from "@/lib/utils";
 import { services } from "@/data/services";
@@ -33,6 +34,8 @@ interface StepSummaryProps {
   onSubmit: (withBooking: boolean) => void;
   isSubmitting: boolean;
   isComplete: boolean;
+  turnstileToken: string | null;
+  onTurnstileVerify: (token: string) => void;
 }
 
 export function StepSummary({
@@ -41,6 +44,8 @@ export function StepSummary({
   onSubmit,
   isSubmitting,
   isComplete,
+  turnstileToken,
+  onTurnstileVerify,
 }: StepSummaryProps) {
   const { watch, setValue, register, control } = useFormContext<OnboardingData>();
   const formData = watch();
@@ -333,18 +338,32 @@ export function StepSummary({
         </p>
       </motion.div>
 
-      {/* Actions */}
+      {/* Turnstile Bot Protection */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
+        className="flex justify-center mb-6"
+      >
+        <Turnstile
+          onVerify={onTurnstileVerify}
+          onExpire={() => onTurnstileVerify("")}
+          theme="dark"
+        />
+      </motion.div>
+
+      {/* Actions */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
         className="space-y-4"
       >
         <Button
           type="button"
           onClick={() => onSubmit(true)}
-          disabled={isSubmitting}
-          className="w-full bg-accent hover:bg-accent-hover text-white py-6 text-lg"
+          disabled={isSubmitting || !turnstileToken}
+          className="w-full bg-accent hover:bg-accent-hover text-white py-6 text-lg disabled:opacity-50"
         >
           {isSubmitting ? (
             "Versturen..."
@@ -369,8 +388,8 @@ export function StepSummary({
           type="button"
           variant="outline"
           onClick={() => onSubmit(false)}
-          disabled={isSubmitting}
-          className="w-full border-white/20 text-white hover:bg-white/5"
+          disabled={isSubmitting || !turnstileToken}
+          className="w-full border-white/20 text-white hover:bg-white/5 disabled:opacity-50"
         >
           <Send className="mr-2 h-4 w-4" />
           Alleen versturen, neem contact met mij op

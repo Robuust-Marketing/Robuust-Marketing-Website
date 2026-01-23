@@ -145,6 +145,13 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 - `isHubSpotConfigured()` - Check if access token is set
 - `HUBSPOT_MEETING_LINK` - Calendar booking URL
 
+**`lib/turnstile.ts`** (Cloudflare Turnstile Bot Protection):
+- `verifyTurnstileToken(token, remoteip?)` - Server-side token verification
+- `isTurnstileConfigured()` - Check if secret key is set
+
+**`components/ui/turnstile.tsx`** (React component):
+- `<Turnstile onVerify={} theme="dark" />` - Bot protection widget
+
 **`lib/gtm.ts`** (Google Tag Manager + Consent Mode v2):
 - `initConsentMode()` - Initialize consent defaults (called in layout.tsx)
 - `updateConsent(consent)` - Update consent after user choice
@@ -280,6 +287,10 @@ CONTACT_EMAIL=info@robuustmarketing.nl
 
 # CRM (HubSpot Contacts API)
 HUBSPOT_ACCESS_TOKEN=pat-eu1-xxxxxxxx
+
+# Bot Protection (Cloudflare Turnstile)
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x...  # Public site key
+TURNSTILE_SECRET_KEY=0x...            # Secret key (server-side only)
 ```
 
 ---

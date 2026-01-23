@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { submitToHubSpot, isHubSpotConfigured } from "@/lib/hubspot";
+import { verifyTurnstileToken, isTurnstileConfigured } from "@/lib/turnstile";
 import { onboardingSchema } from "@/types/onboarding";
 
 export async function POST(request: Request) {
@@ -16,7 +17,22 @@ export async function POST(request: Request) {
     }
 
     const data = validationResult.data;
-    const { estimatedPrice, withBooking } = body;
+    const { estimatedPrice, withBooking, turnstileToken } = body;
+
+    // Verify Turnstile token (bot protection)
+    if (isTurnstileConfigured()) {
+      const turnstileResult = await verifyTurnstileToken(
+        turnstileToken,
+        request.headers.get("x-forwarded-for") || undefined
+      );
+
+      if (!turnstileResult.success) {
+        return NextResponse.json(
+          { error: turnstileResult.error || "Bot verificatie mislukt" },
+          { status: 403 }
+        );
+      }
+    }
 
     // Prepare HubSpot submission
     const hubspotData = {
