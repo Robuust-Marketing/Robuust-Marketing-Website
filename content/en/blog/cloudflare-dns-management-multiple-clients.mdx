@@ -1,0 +1,386 @@
+---
+title: "Cloudflare DNS Management for Multiple Clients: Best Practices"
+excerpt: "How do you efficiently manage DNS for multiple websites via Cloudflare? A practical guide for web agencies and resellers."
+category: "Cloudflare"
+date: "28 januari 2025"
+readTime: "8 min"
+author: "Robuust Marketing"
+translations:
+  nl: "cloudflare-dns-beheer-meerdere-klanten"
+---
+
+> **At Robuust we handle this for you.** DNS management is part of our hosting packages - we ensure the correct configuration and security. Are you a web agency yourself or do you want to know how it works? Read on.
+
+As a web agency, you probably manage DNS for multiple clients. Cloudflare offers powerful tools to do this efficiently. In this article we share best practices for managing DNS for multiple domains.
+
+## Why Cloudflare for DNS?
+
+Cloudflare is one of the most popular DNS providers in the world, and for good reasons:
+
+- **Free plan** with extensive capabilities
+- **Fastest DNS resolvers** worldwide
+- **DDoS protection** included
+- **CDN and caching** integrated
+- **SSL/TLS certificates** automatic
+- **Extensive API** for automation
+
+## Setting up account structure
+
+### Option 1: One account for everything
+
+All client domains under your own Cloudflare account.
+
+**Advantages:**
+- Simple overview
+- Easy to manage
+- All settings in one place
+
+**Disadvantages:**
+- Client cannot log in themselves
+- Must migrate when transferring
+- Risk if account is compromised
+
+**Suitable for:** Web agencies that want to maintain full control
+
+### Option 2: Account per client
+
+Each client has their own Cloudflare account, you are added as an administrator.
+
+**Advantages:**
+- Client owns their domain
+- Easy transfer when ending collaboration
+- Better isolation for security issues
+
+**Disadvantages:**
+- More accounts to manage
+- Must log in per account
+
+**Suitable for:** Larger clients who want ownership
+
+### Option 3: Cloudflare Partners / Reseller
+
+Through the Cloudflare Partners program you can manage client accounts from one dashboard.
+
+**Advantages:**
+- Multi-tenant management
+- Client can have their own login
+- Professional solution
+
+**Requirements:**
+- Admission to Partners program
+- Minimum number of domains
+
+## Managing DNS records
+
+### Basic DNS record types
+
+**A Record:**
+Links a domain to an IPv4 address.
+```
+example.com → 192.0.2.1
+```
+
+**AAAA Record:**
+Links a domain to an IPv6 address.
+```
+example.com → 2001:db8::1
+```
+
+**CNAME Record:**
+Alias to another domain.
+```
+www.example.com → example.com
+```
+
+**MX Record:**
+Mail server for the domain.
+```
+example.com → mail.example.com (priority 10)
+```
+
+**TXT Record:**
+Textual information, often for verification.
+```
+example.com → "v=spf1 include:_spf.google.com ~all"
+```
+
+### Cloudflare Proxy (orange cloud)
+
+The most important concept in Cloudflare is the proxy status:
+
+**Proxied (orange cloud on):**
+- Traffic goes through Cloudflare
+- IP address hidden
+- CDN, caching, security active
+- SSL via Cloudflare
+
+**DNS only (grey cloud):**
+- Only DNS resolution
+- Direct connection to server
+- No Cloudflare features
+
+**When to turn proxy off:**
+- Mail servers (MX records)
+- FTP servers
+- SSH access
+- Records that don't go via HTTP/HTTPS
+
+### Common configurations
+
+**Standard website:**
+```
+A    example.com       192.0.2.1    Proxied
+A    www.example.com   192.0.2.1    Proxied
+```
+
+**Website with mail:**
+```
+A    example.com       192.0.2.1    Proxied
+A    www              192.0.2.1    Proxied
+A    mail             192.0.2.2    DNS only
+MX   example.com       mail.example.com (10)
+TXT  example.com       "v=spf1 mx ~all"
+```
+
+**External mail (Google Workspace):**
+```
+MX   example.com       aspmx.l.google.com (1)
+MX   example.com       alt1.aspmx.l.google.com (5)
+MX   example.com       alt2.aspmx.l.google.com (5)
+TXT  example.com       "v=spf1 include:_spf.google.com ~all"
+```
+
+## SSL/TLS configuration
+
+### SSL modes
+
+**Off:**
+No SSL. Not recommended.
+
+**Flexible:**
+SSL between visitor and Cloudflare. HTTP to your server.
+- Only use if server doesn't support SSL
+- Shows padlock, but not fully secure
+
+**Full:**
+SSL to Cloudflare and to your server.
+- Server has self-signed or outdated certificate
+- Better than Flexible
+
+**Full (Strict):**
+SSL with valid certificate on server.
+- Best option
+- Requires valid certificate on origin
+
+**Recommendation:** Always use Full (Strict)
+
+### Origin certificates
+
+Cloudflare can generate free origin certificates:
+
+1. Go to SSL/TLS → Origin Server
+2. Click "Create Certificate"
+3. Choose hostnames (*.example.com, example.com)
+4. Choose validity (15 years max)
+5. Install on your server
+
+This certificate only works behind Cloudflare proxy.
+
+### Edge certificates
+
+Automatic SSL certificates for visitors:
+
+- Free via Universal SSL
+- Automatic renewal
+- Supports multiple subdomains
+
+## Caching and performance
+
+### Cache levels
+
+**No Query String:**
+Cache only if no query string present.
+
+**Ignore Query String:**
+Cache regardless of query string.
+
+**Standard:**
+Cache with full URL including query string.
+
+### Page Rules for caching
+
+Create specific rules per URL pattern:
+
+**Cache static assets aggressively:**
+```
+URL: example.com/wp-content/*
+Cache Level: Cache Everything
+Edge Cache TTL: 1 month
+```
+
+**Don't cache admin:**
+```
+URL: example.com/wp-admin/*
+Cache Level: Bypass
+```
+
+**Cache homepage:**
+```
+URL: example.com/
+Cache Level: Cache Everything
+Edge Cache TTL: 2 hours
+```
+
+### Browser TTL
+
+How long browsers cache content locally:
+
+- Static assets: 1 year
+- HTML pages: 1-4 hours
+- API responses: no caching
+
+## Security settings
+
+### Firewall basics
+
+**Security Level:**
+- Essentially Off: Minimal control
+- Low: Only serious threats
+- Medium: Known threats (recommended)
+- High: Stricter, more challenges
+- Under Attack: During active DDoS
+
+### WAF (Web Application Firewall)
+
+Protection against attacks:
+
+- SQL injection
+- XSS attacks
+- Common exploits
+
+In the free plan you can activate managed rulesets.
+
+### Bot management
+
+**Bot Fight Mode:**
+- Blocks known bad bots
+- Free available
+- Activate via Security → Bots
+
+### IP Access Rules
+
+Block or allow specific IPs:
+
+```
+Block: 192.0.2.0/24
+Challenge: AS1234 (entire ASN)
+Allow: 198.51.100.1 (your own IP)
+```
+
+## Bulk operations and automation
+
+### Cloudflare API
+
+Automate tasks via the API:
+
+```bash
+# List all zones
+curl -X GET "https://api.cloudflare.com/client/v4/zones" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json"
+
+# Create DNS record
+curl -X POST "https://api.cloudflare.com/client/v4/zones/ZONE_ID/dns_records" \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data '{"type":"A","name":"www","content":"192.0.2.1","ttl":1,"proxied":true}'
+```
+
+### Terraform
+
+Infrastructure as code for Cloudflare:
+
+```hcl
+resource "cloudflare_zone" "example" {
+  zone = "example.com"
+}
+
+resource "cloudflare_record" "www" {
+  zone_id = cloudflare_zone.example.id
+  name    = "www"
+  content = "192.0.2.1"
+  type    = "A"
+  proxied = true
+}
+```
+
+### CLI tools
+
+**Flarectl:**
+Official Cloudflare CLI tool.
+
+```bash
+flarectl dns list --zone example.com
+flarectl dns create --zone example.com --name www --type A --content 192.0.2.1
+```
+
+## Troubleshooting
+
+### Checking DNS propagation
+
+After changes it can take a while before DNS is updated everywhere:
+
+- **Cloudflare itself**: Immediate
+- **Other resolvers**: 1 minute to 48 hours
+
+Check with:
+```bash
+dig example.com @1.1.1.1
+dig example.com @8.8.8.8
+```
+
+Or use online tools like whatsmydns.net.
+
+### SSL errors
+
+**525 - SSL Handshake Failed:**
+- Certificate on server missing or invalid
+- SSL mode is Full (Strict) but server has no valid cert
+
+**526 - Invalid SSL Certificate:**
+- Server certificate has expired
+- Hostname doesn't match
+
+**521 - Web Server Is Down:**
+- Server is not reachable
+- Firewall blocks Cloudflare IPs
+
+### Cache issues
+
+**Development mode:**
+Temporarily disables caching (3 hours).
+
+**Purge cache:**
+- Everything: Purge Everything
+- Specific: Purge by URL
+
+## Best practices summary
+
+1. **Use Full (Strict) SSL** for all websites
+2. **Proxy on** for web traffic, off for mail
+3. **Standardize** your DNS record naming
+4. **Document** deviating configurations
+5. **Use API tokens** instead of Global API Key
+6. **Monitor** your zones via Cloudflare analytics
+7. **Backup** DNS records regularly
+
+Need help setting up Cloudflare for your clients? [Contact us](/en/contact) for advice.
+
+## More about Cloudflare
+
+This article is part of our Cloudflare series:
+
+- **[Cloudflare Setup for Beginners](/en/kennisbank/hosting/cloudflare-setup-beginners)** - Start here if you are new
+- **[Faster Website with Cloudflare CDN](/en/blog/cloudflare-cdn-faster-website)** - Performance optimization
+- **[Securing Your Website with Cloudflare](/en/blog/cloudflare-security-ddos-firewall)** - DDoS protection and firewall
+- **[Cloudflare Page Rules](/en/blog/cloudflare-page-rules-redirect)** - Redirects and caching configuration

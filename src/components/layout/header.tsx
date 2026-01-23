@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "@/components/motion";
 import { LanguageSwitcher, LanguageSwitcherCompact } from "@/components/language-switcher";
-import { type Locale } from "@/i18n/config";
+import { Link, type Locale } from "@/i18n/routing";
 import {
   Menu,
   X,

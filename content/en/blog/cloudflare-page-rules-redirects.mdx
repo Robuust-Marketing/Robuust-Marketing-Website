@@ -1,0 +1,389 @@
+---
+title: "Cloudflare Page Rules and Redirects: The Complete Guide"
+excerpt: "Learn how to use Page Rules for redirects, caching, and other advanced configurations in Cloudflare."
+category: "Cloudflare"
+date: "20 januari 2025"
+readTime: "8 min"
+author: "Robuust Marketing"
+translations:
+  nl: "cloudflare-page-rules-redirect"
+---
+
+> **At Robuust, we handle this for you.** We configure redirects, caching, and performance settings as part of our hosting services. Want to manage it yourself or learn more? Read on.
+
+Page Rules are one of the most powerful features in Cloudflare. They allow you to set specific behavior per URL pattern: redirects, caching, security settings, and more. In this guide, we explain everything.
+
+## What Are Page Rules?
+
+Page Rules are configurations that only apply to URLs matching a specific pattern. Examples include:
+
+- All URLs starting with /blog/*
+- The exact URL example.com/old-page
+- Everything under a subdomain: api.example.com/*
+
+You can then set specific actions for those URLs.
+
+## Page Rules vs. New Features
+
+Cloudflare is in the process of replacing Page Rules with specific features:
+
+| Old (Page Rules) | New |
+|-----------------|-------|
+| Forwarding URL | Redirect Rules |
+| Cache Level | Cache Rules |
+| Security Level | WAF Custom Rules |
+
+Both still work, but the new features offer more flexibility. We cover both.
+
+## Configuring Page Rules
+
+### Navigating to Page Rules
+
+1. Log in to Cloudflare
+2. Select your website
+3. Go to Rules > Page Rules
+
+### Free Plan Limit
+
+The free plan includes 3 Page Rules. Need more? Consider:
+- Pro plan (20 rules)
+- The new Rules features (more free rules)
+
+### URL Matching
+
+Page Rules use wildcard matching:
+
+**Exact URL:**
+```
+example.com/contact
+```
+
+**Wildcard at end:**
+```
+example.com/blog/*
+```
+Matches: /blog/, /blog/article, /blog/2024/post
+
+**Wildcard at beginning:**
+```
+*.example.com/
+```
+Matches all subdomains
+
+**Combination:**
+```
+*.example.com/*
+```
+Matches everything on all subdomains
+
+## Common Page Rules
+
+### 1. WWW to non-WWW Redirect
+
+Redirect all www traffic to non-www:
+
+**URL:** `www.example.com/*`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://example.com/$1`
+
+The `$1` captures everything that the `*` matches.
+
+### 2. Non-WWW to WWW Redirect
+
+The reverse:
+
+**URL:** `example.com/*`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://www.example.com/$1`
+
+### 3. HTTP to HTTPS Redirect
+
+Force HTTPS for everything:
+
+**URL:** `http://*example.com/*`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://$1example.com/$2`
+
+**Or better:** Use "Always Use HTTPS" in SSL/TLS settings.
+
+### 4. Old URL to New
+
+A relocated page:
+
+**URL:** `example.com/old-page`
+
+**Setting:** Forwarding URL (301 Permanent)
+
+**Destination:** `https://example.com/new-page`
+
+### 5. Cache Everything
+
+Fully cache static pages:
+
+**URL:** `example.com/landing/*`
+
+**Settings:**
+- Cache Level: Cache Everything
+- Edge Cache TTL: 1 month
+
+### 6. Bypass Cache
+
+Don't cache admin area:
+
+**URL:** `example.com/wp-admin/*`
+
+**Settings:**
+- Cache Level: Bypass
+- Disable Apps (optional)
+- Disable Performance (optional)
+
+### 7. Increase Security for Login
+
+Extra protection for login page:
+
+**URL:** `example.com/wp-login.php`
+
+**Settings:**
+- Security Level: High
+- Browser Integrity Check: On
+
+### 8. Entire Site Under Construction
+
+Temporarily redirect everything:
+
+**URL:** `example.com/*`
+
+**Setting:** Forwarding URL (302 Temporary)
+
+**Destination:** `https://example.com/maintenance.html`
+
+**Note:** Exclude the maintenance page itself!
+
+## Redirect Rules (New Method)
+
+### Why Redirect Rules?
+
+- No limit of 3 rules
+- More targeting options
+- Better performance
+- Free 10 rules
+
+### Configuring Redirect Rules
+
+1. Go to Rules > Redirect Rules
+2. Click "Create rule"
+3. Configure the rule
+
+### Example: Adding Trailing Slash
+
+**If:**
+- URI Path does not end with "/"
+- URI Path does not contain "."
+
+**Then redirect to:**
+- `concat(http.request.uri.path, "/")`
+- Status code: 301
+
+### Example: Subdirectory Redirect
+
+**If:**
+- URI Path starts with "/blog"
+
+**Then redirect to:**
+- `https://blog.example.com`
+- Status code: 301
+- Preserve query string: Yes
+
+## Cache Rules (New Method)
+
+### Configuring Cache Rules
+
+1. Go to Caching > Cache Rules
+2. Click "Create rule"
+
+### Example: Long Cache for Static Assets
+
+**If:**
+- File extension is in ["jpg", "png", "gif", "css", "js"]
+
+**Then:**
+- Cache eligibility: Eligible for cache
+- Edge TTL: 1 year
+- Browser TTL: 1 year
+
+### Example: Don't Cache API Responses
+
+**If:**
+- URI Path starts with "/api/"
+
+**Then:**
+- Cache eligibility: Bypass cache
+
+## Bulk Redirects
+
+For many redirects (migrations), use Bulk Redirects:
+
+1. Go to Rules > Bulk Redirects
+2. Create a Redirect List
+3. Upload CSV or add manually
+
+**CSV format:**
+```csv
+/old-url-1,/new-url-1,301
+/old-url-2,/new-url-2,301
+/product/123,/products/old-product,301
+```
+
+You can have up to 500 redirects per list, 20,000 total.
+
+## Transform Rules
+
+Modify requests or responses without redirect:
+
+### URL Rewrite
+
+Change the URL internally (visitor sees original URL):
+
+**If:**
+- URI Path equals "/home"
+
+**Then rewrite to:**
+- `/index.html`
+
+### Header Modification
+
+Add or modify headers:
+
+**Add response header:**
+- X-Custom-Header: value
+
+**Remove request header:**
+- Remove: X-Unwanted-Header
+
+## Troubleshooting
+
+### Redirect Loop
+
+You get ERR_TOO_MANY_REDIRECTS:
+
+**Causes:**
+1. Rule redirects to URL that also matches
+2. SSL Flexible + force HTTPS on server
+3. Conflicting rules
+
+**Solution:**
+- Check SSL mode (Full Strict)
+- Review all Page Rules
+- Check server redirects
+
+### Rule Not Working
+
+**Checklist:**
+1. Is the order correct? (top one wins)
+2. Is the URL pattern correct?
+3. Is DNS set to Proxied (orange cloud)?
+4. Wait 5 minutes after creation
+
+### Testing Rules
+
+1. Use curl with -I flag:
+```bash
+curl -I https://example.com/test-url
+```
+
+2. Check response headers:
+- Location header for redirects
+- CF-Cache-Status for caching
+
+3. Browser DevTools:
+- Network tab
+- Check redirect chain
+
+## Best Practices
+
+### 1. Minimize Page Rules
+
+With only 3 free rules, use them strategically:
+- Use "Always Use HTTPS" for HTTPS redirect
+- Use Redirect Rules for URL redirects
+- Save Page Rules for caching configuration
+
+### 2. Document Your Rules
+
+Keep track of what each rule does and why. Page Rules don't have a description field, so document externally.
+
+### 3. Test Before Production
+
+Test rules on a staging domain or with specific test URLs before applying broadly.
+
+### 4. Mind the Order
+
+Rules are evaluated from top to bottom. The first match wins.
+
+Wrong order:
+```
+1. example.com/* > Cache Everything
+2. example.com/admin/* > Bypass Cache - Never reached!
+```
+
+Correct order:
+```
+1. example.com/admin/* > Bypass Cache
+2. example.com/* > Cache Everything
+```
+
+### 5. Use 301 vs 302 Correctly
+
+- **301 Permanent**: SEO value is transferred, browsers cache
+- **302 Temporary**: No SEO transfer, not cached
+
+Use 301 for permanent moves, 302 for temporary ones.
+
+## Example Configuration
+
+Complete setup for a WordPress site:
+
+**Rule 1:** Bypass admin
+```
+URL: example.com/wp-admin/*
+Actions: Cache Level: Bypass
+```
+
+**Rule 2:** Bypass login
+```
+URL: example.com/wp-login.php
+Actions: Cache Level: Bypass, Security Level: High
+```
+
+**Rule 3:** Cache content
+```
+URL: example.com/wp-content/*
+Actions: Cache Level: Cache Everything, Edge TTL: 1 month
+```
+
+Plus Redirect Rules for:
+- WWW to non-WWW
+- Old URLs to new
+
+## Conclusion
+
+Page Rules and the newer Rules features give you precise control over how Cloudflare treats your site. Start with the basics - redirects and caching - and build from there.
+
+With the new Redirect Rules and Cache Rules, you have more flexibility than ever, without the limit of 3 Page Rules in the free plan.
+
+Need help configuring your Cloudflare rules? [Contact us](/en/contact).
+
+## More About Cloudflare
+
+This article is part of our Cloudflare series:
+
+- **[Cloudflare Setup for Beginners](/en/kennisbank/hosting/cloudflare-setup-beginners)** - Start here if you're new
+- **[Faster Website with Cloudflare CDN](/en/blog/cloudflare-cdn-website-sneller)** - Performance optimization
+- **[Cloudflare DNS Management](/en/blog/cloudflare-dns-beheer-meerdere-klanten)** - DNS configuration explained
+- **[Secure Your Website with Cloudflare](/en/blog/cloudflare-beveiligen-ddos-firewall)** - DDoS protection and firewall

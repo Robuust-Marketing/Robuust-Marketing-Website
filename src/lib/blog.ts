@@ -10,6 +10,11 @@ function getBlogDir(locale: Locale): string {
 // Legacy path for backward compatibility during migration
 const LEGACY_BLOG_DIR = path.join(process.cwd(), "content/blog");
 
+export interface BlogTranslations {
+  nl?: string;
+  en?: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -23,6 +28,7 @@ export interface BlogPost {
   image?: string;
   locale: Locale;
   isFallback?: boolean; // True if showing Dutch content for English locale
+  translations?: BlogTranslations;
 }
 
 export interface BlogPostMeta {
@@ -37,6 +43,7 @@ export interface BlogPostMeta {
   image?: string;
   locale: Locale;
   isFallback?: boolean;
+  translations?: BlogTranslations;
 }
 
 function calculateReadTime(content: string): string {
@@ -98,6 +105,7 @@ export function getAllBlogPosts(locale: Locale = defaultLocale): BlogPostMeta[] 
         image: data.image,
         locale: isFallback ? defaultLocale : locale,
         isFallback,
+        translations: data.translations,
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -159,7 +167,56 @@ export function getBlogPost(slug: string, locale: Locale = defaultLocale): BlogP
     image: data.image,
     locale: isFallback ? defaultLocale : locale,
     isFallback,
+    translations: data.translations,
   };
+}
+
+/**
+ * Get the translated slug for a blog post
+ * @param slug Current slug
+ * @param fromLocale Current locale
+ * @param toLocale Target locale
+ * @returns Translated slug if available, otherwise null
+ */
+export function getTranslatedSlug(
+  slug: string,
+  fromLocale: Locale,
+  toLocale: Locale
+): string | null {
+  const post = getBlogPost(slug, fromLocale);
+  if (!post || !post.translations) {
+    return null;
+  }
+  return post.translations[toLocale] || null;
+}
+
+/**
+ * Get all blog slugs with their translations for static params generation
+ */
+export function getAllBlogSlugsWithTranslations(locale: Locale): {
+  slug: string;
+  translations?: BlogTranslations;
+}[] {
+  const dir = getBlogDir(locale);
+
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => {
+      const slug = file.replace(".mdx", "");
+      const filePath = path.join(dir, file);
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      const { data } = matter(fileContent);
+
+      return {
+        slug,
+        translations: data.translations,
+      };
+    });
 }
 
 export function getBlogPostsByCategory(category: string, locale: Locale = defaultLocale): BlogPostMeta[] {

@@ -1,0 +1,333 @@
+---
+title: "Make Your Website Faster with Cloudflare CDN: Complete Guide"
+excerpt: "Learn how to use Cloudflare's free CDN to make your website significantly faster for visitors worldwide."
+category: "Cloudflare"
+date: "25 januari 2025"
+readTime: "7 min"
+author: "Robuust Marketing"
+translations:
+  nl: "cloudflare-cdn-website-sneller"
+---
+
+> **At Robuust we handle this for you.** All our hosting packages include Cloudflare CDN, fully configured and optimized. Want to manage it yourself or learn how it works? Read on.
+
+A Content Delivery Network (CDN) can make your website significantly faster. Cloudflare offers a powerful CDN - and the best news? It is free. In this guide we explain how to configure it optimally.
+
+## What is a CDN?
+
+A CDN is a network of servers distributed across the world. Instead of every visitor fetching content from your single server (perhaps in Amsterdam), the visitor fetches it from the nearest CDN location.
+
+**Without CDN:**
+Visitor in Sydney → Server in Amsterdam (250ms+ latency)
+
+**With CDN:**
+Visitor in Sydney → CDN edge in Sydney (20ms latency)
+
+### Cloudflare's network
+
+Cloudflare has:
+- 310+ datacenters worldwide
+- Presence in 120+ countries
+- Average < 50ms from 95% of internet users
+
+## Activating Cloudflare for your website
+
+### Step 1: Create an account
+
+1. Go to cloudflare.com
+2. Create a free account
+3. Click "Add a Site"
+4. Enter your domain name
+
+### Step 2: Import DNS
+
+Cloudflare scans your existing DNS records and imports them automatically. Check:
+
+- Are all records imported?
+- Are the correct records set to "Proxied" (orange cloud)?
+- Are mail records set to "DNS only" (grey cloud)?
+
+### Step 3: Change nameservers
+
+Cloudflare gives you two nameservers:
+```
+ada.ns.cloudflare.com
+bert.ns.cloudflare.com
+```
+
+Change these at your domain registrar. This can take 24-48 hours to propagate.
+
+### Step 4: Wait for activation
+
+Cloudflare automatically checks if the nameservers have been updated. You will receive an email when your site is active.
+
+## Optimizing caching
+
+### What gets cached?
+
+By default, Cloudflare only caches static files:
+
+- Images (jpg, png, gif, webp, svg, ico)
+- Stylesheets (css)
+- JavaScript (js)
+- Fonts (woff, woff2, ttf, eot)
+- Documents (pdf)
+
+HTML is NOT cached by default.
+
+### Browser Cache TTL
+
+How long browsers keep files locally:
+
+1. Go to Caching → Configuration
+2. Set Browser Cache TTL
+3. Recommended: 4 hours for dynamic sites, 1 year for static assets
+
+### Edge Cache TTL
+
+How long Cloudflare stores content:
+
+**Via Page Rules:**
+```
+URL: example.com/*.jpg
+Edge Cache TTL: 1 month
+```
+
+**Via Cache-Control headers** (better):
+Your server sends headers:
+```
+Cache-Control: public, max-age=31536000
+```
+
+### HTML caching
+
+Want to cache HTML too? This can provide significant performance gains, but be careful with dynamic content.
+
+**Option 1: Page Rules**
+```
+URL: example.com/static-page/*
+Cache Level: Cache Everything
+Edge Cache TTL: 1 day
+```
+
+**Option 2: Cache Rules (newer)**
+More flexibility and control via Caching → Cache Rules.
+
+### Bypass for dynamic pages
+
+Make sure you do NOT cache these pages:
+
+- Admin/dashboard (/wp-admin/*, /admin/*)
+- Checkout/cart pages
+- User-specific content
+- API endpoints with auth
+
+## Performance features
+
+### Auto Minify
+
+Automatically shrink HTML, CSS and JavaScript:
+
+1. Go to Speed → Optimization
+2. Enable Auto Minify for CSS, JS and HTML
+
+**Note:** Always test after enabling. Some scripts may break.
+
+### Brotli compression
+
+Brotli is more effective than gzip:
+
+1. Speed → Optimization → Content Optimization
+2. Enable Brotli
+
+This is on by default - check if it is active.
+
+### Rocket Loader
+
+Optimizes JavaScript loading:
+
+- Loads JS asynchronously
+- Prevents render-blocking
+- Can provide significant speed boost
+
+**Warning:** May break JavaScript functionality. Test thoroughly.
+
+### Polish (Pro plan)
+
+Automatic image optimization:
+
+- Lossless compression
+- Lossy compression (more aggressive)
+- WebP conversion
+
+Only available in paid plans.
+
+### Mirage (Pro plan)
+
+Lazy loading for images:
+
+- Loads placeholder first
+- Full image on scroll
+- Improves mobile performance
+
+### HTTP/2 and HTTP/3
+
+Cloudflare automatically supports:
+
+- **HTTP/2**: Multiplexing, header compression
+- **HTTP/3**: QUIC protocol, even faster
+
+No configuration needed - works automatically.
+
+## Image optimization (free alternatives)
+
+In the free plan you can optimize images with:
+
+### Cloudflare Images (paid)
+
+- Resize on-the-fly
+- Format conversion
+- Optimization
+
+### Alternative: Image CDN
+
+External services you can combine with Cloudflare:
+
+- **imgix**
+- **Cloudinary**
+- **ImageKit**
+
+### On your server
+
+Optimize images before uploading:
+
+- TinyPNG/TinyJPG
+- Squoosh
+- ImageOptim
+
+## Measuring performance
+
+### Cloudflare Analytics
+
+Go to Analytics → Traffic:
+
+- Requests served by Cloudflare
+- Bandwidth saved
+- Cached vs uncached requests
+
+### Cache hit ratio
+
+Aim for > 90% cache hit ratio for static content.
+
+Go to Caching → Analytics:
+- See cache hit/miss/expired ratio
+- Identify uncached resources
+
+### Speed test tools
+
+Measure your actual speed:
+
+- **PageSpeed Insights**: Google's tool
+- **GTmetrix**: Comprehensive analysis
+- **WebPageTest**: Professional tests
+
+Measure BEFORE and AFTER Cloudflare to see the difference.
+
+## Troubleshooting
+
+### Content is not being cached
+
+Check:
+
+1. **Proxy status**: Is the orange cloud on?
+2. **Cache-Control header**: No no-cache or private?
+3. **Set-Cookie header**: Present? Prevents caching
+4. **Query strings**: Can affect caching
+
+### Outdated content
+
+Visitors see old version:
+
+1. **Purge cache**: Caching → Configuration → Purge Cache
+2. **Development Mode**: Temporarily disable caching
+3. **Cache-busting**: Add version parameter to URLs
+
+### Website has become slower
+
+Possible causes:
+
+- Server is far away, no cache hits
+- Misconfiguration of settings
+- SSL mode not optimal
+
+Check:
+- SSL/TLS is set to Full (Strict)
+- Server location vs visitors
+- Cache analytics for hits/misses
+
+## Advanced: Workers
+
+Cloudflare Workers are serverless functions on the edge:
+
+**Capabilities:**
+- Custom caching logic
+- A/B testing
+- Redirects
+- Header manipulation
+
+**Example: Cache HTML for anonymous visitors**
+```javascript
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  // Check for cookies indicating auth
+  if (request.headers.get('Cookie')?.includes('logged_in=')) {
+    // Don't cache for logged-in users
+    return fetch(request)
+  }
+
+  // Cache for anonymous visitors
+  return fetch(request, {
+    cf: {
+      cacheTtl: 3600,
+      cacheEverything: true
+    }
+  })
+}
+```
+
+## Checklist: optimal configuration
+
+- [ ] SSL/TLS on Full (Strict)
+- [ ] Browser Cache TTL configured
+- [ ] Auto Minify active
+- [ ] Brotli on
+- [ ] Static assets proxied
+- [ ] Page rules for caching
+- [ ] Admin/dynamic pages bypassed
+- [ ] Performance measured
+- [ ] Cache hit ratio checked
+
+## Conclusion
+
+Cloudflare's free CDN can make your website significantly faster. The basic setup is simple, but the real gains come from optimizing caching.
+
+Start with the basics, measure your results, and optimize step by step. When in doubt: always test thoroughly before activating features in production.
+
+Need help optimizing your Cloudflare setup? [Contact us](/en/contact) for advice.
+
+## More about Cloudflare
+
+This article is part of our Cloudflare series:
+
+- **[Cloudflare Setup for Beginners](/en/kennisbank/hosting/cloudflare-setup-beginners)** - Start here if you are new
+- **[Cloudflare DNS Management](/en/blog/cloudflare-dns-management-multiple-clients)** - DNS configuration explained
+- **[Securing Your Website with Cloudflare](/en/blog/cloudflare-security-ddos-firewall)** - DDoS protection and firewall
+- **[Cloudflare Page Rules](/en/blog/cloudflare-page-rules-redirect)** - Redirects and advanced configuration
+
+## Related
+
+- **[Core Web Vitals Explained](/en/blog/core-web-vitals-explained)** - How speed affects your SEO
+- **[Website Performance Optimization](/en/kennisbank/development/website-performance-optimalisatie)** - More than just CDN

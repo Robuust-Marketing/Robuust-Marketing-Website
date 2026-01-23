@@ -1,0 +1,246 @@
+---
+title: "WordPress Duplicate Page or Post: 3 Methods Explained"
+excerpt: "Want to copy a page or blog post in WordPress? Discover three ways to quickly duplicate content."
+category: "WordPress"
+date: "15 januari 2025"
+readTime: "5 min"
+author: "Robuust Marketing"
+translations:
+  nl: "wordpress-pagina-dupliceren"
+---
+
+Sometimes you want to use an existing page or post as a basis for new content. In WordPress, there are multiple ways to do this. We discuss three options: with a plugin, manual copying, and via code.
+
+## Why Duplicate Pages?
+
+Common reasons to duplicate:
+
+- **Reuse template**: Same layout for similar pages
+- **Consistent structure**: Product pages or team members
+- **A/B testing**: Compare two versions
+- **Backup for major changes**: Keep the original
+- **Translation preparation**: Base for other language versions
+
+## Method 1: With Plugin (recommended)
+
+The easiest way is with a plugin. We recommend **Duplicate Post** (by Yoast).
+
+### Installation
+
+1. Go to **Plugins** > **Add New**
+2. Search for "Duplicate Post"
+3. Install the plugin by Yoast
+4. Click **Activate**
+
+### Duplicate a Page
+
+After installation, new options appear:
+
+1. Go to **Pages** > **All Pages**
+2. Hover over the page you want to copy
+3. You'll now see extra options:
+   - **Clone**: Creates a direct copy as draft
+   - **New Draft**: Opens the editor with a copy
+   - **Rewrite & Republish**: For revising a live page
+
+4. Click **Clone** for a quick copy
+5. Your copy appears as a draft
+
+### Duplicate a Post
+
+Works identically:
+
+1. Go to **Posts** > **All Posts**
+2. Hover over the post
+3. Click **Clone** or **New Draft**
+
+### Plugin Settings
+
+Customize what gets copied:
+
+1. Go to **Settings** > **Duplicate Post**
+2. Configure:
+
+**What to copy:**
+- Title (on)
+- Date (off - gets new date)
+- Status (draft recommended)
+- Slug/permalink (on)
+- Excerpt (on)
+- Content (on)
+- Featured image (on)
+- Template (on)
+- Categories and tags (as needed)
+
+**Prefix/suffix:**
+- Prefix: "Copy of" (optional)
+- Suffix: "(copy)" (optional)
+
+**Where to display:**
+- Post list (on)
+- Edit screen (on)
+- Admin bar (as needed)
+
+### Set Permissions
+
+Determine who can duplicate:
+
+1. Go to **Settings** > **Duplicate Post** > **Permissions**
+2. Check which user roles can copy
+3. Choose which post types (posts, pages, etc.)
+
+## Method 2: Manual Copying
+
+No plugin needed? You can also copy manually.
+
+### Via the Code Editor
+
+1. Open the page/post you want to copy
+2. Click the **three dots** at the top right (...)
+3. Click **Code Editor** (or press Ctrl/Cmd + Shift + Alt + M)
+4. Select all code (Ctrl/Cmd + A)
+5. Copy (Ctrl/Cmd + C)
+
+Now create a new page:
+
+1. Go to **Pages** > **Add New**
+2. Switch to **Code Editor**
+3. Paste the copied code (Ctrl/Cmd + V)
+4. Switch back to **Visual Editor**
+5. Adjust the title and content
+6. Save as draft
+
+### Note About Manual Copying
+
+This does NOT copy:
+
+- Featured image
+- SEO settings
+- Categories and tags
+- Page attributes (template, order, parent page)
+- Custom fields
+
+You'll need to set these manually again.
+
+## Method 3: Via Database (for developers)
+
+For technically proficient users or developers.
+
+### Warning
+
+Never work directly on the live database without a backup. Only use this method if you know what you're doing.
+
+### SQL Query
+
+```sql
+-- Step 1: Copy the post
+INSERT INTO wp_posts (post_author, post_date, post_date_gmt, post_content,
+post_title, post_excerpt, post_status, comment_status, ping_status,
+post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt,
+post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type,
+comment_count)
+SELECT post_author, NOW(), NOW(), post_content,
+CONCAT(post_title, ' (copy)'), post_excerpt, 'draft', comment_status,
+ping_status, post_password, CONCAT(post_name, '-copy'), to_ping, pinged,
+NOW(), NOW(), post_content_filtered, post_parent, '', menu_order, post_type,
+post_mime_type, 0
+FROM wp_posts
+WHERE ID = 123; -- Replace 123 with the original post ID
+
+-- Step 2: Copy the post meta
+INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+SELECT LAST_INSERT_ID(), meta_key, meta_value
+FROM wp_postmeta
+WHERE post_id = 123; -- Same original post ID
+```
+
+### Via WP-CLI
+
+If you have WP-CLI installed:
+
+```bash
+# Install a duplicate plugin via CLI
+wp plugin install duplicate-post --activate
+
+# Or export and import
+wp post get 123 --format=json > post.json
+# Edit post.json (remove ID, adjust title)
+wp post create post.json --porcelain
+```
+
+## Bulk Duplicating
+
+Need to duplicate many pages at once?
+
+### With Duplicate Post Plugin
+
+1. Go to **Pages** > **All Pages**
+2. Select multiple pages with the checkboxes
+3. Choose **Bulk Actions** > **Clone**
+4. Click **Apply**
+
+### With WP-CLI (developers)
+
+```bash
+# Duplicate all pages in a category
+for id in $(wp post list --post_type=page --format=ids); do
+  wp post create --post_type=page --post_status=draft \
+    --post_title="$(wp post get $id --field=post_title) (copy)" \
+    --post_content="$(wp post get $id --field=post_content)"
+done
+```
+
+## After Duplicating
+
+### Checklist for Duplicated Content
+
+After duplicating, don't forget:
+
+- [ ] Adjust **title**
+- [ ] Change **URL (slug)** to something unique
+- [ ] Check/adjust **featured image**
+- [ ] Adjust **SEO title and description**
+- [ ] Check **internal links** (do they point to the right page?)
+- [ ] Check **date** (if relevant)
+- [ ] Check **category/tags**
+
+### Avoiding Duplicate Content
+
+Google doesn't like duplicate content. Make sure:
+
+- Each page has unique content
+- The duplicated version differs substantially
+- Or one of them is "noindex" while editing
+
+## Frequently Asked Questions
+
+**Are images also duplicated?**
+The image blocks are copied, but they refer to the same media files. The files themselves are not duplicated.
+
+**Are SEO settings copied?**
+With Duplicate Post: yes (if you check that in the settings). Manually: no.
+
+**Can I duplicate WooCommerce products?**
+Yes, WooCommerce has a built-in duplicate function. Hover over a product and click "Duplicate".
+
+**Will the published page be affected if I modify the draft?**
+No, the copy is a completely separate post. Changes to the copy do not affect the original.
+
+**How do I duplicate only a specific part of a page?**
+Select the blocks in the editor, click the three dots, choose "Copy blocks". Paste in the new page.
+
+## Conclusion
+
+For most users, the Duplicate Post plugin is the best option:
+
+- Easy to use
+- Configurable what gets copied
+- Works with bulk actions
+- Free and reliable
+
+Need help with WordPress? [Contact us](/en/contact).
+
+## More WordPress Guides
+
+- **[WordPress Menu Customization](/en/blog/wordpress-menu-customization)** - Managing and optimizing navigation
+- **[WordPress Media Library Management](/en/blog/wordpress-media-management)** - Organizing images and files

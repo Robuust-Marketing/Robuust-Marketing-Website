@@ -1347,5 +1347,97 @@
       "question2": "How long does a project take?",
       "question3": "Do you also offer maintenance?"
     }
+  },
+  "blogPage": {
+    "badge": "Blog",
+    "titleLine1": "Insights &",
+    "titleLine2": "articles",
+    "subtitle": "Tips, trends and in-depth articles about SEO, social media and online marketing.",
+    "newsletter": {
+      "title": "Stay informed",
+      "subtitle": "Receive the latest articles and tips in your inbox monthly.",
+      "placeholder": "you@email.com",
+      "ariaLabel": "Email address for newsletter",
+      "button": "Subscribe"
+    },
+    "categories": {
+      "title": "Categories",
+      "all": "All articles",
+      "noArticlesInCategory": "No articles found in \"{category}\".",
+      "noArticles": "No articles available yet."
+    }
+  },
+  "glossaryPage": {
+    "backToKennisbank": "Back to knowledge base",
+    "title": "Glossary",
+    "subtitle": "All industry jargon explained in understandable language.",
+    "searchPlaceholder": "Search a term...",
+    "all": "All",
+    "noResults": "No terms found. Try a different search."
+  },
+  "kennisbankPage": {
+    "badge": "Knowledge Base",
+    "titleLine1": "Learn &",
+    "titleLine2": "develop",
+    "subtitle": "In-depth guides and tutorials about web development, SEO and hosting.",
+    "featuredGuides": {
+      "title": "Popular guides",
+      "readGuide": "Read guide"
+    },
+    "categories": {
+      "title": "Explore by category",
+      "subtitle": "Find the information you're looking for by topic.",
+      "comingSoon": "Guides coming soon.",
+      "allGuides": "All {category} guides"
+    },
+    "cta": {
+      "title": "Missing something?",
+      "subtitle": "Do you have a question that isn't answered? Let us know and we'll be happy to help.",
+      "button": "Ask your question"
+    }
+  },
+  "portfolioDetailPage": {
+    "backToPortfolio": "Back to portfolio",
+    "projectType": {
+      "new": "New build",
+      "redesign": "Redesign"
+    },
+    "viewLiveWebsite": "View live website",
+    "challenge": {
+      "title": "The challenge"
+    },
+    "solution": {
+      "title": "Our solution"
+    },
+    "results": {
+      "title": "Results",
+      "subtitle": "What this project delivered"
+    },
+    "services": {
+      "title": "Services used",
+      "subtitle": "The expertise we deployed for this project",
+      "labels": {
+        "design": "Design",
+        "development": "Development",
+        "hosting": "Hosting",
+        "maintenance": "Maintenance",
+        "tracking": "Tracking & Analytics",
+        "email-marketing": "Email Marketing",
+        "online-marketing": "Online Marketing",
+        "branding": "Branding",
+        "seo": "SEO",
+        "crm": "CRM"
+      }
+    },
+    "navigation": {
+      "previous": "Previous project",
+      "next": "Next project"
+    },
+    "cta": {
+      "title": "Want similar results?",
+      "subtitle": "Let's discuss how we can take your website to the next level.",
+      "primaryButton": "Start your project",
+      "secondaryButton": "View more projects"
+    }
   }
 }

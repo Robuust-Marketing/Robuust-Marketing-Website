@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Clock, Tag, Calendar, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings } from "@/lib/blog";
+import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings, getTranslatedSlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { setRequestLocale } from "next-intl/server";
 import { locales, type Locale } from "@/i18n/config";
@@ -15,6 +15,7 @@ import {
   MobileActionBar,
   ArticleNavigation,
   Breadcrumbs,
+  BlogTranslationSetter,
 } from "@/components/blog";
 
 export async function generateStaticParams() {
@@ -45,9 +46,28 @@ export async function generateMetadata({
     };
   }
 
+  // Build hreflang alternates
+  const alternates: { canonical: string; languages: Record<string, string> } = {
+    canonical: `https://robuustmarketing.nl${locale === "nl" ? "" : `/${locale}`}/blog/${slug}`,
+    languages: {},
+  };
+
+  // Add current locale
+  const nlSlug = locale === "nl" ? slug : (post.translations?.nl || null);
+  const enSlug = locale === "en" ? slug : (post.translations?.en || null);
+
+  if (nlSlug) {
+    alternates.languages["nl"] = `https://robuustmarketing.nl/blog/${nlSlug}`;
+    alternates.languages["x-default"] = `https://robuustmarketing.nl/blog/${nlSlug}`;
+  }
+  if (enSlug) {
+    alternates.languages["en"] = `https://robuustmarketing.nl/en/blog/${enSlug}`;
+  }
+
   return {
     title: `${post.title} | Blog | Robuust Marketing`,
     description: post.excerpt,
+    alternates,
   };
 }
 
@@ -220,6 +240,13 @@ export default async function BlogPostPage({
 
   return (
     <>
+      {/* Set blog translations for language switcher */}
+      <BlogTranslationSetter
+        translations={post.translations}
+        currentSlug={slug}
+        currentLocale={locale as "nl" | "en"}
+      />
+
       {/* Skip Link */}
       <a
         href="#article-content"

@@ -1,0 +1,264 @@
+---
+title: "WordPress Menu Customization: Managing and Optimizing Navigation"
+excerpt: "Learn how to create, edit, and optimize menus in WordPress. From basic navigation to dropdown menus."
+category: "WordPress"
+date: "10 januari 2025"
+readTime: "5 min"
+author: "Robuust Marketing"
+translations:
+  nl: "wordpress-menu-aanpassen"
+---
+
+A good menu helps visitors easily find what they're looking for. In WordPress, you can fully customize menus. This guide explains how.
+
+## Opening Menus
+
+1. Go to **Appearance** > **Menus**
+2. Or via the Customizer: **Appearance** > **Customizer** > **Menus**
+
+## Creating a New Menu
+
+### Step 1: Create Menu
+
+1. Click **Create a new menu**
+2. Give the menu a name (e.g., "Main Menu" or "Footer Menu")
+3. Click **Create Menu**
+
+### Step 2: Add Items
+
+On the left side, you'll see sources to choose items from:
+
+**Pages:**
+1. Check the pages you want to add
+2. Click **Add to Menu**
+
+**Posts:**
+1. Click on **Posts** to expand
+2. Check posts
+3. Click **Add to Menu**
+
+**Custom Links:**
+1. Click on **Custom Links**
+2. Enter the URL
+3. Provide link text
+4. Click **Add to Menu**
+
+Useful for external links or specific URLs.
+
+**Categories:**
+1. Click on **Categories**
+2. Check categories
+3. Click **Add to Menu**
+
+### Step 3: Arrange Items
+
+Drag items to set the order:
+
+- **Up/down**: Changes the order
+- **Indent to the right**: Makes it a submenu item
+
+### Step 4: Choose Menu Location
+
+At the bottom of the page:
+
+1. Check where the menu should appear:
+   - Primary Menu (main navigation)
+   - Footer Menu
+   - Other locations (depending on your theme)
+
+2. Click **Save Menu**
+
+## Editing Menu Items
+
+### Change Name
+
+1. Click the arrow on the right of the menu item
+2. Modify **Navigation Label**
+3. This is the text visitors will see
+
+### Change URL
+
+For custom links, you can adjust the URL. For pages/posts, it automatically links to the correct location.
+
+### Delete Item
+
+1. Click the arrow to open the item
+2. Click **Remove**
+
+## Creating Dropdown Menus
+
+Submenus (dropdowns) are created by indenting items:
+
+### Method 1: Drag
+
+1. Drag the item slightly to the right
+2. It shifts under the parent item
+3. A line shows the hierarchy
+
+### Method 2: Indent
+
+1. Open the menu item (click the arrow)
+2. Use the links **Under [item]** to nest
+
+### Example Structure
+
+```
+- Home
+- Services
+  - Web Design
+  - Development
+  - Hosting
+- About Us
+- Contact
+```
+
+"Web Design", "Development", and "Hosting" are submenu items of "Services".
+
+## Managing Menu Locations
+
+### Assign Locations
+
+1. Click **Manage Locations** (tab at top)
+2. Choose which menu appears where:
+   - Primary Menu: [Select menu]
+   - Footer Menu: [Select menu]
+
+### Multiple Menus
+
+You can create different menus for different locations:
+- Extensive main menu
+- Shortened footer menu
+- Simple mobile menu
+
+## Advanced Options
+
+### Enable Extra Fields
+
+1. Click **Screen Options** at the top right
+2. Check extra options:
+   - Link Target (open in new tab)
+   - Title Attribute (tooltip)
+   - CSS Classes
+   - Link Relationship (nofollow)
+   - Description
+
+### Open in New Tab
+
+For external links:
+
+1. Enable **Link Target** via Screen Options
+2. Open the menu item
+3. Check **Open link in a new tab**
+
+### Add CSS Class
+
+For custom styling:
+
+1. Enable **CSS Classes** via Screen Options
+2. Open the menu item
+3. Enter a class name
+
+You can then style this class in your theme CSS.
+
+### Add Description
+
+For menus that display descriptions (e.g., mega menus):
+
+1. Enable **Description** via Screen Options
+2. Open the menu item
+3. Enter a short description
+
+Whether this is displayed depends on your theme.
+
+## Mobile Menus
+
+Most themes automatically show a "hamburger" menu on mobile. This uses the same menu but in a compact view.
+
+### Tips for Mobile Menus
+
+- Keep the menu short (max 5-7 main items)
+- Ensure submenus don't go too deep (max 2 levels)
+- Test on a real phone
+
+### Separate Mobile Navigation
+
+Some themes offer a separate mobile menu location. Check your theme settings.
+
+## Menu via the Customizer
+
+An alternative way to edit menus:
+
+1. Go to **Appearance** > **Customizer**
+2. Click on **Menus**
+3. Choose a menu to edit
+4. You'll see changes live in the preview
+
+### Customizer Advantages
+
+- Live preview of changes
+- Easy testing without publishing
+- Alternative interface
+
+## Frequently Asked Questions
+
+**How do I create a menu item that doesn't link anywhere?**
+Create a custom link with `#` as the URL. This creates a non-clickable label, useful as a header for a dropdown.
+
+**Can I add icons to menu items?**
+Not by default. Options:
+- Use a plugin like "Menu Icons by ThemeIsle"
+- Add icons via CSS classes
+- Some themes have built-in icon support
+
+**The submenu doesn't appear?**
+Check:
+- Is the item correctly indented?
+- Does your theme support dropdown menus?
+- Is a plugin conflicting with the menu?
+
+**How do I create a mega menu?**
+For extensive dropdown menus with multiple columns:
+- Use a plugin like "Max Mega Menu"
+- Or check if your theme has mega menu support
+
+**Menu doesn't show after saving?**
+- Is the menu assigned to a location?
+- Is the cache cleared?
+- Is the theme menu in the right place?
+
+## Best Practices for Navigation
+
+### Keep It Simple
+
+- Max 7 items in main menu
+- Max 2 levels deep
+- Clear, descriptive labels
+
+### Prioritize Important Pages
+
+- Most important items on the left (seen first)
+- "Contact" or CTA on the right (fixed position)
+
+### Be Consistent
+
+- Use the same terms as on the pages
+- Keep order logical
+- Mobile and desktop should feel consistent
+
+### Test with Real Users
+
+- Can they find the most important pages?
+- Is the structure logical?
+- Does it work on all devices?
+
+## Conclusion
+
+A good menu is crucial for user experience. Take time to plan your navigation before you start building. Test regularly and adjust based on how visitors use your site.
+
+Need help optimizing your WordPress navigation? [Contact us](/en/contact).
+
+## More WordPress Guides
+
+- **[WordPress Media Library Management](/en/blog/wordpress-media-management)** - Organizing images and files
+- **[WordPress Duplicate Pages](/en/blog/wordpress-duplicate-page)** - Copy content quickly
+- **[7 UX Mistakes on SMB Websites](/en/blog/ux-fouten-mkb-websites)** - Improve your user experience

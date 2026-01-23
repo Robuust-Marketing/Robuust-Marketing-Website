@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowLeft, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -124,6 +125,7 @@ const glossaryTerms = [
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 export default function GlossaryPage() {
+  const t = useTranslations("glossaryPage");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
 
@@ -162,7 +164,7 @@ export default function GlossaryPage() {
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
-            Terug naar kennisbank
+            {t("backToKennisbank")}
           </Link>
 
           <motion.h1
@@ -171,7 +173,7 @@ export default function GlossaryPage() {
             transition={{ duration: 0.5 }}
             className="text-4xl sm:text-5xl font-bold text-white mb-6"
           >
-            Glossary
+            {t("title")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -179,7 +181,7 @@ export default function GlossaryPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Alle vakjargon uitgelegd in begrijpelijke taal.
+            {t("subtitle")}
           </motion.p>
 
           {/* Search */}
@@ -192,7 +194,7 @@ export default function GlossaryPage() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Zoek een begrip..."
+              placeholder={t("searchPlaceholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-12 py-6 text-lg bg-surface border-white/10"
@@ -214,7 +216,7 @@ export default function GlossaryPage() {
                   : "text-muted-foreground hover:text-white"
               }`}
             >
-              Alle
+              {t("all")}
             </button>
             {alphabet.map((letter) => {
               const hasTerms = glossaryTerms.some((t) =>
@@ -247,7 +249,7 @@ export default function GlossaryPage() {
           {filteredTerms.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-muted-foreground">
-                Geen begrippen gevonden. Probeer een andere zoekopdracht.
+                {t("noResults")}
               </p>
             </div>
           ) : (

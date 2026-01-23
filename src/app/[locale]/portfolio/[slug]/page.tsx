@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { notFound } from "next/navigation";
 import {
@@ -16,20 +17,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { portfolioItems } from "@/data/portfolio";
 
-const serviceLabels: Record<string, string> = {
-  design: "Design",
-  development: "Development",
-  hosting: "Hosting",
-  maintenance: "Onderhoud",
-  tracking: "Tracking & Analytics",
-  "email-marketing": "Email Marketing",
-  "online-marketing": "Online Marketing",
-  branding: "Branding",
-  seo: "SEO",
-  crm: "CRM",
-};
-
 export default function CaseStudyPage() {
+  const t = useTranslations("portfolioDetailPage");
   const params = useParams();
   const slug = params.slug as string;
 
@@ -75,7 +64,7 @@ export default function CaseStudyPage() {
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Terug naar portfolio
+              {t("backToPortfolio")}
             </Link>
           </motion.div>
 
@@ -98,7 +87,7 @@ export default function CaseStudyPage() {
                       : "bg-blue-500/20 text-blue-400"
                   }`}
                 >
-                  {project.projectType === "new" ? "Nieuw gebouwd" : "Redesign"}
+                  {project.projectType === "new" ? t("projectType.new") : t("projectType.redesign")}
                 </span>
               </motion.div>
 
@@ -160,7 +149,7 @@ export default function CaseStudyPage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    Bekijk live website
+                    {t("viewLiveWebsite")}
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
@@ -199,7 +188,7 @@ export default function CaseStudyPage() {
                 <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center">
                   <span className="text-red-400 text-lg font-bold">?</span>
                 </div>
-                <h2 className="text-2xl font-bold text-white">De uitdaging</h2>
+                <h2 className="text-2xl font-bold text-white">{t("challenge.title")}</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 {project.challenge}
@@ -218,7 +207,7 @@ export default function CaseStudyPage() {
                 <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
                   <Check className="h-5 w-5 text-accent" />
                 </div>
-                <h2 className="text-2xl font-bold text-white">Onze oplossing</h2>
+                <h2 className="text-2xl font-bold text-white">{t("solution.title")}</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 {project.solution}
@@ -237,9 +226,9 @@ export default function CaseStudyPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white mb-4">Resultaten</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">{t("results.title")}</h2>
             <p className="text-muted-foreground">
-              Wat dit project heeft opgeleverd
+              {t("results.subtitle")}
             </p>
           </motion.div>
 
@@ -275,10 +264,10 @@ export default function CaseStudyPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-white mb-4">
-              Ingezette diensten
+              {t("services.title")}
             </h2>
             <p className="text-muted-foreground">
-              De expertise die we hebben ingezet voor dit project
+              {t("services.subtitle")}
             </p>
           </motion.div>
 
@@ -297,7 +286,7 @@ export default function CaseStudyPage() {
                 >
                   <Wrench className="h-4 w-4 text-accent" />
                   <span className="text-white text-sm">
-                    {serviceLabels[service] || service}
+                    {t(`services.labels.${service}`) || service}
                   </span>
                 </Link>
               </motion.div>
@@ -338,7 +327,7 @@ export default function CaseStudyPage() {
               >
                 <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
                   <ArrowLeft className="h-4 w-4" />
-                  Vorig project
+                  {t("navigation.previous")}
                 </div>
                 <h3 className="text-xl font-semibold text-white group-hover:text-accent transition-colors">
                   {prevProject.name}
@@ -360,7 +349,7 @@ export default function CaseStudyPage() {
                 className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors group text-right"
               >
                 <div className="flex items-center justify-end gap-2 text-muted-foreground text-sm mb-2">
-                  Volgend project
+                  {t("navigation.next")}
                   <ArrowRight className="h-4 w-4" />
                 </div>
                 <h3 className="text-xl font-semibold text-white group-hover:text-accent transition-colors">
@@ -384,7 +373,7 @@ export default function CaseStudyPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Ook zo&apos;n resultaat?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -392,8 +381,7 @@ export default function CaseStudyPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Laten we bespreken hoe we jouw website naar een hoger niveau kunnen
-            tillen.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -407,7 +395,7 @@ export default function CaseStudyPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Start je project
+                {t("cta.primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -417,7 +405,7 @@ export default function CaseStudyPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/portfolio">Bekijk meer projecten</Link>
+              <Link href="/portfolio">{t("cta.secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>

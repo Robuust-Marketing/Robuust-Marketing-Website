@@ -1,0 +1,322 @@
+---
+title: "WordPress Media Library: Managing Images and Files"
+excerpt: "Learn how to upload, organize, and optimize images, videos, and documents in WordPress."
+category: "WordPress"
+date: "12 januari 2025"
+readTime: "6 min"
+author: "Robuust Marketing"
+translations:
+  nl: "wordpress-media-beheren"
+---
+
+The WordPress media library is where all your images, videos, and documents are stored. Good media management keeps your site fast and organized. In this guide, we explain everything.
+
+## Opening the Media Library
+
+### Via the Menu
+
+1. Click on **Media** in the left menu
+2. You'll now see all your uploaded files
+
+### From the Editor
+
+1. Click on an image block
+2. Choose **Media Library**
+3. You can also upload directly here
+
+## Uploading Files
+
+### Method 1: Via the Media Menu
+
+1. Go to **Media** > **Add New**
+2. Drag files to the upload area
+3. Or click **Select Files** to browse
+4. Wait for the upload to complete
+
+### Method 2: From the Editor
+
+1. Click on the **+** icon
+2. Choose **Image**, **Video**, or **File**
+3. Click **Upload**
+4. Select your file
+
+### Method 3: Drag from Your Computer
+
+1. Open the media library
+2. Drag a file directly from a folder on your computer
+3. The file uploads automatically
+
+## Supported File Types
+
+### Images
+- JPG/JPEG
+- PNG
+- GIF
+- WebP (from WordPress 5.8)
+- SVG (with plugin)
+- ICO
+
+### Video
+- MP4
+- MOV
+- WMV
+- AVI
+- MPG
+
+### Audio
+- MP3
+- WAV
+- OGG
+
+### Documents
+- PDF
+- DOC/DOCX
+- XLS/XLSX
+- PPT/PPTX
+- TXT
+
+## Organizing Files
+
+### Search
+
+1. Use the search bar at the top right
+2. Search by filename or title
+
+### Filter
+
+1. Click on **All media items**
+2. Filter by:
+   - Type (images, video, audio, etc.)
+   - Date (month/year)
+   - Uploaded by (if you have multiple users)
+
+### Adjust View
+
+- **Grid view**: Thumbnail overview (default)
+- **List view**: Detailed list with more info
+
+Toggle via the icons at the top left.
+
+### Create Folders (with plugin)
+
+WordPress doesn't have folders by default. With plugins it does:
+
+**Recommended plugins:**
+- FileBird
+- Real Media Library
+- MediaPress Folders
+
+After installation:
+1. Create folders in the sidebar
+2. Drag media to folders
+3. Filter by folder
+
+## Editing Files
+
+### Adjust File Details
+
+1. Click on a file in the media library
+2. On the right side you'll see:
+
+**Title:**
+The name of the file (visible in admin).
+
+**Caption:**
+Text that can be displayed below the image.
+
+**Alt text:**
+Description for accessibility and SEO. **Always fill this in!**
+
+**Description:**
+Longer description (rarely used).
+
+**File URL:**
+Direct link to the file.
+
+### Edit Image
+
+WordPress has basic image editing features:
+
+1. Click on an image
+2. Click **Edit Image** below the preview
+
+**Available options:**
+
+**Crop:**
+1. Drag to make a selection
+2. Click the crop icon
+3. Or enter exact ratios (16:9, 4:3, etc.)
+
+**Rotate:**
+- 90 degrees left
+- 90 degrees right
+
+**Flip:**
+- Horizontal
+- Vertical
+
+**Scale:**
+1. Click "Scale Image"
+2. Enter new dimensions
+3. Proportions are maintained
+
+**Important:** Edits are applied to:
+- All sizes
+- Thumbnail only
+- Everything except thumbnail
+
+### Save Changes
+
+- **Save**: Overwrites the original
+- **Save as new**: Creates a copy
+
+## Image Sizes
+
+WordPress automatically creates multiple sizes of each upload:
+
+### Default Sizes
+
+- **Thumbnail**: 150 x 150 pixels (cropped)
+- **Medium**: Max 300 x 300 pixels
+- **Large**: Max 1024 x 1024 pixels
+- **Full**: Original size
+
+### Adjust Sizes
+
+1. Go to **Settings** > **Media**
+2. Adjust the pixel values
+3. New uploads will get these sizes
+
+**Note:** Existing images won't be adjusted. Use the "Regenerate Thumbnails" plugin to update those.
+
+### Extra Sizes from Themes
+
+Your theme may add extra sizes (e.g., for headers or portfolios). Check the theme documentation.
+
+## Optimizing Images
+
+Large images make your site slow. Optimize for speed.
+
+### Before Uploading
+
+**Choose format:**
+- **JPEG**: Photos (good compression)
+- **PNG**: Images with transparency
+- **WebP**: Modern option (best compression)
+- **SVG**: Icons and logos (infinitely scalable)
+
+**Adjust dimensions:**
+Don't upload larger than needed. If your site displays max 1200px wide, don't upload 4000px images.
+
+**Compress:**
+Use tools before upload:
+- TinyPNG/TinyJPG (online)
+- ImageOptim (Mac)
+- Squoosh (online, Google)
+
+### After Uploading (with plugins)
+
+**Recommended plugins:**
+- ShortPixel
+- Imagify
+- Smush
+
+These compress automatically on upload and can bulk-optimize existing images.
+
+## Replacing Files
+
+### With Plugin (recommended)
+
+**Enable Media Replace** plugin:
+
+1. Install and activate the plugin
+2. Go to the media library
+3. Click on the file
+4. Click **Upload a new file**
+5. Choose:
+   - Replace the file (same name)
+   - Replace and update links
+
+### Manually
+
+1. Upload the new file
+2. Edit all pages/posts where the old file is used
+3. Replace the image blocks
+4. Delete the old file
+
+This is time-consuming - better to use the plugin.
+
+## Deleting Files
+
+### Delete Single File
+
+1. Click on the file
+2. Click **Delete Permanently** at the bottom
+3. Confirm
+
+**Note:** First check if the file is being used somewhere!
+
+### Bulk Delete
+
+1. Click **Bulk Select** at the top
+2. Select multiple files
+3. Click **Delete Permanently**
+
+### Find Unused Media
+
+With **Media Cleaner** plugin:
+
+1. Scans your media library
+2. Finds files not used anywhere
+3. Delete safely in bulk
+
+**Always make a backup first!**
+
+## Frequently Asked Questions
+
+**Increase maximum upload size?**
+This depends on your hosting. Options:
+- Ask your host to increase the limit
+- Adjust php.ini (if you have access)
+- Use "Big File Uploads" plugin
+
+**Can I customize the upload folder structure?**
+Yes, via Settings > Media > "Organize my uploads into month- and year-based folders"
+
+**How do I find where an image is used?**
+With the "Media Library Assistant" plugin, you can see which posts use an image.
+
+**Can I rename files?**
+Not by default. Use the "Phoenix Media Rename" plugin.
+
+**Image not showing after upload?**
+Check:
+- File type is supported
+- File is not corrupt
+- No special characters in filename
+
+## Tips for Good Media Management
+
+1. **Name files descriptively** before upload (team-photo-jan.jpg, not IMG_4532.jpg)
+
+2. **Always fill in alt text** for accessibility and SEO
+
+3. **Optimize images** for faster load times
+
+4. **Clean up regularly** - delete unused files
+
+5. **Make backups** before bulk-deleting
+
+6. **Use folders** (with plugin) for large media libraries
+
+Questions about WordPress? [Feel free to contact us](/en/contact).
+
+## More WordPress Guides
+
+- **[WordPress Menu Customization](/en/blog/wordpress-menu-customization)** - Managing and optimizing navigation
+- **[WordPress Duplicate Pages](/en/blog/wordpress-duplicate-page)** - Copy content quickly
+
+## Related
+
+- **[Core Web Vitals Explained](/en/blog/core-web-vitals-uitgelegd)** - Image optimization for speed
+- **[Website Performance Optimization](/en/kennisbank/development/website-performance-optimalisatie)** - Comprehensive performance guide

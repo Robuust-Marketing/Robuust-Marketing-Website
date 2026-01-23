@@ -1,53 +1,36 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
+import { usePathname, Link, routing, type Locale } from "@/i18n/routing";
 import { Globe } from "lucide-react";
-import { locales, type Locale, getDutchPath } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
 interface LanguageSwitcherProps {
-  currentLocale: Locale;
   className?: string;
 }
 
-export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherProps) {
+export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
+  const locale = useLocale() as Locale;
   const pathname = usePathname();
-
-  // Get the path for the other locale
-  const getLocalizedPath = (targetLocale: Locale): string => {
-    if (targetLocale === "nl") {
-      // Going from /en/... to /...
-      if (pathname.startsWith("/en")) {
-        return getDutchPath(pathname);
-      }
-      return pathname;
-    } else {
-      // Going from /... to /en/...
-      if (pathname.startsWith("/en")) {
-        return pathname;
-      }
-      return `/en${pathname === "/" ? "" : pathname}`;
-    }
-  };
 
   return (
     <div className={cn("flex items-center gap-1", className)}>
       <Globe className="h-4 w-4 text-white/50 mr-1" />
-      {locales.map((locale, index) => (
-        <span key={locale} className="flex items-center">
+      {routing.locales.map((loc, index) => (
+        <span key={loc} className="flex items-center">
           {index > 0 && <span className="text-white/30 mx-1">/</span>}
           <Link
-            href={getLocalizedPath(locale)}
+            href={pathname}
+            locale={loc}
             className={cn(
               "text-sm font-medium transition-colors px-1.5 py-0.5 rounded",
-              currentLocale === locale
+              locale === loc
                 ? "text-accent bg-accent/10"
                 : "text-white/60 hover:text-white hover:bg-white/5"
             )}
-            aria-label={locale === "nl" ? "Nederlands" : "English"}
+            aria-label={loc === "nl" ? "Nederlands" : "English"}
           >
-            {locale.toUpperCase()}
+            {loc.toUpperCase()}
           </Link>
         </span>
       ))}
@@ -56,28 +39,15 @@ export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherP
 }
 
 // Compact version for mobile
-export function LanguageSwitcherCompact({ currentLocale, className }: LanguageSwitcherProps) {
+export function LanguageSwitcherCompact({ className }: LanguageSwitcherProps) {
+  const locale = useLocale() as Locale;
   const pathname = usePathname();
-
-  const otherLocale: Locale = currentLocale === "nl" ? "en" : "nl";
-
-  const getLocalizedPath = (): string => {
-    if (otherLocale === "nl") {
-      if (pathname.startsWith("/en")) {
-        return getDutchPath(pathname);
-      }
-      return pathname;
-    } else {
-      if (pathname.startsWith("/en")) {
-        return pathname;
-      }
-      return `/en${pathname === "/" ? "" : pathname}`;
-    }
-  };
+  const otherLocale: Locale = locale === "nl" ? "en" : "nl";
 
   return (
     <Link
-      href={getLocalizedPath()}
+      href={pathname}
+      locale={otherLocale}
       className={cn(
         "flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white transition-colors",
         className

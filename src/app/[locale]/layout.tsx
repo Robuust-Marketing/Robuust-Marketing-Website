@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { BlogTranslationProvider } from "@/contexts/blog-translation-context";
 import { locales, type Locale } from "@/i18n/config";
 import "../globals.css";
 
@@ -177,14 +178,16 @@ export default async function LocaleLayout({
         )}
 
         <NextIntlClientProvider messages={messages}>
-          {/* Navigation */}
-          <Header />
+          <BlogTranslationProvider>
+            {/* Navigation */}
+            <Header />
 
-          {/* Main Content */}
-          <main>{children}</main>
+            {/* Main Content */}
+            <main>{children}</main>
 
-          {/* Footer */}
-          <Footer />
+            {/* Footer */}
+            <Footer />
+          </BlogTranslationProvider>
         </NextIntlClientProvider>
       </body>
     </html>

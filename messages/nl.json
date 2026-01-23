@@ -1378,5 +1378,78 @@
       "noArticlesInCategory": "Geen artikelen gevonden in \"{category}\".",
       "noArticles": "Nog geen artikelen beschikbaar."
     }
+  },
+  "glossaryPage": {
+    "backToKennisbank": "Terug naar kennisbank",
+    "title": "Glossary",
+    "subtitle": "Alle vakjargon uitgelegd in begrijpelijke taal.",
+    "searchPlaceholder": "Zoek een begrip...",
+    "all": "Alle",
+    "noResults": "Geen begrippen gevonden. Probeer een andere zoekopdracht."
+  },
+  "kennisbankPage": {
+    "badge": "Kennisbank",
+    "titleLine1": "Leer &",
+    "titleLine2": "ontwikkel",
+    "subtitle": "Diepgaande guides en tutorials over webdevelopment, SEO en hosting.",
+    "featuredGuides": {
+      "title": "Populaire guides",
+      "readGuide": "Lees guide"
+    },
+    "categories": {
+      "title": "Verken per categorie",
+      "subtitle": "Vind de informatie die je zoekt per onderwerp.",
+      "comingSoon": "Guides komen binnenkort beschikbaar.",
+      "allGuides": "Alle {category} guides"
+    },
+    "cta": {
+      "title": "Mis je iets?",
+      "subtitle": "Heb je een vraag die niet beantwoord wordt? Laat het ons weten en we helpen je graag.",
+      "button": "Stel je vraag"
+    }
+  },
+  "portfolioDetailPage": {
+    "backToPortfolio": "Terug naar portfolio",
+    "projectType": {
+      "new": "Nieuw gebouwd",
+      "redesign": "Redesign"
+    },
+    "viewLiveWebsite": "Bekijk live website",
+    "challenge": {
+      "title": "De uitdaging"
+    },
+    "solution": {
+      "title": "Onze oplossing"
+    },
+    "results": {
+      "title": "Resultaten",
+      "subtitle": "Wat dit project heeft opgeleverd"
+    },
+    "services": {
+      "title": "Ingezette diensten",
+      "subtitle": "De expertise die we hebben ingezet voor dit project",
+      "labels": {
+        "design": "Design",
+        "development": "Development",
+        "hosting": "Hosting",
+        "maintenance": "Onderhoud",
+        "tracking": "Tracking & Analytics",
+        "email-marketing": "Email Marketing",
+        "online-marketing": "Online Marketing",
+        "branding": "Branding",
+        "seo": "SEO",
+        "crm": "CRM"
+      }
+    },
+    "navigation": {
+      "previous": "Vorig project",
+      "next": "Volgend project"
+    },
+    "cta": {
+      "title": "Ook zo'n resultaat?",
+      "subtitle": "Laten we bespreken hoe we jouw website naar een hoger niveau kunnen tillen.",
+      "primaryButton": "Start je project",
+      "secondaryButton": "Bekijk meer projecten"
+    }
   }
 }

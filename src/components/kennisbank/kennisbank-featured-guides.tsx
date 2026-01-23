@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { motion } from "@/components/motion";
 
@@ -20,6 +21,8 @@ interface KennisbankFeaturedGuidesProps {
 export function KennisbankFeaturedGuides({
   guides,
 }: KennisbankFeaturedGuidesProps) {
+  const t = useTranslations("kennisbankPage.featuredGuides");
+
   if (guides.length === 0) {
     return null;
   }
@@ -28,7 +31,7 @@ export function KennisbankFeaturedGuides({
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-white">Populaire guides</h2>
+          <h2 className="text-2xl font-bold text-white">{t("title")}</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {guides.map((guide, index) => (
@@ -59,7 +62,7 @@ export function KennisbankFeaturedGuides({
                 href={`/kennisbank/${guide.categorySlug}/${guide.slug}`}
                 className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
               >
-                Lees guide
+                {t("readGuide")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>

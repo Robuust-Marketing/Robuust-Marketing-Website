@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowRight, BookOpen, Code2, Search, Server } from "lucide-react";
 import { motion } from "@/components/motion";
 
@@ -30,15 +31,17 @@ const categoryIcons: Record<string, typeof Code2> = {
 };
 
 export function KennisbankCategories({ categories }: KennisbankCategoriesProps) {
+  const t = useTranslations("kennisbankPage.categories");
+
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-2">
-            Verken per categorie
+            {t("title")}
           </h2>
           <p className="text-muted-foreground">
-            Vind de informatie die je zoekt per onderwerp.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -84,7 +87,7 @@ export function KennisbankCategories({ categories }: KennisbankCategoriesProps) 
                   </ul>
                 ) : (
                   <p className="text-sm text-muted-foreground mb-4">
-                    Guides komen binnenkort beschikbaar.
+                    {t("comingSoon")}
                   </p>
                 )}
 
@@ -92,7 +95,7 @@ export function KennisbankCategories({ categories }: KennisbankCategoriesProps) 
                   href={`/kennisbank/${category.slug}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
                 >
-                  Alle {category.name.toLowerCase()} guides
+                  {t("allGuides", { category: category.name.toLowerCase() })}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </motion.div>

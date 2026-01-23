@@ -1,0 +1,316 @@
+---
+title: "Google Analytics 4 for Beginners: How to Start Measuring"
+excerpt: "GA4 can be overwhelming. In this beginner's guide, we explain how to install, configure GA4, and get your first insights."
+category: "Marketing & SEO"
+date: "8 januari 2025"
+readTime: "10 min"
+author: "Robuust Marketing"
+translations:
+  nl: "google-analytics-4-beginners"
+---
+
+Google Analytics 4 (GA4) is the new standard for website analytics. It completely replaces Universal Analytics and works fundamentally differently. In this beginner's guide, we help you get started.
+
+## What is Google Analytics 4?
+
+GA4 is Google's latest analytics platform. It differs from the old Universal Analytics in important ways:
+
+- **Event-based tracking**: Everything is an event, no longer based on pageviews
+- **Cross-platform**: Track users across website and app
+- **Privacy-first**: Better prepared for a world without cookies
+- **Machine learning**: Automatic insights and predictions
+- **New interface**: Completely redesigned reports
+
+## Step 1: Create a GA4 Account
+
+### New Account
+
+1. Go to analytics.google.com
+2. Click "Start measuring"
+3. Enter your account name (usually your company name)
+4. Configure data-sharing settings
+5. Click "Next"
+
+### Create Property
+
+1. Enter a property name (usually your website name)
+2. Select your timezone and currency
+3. Click "Next"
+4. Fill in business information
+5. Accept the terms
+
+### Set Up Data Stream
+
+1. Choose "Web" as platform
+2. Enter your website URL
+3. Enter a stream name
+4. Enhanced Measurement is on by default (leave it on)
+5. Click "Create stream"
+
+You'll now receive a Measurement ID (starts with G-). You'll need this for installation.
+
+## Step 2: Install GA4 on Your Website
+
+There are different ways to install GA4:
+
+### Option A: Google Tag Manager (recommended)
+
+1. Create a Google Tag Manager account
+2. Install the GTM container code on your website
+3. In GTM: create a new tag
+4. Choose "Google Analytics: GA4 Configuration"
+5. Enter your Measurement ID
+6. Trigger: All Pages
+7. Publish the container
+
+### Option B: Directly on Your Website
+
+Add this code in the `<head>` of every page:
+
+```html
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
+
+Replace G-XXXXXXXXXX with your Measurement ID.
+
+### Option C: WordPress Plugins
+
+- **Site Kit by Google**: Official Google plugin
+- **MonsterInsights**: Popular analytics plugin
+- **GA Google Analytics**: Lightweight option
+
+### Verify Installation
+
+1. Install the Chrome extension "Google Tag Assistant"
+2. Visit your website
+3. Check if your GA4 tag fires correctly
+4. Or: check in GA4 under Realtime if your visit is visible
+
+## Step 3: Basic Configuration
+
+### Enhanced Measurement
+
+GA4 automatically measures by default:
+
+- Pageviews
+- Scrolls (90% of page)
+- Outbound clicks
+- Site search
+- Video engagement
+- File downloads
+
+You can toggle these on/off via Admin > Data Streams > your stream > Enhanced measurement.
+
+### Set Data Retention
+
+By default, GA4 stores data for 2 months. Change this:
+
+1. Go to Admin
+2. Click on "Data Settings" > "Data Retention"
+3. Choose 14 months
+4. Turn on "Reset user data on new activity"
+5. Save
+
+### Filter Internal Traffic
+
+Prevent your own visits from polluting the data:
+
+1. Admin > Data Streams > your stream
+2. Configure tag settings > Define internal traffic
+3. Add your IP address(es)
+4. Admin > Data Settings > Data Filters
+5. Activate the "Internal Traffic" filter
+
+### Link Google Search Console
+
+1. Admin > Property Settings > Product Links
+2. Click "Search Console Links"
+3. Click "Link"
+4. Select your Search Console property
+5. Confirm the link
+
+Now you'll see Search Console data in your GA4 reports.
+
+## Step 4: Set Up Conversions
+
+### What is a Conversion?
+
+A conversion is an important action you want to measure. Examples:
+
+- Contact form submitted
+- Quote requested
+- Purchase made
+- Newsletter signup
+- Phone number clicked
+
+### Create a Conversion
+
+1. Go to Admin > Events
+2. Find the event you want to mark as a conversion
+3. Toggle "Mark as conversion" on
+
+Or create a new event:
+1. Admin > Events > Create event
+2. Give the event a name
+3. Set the conditions
+4. Mark as conversion
+
+### Example: Contact Form Tracking
+
+If your form has a thank you page:
+
+1. Create event
+2. Name: "contact_form_submitted"
+3. Condition: page_location contains "/thank-you"
+4. Mark as conversion
+
+## Step 5: Understanding the Interface
+
+### Home
+
+Dashboard with quick overview:
+- Users in the past 7 days
+- Recent conversions
+- Automatic insights
+
+### Reports
+
+#### Realtime
+What's happening on your website now? Useful for:
+- Checking if tracking works
+- Campaign monitoring
+- Following live events
+
+#### Acquisition
+How do visitors reach your site?
+- Traffic acquisition: by channel
+- User acquisition: new vs. returning
+- Google Ads: if linked
+
+#### Engagement
+What do visitors do on your site?
+- Pages and screens: popular pages
+- Events: all measured events
+- Conversions: your conversion goals
+
+#### Monetization
+For e-commerce:
+- Purchase journey
+- Product performance
+
+#### Retention
+Do visitors return?
+- User retention over time
+- Cohort analysis
+
+### Explore
+
+Here you create your own custom reports:
+- Free form explorations
+- Funnel analysis
+- Path analysis
+- Segment overlap
+
+### Advertising
+
+If you link Google Ads:
+- Campaign performance
+- Attribution modeling
+
+## Key Metrics Explained
+
+### Users vs Sessions
+
+- **Users**: Unique visitors (based on cookies/device)
+- **Sessions**: Visit sessions (ends after 30 min inactivity)
+- **New users**: First visit ever
+
+### Engagement Metrics
+
+- **Engaged sessions**: Sessions longer than 10 seconds, with conversion, or with 2+ pageviews
+- **Engagement rate**: % engaged sessions
+- **Average engagement time**: Average time the page was in focus
+
+### Event Count
+
+Number of times a specific event was triggered.
+
+## Tips for Beginners
+
+### Start Simple
+
+You don't need to measure everything right away. Start with:
+1. Understanding traffic sources
+2. Identifying popular pages
+3. Measuring 1-2 important conversions
+
+### Check Regularly
+
+Look at your analytics at least weekly:
+- Are there major changes in traffic?
+- Are your conversions still working?
+- Are there notable trends?
+
+### Make Annotations
+
+Use the annotation feature to mark important moments:
+- Campaign launch
+- Website change
+- External events
+
+### Compare Periods
+
+Always view data compared to a previous period to recognize trends.
+
+### Share with Your Team
+
+Create scheduled reports to automatically send updates to team members.
+
+## Common Mistakes
+
+1. **No conversions set up**: You measure traffic but not what matters
+2. **Own traffic not filtered**: Your data gets polluted
+3. **Only looking at totals**: Segment by source, device, etc.
+4. **Drawing conclusions with little data**: Wait for sufficient volume
+5. **Data retention at 2 months**: Change this to 14 months
+
+## Privacy and GDPR
+
+GA4 requires visitor consent in the EU:
+
+- Implement a cookie consent banner
+- Only load GA4 after consent
+- Anonymize IP addresses (default in GA4)
+- Document your data processing in your privacy policy
+
+## Next Steps
+
+Once you master the basics:
+
+1. Learn to work with Explorations
+2. Set up audiences for remarketing
+3. Link Google Ads for full funnel insight
+4. Experiment with custom events
+5. Build a custom dashboard
+
+## Need Help?
+
+GA4 can be complex. We're happy to help with:
+- Correct installation and configuration
+- Setting up conversion tracking
+- Training for you and your team
+- Monthly analytics reports
+
+[Contact us](/en/contact) for a free analytics check.
+
+## Further Reading
+
+- **[Increase Website Conversions](/en/blog/website-conversie-verhogen-mkb)** - Turn analytics insights into action
+- **[5 Steps for a Good Website Analysis](/en/blog/5-stappen-voor-een-goede-website-analyse)** - Complete analysis approach
+- **[Core Web Vitals Explained](/en/blog/core-web-vitals-uitgelegd)** - Understanding performance metrics

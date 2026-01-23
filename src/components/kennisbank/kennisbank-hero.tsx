@@ -1,8 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "@/components/motion";
 
 export function KennisbankHero() {
+  const t = useTranslations("kennisbankPage");
+
   return (
     <section className="relative pb-20">
       <div className="absolute inset-0">
@@ -25,7 +28,7 @@ export function KennisbankHero() {
           transition={{ duration: 0.5 }}
           className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
         >
-          Kennisbank
+          {t("badge")}
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -33,9 +36,9 @@ export function KennisbankHero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
         >
-          Leer &
+          {t("titleLine1")}
           <br />
-          <span className="text-gradient-accent">ontwikkel</span>
+          <span className="text-gradient-accent">{t("titleLine2")}</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -43,7 +46,7 @@ export function KennisbankHero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-muted-foreground max-w-2xl mx-auto text-lg"
         >
-          Diepgaande guides en tutorials over webdevelopment, SEO en hosting.
+          {t("subtitle")}
         </motion.p>
       </div>
     </section>

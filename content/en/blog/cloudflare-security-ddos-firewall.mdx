@@ -1,0 +1,363 @@
+---
+title: "Securing Your Website with Cloudflare: DDoS Protection and Firewall"
+excerpt: "Protect your website against attacks with Cloudflare's free security features. From DDoS protection to Web Application Firewall."
+category: "Cloudflare"
+date: "22 januari 2025"
+readTime: "9 min"
+author: "Robuust Marketing"
+translations:
+  nl: "cloudflare-beveiligen-ddos-firewall"
+---
+
+> **At Robuust we handle this for you.** All websites we host are secured with Cloudflare's DDoS protection and firewall. Want to know how it works or do it yourself? Read on.
+
+Every website is a potential target for attacks. From simple brute-force attempts to large-scale DDoS attacks - the threats are real. Cloudflare offers powerful protection, largely for free. In this article we explain how to set it up.
+
+## Why website security is important
+
+The numbers don't lie:
+
+- A cyberattack occurs every 39 seconds
+- 43% of attacks target small businesses
+- The average cost of a data breach: $4.5 million
+- 94% of malware is delivered via email
+
+You might think: "Who would want to attack my small website?" But attacks are often automated and target everyone.
+
+## DDoS protection
+
+### What is a DDoS attack?
+
+DDoS (Distributed Denial of Service) is an attack where thousands of computers simultaneously bombard your server with traffic until it crashes.
+
+**Types of DDoS:**
+- **Volumetric**: Flooding with data (UDP floods)
+- **Protocol**: Abusing network protocols (SYN flood)
+- **Application layer**: Legitimate-looking requests (HTTP floods)
+
+### Cloudflare's DDoS protection
+
+Cloudflare absorbs and filters DDoS traffic automatically:
+
+- **>197 Tbps network capacity**: Can absorb virtually any attack
+- **Automatic detection**: Machine learning recognizes attack patterns
+- **Free included**: Even on the free plan
+
+You don't need to configure anything - it is active by default as soon as your traffic flows through Cloudflare.
+
+### Under Attack Mode
+
+During an active attack you can enable "I'm Under Attack Mode":
+
+1. Go to Security → Overview
+2. Click on "Under Attack Mode"
+3. This shows a JavaScript challenge to all visitors
+
+**Only use this during active attacks** - it slows down legitimate visitors.
+
+## Web Application Firewall (WAF)
+
+### What does a WAF do?
+
+A WAF protects against application-level attacks:
+
+- SQL injection
+- Cross-site scripting (XSS)
+- Remote file inclusion
+- Local file inclusion
+- Common exploits
+
+### Managed rulesets
+
+Cloudflare offers predefined rulesets:
+
+**Cloudflare Managed Ruleset:**
+- Protects against known vulnerabilities
+- Continuously updated
+- Free available (limited)
+
+**OWASP Core Ruleset:**
+- Based on OWASP standards
+- Protects against top 10 web vulnerabilities
+- Available in Pro plan and higher
+
+### Enabling WAF
+
+1. Go to Security → WAF
+2. Click on "Managed rules"
+3. Enable the Cloudflare Managed Ruleset
+4. Review the default action (Block/Challenge)
+
+### Creating custom rules
+
+You can create your own firewall rules:
+
+**Example: Block specific user agent**
+```
+(http.user_agent contains "BadBot")
+→ Block
+```
+
+**Example: Challenge requests to login**
+```
+(http.request.uri.path contains "/wp-login.php")
+→ Managed Challenge
+```
+
+**Example: Allow only specific country**
+```
+(ip.geoip.country ne "US")
+→ Block
+```
+
+## Bot management
+
+### Bad bots vs Good bots
+
+**Good bots:**
+- Googlebot (search indexing)
+- Bingbot
+- Social media crawlers
+
+**Bad bots:**
+- Scrapers (content stealing)
+- Spambots
+- Vulnerability scanners
+- Credential stuffers
+
+### Bot Fight Mode
+
+Free bot protection:
+
+1. Go to Security → Bots
+2. Enable "Bot Fight Mode"
+3. Known bad bots are blocked
+
+### Super Bot Fight Mode (Pro)
+
+More control over bot traffic:
+
+- Allow verified bots
+- Challenge automated traffic
+- Static resource protection
+
+### Challenge passage
+
+You can set how long a challenge remains valid:
+
+1. Security → Settings
+2. Challenge Passage: 30 minutes (default)
+
+Legitimate visitors don't need to continuously re-verify after a challenge.
+
+## IP Access Rules
+
+### Blocking IPs
+
+Block specific IP addresses or ranges:
+
+1. Security → WAF → Tools
+2. Click "Create a Firewall Rule"
+3. Enter IP or range
+4. Choose action: Block
+
+**Example:**
+```
+Block: 192.168.1.0/24 (entire subnet)
+Block: AS12345 (entire ISP/hosting provider)
+```
+
+### Whitelisting IPs
+
+Always allow specific IPs:
+
+```
+Allow: 198.51.100.1 (your own IP)
+Allow: 203.0.113.0/24 (office network)
+```
+
+This is useful for:
+- Your own IP (prevent lockout)
+- Office IPs
+- Monitoring services
+- Payment providers
+
+### Country blocking
+
+Block traffic from specific countries:
+
+1. Security → WAF → Custom rules
+2. Create rule: (ip.geoip.country eq "CN") → Block
+
+**Consider this for:**
+- Countries where you have no customers
+- Countries with many attacks
+- Compliance reasons (GDPR)
+
+## Rate limiting
+
+### What is rate limiting?
+
+Limit the number of requests an IP can make:
+
+- Protects against brute force
+- Prevents scraping
+- Reduces server load
+
+### Configuring rate limiting
+
+1. Security → WAF → Rate limiting rules
+2. Create a new rule:
+
+**Example: Protect login**
+```
+If: URI Path equals "/wp-login.php"
+Then: Block for 10 minutes
+When: Exceeds 5 requests per minute
+```
+
+**Example: API rate limit**
+```
+If: URI Path starts with "/api/"
+Then: Block for 1 hour
+When: Exceeds 100 requests per minute
+```
+
+## Page Shield
+
+Protection against supply chain attacks:
+
+- Monitors third-party scripts
+- Detects unexpected changes
+- Alerts on suspicious activity
+
+1. Go to Security → Page Shield
+2. Enable monitoring
+3. Review detected scripts
+4. Block suspicious scripts
+
+## Logging and monitoring
+
+### Security Events
+
+View all security events:
+
+1. Security → Events
+2. Filter by type, action, source
+3. Analyze patterns
+
+### Analytics
+
+Security analytics dashboard:
+
+- Blocked requests
+- Top attack types
+- Geographic distribution
+- Trends over time
+
+### Setting up alerts
+
+Get notifications for security events:
+
+1. Notifications
+2. Create notification
+3. Choose "Security Events Alert"
+4. Set thresholds
+
+## SSL/TLS security
+
+### Encryption modes
+
+Choose the right level:
+
+- **Off**: No encryption (NEVER use)
+- **Flexible**: Encrypt to Cloudflare, HTTP to origin
+- **Full**: Encrypt fully, self-signed OK
+- **Full (Strict)**: Encrypt fully, valid cert required (RECOMMENDED)
+
+### Always Use HTTPS
+
+Force HTTPS for all visitors:
+
+1. SSL/TLS → Edge Certificates
+2. Enable "Always Use HTTPS"
+
+### HSTS
+
+HTTP Strict Transport Security:
+
+1. SSL/TLS → Edge Certificates
+2. Enable HSTS
+3. Set max-age (min. 6 months)
+
+**Warning:** HSTS is difficult to reverse. Test thoroughly.
+
+### Minimum TLS version
+
+Block old, insecure TLS versions:
+
+1. SSL/TLS → Edge Certificates
+2. Minimum TLS Version: 1.2
+
+TLS 1.0 and 1.1 are insecure and should be blocked.
+
+## Security checklist
+
+### Basic (free plan)
+
+- [ ] SSL/TLS on Full (Strict)
+- [ ] Always Use HTTPS active
+- [ ] Bot Fight Mode on
+- [ ] Security Level: Medium
+- [ ] Browser Integrity Check on
+- [ ] Your own IP whitelisted
+
+### Advanced (Pro plan)
+
+- [ ] WAF managed rulesets active
+- [ ] Rate limiting configured
+- [ ] Custom firewall rules
+- [ ] OWASP ruleset active
+- [ ] Security alerts set up
+
+### Expert
+
+- [ ] Page Shield monitoring
+- [ ] Zero Trust access for admin
+- [ ] API Shield for APIs
+- [ ] Advanced rate limiting
+
+## Common mistakes
+
+1. **Origin IP leaks**: Make sure your server IP is not discoverable
+2. **Bypass via direct IP**: Block direct access to server
+3. **Rules too strict**: Test before production, prevent false positives
+4. **Security level too low**: Medium is a good baseline
+5. **No monitoring**: Regularly check security events
+
+## Conclusion
+
+Cloudflare offers enterprise-level security for everyone. Even with the free plan you get:
+
+- Unlimited DDoS protection
+- Basic WAF protection
+- Bot management
+- SSL/TLS encryption
+
+Start with the basics, monitor your security events, and gradually add more protection where needed.
+
+Need help securing your website? [Contact us](/en/contact) for a security audit.
+
+## More about Cloudflare
+
+This article is part of our Cloudflare series:
+
+- **[Cloudflare Setup for Beginners](/en/kennisbank/hosting/cloudflare-setup-beginners)** - Start here if you are new
+- **[Faster Website with Cloudflare CDN](/en/blog/cloudflare-cdn-faster-website)** - Performance optimization
+- **[Cloudflare DNS Management](/en/blog/cloudflare-dns-management-multiple-clients)** - DNS configuration explained
+- **[Cloudflare Page Rules](/en/blog/cloudflare-page-rules-redirect)** - Redirects and caching configuration
+
+## Related
+
+- **[Website Security Basics](/en/kennisbank/hosting/website-beveiliging-basics)** - General security tips
+- **[Website Maintenance](/en/blog/website-onderhoud-waarom-belangrijk)** - Why regular maintenance is crucial

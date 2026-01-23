@@ -10,4 +10,5 @@ export { AuthorBio } from "./author-bio";
 export { MobileActionBar } from "./mobile-action-bar";
 export { ArticleNavigation } from "./article-navigation";
 export { Breadcrumbs } from "./breadcrumbs";
+export { BlogTranslationSetter } from "./blog-translation-setter";
 export type { Heading } from "./table-of-contents";

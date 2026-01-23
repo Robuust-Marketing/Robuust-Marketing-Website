@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { BlogPostCard } from "./blog-post-card";
 import { BlogFeaturedPost } from "./blog-featured-post";
 
@@ -28,6 +29,7 @@ export function BlogCategoryFilter({
   posts,
   categories,
 }: BlogCategoryFilterProps) {
+  const t = useTranslations("blogPage.categories");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Filter posts by selected category
@@ -56,7 +58,7 @@ export function BlogCategoryFilter({
           <div className="lg:col-span-3">
             <div className="sticky top-32">
               <h3 className="text-lg font-semibold text-white mb-4">
-                Categorieen
+                {t("title")}
               </h3>
               <ul className="space-y-2">
                 <li>
@@ -68,7 +70,7 @@ export function BlogCategoryFilter({
                         : "text-muted-foreground hover:bg-surface hover:text-white"
                     }`}
                   >
-                    <span>Alle artikelen</span>
+                    <span>{t("all")}</span>
                     <span
                       className={`text-xs px-2 py-0.5 rounded-full ${
                         selectedCategory === null ? "bg-white/20" : "bg-surface"
@@ -79,7 +81,7 @@ export function BlogCategoryFilter({
                   </button>
                 </li>
                 {categories
-                  .filter((c) => c.name !== "Alle artikelen")
+                  .filter((c) => c.name !== t("all"))
                   .map((category) => (
                     <li key={category.name}>
                       <button
@@ -118,8 +120,8 @@ export function BlogCategoryFilter({
             ) : (
               <div className="text-center py-12 text-muted-foreground">
                 {selectedCategory
-                  ? `Geen artikelen gevonden in "${selectedCategory}".`
-                  : "Nog geen artikelen beschikbaar."}
+                  ? t("noArticlesInCategory", { category: selectedCategory })
+                  : t("noArticles")}
               </div>
             )}
           </div>

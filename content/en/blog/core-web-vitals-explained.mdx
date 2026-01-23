@@ -1,0 +1,272 @@
+---
+title: "Core Web Vitals Explained: What They Mean for Your Website"
+excerpt: "Google's Core Web Vitals are now a ranking factor. Learn what LCP, FID and CLS mean and how to improve your scores."
+category: "Marketing & SEO"
+date: "3 januari 2025"
+readTime: "7 min"
+author: "Robuust Marketing"
+translations:
+  nl: "core-web-vitals-uitgelegd"
+---
+
+Core Web Vitals are Google's way of measuring the user experience of a website. Since 2021, they have officially been a ranking factor. The better you score, the more favorably Google treats you. But what exactly do they measure?
+
+## What are Core Web Vitals?
+
+Core Web Vitals are three specific metrics that together measure the loading experience of a web page:
+
+1. **LCP** - Largest Contentful Paint (loading speed)
+2. **INP** - Interaction to Next Paint (interactivity)
+3. **CLS** - Cumulative Layout Shift (visual stability)
+
+*Note: INP replaced FID (First Input Delay) in March 2024*
+
+## LCP: Largest Contentful Paint
+
+### What does it measure?
+
+LCP measures how long it takes for the largest visible element on the page to load. This is usually:
+
+- A hero image
+- A large text block
+- A video thumbnail
+
+It is about what the user **sees**, not what is technically loading.
+
+### What are good scores?
+
+| Score | Rating |
+|-------|--------|
+| ≤ 2.5 sec | Good |
+| 2.5 - 4 sec | Needs Improvement |
+| > 4 sec | Poor |
+
+### How to improve LCP?
+
+**Optimize server response time:**
+- Choose faster hosting
+- Use a CDN
+- Implement caching
+
+**Eliminate render-blocking resources:**
+- Defer non-critical JavaScript
+- Inline critical CSS
+- Preload important resources
+
+**Optimize images:**
+- Compress images
+- Use modern formats (WebP, AVIF)
+- Implement lazy loading
+- Specify width and height attributes
+
+**Optimize fonts:**
+- Host fonts locally
+- Use font-display: swap
+- Preload important fonts
+
+## INP: Interaction to Next Paint
+
+### What does it measure?
+
+INP measures how quickly the website responds to user interactions. It looks at all interactions during a visit (clicks, taps, keystrokes) and reports the worst experience.
+
+This replaces FID, which only measured the first interaction.
+
+### What are good scores?
+
+| Score | Rating |
+|-------|--------|
+| ≤ 200 ms | Good |
+| 200 - 500 ms | Needs Improvement |
+| > 500 ms | Poor |
+
+### How to improve INP?
+
+**Optimize JavaScript:**
+- Break up long tasks
+- Defer non-essential scripts
+- Use web workers for heavy tasks
+- Remove unused code
+
+**Limit third-party scripts:**
+- Audit all external scripts
+- Load them async or defer
+- Consider alternatives
+
+**Optimize event handlers:**
+- Use throttling/debouncing
+- Minimize DOM manipulations
+- Optimize event listeners
+
+## CLS: Cumulative Layout Shift
+
+### What does it measure?
+
+CLS measures how much the page "jumps" during loading. You know the scenario: you want to click a link, but suddenly everything shifts because an ad loads, and you click on the wrong thing.
+
+### What are good scores?
+
+| Score | Rating |
+|-------|--------|
+| ≤ 0.1 | Good |
+| 0.1 - 0.25 | Needs Improvement |
+| > 0.25 | Poor |
+
+### How to improve CLS?
+
+**Specify dimensions:**
+- Always give width and height to images
+- Use aspect-ratio for responsive images
+- Reserve space for embeds
+
+**Fonts:**
+- Use font-display: optional or swap
+- Match fallback font to webfont
+- Preload important fonts
+
+**Ads and embeds:**
+- Reserve space for ads
+- Use placeholders
+- Do not load dynamically above existing content
+
+**Animations:**
+- Only animate transform and opacity
+- Avoid layout-triggering properties
+- Use will-change sparingly
+
+## How to measure Core Web Vitals?
+
+### Field data (real users)
+
+**Google Search Console:**
+- Core Web Vitals report
+- Provides overview of all pages
+- Shows trends over time
+
+**PageSpeed Insights:**
+- Uses Chrome User Experience Report
+- Real data from Chrome users
+- Free to use
+
+**Web Vitals JavaScript library:**
+- Measure in your own analytics
+- Real-user monitoring
+
+### Lab data (simulated)
+
+**Lighthouse:**
+- Built into Chrome DevTools
+- Provides specific advice
+- Simulation, not real users
+
+**WebPageTest:**
+- Extensive test options
+- Filmstrip of loading
+- Waterfall analysis
+
+### Difference between field vs lab
+
+- **Field data** is what Google uses for rankings
+- **Lab data** is useful for debugging
+- Scores can differ (lab vs real world)
+
+## Impact on SEO
+
+### Direct ranking factor
+
+Core Web Vitals are one of many ranking factors. Google has stated that content relevance is still more important, but with equal relevance, the faster site wins.
+
+### Page Experience signals
+
+Core Web Vitals are part of broader Page Experience signals:
+
+- Core Web Vitals (LCP, INP, CLS)
+- Mobile-friendliness
+- HTTPS
+- No intrusive interstitials
+
+### Practical impact
+
+**For competitive keywords:**
+If you and a competitor have comparable content, better Core Web Vitals can make the difference.
+
+**For local search results:**
+Google only shows sites with good experience in the 3-pack.
+
+**In Google Discover:**
+Poor Core Web Vitals can exclude you from Discover.
+
+## Setting priorities
+
+Not all pages are equally important. Focus first on:
+
+1. **Homepage** - Often most visited
+2. **Landing pages** - Where campaigns land
+3. **Product pages** - Critical for conversion
+4. **Blog posts with high traffic** - High volume
+
+### Gradual improvement
+
+You do not need to fix everything at once:
+
+1. Measure your current status
+2. Identify the biggest problems
+3. Fix the easy wins first
+4. Measure again
+5. Address the next issues
+
+## Common issues and solutions
+
+### Issue: Slow LCP due to large hero image
+
+**Solution:**
+```html
+<img
+  src="hero.webp"
+  width="1200"
+  height="600"
+  fetchpriority="high"
+  alt="Hero"
+/>
+```
+
+### Issue: CLS from late font loading
+
+**Solution:**
+```css
+@font-face {
+  font-family: 'CustomFont';
+  font-display: swap;
+  src: url('font.woff2') format('woff2');
+}
+```
+
+### Issue: Poor INP due to heavy JavaScript
+
+**Solution:**
+- Split code with dynamic imports
+- Lazy load non-critical components
+- Optimize event handlers
+
+## Tools that help
+
+- **Squoosh**: Image compression
+- **SVGOMG**: SVG optimization
+- **Bundlephobia**: Check npm package size
+- **Lighthouse CI**: Automated testing
+- **Calibre/SpeedCurve**: Monitoring over time
+
+## Conclusion
+
+Core Web Vitals are not just metrics - they measure real user experience. A fast, stable website is better for your visitors and for your rankings.
+
+Start by measuring, identify your biggest problems, and tackle them one by one. Perfection is not necessary; improvement is.
+
+Want to know how your website scores? [Contact us](/en/contact) for a free Core Web Vitals analysis.
+
+## Further reading
+
+- **[Website Performance Optimization](/en/kennisbank/development/website-performance-optimalisatie)** - Comprehensive guide to faster websites
+- **[Faster Website with Cloudflare CDN](/en/blog/cloudflare-cdn-faster-website)** - Improve your LCP with a CDN
+- **[Technical SEO Checklist](/en/kennisbank/seo/technische-seo-checklist)** - Core Web Vitals in SEO context
+- **[Getting Started with SEO](/en/blog/getting-started-with-seo)** - The basics of search engine optimization
