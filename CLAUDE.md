@@ -78,12 +78,14 @@ Wizard Component → /api/hubspot/submit-lead → HubSpot CRM
 - Validated with zod schema
 - Dual submission: HubSpot + email notification
 
-**Pattern 4: Analytics Events**
+**Pattern 4: Analytics Events (met Google Consent Mode v2)**
 ```
-User Action → lib/gtm.ts → Google Tag Manager → GA4
+User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 ```
-- `trackEvent()`, `trackConversion()`, `trackFormSubmission()`
-- Cookiebot handles consent
+- Consent Mode v2 defaults worden gezet in `layout.tsx` VOOR GTM laadt
+- Cookiebot update consent state wanneer gebruiker keuze maakt
+- Tracking functies: `trackEvent()`, `trackConversion()`, `trackFormSubmit()`, `trackFunnelStep()`, etc.
+- React hook: `useTracking()` in `hooks/use-tracking.ts`
 
 ### Where to Add/Edit Content
 
@@ -139,9 +141,26 @@ User Action → lib/gtm.ts → Google Tag Manager → GA4
 - `formatPrice(number)` - Dutch currency formatting
 
 **`lib/hubspot.ts`**:
-- `submitToHubSpot(data, pageUri)` - Submit lead to HubSpot
-- `isHubSpotConfigured()` - Check if credentials are set
+- `submitToHubSpot(data, pageUri)` - Submit lead to HubSpot via Contacts API
+- `isHubSpotConfigured()` - Check if access token is set
 - `HUBSPOT_MEETING_LINK` - Calendar booking URL
+
+**`lib/gtm.ts`** (Google Tag Manager + Consent Mode v2):
+- `initConsentMode()` - Initialize consent defaults (called in layout.tsx)
+- `updateConsent(consent)` - Update consent after user choice
+- `trackEvent(name, params)` - Custom event tracking
+- `trackConversion(data)` - Conversion tracking (lead, quote, phone, etc.)
+- `trackFormSubmit(formName, options)` - Form submission tracking
+- `trackFunnelStep(funnel, step, name, total)` - Wizard step tracking
+- `trackFunnelComplete(funnel, options)` - Wizard completion
+- `trackCTAClick(name, location, destination)` - CTA click tracking
+- `trackPhoneClick(number, location)` - Phone click (+ conversion)
+- `hasConsent(category)` - Check consent status
+
+**`hooks/use-tracking.ts`** (React hooks):
+- `useTracking()` - Main hook with form, funnel, cta, conversion, consent methods
+- `useFunnelTracking(name, step, stepName, total)` - Auto-track funnel with abandonment
+- `useFormTracking(formName)` - Auto-track form start on focus
 
 ---
 
@@ -205,13 +224,16 @@ robuust-marketing-website/
 │   │   ├── partners.ts             # Partner logos/info
 │   │   └── faqs.ts                 # FAQ content
 │   │
+│   ├── hooks/                      # REACT HOOKS
+│   │   └── use-tracking.ts         # Tracking hooks (useTracking, useFunnelTracking)
+│   │
 │   ├── lib/                        # UTILITIES
 │   │   ├── blog.ts                 # Blog content loader
 │   │   ├── kennisbank.ts           # Kennisbank content loader
 │   │   ├── pricing.ts              # Price calculations
-│   │   ├── hubspot.ts              # HubSpot API
+│   │   ├── hubspot.ts              # HubSpot Contacts API
 │   │   ├── email.ts                # Resend emails
-│   │   ├── gtm.ts                  # Analytics tracking
+│   │   ├── gtm.ts                  # GTM + Consent Mode v2 tracking
 │   │   └── utils.ts                # cn() helper
 │   │
 │   └── types/                      # TYPE DEFINITIONS
@@ -256,9 +278,8 @@ NEXT_PUBLIC_COOKIEBOT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxx
 CONTACT_EMAIL=info@robuustmarketing.nl
 
-# CRM
-HUBSPOT_PORTAL_ID=xxxxxxxx
-HUBSPOT_FORM_GUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# CRM (HubSpot Contacts API)
+HUBSPOT_ACCESS_TOKEN=pat-eu1-xxxxxxxx
 ```
 
 ---
@@ -268,12 +289,44 @@ HUBSPOT_FORM_GUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ### Path Aliases
 - `@/*` maps to `./src/*`
 
-### Event Tracking
-```typescript
-import { trackEvent, trackConversion } from "@/lib/gtm";
+### Event Tracking (met Consent Mode v2)
 
+```typescript
+import {
+  trackEvent,
+  trackConversion,
+  trackFormSubmit,
+  trackFunnelStep,
+  trackCTAClick,
+  trackPhoneClick,
+} from "@/lib/gtm";
+
+// Custom event
 trackEvent("button_click", { button_name: "cta" });
-trackConversion("contact_form");
+
+// Form submission (tracked als conversie)
+trackFormSubmit("contact_form", { value: 500 });
+
+// Wizard/funnel tracking
+trackFunnelStep("offerte_wizard", 2, "Diensten", 4);
+
+// CTA clicks
+trackCTAClick("Offerte aanvragen", "hero_section", "/offerte");
+
+// Phone/email clicks (automatisch conversie)
+trackPhoneClick("+31612345678", "footer");
+```
+
+Of gebruik de React hook:
+```typescript
+import { useTracking } from "@/hooks/use-tracking";
+
+function MyComponent() {
+  const { form, funnel, cta, conversion } = useTracking();
+
+  form.submit("contact_form", { value: 500 });
+  cta.click("CTA naam", "locatie");
+}
 ```
 
 ### Form Validation

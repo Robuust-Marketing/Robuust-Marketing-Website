@@ -60,9 +60,10 @@ npm run lint         # ESLint
 │  lib/blog.ts           → Leest content/blog/*.mdx                           │
 │  lib/kennisbank.ts     → Leest content/kennisbank/**/*.mdx                  │
 │  lib/pricing.ts        → Prijsberekeningen voor wizard                      │
-│  lib/hubspot.ts        → Lead submission naar HubSpot CRM                   │
+│  lib/hubspot.ts        → Lead submission naar HubSpot (Contacts API)        │
 │  lib/email.ts          → Email verzending via Resend                        │
-│  lib/gtm.ts            → Event tracking naar Google Tag Manager             │
+│  lib/gtm.ts            → GTM tracking met Consent Mode v2 (AVG-compliant)   │
+│  hooks/use-tracking.ts → React hooks voor makkelijke tracking               │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     │
@@ -161,12 +162,13 @@ Guide content in MDX...
 │                                 - Notificatie naar info@robuustmarketing.nl │
 │                                 - Backup als HubSpot faalt                   │
 │                                                                              │
-│  Page Views / Events                                                         │
+│  Page Views / Events (met Consent Mode v2)                                   │
 │       │                                                                      │
 │       └──────────────────────►  Google Tag Manager                          │
+│                                 - Google Consent Mode v2 (AVG-compliant)    │
 │                                 - GA4 tracking                               │
 │                                 - Conversie tracking                         │
-│                                 - Cookiebot consent                          │
+│                                 - Cookiebot consent management               │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -212,13 +214,16 @@ robuust-marketing-website/
 │   │   ├── partners.ts             # Partners
 │   │   └── faqs.ts                 # FAQ's
 │   │
+│   ├── hooks/                      # React Hooks
+│   │   └── use-tracking.ts         # Tracking hooks (useTracking, useFunnelTracking)
+│   │
 │   ├── lib/                        # Utilities
 │   │   ├── blog.ts                 # Blog content laden
 │   │   ├── kennisbank.ts           # Kennisbank content laden
 │   │   ├── pricing.ts              # Prijsberekeningen
-│   │   ├── hubspot.ts              # HubSpot API
+│   │   ├── hubspot.ts              # HubSpot Contacts API
 │   │   ├── email.ts                # Resend emails
-│   │   ├── gtm.ts                  # Analytics tracking
+│   │   ├── gtm.ts                  # GTM + Consent Mode v2 tracking
 │   │   └── utils.ts                # Helpers (cn, etc.)
 │   │
 │   └── types/                      # TypeScript types
@@ -245,9 +250,8 @@ NEXT_PUBLIC_COOKIEBOT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxx
 CONTACT_EMAIL=info@robuustmarketing.nl
 
-# CRM (HubSpot)
-HUBSPOT_PORTAL_ID=xxxxxxxx
-HUBSPOT_FORM_GUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# CRM (HubSpot Contacts API)
+HUBSPOT_ACCESS_TOKEN=pat-eu1-xxxxxxxx
 ```
 
 ## Deployment
