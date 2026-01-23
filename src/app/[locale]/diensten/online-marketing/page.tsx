@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,98 +13,29 @@ import {
   BarChart3,
   ArrowRight,
   Check,
+  LucideIcon,
 } from "lucide-react";
 
-const platforms = [
-  {
-    name: "Google Ads",
-    description: "Search, Display en Shopping campagnes voor directe zichtbaarheid",
-    icon: "🔍",
-  },
-  {
-    name: "Meta Ads",
-    description: "Facebook en Instagram advertenties met geavanceerde targeting",
-    icon: "📱",
-  },
-  {
-    name: "TikTok Ads",
-    description: "Bereik de jongere doelgroep met video-first advertising",
-    icon: "🎵",
-  },
-  {
-    name: "LinkedIn Ads",
-    description: "B2B marketing en lead generation voor zakelijke doelgroepen",
-    icon: "💼",
-  },
+const platforms: { id: string; icon: string }[] = [
+  { id: "google", icon: "🔍" },
+  { id: "meta", icon: "📱" },
+  { id: "tiktok", icon: "🎵" },
+  { id: "linkedin", icon: "💼" },
 ];
 
-const services = [
-  {
-    icon: Target,
-    title: "Doelgroep Targeting",
-    description:
-      "Bereik precies de juiste mensen op basis van demografie, interesses, gedrag en zoekintentie.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Performance Optimalisatie",
-    description:
-      "Continue A/B testing en optimalisatie voor maximale ROI op je advertentie-uitgaven.",
-  },
-  {
-    icon: Users,
-    title: "Lookalike Audiences",
-    description:
-      "Vind nieuwe klanten die lijken op je beste bestaande klanten.",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Remarketing",
-    description:
-      "Herinner websitebezoekers aan je producten en converteer ze alsnog.",
-  },
-  {
-    icon: BarChart3,
-    title: "Rapportage & Inzichten",
-    description:
-      "Maandelijkse rapportages met duidelijke KPI's en actionable insights.",
-  },
-  {
-    icon: Megaphone,
-    title: "Campagne Strategie",
-    description:
-      "Full-funnel aanpak van awareness tot conversie, afgestemd op jouw doelen.",
-  },
+const services: { id: string; icon: LucideIcon }[] = [
+  { id: "targeting", icon: Target },
+  { id: "performance", icon: TrendingUp },
+  { id: "lookalike", icon: Users },
+  { id: "remarketing", icon: RefreshCcw },
+  { id: "reporting", icon: BarChart3 },
+  { id: "strategy", icon: Megaphone },
 ];
 
-const process = [
-  {
-    step: "01",
-    title: "Analyse & Strategie",
-    description:
-      "We analyseren je markt, concurrentie en doelgroep om een winnende strategie te bepalen.",
-  },
-  {
-    step: "02",
-    title: "Campagne Setup",
-    description:
-      "We bouwen je campagnes op met de juiste structuur, targeting en advertenties.",
-  },
-  {
-    step: "03",
-    title: "Launch & Monitor",
-    description:
-      "Na de lancering monitoren we dagelijks de prestaties en grijpen direct in waar nodig.",
-  },
-  {
-    step: "04",
-    title: "Optimaliseer & Schaal",
-    description:
-      "Op basis van data optimaliseren we continu en schalen we wat werkt.",
-  },
-];
+const processSteps = ["step1", "step2", "step3", "step4"];
 
 export default function OnlineMarketingPage() {
+  const t = useTranslations("onlineMarketingPage");
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -136,7 +68,7 @@ export default function OnlineMarketingPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Online Marketing
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -144,9 +76,9 @@ export default function OnlineMarketingPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Adverteren dat
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">rendeert</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -154,8 +86,7 @@ export default function OnlineMarketingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8"
           >
-            Full-stack digital marketing op Google, Meta, TikTok en LinkedIn.
-            Van strategie tot uitvoering, wij zorgen voor meetbaar resultaat.
+            {t("subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -169,7 +100,7 @@ export default function OnlineMarketingPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Gratis marketing scan
+                {t("primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -179,7 +110,7 @@ export default function OnlineMarketingPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten/tracking">Tracking & Analytics</Link>
+              <Link href="/diensten/tracking">{t("secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>
@@ -195,7 +126,7 @@ export default function OnlineMarketingPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Adverteer waar je klanten zijn
+              {t("platforms.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -203,14 +134,14 @@ export default function OnlineMarketingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              We beheren campagnes op alle grote platforms
+              {t("platforms.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {platforms.map((platform, index) => (
               <motion.div
-                key={platform.name}
+                key={platform.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -219,10 +150,10 @@ export default function OnlineMarketingPage() {
               >
                 <div className="text-4xl mb-4">{platform.icon}</div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {platform.name}
+                  {t(`platforms.${platform.id}.name`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {platform.description}
+                  {t(`platforms.${platform.id}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -240,7 +171,7 @@ export default function OnlineMarketingPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Wat we doen
+              {t("services.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -248,14 +179,14 @@ export default function OnlineMarketingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Complete campagnebeheer van A tot Z
+              {t("services.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <motion.div
-                key={service.title}
+                key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -266,10 +197,10 @@ export default function OnlineMarketingPage() {
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {service.title}
+                  {t(`services.${service.id}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {service.description}
+                  {t(`services.${service.id}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -287,7 +218,7 @@ export default function OnlineMarketingPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Onze Aanpak
+              {t("process.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -295,14 +226,14 @@ export default function OnlineMarketingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Data-driven marketing in vier stappen
+              {t("process.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((item, index) => (
+            {processSteps.map((step, index) => (
               <motion.div
-                key={item.step}
+                key={step}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -310,13 +241,13 @@ export default function OnlineMarketingPage() {
                 className="relative"
               >
                 <div className="text-6xl font-bold text-accent/20 mb-4">
-                  {item.step}
+                  {String(index + 1).padStart(2, "0")}
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">
-                  {item.title}
+                  {t(`process.${step}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {item.description}
+                  {t(`process.${step}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -334,39 +265,25 @@ export default function OnlineMarketingPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Samenwerking met{" "}
-                <span className="text-gradient-accent">Hello Its Me</span>
+                {t("partner.title")}{" "}
+                <span className="text-gradient-accent">
+                  {t("partner.titleHighlight")}
+                </span>
               </h2>
               <p className="text-muted-foreground mb-8">
-                Voor gespecialiseerde paid advertising werken we samen met Hello
-                Its Me, experts in performance marketing. Samen zorgen we voor
-                een naadloze integratie tussen je website en advertenties.
+                {t("partner.subtitle")}
               </p>
               <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
-                    <Check className="h-4 w-4 text-accent" />
-                  </div>
-                  <span className="text-white/80">
-                    Google Partner gecertificeerd
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
-                    <Check className="h-4 w-4 text-accent" />
-                  </div>
-                  <span className="text-white/80">
-                    Meta Business Partner
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
-                    <Check className="h-4 w-4 text-accent" />
-                  </div>
-                  <span className="text-white/80">
-                    Bewezen track record met 100+ klanten
-                  </span>
-                </li>
+                {(t.raw("partner.benefits") as string[]).map(
+                  (benefit, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
+                        <Check className="h-4 w-4 text-accent" />
+                      </div>
+                      <span className="text-white/80">{benefit}</span>
+                    </li>
+                  )
+                )}
               </ul>
             </motion.div>
 
@@ -377,35 +294,29 @@ export default function OnlineMarketingPage() {
               className="rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 p-8 border border-accent/20"
             >
               <h3 className="text-2xl font-bold text-white mb-4">
-                Waarom dit werkt
+                {t("partner.card.title")}
               </h3>
               <p className="text-muted-foreground mb-6">
-                Door de samenwerking tussen Robuust (website & tracking) en
-                Hello Its Me (advertising) krijg je het beste van twee werelden:
+                {t("partner.card.description")}
               </p>
               <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2 text-sm text-white">
-                  <Check className="h-4 w-4 text-accent" />
-                  Perfecte afstemming tussen landing pages en advertenties
-                </li>
-                <li className="flex items-center gap-2 text-sm text-white">
-                  <Check className="h-4 w-4 text-accent" />
-                  Nauwkeurige tracking en conversie attributie
-                </li>
-                <li className="flex items-center gap-2 text-sm text-white">
-                  <Check className="h-4 w-4 text-accent" />
-                  Snelle iteratie en optimalisatie
-                </li>
-                <li className="flex items-center gap-2 text-sm text-white">
-                  <Check className="h-4 w-4 text-accent" />
-                  Één aanspreekpunt voor al je online marketing
-                </li>
+                {(t.raw("partner.card.features") as string[]).map(
+                  (feature, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center gap-2 text-sm text-white"
+                    >
+                      <Check className="h-4 w-4 text-accent" />
+                      {feature}
+                    </li>
+                  )
+                )}
               </ul>
               <Button
                 asChild
                 className="w-full bg-accent hover:bg-accent-hover text-white"
               >
-                <Link href="/contact">Vraag een gratis scan aan →</Link>
+                <Link href="/contact">{t("partner.card.button")}</Link>
               </Button>
             </motion.div>
           </div>
@@ -421,7 +332,7 @@ export default function OnlineMarketingPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar om te groeien?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -429,7 +340,7 @@ export default function OnlineMarketingPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Vraag een gratis marketing scan aan en ontdek je groeikansen.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -443,7 +354,7 @@ export default function OnlineMarketingPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Gratis scan aanvragen
+                {t("cta.primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -453,7 +364,7 @@ export default function OnlineMarketingPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten">Alle diensten</Link>
+              <Link href="/diensten">{t("cta.secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>

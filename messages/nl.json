@@ -1694,6 +1694,535 @@
       "secondaryButton": "Alle diensten"
     }
   },
+  "emailMarketingPage": {
+    "badge": "Email Marketing",
+    "titleLine1": "Emails die",
+    "titleLine2": "converteren",
+    "subtitle": "Van nieuwsbrieven tot geautomatiseerde flows. Effectieve email campagnes die relaties bouwen en omzet genereren.",
+    "primaryButton": "Start met email marketing",
+    "secondaryButton": "CRM Integraties",
+    "stats": {
+      "roi": {
+        "value": "€36",
+        "label": "ROI per €1 uitgegeven",
+        "subtext": "Gemiddeld"
+      },
+      "conversions": {
+        "value": "4x",
+        "label": "Meer conversies",
+        "subtext": "vs. social media"
+      },
+      "deliverability": {
+        "value": "99%",
+        "label": "Deliverability",
+        "subtext": "Bij juiste setup"
+      }
+    },
+    "services": {
+      "title": "Onze Email Diensten",
+      "subtitle": "Alles wat je nodig hebt voor succesvolle email marketing",
+      "emailCampaigns": {
+        "title": "Email Campagnes",
+        "description": "Professioneel ontworpen nieuwsbrieven en promotionele emails die opvallen in de inbox."
+      },
+      "automation": {
+        "title": "Marketing Automatisering",
+        "description": "Welkomstreeksen, verlaten winkelwagen flows en gepersonaliseerde customer journeys."
+      },
+      "segmentation": {
+        "title": "Lijst Segmentatie",
+        "description": "Verdeel je contacten in doelgroepen voor relevantere, persoonlijkere communicatie."
+      },
+      "abTesting": {
+        "title": "A/B Testing",
+        "description": "Test onderwerpregels, content en verzendtijden om je resultaten continu te verbeteren."
+      },
+      "sendTimes": {
+        "title": "Optimale Verzendtijden",
+        "description": "AI-gestuurde verzendtijd optimalisatie voor maximale open rates."
+      },
+      "personalization": {
+        "title": "Personalisatie",
+        "description": "Dynamische content op basis van gedrag, voorkeuren en aankoopgeschiedenis."
+      }
+    },
+    "automations": {
+      "title": "Email Automatiseringen",
+      "subtitle": "Zet je email marketing op de automatische piloot",
+      "welcome": {
+        "name": "Welkomstreeks",
+        "description": "Automatisch nieuwe subscribers onboarden met een serie introductiemails",
+        "emails": "3-5 emails"
+      },
+      "abandonedCart": {
+        "name": "Verlaten Winkelwagen",
+        "description": "Herinner klanten aan producten die ze achterlieten in hun winkelwagen",
+        "emails": "2-3 emails"
+      },
+      "postPurchase": {
+        "name": "Post-Purchase Flow",
+        "description": "Bedank klanten, vraag reviews en stimuleer herhaalaankopen",
+        "emails": "3-4 emails"
+      },
+      "reEngagement": {
+        "name": "Re-engagement",
+        "description": "Win inactieve subscribers terug met speciale aanbiedingen",
+        "emails": "2-3 emails"
+      }
+    },
+    "whyEmail": {
+      "title": "Waarom",
+      "titleHighlight": "email marketing?",
+      "subtitle": "In tegenstelling tot social media, heb je volledige controle over je email lijst. Geen algoritmes die bepalen of je bericht wel of niet gezien wordt.",
+      "benefits": [
+        "Direct contact met je doelgroep, zonder tussenkomst van algoritmes",
+        "Hoogste ROI van alle marketingkanalen (€36 per €1)",
+        "Volledig meetbaar: open rates, click rates, conversies",
+        "Schaalbaar: bereik duizenden mensen met één klik"
+      ],
+      "card": {
+        "title": "Platforms waar we mee werken",
+        "description": "We werken met de beste email marketing platforms en kiezen samen met jou de beste optie voor jouw situatie.",
+        "platforms": [
+          "Mailchimp - Gebruiksvriendelijk en breed inzetbaar",
+          "Klaviyo - Krachtig voor e-commerce",
+          "ActiveCampaign - Geavanceerde automatisering",
+          "Brevo (Sendinblue) - Betaalbaar en compleet"
+        ],
+        "button": "Advies over jouw situatie →"
+      }
+    },
+    "cta": {
+      "title": "Klaar om je inbox te domineren?",
+      "subtitle": "Laten we samen een email strategie ontwikkelen die resultaat oplevert.",
+      "primaryButton": "Plan een gesprek",
+      "secondaryButton": "Alle diensten"
+    }
+  },
+  "onlineMarketingPage": {
+    "badge": "Online Marketing",
+    "titleLine1": "Adverteren dat",
+    "titleLine2": "rendeert",
+    "subtitle": "Full-stack digital marketing op Google, Meta, TikTok en LinkedIn. Van strategie tot uitvoering, wij zorgen voor meetbaar resultaat.",
+    "primaryButton": "Gratis marketing scan",
+    "secondaryButton": "Tracking & Analytics",
+    "platforms": {
+      "title": "Adverteer waar je klanten zijn",
+      "subtitle": "We beheren campagnes op alle grote platforms",
+      "google": {
+        "name": "Google Ads",
+        "description": "Search, Display en Shopping campagnes voor directe zichtbaarheid"
+      },
+      "meta": {
+        "name": "Meta Ads",
+        "description": "Facebook en Instagram advertenties met geavanceerde targeting"
+      },
+      "tiktok": {
+        "name": "TikTok Ads",
+        "description": "Bereik de jongere doelgroep met video-first advertising"
+      },
+      "linkedin": {
+        "name": "LinkedIn Ads",
+        "description": "B2B marketing en lead generation voor zakelijke doelgroepen"
+      }
+    },
+    "services": {
+      "title": "Wat we doen",
+      "subtitle": "Complete campagnebeheer van A tot Z",
+      "targeting": {
+        "title": "Doelgroep Targeting",
+        "description": "Bereik precies de juiste mensen op basis van demografie, interesses, gedrag en zoekintentie."
+      },
+      "performance": {
+        "title": "Performance Optimalisatie",
+        "description": "Continue A/B testing en optimalisatie voor maximale ROI op je advertentie-uitgaven."
+      },
+      "lookalike": {
+        "title": "Lookalike Audiences",
+        "description": "Vind nieuwe klanten die lijken op je beste bestaande klanten."
+      },
+      "remarketing": {
+        "title": "Remarketing",
+        "description": "Herinner websitebezoekers aan je producten en converteer ze alsnog."
+      },
+      "reporting": {
+        "title": "Rapportage & Inzichten",
+        "description": "Maandelijkse rapportages met duidelijke KPI's en actionable insights."
+      },
+      "strategy": {
+        "title": "Campagne Strategie",
+        "description": "Full-funnel aanpak van awareness tot conversie, afgestemd op jouw doelen."
+      }
+    },
+    "process": {
+      "title": "Onze Aanpak",
+      "subtitle": "Data-driven marketing in vier stappen",
+      "step1": {
+        "title": "Analyse & Strategie",
+        "description": "We analyseren je markt, concurrentie en doelgroep om een winnende strategie te bepalen."
+      },
+      "step2": {
+        "title": "Campagne Setup",
+        "description": "We bouwen je campagnes op met de juiste structuur, targeting en advertenties."
+      },
+      "step3": {
+        "title": "Launch & Monitor",
+        "description": "Na de lancering monitoren we dagelijks de prestaties en grijpen direct in waar nodig."
+      },
+      "step4": {
+        "title": "Optimaliseer & Schaal",
+        "description": "Op basis van data optimaliseren we continu en schalen we wat werkt."
+      }
+    },
+    "partner": {
+      "title": "Samenwerking met",
+      "titleHighlight": "Hello Its Me",
+      "subtitle": "Voor gespecialiseerde paid advertising werken we samen met Hello Its Me, experts in performance marketing. Samen zorgen we voor een naadloze integratie tussen je website en advertenties.",
+      "benefits": [
+        "Google Partner gecertificeerd",
+        "Meta Business Partner",
+        "Bewezen track record met 100+ klanten"
+      ],
+      "card": {
+        "title": "Waarom dit werkt",
+        "description": "Door de samenwerking tussen Robuust (website & tracking) en Hello Its Me (advertising) krijg je het beste van twee werelden:",
+        "features": [
+          "Perfecte afstemming tussen landing pages en advertenties",
+          "Nauwkeurige tracking en conversie attributie",
+          "Snelle iteratie en optimalisatie",
+          "Één aanspreekpunt voor al je online marketing"
+        ],
+        "button": "Vraag een gratis scan aan →"
+      }
+    },
+    "cta": {
+      "title": "Klaar om te groeien?",
+      "subtitle": "Vraag een gratis marketing scan aan en ontdek je groeikansen.",
+      "primaryButton": "Gratis scan aanvragen",
+      "secondaryButton": "Alle diensten"
+    }
+  },
+  "brandingPage": {
+    "badge": "Branding",
+    "titleLine1": "Een merk dat",
+    "titleLine2": "blijft hangen",
+    "subtitle": "Van logo tot complete brand guidelines. Een sterke merkidentiteit die vertrouwen wekt en je onderscheidt van de concurrentie.",
+    "primaryButton": "Start je branding traject",
+    "secondaryButton": "Bekijk ons werk",
+    "services": {
+      "title": "Wat omvat branding?",
+      "subtitle": "Alle elementen voor een consistente merkbeleving",
+      "logoDesign": {
+        "title": "Logo Design",
+        "description": "Een uniek logo dat de essentie van je merk vastlegt en overal herkenbaar is."
+      },
+      "colorPalette": {
+        "title": "Kleurenpalet",
+        "description": "Zorgvuldig gekozen kleuren die emotie oproepen en je merk onderscheiden."
+      },
+      "typography": {
+        "title": "Typografie",
+        "description": "Lettertype selectie die past bij je merkpersoonlijkheid en goed leesbaar is."
+      },
+      "brandGuidelines": {
+        "title": "Brand Guidelines",
+        "description": "Een complete handleiding voor consistent merkgebruik door iedereen in je organisatie."
+      },
+      "visualIdentity": {
+        "title": "Visual Identity",
+        "description": "Grafische elementen, patronen en iconen die je visuele taal completeren."
+      },
+      "brandStrategy": {
+        "title": "Brand Strategy",
+        "description": "Definieer je merkwaarden, tone of voice en positionering in de markt."
+      }
+    },
+    "process": {
+      "title": "Het Branding Proces",
+      "subtitle": "Van eerste gesprek tot complete merkidentiteit",
+      "step1": {
+        "title": "Discovery",
+        "description": "We leren je bedrijf kennen: missie, visie, waarden, doelgroep en concurrentie."
+      },
+      "step2": {
+        "title": "Concept",
+        "description": "Op basis van de discovery ontwikkelen we meerdere logo concepten en richtingen."
+      },
+      "step3": {
+        "title": "Ontwikkeling",
+        "description": "Het gekozen concept wordt uitgewerkt tot een complete visuele identiteit."
+      },
+      "step4": {
+        "title": "Oplevering",
+        "description": "Je ontvangt alle bestanden en een brand guidelines document."
+      }
+    },
+    "deliverables": {
+      "title": "Wat je",
+      "titleHighlight": "krijgt",
+      "subtitle": "Een compleet brandingpakket met alle bestanden en documentatie die je nodig hebt voor consistente merkuitingen.",
+      "items": [
+        "Logo in alle bestandsformaten (SVG, PNG, PDF)",
+        "Primair en secundair kleurenpalet met kleurcodes",
+        "Typografie specificaties voor web en print",
+        "Do's en don'ts voor merkgebruik",
+        "Sociale media templates",
+        "Briefpapier en visitekaartje ontwerp",
+        "Favicon en app iconen",
+        "Brand guidelines document (PDF)"
+      ],
+      "card": {
+        "title": "Branding + Website",
+        "description": "De beste resultaten behaal je als branding en website tegelijkertijd worden ontwikkeld. Zo garanderen we een naadloze integratie van je merkidentiteit in het webdesign.",
+        "feature1": "Consistente merkbeleving online en offline",
+        "feature2": "Efficiënter proces, kortere doorlooptijd",
+        "feature3": "Bespaar op kosten door bundeling",
+        "button": "Meer over design →"
+      }
+    },
+    "cta": {
+      "title": "Klaar om je merk te bouwen?",
+      "subtitle": "Laten we samen een merkidentiteit creëren die je bedrijf naar het volgende niveau tilt.",
+      "primaryButton": "Plan een gesprek",
+      "secondaryButton": "Alle diensten"
+    }
+  },
+  "seoPage": {
+    "badge": "Zoekmachine Optimalisatie",
+    "titleLine1": "Gevonden worden",
+    "titleLine2": "in Google",
+    "subtitle": "Organisch beter gevonden worden met technische SEO, content optimalisatie en linkbuilding. Duurzame groei zonder advertentiekosten.",
+    "primaryButton": "Gratis SEO-scan",
+    "secondaryButton": "Tracking & Analytics",
+    "results": {
+      "organicTraffic": {
+        "metric": "+150%",
+        "label": "Organisch verkeer",
+        "period": "gemiddeld na 6 maanden"
+      },
+      "rankings": {
+        "metric": "Top 10",
+        "label": "Google rankings",
+        "period": "voor belangrijkste keywords"
+      },
+      "bounceRate": {
+        "metric": "-40%",
+        "label": "Bounce rate",
+        "period": "door betere content match"
+      }
+    },
+    "services": {
+      "title": "Onze SEO Diensten",
+      "subtitle": "Een complete aanpak voor duurzame organische groei",
+      "technicalSeo": {
+        "title": "Technische SEO",
+        "description": "Optimaliseer de technische basis: snelheid, crawlbaarheid, structured data en Core Web Vitals."
+      },
+      "contentOptimization": {
+        "title": "Content Optimalisatie",
+        "description": "SEO-vriendelijke content die zowel zoekmachines als bezoekers aanspreekt."
+      },
+      "linkbuilding": {
+        "title": "Linkbuilding",
+        "description": "Kwalitatieve backlinks van relevante websites om je domeinautoriteit te verhogen."
+      },
+      "localSeo": {
+        "title": "Local SEO",
+        "description": "Beter gevonden worden in je regio met Google Business Profile optimalisatie."
+      },
+      "keywordResearch": {
+        "title": "Keyword Research",
+        "description": "Ontdek waar je doelgroep naar zoekt en welke kansen er liggen."
+      },
+      "seoReporting": {
+        "title": "SEO Rapportage",
+        "description": "Maandelijkse rapportages met rankings, traffic en concrete verbeterpunten."
+      }
+    },
+    "technical": {
+      "title": "Technische SEO",
+      "titleHighlight": "checklist",
+      "subtitle": "De technische basis moet op orde zijn voordat content en linkbuilding effect hebben. Bij elke website die we bouwen is dit standaard inbegrepen.",
+      "checklist": [
+        "Site snelheid optimalisatie (Core Web Vitals)",
+        "Mobile-first indexering gereedheid",
+        "XML sitemap en robots.txt configuratie",
+        "Structured data / Schema markup",
+        "Canonical tags en URL structuur",
+        "Internal linking optimalisatie",
+        "404 en redirect management",
+        "HTTPS en security headers"
+      ],
+      "card": {
+        "title": "SEO is een marathon",
+        "description": "In tegenstelling tot advertenties, is SEO geen instant oplossing. Het kost tijd om autoriteit op te bouwen en rankings te verdienen. Maar de resultaten zijn duurzaam en de kosten per bezoeker dalen over tijd.",
+        "timeline": {
+          "phase1": {
+            "period": "Maand 1-3",
+            "description": "Technische basis & content"
+          },
+          "phase2": {
+            "period": "Maand 3-6",
+            "description": "Rankings stijgen"
+          },
+          "phase3": {
+            "period": "Maand 6+",
+            "description": "Significante traffic groei"
+          }
+        },
+        "button": "Start met SEO →"
+      }
+    },
+    "comparison": {
+      "title": "SEO vs. Adverteren",
+      "subtitle": "Beide hebben hun plaats in een gezonde marketingmix",
+      "seo": {
+        "title": "SEO (Organisch)",
+        "benefits": [
+          "Duurzame resultaten die blijven",
+          "Geen kosten per klik",
+          "Hogere CTR dan advertenties",
+          "Bouwt merkautoriteit"
+        ]
+      },
+      "ads": {
+        "title": "Advertenties (Betaald)",
+        "benefits": [
+          "Direct resultaat vanaf dag 1",
+          "Volledige controle over budget",
+          "Precieze targeting opties",
+          "Snel schaalbaar"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Klaar om gevonden te worden?",
+      "subtitle": "Vraag een gratis SEO-scan aan en ontdek je verbeterpunten.",
+      "primaryButton": "Gratis SEO-scan",
+      "secondaryButton": "Alle diensten"
+    }
+  },
+  "crmPage": {
+    "badge": "CRM & Automatisering",
+    "titleLine1": "Klantrelaties",
+    "titleLine2": "geoptimaliseerd",
+    "subtitle": "Slimme CRM integraties en automatiseringen die je sales proces stroomlijnen. Van lead tot klant, volledig geautomatiseerd.",
+    "primaryButton": "CRM adviesgesprek",
+    "secondaryButton": "Email Marketing",
+    "services": {
+      "title": "Wat we doen",
+      "subtitle": "Complete CRM implementatie en optimalisatie",
+      "crmSetup": {
+        "title": "CRM Setup",
+        "description": "Implementatie en configuratie van je CRM systeem, afgestemd op jouw werkprocessen."
+      },
+      "integrations": {
+        "title": "Integraties",
+        "description": "Koppel je CRM aan je website, email marketing, boekhouding en andere tools."
+      },
+      "automation": {
+        "title": "Automatisering",
+        "description": "Automatische workflows voor lead nurturing, follow-ups en taakbeheer."
+      },
+      "leadScoring": {
+        "title": "Lead Scoring",
+        "description": "Identificeer je warmste leads op basis van gedrag en interacties."
+      },
+      "notifications": {
+        "title": "Notificaties",
+        "description": "Real-time alerts wanneer leads actie ondernemen op je website."
+      },
+      "dataManagement": {
+        "title": "Data Management",
+        "description": "Schone, georganiseerde data met deduplicatie en validatie."
+      }
+    },
+    "platforms": {
+      "title": "CRM Platforms",
+      "subtitle": "We werken met de beste CRM systemen en helpen je de juiste keuze maken",
+      "hubspot": {
+        "name": "HubSpot",
+        "description": "All-in-one marketing, sales en service platform",
+        "type": "Enterprise"
+      },
+      "pipedrive": {
+        "name": "Pipedrive",
+        "description": "Sales-focused CRM voor groeiende teams",
+        "type": "Sales"
+      },
+      "activeCampaign": {
+        "name": "ActiveCampaign",
+        "description": "Marketing automation met CRM functionaliteit",
+        "type": "Marketing"
+      },
+      "notion": {
+        "name": "Notion",
+        "description": "Flexibele workspace met CRM templates",
+        "type": "Startup"
+      }
+    },
+    "automations": {
+      "title": "Automatisering Voorbeelden",
+      "subtitle": "Zo kunnen automatiseringen jouw werkprocessen versnellen",
+      "triggerLabel": "Trigger:",
+      "actionsLabel": "Automatische acties:",
+      "formSubmitted": {
+        "trigger": "Formulier ingevuld",
+        "actions": [
+          "Contact aanmaken in CRM",
+          "Tag toekennen op basis van interesse",
+          "Welkomst email versturen",
+          "Sales notificatie sturen"
+        ]
+      },
+      "quoteViewed": {
+        "trigger": "Offerte bekeken",
+        "actions": [
+          "Lead score verhogen",
+          "Follow-up taak aanmaken",
+          "Reminder email na 3 dagen"
+        ]
+      },
+      "noActivity": {
+        "trigger": "Geen activiteit 30 dagen",
+        "actions": [
+          "Re-engagement email versturen",
+          "Tag wijzigen naar 'cold'",
+          "Verwijderen uit actieve campagnes"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Waarom",
+      "titleHighlight": "CRM automatisering?",
+      "subtitle": "Een goed ingericht CRM systeem bespaart je team uren per week en zorgt ervoor dat geen enkele lead door de mazen van het net glipt.",
+      "items": [
+        "Nooit meer leads vergeten op te volgen",
+        "360° klantbeeld voor betere service",
+        "Kortere sales cycles door automatisering",
+        "Betere samenwerking tussen teams",
+        "Data-driven beslissingen",
+        "Schaalbaar zonder extra handwerk"
+      ],
+      "card": {
+        "title": "Website + CRM Integratie",
+        "description": "De kracht van CRM zit in de integratie met je website. Elk formulier, elke download, elke pageview kan automatisch in je CRM terechtkomen.",
+        "features": [
+          "Formulieren direct gekoppeld aan CRM",
+          "Website gedrag zichtbaar per contact",
+          "Automatische lead scoring",
+          "Real-time sales notificaties"
+        ],
+        "button": "Meer over development →"
+      }
+    },
+    "cta": {
+      "title": "Klaar om je sales te stroomlijnen?",
+      "subtitle": "Laten we bespreken hoe CRM automatisering jouw bedrijf kan helpen groeien.",
+      "primaryButton": "Plan een gesprek",
+      "secondaryButton": "Alle diensten"
+    }
+  },
   "glossaryPage": {
     "backToKennisbank": "Terug naar kennisbank",
     "title": "Glossary",

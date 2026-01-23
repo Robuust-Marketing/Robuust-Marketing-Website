@@ -1682,6 +1682,535 @@
       "secondaryButton": "All services"
     }
   },
+  "emailMarketingPage": {
+    "badge": "Email Marketing",
+    "titleLine1": "Emails that",
+    "titleLine2": "convert",
+    "subtitle": "From newsletters to automated flows. Effective email campaigns that build relationships and generate revenue.",
+    "primaryButton": "Start with email marketing",
+    "secondaryButton": "CRM Integrations",
+    "stats": {
+      "roi": {
+        "value": "€36",
+        "label": "ROI per €1 spent",
+        "subtext": "Average"
+      },
+      "conversions": {
+        "value": "4x",
+        "label": "More conversions",
+        "subtext": "vs. social media"
+      },
+      "deliverability": {
+        "value": "99%",
+        "label": "Deliverability",
+        "subtext": "With proper setup"
+      }
+    },
+    "services": {
+      "title": "Our Email Services",
+      "subtitle": "Everything you need for successful email marketing",
+      "emailCampaigns": {
+        "title": "Email Campaigns",
+        "description": "Professionally designed newsletters and promotional emails that stand out in the inbox."
+      },
+      "automation": {
+        "title": "Marketing Automation",
+        "description": "Welcome sequences, abandoned cart flows and personalized customer journeys."
+      },
+      "segmentation": {
+        "title": "List Segmentation",
+        "description": "Divide your contacts into target groups for more relevant, personalized communication."
+      },
+      "abTesting": {
+        "title": "A/B Testing",
+        "description": "Test subject lines, content and send times to continuously improve your results."
+      },
+      "sendTimes": {
+        "title": "Optimal Send Times",
+        "description": "AI-powered send time optimization for maximum open rates."
+      },
+      "personalization": {
+        "title": "Personalization",
+        "description": "Dynamic content based on behavior, preferences and purchase history."
+      }
+    },
+    "automations": {
+      "title": "Email Automations",
+      "subtitle": "Put your email marketing on autopilot",
+      "welcome": {
+        "name": "Welcome Sequence",
+        "description": "Automatically onboard new subscribers with a series of introduction emails",
+        "emails": "3-5 emails"
+      },
+      "abandonedCart": {
+        "name": "Abandoned Cart",
+        "description": "Remind customers of products they left in their shopping cart",
+        "emails": "2-3 emails"
+      },
+      "postPurchase": {
+        "name": "Post-Purchase Flow",
+        "description": "Thank customers, request reviews and encourage repeat purchases",
+        "emails": "3-4 emails"
+      },
+      "reEngagement": {
+        "name": "Re-engagement",
+        "description": "Win back inactive subscribers with special offers",
+        "emails": "2-3 emails"
+      }
+    },
+    "whyEmail": {
+      "title": "Why",
+      "titleHighlight": "email marketing?",
+      "subtitle": "Unlike social media, you have full control over your email list. No algorithms deciding whether your message is seen or not.",
+      "benefits": [
+        "Direct contact with your audience, without algorithm interference",
+        "Highest ROI of all marketing channels (€36 per €1)",
+        "Fully measurable: open rates, click rates, conversions",
+        "Scalable: reach thousands of people with one click"
+      ],
+      "card": {
+        "title": "Platforms we work with",
+        "description": "We work with the best email marketing platforms and choose the best option for your situation together with you.",
+        "platforms": [
+          "Mailchimp - User-friendly and versatile",
+          "Klaviyo - Powerful for e-commerce",
+          "ActiveCampaign - Advanced automation",
+          "Brevo (Sendinblue) - Affordable and complete"
+        ],
+        "button": "Advice for your situation →"
+      }
+    },
+    "cta": {
+      "title": "Ready to dominate the inbox?",
+      "subtitle": "Let's develop an email strategy together that delivers results.",
+      "primaryButton": "Schedule a call",
+      "secondaryButton": "All services"
+    }
+  },
+  "onlineMarketingPage": {
+    "badge": "Online Marketing",
+    "titleLine1": "Advertising that",
+    "titleLine2": "delivers ROI",
+    "subtitle": "Full-stack digital marketing on Google, Meta, TikTok and LinkedIn. From strategy to execution, we deliver measurable results.",
+    "primaryButton": "Free marketing scan",
+    "secondaryButton": "Tracking & Analytics",
+    "platforms": {
+      "title": "Advertise where your customers are",
+      "subtitle": "We manage campaigns on all major platforms",
+      "google": {
+        "name": "Google Ads",
+        "description": "Search, Display and Shopping campaigns for direct visibility"
+      },
+      "meta": {
+        "name": "Meta Ads",
+        "description": "Facebook and Instagram ads with advanced targeting"
+      },
+      "tiktok": {
+        "name": "TikTok Ads",
+        "description": "Reach the younger audience with video-first advertising"
+      },
+      "linkedin": {
+        "name": "LinkedIn Ads",
+        "description": "B2B marketing and lead generation for business audiences"
+      }
+    },
+    "services": {
+      "title": "What we do",
+      "subtitle": "Complete campaign management from A to Z",
+      "targeting": {
+        "title": "Audience Targeting",
+        "description": "Reach exactly the right people based on demographics, interests, behavior and search intent."
+      },
+      "performance": {
+        "title": "Performance Optimization",
+        "description": "Continuous A/B testing and optimization for maximum ROI on your ad spend."
+      },
+      "lookalike": {
+        "title": "Lookalike Audiences",
+        "description": "Find new customers who resemble your best existing customers."
+      },
+      "remarketing": {
+        "title": "Remarketing",
+        "description": "Remind website visitors of your products and convert them after all."
+      },
+      "reporting": {
+        "title": "Reporting & Insights",
+        "description": "Monthly reports with clear KPIs and actionable insights."
+      },
+      "strategy": {
+        "title": "Campaign Strategy",
+        "description": "Full-funnel approach from awareness to conversion, tailored to your goals."
+      }
+    },
+    "process": {
+      "title": "Our Approach",
+      "subtitle": "Data-driven marketing in four steps",
+      "step1": {
+        "title": "Analysis & Strategy",
+        "description": "We analyze your market, competition and target audience to determine a winning strategy."
+      },
+      "step2": {
+        "title": "Campaign Setup",
+        "description": "We build your campaigns with the right structure, targeting and ads."
+      },
+      "step3": {
+        "title": "Launch & Monitor",
+        "description": "After launch we monitor performance daily and intervene immediately where needed."
+      },
+      "step4": {
+        "title": "Optimize & Scale",
+        "description": "Based on data we continuously optimize and scale what works."
+      }
+    },
+    "partner": {
+      "title": "Partnership with",
+      "titleHighlight": "Hello Its Me",
+      "subtitle": "For specialized paid advertising we work together with Hello Its Me, experts in performance marketing. Together we ensure seamless integration between your website and ads.",
+      "benefits": [
+        "Google Partner certified",
+        "Meta Business Partner",
+        "Proven track record with 100+ clients"
+      ],
+      "card": {
+        "title": "Why this works",
+        "description": "Through the collaboration between Robuust (website & tracking) and Hello Its Me (advertising) you get the best of both worlds:",
+        "features": [
+          "Perfect alignment between landing pages and ads",
+          "Accurate tracking and conversion attribution",
+          "Fast iteration and optimization",
+          "One point of contact for all your online marketing"
+        ],
+        "button": "Request a free scan →"
+      }
+    },
+    "cta": {
+      "title": "Ready to grow?",
+      "subtitle": "Request a free marketing scan and discover your growth opportunities.",
+      "primaryButton": "Request free scan",
+      "secondaryButton": "All services"
+    }
+  },
+  "brandingPage": {
+    "badge": "Branding",
+    "titleLine1": "A brand that",
+    "titleLine2": "sticks",
+    "subtitle": "From logo to complete brand guidelines. A strong brand identity that builds trust and sets you apart from the competition.",
+    "primaryButton": "Start your branding project",
+    "secondaryButton": "View our work",
+    "services": {
+      "title": "What does branding include?",
+      "subtitle": "All elements for a consistent brand experience",
+      "logoDesign": {
+        "title": "Logo Design",
+        "description": "A unique logo that captures the essence of your brand and is recognizable everywhere."
+      },
+      "colorPalette": {
+        "title": "Color Palette",
+        "description": "Carefully chosen colors that evoke emotion and distinguish your brand."
+      },
+      "typography": {
+        "title": "Typography",
+        "description": "Font selection that matches your brand personality and is easy to read."
+      },
+      "brandGuidelines": {
+        "title": "Brand Guidelines",
+        "description": "A complete guide for consistent brand usage by everyone in your organization."
+      },
+      "visualIdentity": {
+        "title": "Visual Identity",
+        "description": "Graphic elements, patterns and icons that complete your visual language."
+      },
+      "brandStrategy": {
+        "title": "Brand Strategy",
+        "description": "Define your brand values, tone of voice and market positioning."
+      }
+    },
+    "process": {
+      "title": "The Branding Process",
+      "subtitle": "From initial meeting to complete brand identity",
+      "step1": {
+        "title": "Discovery",
+        "description": "We get to know your business: mission, vision, values, target audience and competition."
+      },
+      "step2": {
+        "title": "Concept",
+        "description": "Based on the discovery we develop multiple logo concepts and directions."
+      },
+      "step3": {
+        "title": "Development",
+        "description": "The chosen concept is developed into a complete visual identity."
+      },
+      "step4": {
+        "title": "Delivery",
+        "description": "You receive all files and a brand guidelines document."
+      }
+    },
+    "deliverables": {
+      "title": "What you",
+      "titleHighlight": "get",
+      "subtitle": "A complete branding package with all files and documentation you need for consistent brand communications.",
+      "items": [
+        "Logo in all file formats (SVG, PNG, PDF)",
+        "Primary and secondary color palette with color codes",
+        "Typography specifications for web and print",
+        "Do's and don'ts for brand usage",
+        "Social media templates",
+        "Letterhead and business card design",
+        "Favicon and app icons",
+        "Brand guidelines document (PDF)"
+      ],
+      "card": {
+        "title": "Branding + Website",
+        "description": "The best results are achieved when branding and website are developed simultaneously. This way we guarantee seamless integration of your brand identity into the web design.",
+        "feature1": "Consistent brand experience online and offline",
+        "feature2": "More efficient process, shorter lead time",
+        "feature3": "Save costs through bundling",
+        "button": "More about design →"
+      }
+    },
+    "cta": {
+      "title": "Ready to build your brand?",
+      "subtitle": "Let's create a brand identity together that takes your business to the next level.",
+      "primaryButton": "Schedule a call",
+      "secondaryButton": "All services"
+    }
+  },
+  "seoPage": {
+    "badge": "Search Engine Optimization",
+    "titleLine1": "Get found",
+    "titleLine2": "on Google",
+    "subtitle": "Get found organically with technical SEO, content optimization and link building. Sustainable growth without advertising costs.",
+    "primaryButton": "Free SEO scan",
+    "secondaryButton": "Tracking & Analytics",
+    "results": {
+      "organicTraffic": {
+        "metric": "+150%",
+        "label": "Organic traffic",
+        "period": "average after 6 months"
+      },
+      "rankings": {
+        "metric": "Top 10",
+        "label": "Google rankings",
+        "period": "for key keywords"
+      },
+      "bounceRate": {
+        "metric": "-40%",
+        "label": "Bounce rate",
+        "period": "through better content match"
+      }
+    },
+    "services": {
+      "title": "Our SEO Services",
+      "subtitle": "A complete approach for sustainable organic growth",
+      "technicalSeo": {
+        "title": "Technical SEO",
+        "description": "Optimize the technical foundation: speed, crawlability, structured data and Core Web Vitals."
+      },
+      "contentOptimization": {
+        "title": "Content Optimization",
+        "description": "SEO-friendly content that appeals to both search engines and visitors."
+      },
+      "linkbuilding": {
+        "title": "Link Building",
+        "description": "Quality backlinks from relevant websites to increase your domain authority."
+      },
+      "localSeo": {
+        "title": "Local SEO",
+        "description": "Get found better in your region with Google Business Profile optimization."
+      },
+      "keywordResearch": {
+        "title": "Keyword Research",
+        "description": "Discover what your target audience is searching for and what opportunities exist."
+      },
+      "seoReporting": {
+        "title": "SEO Reporting",
+        "description": "Monthly reports with rankings, traffic and concrete improvement points."
+      }
+    },
+    "technical": {
+      "title": "Technical SEO",
+      "titleHighlight": "checklist",
+      "subtitle": "The technical foundation must be in order before content and link building have effect. This is included as standard with every website we build.",
+      "checklist": [
+        "Site speed optimization (Core Web Vitals)",
+        "Mobile-first indexing readiness",
+        "XML sitemap and robots.txt configuration",
+        "Structured data / Schema markup",
+        "Canonical tags and URL structure",
+        "Internal linking optimization",
+        "404 and redirect management",
+        "HTTPS and security headers"
+      ],
+      "card": {
+        "title": "SEO is a marathon",
+        "description": "Unlike advertising, SEO is not an instant solution. It takes time to build authority and earn rankings. But the results are lasting and the cost per visitor decreases over time.",
+        "timeline": {
+          "phase1": {
+            "period": "Month 1-3",
+            "description": "Technical foundation & content"
+          },
+          "phase2": {
+            "period": "Month 3-6",
+            "description": "Rankings increase"
+          },
+          "phase3": {
+            "period": "Month 6+",
+            "description": "Significant traffic growth"
+          }
+        },
+        "button": "Start with SEO →"
+      }
+    },
+    "comparison": {
+      "title": "SEO vs. Advertising",
+      "subtitle": "Both have their place in a healthy marketing mix",
+      "seo": {
+        "title": "SEO (Organic)",
+        "benefits": [
+          "Lasting results that stay",
+          "No cost per click",
+          "Higher CTR than ads",
+          "Builds brand authority"
+        ]
+      },
+      "ads": {
+        "title": "Advertising (Paid)",
+        "benefits": [
+          "Immediate results from day 1",
+          "Full control over budget",
+          "Precise targeting options",
+          "Quickly scalable"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Ready to be found?",
+      "subtitle": "Request a free SEO scan and discover your improvement points.",
+      "primaryButton": "Free SEO scan",
+      "secondaryButton": "All services"
+    }
+  },
+  "crmPage": {
+    "badge": "CRM & Automation",
+    "titleLine1": "Customer relationships",
+    "titleLine2": "optimized",
+    "subtitle": "Smart CRM integrations and automations that streamline your sales process. From lead to customer, fully automated.",
+    "primaryButton": "CRM consultation",
+    "secondaryButton": "Email Marketing",
+    "services": {
+      "title": "What we do",
+      "subtitle": "Complete CRM implementation and optimization",
+      "crmSetup": {
+        "title": "CRM Setup",
+        "description": "Implementation and configuration of your CRM system, tailored to your work processes."
+      },
+      "integrations": {
+        "title": "Integrations",
+        "description": "Connect your CRM to your website, email marketing, accounting and other tools."
+      },
+      "automation": {
+        "title": "Automation",
+        "description": "Automatic workflows for lead nurturing, follow-ups and task management."
+      },
+      "leadScoring": {
+        "title": "Lead Scoring",
+        "description": "Identify your warmest leads based on behavior and interactions."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "description": "Real-time alerts when leads take action on your website."
+      },
+      "dataManagement": {
+        "title": "Data Management",
+        "description": "Clean, organized data with deduplication and validation."
+      }
+    },
+    "platforms": {
+      "title": "CRM Platforms",
+      "subtitle": "We work with the best CRM systems and help you make the right choice",
+      "hubspot": {
+        "name": "HubSpot",
+        "description": "All-in-one marketing, sales and service platform",
+        "type": "Enterprise"
+      },
+      "pipedrive": {
+        "name": "Pipedrive",
+        "description": "Sales-focused CRM for growing teams",
+        "type": "Sales"
+      },
+      "activeCampaign": {
+        "name": "ActiveCampaign",
+        "description": "Marketing automation with CRM functionality",
+        "type": "Marketing"
+      },
+      "notion": {
+        "name": "Notion",
+        "description": "Flexible workspace with CRM templates",
+        "type": "Startup"
+      }
+    },
+    "automations": {
+      "title": "Automation Examples",
+      "subtitle": "How automations can speed up your work processes",
+      "triggerLabel": "Trigger:",
+      "actionsLabel": "Automatic actions:",
+      "formSubmitted": {
+        "trigger": "Form submitted",
+        "actions": [
+          "Create contact in CRM",
+          "Assign tag based on interest",
+          "Send welcome email",
+          "Send sales notification"
+        ]
+      },
+      "quoteViewed": {
+        "trigger": "Quote viewed",
+        "actions": [
+          "Increase lead score",
+          "Create follow-up task",
+          "Reminder email after 3 days"
+        ]
+      },
+      "noActivity": {
+        "trigger": "No activity for 30 days",
+        "actions": [
+          "Send re-engagement email",
+          "Change tag to 'cold'",
+          "Remove from active campaigns"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Why",
+      "titleHighlight": "CRM automation?",
+      "subtitle": "A well-configured CRM system saves your team hours per week and ensures no lead slips through the cracks.",
+      "items": [
+        "Never forget to follow up on leads",
+        "360° customer view for better service",
+        "Shorter sales cycles through automation",
+        "Better collaboration between teams",
+        "Data-driven decisions",
+        "Scalable without extra manual work"
+      ],
+      "card": {
+        "title": "Website + CRM Integration",
+        "description": "The power of CRM lies in the integration with your website. Every form, every download, every pageview can automatically end up in your CRM.",
+        "features": [
+          "Forms directly connected to CRM",
+          "Website behavior visible per contact",
+          "Automatic lead scoring",
+          "Real-time sales notifications"
+        ],
+        "button": "More about development →"
+      }
+    },
+    "cta": {
+      "title": "Ready to streamline your sales?",
+      "subtitle": "Let's discuss how CRM automation can help your business grow.",
+      "primaryButton": "Schedule a call",
+      "secondaryButton": "All services"
+    }
+  },
   "glossaryPage": {
     "backToKennisbank": "Back to knowledge base",
     "title": "Glossary",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,86 +13,22 @@ import {
   Eye,
   ArrowRight,
   Check,
+  LucideIcon,
 } from "lucide-react";
 
-const services = [
-  {
-    icon: Fingerprint,
-    title: "Logo Design",
-    description:
-      "Een uniek logo dat de essentie van je merk vastlegt en overal herkenbaar is.",
-  },
-  {
-    icon: Palette,
-    title: "Kleurenpalet",
-    description:
-      "Zorgvuldig gekozen kleuren die emotie oproepen en je merk onderscheiden.",
-  },
-  {
-    icon: Type,
-    title: "Typografie",
-    description:
-      "Lettertype selectie die past bij je merkpersoonlijkheid en goed leesbaar is.",
-  },
-  {
-    icon: FileText,
-    title: "Brand Guidelines",
-    description:
-      "Een complete handleiding voor consistent merkgebruik door iedereen in je organisatie.",
-  },
-  {
-    icon: Layers,
-    title: "Visual Identity",
-    description:
-      "Grafische elementen, patronen en iconen die je visuele taal completeren.",
-  },
-  {
-    icon: Eye,
-    title: "Brand Strategy",
-    description:
-      "Definieer je merkwaarden, tone of voice en positionering in de markt.",
-  },
+const services: { id: string; icon: LucideIcon }[] = [
+  { id: "logoDesign", icon: Fingerprint },
+  { id: "colorPalette", icon: Palette },
+  { id: "typography", icon: Type },
+  { id: "brandGuidelines", icon: FileText },
+  { id: "visualIdentity", icon: Layers },
+  { id: "brandStrategy", icon: Eye },
 ];
 
-const deliverables = [
-  "Logo in alle bestandsformaten (SVG, PNG, PDF)",
-  "Primair en secundair kleurenpalet met kleurcodes",
-  "Typografie specificaties voor web en print",
-  "Do's en don'ts voor merkgebruik",
-  "Sociale media templates",
-  "Briefpapier en visitekaartje ontwerp",
-  "Favicon en app iconen",
-  "Brand guidelines document (PDF)",
-];
-
-const process = [
-  {
-    step: "01",
-    title: "Discovery",
-    description:
-      "We leren je bedrijf kennen: missie, visie, waarden, doelgroep en concurrentie.",
-  },
-  {
-    step: "02",
-    title: "Concept",
-    description:
-      "Op basis van de discovery ontwikkelen we meerdere logo concepten en richtingen.",
-  },
-  {
-    step: "03",
-    title: "Ontwikkeling",
-    description:
-      "Het gekozen concept wordt uitgewerkt tot een complete visuele identiteit.",
-  },
-  {
-    step: "04",
-    title: "Oplevering",
-    description:
-      "Je ontvangt alle bestanden en een brand guidelines document.",
-  },
-];
+const processSteps = ["step1", "step2", "step3", "step4"];
 
 export default function BrandingPage() {
+  const t = useTranslations("brandingPage");
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -124,7 +61,7 @@ export default function BrandingPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Branding
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -132,9 +69,9 @@ export default function BrandingPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Een merk dat
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">blijft hangen</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -142,8 +79,7 @@ export default function BrandingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8"
           >
-            Van logo tot complete brand guidelines. Een sterke merkidentiteit
-            die vertrouwen wekt en je onderscheidt van de concurrentie.
+            {t("subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -157,7 +93,7 @@ export default function BrandingPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Start je branding traject
+                {t("primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -167,7 +103,7 @@ export default function BrandingPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/portfolio">Bekijk ons werk</Link>
+              <Link href="/portfolio">{t("secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>
@@ -183,7 +119,7 @@ export default function BrandingPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Wat omvat branding?
+              {t("services.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -191,14 +127,14 @@ export default function BrandingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Alle elementen voor een consistente merkbeleving
+              {t("services.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <motion.div
-                key={service.title}
+                key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -209,10 +145,10 @@ export default function BrandingPage() {
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {service.title}
+                  {t(`services.${service.id}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {service.description}
+                  {t(`services.${service.id}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -230,7 +166,7 @@ export default function BrandingPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Het Branding Proces
+              {t("process.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -238,14 +174,14 @@ export default function BrandingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Van eerste gesprek tot complete merkidentiteit
+              {t("process.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((item, index) => (
+            {processSteps.map((step, index) => (
               <motion.div
-                key={item.step}
+                key={step}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -253,13 +189,13 @@ export default function BrandingPage() {
                 className="relative"
               >
                 <div className="text-6xl font-bold text-accent/20 mb-4">
-                  {item.step}
+                  {String(index + 1).padStart(2, "0")}
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">
-                  {item.title}
+                  {t(`process.${step}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {item.description}
+                  {t(`process.${step}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -277,29 +213,32 @@ export default function BrandingPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Wat je{" "}
-                <span className="text-gradient-accent">krijgt</span>
+                {t("deliverables.title")}{" "}
+                <span className="text-gradient-accent">
+                  {t("deliverables.titleHighlight")}
+                </span>
               </h2>
               <p className="text-muted-foreground mb-8">
-                Een compleet brandingpakket met alle bestanden en documentatie
-                die je nodig hebt voor consistente merkuitingen.
+                {t("deliverables.subtitle")}
               </p>
               <ul className="space-y-4">
-                {deliverables.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="flex items-start gap-3"
-                  >
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
-                      <Check className="h-4 w-4 text-accent" />
-                    </div>
-                    <span className="text-white/80">{item}</span>
-                  </motion.li>
-                ))}
+                {(t.raw("deliverables.items") as string[]).map(
+                  (item, index) => (
+                    <motion.li
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="flex items-start gap-3"
+                    >
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
+                        <Check className="h-4 w-4 text-accent" />
+                      </div>
+                      <span className="text-white/80">{item}</span>
+                    </motion.li>
+                  )
+                )}
               </ul>
             </motion.div>
 
@@ -310,32 +249,32 @@ export default function BrandingPage() {
               className="rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 p-8 border border-accent/20"
             >
               <h3 className="text-2xl font-bold text-white mb-4">
-                Branding + Website
+                {t("deliverables.card.title")}
               </h3>
               <p className="text-muted-foreground mb-6">
-                De beste resultaten behaal je als branding en website
-                tegelijkertijd worden ontwikkeld. Zo garanderen we een naadloze
-                integratie van je merkidentiteit in het webdesign.
+                {t("deliverables.card.description")}
               </p>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2 text-sm text-accent">
                   <Check className="h-4 w-4" />
-                  Consistente merkbeleving online en offline
+                  {t("deliverables.card.feature1")}
                 </li>
                 <li className="flex items-center gap-2 text-sm text-accent">
                   <Check className="h-4 w-4" />
-                  Efficiënter proces, kortere doorlooptijd
+                  {t("deliverables.card.feature2")}
                 </li>
                 <li className="flex items-center gap-2 text-sm text-accent">
                   <Check className="h-4 w-4" />
-                  Bespaar op kosten door bundeling
+                  {t("deliverables.card.feature3")}
                 </li>
               </ul>
               <Button
                 asChild
                 className="w-full bg-accent hover:bg-accent-hover text-white"
               >
-                <Link href="/diensten/design">Meer over design →</Link>
+                <Link href="/diensten/design">
+                  {t("deliverables.card.button")}
+                </Link>
               </Button>
             </motion.div>
           </div>
@@ -351,7 +290,7 @@ export default function BrandingPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar om je merk te bouwen?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -359,8 +298,7 @@ export default function BrandingPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Laten we samen een merkidentiteit creëren die je bedrijf naar het
-            volgende niveau tilt.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -374,7 +312,7 @@ export default function BrandingPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Plan een gesprek
+                {t("cta.primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -384,7 +322,7 @@ export default function BrandingPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten">Alle diensten</Link>
+              <Link href="/diensten">{t("cta.secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>
