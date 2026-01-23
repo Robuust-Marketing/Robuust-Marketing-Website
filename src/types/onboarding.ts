@@ -34,7 +34,7 @@ export const stepServicesSchema = z.object({
 });
 
 export const stepHostingSchema = z.object({
-  hostingTier: z.enum(["basis", "professional", "enterprise", "none"]),
+  hostingTier: z.enum(["shared", "premium", "vps", "none"]),
   needsSLA: z.boolean().optional(),
 });
 

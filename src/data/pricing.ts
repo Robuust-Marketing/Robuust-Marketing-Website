@@ -12,11 +12,18 @@ export interface PackagePricing {
 
 export interface HostingPricing {
   price: number | null;
+  priceMax?: number;
   label: string;
   description: string;
   features: string[];
   popular?: boolean;
   custom?: boolean;
+}
+
+export interface WebsiteMigration {
+  freeWithContract: boolean;
+  contractYears: number;
+  description: string;
 }
 
 export interface ServiceAddOn {
@@ -29,6 +36,23 @@ export interface HourlyRate {
   rate: number;
   label: string;
   description: string;
+}
+
+export interface SLAPackage {
+  name: string;
+  price: number;
+  popular?: boolean;
+  features: {
+    preventief: string;
+    monitoring: string;
+    backups: string;
+    incidenten: string;
+    reactietijd: string;
+    oplostijd: string;
+    meeting: string;
+    rapportage: string;
+    uptime: string;
+  };
 }
 
 export const pricing = {
@@ -54,53 +78,132 @@ export const pricing = {
 
   // Hosting tiers
   hosting: {
-    basis: {
-      price: 49,
-      label: "Basis",
-      description: "Voor kleine websites met beperkt verkeer",
+    shared: {
+      price: 15,
+      label: "Shared Hosting",
+      description: "Voor kleine websites en starters",
       features: [
         "1 website",
         "10 GB opslag",
-        "Onbeperkt bandbreedte",
         "SSL certificaat",
         "Dagelijkse backups",
         "Email support",
+        "Cloudflare CDN",
       ],
       popular: false,
     },
-    professional: {
-      price: 99,
-      label: "Professional",
-      description: "Voor bedrijven met meerdere websites",
+    premium: {
+      price: 30,
+      label: "Premium Hosting",
+      description: "Voor professionele websites met meer verkeer",
       features: [
-        "5 websites",
-        "50 GB opslag",
-        "Onbeperkt bandbreedte",
-        "SSL certificaten",
+        "1 website",
+        "25 GB opslag",
+        "SSL certificaat",
         "Dagelijkse backups",
         "Prioriteit support",
         "Staging omgeving",
         "Performance monitoring",
+        "Cloudflare CDN + WAF",
       ],
       popular: true,
     },
-    enterprise: {
-      price: null,
-      label: "Enterprise",
+    vps: {
+      price: 50,
+      priceMax: 100,
+      label: "Dedicated VPS",
       description: "Voor high-traffic en complexe omgevingen",
       features: [
-        "Onbeperkt websites",
-        "Onbeperkt opslag",
         "Dedicated resources",
-        "99.99% uptime SLA",
-        "24/7 support",
-        "Custom infrastructuur",
-        "Load balancing",
-        "DDoS protection",
+        "Onbeperkt opslag",
+        "99.9% uptime SLA",
+        "Prioriteit support",
+        "Staging omgeving",
+        "Performance monitoring",
+        "Cloudflare CDN + WAF",
+        "Custom configuratie",
       ],
-      custom: true,
+      popular: false,
     },
   } as Record<string, HostingPricing>,
+
+  // Website verhuizing (gratis bij 2-jarig contract)
+  websiteMigration: {
+    freeWithContract: true,
+    contractYears: 2,
+    description: "Gratis website verhuizing bij een 2-jarig hostingcontract",
+  },
+
+  // SLA onderhoudspakketten
+  slaPackages: {
+    essential: {
+      name: "Essential",
+      price: 60,
+      popular: false,
+      features: {
+        preventief: "1x per maand",
+        monitoring: "Elke minuut",
+        backups: "Wekelijks",
+        incidenten: "1 incident",
+        reactietijd: "Binnen 48 uur",
+        oplostijd: "Binnen 5 werkdagen",
+        meeting: "1x per jaar",
+        rapportage: "Maandelijks",
+        uptime: "98,0%",
+      },
+    },
+    light: {
+      name: "Light",
+      price: 120,
+      popular: false,
+      features: {
+        preventief: "1x per week",
+        monitoring: "Elke minuut",
+        backups: "Dagelijks",
+        incidenten: "2 incidenten",
+        reactietijd: "Binnen 48 uur",
+        oplostijd: "Binnen 3 werkdagen",
+        meeting: "1x per halfjaar",
+        rapportage: "Maandelijks",
+        uptime: "98,5%",
+      },
+    },
+    medium: {
+      name: "Medium",
+      price: 225,
+      popular: true,
+      features: {
+        preventief: "1x per werkdag",
+        monitoring: "Elke minuut",
+        backups: "2x per dag",
+        incidenten: "4 incidenten",
+        reactietijd: "Binnen 24 uur",
+        oplostijd: "Binnen 72 uur",
+        meeting: "1x per kwartaal",
+        rapportage: "Maandelijks",
+        uptime: "99,0%",
+      },
+    },
+    large: {
+      name: "Large",
+      price: 575,
+      popular: false,
+      features: {
+        preventief: "4x per werkdag",
+        monitoring: "Elke minuut",
+        backups: "4x per dag",
+        incidenten: "8 incidenten",
+        reactietijd: "Binnen 12 uur",
+        oplostijd: "Binnen 36 uur",
+        meeting: "1x per maand",
+        rapportage: "Wekelijks",
+        uptime: "99,5%",
+      },
+    },
+  } as Record<string, SLAPackage>,
+
+  // Spoedtarief voor reactief onderhoud
+  emergencyRate: 175,
 
   // Uurtarief (€120 ex BTW voor alle werkzaamheden)
   hourlyRate: 120,

@@ -72,7 +72,8 @@ export function calculatePriceEstimate(
 
       if (hostingPlan.price !== null) {
         monthlyMin += hostingPlan.price;
-        monthlyMax += hostingPlan.price;
+        // Gebruik priceMax voor bovengrens indien beschikbaar (bijv. VPS €50-€100)
+        monthlyMax += hostingPlan.priceMax ?? hostingPlan.price;
       }
     }
   }

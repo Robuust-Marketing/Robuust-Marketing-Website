@@ -12,96 +12,38 @@ import {
   ArrowRight,
   AlertTriangle,
 } from "lucide-react";
+import { pricing, formatPrice } from "@/data/pricing";
 
-const packages = [
-  {
-    name: "Essential",
-    price: "€ 60",
-    highlight: false,
-  },
-  {
-    name: "Light",
-    price: "€ 120",
-    highlight: false,
-  },
-  {
-    name: "Medium",
-    price: "€ 225",
-    popular: true,
-    highlight: true,
-  },
-  {
-    name: "Large",
-    price: "€ 575",
-    highlight: false,
-  },
-];
+// Generate packages from central pricing config
+const packages = Object.entries(pricing.slaPackages).map(([id, pkg]) => ({
+  id,
+  name: pkg.name,
+  price: formatPrice(pkg.price),
+  popular: pkg.popular || false,
+  highlight: pkg.popular || false,
+}));
 
-const slaFeatures = [
-  {
-    feature: "Preventief Onderhoud (WordPress & Plug-ins Updates)",
-    essential: "1x per maand",
-    light: "1x per week",
-    medium: "1x per werkdag",
-    large: "4x per werkdag",
-  },
-  {
-    feature: "Pro-actieve Monitoring",
-    essential: "Elke minuut",
-    light: "Elke minuut",
-    medium: "Elke minuut",
-    large: "Elke minuut",
-  },
-  {
-    feature: "Back-ups via Host en Extern",
-    essential: "Wekelijks",
-    light: "Dagelijks",
-    medium: "2x per dag",
-    large: "4x per dag",
-  },
-  {
-    feature: "Incidenten per maand inbegrepen",
-    essential: "1 incident",
-    light: "2 incidenten",
-    medium: "4 incidenten",
-    large: "8 incidenten",
-  },
-  {
-    feature: "Reactietijd voor Incidenten",
-    essential: "Binnen 48 uur",
-    light: "Binnen 48 uur",
-    medium: "Binnen 24 uur",
-    large: "Binnen 12 uur",
-  },
-  {
-    feature: "Oplostijd voor incidenten",
-    essential: "Binnen 5 werkdagen",
-    light: "Binnen 3 werkdagen",
-    medium: "Binnen 72 uur",
-    large: "Binnen 36 uur",
-  },
-  {
-    feature: "Inbegrepen online meeting",
-    essential: "1x per jaar",
-    light: "1x per halfjaar",
-    medium: "1x per kwartaal",
-    large: "1x per maand",
-  },
-  {
-    feature: "Rapportagefrequentie",
-    essential: "Maandelijks",
-    light: "Maandelijks",
-    medium: "Maandelijks",
-    large: "Wekelijks",
-  },
-  {
-    feature: "Uptimegarantie op jaarbasis",
-    essential: "98,0%",
-    light: "98,5%",
-    medium: "99,0%",
-    large: "99,5%",
-  },
-];
+// SLA feature labels
+const slaFeatureLabels = [
+  { key: "preventief", label: "Preventief Onderhoud (WordPress & Plug-ins Updates)" },
+  { key: "monitoring", label: "Pro-actieve Monitoring" },
+  { key: "backups", label: "Back-ups via Host en Extern" },
+  { key: "incidenten", label: "Incidenten per maand inbegrepen" },
+  { key: "reactietijd", label: "Reactietijd voor Incidenten" },
+  { key: "oplostijd", label: "Oplostijd voor incidenten" },
+  { key: "meeting", label: "Inbegrepen online meeting" },
+  { key: "rapportage", label: "Rapportagefrequentie" },
+  { key: "uptime", label: "Uptimegarantie op jaarbasis" },
+] as const;
+
+// Generate slaFeatures from central pricing config
+const slaFeatures = slaFeatureLabels.map(({ key, label }) => ({
+  feature: label,
+  essential: pricing.slaPackages.essential.features[key],
+  light: pricing.slaPackages.light.features[key],
+  medium: pricing.slaPackages.medium.features[key],
+  large: pricing.slaPackages.large.features[key],
+}));
 
 const included = [
   {
@@ -248,7 +190,7 @@ export default function OnderhoudPage() {
               </div>
               <p className="text-muted-foreground mb-4">
                 Spoedgevallen:{" "}
-                <span className="font-bold text-white">€175 ex BTW per uur</span>.
+                <span className="font-bold text-white">{formatPrice(pricing.emergencyRate)} ex BTW per uur</span>.
                 Minimale tijd: 15 minuten.
               </p>
               <div className="rounded-xl bg-red-500/10 p-4 border border-red-500/20">

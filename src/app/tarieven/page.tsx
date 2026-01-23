@@ -22,7 +22,11 @@ const tarievenFaqs = getFAQsByCategory("tarieven");
 const hostingPlans = Object.entries(pricing.hosting).map(([id, plan]) => ({
   id,
   name: plan.label,
-  price: plan.price ? formatPrice(plan.price) : "Op maat",
+  price: plan.price
+    ? plan.priceMax
+      ? `${formatPrice(plan.price)} - ${formatPrice(plan.priceMax)}`
+      : formatPrice(plan.price)
+    : "Op maat",
   period: plan.price ? "/maand" : "",
   description: plan.description,
   features: plan.features,

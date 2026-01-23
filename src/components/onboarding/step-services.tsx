@@ -24,16 +24,16 @@ const servicePrices: Record<string, { price: number; type: "one-time" | "monthly
 // Hosting options for the wizard
 const hostingOptions = [
   {
-    id: "basis",
-    ...pricing.hosting.basis,
+    id: "shared",
+    ...pricing.hosting.shared,
   },
   {
-    id: "professional",
-    ...pricing.hosting.professional,
+    id: "premium",
+    ...pricing.hosting.premium,
   },
   {
-    id: "enterprise",
-    ...pricing.hosting.enterprise,
+    id: "vps",
+    ...pricing.hosting.vps,
   },
   {
     id: "none",
@@ -290,6 +290,8 @@ export function StepServices() {
                         ? "Op maat"
                         : option.price === 0
                         ? ""
+                        : 'priceMax' in option && option.priceMax
+                        ? `${formatPrice(option.price as number)} - ${formatPrice(option.priceMax as number)}/mnd`
                         : `${formatPrice(option.price as number)}/mnd`}
                     </span>
                   </div>

@@ -12,7 +12,7 @@ const solidStartPrice = formatPrice(pricing.packages["solid-start"].minPrice);
 const firmFoundationPrice = formatPrice(
   pricing.packages["firm-foundation"].minPrice
 );
-const hostingBasisPrice = formatPrice(pricing.hosting.basis.price!);
+const hostingSharedPrice = formatPrice(pricing.hosting.shared.price!);
 
 export const faqs: FAQ[] = [
   // Tarieven & Prijzen
@@ -76,7 +76,7 @@ export const faqs: FAQ[] = [
   {
     id: "onderhoud-aanbod",
     question: "Bieden jullie ook onderhoud?",
-    answer: `Ja, we bieden verschillende hosting & onderhoud pakketten aan. Vanaf ${hostingBasisPrice}/maand verzorgen we hosting, backups, updates en monitoring zodat jij je kunt focussen op je business.`,
+    answer: `Ja, we bieden verschillende hosting & onderhoud pakketten aan. Vanaf ${hostingSharedPrice}/maand verzorgen we hosting, backups, updates en monitoring zodat jij je kunt focussen op je business.`,
     categories: ["hosting", "algemeen"],
   },
 

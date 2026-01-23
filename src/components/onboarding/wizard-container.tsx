@@ -108,7 +108,7 @@ export function WizardContainer() {
     mode: "onChange",
     defaultValues: {
       selectedServices: [],
-      hostingTier: "professional",
+      hostingTier: "premium",
       needsSLA: false,
       privacyConsent: false,
     },
