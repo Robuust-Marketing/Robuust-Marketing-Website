@@ -18,7 +18,7 @@ import {
   wizardSteps,
   type OnboardingData,
 } from "@/types/onboarding";
-import { trackEvent } from "@/lib/gtm";
+import { trackFunnelStep, trackFunnelComplete } from "@/lib/gtm";
 import { calculatePriceEstimate, formatPriceEstimate } from "@/lib/pricing";
 
 const TOTAL_STEPS = 4;
@@ -124,12 +124,7 @@ export function WizardContainer() {
   useEffect(() => {
     const step = wizardSteps[currentStep - 1];
     if (step) {
-      trackEvent({
-        action: "onboarding_step_view",
-        category: "onboarding",
-        label: step.label,
-        value: currentStep,
-      });
+      trackFunnelStep("offerte_wizard", currentStep, step.label, TOTAL_STEPS);
     }
   }, [currentStep]);
 
@@ -169,11 +164,14 @@ export function WizardContainer() {
       }
 
       // Track completion
-      trackEvent({
-        action: "onboarding_complete",
-        category: "conversion",
-        label: formData.companySize || "unknown",
+      trackFunnelComplete("offerte_wizard", {
         value: priceEstimate.firstYearMin,
+        selectedServices: formData.selectedServices,
+        metadata: {
+          company_size: formData.companySize || "unknown",
+          hosting_tier: formData.hostingTier || "none",
+          with_booking: withBooking ? 1 : 0,
+        },
       });
 
       setIsComplete(true);

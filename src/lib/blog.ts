@@ -129,3 +129,47 @@ export function getAllBlogSlugs(): string[] {
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => file.replace(".mdx", ""));
 }
+
+export interface Heading {
+  level: number;
+  text: string;
+  id: string;
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/--+/g, "-")
+    .trim();
+}
+
+export function extractHeadings(content: string): Heading[] {
+  const headings: Heading[] = [];
+  const lines = content.split("\n");
+
+  for (const line of lines) {
+    // Match ## and ### headers (h2 and h3)
+    const h2Match = line.match(/^##\s+(.+)$/);
+    const h3Match = line.match(/^###\s+(.+)$/);
+
+    if (h2Match) {
+      const text = h2Match[1].trim();
+      headings.push({
+        level: 2,
+        text,
+        id: slugify(text),
+      });
+    } else if (h3Match) {
+      const text = h3Match[1].trim();
+      headings.push({
+        level: 3,
+        text,
+        id: slugify(text),
+      });
+    }
+  }
+
+  return headings;
+}

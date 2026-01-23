@@ -3,3 +3,8 @@ export { BlogCategoryFilter } from "./blog-category-filter";
 export { BlogPostCard } from "./blog-post-card";
 export { BlogFeaturedPost } from "./blog-featured-post";
 export { BlogNewsletter } from "./blog-newsletter";
+export { TableOfContents } from "./table-of-contents";
+export { ReadingProgress } from "./reading-progress";
+export { ShareButtons } from "./share-buttons";
+export { AuthorBio } from "./author-bio";
+export type { Heading } from "./table-of-contents";

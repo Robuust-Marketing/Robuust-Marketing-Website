@@ -11,7 +11,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "";
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-N97Z9CF";
 const COOKIEBOT_ID = process.env.NEXT_PUBLIC_COOKIEBOT_ID || "";
 
 export const metadata: Metadata = {
@@ -47,18 +47,53 @@ export default function RootLayout({
   return (
     <html lang="nl" className={inter.variable}>
       <head>
-        {/* Cookiebot - GDPR Cookie Consent */}
+        {/*
+          Google Consent Mode v2 - MOET EERST laden
+          Dit zet de default consent state op "denied" voor alle categorieën
+          Cookiebot zal dit updaten naar "granted" wanneer gebruiker toestemming geeft
+        */}
+        <Script
+          id="consent-mode-default"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+
+              // Consent Mode v2 - default denied (AVG-compliant)
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'functionality_storage': 'denied',
+                'personalization_storage': 'denied',
+                'security_storage': 'granted',
+                'wait_for_update': 500
+              });
+
+              // URL passthrough voor betere attributie zonder cookies
+              gtag('set', 'url_passthrough', true);
+
+              // Ads data redaction wanneer consent denied is
+              gtag('set', 'ads_data_redaction', true);
+            `,
+          }}
+        />
+
+        {/* Cookiebot - GDPR Cookie Consent (laadt na consent defaults) */}
         {COOKIEBOT_ID && (
           <Script
             id="cookiebot"
             src="https://consent.cookiebot.com/uc.js"
             data-cbid={COOKIEBOT_ID}
             data-blockingmode="auto"
+            data-consentmode="enabled"
             strategy="beforeInteractive"
           />
         )}
 
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager (laadt na Cookiebot) */}
         {GTM_ID && (
           <Script
             id="gtm-script"

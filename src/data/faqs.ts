@@ -1,9 +1,18 @@
+import { pricing, formatPrice } from "./pricing";
+
 export interface FAQ {
   id: string;
   question: string;
   answer: string;
   categories: string[];
 }
+
+// Dynamische prijzen uit pricing.ts
+const solidStartPrice = formatPrice(pricing.packages["solid-start"].minPrice);
+const firmFoundationPrice = formatPrice(
+  pricing.packages["firm-foundation"].minPrice
+);
+const hostingBasisPrice = formatPrice(pricing.hosting.basis.price!);
 
 export const faqs: FAQ[] = [
   // Tarieven & Prijzen
@@ -54,8 +63,7 @@ export const faqs: FAQ[] = [
   {
     id: "wat-kost-website",
     question: "Wat kost een website bij Robuust?",
-    answer:
-      "Onze website pakketten beginnen vanaf €2.500 voor een Solid Start pakket. Voor grotere projecten met meer functionaliteiten start het Firm Foundation pakket vanaf €7.500. Neem contact op voor een offerte op maat.",
+    answer: `Onze website pakketten beginnen vanaf ${solidStartPrice} voor een Solid Start pakket. Voor grotere projecten met meer functionaliteiten start het Firm Foundation pakket vanaf ${firmFoundationPrice}. Neem contact op voor een offerte op maat.`,
     categories: ["tarieven", "algemeen"],
   },
   {
@@ -68,8 +76,7 @@ export const faqs: FAQ[] = [
   {
     id: "onderhoud-aanbod",
     question: "Bieden jullie ook onderhoud?",
-    answer:
-      "Ja, we bieden verschillende hosting & onderhoud pakketten aan. Vanaf €49/maand verzorgen we hosting, backups, updates en monitoring zodat jij je kunt focussen op je business.",
+    answer: `Ja, we bieden verschillende hosting & onderhoud pakketten aan. Vanaf ${hostingBasisPrice}/maand verzorgen we hosting, backups, updates en monitoring zodat jij je kunt focussen op je business.`,
     categories: ["hosting", "algemeen"],
   },
 

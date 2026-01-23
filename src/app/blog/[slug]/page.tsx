@@ -2,8 +2,14 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getBlogPost, getAllBlogSlugs, getAllBlogPosts } from "@/lib/blog";
+import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import {
+  ReadingProgress,
+  TableOfContents,
+  ShareButtons,
+  AuthorBio,
+} from "@/components/blog";
 
 export async function generateStaticParams() {
   const slugs = getAllBlogSlugs();
@@ -30,16 +36,42 @@ export async function generateMetadata({
   };
 }
 
-const mdxComponents = {
+function slugify(text: string): string {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/--+/g, "-")
+    .trim();
+}
+
+const createMdxComponents = () => ({
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className="text-3xl sm:text-4xl font-bold text-white mt-8 mb-4" {...props} />
   ),
-  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="text-2xl sm:text-3xl font-bold text-white mt-8 mb-4" {...props} />
-  ),
-  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className="text-xl sm:text-2xl font-semibold text-white mt-6 mb-3" {...props} />
-  ),
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const text = typeof props.children === "string" ? props.children : "";
+    const id = slugify(text);
+    return (
+      <h2
+        id={id}
+        className="text-2xl sm:text-3xl font-bold text-white mt-8 mb-4 scroll-mt-24"
+        {...props}
+      />
+    );
+  },
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const text = typeof props.children === "string" ? props.children : "";
+    const id = slugify(text);
+    return (
+      <h3
+        id={id}
+        className="text-xl sm:text-2xl font-semibold text-white mt-6 mb-3 scroll-mt-24"
+        {...props}
+      />
+    );
+  },
   h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4 className="text-lg font-semibold text-white mt-4 mb-2" {...props} />
   ),
@@ -85,7 +117,7 @@ const mdxComponents = {
   td: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td className="border border-white/10 px-4 py-2 text-muted-foreground" {...props} />
   ),
-};
+});
 
 export default async function BlogPostPage({
   params,
@@ -99,98 +131,130 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const headings = extractHeadings(post.content);
   const allPosts = getAllBlogPosts();
-  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
   const relatedPosts = allPosts
     .filter((p) => p.slug !== slug && p.category === post.category)
     .slice(0, 3);
 
+  const articleUrl = `https://robuustmarketing.nl/blog/${slug}`;
+
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <article className="mx-auto max-w-4xl px-6 lg:px-8">
-        {/* Back Link */}
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-8"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Terug naar blog
-        </Link>
+    <>
+      <ReadingProgress />
+      <div className="min-h-screen pt-32 pb-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Back Link */}
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-8"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Terug naar blog
+          </Link>
 
-        {/* Header */}
-        <header className="mb-12">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
-              <Tag className="h-3 w-3" />
-              {post.category}
-            </span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-            {post.title}
-          </h1>
-
-          <p className="text-xl text-muted-foreground mb-6">{post.excerpt}</p>
-
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              {post.readTime} leestijd
-            </span>
-            {post.author && <span>Door {post.author}</span>}
-          </div>
-        </header>
-
-        {/* Content */}
-        <div className="prose prose-invert max-w-none">
-          <MDXRemote source={post.content} components={mdxComponents} />
-        </div>
-
-        {/* Related Posts */}
-        {relatedPosts.length > 0 && (
-          <section className="mt-16 pt-12 border-t border-white/10">
-            <h2 className="text-2xl font-bold text-white mb-6">
-              Gerelateerde artikelen
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedPosts.map((relatedPost) => (
-                <Link
-                  key={relatedPost.slug}
-                  href={`/blog/${relatedPost.slug}`}
-                  className="group rounded-xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
-                >
-                  <span className="text-xs font-medium text-accent mb-2 block">
-                    {relatedPost.category}
+          <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+            {/* Main Content */}
+            <article className="lg:col-span-8">
+              {/* Header */}
+              <header className="mb-12">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
+                    <Tag className="h-3 w-3" />
+                    {post.category}
                   </span>
-                  <h3 className="font-semibold text-white group-hover:text-accent transition-colors mb-2">
-                    {relatedPost.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {relatedPost.excerpt}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+                </div>
 
-        {/* CTA */}
-        <section className="mt-16 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 p-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">
-            Hulp nodig bij jouw website?
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            Wij helpen je graag met development, hosting en online marketing.
-          </p>
-          <Button asChild className="bg-accent hover:bg-accent-hover text-white">
-            <Link href="/contact">Neem contact op</Link>
-          </Button>
-        </section>
-      </article>
-    </div>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+                  {post.title}
+                </h1>
+
+                <p className="text-xl text-muted-foreground mb-6">{post.excerpt}</p>
+
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    {post.date}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    {post.readTime} leestijd
+                  </span>
+                  {post.author && <span>Door {post.author}</span>}
+                </div>
+              </header>
+
+              {/* Content */}
+              <div className="prose prose-invert max-w-none">
+                <MDXRemote source={post.content} components={createMdxComponents()} />
+              </div>
+
+              {/* Author Bio */}
+              <section className="mt-12 pt-8 border-t border-white/10">
+                <AuthorBio author={post.author} />
+              </section>
+
+              {/* Related Posts */}
+              {relatedPosts.length > 0 && (
+                <section className="mt-12 pt-8 border-t border-white/10">
+                  <h2 className="text-2xl font-bold text-white mb-6">
+                    Gerelateerde artikelen
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {relatedPosts.map((relatedPost) => (
+                      <Link
+                        key={relatedPost.slug}
+                        href={`/blog/${relatedPost.slug}`}
+                        className="group rounded-xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
+                      >
+                        <span className="text-xs font-medium text-accent mb-2 block">
+                          {relatedPost.category}
+                        </span>
+                        <h3 className="font-semibold text-white group-hover:text-accent transition-colors mb-2">
+                          {relatedPost.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          {relatedPost.excerpt}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* CTA */}
+              <section className="mt-12 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 p-8 text-center">
+                <h2 className="text-2xl font-bold text-white mb-4">
+                  Hulp nodig bij jouw website?
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  Wij helpen je graag met development, hosting en online marketing.
+                </p>
+                <Button asChild className="bg-accent hover:bg-accent-hover text-white">
+                  <Link href="/contact">Neem contact op</Link>
+                </Button>
+              </section>
+            </article>
+
+            {/* Sidebar */}
+            <aside className="hidden lg:block lg:col-span-4">
+              <div className="sticky top-24 space-y-8">
+                {/* Table of Contents */}
+                {headings.length > 0 && (
+                  <div className="rounded-xl bg-surface border border-white/5 p-6">
+                    <TableOfContents headings={headings} />
+                  </div>
+                )}
+
+                {/* Share Buttons */}
+                <div className="rounded-xl bg-surface border border-white/5 p-6">
+                  <ShareButtons title={post.title} url={articleUrl} />
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
