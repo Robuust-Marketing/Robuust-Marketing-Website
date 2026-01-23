@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "@/components/motion";
+import { LanguageSwitcher, LanguageSwitcherCompact } from "@/components/language-switcher";
+import { type Locale } from "@/i18n/config";
 import {
   Menu,
   X,
@@ -275,6 +278,7 @@ interface BlogPostMeta {
 }
 
 export function Header() {
+  const locale = useLocale() as Locale;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MegaMenuSection>(null);
@@ -402,13 +406,14 @@ export function Header() {
           ))}
         </motion.div>
 
-        {/* CTA Button */}
+        {/* Language Switcher & CTA Button */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="hidden lg:flex lg:flex-1 lg:justify-end"
+          className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4"
         >
+          <LanguageSwitcher currentLocale={locale} />
           <Button
             asChild
             size="sm"
@@ -910,8 +915,9 @@ export function Header() {
                   />
                 </div>
 
-                {/* CTA */}
-                <div className="px-6 py-6 border-t border-white/10">
+                {/* Language Switcher & CTA */}
+                <div className="px-6 py-6 border-t border-white/10 space-y-4">
+                  <LanguageSwitcherCompact currentLocale={locale} />
                   <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
                     <Link href="/start-project" onClick={closeMobileMenu}>
                       Start je project

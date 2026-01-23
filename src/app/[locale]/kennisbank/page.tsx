@@ -1,6 +1,8 @@
+import { setRequestLocale } from "next-intl/server";
 import {
   getGuidesByCategory,
   categoryInfo,
+  getCategoryInfo,
   type CategorySlug,
 } from "@/lib/kennisbank";
 import {
@@ -9,20 +11,45 @@ import {
   KennisbankCategories,
   KennisbankCTA,
 } from "@/components/kennisbank";
+import { type Locale } from "@/i18n/config";
 
-export const metadata = {
-  title: "Kennisbank | Robuust Marketing",
-  description:
-    "Diepgaande guides en tutorials over webdevelopment, SEO en hosting.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
-export default async function KennisbankPage() {
+  const titles = {
+    nl: "Kennisbank | Robuust Marketing",
+    en: "Knowledge Base | Robuust Marketing",
+  };
+
+  const descriptions = {
+    nl: "Diepgaande guides en tutorials over webdevelopment, SEO en hosting.",
+    en: "In-depth guides and tutorials about web development, SEO and hosting.",
+  };
+
+  return {
+    title: titles[locale as Locale] || titles.nl,
+    description: descriptions[locale as Locale] || descriptions.nl,
+  };
+}
+
+export default async function KennisbankPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+
   // Fetch data directly in server component - no API call needed
   const categoryKeys: CategorySlug[] = ["development", "seo", "hosting"];
 
   const categories = categoryKeys.map((slug) => {
-    const info = categoryInfo[slug];
-    const guides = getGuidesByCategory(slug);
+    const info = getCategoryInfo(slug, locale as Locale);
+    const guides = getGuidesByCategory(slug, locale as Locale);
 
     return {
       slug,

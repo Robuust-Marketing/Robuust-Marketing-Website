@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, Tag, Calendar } from "lucide-react";
+import { Clock, Tag, Calendar, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { setRequestLocale } from "next-intl/server";
+import { locales, type Locale } from "@/i18n/config";
 import {
   ReadingProgress,
   TableOfContents,
@@ -16,21 +18,30 @@ import {
 } from "@/components/blog";
 
 export async function generateStaticParams() {
-  const slugs = getAllBlogSlugs();
-  return slugs.map((slug) => ({ slug }));
+  // Generate params for all locales
+  const params: { locale: string; slug: string }[] = [];
+
+  for (const locale of locales) {
+    const slugs = getAllBlogSlugs(locale);
+    for (const slug of slugs) {
+      params.push({ locale, slug });
+    }
+  }
+
+  return params;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = getBlogPost(slug);
+  const { locale, slug } = await params;
+  const post = getBlogPost(slug, locale as Locale);
 
   if (!post) {
     return {
-      title: "Artikel niet gevonden | Robuust Marketing",
+      title: locale === "en" ? "Article not found | Robuust Marketing" : "Artikel niet gevonden | Robuust Marketing",
     };
   }
 
@@ -150,20 +161,36 @@ const createMdxComponents = () => ({
   ),
 });
 
+// Fallback notice component
+function FallbackNotice({ locale }: { locale: Locale }) {
+  const message = locale === "en"
+    ? "This article is not yet available in English. Showing the Dutch version."
+    : "Dit artikel is nog niet beschikbaar in het Engels. De Nederlandse versie wordt getoond.";
+
+  return (
+    <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-8 flex items-start gap-3">
+      <AlertCircle className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+      <p className="text-sm text-white/80">{message}</p>
+    </div>
+  );
+}
+
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = getBlogPost(slug);
+  const { locale, slug } = await params;
+  setRequestLocale(locale as Locale);
+
+  const post = getBlogPost(slug, locale as Locale);
 
   if (!post) {
     notFound();
   }
 
   const headings = extractHeadings(post.content);
-  const allPosts = getAllBlogPosts();
+  const allPosts = getAllBlogPosts(locale as Locale);
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
 
   // Get previous and next posts
@@ -174,8 +201,22 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== slug && p.category === post.category)
     .slice(0, 3);
 
-  const articleUrl = `https://robuustmarketing.nl/blog/${slug}`;
+  const basePath = locale === "nl" ? "" : `/${locale}`;
+  const articleUrl = `https://robuustmarketing.nl${basePath}/blog/${slug}`;
   const isoDate = parseDate(post.date);
+
+  // Translations
+  const t = {
+    skipToArticle: locale === "en" ? "Skip to article" : "Ga direct naar artikel",
+    readTime: locale === "en" ? "read time" : "leestijd",
+    by: locale === "en" ? "By" : "Door",
+    relatedArticles: locale === "en" ? "Related articles" : "Gerelateerde artikelen",
+    needHelp: locale === "en" ? "Need help with your website?" : "Hulp nodig bij jouw website?",
+    helpDescription: locale === "en"
+      ? "We're happy to help you with development, hosting and online marketing."
+      : "Wij helpen je graag met development, hosting en online marketing.",
+    contactUs: locale === "en" ? "Contact us" : "Neem contact op",
+  };
 
   return (
     <>
@@ -184,7 +225,7 @@ export default async function BlogPostPage({
         href="#article-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded"
       >
-        Ga direct naar artikel
+        {t.skipToArticle}
       </a>
 
       <ReadingProgress />
@@ -198,6 +239,9 @@ export default async function BlogPostPage({
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             {/* Main Content */}
             <article className="lg:col-span-8" id="article-content">
+              {/* Fallback notice if showing Dutch content for English locale */}
+              {post.isFallback && <FallbackNotice locale={locale as Locale} />}
+
               {/* Header */}
               <header className="mb-8">
                 <div className="flex items-center gap-4 mb-4">
@@ -220,9 +264,9 @@ export default async function BlogPostPage({
                   </time>
                   <span className="flex items-center gap-2">
                     <Clock className="h-4 w-4" aria-hidden="true" />
-                    {post.readTime} leestijd
+                    {post.readTime} {t.readTime}
                   </span>
-                  {post.author && <span>Door {post.author}</span>}
+                  {post.author && <span>{t.by} {post.author}</span>}
                 </div>
               </header>
 
@@ -259,13 +303,13 @@ export default async function BlogPostPage({
               {relatedPosts.length > 0 && (
                 <section className="mt-12 pt-8 border-t border-white/10">
                   <h2 className="text-2xl font-bold text-white mb-6">
-                    Gerelateerde artikelen
+                    {t.relatedArticles}
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {relatedPosts.map((relatedPost) => (
                       <Link
                         key={relatedPost.slug}
-                        href={`/blog/${relatedPost.slug}`}
+                        href={`${basePath}/blog/${relatedPost.slug}`}
                         className="group rounded-xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
                       >
                         <span className="text-xs font-medium text-accent mb-2 block">
@@ -286,13 +330,13 @@ export default async function BlogPostPage({
               {/* CTA */}
               <section className="mt-12 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 p-8 text-center">
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  Hulp nodig bij jouw website?
+                  {t.needHelp}
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  Wij helpen je graag met development, hosting en online marketing.
+                  {t.helpDescription}
                 </p>
                 <Button asChild className="bg-accent hover:bg-accent-hover text-white">
-                  <Link href="/contact">Neem contact op</Link>
+                  <Link href={`${basePath}/contact`}>{t.contactUs}</Link>
                 </Button>
               </section>
             </article>
