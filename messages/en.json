@@ -2211,6 +2211,98 @@
       "secondaryButton": "All services"
     }
   },
+  "onderhoudPage": {
+    "badge": "Website Maintenance",
+    "titleLine1": "Proactive protection",
+    "titleLine2": "with watertight SLAs",
+    "subtitle": "Choose between proactive protection or reactive healing. We always recommend preventive maintenance - save time, money and worries.",
+    "preventive": {
+      "title": "Prevention through maintenance",
+      "description": "Proactive protection against hackers and performance issues. In our experience, if you don't address this regularly, it can become a potentially big problem.",
+      "benefits": [
+        "Prevent problems before they occur",
+        "Save time and money in the long run",
+        "Watertight SLA guarantees"
+      ]
+    },
+    "reactive": {
+      "title": "Urgent healing",
+      "rateLabel": "Emergency cases:",
+      "rateUnit": "excl. VAT per hour",
+      "minTime": "Minimum time: 15 minutes.",
+      "card": {
+        "title": "Reactive solution against hackers",
+        "description": "If your website goes offline due to a hack, we can restore a backup. Including malware scan and repairs, this normally costs about 2.5 hours at our emergency rate. This can therefore add up considerably."
+      }
+    },
+    "packages": {
+      "title": "Proactive Maintenance Packages",
+      "subtitle": "Choose the package that suits your business",
+      "popular": "Popular",
+      "perMonth": "per month",
+      "choosePackage": "Choose this package",
+      "requestQuote": "Request a quote"
+    },
+    "slaFeatures": {
+      "preventief": "Preventive Maintenance (WordPress & Plugin Updates)",
+      "monitoring": "Proactive Monitoring",
+      "backups": "Backups via Host and External",
+      "incidenten": "Incidents per month included",
+      "reactietijd": "Response Time for Incidents",
+      "oplostijd": "Resolution Time for Incidents",
+      "meeting": "Included online meeting",
+      "rapportage": "Reporting Frequency",
+      "uptime": "Annual Uptime Guarantee"
+    },
+    "included": {
+      "title": "What's included in the maintenance contract?",
+      "security": {
+        "title": "Keep website security up to date",
+        "description": "By using the most recent security, the website is also protected against the most recent exploits."
+      },
+      "proactive": {
+        "title": "Proactive action",
+        "description": "Improvement actions will be carried out before problems occur. Should a problem still occur, we will resolve it within the SLA."
+      },
+      "speed": {
+        "title": "Speed optimization check",
+        "description": "A good example of what affects speed is cleaning up old photos, unused pages and files."
+      }
+    },
+    "notIncluded": {
+      "title": "What's NOT included in the maintenance contract?",
+      "textChanges": {
+        "title": "Major text changes",
+        "description": "Changing texts on pages yourself is intuitive and you can generally do it yourself. We charge our hourly rate for this. Of course, we do fix incorrect redirects or other types of errors within the SLA."
+      },
+      "newPages": {
+        "title": "Adding new pages",
+        "description": "We will not add pages; we will clean up pages when they are no longer in use. This is done in consultation."
+      },
+      "designChanges": {
+        "title": "Design changes",
+        "description": "Design changes are not included in our maintenance; we will therefore not carry these out."
+      }
+    },
+    "extraServices": {
+      "title": "Extra Services",
+      "changes": {
+        "title": "Website Changes",
+        "description": "For website changes, contact us at",
+        "descriptionAfterEmail": ". For extensive changes, we would like to schedule a meeting to discuss the details. For smaller updates, send a summary of your wishes, after which we will send a non-binding quote."
+      },
+      "security": {
+        "title": "Website Security Check",
+        "description": "You can request a security check for your website from us. Such a check provides insight into the current state of your website security, followed by appropriate advice. We charge our standard hourly rate for this service."
+      }
+    },
+    "cta": {
+      "title": "Ready to proactively protect your website?",
+      "subtitle": "Choose certainty with our SLA packages. Contact us for tailored advice.",
+      "primaryButton": "Request a quote",
+      "secondaryButton": "View all services"
+    }
+  },
   "glossaryPage": {
     "backToKennisbank": "Back to knowledge base",
     "title": "Glossary",

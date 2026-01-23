@@ -2223,6 +2223,98 @@
       "secondaryButton": "Alle diensten"
     }
   },
+  "onderhoudPage": {
+    "badge": "Website Onderhoud",
+    "titleLine1": "Proactief beschermen",
+    "titleLine2": "met waterdichte SLA's",
+    "subtitle": "Kies tussen proactief beschermen of reactief genezen. Wij adviseren altijd preventief onderhoud - bespaar tijd, geld en zorgen.",
+    "preventive": {
+      "title": "Voorkomen door onderhoud",
+      "description": "Proactieve bescherming tegen hackers en performance problemen. In onze ervaring zien we dat als je dit niet regelmatig aanpakt, het een mogelijk groot probleem kan worden.",
+      "benefits": [
+        "Voorkom problemen voordat ze ontstaan",
+        "Bespaar tijd en geld op lange termijn",
+        "Waterdichte SLA garanties"
+      ]
+    },
+    "reactive": {
+      "title": "Genezen met spoed",
+      "rateLabel": "Spoedgevallen:",
+      "rateUnit": "ex BTW per uur",
+      "minTime": "Minimale tijd: 15 minuten.",
+      "card": {
+        "title": "Reactieve oplossing tegen hackers",
+        "description": "Als uw website offline raakt door een hack, kunnen we een back-up herstellen. Inclusief malware-scan en reparaties kost dit normaal gesproken ongeveer 2,5 uur tegen ons spoedtarief. Dit kan dus aanzienlijk in de kosten lopen."
+      }
+    },
+    "packages": {
+      "title": "Pro-actief Onderhoud Pakketten",
+      "subtitle": "Kies het pakket dat bij jouw bedrijf past",
+      "popular": "Populair",
+      "perMonth": "per maand",
+      "choosePackage": "Kies dit pakket",
+      "requestQuote": "Vraag een offerte aan"
+    },
+    "slaFeatures": {
+      "preventief": "Preventief Onderhoud (WordPress & Plug-ins Updates)",
+      "monitoring": "Pro-actieve Monitoring",
+      "backups": "Back-ups via Host en Extern",
+      "incidenten": "Incidenten per maand inbegrepen",
+      "reactietijd": "Reactietijd voor Incidenten",
+      "oplostijd": "Oplostijd voor incidenten",
+      "meeting": "Inbegrepen online meeting",
+      "rapportage": "Rapportagefrequentie",
+      "uptime": "Uptimegarantie op jaarbasis"
+    },
+    "included": {
+      "title": "Wat zit er in het onderhoudscontract?",
+      "security": {
+        "title": "Websitebeveiliging up-to-date houden",
+        "description": "Door de meest recente beveiliging te gebruiken, is de website ook tegen de meest recente exploits beschermd."
+      },
+      "proactive": {
+        "title": "Proactief handelen",
+        "description": "Verbeteracties zullen worden uitgevoerd voordat er problemen optreden. Mocht er toch een probleem optreden, lossen wij dit binnen de SLA op."
+      },
+      "speed": {
+        "title": "Snelheidsoptimalisatiecheck",
+        "description": "Een goed voorbeeld van wat effect heeft op de snelheid, is het opschonen van oude foto's, ongebruikte pagina's en bestanden."
+      }
+    },
+    "notIncluded": {
+      "title": "Wat zit er NIET in het onderhoudscontract?",
+      "textChanges": {
+        "title": "Grote tekstwijzigingen",
+        "description": "Het zelf wijzigen van teksten op pagina's is intuitief en kunt u over het algemeen zelf. Hiervoor rekenen wij ons uurtarief. Uiteraard lossen we wel foutieve omleidingen of ander soort fouten op binnen de SLA."
+      },
+      "newPages": {
+        "title": "Nieuwe pagina's invoegen",
+        "description": "We zullen geen pagina's toevoegen; we zullen wel pagina's opschonen wanneer deze niet meer in gebruik zijn. Dit gebeurt in overleg."
+      },
+      "designChanges": {
+        "title": "Aanpassingen in design",
+        "description": "Designaanpassingen zijn niet inbegrepen in ons onderhoud; deze zullen we dan ook niet uitvoeren."
+      }
+    },
+    "extraServices": {
+      "title": "Extra Services",
+      "changes": {
+        "title": "Website Wijzigingen",
+        "description": "Voor website wijzigingen neem je contact met ons op via",
+        "descriptionAfterEmail": ". Voor uitgebreide wijzigingen plannen wij graag een overleg om de details te bespreken. Voor kleinere updates stuur je een opsomming van je wensen, waarna wij een vrijblijvende offerte toesturen."
+      },
+      "security": {
+        "title": "Website Veiligheidscheck",
+        "description": "Je kunt een veiligheidscontrole voor je website bij ons aanvragen. Zo'n controle geeft inzicht in de huidige staat van je websitebeveiliging, aansluitend voorzien wij je van gepast advies. Voor deze service hanteren wij ons standaard uurtarief."
+      }
+    },
+    "cta": {
+      "title": "Klaar om je website proactief te beschermen?",
+      "subtitle": "Kies voor zekerheid met onze SLA pakketten. Neem contact op voor advies op maat.",
+      "primaryButton": "Vraag een offerte aan",
+      "secondaryButton": "Bekijk alle diensten"
+    }
+  },
   "glossaryPage": {
     "backToKennisbank": "Terug naar kennisbank",
     "title": "Glossary",

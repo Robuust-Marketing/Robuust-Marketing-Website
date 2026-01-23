@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import {
   CheckCircle,
   ArrowRight,
   AlertTriangle,
+  LucideIcon,
 } from "lucide-react";
 import { pricing, formatPrice } from "@/data/pricing";
 
@@ -23,68 +25,39 @@ const packages = Object.entries(pricing.slaPackages).map(([id, pkg]) => ({
   highlight: pkg.popular || false,
 }));
 
-// SLA feature labels
-const slaFeatureLabels = [
-  { key: "preventief", label: "Preventief Onderhoud (WordPress & Plug-ins Updates)" },
-  { key: "monitoring", label: "Pro-actieve Monitoring" },
-  { key: "backups", label: "Back-ups via Host en Extern" },
-  { key: "incidenten", label: "Incidenten per maand inbegrepen" },
-  { key: "reactietijd", label: "Reactietijd voor Incidenten" },
-  { key: "oplostijd", label: "Oplostijd voor incidenten" },
-  { key: "meeting", label: "Inbegrepen online meeting" },
-  { key: "rapportage", label: "Rapportagefrequentie" },
-  { key: "uptime", label: "Uptimegarantie op jaarbasis" },
+// SLA feature keys for translation
+const slaFeatureKeys = [
+  "preventief",
+  "monitoring",
+  "backups",
+  "incidenten",
+  "reactietijd",
+  "oplostijd",
+  "meeting",
+  "rapportage",
+  "uptime",
 ] as const;
 
-// Generate slaFeatures from central pricing config
-const slaFeatures = slaFeatureLabels.map(({ key, label }) => ({
-  feature: label,
-  essential: pricing.slaPackages.essential.features[key],
-  light: pricing.slaPackages.light.features[key],
-  medium: pricing.slaPackages.medium.features[key],
-  large: pricing.slaPackages.large.features[key],
-}));
-
-const included = [
-  {
-    icon: Shield,
-    title: "Websitebeveiliging up-to-date houden",
-    description:
-      "Door de meest recente beveiliging te gebruiken, is de website ook tegen de meest recente exploits beschermd.",
-  },
-  {
-    icon: Zap,
-    title: "Proactief handelen",
-    description:
-      "Verbeteracties zullen worden uitgevoerd voordat er problemen optreden. Mocht er toch een probleem optreden, lossen wij dit binnen de SLA op.",
-  },
-  {
-    icon: Clock,
-    title: "Snelheidsoptimalisatiecheck",
-    description:
-      "Een goed voorbeeld van wat effect heeft op de snelheid, is het opschonen van oude foto's, ongebruikte pagina's en bestanden.",
-  },
+const includedItems: { id: string; icon: LucideIcon }[] = [
+  { id: "security", icon: Shield },
+  { id: "proactive", icon: Zap },
+  { id: "speed", icon: Clock },
 ];
 
-const notIncluded = [
-  {
-    title: "Grote tekstwijzigingen",
-    description:
-      "Het zelf wijzigen van teksten op pagina's is intuitief en kunt u over het algemeen zelf. Hiervoor rekenen wij ons uurtarief. Uiteraard lossen we wel foutieve omleidingen of ander soort fouten op binnen de SLA.",
-  },
-  {
-    title: "Nieuwe pagina's invoegen",
-    description:
-      "We zullen geen pagina's toevoegen; we zullen wel pagina's opschonen wanneer deze niet meer in gebruik zijn. Dit gebeurt in overleg.",
-  },
-  {
-    title: "Aanpassingen in design",
-    description:
-      "Designaanpassingen zijn niet inbegrepen in ons onderhoud; deze zullen we dan ook niet uitvoeren.",
-  },
-];
+const notIncludedItems = ["textChanges", "newPages", "designChanges"];
 
 export default function OnderhoudPage() {
+  const t = useTranslations("onderhoudPage");
+
+  // Generate slaFeatures with translations
+  const slaFeatures = slaFeatureKeys.map((key) => ({
+    feature: t(`slaFeatures.${key}`),
+    essential: pricing.slaPackages.essential.features[key],
+    light: pricing.slaPackages.light.features[key],
+    medium: pricing.slaPackages.medium.features[key],
+    large: pricing.slaPackages.large.features[key],
+  }));
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -109,7 +82,7 @@ export default function OnderhoudPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Website Onderhoud
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -117,9 +90,9 @@ export default function OnderhoudPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Proactief beschermen
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">met waterdichte SLA's</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -127,8 +100,7 @@ export default function OnderhoudPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Kies tussen proactief beschermen of reactief genezen. Wij adviseren
-            altijd preventief onderhoud - bespaar tijd, geld en zorgen.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -149,27 +121,24 @@ export default function OnderhoudPage() {
                   <Shield className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl font-bold text-white">
-                  Voorkomen door onderhoud
+                  {t("preventive.title")}
                 </h2>
               </div>
               <p className="text-muted-foreground mb-6">
-                Proactieve bescherming tegen hackers en performance problemen.
-                In onze ervaring zien we dat als je dit niet regelmatig aanpakt,
-                het een mogelijk groot probleem kan worden.
+                {t("preventive.description")}
               </p>
               <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm text-accent">
-                  <CheckCircle className="h-4 w-4" />
-                  Voorkom problemen voordat ze ontstaan
-                </div>
-                <div className="flex items-center gap-2 text-sm text-accent">
-                  <CheckCircle className="h-4 w-4" />
-                  Bespaar tijd en geld op lange termijn
-                </div>
-                <div className="flex items-center gap-2 text-sm text-accent">
-                  <CheckCircle className="h-4 w-4" />
-                  Waterdichte SLA garanties
-                </div>
+                {(t.raw("preventive.benefits") as string[]).map(
+                  (benefit, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-2 text-sm text-accent"
+                    >
+                      <CheckCircle className="h-4 w-4" />
+                      {benefit}
+                    </div>
+                  )
+                )}
               </div>
             </motion.div>
 
@@ -185,23 +154,22 @@ export default function OnderhoudPage() {
                   <AlertTriangle className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl font-bold text-white">
-                  Genezen met spoed
+                  {t("reactive.title")}
                 </h2>
               </div>
               <p className="text-muted-foreground mb-4">
-                Spoedgevallen:{" "}
-                <span className="font-bold text-white">{formatPrice(pricing.emergencyRate)} ex BTW per uur</span>.
-                Minimale tijd: 15 minuten.
+                {t("reactive.rateLabel")}{" "}
+                <span className="font-bold text-white">
+                  {formatPrice(pricing.emergencyRate)} {t("reactive.rateUnit")}
+                </span>
+                . {t("reactive.minTime")}
               </p>
               <div className="rounded-xl bg-red-500/10 p-4 border border-red-500/20">
                 <p className="text-sm font-semibold text-red-400 mb-2">
-                  Reactieve oplossing tegen hackers
+                  {t("reactive.card.title")}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Als uw website offline raakt door een hack, kunnen we een
-                  back-up herstellen. Inclusief malware-scan en reparaties kost
-                  dit normaal gesproken ongeveer 2,5 uur tegen ons spoedtarief.
-                  Dit kan dus aanzienlijk in de kosten lopen.
+                  {t("reactive.card.description")}
                 </p>
               </div>
             </motion.div>
@@ -219,7 +187,7 @@ export default function OnderhoudPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Pro-actief Onderhoud Pakketten
+              {t("packages.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -227,7 +195,7 @@ export default function OnderhoudPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Kies het pakket dat bij jouw bedrijf past
+              {t("packages.subtitle")}
             </motion.p>
           </div>
 
@@ -253,7 +221,7 @@ export default function OnderhoudPage() {
                         {pkg.popular && (
                           <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10">
                             <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white shadow-lg">
-                              Populair
+                              {t("packages.popular")}
                             </span>
                           </div>
                         )}
@@ -263,7 +231,9 @@ export default function OnderhoudPage() {
                         <div className="mt-1 text-2xl font-bold text-accent">
                           {pkg.price}
                         </div>
-                        <div className="text-xs text-muted-foreground">per maand</div>
+                        <div className="text-xs text-muted-foreground">
+                          {t("packages.perMonth")}
+                        </div>
                       </th>
                     ))}
                   </tr>
@@ -307,7 +277,7 @@ export default function OnderhoudPage() {
                 {pkg.popular && (
                   <div className="mb-4">
                     <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-white">
-                      Populair
+                      {t("packages.popular")}
                     </span>
                   </div>
                 )}
@@ -317,7 +287,9 @@ export default function OnderhoudPage() {
                     <div className="text-2xl font-bold text-accent">
                       {pkg.price}
                     </div>
-                    <div className="text-xs text-muted-foreground">per maand</div>
+                    <div className="text-xs text-muted-foreground">
+                      {t("packages.perMonth")}
+                    </div>
                   </div>
                 </div>
                 <div className="space-y-3">
@@ -345,8 +317,13 @@ export default function OnderhoudPage() {
                     );
                   })}
                 </div>
-                <Button asChild className="mt-6 w-full bg-accent hover:bg-accent-hover text-white">
-                  <Link href="/contact?package=onderhoud">Kies dit pakket</Link>
+                <Button
+                  asChild
+                  className="mt-6 w-full bg-accent hover:bg-accent-hover text-white"
+                >
+                  <Link href="/contact?package=onderhoud">
+                    {t("packages.choosePackage")}
+                  </Link>
                 </Button>
               </motion.div>
             ))}
@@ -358,9 +335,13 @@ export default function OnderhoudPage() {
             viewport={{ once: true }}
             className="mt-12 text-center"
           >
-            <Button asChild size="lg" className="bg-accent hover:bg-accent-hover text-white">
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent hover:bg-accent-hover text-white"
+            >
               <Link href="/contact" className="flex items-center gap-2">
-                Vraag een offerte aan
+                {t("packages.requestQuote")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -378,13 +359,13 @@ export default function OnderhoudPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Wat zit er in het onderhoudscontract?
+              {t("included.title")}
             </motion.h2>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {included.map((item, idx) => (
+            {includedItems.map((item, idx) => (
               <motion.div
-                key={idx}
+                key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -395,9 +376,11 @@ export default function OnderhoudPage() {
                   <item.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {item.title}
+                  {t(`included.${item.id}.title`)}
                 </h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t(`included.${item.id}.description`)}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -414,13 +397,13 @@ export default function OnderhoudPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Wat zit er NIET in het onderhoudscontract?
+              {t("notIncluded.title")}
             </motion.h2>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {notIncluded.map((item, idx) => (
+            {notIncludedItems.map((item, idx) => (
               <motion.div
-                key={idx}
+                key={item}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -432,9 +415,11 @@ export default function OnderhoudPage() {
                     <XCircle className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">{item.title}</h3>
+                    <h3 className="font-semibold text-white">
+                      {t(`notIncluded.${item}.title`)}
+                    </h3>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {item.description}
+                      {t(`notIncluded.${item}.description`)}
                     </p>
                   </div>
                 </div>
@@ -454,7 +439,7 @@ export default function OnderhoudPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Extra Services
+              {t("extraServices.title")}
             </motion.h2>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -465,20 +450,17 @@ export default function OnderhoudPage() {
               className="rounded-3xl bg-surface p-8 border border-white/5"
             >
               <h3 className="text-xl font-semibold text-white mb-4">
-                Website Wijzigingen
+                {t("extraServices.changes.title")}
               </h3>
               <p className="text-muted-foreground">
-                Voor website wijzigingen neem je contact met ons op via{" "}
+                {t("extraServices.changes.description")}{" "}
                 <a
                   href="mailto:info@robuustmarketing.nl"
                   className="text-accent hover:underline"
                 >
                   info@robuustmarketing.nl
                 </a>
-                . Voor uitgebreide wijzigingen plannen wij graag een overleg om
-                de details te bespreken. Voor kleinere updates stuur je een
-                opsomming van je wensen, waarna wij een vrijblijvende offerte
-                toesturen.
+                {t("extraServices.changes.descriptionAfterEmail")}
               </p>
             </motion.div>
             <motion.div
@@ -488,13 +470,10 @@ export default function OnderhoudPage() {
               className="rounded-3xl bg-surface p-8 border border-white/5"
             >
               <h3 className="text-xl font-semibold text-white mb-4">
-                Website Veiligheidscheck
+                {t("extraServices.security.title")}
               </h3>
               <p className="text-muted-foreground">
-                Je kunt een veiligheidscontrole voor je website bij ons
-                aanvragen. Zo'n controle geeft inzicht in de huidige staat van
-                je websitebeveiliging, aansluitend voorzien wij je van gepast
-                advies. Voor deze service hanteren wij ons standaard uurtarief.
+                {t("extraServices.security.description")}
               </p>
             </motion.div>
           </div>
@@ -510,7 +489,7 @@ export default function OnderhoudPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar om je website proactief te beschermen?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -518,8 +497,7 @@ export default function OnderhoudPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Kies voor zekerheid met onze SLA pakketten. Neem contact op voor
-            advies op maat.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -527,9 +505,13 @@ export default function OnderhoudPage() {
             viewport={{ once: true }}
             className="flex flex-col gap-4 sm:flex-row sm:justify-center"
           >
-            <Button asChild size="lg" className="bg-accent hover:bg-accent-hover text-white">
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent hover:bg-accent-hover text-white"
+            >
               <Link href="/contact" className="flex items-center gap-2">
-                Vraag een offerte aan
+                {t("cta.primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -539,7 +521,7 @@ export default function OnderhoudPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten">Bekijk alle diensten</Link>
+              <Link href="/diensten">{t("cta.secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>

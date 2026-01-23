@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,108 +13,24 @@ import {
   Shield,
   ArrowRight,
   Check,
+  LucideIcon,
 } from "lucide-react";
 
-const services = [
-  {
-    icon: Users,
-    title: "CRM Setup",
-    description:
-      "Implementatie en configuratie van je CRM systeem, afgestemd op jouw werkprocessen.",
-  },
-  {
-    icon: GitMerge,
-    title: "Integraties",
-    description:
-      "Koppel je CRM aan je website, email marketing, boekhouding en andere tools.",
-  },
-  {
-    icon: Zap,
-    title: "Automatisering",
-    description:
-      "Automatische workflows voor lead nurturing, follow-ups en taakbeheer.",
-  },
-  {
-    icon: BarChart3,
-    title: "Lead Scoring",
-    description:
-      "Identificeer je warmste leads op basis van gedrag en interacties.",
-  },
-  {
-    icon: Bell,
-    title: "Notificaties",
-    description:
-      "Real-time alerts wanneer leads actie ondernemen op je website.",
-  },
-  {
-    icon: Shield,
-    title: "Data Management",
-    description:
-      "Schone, georganiseerde data met deduplicatie en validatie.",
-  },
+const services: { id: string; icon: LucideIcon }[] = [
+  { id: "crmSetup", icon: Users },
+  { id: "integrations", icon: GitMerge },
+  { id: "automation", icon: Zap },
+  { id: "leadScoring", icon: BarChart3 },
+  { id: "notifications", icon: Bell },
+  { id: "dataManagement", icon: Shield },
 ];
 
-const integrations = [
-  {
-    name: "HubSpot",
-    description: "All-in-one marketing, sales en service platform",
-    type: "Enterprise",
-  },
-  {
-    name: "Pipedrive",
-    description: "Sales-focused CRM voor groeiende teams",
-    type: "Sales",
-  },
-  {
-    name: "ActiveCampaign",
-    description: "Marketing automation met CRM functionaliteit",
-    type: "Marketing",
-  },
-  {
-    name: "Notion",
-    description: "Flexibele workspace met CRM templates",
-    type: "Startup",
-  },
-];
+const platforms = ["hubspot", "pipedrive", "activeCampaign", "notion"];
 
-const automationExamples = [
-  {
-    trigger: "Formulier ingevuld",
-    actions: [
-      "Contact aanmaken in CRM",
-      "Tag toekennen op basis van interesse",
-      "Welkomst email versturen",
-      "Sales notificatie sturen",
-    ],
-  },
-  {
-    trigger: "Offerte bekeken",
-    actions: [
-      "Lead score verhogen",
-      "Follow-up taak aanmaken",
-      "Reminder email na 3 dagen",
-    ],
-  },
-  {
-    trigger: "Geen activiteit 30 dagen",
-    actions: [
-      "Re-engagement email versturen",
-      "Tag wijzigen naar 'cold'",
-      "Verwijderen uit actieve campagnes",
-    ],
-  },
-];
-
-const benefits = [
-  "Nooit meer leads vergeten op te volgen",
-  "360° klantbeeld voor betere service",
-  "Kortere sales cycles door automatisering",
-  "Betere samenwerking tussen teams",
-  "Data-driven beslissingen",
-  "Schaalbaar zonder extra handwerk",
-];
+const automations = ["formSubmitted", "quoteViewed", "noActivity"];
 
 export default function CRMPage() {
+  const t = useTranslations("crmPage");
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -146,7 +63,7 @@ export default function CRMPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            CRM & Automatisering
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -154,9 +71,9 @@ export default function CRMPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Klantrelaties
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">geoptimaliseerd</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -164,8 +81,7 @@ export default function CRMPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8"
           >
-            Slimme CRM integraties en automatiseringen die je sales proces
-            stroomlijnen. Van lead tot klant, volledig geautomatiseerd.
+            {t("subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -179,7 +95,7 @@ export default function CRMPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                CRM adviesgesprek
+                {t("primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -189,7 +105,7 @@ export default function CRMPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten/email-marketing">Email Marketing</Link>
+              <Link href="/diensten/email-marketing">{t("secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>
@@ -205,7 +121,7 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Wat we doen
+              {t("services.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -213,14 +129,14 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Complete CRM implementatie en optimalisatie
+              {t("services.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <motion.div
-                key={service.title}
+                key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -231,10 +147,10 @@ export default function CRMPage() {
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {service.title}
+                  {t(`services.${service.id}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {service.description}
+                  {t(`services.${service.id}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -252,7 +168,7 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              CRM Platforms
+              {t("platforms.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -260,14 +176,14 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              We werken met de beste CRM systemen en helpen je de juiste keuze maken
+              {t("platforms.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {integrations.map((integration, index) => (
+            {platforms.map((platform, index) => (
               <motion.div
-                key={integration.name}
+                key={platform}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -275,13 +191,13 @@ export default function CRMPage() {
                 className="rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors"
               >
                 <span className="text-xs font-medium text-accent uppercase tracking-wider">
-                  {integration.type}
+                  {t(`platforms.${platform}.type`)}
                 </span>
                 <h3 className="text-xl font-semibold text-white mt-2 mb-2">
-                  {integration.name}
+                  {t(`platforms.${platform}.name`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {integration.description}
+                  {t(`platforms.${platform}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -299,7 +215,7 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Automatisering Voorbeelden
+              {t("automations.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -307,14 +223,14 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Zo kunnen automatiseringen jouw werkprocessen versnellen
+              {t("automations.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {automationExamples.map((example, index) => (
+            {automations.map((automation, index) => (
               <motion.div
-                key={example.trigger}
+                key={automation}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -323,16 +239,20 @@ export default function CRMPage() {
               >
                 <div className="flex items-center gap-2 mb-4">
                   <Zap className="h-5 w-5 text-accent" />
-                  <span className="font-medium text-white">Trigger:</span>
+                  <span className="font-medium text-white">
+                    {t("automations.triggerLabel")}
+                  </span>
                 </div>
                 <div className="bg-accent/10 text-accent px-3 py-2 rounded-lg text-sm font-medium mb-4">
-                  {example.trigger}
+                  {t(`automations.${automation}.trigger`)}
                 </div>
                 <div className="text-sm text-muted-foreground mb-2">
-                  Automatische acties:
+                  {t("automations.actionsLabel")}
                 </div>
                 <ul className="space-y-2">
-                  {example.actions.map((action, idx) => (
+                  {(
+                    t.raw(`automations.${automation}.actions`) as string[]
+                  ).map((action, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm">
                       <Check className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
                       <span className="text-white/80">{action}</span>
@@ -355,16 +275,16 @@ export default function CRMPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Waarom{" "}
-                <span className="text-gradient-accent">CRM automatisering?</span>
+                {t("benefits.title")}{" "}
+                <span className="text-gradient-accent">
+                  {t("benefits.titleHighlight")}
+                </span>
               </h2>
               <p className="text-muted-foreground mb-8">
-                Een goed ingericht CRM systeem bespaart je team uren per week en
-                zorgt ervoor dat geen enkele lead door de mazen van het net
-                glipt.
+                {t("benefits.subtitle")}
               </p>
               <ul className="space-y-4">
-                {benefits.map((benefit, index) => (
+                {(t.raw("benefits.items") as string[]).map((benefit, index) => (
                   <motion.li
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
@@ -389,37 +309,30 @@ export default function CRMPage() {
               className="rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 p-8 border border-accent/20"
             >
               <h3 className="text-2xl font-bold text-white mb-4">
-                Website + CRM Integratie
+                {t("benefits.card.title")}
               </h3>
               <p className="text-muted-foreground mb-6">
-                De kracht van CRM zit in de integratie met je website. Elk
-                formulier, elke download, elke pageview kan automatisch in je
-                CRM terechtkomen.
+                {t("benefits.card.description")}
               </p>
               <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2 text-sm text-accent">
-                  <Check className="h-4 w-4" />
-                  Formulieren direct gekoppeld aan CRM
-                </li>
-                <li className="flex items-center gap-2 text-sm text-accent">
-                  <Check className="h-4 w-4" />
-                  Website gedrag zichtbaar per contact
-                </li>
-                <li className="flex items-center gap-2 text-sm text-accent">
-                  <Check className="h-4 w-4" />
-                  Automatische lead scoring
-                </li>
-                <li className="flex items-center gap-2 text-sm text-accent">
-                  <Check className="h-4 w-4" />
-                  Real-time sales notificaties
-                </li>
+                {(t.raw("benefits.card.features") as string[]).map(
+                  (feature, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center gap-2 text-sm text-accent"
+                    >
+                      <Check className="h-4 w-4" />
+                      {feature}
+                    </li>
+                  )
+                )}
               </ul>
               <Button
                 asChild
                 className="w-full bg-accent hover:bg-accent-hover text-white"
               >
                 <Link href="/diensten/development">
-                  Meer over development →
+                  {t("benefits.card.button")}
                 </Link>
               </Button>
             </motion.div>
@@ -436,7 +349,7 @@ export default function CRMPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar om je sales te stroomlijnen?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -444,7 +357,7 @@ export default function CRMPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Laten we bespreken hoe CRM automatisering jouw bedrijf kan helpen groeien.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -458,7 +371,7 @@ export default function CRMPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Plan een gesprek
+                {t("cta.primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -468,7 +381,7 @@ export default function CRMPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten">Alle diensten</Link>
+              <Link href="/diensten">{t("cta.secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>
