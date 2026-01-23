@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -18,23 +19,24 @@ import { getFAQsByCategory } from "@/data/faqs";
 
 const tarievenFaqs = getFAQsByCategory("tarieven");
 
-// Generate hosting plans from central pricing config
-const hostingPlans = Object.entries(pricing.hosting).map(([id, plan]) => ({
-  id,
-  name: plan.label,
-  price: plan.price
-    ? plan.priceMax
-      ? `${formatPrice(plan.price)} - ${formatPrice(plan.priceMax)}`
-      : formatPrice(plan.price)
-    : "Op maat",
-  period: plan.price ? "/maand" : "",
-  description: plan.description,
-  features: plan.features,
-  popular: plan.popular || false,
-}));
-
-
 export default function TarievenPage() {
+  const t = useTranslations("tarievenPage");
+
+  // Generate hosting plans from central pricing config
+  const hostingPlans = Object.entries(pricing.hosting).map(([id, plan]) => ({
+    id,
+    name: plan.label,
+    price: plan.price
+      ? plan.priceMax
+        ? `${formatPrice(plan.price)} - ${formatPrice(plan.priceMax)}`
+        : formatPrice(plan.price)
+      : t("hosting.custom"),
+    period: plan.price ? t("hosting.perMonth") : "",
+    description: plan.description,
+    features: plan.features,
+    popular: plan.popular || false,
+  }));
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -59,7 +61,7 @@ export default function TarievenPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Tarieven
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -67,8 +69,8 @@ export default function TarievenPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Transparante{" "}
-            <span className="text-gradient-accent">prijzen</span>
+            {t("titleLine1")}{" "}
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -76,8 +78,7 @@ export default function TarievenPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Geen verrassingen, geen kleine lettertjes. Bekijk onze pakketten en
-            kies wat bij je past.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -93,15 +94,15 @@ export default function TarievenPage() {
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Zap className="h-4 w-4 text-accent" />
-              Snelle oplevering
+              {t("trust.fastDelivery")}
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Shield className="h-4 w-4 text-accent" />
-              Geen verborgen kosten
+              {t("trust.noHiddenCosts")}
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="h-4 w-4 text-accent" />
-              Flexibele betalingen
+              {t("trust.flexiblePayments")}
             </div>
           </motion.div>
         </div>
@@ -117,10 +118,10 @@ export default function TarievenPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Website pakketten
+              {t("websitePackages.title")}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Kies het pakket dat past bij jouw ambities en budget
+              {t("websitePackages.subtitle")}
             </p>
           </motion.div>
 
@@ -142,7 +143,7 @@ export default function TarievenPage() {
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium">
                       <Star className="h-3 w-3" />
-                      Meest gekozen
+                      {t("websitePackages.mostChosen")}
                     </span>
                   </div>
                 )}
@@ -180,7 +181,7 @@ export default function TarievenPage() {
                   }`}
                 >
                   <Link href="/offerte" className="flex items-center gap-2">
-                    Offerte aanvragen
+                    {t("websitePackages.requestQuote")}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -200,10 +201,10 @@ export default function TarievenPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Hosting & Onderhoud
+              {t("hosting.title")}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Betrouwbare hosting met premium support en onderhoud
+              {t("hosting.subtitle")}
             </p>
           </motion.div>
 
@@ -225,7 +226,7 @@ export default function TarievenPage() {
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium">
                       <Star className="h-3 w-3" />
-                      Populair
+                      {t("hosting.popular")}
                     </span>
                   </div>
                 )}
@@ -259,7 +260,7 @@ export default function TarievenPage() {
                   variant="outline"
                   className="w-full border-white/20 text-white hover:bg-white/5"
                 >
-                  <Link href="/contact">Meer info</Link>
+                  <Link href="/contact">{t("hosting.moreInfo")}</Link>
                 </Button>
               </motion.div>
             ))}
@@ -277,19 +278,19 @@ export default function TarievenPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Losse diensten
+              {t("additionalServices.title")}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Aanvullende diensten op uurbasis of projectbasis
+              {t("additionalServices.subtitle")}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: pricing.hourlyRates.development.label, price: `${formatPrice(pricing.hourlyRates.development.rate)}/uur`, desc: pricing.hourlyRates.development.description },
-              { name: pricing.hourlyRates.design.label, price: `${formatPrice(pricing.hourlyRates.design.rate)}/uur`, desc: pricing.hourlyRates.design.description },
-              { name: pricing.hourlyRates.consultancy.label, price: `${formatPrice(pricing.hourlyRates.consultancy.rate)}/uur`, desc: pricing.hourlyRates.consultancy.description },
-              { name: pricing.seoAudit.label, price: `Vanaf ${formatPrice(pricing.seoAudit.price)}`, desc: pricing.seoAudit.description },
+              { name: pricing.hourlyRates.development.label, price: `${formatPrice(pricing.hourlyRates.development.rate)}${t("additionalServices.perHour")}`, desc: pricing.hourlyRates.development.description },
+              { name: pricing.hourlyRates.design.label, price: `${formatPrice(pricing.hourlyRates.design.rate)}${t("additionalServices.perHour")}`, desc: pricing.hourlyRates.design.description },
+              { name: pricing.hourlyRates.consultancy.label, price: `${formatPrice(pricing.hourlyRates.consultancy.rate)}${t("additionalServices.perHour")}`, desc: pricing.hourlyRates.consultancy.description },
+              { name: pricing.seoAudit.label, price: `${t("additionalServices.from")} ${formatPrice(pricing.seoAudit.price)}`, desc: pricing.seoAudit.description },
             ].map((service, index) => (
               <motion.div
                 key={service.name}
@@ -322,7 +323,7 @@ export default function TarievenPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Veelgestelde vragen
+              {t("faq.title")}
             </h2>
           </motion.div>
 
@@ -360,7 +361,7 @@ export default function TarievenPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Niet gevonden wat je zocht?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -368,7 +369,7 @@ export default function TarievenPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Elk project is uniek. Neem contact op voor een offerte op maat.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -382,7 +383,7 @@ export default function TarievenPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/offerte" className="flex items-center gap-2">
-                Offerte aanvragen
+                {t("cta.requestQuote")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -392,7 +393,7 @@ export default function TarievenPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/contact">Neem contact op</Link>
+              <Link href="/contact">{t("cta.contact")}</Link>
             </Button>
           </motion.div>
         </div>

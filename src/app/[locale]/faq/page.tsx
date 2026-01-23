@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "@/components/motion";
 import { ArrowRight, ChevronDown, HelpCircle, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -51,6 +52,7 @@ function FAQItem({
 }
 
 export default function FAQPage() {
+  const t = useTranslations("faqPage");
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -125,7 +127,7 @@ export default function FAQPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            FAQ
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -133,9 +135,9 @@ export default function FAQPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Veelgestelde
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">vragen</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -143,8 +145,7 @@ export default function FAQPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Antwoorden op de vragen die we het meest krijgen. Staat jouw vraag
-            er niet tussen? Neem gerust contact op.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -163,10 +164,10 @@ export default function FAQPage() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" aria-hidden="true" />
               <input
                 type="text"
-                placeholder="Zoek in veelgestelde vragen..."
+                placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                aria-label="Zoek in veelgestelde vragen"
+                aria-label={t("searchPlaceholder")}
                 className="w-full pl-12 pr-4 py-3 rounded-xl bg-surface border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
@@ -181,7 +182,7 @@ export default function FAQPage() {
                     : "bg-surface text-muted-foreground hover:text-white border border-white/10"
                 }`}
               >
-                Alle
+                {t("all")}
               </button>
               {categories.map((category) => (
                 <button
@@ -212,16 +213,16 @@ export default function FAQPage() {
             >
               <HelpCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">
-                Geen resultaten gevonden
+                {t("noResults.title")}
               </h3>
               <p className="text-muted-foreground mb-6">
-                Probeer een andere zoekterm of neem contact met ons op.
+                {t("noResults.subtitle")}
               </p>
               <Button
                 asChild
                 className="bg-accent hover:bg-accent-hover text-white"
               >
-                <Link href="/contact">Neem contact op</Link>
+                <Link href="/contact">{t("noResults.button")}</Link>
               </Button>
             </motion.div>
           ) : (
@@ -267,7 +268,7 @@ export default function FAQPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Vraag niet beantwoord?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -275,7 +276,7 @@ export default function FAQPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Neem contact met ons op en we helpen je graag verder met je vraag.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -288,7 +289,7 @@ export default function FAQPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Stel je vraag
+                {t("cta.button")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

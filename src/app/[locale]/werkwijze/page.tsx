@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -18,115 +19,87 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const phases = [
-  {
-    id: "discovery",
-    number: "01",
-    name: "Discovery",
-    icon: Lightbulb,
-    description:
-      "We beginnen met een grondige analyse van jouw bedrijf, doelen en doelgroep. Dit vormt de basis voor alles wat volgt.",
-    activities: [
-      "Intake gesprek & briefing",
-      "Doelgroep analyse",
-      "Concurrentie onderzoek",
-      "Technische requirements",
-    ],
-    deliverables: ["Projectplan", "Functionele specificaties", "Timeline"],
-  },
-  {
-    id: "design",
-    number: "02",
-    name: "Design",
-    icon: Palette,
-    description:
-      "We vertalen de strategie naar een visueel ontwerp dat past bij jouw merk en optimaal converteert.",
-    activities: [
-      "Wireframes & user flows",
-      "UI design in Figma",
-      "Responsive designs",
-      "Design review & feedback",
-    ],
-    deliverables: ["Wireframes", "UI designs", "Design systeem"],
-  },
-  {
-    id: "development",
-    number: "03",
-    name: "Development",
-    icon: Code2,
-    description:
-      "Het ontwerp wordt omgezet naar een razendsnelle website met moderne technologie.",
-    activities: [
-      "Frontend development",
-      "CMS integratie",
-      "API koppelingen",
-      "Testing & QA",
-    ],
-    deliverables: ["Werkende website", "CMS handleiding", "Technische documentatie"],
-  },
-  {
-    id: "launch",
-    number: "04",
-    name: "Launch",
-    icon: Rocket,
-    description:
-      "Na uitgebreide tests gaat je website live. We zorgen voor een soepele lancering.",
-    activities: [
-      "Performance optimalisatie",
-      "SEO basis setup",
-      "Analytics configuratie",
-      "Go-live checklist",
-    ],
-    deliverables: ["Live website", "DNS configuratie", "SSL certificaat"],
-  },
-  {
-    id: "support",
-    number: "05",
-    name: "Support",
-    icon: Wrench,
-    description:
-      "Na de launch blijven we beschikbaar voor onderhoud, updates en doorontwikkeling.",
-    activities: [
-      "Doorlopend onderhoud",
-      "Security updates",
-      "Performance monitoring",
-      "Doorontwikkeling",
-    ],
-    deliverables: ["Maandelijkse rapportages", "24/7 monitoring", "Priority support"],
-  },
-];
-
-const timeline = [
-  { phase: "Discovery", duration: "1-2 weken" },
-  { phase: "Design", duration: "2-3 weken" },
-  { phase: "Development", duration: "3-6 weken" },
-  { phase: "Testing & Launch", duration: "1 week" },
-];
-
-const collaboration = [
-  {
-    icon: MessageSquare,
-    title: "Wekelijkse updates",
-    description: "Je ontvangt elke week een update over de voortgang van je project.",
-  },
-  {
-    icon: Users,
-    title: "Direct contact",
-    description: "Geen tussenlagen. Je hebt direct contact met de mensen die aan je project werken.",
-  },
-  {
-    icon: FileText,
-    title: "Transparante documentatie",
-    description: "Alle beslissingen en wijzigingen worden gedocumenteerd en gedeeld.",
-  },
-  {
-    icon: Zap,
-    title: "Snelle feedback loops",
-    description: "Korte iteraties zodat we snel kunnen bijsturen waar nodig.",
-  },
-];
-
 export default function WerkwijzePage() {
+  const t = useTranslations("werkwijzePage");
+
+  const phases = [
+    {
+      id: "discovery",
+      number: "01",
+      name: t("phases.discovery.name"),
+      icon: Lightbulb,
+      description: t("phases.discovery.description"),
+      activities: t.raw("phases.discovery.activities") as string[],
+      deliverables: t.raw("phases.discovery.deliverables") as string[],
+    },
+    {
+      id: "design",
+      number: "02",
+      name: t("phases.design.name"),
+      icon: Palette,
+      description: t("phases.design.description"),
+      activities: t.raw("phases.design.activities") as string[],
+      deliverables: t.raw("phases.design.deliverables") as string[],
+    },
+    {
+      id: "development",
+      number: "03",
+      name: t("phases.development.name"),
+      icon: Code2,
+      description: t("phases.development.description"),
+      activities: t.raw("phases.development.activities") as string[],
+      deliverables: t.raw("phases.development.deliverables") as string[],
+    },
+    {
+      id: "launch",
+      number: "04",
+      name: t("phases.launch.name"),
+      icon: Rocket,
+      description: t("phases.launch.description"),
+      activities: t.raw("phases.launch.activities") as string[],
+      deliverables: t.raw("phases.launch.deliverables") as string[],
+    },
+    {
+      id: "support",
+      number: "05",
+      name: t("phases.support.name"),
+      icon: Wrench,
+      description: t("phases.support.description"),
+      activities: t.raw("phases.support.activities") as string[],
+      deliverables: t.raw("phases.support.deliverables") as string[],
+    },
+  ];
+
+  const timeline = [
+    { phase: t("timeline.phases.discovery"), duration: t("timeline.durations.discovery") },
+    { phase: t("timeline.phases.design"), duration: t("timeline.durations.design") },
+    { phase: t("timeline.phases.development"), duration: t("timeline.durations.development") },
+    { phase: t("timeline.phases.testingLaunch"), duration: t("timeline.durations.testingLaunch") },
+  ];
+
+  const collaboration = [
+    {
+      icon: MessageSquare,
+      title: t("collaboration.weeklyUpdates.title"),
+      description: t("collaboration.weeklyUpdates.description"),
+    },
+    {
+      icon: Users,
+      title: t("collaboration.directContact.title"),
+      description: t("collaboration.directContact.description"),
+    },
+    {
+      icon: FileText,
+      title: t("collaboration.documentation.title"),
+      description: t("collaboration.documentation.description"),
+    },
+    {
+      icon: Zap,
+      title: t("collaboration.feedback.title"),
+      description: t("collaboration.feedback.description"),
+    },
+  ];
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -151,7 +124,7 @@ export default function WerkwijzePage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Werkwijze
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -159,9 +132,9 @@ export default function WerkwijzePage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Van idee naar
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">succesvolle website</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -169,8 +142,7 @@ export default function WerkwijzePage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Onze bewezen aanpak zorgt voor een soepel proces en een eindresultaat
-            waar je trots op bent. Geen verrassingen, wel resultaat.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -185,7 +157,7 @@ export default function WerkwijzePage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Onze 5 projectfases
+              {t("phases.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -193,8 +165,7 @@ export default function WerkwijzePage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Elk project doorloopt dezelfde gestructureerde fases voor optimale
-              kwaliteit en voorspelbaarheid.
+              {t("phases.subtitle")}
             </motion.p>
           </div>
 
@@ -217,7 +188,7 @@ export default function WerkwijzePage() {
                     </div>
                     <div>
                       <span className="text-accent text-sm font-medium">
-                        Fase {phase.number}
+                        {t("phases.phase")} {phase.number}
                       </span>
                       <h3 className="text-2xl font-bold text-white">
                         {phase.name}
@@ -234,7 +205,7 @@ export default function WerkwijzePage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
                         <h4 className="text-sm font-semibold text-white mb-3">
-                          Activiteiten
+                          {t("phases.activities")}
                         </h4>
                         <ul className="space-y-2">
                           {phase.activities.map((activity) => (
@@ -250,7 +221,7 @@ export default function WerkwijzePage() {
                       </div>
                       <div>
                         <h4 className="text-sm font-semibold text-white mb-3">
-                          Deliverables
+                          {t("phases.deliverables")}
                         </h4>
                         <ul className="space-y-2">
                           {phase.deliverables.map((deliverable) => (
@@ -283,12 +254,10 @@ export default function WerkwijzePage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold text-white mb-6">
-                Gemiddelde tijdlijn
+                {t("timeline.title")}
               </h2>
               <p className="text-muted-foreground mb-8">
-                De doorlooptijd van een project hangt af van de complexiteit.
-                Een gemiddeld website project duurt 6-12 weken van start tot
-                lancering.
+                {t("timeline.subtitle")}
               </p>
 
               <div className="space-y-4">
@@ -319,24 +288,24 @@ export default function WerkwijzePage() {
               className="rounded-3xl bg-gradient-to-br from-accent/10 to-accent/5 p-8 border border-accent/20"
             >
               <h3 className="text-xl font-bold text-white mb-4">
-                Indicatieve doorlooptijden
+                {t("timeline.indicative")}
               </h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center py-3 border-b border-white/10">
-                  <span className="text-white">Eenvoudige website</span>
-                  <span className="text-accent font-medium">4-6 weken</span>
+                  <span className="text-white">{t("timeline.simple")}</span>
+                  <span className="text-accent font-medium">{t("timeline.durations.simple")}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/10">
-                  <span className="text-white">Zakelijke website</span>
-                  <span className="text-accent font-medium">6-10 weken</span>
+                  <span className="text-white">{t("timeline.business")}</span>
+                  <span className="text-accent font-medium">{t("timeline.durations.business")}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-white/10">
-                  <span className="text-white">E-commerce / Webshop</span>
-                  <span className="text-accent font-medium">10-16 weken</span>
+                  <span className="text-white">{t("timeline.ecommerce")}</span>
+                  <span className="text-accent font-medium">{t("timeline.durations.ecommerce")}</span>
                 </div>
                 <div className="flex justify-between items-center py-3">
-                  <span className="text-white">Custom platform</span>
-                  <span className="text-accent font-medium">Op maat</span>
+                  <span className="text-white">{t("timeline.custom")}</span>
+                  <span className="text-accent font-medium">{t("timeline.customDuration")}</span>
                 </div>
               </div>
             </motion.div>
@@ -354,7 +323,7 @@ export default function WerkwijzePage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Hoe wij samenwerken
+              {t("collaboration.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -362,8 +331,7 @@ export default function WerkwijzePage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Transparante communicatie en korte lijntjes. Zo werken we het
-              liefst.
+              {t("collaboration.subtitle")}
             </motion.p>
           </div>
 
@@ -401,7 +369,7 @@ export default function WerkwijzePage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar om te starten?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -409,8 +377,7 @@ export default function WerkwijzePage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Plan een vrijblijvend kennismakingsgesprek en ontdek hoe wij jouw
-            project kunnen realiseren.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -423,7 +390,7 @@ export default function WerkwijzePage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Plan een gesprek
+                {t("cta.button")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { motion } from "@/components/motion";
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,36 +9,37 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    value: "info@robuustmarketing.nl",
-    href: "mailto:info@robuustmarketing.nl",
-  },
-  {
-    icon: Phone,
-    title: "Telefoon",
-    value: "+31 85 060 48 77",
-    href: "tel:+31850604877",
-  },
-  {
-    icon: MapPin,
-    title: "Locatie",
-    value: "Nederland",
-    href: null,
-  },
-  {
-    icon: Clock,
-    title: "Reactietijd",
-    value: "Binnen 24 uur",
-    href: null,
-  },
-];
-
 export default function ContactPage() {
+  const t = useTranslations("contactPage");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: t("info.email"),
+      value: "info@robuustmarketing.nl",
+      href: "mailto:info@robuustmarketing.nl",
+    },
+    {
+      icon: Phone,
+      title: t("info.phone"),
+      value: "+31 85 060 48 77",
+      href: "tel:+31850604877",
+    },
+    {
+      icon: MapPin,
+      title: t("info.location"),
+      value: t("info.locationValue"),
+      href: null,
+    },
+    {
+      icon: Clock,
+      title: t("info.responseTime"),
+      value: t("info.responseTimeValue"),
+      href: null,
+    },
+  ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,7 +76,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Contact
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -82,9 +84,9 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Laten we
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">praten</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -92,8 +94,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Heb je een project in gedachten? Wil je meer weten over onze diensten?
-            Of gewoon even kennismaken? We horen graag van je.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -115,37 +116,36 @@ export default function ContactPage() {
                     <CheckCircle className="h-8 w-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">
-                    Bericht verzonden!
+                    {t("success.title")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Bedankt voor je bericht. We nemen binnen 24 uur contact met je
-                    op.
+                    {t("success.message")}
                   </p>
                 </div>
               ) : (
                 <>
                   <h2 className="text-2xl font-bold text-white mb-6">
-                    Stuur een bericht
+                    {t("form.title")}
                   </h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Naam *</Label>
+                        <Label htmlFor="name">{t("form.name")} *</Label>
                         <Input
                           id="name"
                           name="name"
-                          placeholder="Je naam"
+                          placeholder={t("form.namePlaceholder")}
                           required
                           autoComplete="name"
                           className="bg-background border-white/10"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="company">Bedrijf</Label>
+                        <Label htmlFor="company">{t("form.company")}</Label>
                         <Input
                           id="company"
                           name="company"
-                          placeholder="Je bedrijf"
+                          placeholder={t("form.companyPlaceholder")}
                           autoComplete="organization"
                           className="bg-background border-white/10"
                         />
@@ -154,24 +154,24 @@ export default function ContactPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
+                        <Label htmlFor="email">{t("form.email")} *</Label>
                         <Input
                           id="email"
                           name="email"
                           type="email"
-                          placeholder="je@email.nl"
+                          placeholder={t("form.emailPlaceholder")}
                           required
                           autoComplete="email"
                           className="bg-background border-white/10"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="phone">Telefoon</Label>
+                        <Label htmlFor="phone">{t("form.phone")}</Label>
                         <Input
                           id="phone"
                           name="phone"
                           type="tel"
-                          placeholder="+31 6 12345678"
+                          placeholder={t("form.phonePlaceholder")}
                           autoComplete="tel"
                           className="bg-background border-white/10"
                         />
@@ -179,22 +179,22 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="subject">Onderwerp *</Label>
+                      <Label htmlFor="subject">{t("form.subject")} *</Label>
                       <Input
                         id="subject"
                         name="subject"
-                        placeholder="Waar gaat je vraag over?"
+                        placeholder={t("form.subjectPlaceholder")}
                         required
                         className="bg-background border-white/10"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message">Bericht *</Label>
+                      <Label htmlFor="message">{t("form.message")} *</Label>
                       <Textarea
                         id="message"
                         name="message"
-                        placeholder="Vertel ons meer over je project of vraag..."
+                        placeholder={t("form.messagePlaceholder")}
                         rows={5}
                         required
                         className="bg-background border-white/10 resize-none"
@@ -208,10 +208,10 @@ export default function ContactPage() {
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
-                        "Verzenden..."
+                        t("form.submitting")
                       ) : (
                         <>
-                          Verstuur bericht
+                          {t("form.submit")}
                           <Send className="ml-2 h-4 w-4" />
                         </>
                       )}
@@ -230,11 +230,10 @@ export default function ContactPage() {
             >
               <div>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  Direct contact
+                  {t("info.title")}
                 </h2>
                 <p className="text-muted-foreground">
-                  Liever direct bellen of mailen? Dat kan natuurlijk ook. We staan
-                  klaar om je vragen te beantwoorden.
+                  {t("info.subtitle")}
                 </p>
               </div>
 
@@ -267,21 +266,20 @@ export default function ContactPage() {
               {/* FAQ teaser */}
               <div className="rounded-2xl bg-accent/5 border border-accent/20 p-6">
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  Veelgestelde vragen
+                  {t("faq.title")}
                 </h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  Bekijk de antwoorden op de meest gestelde vragen over onze
-                  diensten, prijzen en werkwijze.
+                  {t("faq.subtitle")}
                 </p>
                 <ul className="space-y-2 text-sm">
                   <li className="text-white/80">
-                    • Wat kost een website bij Robuust?
+                    • {t("faq.question1")}
                   </li>
                   <li className="text-white/80">
-                    • Hoe lang duurt een project?
+                    • {t("faq.question2")}
                   </li>
                   <li className="text-white/80">
-                    • Bieden jullie ook onderhoud?
+                    • {t("faq.question3")}
                   </li>
                 </ul>
               </div>

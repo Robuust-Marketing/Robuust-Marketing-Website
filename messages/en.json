@@ -367,5 +367,367 @@
         "description": "Analytics & automation"
       }
     }
+  },
+  "toolingPage": {
+    "badge": "Tooling",
+    "titleLine1": "Our",
+    "titleLine2": "tech stack",
+    "subtitle": "We deliberately choose modern, reliable technology. No outdated frameworks, but a stack that scales and performs.",
+    "benefits": "Benefits",
+    "whyThisStack": {
+      "performance": {
+        "title": "Performance",
+        "description": "Our stack is optimized for speed. On average, our websites achieve a Lighthouse score of 95+."
+      },
+      "seo": {
+        "title": "SEO",
+        "description": "Server-side rendering and optimal meta tags ensure excellent findability in Google."
+      },
+      "maintenance": {
+        "title": "Maintenance",
+        "description": "Type-safe code and modern tooling make maintenance simple and predictable."
+      },
+      "future": {
+        "title": "Future",
+        "description": "We only use technology with a strong community and active development."
+      }
+    },
+    "techStack": {
+      "wordpress": {
+        "category": "CMS Platform",
+        "name": "WordPress & Avada",
+        "description": "WordPress with the Avada theme is our go-to solution for clients who want to manage their own content. Avada offers extensive design options and an intuitive drag-and-drop builder for maximum flexibility.",
+        "benefits": ["User-friendly content management", "Powerful drag-and-drop builder", "Extensive design options", "Large plugin ecosystem"]
+      },
+      "nextjs": {
+        "category": "Frontend Framework",
+        "name": "Next.js & React",
+        "description": "Next.js is our primary framework for building modern websites. With React as its foundation and features like Server Components, App Router and optimal SEO support, it's the perfect choice for any website.",
+        "benefits": ["Server-side rendering for better SEO", "Automatic code splitting", "Built-in image optimization", "Fast page loads with prefetching"]
+      },
+      "typescript": {
+        "category": "Programming Language",
+        "name": "TypeScript",
+        "description": "TypeScript adds type-safety to JavaScript, resulting in fewer bugs and more maintainable code. Every line of code we write is type-safe.",
+        "benefits": ["Fewer runtime errors", "Better developer experience", "Easier refactoring", "Automatic documentation"]
+      },
+      "tailwind": {
+        "category": "Styling",
+        "name": "Tailwind CSS",
+        "description": "Tailwind CSS is our utility-first CSS framework. It enables us to quickly build custom designs without the overhead of traditional CSS.",
+        "benefits": ["Fast development", "Consistent design system", "Small bundle size", "Dark mode out of the box"]
+      },
+      "cms": {
+        "category": "Content Management",
+        "name": "Headless CMS",
+        "description": "We work with various headless CMS solutions depending on your needs. From Sanity to Contentful, we choose the best tool for your situation.",
+        "benefits": ["Flexible content management", "User-friendly interface", "API-first approach", "Scalable and secure"]
+      },
+      "cloudflare": {
+        "category": "CDN & Security",
+        "name": "Cloudflare",
+        "description": "Cloudflare protects and accelerates all our websites. From DDoS protection to caching, it's an essential part of our infrastructure.",
+        "benefits": ["Worldwide CDN network", "DDoS protection", "SSL/TLS encryption", "Web Application Firewall"]
+      },
+      "nginx": {
+        "category": "Web Server",
+        "name": "NGINX",
+        "description": "NGINX is our web server of choice. With excellent performance and scalability, it's the backbone of our hosting infrastructure.",
+        "benefits": ["High-performance", "Load balancing", "Reverse proxy", "Efficient resource usage"]
+      }
+    },
+    "additionalTools": {
+      "title": "Additional tools",
+      "subtitle": "Besides our core stack, we use various tools for specific tasks.",
+      "github": { "name": "GitHub", "description": "Version control" },
+      "figma": { "name": "Figma", "description": "Design tool" },
+      "resend": { "name": "Resend", "description": "Email API" },
+      "clickup": { "name": "ClickUp", "description": "Project management" }
+    },
+    "cta": {
+      "title": "Curious about our approach?",
+      "subtitle": "We'd love to tell you more about how we use this technology for your project.",
+      "button": "Get in touch"
+    }
+  },
+  "portfolioPage": {
+    "badge": "Portfolio",
+    "titleLine1": "Our best",
+    "titleLine2": "projects",
+    "subtitle": "From B2B consultancy to fine dining restaurant. Check out a selection of our recent WordPress projects.",
+    "featured": {
+      "title": "Featured projects",
+      "subtitle": "Projects we're extra proud of"
+    },
+    "more": {
+      "title": "More projects",
+      "subtitle": "Other projects we've realized"
+    },
+    "projectType": {
+      "new": "Newly built",
+      "newShort": "New",
+      "redesign": "Redesign"
+    },
+    "viewCaseStudy": "View case study",
+    "caseStudy": "Case study",
+    "stats": {
+      "websitesDelivered": "Websites delivered",
+      "satisfiedClients": "Satisfied clients",
+      "primaryTechnology": "Primary technology",
+      "mostProjects": "Most projects"
+    },
+    "cta": {
+      "title": "Your project next?",
+      "subtitle": "Let's discuss together how we can make your digital ambitions a reality.",
+      "button": "Start your project"
+    }
+  },
+  "tarievenPage": {
+    "badge": "Pricing",
+    "titleLine1": "Transparent",
+    "titleLine2": "pricing",
+    "subtitle": "No surprises, no fine print. Check out our packages and choose what suits you.",
+    "trust": {
+      "fastDelivery": "Fast delivery",
+      "noHiddenCosts": "No hidden costs",
+      "flexiblePayments": "Flexible payments"
+    },
+    "websitePackages": {
+      "title": "Website packages",
+      "subtitle": "Choose the package that fits your ambitions and budget",
+      "mostChosen": "Most chosen",
+      "requestQuote": "Request a quote"
+    },
+    "hosting": {
+      "title": "Hosting & Maintenance",
+      "subtitle": "Reliable hosting with premium support and maintenance",
+      "popular": "Popular",
+      "custom": "Custom",
+      "perMonth": "/month",
+      "moreInfo": "More info"
+    },
+    "additionalServices": {
+      "title": "Additional services",
+      "subtitle": "Additional services on hourly or project basis",
+      "perHour": "/hour",
+      "from": "From"
+    },
+    "faq": {
+      "title": "Frequently asked questions"
+    },
+    "cta": {
+      "title": "Didn't find what you were looking for?",
+      "subtitle": "Every project is unique. Contact us for a custom quote.",
+      "requestQuote": "Request a quote",
+      "contact": "Get in touch"
+    }
+  },
+  "faqPage": {
+    "badge": "FAQ",
+    "titleLine1": "Frequently asked",
+    "titleLine2": "questions",
+    "subtitle": "Answers to the questions we get most often. Can't find your question? Feel free to get in touch.",
+    "searchPlaceholder": "Search frequently asked questions...",
+    "all": "All",
+    "noResults": {
+      "title": "No results found",
+      "subtitle": "Try a different search term or contact us.",
+      "button": "Get in touch"
+    },
+    "cta": {
+      "title": "Question not answered?",
+      "subtitle": "Get in touch and we'll be happy to help you with your question.",
+      "button": "Ask your question"
+    }
+  },
+  "werkwijzePage": {
+    "badge": "How We Work",
+    "titleLine1": "From idea to",
+    "titleLine2": "successful website",
+    "subtitle": "Our proven approach ensures a smooth process and an end result you can be proud of. No surprises, just results.",
+    "phases": {
+      "title": "Our 5 project phases",
+      "subtitle": "Every project goes through the same structured phases for optimal quality and predictability.",
+      "phase": "Phase",
+      "activities": "Activities",
+      "deliverables": "Deliverables",
+      "discovery": {
+        "name": "Discovery",
+        "description": "We start with a thorough analysis of your business, goals and target audience. This forms the foundation for everything that follows.",
+        "activities": ["Intake meeting & briefing", "Target audience analysis", "Competition research", "Technical requirements"],
+        "deliverables": ["Project plan", "Functional specifications", "Timeline"]
+      },
+      "design": {
+        "name": "Design",
+        "description": "We translate the strategy into a visual design that fits your brand and converts optimally.",
+        "activities": ["Wireframes & user flows", "UI design in Figma", "Responsive designs", "Design review & feedback"],
+        "deliverables": ["Wireframes", "UI designs", "Design system"]
+      },
+      "development": {
+        "name": "Development",
+        "description": "The design is transformed into a lightning-fast website using modern technology.",
+        "activities": ["Frontend development", "CMS integration", "API connections", "Testing & QA"],
+        "deliverables": ["Working website", "CMS manual", "Technical documentation"]
+      },
+      "launch": {
+        "name": "Launch",
+        "description": "After extensive testing, your website goes live. We ensure a smooth launch.",
+        "activities": ["Performance optimization", "SEO basic setup", "Analytics configuration", "Go-live checklist"],
+        "deliverables": ["Live website", "DNS configuration", "SSL certificate"]
+      },
+      "support": {
+        "name": "Support",
+        "description": "After launch, we remain available for maintenance, updates and further development.",
+        "activities": ["Ongoing maintenance", "Security updates", "Performance monitoring", "Further development"],
+        "deliverables": ["Monthly reports", "24/7 monitoring", "Priority support"]
+      }
+    },
+    "timeline": {
+      "title": "Average timeline",
+      "subtitle": "The lead time of a project depends on its complexity. An average website project takes 6-12 weeks from start to launch.",
+      "indicative": "Indicative lead times",
+      "simple": "Simple website",
+      "business": "Business website",
+      "ecommerce": "E-commerce / Webshop",
+      "custom": "Custom platform",
+      "customDuration": "Custom",
+      "phases": {
+        "discovery": "Discovery",
+        "design": "Design",
+        "development": "Development",
+        "testingLaunch": "Testing & Launch"
+      },
+      "durations": {
+        "discovery": "1-2 weeks",
+        "design": "2-3 weeks",
+        "development": "3-6 weeks",
+        "testingLaunch": "1 week",
+        "simple": "4-6 weeks",
+        "business": "6-10 weeks",
+        "ecommerce": "10-16 weeks"
+      }
+    },
+    "collaboration": {
+      "title": "How we collaborate",
+      "subtitle": "Transparent communication and short lines. That's how we prefer to work.",
+      "weeklyUpdates": {
+        "title": "Weekly updates",
+        "description": "You receive a weekly update on the progress of your project."
+      },
+      "directContact": {
+        "title": "Direct contact",
+        "description": "No intermediaries. You have direct contact with the people working on your project."
+      },
+      "documentation": {
+        "title": "Transparent documentation",
+        "description": "All decisions and changes are documented and shared."
+      },
+      "feedback": {
+        "title": "Fast feedback loops",
+        "description": "Short iterations so we can quickly adjust where needed."
+      }
+    },
+    "cta": {
+      "title": "Ready to start?",
+      "subtitle": "Schedule a free consultation and discover how we can realize your project.",
+      "button": "Schedule a call"
+    }
+  },
+  "overPage": {
+    "badge": "About Robuust",
+    "titleLine1": "We build",
+    "titleLine2": "digital foundations",
+    "subtitle": "Robuust Marketing is a full-service digital agency specialized in web development, hosting and online marketing. We help businesses grow with a solid digital foundation.",
+    "story": {
+      "title": "Our story",
+      "paragraph1": "Robuust Marketing was born from a simple observation: too many companies struggle with their digital presence. Not due to lack of ambition, but because of fragmented services and lack of technical expertise.",
+      "paragraph2": "We believe every business deserves a professional online presence. That's why we offer everything under one roof: from the first design to the last line of code, from hosting to ongoing maintenance.",
+      "paragraph3": "With over 70 websites under management and years of experience in web development, we are the partner that makes your digital ambitions a reality. No empty promises, but measurable results."
+    },
+    "stats": {
+      "websites": "Websites managed",
+      "uptime": "Uptime guarantee",
+      "monitoring": "Monitoring active",
+      "servers": "Servers in Europe"
+    },
+    "values": {
+      "title": "What we stand for",
+      "subtitle": "Our core values are not just nice words on paper. They are the principles that guide every decision and every project.",
+      "quality": {
+        "title": "Passion for quality",
+        "description": "We don't deliver half work. Every project gets our full attention and expertise."
+      },
+      "speed": {
+        "title": "Speed without compromise",
+        "description": "Short turnaround times without sacrificing quality or functionality."
+      },
+      "reliable": {
+        "title": "Reliable & transparent",
+        "description": "Clear communication, fair prices and commitments we keep."
+      },
+      "personal": {
+        "title": "Personal approach",
+        "description": "Not just a number, but a real partnership. We think proactively with you."
+      }
+    },
+    "expertise": {
+      "technical": {
+        "title": "Technical excellence",
+        "description": "We work with the latest technologies: React, Next.js, TypeScript and more. No outdated WordPress templates, but modern solutions that scale."
+      },
+      "strategic": {
+        "title": "Strategic thinking",
+        "description": "A website is more than a digital brochure. We look at your business goals and translate them into an effective online strategy."
+      }
+    },
+    "cta": {
+      "title": "Ready to work together?",
+      "subtitle": "Let's get acquainted and discuss how we can help your business grow.",
+      "button": "Get in touch"
+    }
+  },
+  "contactPage": {
+    "badge": "Contact",
+    "titleLine1": "Let's",
+    "titleLine2": "talk",
+    "subtitle": "Have a project in mind? Want to learn more about our services? Or just want to get acquainted? We'd love to hear from you.",
+    "form": {
+      "title": "Send a message",
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "company": "Company",
+      "companyPlaceholder": "Your company",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "phone": "Phone",
+      "phonePlaceholder": "+31 6 12345678",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is your question about?",
+      "message": "Message",
+      "messagePlaceholder": "Tell us more about your project or question...",
+      "submit": "Send message",
+      "submitting": "Sending..."
+    },
+    "success": {
+      "title": "Message sent!",
+      "message": "Thank you for your message. We'll get back to you within 24 hours."
+    },
+    "info": {
+      "title": "Direct contact",
+      "subtitle": "Prefer to call or email directly? Of course you can. We're ready to answer your questions.",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "locationValue": "Netherlands",
+      "responseTime": "Response time",
+      "responseTimeValue": "Within 24 hours"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Check out the answers to the most frequently asked questions about our services, pricing and process.",
+      "question1": "How much does a website cost at Robuust?",
+      "question2": "How long does a project take?",
+      "question3": "Do you also offer maintenance?"
+    }
   }
 }

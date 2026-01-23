@@ -379,5 +379,367 @@
         "description": "Analytics & automatisering"
       }
     }
+  },
+  "toolingPage": {
+    "badge": "Tooling",
+    "titleLine1": "Onze",
+    "titleLine2": "tech stack",
+    "subtitle": "We kiezen bewust voor moderne, betrouwbare technologie. Geen verouderde frameworks, maar een stack die schaalt en presteert.",
+    "benefits": "Voordelen",
+    "whyThisStack": {
+      "performance": {
+        "title": "Performance",
+        "description": "Onze stack is geoptimaliseerd voor snelheid. Gemiddeld behalen onze websites een Lighthouse score van 95+."
+      },
+      "seo": {
+        "title": "SEO",
+        "description": "Server-side rendering en optimale meta-tags zorgen voor uitstekende vindbaarheid in Google."
+      },
+      "maintenance": {
+        "title": "Onderhoud",
+        "description": "Type-safe code en moderne tooling maken onderhoud eenvoudig en voorspelbaar."
+      },
+      "future": {
+        "title": "Toekomst",
+        "description": "We gebruiken alleen technologie met een sterke community en actieve ontwikkeling."
+      }
+    },
+    "techStack": {
+      "wordpress": {
+        "category": "CMS Platform",
+        "name": "WordPress & Avada",
+        "description": "WordPress met het Avada theme is onze go-to oplossing voor klanten die zelf content willen beheren. Avada biedt uitgebreide designmogelijkheden en een intuïtieve drag-and-drop builder voor maximale flexibiliteit.",
+        "benefits": ["Gebruiksvriendelijk contentbeheer", "Krachtige drag-and-drop builder", "Uitgebreide designopties", "Grote plugin ecosysteem"]
+      },
+      "nextjs": {
+        "category": "Frontend Framework",
+        "name": "Next.js & React",
+        "description": "Next.js is ons primaire framework voor het bouwen van moderne websites. Met React als basis en features zoals Server Components, App Router en optimale SEO-ondersteuning is het de perfecte keuze voor elke website.",
+        "benefits": ["Server-side rendering voor betere SEO", "Automatische code splitting", "Ingebouwde image optimization", "Snelle page loads met prefetching"]
+      },
+      "typescript": {
+        "category": "Programmeertaal",
+        "name": "TypeScript",
+        "description": "TypeScript voegt type-safety toe aan JavaScript, wat resulteert in minder bugs en beter onderhoudbare code. Elke lijn code die wij schrijven is type-safe.",
+        "benefits": ["Minder runtime errors", "Betere developer experience", "Eenvoudiger refactoring", "Automatische documentatie"]
+      },
+      "tailwind": {
+        "category": "Styling",
+        "name": "Tailwind CSS",
+        "description": "Tailwind CSS is ons utility-first CSS framework. Het stelt ons in staat om snel custom designs te bouwen zonder de overhead van traditionele CSS.",
+        "benefits": ["Snelle development", "Consistent design systeem", "Kleine bundle size", "Dark mode out of the box"]
+      },
+      "cms": {
+        "category": "Content Management",
+        "name": "Headless CMS",
+        "description": "We werken met diverse headless CMS oplossingen afhankelijk van jouw behoeften. Van Sanity tot Contentful, we kiezen de beste tool voor jouw situatie.",
+        "benefits": ["Flexibel contentbeheer", "Gebruiksvriendelijke interface", "API-first benadering", "Schaalbaar en veilig"]
+      },
+      "cloudflare": {
+        "category": "CDN & Security",
+        "name": "Cloudflare",
+        "description": "Cloudflare beschermt en versnelt al onze websites. Van DDoS-bescherming tot caching, het is een essentieel onderdeel van onze infrastructuur.",
+        "benefits": ["Wereldwijd CDN netwerk", "DDoS bescherming", "SSL/TLS encryptie", "Web Application Firewall"]
+      },
+      "nginx": {
+        "category": "Web Server",
+        "name": "NGINX",
+        "description": "NGINX is onze webserver van keuze. Met uitstekende performance en schaalbaarheid is het de ruggengraat van onze hosting infrastructuur.",
+        "benefits": ["High-performance", "Load balancing", "Reverse proxy", "Efficiënt resource gebruik"]
+      }
+    },
+    "additionalTools": {
+      "title": "Aanvullende tools",
+      "subtitle": "Naast onze core stack gebruiken we diverse tools voor specifieke taken.",
+      "github": { "name": "GitHub", "description": "Version control" },
+      "figma": { "name": "Figma", "description": "Design tool" },
+      "resend": { "name": "Resend", "description": "Email API" },
+      "clickup": { "name": "ClickUp", "description": "Project management" }
+    },
+    "cta": {
+      "title": "Benieuwd naar onze aanpak?",
+      "subtitle": "We vertellen je graag meer over hoe wij deze technologie inzetten voor jouw project.",
+      "button": "Neem contact op"
+    }
+  },
+  "portfolioPage": {
+    "badge": "Portfolio",
+    "titleLine1": "Onze beste",
+    "titleLine2": "projecten",
+    "subtitle": "Van B2B consultancy tot gastronomisch restaurant. Bekijk een selectie van onze recente WordPress projecten.",
+    "featured": {
+      "title": "Uitgelichte projecten",
+      "subtitle": "Projecten waar we extra trots op zijn"
+    },
+    "more": {
+      "title": "Meer projecten",
+      "subtitle": "Andere projecten die we hebben gerealiseerd"
+    },
+    "projectType": {
+      "new": "Nieuw gebouwd",
+      "newShort": "Nieuw",
+      "redesign": "Redesign"
+    },
+    "viewCaseStudy": "Bekijk case study",
+    "caseStudy": "Case study",
+    "stats": {
+      "websitesDelivered": "Websites opgeleverd",
+      "satisfiedClients": "Tevreden klanten",
+      "primaryTechnology": "Primaire technologie",
+      "mostProjects": "Meeste projecten"
+    },
+    "cta": {
+      "title": "Jouw project als volgende?",
+      "subtitle": "Laten we samen bespreken hoe we jouw digitale ambities kunnen waarmaken.",
+      "button": "Start je project"
+    }
+  },
+  "tarievenPage": {
+    "badge": "Tarieven",
+    "titleLine1": "Transparante",
+    "titleLine2": "prijzen",
+    "subtitle": "Geen verrassingen, geen kleine lettertjes. Bekijk onze pakketten en kies wat bij je past.",
+    "trust": {
+      "fastDelivery": "Snelle oplevering",
+      "noHiddenCosts": "Geen verborgen kosten",
+      "flexiblePayments": "Flexibele betalingen"
+    },
+    "websitePackages": {
+      "title": "Website pakketten",
+      "subtitle": "Kies het pakket dat past bij jouw ambities en budget",
+      "mostChosen": "Meest gekozen",
+      "requestQuote": "Offerte aanvragen"
+    },
+    "hosting": {
+      "title": "Hosting & Onderhoud",
+      "subtitle": "Betrouwbare hosting met premium support en onderhoud",
+      "popular": "Populair",
+      "custom": "Op maat",
+      "perMonth": "/maand",
+      "moreInfo": "Meer info"
+    },
+    "additionalServices": {
+      "title": "Losse diensten",
+      "subtitle": "Aanvullende diensten op uurbasis of projectbasis",
+      "perHour": "/uur",
+      "from": "Vanaf"
+    },
+    "faq": {
+      "title": "Veelgestelde vragen"
+    },
+    "cta": {
+      "title": "Niet gevonden wat je zocht?",
+      "subtitle": "Elk project is uniek. Neem contact op voor een offerte op maat.",
+      "requestQuote": "Offerte aanvragen",
+      "contact": "Neem contact op"
+    }
+  },
+  "faqPage": {
+    "badge": "FAQ",
+    "titleLine1": "Veelgestelde",
+    "titleLine2": "vragen",
+    "subtitle": "Antwoorden op de vragen die we het meest krijgen. Staat jouw vraag er niet tussen? Neem gerust contact op.",
+    "searchPlaceholder": "Zoek in veelgestelde vragen...",
+    "all": "Alle",
+    "noResults": {
+      "title": "Geen resultaten gevonden",
+      "subtitle": "Probeer een andere zoekterm of neem contact met ons op.",
+      "button": "Neem contact op"
+    },
+    "cta": {
+      "title": "Vraag niet beantwoord?",
+      "subtitle": "Neem contact met ons op en we helpen je graag verder met je vraag.",
+      "button": "Stel je vraag"
+    }
+  },
+  "werkwijzePage": {
+    "badge": "Werkwijze",
+    "titleLine1": "Van idee naar",
+    "titleLine2": "succesvolle website",
+    "subtitle": "Onze bewezen aanpak zorgt voor een soepel proces en een eindresultaat waar je trots op bent. Geen verrassingen, wel resultaat.",
+    "phases": {
+      "title": "Onze 5 projectfases",
+      "subtitle": "Elk project doorloopt dezelfde gestructureerde fases voor optimale kwaliteit en voorspelbaarheid.",
+      "phase": "Fase",
+      "activities": "Activiteiten",
+      "deliverables": "Deliverables",
+      "discovery": {
+        "name": "Discovery",
+        "description": "We beginnen met een grondige analyse van jouw bedrijf, doelen en doelgroep. Dit vormt de basis voor alles wat volgt.",
+        "activities": ["Intake gesprek & briefing", "Doelgroep analyse", "Concurrentie onderzoek", "Technische requirements"],
+        "deliverables": ["Projectplan", "Functionele specificaties", "Timeline"]
+      },
+      "design": {
+        "name": "Design",
+        "description": "We vertalen de strategie naar een visueel ontwerp dat past bij jouw merk en optimaal converteert.",
+        "activities": ["Wireframes & user flows", "UI design in Figma", "Responsive designs", "Design review & feedback"],
+        "deliverables": ["Wireframes", "UI designs", "Design systeem"]
+      },
+      "development": {
+        "name": "Development",
+        "description": "Het ontwerp wordt omgezet naar een razendsnelle website met moderne technologie.",
+        "activities": ["Frontend development", "CMS integratie", "API koppelingen", "Testing & QA"],
+        "deliverables": ["Werkende website", "CMS handleiding", "Technische documentatie"]
+      },
+      "launch": {
+        "name": "Launch",
+        "description": "Na uitgebreide tests gaat je website live. We zorgen voor een soepele lancering.",
+        "activities": ["Performance optimalisatie", "SEO basis setup", "Analytics configuratie", "Go-live checklist"],
+        "deliverables": ["Live website", "DNS configuratie", "SSL certificaat"]
+      },
+      "support": {
+        "name": "Support",
+        "description": "Na de launch blijven we beschikbaar voor onderhoud, updates en doorontwikkeling.",
+        "activities": ["Doorlopend onderhoud", "Security updates", "Performance monitoring", "Doorontwikkeling"],
+        "deliverables": ["Maandelijkse rapportages", "24/7 monitoring", "Priority support"]
+      }
+    },
+    "timeline": {
+      "title": "Gemiddelde tijdlijn",
+      "subtitle": "De doorlooptijd van een project hangt af van de complexiteit. Een gemiddeld website project duurt 6-12 weken van start tot lancering.",
+      "indicative": "Indicatieve doorlooptijden",
+      "simple": "Eenvoudige website",
+      "business": "Zakelijke website",
+      "ecommerce": "E-commerce / Webshop",
+      "custom": "Custom platform",
+      "customDuration": "Op maat",
+      "phases": {
+        "discovery": "Discovery",
+        "design": "Design",
+        "development": "Development",
+        "testingLaunch": "Testing & Launch"
+      },
+      "durations": {
+        "discovery": "1-2 weken",
+        "design": "2-3 weken",
+        "development": "3-6 weken",
+        "testingLaunch": "1 week",
+        "simple": "4-6 weken",
+        "business": "6-10 weken",
+        "ecommerce": "10-16 weken"
+      }
+    },
+    "collaboration": {
+      "title": "Hoe wij samenwerken",
+      "subtitle": "Transparante communicatie en korte lijntjes. Zo werken we het liefst.",
+      "weeklyUpdates": {
+        "title": "Wekelijkse updates",
+        "description": "Je ontvangt elke week een update over de voortgang van je project."
+      },
+      "directContact": {
+        "title": "Direct contact",
+        "description": "Geen tussenlagen. Je hebt direct contact met de mensen die aan je project werken."
+      },
+      "documentation": {
+        "title": "Transparante documentatie",
+        "description": "Alle beslissingen en wijzigingen worden gedocumenteerd en gedeeld."
+      },
+      "feedback": {
+        "title": "Snelle feedback loops",
+        "description": "Korte iteraties zodat we snel kunnen bijsturen waar nodig."
+      }
+    },
+    "cta": {
+      "title": "Klaar om te starten?",
+      "subtitle": "Plan een vrijblijvend kennismakingsgesprek en ontdek hoe wij jouw project kunnen realiseren.",
+      "button": "Plan een gesprek"
+    }
+  },
+  "overPage": {
+    "badge": "Over Robuust",
+    "titleLine1": "Wij bouwen",
+    "titleLine2": "digitale fundamenten",
+    "subtitle": "Robuust Marketing is een full-service digitaal bureau gespecialiseerd in webdevelopment, hosting en online marketing. Wij helpen bedrijven groeien met een stevige digitale basis.",
+    "story": {
+      "title": "Ons verhaal",
+      "paragraph1": "Robuust Marketing is ontstaan vanuit een simpele observatie: teveel bedrijven worstelen met hun digitale aanwezigheid. Niet door gebrek aan ambities, maar door versnipperde dienstverlening en gebrek aan technische expertise.",
+      "paragraph2": "Wij geloven dat elk bedrijf recht heeft op een professionele online aanwezigheid. Daarom bieden wij alles onder één dak: van het eerste design tot de laatste regel code, van hosting tot doorlopend onderhoud.",
+      "paragraph3": "Met meer dan 70 websites in beheer en jarenlange ervaring in webdevelopment, zijn wij de partner die jouw digitale ambities waarmaakt. Geen loze beloftes, maar meetbare resultaten."
+    },
+    "stats": {
+      "websites": "Websites beheerd",
+      "uptime": "Uptime garantie",
+      "monitoring": "Monitoring actief",
+      "servers": "Servers in Europa"
+    },
+    "values": {
+      "title": "Waar wij voor staan",
+      "subtitle": "Onze kernwaarden zijn geen mooie woorden op papier. Het zijn de principes die elke beslissing en elk project sturen.",
+      "quality": {
+        "title": "Passie voor kwaliteit",
+        "description": "Wij leveren geen half werk. Elk project krijgt onze volle aandacht en expertise."
+      },
+      "speed": {
+        "title": "Snelheid zonder compromis",
+        "description": "Korte doorlooptijden zonder in te leveren op kwaliteit of functionaliteit."
+      },
+      "reliable": {
+        "title": "Betrouwbaar & transparant",
+        "description": "Heldere communicatie, eerlijke prijzen en afspraken die we nakomen."
+      },
+      "personal": {
+        "title": "Persoonlijke aanpak",
+        "description": "Geen nummertje, maar een echte samenwerking. We denken proactief met je mee."
+      }
+    },
+    "expertise": {
+      "technical": {
+        "title": "Technische excellentie",
+        "description": "Wij werken met de nieuwste technologieën: React, Next.js, TypeScript en meer. Geen verouderde WordPress templates, maar moderne oplossingen die schalen."
+      },
+      "strategic": {
+        "title": "Strategisch denken",
+        "description": "Een website is meer dan een digitale brochure. Wij kijken naar jouw business doelen en vertalen die naar een effectieve online strategie."
+      }
+    },
+    "cta": {
+      "title": "Klaar om samen te werken?",
+      "subtitle": "Laten we kennismaken en bespreken hoe wij jouw bedrijf kunnen helpen groeien.",
+      "button": "Neem contact op"
+    }
+  },
+  "contactPage": {
+    "badge": "Contact",
+    "titleLine1": "Laten we",
+    "titleLine2": "praten",
+    "subtitle": "Heb je een project in gedachten? Wil je meer weten over onze diensten? Of gewoon even kennismaken? We horen graag van je.",
+    "form": {
+      "title": "Stuur een bericht",
+      "name": "Naam",
+      "namePlaceholder": "Je naam",
+      "company": "Bedrijf",
+      "companyPlaceholder": "Je bedrijf",
+      "email": "Email",
+      "emailPlaceholder": "je@email.nl",
+      "phone": "Telefoon",
+      "phonePlaceholder": "+31 6 12345678",
+      "subject": "Onderwerp",
+      "subjectPlaceholder": "Waar gaat je vraag over?",
+      "message": "Bericht",
+      "messagePlaceholder": "Vertel ons meer over je project of vraag...",
+      "submit": "Verstuur bericht",
+      "submitting": "Verzenden..."
+    },
+    "success": {
+      "title": "Bericht verzonden!",
+      "message": "Bedankt voor je bericht. We nemen binnen 24 uur contact met je op."
+    },
+    "info": {
+      "title": "Direct contact",
+      "subtitle": "Liever direct bellen of mailen? Dat kan natuurlijk ook. We staan klaar om je vragen te beantwoorden.",
+      "email": "Email",
+      "phone": "Telefoon",
+      "location": "Locatie",
+      "locationValue": "Nederland",
+      "responseTime": "Reactietijd",
+      "responseTimeValue": "Binnen 24 uur"
+    },
+    "faq": {
+      "title": "Veelgestelde vragen",
+      "subtitle": "Bekijk de antwoorden op de meest gestelde vragen over onze diensten, prijzen en werkwijze.",
+      "question1": "Wat kost een website bij Robuust?",
+      "question2": "Hoe lang duurt een project?",
+      "question3": "Bieden jullie ook onderhoud?"
+    }
   }
 }

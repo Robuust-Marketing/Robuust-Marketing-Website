@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { portfolioItems } from "@/data/portfolio";
 
 export default function PortfolioPage() {
+  const t = useTranslations("portfolioPage");
   const featuredProjects = portfolioItems.filter((p) => p.featured);
   const otherProjects = portfolioItems.filter((p) => !p.featured);
 
@@ -34,7 +36,7 @@ export default function PortfolioPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Portfolio
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -42,9 +44,9 @@ export default function PortfolioPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Onze beste
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">projecten</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -52,8 +54,7 @@ export default function PortfolioPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Van B2B consultancy tot gastronomisch restaurant. Bekijk een selectie
-            van onze recente WordPress projecten.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -68,10 +69,10 @@ export default function PortfolioPage() {
             className="mb-12"
           >
             <h2 className="text-2xl font-bold text-white mb-2">
-              Uitgelichte projecten
+              {t("featured.title")}
             </h2>
             <p className="text-muted-foreground">
-              Projecten waar we extra trots op zijn
+              {t("featured.subtitle")}
             </p>
           </motion.div>
 
@@ -104,7 +105,7 @@ export default function PortfolioPage() {
                           ? "bg-green-500/20 text-green-400"
                           : "bg-blue-500/20 text-blue-400"
                       }`}>
-                        {project.projectType === "new" ? "Nieuw gebouwd" : "Redesign"}
+                        {project.projectType === "new" ? t("projectType.new") : t("projectType.redesign")}
                       </span>
                     </div>
                   </div>
@@ -142,7 +143,7 @@ export default function PortfolioPage() {
                     {/* Actions */}
                     <div className="flex items-center gap-4 pt-4 border-t border-white/5">
                       <span className="text-sm font-medium text-accent group-hover:text-accent-hover transition-colors flex items-center gap-1">
-                        Bekijk case study
+                        {t("viewCaseStudy")}
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>
@@ -165,10 +166,10 @@ export default function PortfolioPage() {
               className="mb-12"
             >
               <h2 className="text-2xl font-bold text-white mb-2">
-                Meer projecten
+                {t("more.title")}
               </h2>
               <p className="text-muted-foreground">
-                Andere projecten die we hebben gerealiseerd
+                {t("more.subtitle")}
               </p>
             </motion.div>
 
@@ -194,7 +195,7 @@ export default function PortfolioPage() {
                           ? "bg-green-500/20 text-green-400"
                           : "bg-blue-500/20 text-blue-400"
                       }`}>
-                        {project.projectType === "new" ? "Nieuw" : "Redesign"}
+                        {project.projectType === "new" ? t("projectType.newShort") : t("projectType.redesign")}
                       </span>
                     </div>
 
@@ -207,7 +208,7 @@ export default function PortfolioPage() {
 
                     <div className="flex items-center gap-4 pt-4 border-t border-white/5">
                       <span className="text-sm font-medium text-accent group-hover:text-accent-hover transition-colors flex items-center gap-1">
-                        Case study
+                        {t("caseStudy")}
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>
@@ -233,7 +234,7 @@ export default function PortfolioPage() {
                 {portfolioItems.length}+
               </div>
               <div className="text-muted-foreground text-sm">
-                Websites opgeleverd
+                {t("stats.websitesDelivered")}
               </div>
             </motion.div>
             <motion.div
@@ -245,7 +246,7 @@ export default function PortfolioPage() {
             >
               <div className="text-4xl font-bold text-accent mb-2">100%</div>
               <div className="text-muted-foreground text-sm">
-                Tevreden klanten
+                {t("stats.satisfiedClients")}
               </div>
             </motion.div>
             <motion.div
@@ -257,7 +258,7 @@ export default function PortfolioPage() {
             >
               <div className="text-4xl font-bold text-accent mb-2">WordPress</div>
               <div className="text-muted-foreground text-sm">
-                Primaire technologie
+                {t("stats.primaryTechnology")}
               </div>
             </motion.div>
             <motion.div
@@ -269,7 +270,7 @@ export default function PortfolioPage() {
             >
               <div className="text-4xl font-bold text-accent mb-2">2024</div>
               <div className="text-muted-foreground text-sm">
-                Meeste projecten
+                {t("stats.mostProjects")}
               </div>
             </motion.div>
           </div>
@@ -285,7 +286,7 @@ export default function PortfolioPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Jouw project als volgende?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -293,8 +294,7 @@ export default function PortfolioPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Laten we samen bespreken hoe we jouw digitale ambities kunnen
-            waarmaken.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -307,7 +307,7 @@ export default function PortfolioPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Start je project
+                {t("cta.button")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

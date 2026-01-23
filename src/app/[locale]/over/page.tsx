@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -13,49 +14,45 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const values = [
-  {
-    icon: Heart,
-    title: "Passie voor kwaliteit",
-    description:
-      "Wij leveren geen half werk. Elk project krijgt onze volle aandacht en expertise.",
-  },
-  {
-    icon: Zap,
-    title: "Snelheid zonder compromis",
-    description:
-      "Korte doorlooptijden zonder in te leveren op kwaliteit of functionaliteit.",
-  },
-  {
-    icon: Shield,
-    title: "Betrouwbaar & transparant",
-    description:
-      "Heldere communicatie, eerlijke prijzen en afspraken die we nakomen.",
-  },
-  {
-    icon: Users,
-    title: "Persoonlijke aanpak",
-    description:
-      "Geen nummertje, maar een echte samenwerking. We denken proactief met je mee.",
-  },
-];
-
-const expertise = [
-  {
-    icon: Code2,
-    title: "Technische excellentie",
-    description:
-      "Wij werken met de nieuwste technologieën: React, Next.js, TypeScript en meer. Geen verouderde WordPress templates, maar moderne oplossingen die schalen.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Strategisch denken",
-    description:
-      "Een website is meer dan een digitale brochure. Wij kijken naar jouw business doelen en vertalen die naar een effectieve online strategie.",
-  },
-];
-
 export default function OverPage() {
+  const t = useTranslations("overPage");
+
+  const values = [
+    {
+      icon: Heart,
+      title: t("values.quality.title"),
+      description: t("values.quality.description"),
+    },
+    {
+      icon: Zap,
+      title: t("values.speed.title"),
+      description: t("values.speed.description"),
+    },
+    {
+      icon: Shield,
+      title: t("values.reliable.title"),
+      description: t("values.reliable.description"),
+    },
+    {
+      icon: Users,
+      title: t("values.personal.title"),
+      description: t("values.personal.description"),
+    },
+  ];
+
+  const expertise = [
+    {
+      icon: Code2,
+      title: t("expertise.technical.title"),
+      description: t("expertise.technical.description"),
+    },
+    {
+      icon: Lightbulb,
+      title: t("expertise.strategic.title"),
+      description: t("expertise.strategic.description"),
+    },
+  ];
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -80,7 +77,7 @@ export default function OverPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Over Robuust
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -88,9 +85,9 @@ export default function OverPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Wij bouwen
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">digitale fundamenten</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -98,9 +95,7 @@ export default function OverPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Robuust Marketing is een full-service digitaal bureau gespecialiseerd
-            in webdevelopment, hosting en online marketing. Wij helpen bedrijven
-            groeien met een stevige digitale basis.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -115,26 +110,12 @@ export default function OverPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold text-white mb-6">
-                Ons verhaal
+                {t("story.title")}
               </h2>
               <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Robuust Marketing is ontstaan vanuit een simpele observatie:
-                  teveel bedrijven worstelen met hun digitale aanwezigheid. Niet
-                  door gebrek aan ambities, maar door versnipperde dienstverlening
-                  en gebrek aan technische expertise.
-                </p>
-                <p>
-                  Wij geloven dat elk bedrijf recht heeft op een professionele
-                  online aanwezigheid. Daarom bieden wij alles onder één dak: van
-                  het eerste design tot de laatste regel code, van hosting tot
-                  doorlopend onderhoud.
-                </p>
-                <p>
-                  Met meer dan 70 websites in beheer en jarenlange ervaring in
-                  webdevelopment, zijn wij de partner die jouw digitale ambities
-                  waarmaakt. Geen loze beloftes, maar meetbare resultaten.
-                </p>
+                <p>{t("story.paragraph1")}</p>
+                <p>{t("story.paragraph2")}</p>
+                <p>{t("story.paragraph3")}</p>
               </div>
             </motion.div>
 
@@ -147,25 +128,25 @@ export default function OverPage() {
               <div className="rounded-2xl bg-surface p-6 border border-white/5">
                 <div className="text-4xl font-bold text-accent mb-2">70+</div>
                 <div className="text-sm text-muted-foreground">
-                  Websites beheerd
+                  {t("stats.websites")}
                 </div>
               </div>
               <div className="rounded-2xl bg-surface p-6 border border-white/5">
                 <div className="text-4xl font-bold text-accent mb-2">99.9%</div>
                 <div className="text-sm text-muted-foreground">
-                  Uptime garantie
+                  {t("stats.uptime")}
                 </div>
               </div>
               <div className="rounded-2xl bg-surface p-6 border border-white/5">
                 <div className="text-4xl font-bold text-accent mb-2">24/7</div>
                 <div className="text-sm text-muted-foreground">
-                  Monitoring actief
+                  {t("stats.monitoring")}
                 </div>
               </div>
               <div className="rounded-2xl bg-surface p-6 border border-white/5">
                 <div className="text-4xl font-bold text-accent mb-2">EU</div>
                 <div className="text-sm text-muted-foreground">
-                  Servers in Europa
+                  {t("stats.servers")}
                 </div>
               </div>
             </motion.div>
@@ -183,7 +164,7 @@ export default function OverPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Waar wij voor staan
+              {t("values.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -191,8 +172,7 @@ export default function OverPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Onze kernwaarden zijn geen mooie woorden op papier. Het zijn de
-              principes die elke beslissing en elk project sturen.
+              {t("values.subtitle")}
             </motion.p>
           </div>
 
@@ -256,7 +236,7 @@ export default function OverPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar om samen te werken?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -264,8 +244,7 @@ export default function OverPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Laten we kennismaken en bespreken hoe wij jouw bedrijf kunnen helpen
-            groeien.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -278,7 +257,7 @@ export default function OverPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Neem contact op
+                {t("cta.button")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
