@@ -118,66 +118,63 @@ export function Header() {
   const [recentPosts, setRecentPosts] = useState<BlogPostMeta[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
-
-  // Build translated menu data
+  // Build translated menu data - Link component auto-translates paths
   const diensten = [
-    { name: tServices("design.name"), description: tServices("design.description"), href: localePath("/diensten/design"), icon: dienstenIcons.design },
-    { name: tServices("development.name"), description: tServices("development.description"), href: localePath("/diensten/development"), icon: dienstenIcons.development },
-    { name: tServices("hosting.name"), description: tServices("hosting.description"), href: localePath("/diensten/hosting"), icon: dienstenIcons.hosting },
-    { name: tServices("onderhoud.name"), description: tServices("onderhoud.description"), href: localePath("/diensten/onderhoud"), icon: dienstenIcons.onderhoud },
-    { name: tServices("tracking.name"), description: tServices("tracking.description"), href: localePath("/diensten/tracking"), icon: dienstenIcons.tracking },
-    { name: tServices("emailMarketing.name"), description: tServices("emailMarketing.description"), href: localePath("/diensten/email-marketing"), icon: dienstenIcons.emailMarketing },
-    { name: tServices("onlineMarketing.name"), description: tServices("onlineMarketing.description"), href: localePath("/diensten/online-marketing"), icon: dienstenIcons.onlineMarketing },
-    { name: tServices("branding.name"), description: tServices("branding.description"), href: localePath("/diensten/branding"), icon: dienstenIcons.branding },
-    { name: tServices("seo.name"), description: tServices("seo.description"), href: localePath("/diensten/seo"), icon: dienstenIcons.seo },
-    { name: tServices("crm.name"), description: tServices("crm.description"), href: localePath("/diensten/crm"), icon: dienstenIcons.crm },
+    { name: tServices("design.name"), description: tServices("design.description"), href: "/diensten/design" as const, icon: dienstenIcons.design },
+    { name: tServices("development.name"), description: tServices("development.description"), href: "/diensten/development" as const, icon: dienstenIcons.development },
+    { name: tServices("hosting.name"), description: tServices("hosting.description"), href: "/diensten/hosting" as const, icon: dienstenIcons.hosting },
+    { name: tServices("onderhoud.name"), description: tServices("onderhoud.description"), href: "/diensten/onderhoud" as const, icon: dienstenIcons.onderhoud },
+    { name: tServices("tracking.name"), description: tServices("tracking.description"), href: "/diensten/tracking" as const, icon: dienstenIcons.tracking },
+    { name: tServices("emailMarketing.name"), description: tServices("emailMarketing.description"), href: "/diensten/email-marketing" as const, icon: dienstenIcons.emailMarketing },
+    { name: tServices("onlineMarketing.name"), description: tServices("onlineMarketing.description"), href: "/diensten/online-marketing" as const, icon: dienstenIcons.onlineMarketing },
+    { name: tServices("branding.name"), description: tServices("branding.description"), href: "/diensten/branding" as const, icon: dienstenIcons.branding },
+    { name: tServices("seo.name"), description: tServices("seo.description"), href: "/diensten/seo" as const, icon: dienstenIcons.seo },
+    { name: tServices("crm.name"), description: tServices("crm.description"), href: "/diensten/crm" as const, icon: dienstenIcons.crm },
   ];
 
   const pakketten = [
-    { name: tPackages("solidStart.name"), description: tPackages("solidStart.description"), price: tPackages("solidStart.price"), href: localePath("/tarieven#solid-start"), icon: pakkettenIcons.solidStart, featured: false },
-    { name: tPackages("firmFoundation.name"), description: tPackages("firmFoundation.description"), price: tPackages("firmFoundation.price"), href: localePath("/tarieven#firm-foundation"), icon: pakkettenIcons.firmFoundation, featured: true },
+    { name: tPackages("solidStart.name"), description: tPackages("solidStart.description"), price: tPackages("solidStart.price"), href: { pathname: "/tarieven" as const, hash: "solid-start" }, icon: pakkettenIcons.solidStart, featured: false },
+    { name: tPackages("firmFoundation.name"), description: tPackages("firmFoundation.description"), price: tPackages("firmFoundation.price"), href: { pathname: "/tarieven" as const, hash: "firm-foundation" }, icon: pakkettenIcons.firmFoundation, featured: true },
   ];
 
   const werkwijze = [
-    { name: tWerkwijze("approach.name"), description: tWerkwijze("approach.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.approach },
-    { name: tWerkwijze("phases.name"), description: tWerkwijze("phases.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.phases },
-    { name: tWerkwijze("timeline.name"), description: tWerkwijze("timeline.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.timeline },
-    { name: tWerkwijze("collaboration.name"), description: tWerkwijze("collaboration.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.collaboration },
+    { name: tWerkwijze("approach.name"), description: tWerkwijze("approach.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.approach },
+    { name: tWerkwijze("phases.name"), description: tWerkwijze("phases.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.phases },
+    { name: tWerkwijze("timeline.name"), description: tWerkwijze("timeline.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.timeline },
+    { name: tWerkwijze("collaboration.name"), description: tWerkwijze("collaboration.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.collaboration },
   ];
 
   const tooling = [
-    { name: tTooling("nextjs.name"), description: tTooling("nextjs.description"), href: localePath("/tooling"), icon: toolingIcons.nextjs },
-    { name: tTooling("typescript.name"), description: tTooling("typescript.description"), href: localePath("/tooling"), icon: toolingIcons.typescript },
-    { name: tTooling("tailwind.name"), description: tTooling("tailwind.description"), href: localePath("/tooling"), icon: toolingIcons.tailwind },
-    { name: tTooling("cms.name"), description: tTooling("cms.description"), href: localePath("/tooling"), icon: toolingIcons.cms },
-    { name: tTooling("cloudflare.name"), description: tTooling("cloudflare.description"), href: localePath("/tooling"), icon: toolingIcons.cloudflare },
-    { name: tTooling("nginx.name"), description: tTooling("nginx.description"), href: localePath("/tooling"), icon: toolingIcons.nginx },
+    { name: tTooling("nextjs.name"), description: tTooling("nextjs.description"), href: "/tooling" as const, icon: toolingIcons.nextjs },
+    { name: tTooling("typescript.name"), description: tTooling("typescript.description"), href: "/tooling" as const, icon: toolingIcons.typescript },
+    { name: tTooling("tailwind.name"), description: tTooling("tailwind.description"), href: "/tooling" as const, icon: toolingIcons.tailwind },
+    { name: tTooling("cms.name"), description: tTooling("cms.description"), href: "/tooling" as const, icon: toolingIcons.cms },
+    { name: tTooling("cloudflare.name"), description: tTooling("cloudflare.description"), href: "/tooling" as const, icon: toolingIcons.cloudflare },
+    { name: tTooling("nginx.name"), description: tTooling("nginx.description"), href: "/tooling" as const, icon: toolingIcons.nginx },
   ];
 
   const kennisbank = [
-    { name: tResources("blog.name"), description: tResources("blog.description"), href: localePath("/blog"), icon: resourcesIcons.blog },
-    { name: tResources("kennisbank.name"), description: tResources("kennisbank.description"), href: localePath("/kennisbank"), icon: resourcesIcons.kennisbank },
-    { name: tResources("faq.name"), description: tResources("faq.description"), href: localePath("/faq"), icon: resourcesIcons.faq },
-    { name: tResources("support.name"), description: tResources("support.description"), href: localePath("/support"), icon: resourcesIcons.support },
+    { name: tResources("blog.name"), description: tResources("blog.description"), href: "/blog" as const, icon: resourcesIcons.blog },
+    { name: tResources("kennisbank.name"), description: tResources("kennisbank.description"), href: "/kennisbank" as const, icon: resourcesIcons.kennisbank },
+    { name: tResources("faq.name"), description: tResources("faq.description"), href: "/faq" as const, icon: resourcesIcons.faq },
+    { name: tResources("support.name"), description: tResources("support.description"), href: "/support" as const, icon: resourcesIcons.support },
   ];
 
   const overOns = [
-    { name: tCompany("about.name"), description: tCompany("about.description"), href: localePath("/over"), icon: companyIcons.about },
-    { name: tCompany("portfolio.name"), description: tCompany("portfolio.description"), href: localePath("/portfolio"), icon: companyIcons.portfolio },
-    { name: tCompany("referenties.name"), description: tCompany("referenties.description"), href: localePath("/referenties"), icon: companyIcons.referenties },
-    { name: tCompany("partners.name"), description: tCompany("partners.description"), href: localePath("/partners"), icon: companyIcons.partners },
-    { name: tCompany("vacatures.name"), description: tCompany("vacatures.description"), href: localePath("/vacatures"), icon: companyIcons.vacatures },
-    { name: tCompany("contact.name"), description: tCompany("contact.description"), href: localePath("/contact"), icon: companyIcons.contact },
+    { name: tCompany("about.name"), description: tCompany("about.description"), href: "/over" as const, icon: companyIcons.about },
+    { name: tCompany("portfolio.name"), description: tCompany("portfolio.description"), href: "/portfolio" as const, icon: companyIcons.portfolio },
+    { name: tCompany("referenties.name"), description: tCompany("referenties.description"), href: "/referenties" as const, icon: companyIcons.referenties },
+    { name: tCompany("partners.name"), description: tCompany("partners.description"), href: "/partners" as const, icon: companyIcons.partners },
+    { name: tCompany("vacatures.name"), description: tCompany("vacatures.description"), href: "/vacatures" as const, icon: companyIcons.vacatures },
+    { name: tCompany("contact.name"), description: tCompany("contact.description"), href: "/contact" as const, icon: companyIcons.contact },
   ];
 
-  const menuItems: { name: string; key: MegaMenuSection; href: string }[] = [
-    { name: tNav("diensten"), key: "diensten", href: localePath("/diensten") },
-    { name: tNav("werkwijze"), key: "werkwijze", href: localePath("/werkwijze") },
-    { name: tNav("tooling"), key: "tooling", href: localePath("/tooling") },
-    { name: tNav("kennisbank"), key: "kennisbank", href: localePath("/kennisbank") },
-    { name: tNav("over"), key: "over", href: localePath("/over") },
+  const menuItems = [
+    { name: tNav("diensten"), key: "diensten" as const, href: "/diensten" as const },
+    { name: tNav("werkwijze"), key: "werkwijze" as const, href: "/werkwijze" as const },
+    { name: tNav("tooling"), key: "tooling" as const, href: "/tooling" as const },
+    { name: tNav("kennisbank"), key: "kennisbank" as const, href: "/kennisbank" as const },
+    { name: tNav("over"), key: "over" as const, href: "/over" as const },
   ];
 
   useEffect(() => {
@@ -307,13 +304,13 @@ export function Header() {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4"
         >
-          <LanguageSwitcher currentLocale={locale} />
+          <LanguageSwitcher />
           <Button
             asChild
             size="sm"
             className="bg-accent hover:bg-accent-hover text-white font-medium px-6 glow-accent-sm hover:glow-accent transition-all duration-300"
           >
-            <Link href={localePath("/start-project")}>{tHeader("cta")}</Link>
+            <Link href="/start-project">{tHeader("cta")}</Link>
           </Button>
         </motion.div>
       </nav>
@@ -413,7 +410,7 @@ export function Header() {
 
                       <div className="mt-6 flex flex-col gap-2">
                         <Link
-                          href={localePath("/tarieven")}
+                          href="/tarieven"
                           className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                           onClick={() => setActiveMenu(null)}
                         >
@@ -421,7 +418,7 @@ export function Header() {
                           <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link
-                          href={localePath("/offerte")}
+                          href="/offerte"
                           className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors group"
                           onClick={() => setActiveMenu(null)}
                         >
@@ -482,7 +479,7 @@ export function Header() {
                           {tHeader("readyToStartDescription")}
                         </p>
                         <Button asChild size="sm" className="bg-accent hover:bg-accent-hover text-white">
-                          <Link href={localePath("/contact")} onClick={() => setActiveMenu(null)}>
+                          <Link href="/contact" onClick={() => setActiveMenu(null)}>
                             {tHeader("scheduleCall")}
                           </Link>
                         </Button>
@@ -552,7 +549,7 @@ export function Header() {
                         ))}
                       </ul>
                       <Link
-                        href={localePath("/tooling")}
+                        href="/tooling"
                         className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                         onClick={() => setActiveMenu(null)}
                       >
@@ -613,7 +610,7 @@ export function Header() {
                             transition={{ delay: 0.1 + index * 0.05 }}
                           >
                             <Link
-                              href={localePath(`/blog/${post.slug}`)}
+                              href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }}
                               className="block rounded-xl bg-white/5 border border-white/5 p-4 hover:bg-white/10 hover:border-white/10 transition-all duration-200 group"
                               onClick={() => setActiveMenu(null)}
                             >
@@ -629,7 +626,7 @@ export function Header() {
                         )}
                       </div>
                       <Link
-                        href={localePath("/blog")}
+                        href="/blog"
                         className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                         onClick={() => setActiveMenu(null)}
                       >
@@ -685,7 +682,7 @@ export function Header() {
                             <p className="text-sm text-white/50">{tHeader("weAreReady")}</p>
                           </div>
                           <Button asChild size="sm" className="bg-accent hover:bg-accent-hover text-white">
-                            <Link href={localePath("/contact")} onClick={() => setActiveMenu(null)}>
+                            <Link href="/contact" onClick={() => setActiveMenu(null)}>
                               {tNav("contact")}
                             </Link>
                           </Button>
@@ -694,9 +691,9 @@ export function Header() {
 
                       <div className="mt-4 flex flex-wrap gap-2">
                         {[
-                          { name: "Privacy", href: localePath("/privacy") },
-                          { name: locale === "nl" ? "AVG" : "GDPR", href: localePath("/avg") },
-                          { name: locale === "nl" ? "Voorwaarden" : "Terms", href: localePath("/voorwaarden") },
+                          { name: "Privacy", href: "/privacy" as const },
+                          { name: locale === "nl" ? "AVG" : "GDPR", href: "/avg" as const },
+                          { name: locale === "nl" ? "Voorwaarden" : "Terms", href: "/voorwaarden" as const },
                         ].map((link) => (
                           <Link
                             key={link.name}
@@ -761,7 +758,7 @@ export function Header() {
                   {/* Diensten */}
                   <MobileMenuItem
                     name={tNav("diensten")}
-                    href={localePath("/diensten")}
+                    href="/diensten"
                     isOpen={mobileSubmenu === "diensten"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "diensten" ? null : "diensten")}
                     items={diensten}
@@ -771,7 +768,7 @@ export function Header() {
                   {/* Werkwijze */}
                   <MobileMenuItem
                     name={tNav("werkwijze")}
-                    href={localePath("/werkwijze")}
+                    href="/werkwijze"
                     isOpen={mobileSubmenu === "werkwijze"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
                     items={werkwijze}
@@ -781,7 +778,7 @@ export function Header() {
                   {/* Tooling */}
                   <MobileMenuItem
                     name={tNav("tooling")}
-                    href={localePath("/tooling")}
+                    href="/tooling"
                     isOpen={mobileSubmenu === "tooling"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "tooling" ? null : "tooling")}
                     items={tooling}
@@ -791,7 +788,7 @@ export function Header() {
                   {/* Kennisbank */}
                   <MobileMenuItem
                     name={tNav("kennisbank")}
-                    href={localePath("/kennisbank")}
+                    href="/kennisbank"
                     isOpen={mobileSubmenu === "kennisbank"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
                     items={kennisbank}
@@ -801,7 +798,7 @@ export function Header() {
                   {/* Over */}
                   <MobileMenuItem
                     name={tNav("over")}
-                    href={localePath("/over")}
+                    href="/over"
                     isOpen={mobileSubmenu === "over"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
                     items={overOns}
@@ -811,9 +808,9 @@ export function Header() {
 
                 {/* Language Switcher & CTA */}
                 <div className="px-6 py-6 border-t border-white/10 space-y-4">
-                  <LanguageSwitcherCompact currentLocale={locale} />
+                  <LanguageSwitcherCompact />
                   <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
-                    <Link href={localePath("/start-project")} onClick={closeMobileMenu}>
+                    <Link href="/start-project" onClick={closeMobileMenu}>
                       {tHeader("cta")}
                     </Link>
                   </Button>
@@ -828,6 +825,8 @@ export function Header() {
 }
 
 // Mobile menu item component
+type LinkHref = React.ComponentProps<typeof Link>["href"];
+
 function MobileMenuItem({
   name,
   href,
@@ -837,10 +836,10 @@ function MobileMenuItem({
   onClose,
 }: {
   name: string;
-  href: string;
+  href: LinkHref;
   isOpen: boolean;
   onToggle: () => void;
-  items: { name: string; href: string; icon: React.ComponentType<{ className?: string }> }[];
+  items: { name: string; href: LinkHref; icon: React.ComponentType<{ className?: string }> }[];
   onClose: () => void;
 }) {
   return (
