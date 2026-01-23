@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "@/components/motion";
 import { LanguageSwitcher, LanguageSwitcherCompact } from "@/components/language-switcher";
 import { type Locale } from "@/i18n/config";
@@ -40,235 +40,58 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// Diensten submenu items
-const diensten = [
-  {
-    name: "Design",
-    description: "UI/UX design die converteert",
-    href: "/diensten/design",
-    icon: Palette,
-  },
-  {
-    name: "Development",
-    description: "React, Next.js & TypeScript",
-    href: "/diensten/development",
-    icon: Code2,
-  },
-  {
-    name: "Hosting",
-    description: "Enterprise-grade infrastructuur",
-    href: "/diensten/hosting",
-    icon: Server,
-  },
-  {
-    name: "Onderhoud",
-    description: "Proactief website onderhoud",
-    href: "/diensten/onderhoud",
-    icon: Wrench,
-  },
-  {
-    name: "Tracking & Analytics",
-    description: "GA4, Meta Pixel & Taggrs",
-    href: "/diensten/tracking",
-    icon: BarChart3,
-  },
-  {
-    name: "Email Marketing",
-    description: "Campagnes die converteren",
-    href: "/diensten/email-marketing",
-    icon: Mail,
-  },
-  {
-    name: "Online Marketing",
-    description: "Meta, TikTok & Google Ads",
-    href: "/diensten/online-marketing",
-    icon: Megaphone,
-  },
-  {
-    name: "Branding",
-    description: "Logo & huisstijl",
-    href: "/diensten/branding",
-    icon: Fingerprint,
-  },
-  {
-    name: "SEO",
-    description: "Organisch beter gevonden worden",
-    href: "/diensten/seo",
-    icon: Search,
-  },
-  {
-    name: "CRM",
-    description: "Klantrelaties optimaliseren",
-    href: "/diensten/crm",
-    icon: Users,
-  },
-];
+// Static icon mappings (translations are loaded in component)
+const dienstenIcons = {
+  design: Palette,
+  development: Code2,
+  hosting: Server,
+  onderhoud: Wrench,
+  tracking: BarChart3,
+  emailMarketing: Mail,
+  onlineMarketing: Megaphone,
+  branding: Fingerprint,
+  seo: Search,
+  crm: Users,
+};
 
-// Pakketten
-const pakketten = [
-  {
-    name: "Solid Start",
-    description: "Perfect voor starters",
-    price: "vanaf €2.500",
-    href: "/tarieven#solid-start",
-    icon: Rocket,
-    featured: false,
-  },
-  {
-    name: "Firm Foundation",
-    description: "Voor groeiende bedrijven",
-    price: "vanaf €7.500",
-    href: "/tarieven#firm-foundation",
-    icon: Layers,
-    featured: true,
-  },
-];
+const pakkettenIcons = {
+  solidStart: Rocket,
+  firmFoundation: Layers,
+};
 
-// Werkwijze submenu
-const werkwijze = [
-  {
-    name: "Onze aanpak",
-    description: "Van intake tot oplevering",
-    href: "/werkwijze",
-    icon: Workflow,
-  },
-  {
-    name: "Projectfases",
-    description: "Discovery, Design, Development",
-    href: "/werkwijze",
-    icon: CheckCircle,
-  },
-  {
-    name: "Tijdlijn",
-    description: "Wat kun je verwachten?",
-    href: "/werkwijze",
-    icon: Clock,
-  },
-  {
-    name: "Samenwerking",
-    description: "Hoe wij communiceren",
-    href: "/werkwijze",
-    icon: Handshake,
-  },
-];
+const werkwijzeIcons = {
+  approach: Workflow,
+  phases: CheckCircle,
+  timeline: Clock,
+  collaboration: Handshake,
+};
 
-// Tooling submenu
-const tooling = [
-  {
-    name: "Next.js & React",
-    description: "Modern frontend framework",
-    href: "/tooling",
-    icon: Code2,
-  },
-  {
-    name: "TypeScript",
-    description: "Type-safe development",
-    href: "/tooling",
-    icon: FileText,
-  },
-  {
-    name: "Tailwind CSS",
-    description: "Utility-first styling",
-    href: "/tooling",
-    icon: Palette,
-  },
-  {
-    name: "Headless CMS",
-    description: "Contentbeheer oplossingen",
-    href: "/tooling",
-    icon: Database,
-  },
-  {
-    name: "Cloudflare",
-    description: "CDN & Security",
-    href: "/tooling",
-    icon: Cloud,
-  },
-  {
-    name: "NGINX",
-    description: "High-performance servers",
-    href: "/tooling",
-    icon: Server,
-  },
-];
+const toolingIcons = {
+  nextjs: Code2,
+  typescript: FileText,
+  tailwind: Palette,
+  cms: Database,
+  cloudflare: Cloud,
+  nginx: Server,
+};
 
-// Kennisbank submenu
-const kennisbank = [
-  {
-    name: "Blog",
-    description: "Artikelen & insights",
-    href: "/blog",
-    icon: Newspaper,
-  },
-  {
-    name: "Kennisbank",
-    description: "Diepgaande guides",
-    href: "/kennisbank",
-    icon: BookOpen,
-  },
-  {
-    name: "FAQ",
-    description: "Veelgestelde vragen",
-    href: "/faq",
-    icon: HelpCircle,
-  },
-  {
-    name: "Support",
-    description: "Hulp & ondersteuning",
-    href: "/support",
-    icon: Phone,
-  },
-];
+const resourcesIcons = {
+  blog: Newspaper,
+  kennisbank: BookOpen,
+  faq: HelpCircle,
+  support: Phone,
+};
 
-// Over ons submenu
-const overOns = [
-  {
-    name: "Over Robuust",
-    description: "Ons verhaal & team",
-    href: "/over",
-    icon: Building,
-  },
-  {
-    name: "Portfolio",
-    description: "Onze beste projecten",
-    href: "/portfolio",
-    icon: Layout,
-  },
-  {
-    name: "Referenties",
-    description: "Wat klanten zeggen",
-    href: "/referenties",
-    icon: CheckCircle,
-  },
-  {
-    name: "Partners",
-    description: "Samenwerkingen",
-    href: "/partners",
-    icon: Handshake,
-  },
-  {
-    name: "Vacatures",
-    description: "Werken bij Robuust",
-    href: "/vacatures",
-    icon: Users,
-  },
-  {
-    name: "Contact",
-    description: "Neem contact op",
-    href: "/contact",
-    icon: Phone,
-  },
-];
+const companyIcons = {
+  about: Building,
+  portfolio: Layout,
+  referenties: CheckCircle,
+  partners: Handshake,
+  vacatures: Users,
+  contact: Phone,
+};
 
 type MegaMenuSection = "diensten" | "werkwijze" | "tooling" | "kennisbank" | "over" | null;
-
-const menuItems: { name: string; key: MegaMenuSection; href: string }[] = [
-  { name: "Diensten", key: "diensten", href: "/diensten" },
-  { name: "Werkwijze", key: "werkwijze", href: "/werkwijze" },
-  { name: "Tooling", key: "tooling", href: "/tooling" },
-  { name: "Kennisbank", key: "kennisbank", href: "/kennisbank" },
-  { name: "Over", key: "over", href: "/over" },
-];
 
 interface BlogPostMeta {
   slug: string;
@@ -279,12 +102,84 @@ interface BlogPostMeta {
 
 export function Header() {
   const locale = useLocale() as Locale;
+  const t = useTranslations();
+  const tNav = useTranslations("navigation");
+  const tHeader = useTranslations("header");
+  const tServices = useTranslations("services");
+  const tPackages = useTranslations("packages");
+  const tWerkwijze = useTranslations("werkwijze");
+  const tTooling = useTranslations("tooling");
+  const tResources = useTranslations("resources");
+  const tCompany = useTranslations("company");
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<MegaMenuSection>(null);
   const [mobileSubmenu, setMobileSubmenu] = useState<MegaMenuSection>(null);
   const [recentPosts, setRecentPosts] = useState<BlogPostMeta[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Helper for locale-aware paths
+  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
+
+  // Build translated menu data
+  const diensten = [
+    { name: tServices("design.name"), description: tServices("design.description"), href: localePath("/diensten/design"), icon: dienstenIcons.design },
+    { name: tServices("development.name"), description: tServices("development.description"), href: localePath("/diensten/development"), icon: dienstenIcons.development },
+    { name: tServices("hosting.name"), description: tServices("hosting.description"), href: localePath("/diensten/hosting"), icon: dienstenIcons.hosting },
+    { name: tServices("onderhoud.name"), description: tServices("onderhoud.description"), href: localePath("/diensten/onderhoud"), icon: dienstenIcons.onderhoud },
+    { name: tServices("tracking.name"), description: tServices("tracking.description"), href: localePath("/diensten/tracking"), icon: dienstenIcons.tracking },
+    { name: tServices("emailMarketing.name"), description: tServices("emailMarketing.description"), href: localePath("/diensten/email-marketing"), icon: dienstenIcons.emailMarketing },
+    { name: tServices("onlineMarketing.name"), description: tServices("onlineMarketing.description"), href: localePath("/diensten/online-marketing"), icon: dienstenIcons.onlineMarketing },
+    { name: tServices("branding.name"), description: tServices("branding.description"), href: localePath("/diensten/branding"), icon: dienstenIcons.branding },
+    { name: tServices("seo.name"), description: tServices("seo.description"), href: localePath("/diensten/seo"), icon: dienstenIcons.seo },
+    { name: tServices("crm.name"), description: tServices("crm.description"), href: localePath("/diensten/crm"), icon: dienstenIcons.crm },
+  ];
+
+  const pakketten = [
+    { name: tPackages("solidStart.name"), description: tPackages("solidStart.description"), price: tPackages("solidStart.price"), href: localePath("/tarieven#solid-start"), icon: pakkettenIcons.solidStart, featured: false },
+    { name: tPackages("firmFoundation.name"), description: tPackages("firmFoundation.description"), price: tPackages("firmFoundation.price"), href: localePath("/tarieven#firm-foundation"), icon: pakkettenIcons.firmFoundation, featured: true },
+  ];
+
+  const werkwijze = [
+    { name: tWerkwijze("approach.name"), description: tWerkwijze("approach.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.approach },
+    { name: tWerkwijze("phases.name"), description: tWerkwijze("phases.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.phases },
+    { name: tWerkwijze("timeline.name"), description: tWerkwijze("timeline.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.timeline },
+    { name: tWerkwijze("collaboration.name"), description: tWerkwijze("collaboration.description"), href: localePath("/werkwijze"), icon: werkwijzeIcons.collaboration },
+  ];
+
+  const tooling = [
+    { name: tTooling("nextjs.name"), description: tTooling("nextjs.description"), href: localePath("/tooling"), icon: toolingIcons.nextjs },
+    { name: tTooling("typescript.name"), description: tTooling("typescript.description"), href: localePath("/tooling"), icon: toolingIcons.typescript },
+    { name: tTooling("tailwind.name"), description: tTooling("tailwind.description"), href: localePath("/tooling"), icon: toolingIcons.tailwind },
+    { name: tTooling("cms.name"), description: tTooling("cms.description"), href: localePath("/tooling"), icon: toolingIcons.cms },
+    { name: tTooling("cloudflare.name"), description: tTooling("cloudflare.description"), href: localePath("/tooling"), icon: toolingIcons.cloudflare },
+    { name: tTooling("nginx.name"), description: tTooling("nginx.description"), href: localePath("/tooling"), icon: toolingIcons.nginx },
+  ];
+
+  const kennisbank = [
+    { name: tResources("blog.name"), description: tResources("blog.description"), href: localePath("/blog"), icon: resourcesIcons.blog },
+    { name: tResources("kennisbank.name"), description: tResources("kennisbank.description"), href: localePath("/kennisbank"), icon: resourcesIcons.kennisbank },
+    { name: tResources("faq.name"), description: tResources("faq.description"), href: localePath("/faq"), icon: resourcesIcons.faq },
+    { name: tResources("support.name"), description: tResources("support.description"), href: localePath("/support"), icon: resourcesIcons.support },
+  ];
+
+  const overOns = [
+    { name: tCompany("about.name"), description: tCompany("about.description"), href: localePath("/over"), icon: companyIcons.about },
+    { name: tCompany("portfolio.name"), description: tCompany("portfolio.description"), href: localePath("/portfolio"), icon: companyIcons.portfolio },
+    { name: tCompany("referenties.name"), description: tCompany("referenties.description"), href: localePath("/referenties"), icon: companyIcons.referenties },
+    { name: tCompany("partners.name"), description: tCompany("partners.description"), href: localePath("/partners"), icon: companyIcons.partners },
+    { name: tCompany("vacatures.name"), description: tCompany("vacatures.description"), href: localePath("/vacatures"), icon: companyIcons.vacatures },
+    { name: tCompany("contact.name"), description: tCompany("contact.description"), href: localePath("/contact"), icon: companyIcons.contact },
+  ];
+
+  const menuItems: { name: string; key: MegaMenuSection; href: string }[] = [
+    { name: tNav("diensten"), key: "diensten", href: localePath("/diensten") },
+    { name: tNav("werkwijze"), key: "werkwijze", href: localePath("/werkwijze") },
+    { name: tNav("tooling"), key: "tooling", href: localePath("/tooling") },
+    { name: tNav("kennisbank"), key: "kennisbank", href: localePath("/kennisbank") },
+    { name: tNav("over"), key: "over", href: localePath("/over") },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -298,7 +193,7 @@ export function Header() {
   useEffect(() => {
     async function fetchRecentPosts() {
       try {
-        const res = await fetch("/api/blog");
+        const res = await fetch(`/api/blog?locale=${locale}`);
         const data = await res.json();
         setRecentPosts(data.posts.slice(0, 2));
       } catch (error) {
@@ -306,7 +201,7 @@ export function Header() {
       }
     }
     fetchRecentPosts();
-  }, []);
+  }, [locale]);
 
   const handleMouseEnter = (menu: MegaMenuSection) => {
     if (timeoutRef.current) {
@@ -359,7 +254,7 @@ export function Header() {
             className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-white/80 hover:text-white hover:bg-white/5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <span className="sr-only">Menu openen</span>
+            <span className="sr-only">{tNav("openMenu")}</span>
             {mobileMenuOpen ? (
               <X className="h-6 w-6" aria-hidden="true" />
             ) : (
@@ -419,7 +314,7 @@ export function Header() {
             size="sm"
             className="bg-accent hover:bg-accent-hover text-white font-medium px-6 glow-accent-sm hover:glow-accent transition-all duration-300"
           >
-            <Link href="/start-project">Start je project</Link>
+            <Link href={localePath("/start-project")}>{tHeader("cta")}</Link>
           </Button>
         </motion.div>
       </nav>
@@ -444,7 +339,7 @@ export function Header() {
                     {/* Main services grid */}
                     <div className="col-span-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Onze Diensten
+                        {tHeader("ourServices")}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {diensten.map((item, index) => (
@@ -479,7 +374,7 @@ export function Header() {
                     {/* Pakketten sidebar */}
                     <div className="col-span-4 border-l border-white/10 pl-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Pakketten
+                        {tHeader("packages")}
                       </p>
                       <div className="space-y-3">
                         {pakketten.map((pkg, index) => (
@@ -506,7 +401,7 @@ export function Header() {
                                 </span>
                                 {pkg.featured && (
                                   <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full border border-accent/30">
-                                    Populair
+                                    {tHeader("popular")}
                                   </span>
                                 )}
                               </div>
@@ -519,19 +414,19 @@ export function Header() {
 
                       <div className="mt-6 flex flex-col gap-2">
                         <Link
-                          href="/tarieven"
+                          href={localePath("/tarieven")}
                           className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                           onClick={() => setActiveMenu(null)}
                         >
-                          Bekijk alle tarieven
+                          {tHeader("viewAllPricing")}
                           <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link
-                          href="/offerte"
+                          href={localePath("/offerte")}
                           className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors group"
                           onClick={() => setActiveMenu(null)}
                         >
-                          Vraag een offerte aan
+                          {tHeader("requestQuote")}
                           <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                       </div>
@@ -544,7 +439,7 @@ export function Header() {
                   <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-6">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Onze Werkwijze
+                        {tHeader("ourApproach")}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {werkwijze.map((item, index) => (
@@ -582,14 +477,14 @@ export function Header() {
                           <Rocket className="h-6 w-6" />
                         </div>
                         <h4 className="text-lg font-semibold text-white mb-2">
-                          Klaar om te starten?
+                          {tHeader("readyToStart")}
                         </h4>
                         <p className="text-white/60 text-sm mb-4">
-                          Plan een gratis kennismakingsgesprek en ontdek hoe wij jouw project kunnen realiseren.
+                          {tHeader("readyToStartDescription")}
                         </p>
                         <Button asChild size="sm" className="bg-accent hover:bg-accent-hover text-white">
-                          <Link href="/contact" onClick={() => setActiveMenu(null)}>
-                            Plan een gesprek
+                          <Link href={localePath("/contact")} onClick={() => setActiveMenu(null)}>
+                            {tHeader("scheduleCall")}
                           </Link>
                         </Button>
                       </div>
@@ -602,7 +497,7 @@ export function Header() {
                   <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Onze Tech Stack
+                        {tHeader("ourTechStack")}
                       </p>
                       <div className="grid grid-cols-3 gap-2">
                         {tooling.map((item, index) => (
@@ -636,17 +531,17 @@ export function Header() {
 
                     <div className="col-span-4 border-l border-white/10 pl-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Waarom deze stack?
+                        {tHeader("whyThisStack")}
                       </p>
                       <ul className="space-y-3">
                         {[
-                          "Razendsnelle performance",
-                          "SEO-geoptimaliseerd",
-                          "Schaalbaar & onderhoudbaar",
-                          "Toekomstbestendig",
+                          tHeader("stackBenefits.performance"),
+                          tHeader("stackBenefits.seo"),
+                          tHeader("stackBenefits.scalable"),
+                          tHeader("stackBenefits.futureProof"),
                         ].map((item, index) => (
                           <motion.li
-                            key={item}
+                            key={index}
                             initial={{ opacity: 0, x: 10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.1 + index * 0.05 }}
@@ -658,11 +553,11 @@ export function Header() {
                         ))}
                       </ul>
                       <Link
-                        href="/tooling"
+                        href={localePath("/tooling")}
                         className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                         onClick={() => setActiveMenu(null)}
                       >
-                        Lees meer over onze stack
+                        {tHeader("readMoreStack")}
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </div>
@@ -674,7 +569,7 @@ export function Header() {
                   <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-5">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Leren & Ontdekken
+                        {tHeader("learnAndDiscover")}
                       </p>
                       <div className="space-y-2">
                         {kennisbank.map((item, index) => (
@@ -708,7 +603,7 @@ export function Header() {
 
                     <div className="col-span-7 border-l border-white/10 pl-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Recente artikelen
+                        {tHeader("recentArticles")}
                       </p>
                       <div className="grid grid-cols-2 gap-4">
                         {recentPosts.length > 0 ? recentPosts.map((post, index) => (
@@ -719,7 +614,7 @@ export function Header() {
                             transition={{ delay: 0.1 + index * 0.05 }}
                           >
                             <Link
-                              href={`/blog/${post.slug}`}
+                              href={localePath(`/blog/${post.slug}`)}
                               className="block rounded-xl bg-white/5 border border-white/5 p-4 hover:bg-white/10 hover:border-white/10 transition-all duration-200 group"
                               onClick={() => setActiveMenu(null)}
                             >
@@ -730,16 +625,16 @@ export function Header() {
                           </motion.div>
                         )) : (
                           <div className="col-span-2 text-sm text-white/50">
-                            Artikelen laden...
+                            {tHeader("loadingArticles")}
                           </div>
                         )}
                       </div>
                       <Link
-                        href="/blog"
+                        href={localePath("/blog")}
                         className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                         onClick={() => setActiveMenu(null)}
                       >
-                        Bekijk alle artikelen
+                        {tHeader("viewAllArticles")}
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </div>
@@ -751,7 +646,7 @@ export function Header() {
                   <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-6">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        Over Robuust
+                        {tHeader("aboutRobuust")}
                       </p>
                       <div className="grid grid-cols-2 gap-2">
                         {overOns.map((item, index) => (
@@ -787,12 +682,12 @@ export function Header() {
                       <div className="rounded-xl bg-white/5 border border-white/5 p-5">
                         <div className="flex items-center justify-between">
                           <div>
-                            <p className="font-medium text-white">Direct contact?</p>
-                            <p className="text-sm text-white/50">We staan voor je klaar</p>
+                            <p className="font-medium text-white">{tHeader("directContact")}</p>
+                            <p className="text-sm text-white/50">{tHeader("weAreReady")}</p>
                           </div>
                           <Button asChild size="sm" className="bg-accent hover:bg-accent-hover text-white">
-                            <Link href="/contact" onClick={() => setActiveMenu(null)}>
-                              Contact
+                            <Link href={localePath("/contact")} onClick={() => setActiveMenu(null)}>
+                              {tNav("contact")}
                             </Link>
                           </Button>
                         </div>
@@ -800,9 +695,9 @@ export function Header() {
 
                       <div className="mt-4 flex flex-wrap gap-2">
                         {[
-                          { name: "Privacy", href: "/privacy" },
-                          { name: "AVG", href: "/avg" },
-                          { name: "Voorwaarden", href: "/voorwaarden" },
+                          { name: "Privacy", href: localePath("/privacy") },
+                          { name: locale === "nl" ? "AVG" : "GDPR", href: localePath("/avg") },
+                          { name: locale === "nl" ? "Voorwaarden" : "Terms", href: localePath("/voorwaarden") },
                         ].map((link) => (
                           <Link
                             key={link.name}
@@ -857,7 +752,7 @@ export function Header() {
                     className="-m-2.5 rounded-lg p-2.5 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
                     onClick={closeMobileMenu}
                   >
-                    <span className="sr-only">Menu sluiten</span>
+                    <span className="sr-only">{tNav("closeMenu")}</span>
                     <X className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
@@ -866,8 +761,8 @@ export function Header() {
                 <div className="px-6 py-6 space-y-1">
                   {/* Diensten */}
                   <MobileMenuItem
-                    name="Diensten"
-                    href="/diensten"
+                    name={tNav("diensten")}
+                    href={localePath("/diensten")}
                     isOpen={mobileSubmenu === "diensten"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "diensten" ? null : "diensten")}
                     items={diensten}
@@ -876,8 +771,8 @@ export function Header() {
 
                   {/* Werkwijze */}
                   <MobileMenuItem
-                    name="Werkwijze"
-                    href="/werkwijze"
+                    name={tNav("werkwijze")}
+                    href={localePath("/werkwijze")}
                     isOpen={mobileSubmenu === "werkwijze"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
                     items={werkwijze}
@@ -886,8 +781,8 @@ export function Header() {
 
                   {/* Tooling */}
                   <MobileMenuItem
-                    name="Tooling"
-                    href="/tooling"
+                    name={tNav("tooling")}
+                    href={localePath("/tooling")}
                     isOpen={mobileSubmenu === "tooling"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "tooling" ? null : "tooling")}
                     items={tooling}
@@ -896,8 +791,8 @@ export function Header() {
 
                   {/* Kennisbank */}
                   <MobileMenuItem
-                    name="Kennisbank"
-                    href="/kennisbank"
+                    name={tNav("kennisbank")}
+                    href={localePath("/kennisbank")}
                     isOpen={mobileSubmenu === "kennisbank"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
                     items={kennisbank}
@@ -906,8 +801,8 @@ export function Header() {
 
                   {/* Over */}
                   <MobileMenuItem
-                    name="Over"
-                    href="/over"
+                    name={tNav("over")}
+                    href={localePath("/over")}
                     isOpen={mobileSubmenu === "over"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
                     items={overOns}
@@ -919,8 +814,8 @@ export function Header() {
                 <div className="px-6 py-6 border-t border-white/10 space-y-4">
                   <LanguageSwitcherCompact currentLocale={locale} />
                   <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
-                    <Link href="/start-project" onClick={closeMobileMenu}>
-                      Start je project
+                    <Link href={localePath("/start-project")} onClick={closeMobileMenu}>
+                      {tHeader("cta")}
                     </Link>
                   </Button>
                 </div>

@@ -2,29 +2,35 @@
 
 import { motion } from "framer-motion";
 import { Server, Zap, Brain } from "lucide-react";
-
-const techCategories = [
-  {
-    title: "De Motor",
-    description: "Core development stack",
-    icon: Server,
-    technologies: ["Node.js", "React", "Next.js", "WordPress", "WooCommerce"],
-  },
-  {
-    title: "De Snelheid & Security",
-    description: "Performance & bescherming",
-    icon: Zap,
-    technologies: ["Cloudflare", "NGINX", "Varnish", "Let's Encrypt", "Fail2ban"],
-  },
-  {
-    title: "De Intelligentie",
-    description: "Analytics & automatisering",
-    icon: Brain,
-    technologies: ["GA4", "Taggrs", "Snitcher", "n8n", "AI Tooling"],
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function TechStack() {
+  const t = useTranslations("techStack");
+
+  const techCategories = [
+    {
+      key: "engine",
+      title: t("categories.engine.title"),
+      description: t("categories.engine.description"),
+      icon: Server,
+      technologies: ["Node.js", "React", "Next.js", "WordPress", "WooCommerce"],
+    },
+    {
+      key: "speed",
+      title: t("categories.speed.title"),
+      description: t("categories.speed.description"),
+      icon: Zap,
+      technologies: ["Cloudflare", "NGINX", "Varnish", "Let's Encrypt", "Fail2ban"],
+    },
+    {
+      key: "intelligence",
+      title: t("categories.intelligence.title"),
+      description: t("categories.intelligence.description"),
+      icon: Brain,
+      technologies: ["GA4", "Taggrs", "Snitcher", "n8n", "AI Tooling"],
+    },
+  ];
+
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
@@ -47,7 +53,7 @@ export function TechStack() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Technologie
+            {t("badge")}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -56,9 +62,9 @@ export function TechStack() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Aangedreven door <span className="text-gradient-accent">bewezen technologie</span>
+            {t("titleLine1")} <span className="text-gradient-accent">{t("titleLine2")}</span>
             <br />
-            <span className="text-white/80 text-2xl sm:text-3xl lg:text-4xl">versneld door AI</span>
+            <span className="text-white/80 text-2xl sm:text-3xl lg:text-4xl">{t("titleLine3")}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -67,7 +73,7 @@ export function TechStack() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Wij selecteren de stack die past bij uw schaal. Geen bloatware, pure performance.
+            {t("subtitle")}
           </motion.p>
         </div>
 

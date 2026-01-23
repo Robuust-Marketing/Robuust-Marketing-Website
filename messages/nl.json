@@ -238,6 +238,18 @@
     "nl": "Nederlands",
     "en": "English"
   },
+  "dienstenPage": {
+    "badge": "Onze Diensten",
+    "titleLine1": "Alles voor jouw",
+    "titleLine2": "digitale succes",
+    "subtitle": "Van design tot development, van hosting tot marketing. Wij leveren de complete digitale infrastructuur die jouw bedrijf nodig heeft.",
+    "packagesBadge": "Pakketten",
+    "packagesTitle": "Kies jouw fundament",
+    "packagesSubtitle": "Start met een stevig fundament. Onze pakketten bieden alles wat je nodig hebt voor een succesvolle online aanwezigheid.",
+    "popular": "Populair",
+    "ctaTitle": "Niet zeker welke diensten je nodig hebt?",
+    "ctaSubtitle": "Plan een vrijblijvend gesprek en we helpen je de juiste keuze te maken voor jouw situatie."
+  },
   "bentoGrid": {
     "badge": "Wat Wij Leveren",
     "titleLine1": "Alles wat u nodig heeft om",
@@ -275,6 +287,96 @@
       "support": {
         "title": "Support Zonder Gedoe",
         "description": "Persoonlijke support met harde SLA's. We zijn er als u ons nodig heeft. Geen wachttijden, geen excuses."
+      }
+    }
+  },
+  "dienstenPage": {
+    "badge": "Onze Diensten",
+    "titleLine1": "Alles voor jouw",
+    "titleLine2": "digitale succes",
+    "subtitle": "Van design tot development, van hosting tot marketing. Wij leveren de complete digitale infrastructuur die jouw bedrijf nodig heeft.",
+    "packagesBadge": "Pakketten",
+    "packagesTitle": "Kies jouw fundament",
+    "packagesSubtitle": "Start met een stevig fundament. Onze pakketten bieden alles wat je nodig hebt voor een succesvolle online aanwezigheid.",
+    "popular": "Populair",
+    "ctaTitle": "Niet zeker welke diensten je nodig hebt?",
+    "ctaSubtitle": "Plan een vrijblijvend gesprek en we helpen je de juiste keuze te maken voor jouw situatie."
+  },
+  "socialProof": {
+    "title": "Zij bouwen al met Robuust:"
+  },
+  "portfolioShowcase": {
+    "badge": "Portfolio",
+    "titleLine1": "Resultaat spreekt",
+    "titleLine2": "voor zich",
+    "subtitle": "Van B2B corporate tot horeca - wij bouwen websites die werken.",
+    "viewCase": "Bekijk case",
+    "viewAllProjects": "Bekijk alle projecten"
+  },
+  "founderIntro": {
+    "badge": "Over Robuust",
+    "titleLine1": "Eerlijk, direct,",
+    "titleLine2": "goed werk",
+    "paragraph1": "Ik ben Robin, oprichter van Robuust Marketing. Al meer dan 15 jaar bouw ik websites en digitale infrastructuur voor bedrijven die serieus willen groeien.",
+    "paragraph2": "Geen fancy kantoor, geen onnodige overhead. Wel: directe lijnen, heldere communicatie en resultaat waar u op kunt bouwen. Ik geloof in vakmanschap zonder poespas - werk dat gewoon goed is.",
+    "stats": {
+      "experience": "Jaar ervaring",
+      "websites": "Websites gebouwd",
+      "retention": "Klantbehoud"
+    },
+    "badge2": "No-nonsense",
+    "badge2Sub": "vakmanschap",
+    "cta": "Laten we praten"
+  },
+  "productStack": {
+    "badge": "Onze Pakketten",
+    "titleLine1": "Kies uw",
+    "titleLine2": "fundament",
+    "subtitle": "Twee bewezen pakketten voor verschillende groeifases. Elk met waterdichte SLA's.",
+    "recommended": "Aanbevolen",
+    "from": "Vanaf",
+    "note": "Prijzen zijn indicatief. Elk project wordt op maat geoffreerd.",
+    "solidStart": {
+      "title": "Solid Start",
+      "description": "Voor de ambitieuze starter & spin-off.",
+      "features": [
+        "Splash screen / One-pager direct live",
+        "Directe compliance & Security setup",
+        "First-party Analytics (AVG-proof)",
+        "Optie: WooCommerce + Funnelkit"
+      ],
+      "cta": "Start direct"
+    },
+    "firmFoundation": {
+      "title": "Firm Foundation",
+      "description": "Het fundament voor MKB (20-100 medewerkers).",
+      "features": [
+        "Volledige Security Audit & Brand Protection",
+        "Dedicated High-Performance Hosting (DE/FI)",
+        "Onderhoud met harde SLA garanties",
+        "Low-level CRM & Marketing Suite integraties"
+      ],
+      "cta": "Plan een fundatie-check"
+    }
+  },
+  "techStack": {
+    "badge": "Technologie",
+    "titleLine1": "Aangedreven door",
+    "titleLine2": "bewezen technologie",
+    "titleLine3": "versneld door AI",
+    "subtitle": "Wij selecteren de stack die past bij uw schaal. Geen bloatware, pure performance.",
+    "categories": {
+      "engine": {
+        "title": "De Motor",
+        "description": "Core development stack"
+      },
+      "speed": {
+        "title": "De Snelheid & Security",
+        "description": "Performance & bescherming"
+      },
+      "intelligence": {
+        "title": "De Intelligentie",
+        "description": "Analytics & automatisering"
       }
     }
   }

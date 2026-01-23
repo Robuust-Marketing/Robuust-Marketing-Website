@@ -5,12 +5,21 @@ import Image from "next/image";
 import { motion } from "@/components/motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { portfolioItems } from "@/data/portfolio";
-
-// Get featured portfolio items
-const featuredItems = portfolioItems.filter((item) => item.featured).slice(0, 4);
+import { getPortfolioItems } from "@/data/portfolio";
+import { useTranslations, useLocale } from "next-intl";
+import { type Locale } from "@/i18n/config";
 
 export function PortfolioShowcase() {
+  const t = useTranslations("portfolioShowcase");
+  const locale = useLocale() as Locale;
+
+  // Get featured portfolio items for the current locale
+  const portfolioItems = getPortfolioItems(locale);
+  const featuredItems = portfolioItems.filter((item) => item.featured).slice(0, 4);
+
+  // Helper for locale-aware paths
+  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
+
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
@@ -26,7 +35,7 @@ export function PortfolioShowcase() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Portfolio
+            {t("badge")}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -35,7 +44,7 @@ export function PortfolioShowcase() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Resultaat spreekt <span className="text-gradient-accent">voor zich</span>
+            {t("titleLine1")} <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -44,7 +53,7 @@ export function PortfolioShowcase() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Van B2B corporate tot horeca - wij bouwen websites die werken.
+            {t("subtitle")}
           </motion.p>
         </div>
 
@@ -59,7 +68,7 @@ export function PortfolioShowcase() {
               transition={{ duration: 0.6 }}
               className="md:col-span-2 lg:col-span-2 lg:row-span-2"
             >
-              <Link href={`/portfolio/${featuredItems[0].slug}`} className="group block h-full">
+              <Link href={localePath(`/portfolio/${featuredItems[0].slug}`)} className="group block h-full">
                 <div className="relative h-full min-h-[400px] lg:min-h-[500px] rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Image */}
                   <div className="absolute inset-0">
@@ -84,7 +93,7 @@ export function PortfolioShowcase() {
                       {featuredItems[0].shortDescription}
                     </p>
                     <div className="flex items-center gap-2 text-accent font-medium">
-                      <span>Bekijk case</span>
+                      <span>{t("viewCase")}</span>
                       <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
@@ -102,7 +111,7 @@ export function PortfolioShowcase() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
             >
-              <Link href={`/portfolio/${item.slug}`} className="group block h-full">
+              <Link href={localePath(`/portfolio/${item.slug}`)} className="group block h-full">
                 <div className="relative h-full min-h-[240px] rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Image */}
                   <div className="absolute inset-0">
@@ -149,8 +158,8 @@ export function PortfolioShowcase() {
             variant="outline"
             className="border-accent/50 text-white hover:bg-accent/10 hover:border-accent font-medium px-8 py-6 transition-all duration-300 group"
           >
-            <Link href="/portfolio" className="flex items-center gap-2">
-              Bekijk alle projecten
+            <Link href={localePath("/portfolio")} className="flex items-center gap-2">
+              {t("viewAllProjects")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>

@@ -4,22 +4,31 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Rocket, Shield, Check, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const solidStartFeatures = [
-  "Splash screen / One-pager direct live",
-  "Directe compliance & Security setup",
-  "First-party Analytics (AVG-proof)",
-  "Optie: WooCommerce + Funnelkit",
-];
-
-const firmFoundationFeatures = [
-  "Volledige Security Audit & Brand Protection",
-  "Dedicated High-Performance Hosting (DE/FI)",
-  "Onderhoud met harde SLA garanties",
-  "Low-level CRM & Marketing Suite integraties",
-];
+import { useTranslations, useLocale } from "next-intl";
+import { type Locale } from "@/i18n/config";
 
 export function ProductStack() {
+  const t = useTranslations("productStack");
+  const locale = useLocale() as Locale;
+
+  // Helper for locale-aware paths
+  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
+
+  // Get features from translations
+  const solidStartFeatures = [
+    t("solidStart.features.0"),
+    t("solidStart.features.1"),
+    t("solidStart.features.2"),
+    t("solidStart.features.3"),
+  ];
+
+  const firmFoundationFeatures = [
+    t("firmFoundation.features.0"),
+    t("firmFoundation.features.1"),
+    t("firmFoundation.features.2"),
+    t("firmFoundation.features.3"),
+  ];
+
   return (
     <section id="pakketten" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
@@ -42,7 +51,7 @@ export function ProductStack() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Onze Pakketten
+            {t("badge")}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -51,7 +60,7 @@ export function ProductStack() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Kies uw <span className="text-gradient-accent">fundament</span>
+            {t("titleLine1")} <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -60,7 +69,7 @@ export function ProductStack() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Twee bewezen pakketten voor verschillende groeifases. Elk met waterdichte SLA&apos;s.
+            {t("subtitle")}
           </motion.p>
         </div>
 
@@ -82,9 +91,9 @@ export function ProductStack() {
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">Solid Start</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">{t("solidStart.title")}</h3>
               <p className="text-muted-foreground mb-6">
-                Voor de ambitieuze starter & spin-off.
+                {t("solidStart.description")}
               </p>
 
               {/* Features */}
@@ -107,7 +116,7 @@ export function ProductStack() {
               {/* Price & CTA */}
               <div className="pt-6 border-t border-white/10">
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-3xl font-bold text-white">Vanaf</span>
+                  <span className="text-3xl font-bold text-white">{t("from")}</span>
                   <span className="text-4xl font-bold text-accent">€1.500</span>
                 </div>
                 <Button
@@ -116,8 +125,8 @@ export function ProductStack() {
                   variant="outline"
                   className="w-full border-white/20 text-white hover:bg-white/5 hover:border-white/30 font-medium py-6 transition-all duration-300 group/btn"
                 >
-                  <Link href="/contact" className="flex items-center justify-center gap-2">
-                    Start direct
+                  <Link href={localePath("/contact")} className="flex items-center justify-center gap-2">
+                    {t("solidStart.cta")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
                 </Button>
@@ -138,7 +147,7 @@ export function ProductStack() {
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-white shadow-lg glow-accent-sm">
                 <Star className="w-4 h-4 fill-current" />
-                Aanbevolen
+                {t("recommended")}
               </span>
             </div>
 
@@ -157,9 +166,9 @@ export function ProductStack() {
               </div>
 
               {/* Title */}
-              <h3 className="relative text-2xl sm:text-3xl font-bold text-white mb-2">Firm Foundation</h3>
+              <h3 className="relative text-2xl sm:text-3xl font-bold text-white mb-2">{t("firmFoundation.title")}</h3>
               <p className="relative text-muted-foreground mb-6">
-                Het fundament voor MKB (20-100 medewerkers).
+                {t("firmFoundation.description")}
               </p>
 
               {/* Features */}
@@ -182,7 +191,7 @@ export function ProductStack() {
               {/* Price & CTA */}
               <div className="relative pt-6 border-t border-white/10">
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-3xl font-bold text-white">Vanaf</span>
+                  <span className="text-3xl font-bold text-white">{t("from")}</span>
                   <span className="text-4xl font-bold text-accent">€5.000</span>
                 </div>
                 <Button
@@ -190,8 +199,8 @@ export function ProductStack() {
                   size="lg"
                   className="w-full bg-accent hover:bg-accent-hover text-white font-medium py-6 glow-accent hover:glow-accent transition-all duration-300 group/btn"
                 >
-                  <Link href="/contact" className="flex items-center justify-center gap-2">
-                    Plan een fundatie-check
+                  <Link href={localePath("/contact")} className="flex items-center justify-center gap-2">
+                    {t("firmFoundation.cta")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
                 </Button>
@@ -208,7 +217,7 @@ export function ProductStack() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-center text-muted-foreground mt-12 text-sm"
         >
-          Prijzen zijn indicatief. Elk project wordt op maat geoffreerd.
+          {t("note")}
         </motion.p>
       </div>
     </section>

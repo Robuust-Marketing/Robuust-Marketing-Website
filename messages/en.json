@@ -277,5 +277,95 @@
         "description": "Personal support with hard SLAs. We're there when you need us. No waiting times, no excuses."
       }
     }
+  },
+  "dienstenPage": {
+    "badge": "Our Services",
+    "titleLine1": "Everything for your",
+    "titleLine2": "digital success",
+    "subtitle": "From design to development, from hosting to marketing. We deliver the complete digital infrastructure your business needs.",
+    "packagesBadge": "Packages",
+    "packagesTitle": "Choose your foundation",
+    "packagesSubtitle": "Start with a solid foundation. Our packages offer everything you need for a successful online presence.",
+    "popular": "Popular",
+    "ctaTitle": "Not sure which services you need?",
+    "ctaSubtitle": "Schedule a free consultation and we'll help you make the right choice for your situation."
+  },
+  "socialProof": {
+    "title": "Already building with Robuust:"
+  },
+  "portfolioShowcase": {
+    "badge": "Portfolio",
+    "titleLine1": "Results speak",
+    "titleLine2": "for themselves",
+    "subtitle": "From B2B corporate to hospitality - we build websites that work.",
+    "viewCase": "View case",
+    "viewAllProjects": "View all projects"
+  },
+  "founderIntro": {
+    "badge": "About Robuust",
+    "titleLine1": "Honest, direct,",
+    "titleLine2": "quality work",
+    "paragraph1": "I'm Robin, founder of Robuust Marketing. For over 15 years I've been building websites and digital infrastructure for businesses that want to grow seriously.",
+    "paragraph2": "No fancy office, no unnecessary overhead. Instead: direct lines, clear communication and results you can build on. I believe in craftsmanship without fuss - work that's simply good.",
+    "stats": {
+      "experience": "Years experience",
+      "websites": "Websites built",
+      "retention": "Client retention"
+    },
+    "badge2": "No-nonsense",
+    "badge2Sub": "craftsmanship",
+    "cta": "Let's talk"
+  },
+  "productStack": {
+    "badge": "Our Packages",
+    "titleLine1": "Choose your",
+    "titleLine2": "foundation",
+    "subtitle": "Two proven packages for different growth phases. Each with bulletproof SLAs.",
+    "recommended": "Recommended",
+    "from": "From",
+    "note": "Prices are indicative. Each project is quoted individually.",
+    "solidStart": {
+      "title": "Solid Start",
+      "description": "For the ambitious starter & spin-off.",
+      "features": [
+        "Splash screen / One-pager live immediately",
+        "Direct compliance & Security setup",
+        "First-party Analytics (GDPR-proof)",
+        "Option: WooCommerce + Funnelkit"
+      ],
+      "cta": "Start now"
+    },
+    "firmFoundation": {
+      "title": "Firm Foundation",
+      "description": "The foundation for SMBs (20-100 employees).",
+      "features": [
+        "Complete Security Audit & Brand Protection",
+        "Dedicated High-Performance Hosting (DE/FI)",
+        "Maintenance with hard SLA guarantees",
+        "Low-level CRM & Marketing Suite integrations"
+      ],
+      "cta": "Schedule a foundation check"
+    }
+  },
+  "techStack": {
+    "badge": "Technology",
+    "titleLine1": "Powered by",
+    "titleLine2": "proven technology",
+    "titleLine3": "accelerated by AI",
+    "subtitle": "We select the stack that fits your scale. No bloatware, pure performance.",
+    "categories": {
+      "engine": {
+        "title": "The Engine",
+        "description": "Core development stack"
+      },
+      "speed": {
+        "title": "Speed & Security",
+        "description": "Performance & protection"
+      },
+      "intelligence": {
+        "title": "The Intelligence",
+        "description": "Analytics & automation"
+      }
+    }
   }
 }

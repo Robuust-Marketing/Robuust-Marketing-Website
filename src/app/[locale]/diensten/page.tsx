@@ -17,135 +17,36 @@ import {
   Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations, useLocale } from "next-intl";
+import { type Locale } from "@/i18n/config";
+import { getServices } from "@/data/services";
+import { getPackages } from "@/data/packages";
 
-const services = [
-  {
-    id: "design",
-    name: "Design",
-    icon: Palette,
-    description:
-      "Op maat gemaakte UI/UX design die jouw merkidentiteit vastlegt en bezoekers omzet in klanten.",
-    features: ["Custom webdesign", "UI/UX optimalisatie", "Brand identity", "Responsive design"],
-    href: "/diensten/design",
-  },
-  {
-    id: "development",
-    name: "Development",
-    icon: Code2,
-    description:
-      "Moderne websites gebouwd met React, Next.js en TypeScript voor razendsnelle performance.",
-    features: ["Next.js & React", "TypeScript", "Headless CMS", "API integraties"],
-    href: "/diensten/development",
-  },
-  {
-    id: "hosting",
-    name: "Hosting",
-    icon: Server,
-    description:
-      "Enterprise-grade infrastructuur met NGINX en Cloudflare op dedicated servers in Europa.",
-    features: ["Dedicated servers", "99.9% uptime", "SSL certificaten", "CDN & caching"],
-    href: "/diensten/hosting",
-  },
-  {
-    id: "maintenance",
-    name: "Onderhoud",
-    icon: Wrench,
-    description:
-      "Proactief website onderhoud met waterdichte SLA's. Van updates tot security monitoring.",
-    features: ["Plugin updates", "Security monitoring", "Backups", "Performance checks"],
-    href: "/diensten/onderhoud",
-  },
-  {
-    id: "tracking",
-    name: "Tracking & Analytics",
-    icon: BarChart3,
-    description:
-      "Geavanceerde analytics met GA4, Meta Pixel en first-party tracking via Taggrs.",
-    features: ["GA4 setup", "Meta Pixel", "First-party tracking", "Conversie tracking"],
-    href: "/diensten/tracking",
-  },
-  {
-    id: "email-marketing",
-    name: "Email Marketing",
-    icon: Mail,
-    description:
-      "Effectieve email campagnes die converteren. Van nieuwsbrieven tot geautomatiseerde flows.",
-    features: ["Email campagnes", "Automatisering", "A/B testing", "Segmentatie"],
-    href: "/diensten/email-marketing",
-  },
-  {
-    id: "online-marketing",
-    name: "Online Marketing",
-    icon: Megaphone,
-    description:
-      "Full-stack digital marketing inclusief Meta, TikTok en Google Ads via Hello Its Me.",
-    features: ["Google Ads", "Meta Ads", "TikTok Ads", "Remarketing"],
-    href: "/diensten/online-marketing",
-  },
-  {
-    id: "branding",
-    name: "Branding",
-    icon: Fingerprint,
-    description:
-      "Sterke merkidentiteit die blijft hangen. Van logo tot complete brand guidelines.",
-    features: ["Logo design", "Brand guidelines", "Huisstijl", "Visual identity"],
-    href: "/diensten/branding",
-  },
-  {
-    id: "seo",
-    name: "SEO",
-    icon: Search,
-    description:
-      "Organisch beter gevonden worden in Google met technische SEO en content optimalisatie.",
-    features: ["Technische SEO", "Content optimalisatie", "Linkbuilding", "Local SEO"],
-    href: "/diensten/seo",
-  },
-  {
-    id: "crm",
-    name: "CRM",
-    icon: Users,
-    description:
-      "Klantrelaties optimaliseren met slimme CRM integraties en automatiseringen.",
-    features: ["CRM setup", "Integraties", "Automatisering", "Lead management"],
-    href: "/diensten/crm",
-  },
-];
-
-const packages = [
-  {
-    id: "solid-start",
-    name: "Solid Start",
-    tagline: "Perfect voor starters",
-    description:
-      "Een professionele website met alles wat je nodig hebt om online zichtbaar te zijn.",
-    price: "Vanaf € 2.500",
-    features: [
-      "Custom design",
-      "Responsive website",
-      "Basis SEO",
-      "Contact formulier",
-      "1 jaar hosting inclusief",
-    ],
-  },
-  {
-    id: "firm-foundation",
-    name: "Firm Foundation",
-    tagline: "Voor groeiende bedrijven",
-    description:
-      "Een complete digitale infrastructuur met geavanceerde functionaliteiten en marketing tools.",
-    price: "Vanaf € 7.500",
-    features: [
-      "Alles van Solid Start",
-      "Geavanceerde functionaliteiten",
-      "Marketing integraties",
-      "Analytics dashboard",
-      "Premium support",
-    ],
-    popular: true,
-  },
-];
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  design: Palette,
+  development: Code2,
+  hosting: Server,
+  maintenance: Wrench,
+  tracking: BarChart3,
+  "email-marketing": Mail,
+  "online-marketing": Megaphone,
+  branding: Fingerprint,
+  seo: Search,
+  crm: Users,
+};
 
 export default function DienstenPage() {
+  const locale = useLocale() as Locale;
+  const t = useTranslations("dienstenPage");
+  const tButtons = useTranslations("buttons");
+
+  // Get localized services and packages
+  const services = getServices(locale);
+  const packages = getPackages(locale);
+
+  // Helper for locale-aware paths
+  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -170,7 +71,7 @@ export default function DienstenPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Onze Diensten
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -178,9 +79,9 @@ export default function DienstenPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Alles voor jouw
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">digitale succes</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -188,8 +89,7 @@ export default function DienstenPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Van design tot development, van hosting tot marketing. Wij leveren
-            de complete digitale infrastructuur die jouw bedrijf nodig heeft.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -198,58 +98,61 @@ export default function DienstenPage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                id={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-              >
-                <Link
-                  href={service.href}
-                  className="group relative block h-full overflow-hidden rounded-3xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-all duration-300"
+            {services.map((service, index) => {
+              const IconComponent = iconMap[service.id] || Code2;
+              return (
+                <motion.div
+                  key={service.id}
+                  id={service.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background:
-                        "radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(197, 60, 11, 0.06), transparent 40%)",
-                    }}
-                  />
+                  <Link
+                    href={localePath(service.href)}
+                    className="group relative block h-full overflow-hidden rounded-3xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-all duration-300"
+                  >
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{
+                        background:
+                          "radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(197, 60, 11, 0.06), transparent 40%)",
+                      }}
+                    />
 
-                  <div className="relative z-10">
-                    <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
-                      <service.icon className="h-6 w-6" />
+                    <div className="relative z-10">
+                      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
+                        <IconComponent className="h-6 w-6" />
+                      </div>
+
+                      <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                        {service.name}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        {service.description}
+                      </p>
+
+                      <ul className="space-y-2 mb-6">
+                        {service.features.map((feature) => (
+                          <li
+                            key={feature}
+                            className="flex items-center gap-2 text-sm text-white/70"
+                          >
+                            <Check className="h-4 w-4 text-accent" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <span className="inline-flex items-center gap-2 text-accent text-sm font-medium group-hover:gap-3 transition-all">
+                        {tButtons("learnMore")}
+                        <ArrowRight className="h-4 w-4" />
+                      </span>
                     </div>
-
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                      {service.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {service.description}
-                    </p>
-
-                    <ul className="space-y-2 mb-6">
-                      {service.features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="flex items-center gap-2 text-sm text-white/70"
-                        >
-                          <Check className="h-4 w-4 text-accent" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <span className="inline-flex items-center gap-2 text-accent text-sm font-medium group-hover:gap-3 transition-all">
-                      Meer info
-                      <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -264,7 +167,7 @@ export default function DienstenPage() {
               viewport={{ once: true }}
               className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
             >
-              Pakketten
+              {t("packagesBadge")}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -272,7 +175,7 @@ export default function DienstenPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Kies jouw fundament
+              {t("packagesTitle")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -280,8 +183,7 @@ export default function DienstenPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Start met een stevig fundament. Onze pakketten bieden alles wat je
-              nodig hebt voor een succesvolle online aanwezigheid.
+              {t("packagesSubtitle")}
             </motion.p>
           </div>
 
@@ -303,7 +205,7 @@ export default function DienstenPage() {
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="bg-accent text-white text-xs font-medium px-3 py-1 rounded-full">
-                      Populair
+                      {t("popular")}
                     </span>
                   </div>
                 )}
@@ -341,7 +243,7 @@ export default function DienstenPage() {
                       : "bg-white/10 hover:bg-white/20 text-white"
                   }`}
                 >
-                  <Link href="/contact">Offerte aanvragen</Link>
+                  <Link href={localePath("/contact")}>{tButtons("requestQuote")}</Link>
                 </Button>
               </motion.div>
             ))}
@@ -358,7 +260,7 @@ export default function DienstenPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Niet zeker welke diensten je nodig hebt?
+            {t("ctaTitle")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -366,8 +268,7 @@ export default function DienstenPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Plan een vrijblijvend gesprek en we helpen je de juiste keuze te
-            maken voor jouw situatie.
+            {t("ctaSubtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -379,8 +280,8 @@ export default function DienstenPage() {
               size="lg"
               className="bg-accent hover:bg-accent-hover text-white"
             >
-              <Link href="/contact" className="flex items-center gap-2">
-                Plan een gesprek
+              <Link href={localePath("/contact")} className="flex items-center gap-2">
+                {tButtons("scheduleCall")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

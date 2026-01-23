@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "@/components/motion";
+import { useTranslations } from "next-intl";
 
 const clients = [
   { name: "Growteq", logo: null },
@@ -11,6 +12,8 @@ const clients = [
 ];
 
 export function SocialProof() {
+  const t = useTranslations("socialProof");
+
   return (
     <section className="relative py-16 border-y border-white/5">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -21,7 +24,7 @@ export function SocialProof() {
           transition={{ duration: 0.5 }}
           className="text-center text-sm text-muted-foreground mb-10"
         >
-          Zij bouwen al met Robuust:
+          {t("title")}
         </motion.p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
