@@ -25,9 +25,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: localeParam } = await params;
+  const locale = localeParam as Locale;
 
   const titles = {
     nl: "Robuust Marketing | High-End Web Development & Hosting",
@@ -74,14 +75,16 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const { locale: localeParam } = await params;
 
   // Validate locale
-  if (!locales.includes(locale)) {
+  if (!locales.includes(localeParam as Locale)) {
     notFound();
   }
+
+  const locale = localeParam as Locale;
 
   // Enable static rendering
   setRequestLocale(locale);

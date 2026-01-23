@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { setRequestLocale } from "next-intl/server";
+import { type Locale } from "@/i18n/config";
 
 // Static loading component for Suspense fallbacks
 function SectionLoader() {
@@ -56,7 +58,14 @@ const TechStack = dynamic(
   { ssr: true }
 );
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+
   return (
     <>
       {/* Hero section - critical for LCP, loads first */}
