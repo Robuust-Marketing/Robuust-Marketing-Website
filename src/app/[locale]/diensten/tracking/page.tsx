@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,80 +14,22 @@ import {
   ArrowRight,
   Check,
   AlertTriangle,
+  LucideIcon,
 } from "lucide-react";
 
-const services = [
-  {
-    icon: BarChart3,
-    title: "GA4 Setup & Configuratie",
-    description:
-      "Volledige Google Analytics 4 implementatie met custom events, conversies en doelgroepen.",
-  },
-  {
-    icon: Target,
-    title: "Meta Pixel",
-    description:
-      "Facebook en Instagram pixel installatie voor advertentie tracking en remarketing doelgroepen.",
-  },
-  {
-    icon: Server,
-    title: "Server-Side Tracking",
-    description:
-      "First-party tracking via Taggrs voor nauwkeurige data ondanks ad blockers en iOS beperkingen.",
-  },
-  {
-    icon: LineChart,
-    title: "Conversie Tracking",
-    description:
-      "Meet wat echt telt: offerteaanvragen, aankopen, telefoongesprekken en formulierinzendingen.",
-  },
-  {
-    icon: ShoppingCart,
-    title: "E-commerce Tracking",
-    description:
-      "Complete productprestaties: views, add-to-carts, checkout stappen en transacties.",
-  },
-  {
-    icon: Cookie,
-    title: "GDPR-Compliant Setup",
-    description:
-      "Cookiebanner integratie met consent mode voor privacy-vriendelijke tracking.",
-  },
+const services: { id: string; icon: LucideIcon }[] = [
+  { id: "ga4Setup", icon: BarChart3 },
+  { id: "metaPixel", icon: Target },
+  { id: "serverSide", icon: Server },
+  { id: "conversionTracking", icon: LineChart },
+  { id: "ecommerceTracking", icon: ShoppingCart },
+  { id: "gdprSetup", icon: Cookie },
 ];
 
-const trackingIssues = [
-  {
-    issue: "iOS 14+ beperkingen",
-    impact: "30-50% data verlies",
-    solution: "Server-side tracking omzeilt deze limitaties",
-  },
-  {
-    issue: "Ad blockers",
-    impact: "25-40% gemiste bezoekers",
-    solution: "First-party data via eigen domein",
-  },
-  {
-    issue: "Cookie consent",
-    impact: "Incomplete conversiedata",
-    solution: "Consent mode met modellering",
-  },
-  {
-    issue: "Cross-device tracking",
-    impact: "Onvolledige klantreis",
-    solution: "User-ID tracking en Google Signals",
-  },
-];
-
-const benefits = [
-  "Nauwkeurige data voor betere beslissingen",
-  "Hogere ROI op advertentie-uitgaven",
-  "Inzicht in de complete klantreis",
-  "Privacy-compliant volgens AVG/GDPR",
-  "Betere remarketing doelgroepen",
-  "Data-gedreven optimalisatie",
-];
+const trackingIssues = ["ios", "adBlockers", "cookieConsent", "crossDevice"];
 
 export default function TrackingPage() {
+  const t = useTranslations("trackingPage");
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -119,7 +62,7 @@ export default function TrackingPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Tracking & Analytics
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -127,9 +70,9 @@ export default function TrackingPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Data die je
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">kunt vertrouwen</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -137,9 +80,7 @@ export default function TrackingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8"
           >
-            Geavanceerde analytics met GA4, Meta Pixel en first-party tracking
-            via Taggrs. Meet wat telt, ondanks ad blockers en privacy
-            restricties.
+            {t("subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -153,7 +94,7 @@ export default function TrackingPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Tracking audit aanvragen
+                {t("primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -163,7 +104,9 @@ export default function TrackingPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten/online-marketing">Online Marketing</Link>
+              <Link href="/diensten/online-marketing">
+                {t("secondaryButton")}
+              </Link>
             </Button>
           </motion.div>
         </div>
@@ -180,7 +123,7 @@ export default function TrackingPage() {
               className="inline-flex items-center gap-2 bg-red-500/10 text-red-400 px-4 py-2 rounded-full mb-4"
             >
               <AlertTriangle className="h-4 w-4" />
-              <span className="text-sm font-medium">Het tracking probleem</span>
+              <span className="text-sm font-medium">{t("problem.badge")}</span>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -188,7 +131,7 @@ export default function TrackingPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Standaard tracking mist tot 50% van je data
+              {t("problem.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -196,15 +139,14 @@ export default function TrackingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Privacy updates, ad blockers en cookie restricties maken
-              traditionele tracking steeds onbetrouwbaarder
+              {t("problem.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {trackingIssues.map((item, index) => (
               <motion.div
-                key={item.issue}
+                key={item}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -213,17 +155,19 @@ export default function TrackingPage() {
               >
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-lg font-semibold text-white">
-                    {item.issue}
+                    {t(`problem.issues.${item}.issue`)}
                   </h3>
                   <span className="text-sm font-medium text-red-400 bg-red-500/10 px-2 py-1 rounded">
-                    {item.impact}
+                    {t(`problem.issues.${item}.impact`)}
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-muted-foreground">
-                    <span className="text-white font-medium">Onze oplossing:</span>{" "}
-                    {item.solution}
+                    <span className="text-white font-medium">
+                      {t("problem.ourSolution")}
+                    </span>{" "}
+                    {t(`problem.issues.${item}.solution`)}
                   </p>
                 </div>
               </motion.div>
@@ -242,7 +186,7 @@ export default function TrackingPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              Onze Tracking Diensten
+              {t("services.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -250,14 +194,14 @@ export default function TrackingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              Complete analytics setup voor betrouwbare inzichten
+              {t("services.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <motion.div
-                key={service.title}
+                key={service.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -268,10 +212,10 @@ export default function TrackingPage() {
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {service.title}
+                  {t(`services.${service.id}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {service.description}
+                  {t(`services.${service.id}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -289,17 +233,16 @@ export default function TrackingPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Waarom{" "}
+                {t("benefits.title")}{" "}
                 <span className="text-gradient-accent">
-                  professionele tracking?
+                  {t("benefits.titleHighlight")}
                 </span>
               </h2>
               <p className="text-muted-foreground mb-8">
-                Goede data is de basis van elke succesvolle marketingstrategie.
-                Zonder betrouwbare tracking vlieg je blind.
+                {t("benefits.subtitle")}
               </p>
               <ul className="space-y-4">
-                {benefits.map((benefit, index) => (
+                {(t.raw("benefits.items") as string[]).map((benefit, index) => (
                   <motion.li
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
@@ -324,32 +267,30 @@ export default function TrackingPage() {
               className="rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 p-8 border border-accent/20"
             >
               <h3 className="text-2xl font-bold text-white mb-4">
-                Server-Side Tracking met Taggrs
+                {t("benefits.card.title")}
               </h3>
               <p className="text-muted-foreground mb-6">
-                Taggrs is onze partner voor server-side tracking. Door data via
-                jouw eigen server te versturen in plaats van de browser, omzeil
-                je de beperkingen van ad blockers en privacy updates.
+                {t("benefits.card.description")}
               </p>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2 text-sm text-accent">
                   <Check className="h-4 w-4" />
-                  First-party cookies via jouw domein
+                  {t("benefits.card.feature1")}
                 </li>
                 <li className="flex items-center gap-2 text-sm text-accent">
                   <Check className="h-4 w-4" />
-                  Niet geblokkeerd door ad blockers
+                  {t("benefits.card.feature2")}
                 </li>
                 <li className="flex items-center gap-2 text-sm text-accent">
                   <Check className="h-4 w-4" />
-                  Volledige controle over je data
+                  {t("benefits.card.feature3")}
                 </li>
               </ul>
               <Button
                 asChild
                 className="w-full bg-accent hover:bg-accent-hover text-white"
               >
-                <Link href="/contact">Meer weten over Taggrs →</Link>
+                <Link href="/contact">{t("benefits.card.button")}</Link>
               </Button>
             </motion.div>
           </div>
@@ -365,7 +306,7 @@ export default function TrackingPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar voor betrouwbare data?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -373,8 +314,7 @@ export default function TrackingPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Laat ons je huidige tracking setup auditen en ontdek waar je data
-            mist.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -388,7 +328,7 @@ export default function TrackingPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Gratis tracking audit
+                {t("cta.primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -398,7 +338,7 @@ export default function TrackingPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/diensten">Alle diensten</Link>
+              <Link href="/diensten">{t("cta.secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>

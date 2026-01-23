@@ -1367,6 +1367,321 @@
       "noArticles": "No articles available yet."
     }
   },
+  "developmentPage": {
+    "badge": "Web Development",
+    "titleLine1": "Modern websites",
+    "titleLine2": "that perform",
+    "subtitle": "Built with React, Next.js and TypeScript for blazing fast performance. No slow WordPress sites, but modern custom work that scales.",
+    "primaryButton": "Discuss your project",
+    "secondaryButton": "View projects",
+    "techStack": {
+      "title": "Our Tech Stack",
+      "subtitle": "Proven technologies for reliable, fast websites",
+      "nextjs": { "name": "Next.js", "description": "React framework for blazing fast websites", "category": "Framework" },
+      "react": { "name": "React", "description": "Component-based UI development", "category": "Library" },
+      "typescript": { "name": "TypeScript", "description": "Type-safe code for fewer bugs", "category": "Language" },
+      "tailwind": { "name": "Tailwind CSS", "description": "Utility-first styling for fast iteration", "category": "Styling" },
+      "headlessCms": { "name": "Headless CMS", "description": "Content management without technical knowledge", "category": "CMS" },
+      "apiIntegrations": { "name": "API Integrations", "description": "Connection with external systems", "category": "Backend" }
+    },
+    "features": {
+      "title": "What you get",
+      "subtitle": "More than just code - a complete technical solution",
+      "performance": { "title": "Blazing Fast Performance", "description": "Static Site Generation and Edge caching for load times under one second. No more slow WordPress sites." },
+      "security": { "title": "Built-in Security", "description": "No database queries = no SQL injection. Modern architecture with minimal attack vectors." },
+      "integrations": { "title": "Flexible Integrations", "description": "Connect with any system via APIs: CRM, accounting software, inventory system, payment providers and more." },
+      "seo": { "title": "SEO Optimization", "description": "Server-side rendering for perfect indexing. Structured data and meta tags out-of-the-box." },
+      "versionControl": { "title": "Version Control", "description": "All code in Git with complete history. Easy rollback and transparent collaboration." },
+      "cleanCode": { "title": "Clean Code", "description": "Readable, maintainable code following modern standards. No spaghetti or technical debt." }
+    },
+    "comparison": {
+      "title": "Modern vs. Traditional",
+      "subtitle": "Why we choose modern technology",
+      "traditional": "Traditional",
+      "modern": "Modern Approach",
+      "items": [
+        { "traditional": "WordPress with 30+ plugins", "modern": "Custom code, only what you need" },
+        { "traditional": "Load time 3-5 seconds", "modern": "Load time under 1 second" },
+        { "traditional": "Constant plugin updates needed", "modern": "Stable, secure codebase" },
+        { "traditional": "Limited scalability", "modern": "Unlimited scalability via CDN" },
+        { "traditional": "Database-dependent", "modern": "Serverless architecture" }
+      ]
+    },
+    "cta": {
+      "title": "Ready for a website that really performs?",
+      "subtitle": "Let's discuss how modern technology can transform your online presence.",
+      "primaryButton": "Schedule a call",
+      "secondaryButton": "All services"
+    }
+  },
+  "designPage": {
+    "badge": "Web Design",
+    "titleLine1": "Design that",
+    "titleLine2": "converts",
+    "subtitle": "Custom UI/UX design that captures your brand identity and turns visitors into customers. No templates, but unique design that fits your vision.",
+    "primaryButton": "Start your project",
+    "secondaryButton": "View our work",
+    "services": {
+      "title": "Our Design Services",
+      "subtitle": "From initial concept to pixel-perfect execution",
+      "customWebdesign": {
+        "title": "Custom Web Design",
+        "description": "No templates, but custom-made designs that perfectly match your brand and target audience."
+      },
+      "responsiveDesign": {
+        "title": "Responsive Design",
+        "description": "Your website looks perfect on every device - from smartphone to desktop."
+      },
+      "uiUxOptimization": {
+        "title": "UI/UX Optimization",
+        "description": "Intuitive interfaces that effortlessly guide visitors through your website."
+      },
+      "visualHierarchy": {
+        "title": "Visual Hierarchy",
+        "description": "Strategic placement of elements to direct attention to what matters."
+      },
+      "designSystems": {
+        "title": "Design Systems",
+        "description": "Consistent components and patterns for a recognizable look across all pages."
+      },
+      "microInteractions": {
+        "title": "Micro-interactions",
+        "description": "Subtle animations and hover effects that bring your website to life."
+      }
+    },
+    "process": {
+      "title": "Our Design Process",
+      "subtitle": "From idea to pixel-perfect design in four steps",
+      "step1": {
+        "title": "Briefing & Research",
+        "description": "We dive into your brand, target audience and competition to lay a solid foundation."
+      },
+      "step2": {
+        "title": "Concept & Wireframes",
+        "description": "Schematic sketches of the structure and user flow before we start the visual design."
+      },
+      "step3": {
+        "title": "Visual Design",
+        "description": "The concept is developed into a complete design with colors, typography and imagery."
+      },
+      "step4": {
+        "title": "Feedback & Iteration",
+        "description": "Together we refine the design until it perfectly matches your expectations."
+      }
+    },
+    "benefits": {
+      "title": "Why choose",
+      "titleHighlight": "custom design?",
+      "subtitle": "A template can be fast and cheap, but it doesn't tell your story. Custom design ensures that every pixel works for your goals and brand.",
+      "items": [
+        "Unique appearance that sets you apart from competitors",
+        "Higher conversion rates through thoughtful UX",
+        "Consistent brand experience across all touchpoints",
+        "Future-proof design that grows with your business",
+        "Faster loading times through optimized assets",
+        "Accessible design for all users"
+      ],
+      "card": {
+        "title": "Design & Development",
+        "description": "At Robuust we combine design and development under one roof. This means your design is not only beautiful, but also technically feasible and optimally implemented.",
+        "feature1": "Direct communication between designers and developers",
+        "feature2": "Design that takes technical possibilities into account",
+        "feature3": "Faster turnaround from concept to go-live",
+        "button": "More about development →"
+      }
+    },
+    "cta": {
+      "title": "Ready to bring your brand to life?",
+      "subtitle": "Let's create a design together that's not only beautiful, but also converts.",
+      "primaryButton": "Schedule a call",
+      "secondaryButton": "All services"
+    }
+  },
+  "hostingPage": {
+    "badge": "Managed Hosting",
+    "titleLine1": "Enterprise-grade",
+    "titleLine2": "infrastructure",
+    "subtitle": "Dedicated servers with NGINX and Cloudflare on European datacenters. No shared hosting, but infrastructure that grows with your ambitions.",
+    "primaryButton": "Request hosting",
+    "secondaryButton": "Maintenance & SLA",
+    "specs": {
+      "uptimeGuarantee": {
+        "label": "Uptime Guarantee",
+        "value": "99.9%"
+      },
+      "sslCertificate": {
+        "label": "SSL Certificate",
+        "value": "Included"
+      },
+      "cdnLocations": {
+        "label": "CDN Locations",
+        "value": "200+"
+      },
+      "backupFrequency": {
+        "label": "Backup Frequency",
+        "value": "Daily"
+      },
+      "ddosProtection": {
+        "label": "DDoS Protection",
+        "value": "Included"
+      },
+      "support": {
+        "label": "Support",
+        "value": "24/7 Monitoring"
+      }
+    },
+    "features": {
+      "title": "Everything included",
+      "subtitle": "Professional hosting without hassle",
+      "dedicatedServers": {
+        "title": "Dedicated Servers",
+        "description": "No shared hosting where you share resources with hundreds of others. Your website runs on dedicated infrastructure."
+      },
+      "enterpriseSecurity": {
+        "title": "Enterprise Security",
+        "description": "Cloudflare DDoS protection, WAF firewall, and automatic SSL certificates for maximum security."
+      },
+      "edgeCaching": {
+        "title": "Edge Caching",
+        "description": "Content is served from 200+ locations worldwide via Cloudflare CDN for minimal latency."
+      },
+      "europeanServers": {
+        "title": "European Servers",
+        "description": "Datacenters in Europe for GDPR compliance and optimal speed for European visitors."
+      },
+      "dailyBackups": {
+        "title": "Daily Backups",
+        "description": "Automatic backups with retention up to 30 days. Restore to any desired moment."
+      },
+      "uptime": {
+        "title": "99.9% Uptime",
+        "description": "Guaranteed availability with proactive monitoring and automatic failover."
+      }
+    },
+    "stack": {
+      "title": "Our",
+      "titleHighlight": "hosting stack",
+      "subtitle": "A proven combination of technologies that together ensure maximum speed, security and reliability.",
+      "benefits": [
+        "Cloudflare for worldwide content delivery and DDoS protection",
+        "NGINX as high-performance web server and load balancer",
+        "Automated deployments via Git for zero-downtime updates"
+      ],
+      "cloudflare": {
+        "name": "Cloudflare",
+        "description": "CDN, DDoS protection, WAF"
+      },
+      "nginx": {
+        "name": "NGINX",
+        "description": "Load balancing, reverse proxy"
+      },
+      "application": {
+        "name": "Application",
+        "description": "Next.js, Node.js runtime"
+      },
+      "storage": {
+        "name": "Storage",
+        "description": "SSD storage, external backups"
+      }
+    },
+    "cta": {
+      "title": "Worry-free hosting",
+      "subtitle": "Combine our hosting with a maintenance package for complete peace of mind. We handle everything, you focus on your business.",
+      "primaryButton": "Request a quote",
+      "secondaryButton": "View SLA packages"
+    }
+  },
+  "trackingPage": {
+    "badge": "Tracking & Analytics",
+    "titleLine1": "Data you",
+    "titleLine2": "can trust",
+    "subtitle": "Advanced analytics with GA4, Meta Pixel and first-party tracking via Taggrs. Measure what matters, despite ad blockers and privacy restrictions.",
+    "primaryButton": "Request tracking audit",
+    "secondaryButton": "Online Marketing",
+    "problem": {
+      "badge": "The tracking problem",
+      "title": "Standard tracking misses up to 50% of your data",
+      "subtitle": "Privacy updates, ad blockers and cookie restrictions make traditional tracking increasingly unreliable",
+      "ourSolution": "Our solution:",
+      "issues": {
+        "ios": {
+          "issue": "iOS 14+ restrictions",
+          "impact": "30-50% data loss",
+          "solution": "Server-side tracking bypasses these limitations"
+        },
+        "adBlockers": {
+          "issue": "Ad blockers",
+          "impact": "25-40% missed visitors",
+          "solution": "First-party data via your own domain"
+        },
+        "cookieConsent": {
+          "issue": "Cookie consent",
+          "impact": "Incomplete conversion data",
+          "solution": "Consent mode with modeling"
+        },
+        "crossDevice": {
+          "issue": "Cross-device tracking",
+          "impact": "Incomplete customer journey",
+          "solution": "User-ID tracking and Google Signals"
+        }
+      }
+    },
+    "services": {
+      "title": "Our Tracking Services",
+      "subtitle": "Complete analytics setup for reliable insights",
+      "ga4Setup": {
+        "title": "GA4 Setup & Configuration",
+        "description": "Complete Google Analytics 4 implementation with custom events, conversions and audiences."
+      },
+      "metaPixel": {
+        "title": "Meta Pixel",
+        "description": "Facebook and Instagram pixel installation for ad tracking and remarketing audiences."
+      },
+      "serverSide": {
+        "title": "Server-Side Tracking",
+        "description": "First-party tracking via Taggrs for accurate data despite ad blockers and iOS restrictions."
+      },
+      "conversionTracking": {
+        "title": "Conversion Tracking",
+        "description": "Measure what really matters: quote requests, purchases, phone calls and form submissions."
+      },
+      "ecommerceTracking": {
+        "title": "E-commerce Tracking",
+        "description": "Complete product performance: views, add-to-carts, checkout steps and transactions."
+      },
+      "gdprSetup": {
+        "title": "GDPR-Compliant Setup",
+        "description": "Cookie banner integration with consent mode for privacy-friendly tracking."
+      }
+    },
+    "benefits": {
+      "title": "Why",
+      "titleHighlight": "professional tracking?",
+      "subtitle": "Good data is the foundation of every successful marketing strategy. Without reliable tracking you're flying blind.",
+      "items": [
+        "Accurate data for better decisions",
+        "Higher ROI on advertising spend",
+        "Insight into the complete customer journey",
+        "Privacy compliant according to GDPR",
+        "Better remarketing audiences",
+        "Data-driven optimization"
+      ],
+      "card": {
+        "title": "Server-Side Tracking with Taggrs",
+        "description": "Taggrs is our partner for server-side tracking. By sending data via your own server instead of the browser, you bypass the limitations of ad blockers and privacy updates.",
+        "feature1": "First-party cookies via your domain",
+        "feature2": "Not blocked by ad blockers",
+        "feature3": "Full control over your data",
+        "button": "Learn more about Taggrs →"
+      }
+    },
+    "cta": {
+      "title": "Ready for reliable data?",
+      "subtitle": "Let us audit your current tracking setup and discover where you're missing data.",
+      "primaryButton": "Free tracking audit",
+      "secondaryButton": "All services"
+    }
+  },
   "glossaryPage": {
     "backToKennisbank": "Back to knowledge base",
     "title": "Glossary",

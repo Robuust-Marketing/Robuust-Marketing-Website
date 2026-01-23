@@ -1379,6 +1379,321 @@
       "noArticles": "Nog geen artikelen beschikbaar."
     }
   },
+  "developmentPage": {
+    "badge": "Web Development",
+    "titleLine1": "Moderne websites",
+    "titleLine2": "die presteren",
+    "subtitle": "Gebouwd met React, Next.js en TypeScript voor razendsnelle performance. Geen trage WordPress sites, maar modern maatwerk dat schaalt.",
+    "primaryButton": "Bespreek je project",
+    "secondaryButton": "Bekijk projecten",
+    "techStack": {
+      "title": "Onze Tech Stack",
+      "subtitle": "Bewezen technologieën voor betrouwbare, snelle websites",
+      "nextjs": { "name": "Next.js", "description": "React framework voor razendsnelle websites", "category": "Framework" },
+      "react": { "name": "React", "description": "Componentgebaseerde UI development", "category": "Library" },
+      "typescript": { "name": "TypeScript", "description": "Type-safe code voor minder bugs", "category": "Language" },
+      "tailwind": { "name": "Tailwind CSS", "description": "Utility-first styling voor snelle iteratie", "category": "Styling" },
+      "headlessCms": { "name": "Headless CMS", "description": "Contentbeheer zonder technische kennis", "category": "CMS" },
+      "apiIntegrations": { "name": "API Integraties", "description": "Koppeling met externe systemen", "category": "Backend" }
+    },
+    "features": {
+      "title": "Wat je krijgt",
+      "subtitle": "Meer dan alleen code - een complete technische oplossing",
+      "performance": { "title": "Razendsnelle Performance", "description": "Static Site Generation en Edge caching voor laadtijden onder de seconde. Geen trage WordPress sites meer." },
+      "security": { "title": "Ingebouwde Security", "description": "Geen database queries = geen SQL injection. Moderne architectuur met minimale aanvalsvectoren." },
+      "integrations": { "title": "Flexibele Integraties", "description": "Koppel met elk systeem via APIs: CRM, boekhoudpakket, voorraadsysteem, betaalproviders en meer." },
+      "seo": { "title": "SEO Optimalisatie", "description": "Server-side rendering voor perfecte indexatie. Gestructureerde data en meta tags out-of-the-box." },
+      "versionControl": { "title": "Versiebeheer", "description": "Alle code in Git met volledige historie. Makkelijk terugdraaien en transparant samenwerken." },
+      "cleanCode": { "title": "Clean Code", "description": "Leesbare, onderhoudbare code volgens moderne standaarden. Geen spaghetti of technische schuld." }
+    },
+    "comparison": {
+      "title": "Modern vs. Traditioneel",
+      "subtitle": "Waarom we kiezen voor moderne technologie",
+      "traditional": "Traditioneel",
+      "modern": "Moderne Aanpak",
+      "items": [
+        { "traditional": "WordPress met 30+ plugins", "modern": "Custom code, alleen wat je nodig hebt" },
+        { "traditional": "Laadtijd 3-5 seconden", "modern": "Laadtijd onder 1 seconde" },
+        { "traditional": "Constante plugin updates nodig", "modern": "Stabiele, veilige codebase" },
+        { "traditional": "Beperkte schaalbaarheid", "modern": "Onbeperkt schaalbaar via CDN" },
+        { "traditional": "Database-afhankelijk", "modern": "Serverless architectuur" }
+      ]
+    },
+    "cta": {
+      "title": "Klaar voor een website die echt presteert?",
+      "subtitle": "Laten we bespreken hoe moderne technologie jouw online aanwezigheid kan transformeren.",
+      "primaryButton": "Plan een gesprek",
+      "secondaryButton": "Alle diensten"
+    }
+  },
+  "designPage": {
+    "badge": "Webdesign",
+    "titleLine1": "Design dat",
+    "titleLine2": "converteert",
+    "subtitle": "Op maat gemaakte UI/UX design die jouw merkidentiteit vastlegt en bezoekers omzet in klanten. Geen templates, maar uniek design dat past bij jouw visie.",
+    "primaryButton": "Start jouw project",
+    "secondaryButton": "Bekijk ons werk",
+    "services": {
+      "title": "Onze Design Diensten",
+      "subtitle": "Van eerste concept tot pixel-perfect uitwerking",
+      "customWebdesign": {
+        "title": "Custom Webdesign",
+        "description": "Geen templates, maar op maat gemaakte designs die perfect aansluiten bij jouw merk en doelgroep."
+      },
+      "responsiveDesign": {
+        "title": "Responsive Design",
+        "description": "Jouw website ziet er perfect uit op elk apparaat - van smartphone tot desktop."
+      },
+      "uiUxOptimization": {
+        "title": "UI/UX Optimalisatie",
+        "description": "Intuïtieve interfaces die bezoekers moeiteloos door jouw website leiden."
+      },
+      "visualHierarchy": {
+        "title": "Visuele Hiërarchie",
+        "description": "Strategische plaatsing van elementen om de aandacht te sturen naar wat belangrijk is."
+      },
+      "designSystems": {
+        "title": "Design Systems",
+        "description": "Consistente componenten en patronen voor een herkenbare look across alle pagina's."
+      },
+      "microInteractions": {
+        "title": "Micro-interacties",
+        "description": "Subtiele animaties en hover-effecten die jouw website tot leven brengen."
+      }
+    },
+    "process": {
+      "title": "Ons Design Proces",
+      "subtitle": "Van idee tot pixel-perfect design in vier stappen",
+      "step1": {
+        "title": "Briefing & Research",
+        "description": "We duiken in jouw merk, doelgroep en concurrentie om een solide fundament te leggen."
+      },
+      "step2": {
+        "title": "Concept & Wireframes",
+        "description": "Schematische schetsen van de structuur en user flow voordat we aan het visuele design beginnen."
+      },
+      "step3": {
+        "title": "Visueel Design",
+        "description": "Het concept wordt uitgewerkt tot een volledig design met kleuren, typografie en beeldmateriaal."
+      },
+      "step4": {
+        "title": "Feedback & Iteratie",
+        "description": "Samen verfijnen we het design tot het perfect aansluit bij jouw verwachtingen."
+      }
+    },
+    "benefits": {
+      "title": "Waarom kiezen voor",
+      "titleHighlight": "custom design?",
+      "subtitle": "Een template kan snel en goedkoop zijn, maar het vertelt niet jouw verhaal. Custom design zorgt ervoor dat elke pixel werkt voor jouw doelen en merk.",
+      "items": [
+        "Unieke uitstraling die je onderscheidt van concurrenten",
+        "Hogere conversieratio's door doordachte UX",
+        "Consistente merkbeleving op alle touchpoints",
+        "Toekomstbestendig design dat meegroeit met je bedrijf",
+        "Snellere laadtijden door geoptimaliseerde assets",
+        "Toegankelijk design voor alle gebruikers"
+      ],
+      "card": {
+        "title": "Design & Development",
+        "description": "Bij Robuust combineren we design en development onder één dak. Dit betekent dat jouw design niet alleen mooi is, maar ook technisch haalbaar en optimaal geïmplementeerd wordt.",
+        "feature1": "Directe communicatie tussen designers en developers",
+        "feature2": "Design dat rekening houdt met technische mogelijkheden",
+        "feature3": "Snellere doorlooptijd van concept tot livegang",
+        "button": "Meer over development →"
+      }
+    },
+    "cta": {
+      "title": "Klaar om jouw merk tot leven te brengen?",
+      "subtitle": "Laten we samen een design creëren dat niet alleen mooi is, maar ook converteert.",
+      "primaryButton": "Plan een gesprek",
+      "secondaryButton": "Alle diensten"
+    }
+  },
+  "hostingPage": {
+    "badge": "Managed Hosting",
+    "titleLine1": "Enterprise-grade",
+    "titleLine2": "infrastructuur",
+    "subtitle": "Dedicated servers met NGINX en Cloudflare op Europese datacenters. Geen shared hosting, maar infrastructuur die meegroeit met je ambities.",
+    "primaryButton": "Hosting aanvragen",
+    "secondaryButton": "Onderhoud & SLA",
+    "specs": {
+      "uptimeGuarantee": {
+        "label": "Uptime Garantie",
+        "value": "99.9%"
+      },
+      "sslCertificate": {
+        "label": "SSL Certificaat",
+        "value": "Inclusief"
+      },
+      "cdnLocations": {
+        "label": "CDN Locaties",
+        "value": "200+"
+      },
+      "backupFrequency": {
+        "label": "Backup Frequentie",
+        "value": "Dagelijks"
+      },
+      "ddosProtection": {
+        "label": "DDoS Protectie",
+        "value": "Inbegrepen"
+      },
+      "support": {
+        "label": "Support",
+        "value": "24/7 Monitoring"
+      }
+    },
+    "features": {
+      "title": "Alles inbegrepen",
+      "subtitle": "Professionele hosting zonder gedoe",
+      "dedicatedServers": {
+        "title": "Dedicated Servers",
+        "description": "Geen shared hosting waar je resources deelt met honderden anderen. Jouw website draait op dedicated infrastructuur."
+      },
+      "enterpriseSecurity": {
+        "title": "Enterprise Security",
+        "description": "Cloudflare DDoS-protectie, WAF firewall, en automatische SSL-certificaten voor maximale beveiliging."
+      },
+      "edgeCaching": {
+        "title": "Edge Caching",
+        "description": "Content wordt geserveerd vanaf 200+ locaties wereldwijd via Cloudflare CDN voor minimale latency."
+      },
+      "europeanServers": {
+        "title": "Europese Servers",
+        "description": "Datacenters in Europa voor GDPR-compliance en optimale snelheid voor Nederlandse bezoekers."
+      },
+      "dailyBackups": {
+        "title": "Dagelijkse Backups",
+        "description": "Automatische backups met retentie tot 30 dagen. Herstel naar elk gewenst moment."
+      },
+      "uptime": {
+        "title": "99.9% Uptime",
+        "description": "Gegarandeerde beschikbaarheid met proactieve monitoring en automatisch failover."
+      }
+    },
+    "stack": {
+      "title": "Onze",
+      "titleHighlight": "hosting stack",
+      "subtitle": "Een bewezen combinatie van technologieën die samen zorgen voor maximale snelheid, veiligheid en betrouwbaarheid.",
+      "benefits": [
+        "Cloudflare voor wereldwijde content delivery en DDoS-protectie",
+        "NGINX als high-performance webserver en load balancer",
+        "Automated deployments via Git voor zero-downtime updates"
+      ],
+      "cloudflare": {
+        "name": "Cloudflare",
+        "description": "CDN, DDoS-protectie, WAF"
+      },
+      "nginx": {
+        "name": "NGINX",
+        "description": "Load balancing, reverse proxy"
+      },
+      "application": {
+        "name": "Application",
+        "description": "Next.js, Node.js runtime"
+      },
+      "storage": {
+        "name": "Storage",
+        "description": "SSD storage, externe backups"
+      }
+    },
+    "cta": {
+      "title": "Hosting zonder zorgen",
+      "subtitle": "Combineer onze hosting met een onderhoudspakket voor complete ontzorging. Wij regelen alles, jij focust op je business.",
+      "primaryButton": "Vraag een offerte aan",
+      "secondaryButton": "Bekijk SLA pakketten"
+    }
+  },
+  "trackingPage": {
+    "badge": "Tracking & Analytics",
+    "titleLine1": "Data die je",
+    "titleLine2": "kunt vertrouwen",
+    "subtitle": "Geavanceerde analytics met GA4, Meta Pixel en first-party tracking via Taggrs. Meet wat telt, ondanks ad blockers en privacy restricties.",
+    "primaryButton": "Tracking audit aanvragen",
+    "secondaryButton": "Online Marketing",
+    "problem": {
+      "badge": "Het tracking probleem",
+      "title": "Standaard tracking mist tot 50% van je data",
+      "subtitle": "Privacy updates, ad blockers en cookie restricties maken traditionele tracking steeds onbetrouwbaarder",
+      "ourSolution": "Onze oplossing:",
+      "issues": {
+        "ios": {
+          "issue": "iOS 14+ beperkingen",
+          "impact": "30-50% data verlies",
+          "solution": "Server-side tracking omzeilt deze limitaties"
+        },
+        "adBlockers": {
+          "issue": "Ad blockers",
+          "impact": "25-40% gemiste bezoekers",
+          "solution": "First-party data via eigen domein"
+        },
+        "cookieConsent": {
+          "issue": "Cookie consent",
+          "impact": "Incomplete conversiedata",
+          "solution": "Consent mode met modellering"
+        },
+        "crossDevice": {
+          "issue": "Cross-device tracking",
+          "impact": "Onvolledige klantreis",
+          "solution": "User-ID tracking en Google Signals"
+        }
+      }
+    },
+    "services": {
+      "title": "Onze Tracking Diensten",
+      "subtitle": "Complete analytics setup voor betrouwbare inzichten",
+      "ga4Setup": {
+        "title": "GA4 Setup & Configuratie",
+        "description": "Volledige Google Analytics 4 implementatie met custom events, conversies en doelgroepen."
+      },
+      "metaPixel": {
+        "title": "Meta Pixel",
+        "description": "Facebook en Instagram pixel installatie voor advertentie tracking en remarketing doelgroepen."
+      },
+      "serverSide": {
+        "title": "Server-Side Tracking",
+        "description": "First-party tracking via Taggrs voor nauwkeurige data ondanks ad blockers en iOS beperkingen."
+      },
+      "conversionTracking": {
+        "title": "Conversie Tracking",
+        "description": "Meet wat echt telt: offerteaanvragen, aankopen, telefoongesprekken en formulierinzendingen."
+      },
+      "ecommerceTracking": {
+        "title": "E-commerce Tracking",
+        "description": "Complete productprestaties: views, add-to-carts, checkout stappen en transacties."
+      },
+      "gdprSetup": {
+        "title": "GDPR-Compliant Setup",
+        "description": "Cookiebanner integratie met consent mode voor privacy-vriendelijke tracking."
+      }
+    },
+    "benefits": {
+      "title": "Waarom",
+      "titleHighlight": "professionele tracking?",
+      "subtitle": "Goede data is de basis van elke succesvolle marketingstrategie. Zonder betrouwbare tracking vlieg je blind.",
+      "items": [
+        "Nauwkeurige data voor betere beslissingen",
+        "Hogere ROI op advertentie-uitgaven",
+        "Inzicht in de complete klantreis",
+        "Privacy-compliant volgens AVG/GDPR",
+        "Betere remarketing doelgroepen",
+        "Data-gedreven optimalisatie"
+      ],
+      "card": {
+        "title": "Server-Side Tracking met Taggrs",
+        "description": "Taggrs is onze partner voor server-side tracking. Door data via jouw eigen server te versturen in plaats van de browser, omzeil je de beperkingen van ad blockers en privacy updates.",
+        "feature1": "First-party cookies via jouw domein",
+        "feature2": "Niet geblokkeerd door ad blockers",
+        "feature3": "Volledige controle over je data",
+        "button": "Meer weten over Taggrs →"
+      }
+    },
+    "cta": {
+      "title": "Klaar voor betrouwbare data?",
+      "subtitle": "Laat ons je huidige tracking setup auditen en ontdek waar je data mist.",
+      "primaryButton": "Gratis tracking audit",
+      "secondaryButton": "Alle diensten"
+    }
+  },
   "glossaryPage": {
     "backToKennisbank": "Terug naar kennisbank",
     "title": "Glossary",
