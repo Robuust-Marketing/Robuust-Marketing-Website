@@ -1,83 +1,99 @@
 import { MetadataRoute } from "next";
+import { locales, defaultLocale } from "@/i18n/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://robuust.marketing";
+  const baseUrl = "https://robuustmarketing.nl";
 
-  // Hoofdpagina's
-  const mainPages = [
-    { url: "", priority: 1.0, changeFrequency: "weekly" as const },
-    { url: "/contact", priority: 0.9, changeFrequency: "monthly" as const },
-    { url: "/offerte", priority: 0.9, changeFrequency: "monthly" as const },
-    { url: "/tarieven", priority: 0.8, changeFrequency: "monthly" as const },
+  // Page definitions with priorities and change frequencies
+  const pages = [
+    // Main pages
+    { path: "", priority: 1.0, changeFrequency: "weekly" as const },
+    { path: "/contact", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/offerte", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/tarieven", priority: 0.8, changeFrequency: "monthly" as const },
+
+    // Services
+    { path: "/diensten", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/diensten/onderhoud", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/design", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/development", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/hosting", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/seo", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/online-marketing", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/email-marketing", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/branding", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/tracking", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/diensten/crm", priority: 0.8, changeFrequency: "monthly" as const },
+
+    // Process & Tools
+    { path: "/werkwijze", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/tooling", priority: 0.7, changeFrequency: "monthly" as const },
+
+    // Company
+    { path: "/over", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/portfolio", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/referenties", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/partners", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/vacatures", priority: 0.7, changeFrequency: "weekly" as const },
+
+    // Knowledge Base & Blog
+    { path: "/blog", priority: 0.8, changeFrequency: "daily" as const },
+    { path: "/kennisbank", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/kennisbank/glossary", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/faq", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/support", priority: 0.7, changeFrequency: "monthly" as const },
+
+    // SEO Landing Pages
+    { path: "/website-laten-maken", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-zwijndrecht", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-dordrecht", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-ridderkerk", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-barendrecht", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-rotterdam-zuid", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-papendrecht", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-sliedrecht", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-hendrik-ido-ambacht", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/website-laten-maken-alblasserdam", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/video-laten-maken", priority: 0.8, changeFrequency: "monthly" as const },
+
+    // Legal
+    { path: "/privacy", priority: 0.4, changeFrequency: "yearly" as const },
+    { path: "/avg", priority: 0.4, changeFrequency: "yearly" as const },
+    { path: "/voorwaarden", priority: 0.4, changeFrequency: "yearly" as const },
   ];
 
-  // Diensten
-  const servicePages = [
-    { url: "/diensten", priority: 0.9, changeFrequency: "monthly" as const },
-    { url: "/diensten/onderhoud", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/design", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/development", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/hosting", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/seo", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/online-marketing", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/email-marketing", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/branding", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/tracking", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/diensten/crm", priority: 0.8, changeFrequency: "monthly" as const },
-  ];
+  // Generate sitemap entries for all pages in all locales
+  const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  // Werkwijze & Tooling
-  const processPages = [
-    { url: "/werkwijze", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/tooling", priority: 0.7, changeFrequency: "monthly" as const },
-  ];
+  for (const page of pages) {
+    for (const locale of locales) {
+      // Build the URL based on locale
+      const url = locale === defaultLocale
+        ? `${baseUrl}${page.path}`
+        : `${baseUrl}/${locale}${page.path}`;
 
-  // Over Robuust
-  const companyPages = [
-    { url: "/over", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/portfolio", priority: 0.8, changeFrequency: "weekly" as const },
-    { url: "/referenties", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/partners", priority: 0.7, changeFrequency: "monthly" as const },
-    { url: "/vacatures", priority: 0.7, changeFrequency: "weekly" as const },
-  ];
+      // Build alternate language links
+      const alternates: Record<string, string> = {};
+      for (const altLocale of locales) {
+        const altUrl = altLocale === defaultLocale
+          ? `${baseUrl}${page.path}`
+          : `${baseUrl}/${altLocale}${page.path}`;
+        alternates[altLocale] = altUrl;
+      }
+      // Add x-default pointing to default locale
+      alternates["x-default"] = `${baseUrl}${page.path}`;
 
-  // Kennisbank & Blog
-  const contentPages = [
-    { url: "/blog", priority: 0.8, changeFrequency: "daily" as const },
-    { url: "/kennisbank", priority: 0.8, changeFrequency: "weekly" as const },
-    { url: "/kennisbank/glossary", priority: 0.6, changeFrequency: "monthly" as const },
-    { url: "/faq", priority: 0.7, changeFrequency: "monthly" as const },
-    { url: "/support", priority: 0.7, changeFrequency: "monthly" as const },
-  ];
+      sitemapEntries.push({
+        url,
+        lastModified: new Date(),
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+        alternates: {
+          languages: alternates,
+        },
+      });
+    }
+  }
 
-  // SEO Landingspagina's
-  const landingPages = [
-    { url: "/website-laten-maken", priority: 0.9, changeFrequency: "monthly" as const },
-    { url: "/website-laten-maken-zwijndrecht", priority: 0.8, changeFrequency: "monthly" as const },
-    { url: "/video-laten-maken", priority: 0.8, changeFrequency: "monthly" as const },
-  ];
-
-  // Juridische pagina's
-  const legalPages = [
-    { url: "/privacy", priority: 0.4, changeFrequency: "yearly" as const },
-    { url: "/avg", priority: 0.4, changeFrequency: "yearly" as const },
-    { url: "/voorwaarden", priority: 0.4, changeFrequency: "yearly" as const },
-  ];
-
-  const allPages = [
-    ...mainPages,
-    ...servicePages,
-    ...processPages,
-    ...companyPages,
-    ...contentPages,
-    ...landingPages,
-    ...legalPages,
-  ];
-
-  return allPages.map((page) => ({
-    url: `${baseUrl}${page.url}`,
-    lastModified: new Date(),
-    changeFrequency: page.changeFrequency,
-    priority: page.priority,
-  }));
+  return sitemapEntries;
 }

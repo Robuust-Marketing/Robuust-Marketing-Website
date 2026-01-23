@@ -1,3 +1,5 @@
+import { type Locale, defaultLocale } from "@/i18n/config";
+
 export interface PortfolioItem {
   id: string;
   slug: string;
@@ -21,7 +23,7 @@ export interface PortfolioItem {
   services: string[];
 }
 
-export const portfolioItems: PortfolioItem[] = [
+const portfolioItemsNL: PortfolioItem[] = [
   {
     id: "growteq",
     slug: "growteq",
@@ -213,7 +215,212 @@ export const portfolioItems: PortfolioItem[] = [
   },
 ];
 
-export const categories = [
+const portfolioItemsEN: PortfolioItem[] = [
+  {
+    id: "growteq",
+    slug: "growteq",
+    name: "Growteq",
+    category: "B2B Corporate",
+    industry: "Business Intelligence & Consultancy",
+    shortDescription:
+      "Corporate website for a fast-growing BI & Salesforce consultancy company.",
+    description:
+      "Growteq is a consultancy and development company that provides organizations with insight and overview of their processes and performance. With 57 experts and partners like Microsoft, Salesforce and Qlik, they needed a website that radiates their expertise and professionalism.",
+    image: "/portfolio/growteq.jpg",
+    tags: ["WordPress", "Custom Design", "SEO"],
+    url: "https://growteq.nl",
+    featured: true,
+    year: 2024,
+    projectType: "redesign",
+    challenge:
+      "Growteq was growing rapidly and their old website no longer matched their position as a serious player in the BI market. They needed a professional appearance that fits clients like major retailers and energy companies.",
+    solution:
+      "We developed a completely new WordPress website with a sleek, business design. Focus on case studies, team profiles and a clear positioning of their three core areas: Business Intelligence, Salesforce and Custom Development.",
+    results: [
+      { metric: "Professional appearance", description: "Fits ISO 27001 certified company" },
+      { metric: "Better lead generation", description: "Clear call-to-actions per service" },
+      { metric: "SEO optimized", description: "Better findability on relevant search terms" },
+    ],
+    services: ["design", "development", "seo", "hosting"],
+  },
+  {
+    id: "den-hartog",
+    slug: "den-hartog",
+    name: "Den Hartog Energies",
+    category: "Corporate",
+    industry: "Energy & Fuels",
+    shortDescription:
+      "Modern website for an established Mobil distributor with 75+ years of experience.",
+    description:
+      "Den Hartog Energies has been a leading name in fuels and lubricants for over 75 years as an official Mobil distributor in the Netherlands. Their motto 'Energy for Progress' needed to be reflected in a modern, reliable website.",
+    image: "/portfolio/den-hartog.jpg",
+    tags: ["WordPress", "Corporate Design", "SEO"],
+    url: "https://denhartogbv.com",
+    featured: true,
+    year: 2024,
+    projectType: "redesign",
+    challenge:
+      "As a traditional energy company, Den Hartog had an outdated website that no longer matched their position as an innovative partner in the energy transition. They wanted a modern appearance that communicates both their history and their vision for the future.",
+    solution:
+      "We developed a sleek corporate website with an emphasis on reliability and expertise. The new site combines the company's rich past with a modern, forward-looking appearance.",
+    results: [
+      { metric: "Modern appearance", description: "Fits 'Energy for Progress' positioning" },
+      { metric: "Improved findability", description: "Technical SEO optimization" },
+      { metric: "Faster load time", description: "Optimized performance" },
+    ],
+    services: ["design", "development", "seo", "hosting"],
+  },
+  {
+    id: "villary",
+    slug: "villary",
+    name: "Villary Buitenleven",
+    category: "Portfolio",
+    industry: "Construction & Garden Design",
+    shortDescription:
+      "Stylish portfolio website for a premium builder of custom outdoor living spaces.",
+    description:
+      "Villary Buitenleven specializes in designing and building custom garden houses, canopies and garden rooms. Their craftsmanship and attention to detail had to be central to the new website.",
+    image: "/portfolio/villary.jpg",
+    tags: ["WordPress", "Portfolio", "Custom Design"],
+    url: "https://villary.nl",
+    featured: true,
+    year: 2024,
+    projectType: "new",
+    challenge:
+      "Villary wanted to strengthen their premium positioning with a website that showcases the quality of their work. Potential customers needed to be immediately impressed by the craftsmanship.",
+    solution:
+      "We created a visually rich portfolio website where project photos take center stage. The design exudes calm and quality, exactly like the outdoor spaces Villary builds. Simple navigation guides visitors through the offerings.",
+    results: [
+      { metric: "Visual impact", description: "Portfolio showcasing craftsmanship" },
+      { metric: "More inquiries", description: "Clear contact options" },
+      { metric: "Premium appearance", description: "Matches the target audience" },
+    ],
+    services: ["design", "development", "hosting"],
+  },
+  {
+    id: "idrw",
+    slug: "idrw",
+    name: "In Den RustWat",
+    category: "Hospitality",
+    industry: "Gastronomy",
+    shortDescription:
+      "Atmospheric website for a gastronomic restaurant in a historic building from 1597.",
+    description:
+      "IDRW (In Den RustWat) is a gastronomic restaurant in Rotterdam, housed in a monumental building from 1597 with original Delft blue tiles. The website needed to radiate the unique atmosphere and culinary excellence.",
+    image: "/portfolio/idrw.jpg",
+    tags: ["WordPress", "Hospitality", "Reservations"],
+    url: "https://idrw.nl",
+    featured: true,
+    year: 2024,
+    projectType: "redesign",
+    challenge:
+      "The restaurant needed a website that communicates the historic ambiance and gastronomic quality. Additionally, the reservation system had to be seamlessly integrated.",
+    solution:
+      "We developed an atmospheric website that combines the warmth of the historic building with modern functionality. Large images of the interior and dishes, combined with an integrated reservation system.",
+    results: [
+      { metric: "Atmospheric presentation", description: "Historic ambiance comes to life" },
+      { metric: "Online reservations", description: "Integrated booking system" },
+      { metric: "Events", description: "Separate section for private dining" },
+    ],
+    services: ["design", "development", "hosting"],
+  },
+  {
+    id: "bnb-kinderdijk",
+    slug: "bnb-kinderdijk",
+    name: "BnB Kinderdijk",
+    category: "Hospitality",
+    industry: "Tourism",
+    shortDescription:
+      "Charming website for a Bed & Breakfast near the iconic windmills of Kinderdijk.",
+    description:
+      "BnB Kinderdijk offers guests a unique overnight experience near the world-famous windmills of Kinderdijk, UNESCO World Heritage Site. The website needed to radiate the tranquility and beauty of this location.",
+    image: "/portfolio/bnb-kinderdijk.jpg",
+    tags: ["WordPress", "Hospitality", "Bookings"],
+    url: "https://bnbkinderdijk.nl",
+    featured: false,
+    year: 2024,
+    projectType: "new",
+    challenge:
+      "As a small-scale B&B in a top tourist location, a professional online presence was essential. The website needed to emphasize the unique location and encourage direct bookings alongside Airbnb.",
+    solution:
+      "We built a warm, inviting website with beautiful photography of the location and windmills. The focus is on the unique experience and the convenience of booking directly.",
+    results: [
+      { metric: "Direct bookings", description: "Less dependent on Airbnb" },
+      { metric: "Local SEO", description: "Findable for tourists" },
+      { metric: "Authentic appearance", description: "Matches the location" },
+    ],
+    services: ["design", "development", "seo", "hosting"],
+  },
+  {
+    id: "voltra-charging",
+    slug: "voltra-charging",
+    name: "Voltra Charging",
+    category: "B2B Tech",
+    industry: "E-mobility",
+    shortDescription:
+      "Modern website for an innovative supplier of ultra-fast charging infrastructure.",
+    description:
+      "Voltra is a supplier of ultra-fast DC charging stations for electric vehicles. With charging points up to 240kW, they target businesses that want to charge electrically without worry.",
+    image: "/portfolio/voltra-charging.jpg",
+    tags: ["WordPress", "B2B", "Product Showcase"],
+    url: "https://voltracharging.com",
+    featured: true,
+    year: 2024,
+    projectType: "new",
+    challenge:
+      "Voltra wanted to position themselves as an innovative, reliable partner in the growing market for charging infrastructure. The website needed to communicate their technical expertise and customer-focused approach.",
+    solution:
+      "We developed a sleek, modern website that emphasizes Voltra's three core values: efficient, simple and ready for the future. Product information is clearly presented for B2B decision-makers.",
+    results: [
+      { metric: "Professional positioning", description: "Reliable partner appearance" },
+      { metric: "Lead generation", description: "Clear product and contact pages" },
+      { metric: "International focus", description: "NL and DE market" },
+    ],
+    services: ["design", "development", "hosting"],
+  },
+  {
+    id: "woonstudio-joy",
+    slug: "woonstudio-joy",
+    name: "Woonstudio Joy",
+    category: "Retail",
+    industry: "Kitchen Specialist",
+    shortDescription:
+      "Stylish showroom website for a kitchen specialist with an eye for detail.",
+    description:
+      "Woonstudio Joy is a kitchen specialist in Ridderkerk that distinguishes itself through custom work and personal attention. Their slogan 'With attention to details' needed to be reflected in every aspect of the website.",
+    image: "/portfolio/woonstudio-joy.jpg",
+    tags: ["WordPress", "Showroom", "Local SEO"],
+    url: "https://woonstudiojoy.nl",
+    featured: false,
+    year: 2024,
+    projectType: "redesign",
+    challenge:
+      "As a local kitchen specialist, Woonstudio Joy competes with large chains. They needed a website that emphasizes their personal approach and quality.",
+    solution:
+      "We created a visually attractive website with plenty of room for kitchen photography. The focus is on the showroom experience and the personal approach that sets Woonstudio Joy apart.",
+    results: [
+      { metric: "Local findability", description: "SEO for Ridderkerk and surroundings" },
+      { metric: "Showroom visits", description: "Clear route and contact info" },
+      { metric: "Premium appearance", description: "Distinctive from chains" },
+    ],
+    services: ["design", "development", "seo", "hosting"],
+  },
+];
+
+export const portfolioItemsByLocale: Record<Locale, PortfolioItem[]> = {
+  nl: portfolioItemsNL,
+  en: portfolioItemsEN,
+};
+
+// Helper function to get portfolio items by locale
+export function getPortfolioItems(locale: Locale = defaultLocale): PortfolioItem[] {
+  return portfolioItemsByLocale[locale] || portfolioItemsByLocale[defaultLocale];
+}
+
+// Legacy export for backward compatibility
+export const portfolioItems = portfolioItemsNL;
+
+const categoriesNL = [
   "Alle",
   "B2B Corporate",
   "Corporate",
@@ -223,3 +430,26 @@ export const categories = [
   "B2B Tech",
   "Retail",
 ];
+
+const categoriesEN = [
+  "All",
+  "B2B Corporate",
+  "Corporate",
+  "Portfolio",
+  "Hospitality",
+  "Hospitality",
+  "B2B Tech",
+  "Retail",
+];
+
+export const categoriesByLocale: Record<Locale, string[]> = {
+  nl: categoriesNL,
+  en: categoriesEN,
+};
+
+export function getCategories(locale: Locale = defaultLocale): string[] {
+  return categoriesByLocale[locale] || categoriesByLocale[defaultLocale];
+}
+
+// Legacy export for backward compatibility
+export const categories = categoriesNL;

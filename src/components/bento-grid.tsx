@@ -12,6 +12,7 @@ import {
   Headphones,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface BentoCardProps {
   title: string;
@@ -95,65 +96,6 @@ function BentoCard({ title, description, icon, className, index, highlight }: Be
   );
 }
 
-const features = [
-  {
-    title: "Maatwerk Design",
-    description: "Op maat gemaakte UI/UX die uw merkidentiteit vastlegt en bezoekers omzet in klanten. Elk pixel met een doel.",
-    icon: <Palette className="h-6 w-6" />,
-    className: "md:col-span-2 md:row-span-1",
-    highlight: true,
-  },
-  {
-    title: "Moderne Development",
-    description: "Gebouwd met React, Next.js en TypeScript voor razendsnelle performance en onderhoudbare code.",
-    icon: <Code2 className="h-6 w-6" />,
-    className: "md:col-span-1 md:row-span-2",
-    highlight: false,
-  },
-  {
-    title: "Beheerde Hosting",
-    description: "Enterprise-grade infrastructuur met NGINX en Cloudflare op dedicated servers in Duitsland & Finland.",
-    icon: <Server className="h-6 w-6" />,
-    className: "md:col-span-1 md:row-span-1",
-    highlight: false,
-  },
-  {
-    title: "Waterdichte Security",
-    description: "OAuth, 1Password integraties, DKIM/DMARC beheer en volledige AVG-compliance. Uw data blijft veilig.",
-    icon: <Shield className="h-6 w-6" />,
-    className: "md:col-span-1 md:row-span-1",
-    highlight: true,
-  },
-  {
-    title: "Slimme Analytics",
-    description: "GA4, Meta Pixel, first-party tracking met Taggrs en bedrijfsherkenning met Snitcher voor complete inzichten.",
-    icon: <BarChart3 className="h-6 w-6" />,
-    className: "md:col-span-1 md:row-span-1",
-    highlight: false,
-  },
-  {
-    title: "Bliksemsnelle Performance",
-    description: "Geoptimaliseerd voor Core Web Vitals met Varnish caching en edge delivery voor laadtijden onder de seconde.",
-    icon: <Zap className="h-6 w-6" />,
-    className: "md:col-span-1 md:row-span-1",
-    highlight: false,
-  },
-  {
-    title: "SEO & Marketing",
-    description: "Full-stack digital marketing inclusief Meta, TikTok en Google Ads deployment via Hello Its Me.",
-    icon: <Globe className="h-6 w-6" />,
-    className: "md:col-span-1 md:row-span-1",
-    highlight: false,
-  },
-  {
-    title: "Support Zonder Gedoe",
-    description: "Persoonlijke support met harde SLA's. We zijn er als u ons nodig heeft. Geen wachttijden, geen excuses.",
-    icon: <Headphones className="h-6 w-6" />,
-    className: "md:col-span-2 md:row-span-1",
-    highlight: true,
-  },
-];
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -166,6 +108,59 @@ const containerVariants = {
 };
 
 export function BentoGrid() {
+  const t = useTranslations("bentoGrid");
+
+  const features = [
+    {
+      key: "design",
+      icon: <Palette className="h-6 w-6" />,
+      className: "md:col-span-2 md:row-span-1",
+      highlight: true,
+    },
+    {
+      key: "development",
+      icon: <Code2 className="h-6 w-6" />,
+      className: "md:col-span-1 md:row-span-2",
+      highlight: false,
+    },
+    {
+      key: "hosting",
+      icon: <Server className="h-6 w-6" />,
+      className: "md:col-span-1 md:row-span-1",
+      highlight: false,
+    },
+    {
+      key: "security",
+      icon: <Shield className="h-6 w-6" />,
+      className: "md:col-span-1 md:row-span-1",
+      highlight: true,
+    },
+    {
+      key: "analytics",
+      icon: <BarChart3 className="h-6 w-6" />,
+      className: "md:col-span-1 md:row-span-1",
+      highlight: false,
+    },
+    {
+      key: "performance",
+      icon: <Zap className="h-6 w-6" />,
+      className: "md:col-span-1 md:row-span-1",
+      highlight: false,
+    },
+    {
+      key: "seo",
+      icon: <Globe className="h-6 w-6" />,
+      className: "md:col-span-1 md:row-span-1",
+      highlight: false,
+    },
+    {
+      key: "support",
+      icon: <Headphones className="h-6 w-6" />,
+      className: "md:col-span-2 md:row-span-1",
+      highlight: true,
+    },
+  ];
+
   return (
     <section id="features" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background gradients */}
@@ -198,7 +193,7 @@ export function BentoGrid() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Wat Wij Leveren
+            {t("badge")}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -207,9 +202,9 @@ export function BentoGrid() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Alles wat u nodig heeft om
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">online te domineren</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -218,8 +213,7 @@ export function BentoGrid() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Van pixel-perfect design tot kogelvrije hosting. Wij regelen elk aspect
-            van uw digitale aanwezigheid.
+            {t("subtitle")}
           </motion.p>
         </div>
 
@@ -233,9 +227,9 @@ export function BentoGrid() {
         >
           {features.map((feature, index) => (
             <BentoCard
-              key={feature.title}
-              title={feature.title}
-              description={feature.description}
+              key={feature.key}
+              title={t(`features.${feature.key}.title`)}
+              description={t(`features.${feature.key}.description`)}
               icon={feature.icon}
               className={feature.className}
               index={index}

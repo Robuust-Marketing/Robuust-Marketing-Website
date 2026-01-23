@@ -198,10 +198,19 @@
     "netherlands": "Netherlands"
   },
   "hero": {
-    "title": "High-end digital infrastructure for growing businesses",
+    "badge": "Dedicated servers in Germany & Finland",
+    "titleLine1": "High-end digital",
+    "titleLine2": "infrastructure for",
+    "titleLine3": "growing businesses",
     "subtitle": "Robuust Marketing delivers bulletproof development, hosting and security SLAs for SMBs.",
     "cta": "View Our Packages",
-    "ctaSecondary": "Our approach"
+    "ctaSecondary": "Our approach",
+    "stats": {
+      "websites": "Websites managed",
+      "uptime": "Uptime guarantee",
+      "experience": "Years experience",
+      "support": "Support"
+    }
   },
   "buttons": {
     "learnMore": "Learn more",
@@ -228,5 +237,45 @@
     "label": "Language",
     "nl": "Nederlands",
     "en": "English"
+  },
+  "bentoGrid": {
+    "badge": "What We Deliver",
+    "titleLine1": "Everything you need to",
+    "titleLine2": "dominate online",
+    "subtitle": "From pixel-perfect design to bulletproof hosting. We handle every aspect of your digital presence.",
+    "features": {
+      "design": {
+        "title": "Custom Design",
+        "description": "Custom UI/UX that captures your brand identity and converts visitors into customers. Every pixel with a purpose."
+      },
+      "development": {
+        "title": "Modern Development",
+        "description": "Built with React, Next.js and TypeScript for lightning-fast performance and maintainable code."
+      },
+      "hosting": {
+        "title": "Managed Hosting",
+        "description": "Enterprise-grade infrastructure with NGINX and Cloudflare on dedicated servers in Germany & Finland."
+      },
+      "security": {
+        "title": "Bulletproof Security",
+        "description": "OAuth, 1Password integrations, DKIM/DMARC management and full GDPR compliance. Your data stays safe."
+      },
+      "analytics": {
+        "title": "Smart Analytics",
+        "description": "GA4, Meta Pixel, first-party tracking with Taggrs and company identification with Snitcher for complete insights."
+      },
+      "performance": {
+        "title": "Lightning-Fast Performance",
+        "description": "Optimized for Core Web Vitals with Varnish caching and edge delivery for sub-second load times."
+      },
+      "seo": {
+        "title": "SEO & Marketing",
+        "description": "Full-stack digital marketing including Meta, TikTok and Google Ads deployment via Hello Its Me."
+      },
+      "support": {
+        "title": "Hassle-Free Support",
+        "description": "Personal support with hard SLAs. We're there when you need us. No waiting times, no excuses."
+      }
+    }
   }
 }

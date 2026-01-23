@@ -1,6 +1,8 @@
 // Centrale prijsconfiguratie voor Robuust Marketing
 // Wijzig prijzen op deze ene plek en ze worden overal automatisch bijgewerkt
 
+import { type Locale, defaultLocale } from "@/i18n/config";
+
 export interface PackagePricing {
   name: string;
   tagline: string;
@@ -306,7 +308,220 @@ export function formatPriceRange(min: number, max: number): string {
   return `${formatPrice(min)} - ${formatPrice(max)}`;
 }
 
-// Export type voor packages compatibiliteit 
+// Export type voor packages compatibiliteit
 export type PackageId = keyof typeof pricing.packages;
 export type HostingTier = keyof typeof pricing.hosting;
 export type ServiceAddOnId = keyof typeof pricing.serviceAddOns;
+
+// Localized labels and descriptions
+export const pricingLabels = {
+  nl: {
+    packages: {
+      "solid-start": {
+        name: "Solid Start",
+        tagline: "Perfect voor starters",
+      },
+      "firm-foundation": {
+        name: "Firm Foundation",
+        tagline: "Voor groeiende bedrijven",
+      },
+    },
+    hosting: {
+      shared: {
+        label: "Shared Hosting",
+        description: "Voor kleine websites en starters",
+        features: [
+          "1 website",
+          "10 GB opslag",
+          "SSL certificaat",
+          "Dagelijkse backups",
+          "Email support",
+          "Cloudflare CDN",
+        ],
+      },
+      premium: {
+        label: "Premium Hosting",
+        description: "Voor professionele websites met meer verkeer",
+        features: [
+          "1 website",
+          "25 GB opslag",
+          "SSL certificaat",
+          "Dagelijkse backups",
+          "Prioriteit support",
+          "Staging omgeving",
+          "Performance monitoring",
+          "Cloudflare CDN + WAF",
+        ],
+      },
+      vps: {
+        label: "Dedicated VPS",
+        description: "Voor high-traffic en complexe omgevingen",
+        features: [
+          "Dedicated resources",
+          "Onbeperkt opslag",
+          "99.9% uptime SLA",
+          "Prioriteit support",
+          "Staging omgeving",
+          "Performance monitoring",
+          "Cloudflare CDN + WAF",
+          "Custom configuratie",
+        ],
+      },
+    },
+    slaFeatureLabels: {
+      preventief: "Preventief onderhoud",
+      monitoring: "Uptime monitoring",
+      backups: "Backups",
+      incidenten: "Incidenten per maand",
+      reactietijd: "Reactietijd",
+      oplostijd: "Oplostijd",
+      meeting: "Review meeting",
+      rapportage: "Rapportage",
+      uptime: "Uptime garantie",
+    },
+    hourlyRates: {
+      development: {
+        label: "Ontwikkeling",
+        description: "Custom development",
+      },
+      design: {
+        label: "Design",
+        description: "UI/UX design werk",
+      },
+      consultancy: {
+        label: "Consultancy",
+        description: "Strategisch advies",
+      },
+    },
+    serviceAddOns: {
+      tracking: "Tracking & Analytics setup",
+      "email-marketing": "Email marketing setup",
+      "online-marketing": "Online marketing (maandelijks)",
+      branding: "Branding & Huisstijl",
+      seo: "SEO optimalisatie",
+      crm: "CRM integratie",
+      maintenance: "Onderhoud (maandelijks)",
+    },
+    budgetRanges: [
+      { id: "4000-7500", label: "€4.000 - €7.500" },
+      { id: "7500-15000", label: "€7.500 - €15.000" },
+      { id: "15000-25000", label: "€15.000 - €25.000" },
+      { id: "25000+", label: "€25.000+" },
+      { id: "unknown", label: "Weet ik nog niet" },
+    ],
+    timelines: [
+      { id: "asap", label: "Zo snel mogelijk" },
+      { id: "1-month", label: "Binnen 1 maand" },
+      { id: "1-3-months", label: "Binnen 1-3 maanden" },
+      { id: "3-months+", label: "Meer dan 3 maanden" },
+      { id: "unknown", label: "Geen deadline" },
+    ],
+  },
+  en: {
+    packages: {
+      "solid-start": {
+        name: "Solid Start",
+        tagline: "Perfect for starters",
+      },
+      "firm-foundation": {
+        name: "Firm Foundation",
+        tagline: "For growing businesses",
+      },
+    },
+    hosting: {
+      shared: {
+        label: "Shared Hosting",
+        description: "For small websites and starters",
+        features: [
+          "1 website",
+          "10 GB storage",
+          "SSL certificate",
+          "Daily backups",
+          "Email support",
+          "Cloudflare CDN",
+        ],
+      },
+      premium: {
+        label: "Premium Hosting",
+        description: "For professional websites with more traffic",
+        features: [
+          "1 website",
+          "25 GB storage",
+          "SSL certificate",
+          "Daily backups",
+          "Priority support",
+          "Staging environment",
+          "Performance monitoring",
+          "Cloudflare CDN + WAF",
+        ],
+      },
+      vps: {
+        label: "Dedicated VPS",
+        description: "For high-traffic and complex environments",
+        features: [
+          "Dedicated resources",
+          "Unlimited storage",
+          "99.9% uptime SLA",
+          "Priority support",
+          "Staging environment",
+          "Performance monitoring",
+          "Cloudflare CDN + WAF",
+          "Custom configuration",
+        ],
+      },
+    },
+    slaFeatureLabels: {
+      preventief: "Preventive maintenance",
+      monitoring: "Uptime monitoring",
+      backups: "Backups",
+      incidenten: "Incidents per month",
+      reactietijd: "Response time",
+      oplostijd: "Resolution time",
+      meeting: "Review meeting",
+      rapportage: "Reporting",
+      uptime: "Uptime guarantee",
+    },
+    hourlyRates: {
+      development: {
+        label: "Development",
+        description: "Custom development",
+      },
+      design: {
+        label: "Design",
+        description: "UI/UX design work",
+      },
+      consultancy: {
+        label: "Consultancy",
+        description: "Strategic advice",
+      },
+    },
+    serviceAddOns: {
+      tracking: "Tracking & Analytics setup",
+      "email-marketing": "Email marketing setup",
+      "online-marketing": "Online marketing (monthly)",
+      branding: "Branding & Visual Identity",
+      seo: "SEO optimization",
+      crm: "CRM integration",
+      maintenance: "Maintenance (monthly)",
+    },
+    budgetRanges: [
+      { id: "4000-7500", label: "€4,000 - €7,500" },
+      { id: "7500-15000", label: "€7,500 - €15,000" },
+      { id: "15000-25000", label: "€15,000 - €25,000" },
+      { id: "25000+", label: "€25,000+" },
+      { id: "unknown", label: "I don't know yet" },
+    ],
+    timelines: [
+      { id: "asap", label: "As soon as possible" },
+      { id: "1-month", label: "Within 1 month" },
+      { id: "1-3-months", label: "Within 1-3 months" },
+      { id: "3-months+", label: "More than 3 months" },
+      { id: "unknown", label: "No deadline" },
+    ],
+  },
+} as const;
+
+// Helper function to get localized pricing labels
+export function getPricingLabels(locale: Locale = defaultLocale) {
+  return pricingLabels[locale] || pricingLabels[defaultLocale];
+}

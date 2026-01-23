@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "@/components/motion";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 function NetworkLines() {
   return (
@@ -79,6 +80,15 @@ function NetworkLines() {
 }
 
 export function Hero() {
+  const t = useTranslations("hero");
+
+  const stats = [
+    { value: "70+", label: t("stats.websites") },
+    { value: "99.9%", label: t("stats.uptime") },
+    { value: "15+", label: t("stats.experience") },
+    { value: "24/7", label: t("stats.support") },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background gradient orbs */}
@@ -139,7 +149,7 @@ export function Hero() {
         >
           <span className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-sm text-white/70">
             <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-            Dedicated servers in Duitsland & Finland
+            {t("badge")}
           </span>
         </motion.div>
 
@@ -150,11 +160,11 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.1]"
         >
-          <span className="text-white">High-end digitale</span>
+          <span className="text-white">{t("titleLine1")}</span>
           <br />
-          <span className="text-white">infrastructuur voor</span>
+          <span className="text-white">{t("titleLine2")}</span>
           <br />
-          <span className="text-gradient-accent">groeiende bedrijven</span>
+          <span className="text-gradient-accent">{t("titleLine3")}</span>
         </motion.h1>
 
         {/* Subheading */}
@@ -164,7 +174,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
         >
-          Robuust Marketing levert waterdichte development, hosting en security SLA&apos;s voor het MKB.
+          {t("subtitle")}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -180,7 +190,7 @@ export function Hero() {
             className="bg-accent hover:bg-accent-hover text-white font-medium px-8 py-6 text-base glow-accent hover:glow-accent transition-all duration-300 group"
           >
             <Link href="#pakketten" className="flex items-center gap-2">
-              Bekijk de Fundamenten
+              {t("cta")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -191,7 +201,7 @@ export function Hero() {
             className="border-accent/50 text-white hover:bg-accent/10 hover:border-accent font-medium px-8 py-6 text-base transition-all duration-300 group"
           >
             <Link href="#aanpak" className="flex items-center gap-2">
-              Onze aanpak
+              {t("ctaSecondary")}
               <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
@@ -204,12 +214,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.9 }}
           className="mt-20 grid grid-cols-2 gap-8 sm:grid-cols-4"
         >
-          {[
-            { value: "70+", label: "Websites beheerd" },
-            { value: "99.9%", label: "Uptime garantie" },
-            { value: "15+", label: "Jaar ervaring" },
-            { value: "24/7", label: "Support" },
-          ].map((stat, index) => (
+          {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}

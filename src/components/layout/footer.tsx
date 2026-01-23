@@ -1,47 +1,63 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, Phone, MapPin, Server, Shield } from "lucide-react";
-
-const services = [
-  { name: "Design", href: "/diensten/design" },
-  { name: "Development", href: "/diensten/development" },
-  { name: "Hosting", href: "/diensten/hosting" },
-  { name: "Onderhoud", href: "/diensten/onderhoud" },
-  { name: "SEO", href: "/diensten/seo" },
-  { name: "Online Marketing", href: "/diensten/online-marketing" },
-];
-
-const packages = [
-  { name: "Solid Start", href: "/tarieven" },
-  { name: "Firm Foundation", href: "/tarieven" },
-];
-
-const company = [
-  { name: "Over Robuust", href: "/over" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Referenties", href: "/referenties" },
-  { name: "Partners", href: "/partners" },
-  { name: "Vacatures", href: "/vacatures" },
-  { name: "Contact", href: "/contact" },
-];
-
-const resources = [
-  { name: "Blog", href: "/blog" },
-  { name: "Kennisbank", href: "/kennisbank" },
-  { name: "FAQ", href: "/faq" },
-  { name: "Support", href: "/support" },
-  { name: "Tooling", href: "/tooling" },
-  { name: "Tarieven", href: "/tarieven" },
-];
-
-const legal = [
-  { name: "Privacy", href: "/privacy" },
-  { name: "AVG", href: "/avg" },
-  { name: "Voorwaarden", href: "/voorwaarden" },
-  { name: "Sitemap", href: "/sitemap.xml" },
-];
+import { useTranslations, useLocale } from "next-intl";
+import { type Locale } from "@/i18n/config";
 
 export function Footer() {
+  const t = useTranslations("footer");
+  const tCompany = useTranslations("company");
+  const tResources = useTranslations("resources");
+  const locale = useLocale() as Locale;
   const currentYear = new Date().getFullYear();
+
+  // Helper to create locale-aware paths
+  const localePath = (path: string) => {
+    if (locale === "en") {
+      return `/en${path}`;
+    }
+    return path;
+  };
+
+  const services = [
+    { name: "Design", href: localePath("/diensten/design") },
+    { name: "Development", href: localePath("/diensten/development") },
+    { name: "Hosting", href: localePath("/diensten/hosting") },
+    { name: locale === "nl" ? "Onderhoud" : "Maintenance", href: localePath("/diensten/onderhoud") },
+    { name: "SEO", href: localePath("/diensten/seo") },
+    { name: "Online Marketing", href: localePath("/diensten/online-marketing") },
+  ];
+
+  const packages = [
+    { name: "Solid Start", href: localePath("/tarieven") },
+    { name: "Firm Foundation", href: localePath("/tarieven") },
+  ];
+
+  const company = [
+    { name: tCompany("about.name"), href: localePath("/over") },
+    { name: tCompany("portfolio.name"), href: localePath("/portfolio") },
+    { name: tCompany("referenties.name"), href: localePath("/referenties") },
+    { name: tCompany("partners.name"), href: localePath("/partners") },
+    { name: tCompany("vacatures.name"), href: localePath("/vacatures") },
+    { name: tCompany("contact.name"), href: localePath("/contact") },
+  ];
+
+  const resources = [
+    { name: tResources("blog.name"), href: localePath("/blog") },
+    { name: tResources("kennisbank.name"), href: localePath("/kennisbank") },
+    { name: tResources("faq.name"), href: localePath("/faq") },
+    { name: tResources("support.name"), href: localePath("/support") },
+    { name: locale === "nl" ? "Tooling" : "Tools", href: localePath("/tooling") },
+    { name: locale === "nl" ? "Tarieven" : "Pricing", href: localePath("/tarieven") },
+  ];
+
+  const legal = [
+    { name: "Privacy", href: localePath("/privacy") },
+    { name: locale === "nl" ? "AVG" : "GDPR", href: localePath("/avg") },
+    { name: locale === "nl" ? "Voorwaarden" : "Terms", href: localePath("/voorwaarden") },
+    { name: "Sitemap", href: "/sitemap.xml" },
+  ];
 
   return (
     <footer className="bg-surface border-t border-white/5">
@@ -51,7 +67,7 @@ export function Footer() {
           {/* Column 1: Services */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Diensten
+              {t("services")}
             </h3>
             <ul className="mt-4 space-y-3">
               {services.map((item) => (
@@ -70,7 +86,7 @@ export function Footer() {
           {/* Column 2: Packages & Company */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Pakketten
+              {t("packages")}
             </h3>
             <ul className="mt-4 space-y-3">
               {packages.map((item) => (
@@ -86,7 +102,7 @@ export function Footer() {
             </ul>
             <div className="mt-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-                Bedrijf
+                {t("company")}
               </h3>
               <ul className="mt-4 space-y-3">
                 {company.map((item) => (
@@ -106,7 +122,7 @@ export function Footer() {
           {/* Column 3: Resources */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Resources
+              {t("resources")}
             </h3>
             <ul className="mt-4 space-y-3">
               {resources.map((item) => (
@@ -125,7 +141,7 @@ export function Footer() {
           {/* Column 4: Contact Info */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Contact
+              {t("contact")}
             </h3>
             <ul className="mt-4 space-y-3">
               <li>
@@ -149,7 +165,7 @@ export function Footer() {
               <li>
                 <div className="flex items-start gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 mt-0.5" />
-                  <span>Nederland</span>
+                  <span>{t("netherlands")}</span>
                 </div>
               </li>
             </ul>
@@ -158,19 +174,19 @@ export function Footer() {
           {/* Column 5: Trust Indicators */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Vertrouwd Door
+              {t("trustedBy")}
             </h3>
             <div className="mt-4 space-y-3">
               <div className="rounded-2xl border border-white/10 bg-background p-4 hover:border-accent/30 transition-colors">
                 <div className="text-3xl font-bold text-accent tabular-nums">70+</div>
                 <div className="mt-1 text-sm text-muted-foreground">
-                  Websites beheerd
+                  {t("websitesManaged")}
                 </div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-background p-4 hover:border-accent/30 transition-colors">
                 <div className="text-3xl font-bold text-accent tabular-nums">99.9%</div>
                 <div className="mt-1 text-sm text-muted-foreground">
-                  Uptime garantie
+                  {t("uptimeGuarantee")}
                 </div>
               </div>
             </div>
@@ -183,14 +199,14 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <Server className="h-5 w-5 text-accent" />
               <span className="text-sm text-white/80">
-                Hosting op dedicated Europese servers (Duitsland/Finland)
+                {t("hostingServers")}
               </span>
             </div>
             <div className="hidden sm:block w-px h-6 bg-white/10" />
             <div className="flex items-center gap-3">
               <Shield className="h-5 w-5 text-accent" />
               <span className="text-sm text-white/80">
-                Volledig AVG-compliant
+                {t("gdprCompliant")}
               </span>
             </div>
           </div>
@@ -205,7 +221,7 @@ export function Footer() {
                 Robuust<span className="text-accent">.</span>
               </span>
               <p className="text-sm text-muted-foreground">
-                © {currentYear} Robuust Marketing. Alle rechten voorbehouden.
+                © {currentYear} Robuust Marketing. {t("allRightsReserved")}.
               </p>
             </div>
 

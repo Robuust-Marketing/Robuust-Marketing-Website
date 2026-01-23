@@ -1,4 +1,5 @@
 import { pricing, formatPrice } from "./pricing";
+import { type Locale, defaultLocale } from "@/i18n/config";
 
 export interface FAQ {
   id: string;
@@ -14,7 +15,7 @@ const firmFoundationPrice = formatPrice(
 );
 const hostingSharedPrice = formatPrice(pricing.hosting.shared.price!);
 
-export const faqs: FAQ[] = [
+const faqsNL: FAQ[] = [
   // Tarieven & Prijzen
   {
     id: "verborgen-kosten",
@@ -157,27 +158,187 @@ export const faqs: FAQ[] = [
   },
 ];
 
+// English FAQs
+const faqsEN: FAQ[] = [
+  // Pricing & Rates
+  {
+    id: "verborgen-kosten",
+    question: "Are there any hidden costs?",
+    answer:
+      "No, all prices are transparent and include VAT. You pay exactly what you see, no surprises afterward.",
+    categories: ["tarieven", "algemeen"],
+  },
+  {
+    id: "upgraden-downgraden",
+    question: "Can I upgrade or downgrade during my contract?",
+    answer:
+      "Yes, you can upgrade to a higher package at any time. Downgrading is possible at the end of your contract period.",
+    categories: ["tarieven", "hosting"],
+  },
+  {
+    id: "maatwerk-offerte",
+    question: "What if my project doesn't fit a standard package?",
+    answer:
+      "We're happy to create a custom quote. Contact us for a no-obligation conversation about your specific needs.",
+    categories: ["tarieven", "algemeen"],
+  },
+  {
+    id: "betalingsregelingen",
+    question: "Do you offer payment plans?",
+    answer:
+      "Yes, for larger projects we can arrange a payment plan. We typically work with 50% upfront and 50% upon delivery.",
+    categories: ["tarieven", "betalingen"],
+  },
+  {
+    id: "betaalmethodes",
+    question: "What payment methods do you accept?",
+    answer:
+      "We accept iDEAL, bank transfer and credit card (via Stripe).",
+    categories: ["betalingen"],
+  },
+  {
+    id: "factuur-bekijken",
+    question: "How can I view my invoice?",
+    answer:
+      "Invoices are sent by email. You can also contact us for a copy.",
+    categories: ["betalingen"],
+  },
+
+  // Website & Costs
+  {
+    id: "wat-kost-website",
+    question: "What does a website at Robuust cost?",
+    answer: `Our website packages start from ${formatPrice(pricing.packages["solid-start"].minPrice)} for a Solid Start package. For larger projects with more features, the Firm Foundation package starts from ${formatPrice(pricing.packages["firm-foundation"].minPrice)}. Contact us for a custom quote.`,
+    categories: ["tarieven", "algemeen"],
+  },
+  {
+    id: "hoe-lang-duurt-project",
+    question: "How long does a project take?",
+    answer:
+      "A standard website is live within 4-6 weeks. More complex projects with custom features can take 8-12 weeks. We always create a realistic timeline that we discuss with you.",
+    categories: ["algemeen", "proces"],
+  },
+  {
+    id: "onderhoud-aanbod",
+    question: "Do you also offer maintenance?",
+    answer: `Yes, we offer various hosting & maintenance packages. From ${formatPrice(pricing.hosting.shared.price!)}/month we take care of hosting, backups, updates and monitoring so you can focus on your business.`,
+    categories: ["hosting", "algemeen"],
+  },
+
+  // Hosting & Technical
+  {
+    id: "website-bewerken",
+    question: "How can I edit my website?",
+    answer:
+      "You can log in to your CMS dashboard via yourdomain.com/admin. If you need help, please contact us.",
+    categories: ["hosting", "technisch"],
+  },
+  {
+    id: "storing-wat-doen",
+    question: "What should I do in case of an outage?",
+    answer:
+      "Contact us immediately via support@robuustmarketing.nl or call us. For critical outages, we respond within 1 hour.",
+    categories: ["hosting", "support"],
+  },
+  {
+    id: "backup-frequentie",
+    question: "How often are backups made?",
+    answer:
+      "We make automatic daily backups of your website. These are kept for 30 days.",
+    categories: ["hosting", "technisch"],
+  },
+  {
+    id: "website-langzaam",
+    question: "My website loads slowly, what can I do?",
+    answer:
+      "First try clearing your cache. If the problem persists, contact us for a performance check.",
+    categories: ["technisch", "support"],
+  },
+  {
+    id: "eigen-domein",
+    question: "Can I use my own domain name?",
+    answer:
+      "Yes, you can use your own domain name or register a new one through us.",
+    categories: ["hosting", "technisch"],
+  },
+
+  // SEO & Marketing
+  {
+    id: "seo-inbegrepen",
+    question: "Is SEO included with a website?",
+    answer:
+      "Basic SEO is included in all our packages: technical optimization, meta tags, and fast load times. For extensive SEO campaigns with content creation and link building, we offer additional services.",
+    categories: ["seo", "algemeen"],
+  },
+  {
+    id: "google-adverteren",
+    question: "Can you also help with Google Ads?",
+    answer:
+      "Yes, through our partner agency Hello Its Me we provide complete online marketing campaigns including Google Ads, Meta Ads and more.",
+    categories: ["marketing"],
+  },
+
+  // Process & Collaboration
+  {
+    id: "wat-nodig-voor-start",
+    question: "What do you need to get started?",
+    answer:
+      "We start with an intake meeting to discuss your wishes and goals. Then we need your logo, brand identity and content (text and images). No content? We can help with that too.",
+    categories: ["proces", "algemeen"],
+  },
+  {
+    id: "revisies",
+    question: "How many revisions are included?",
+    answer:
+      "Our packages include 2 revision rounds. We keep working until you're satisfied - additional revisions are at hourly rate.",
+    categories: ["proces", "tarieven"],
+  },
+  {
+    id: "eigenaarschap-website",
+    question: "Who owns the website after delivery?",
+    answer:
+      "The website is fully yours after delivery. You receive all source files and access to the CMS. Want to switch later? No problem.",
+    categories: ["algemeen", "proces"],
+  },
+];
+
+export const faqsByLocale: Record<Locale, FAQ[]> = {
+  nl: faqsNL,
+  en: faqsEN,
+};
+
+// Helper function to get FAQs by locale
+export function getFAQs(locale: Locale = defaultLocale): FAQ[] {
+  return faqsByLocale[locale] || faqsByLocale[defaultLocale];
+}
+
+// Legacy export for backward compatibility
+export const faqs = faqsNL;
+
 // Helper function to get FAQs by category
-export function getFAQsByCategory(category: string): FAQ[] {
-  return faqs.filter((faq) => faq.categories.includes(category));
+export function getFAQsByCategory(category: string, locale: Locale = defaultLocale): FAQ[] {
+  const localeFaqs = getFAQs(locale);
+  return localeFaqs.filter((faq) => faq.categories.includes(category));
 }
 
 // Helper function to get FAQs by multiple categories
-export function getFAQsByCategories(categories: string[]): FAQ[] {
-  return faqs.filter((faq) =>
+export function getFAQsByCategories(categories: string[], locale: Locale = defaultLocale): FAQ[] {
+  const localeFaqs = getFAQs(locale);
+  return localeFaqs.filter((faq) =>
     faq.categories.some((cat) => categories.includes(cat))
   );
 }
 
 // Get all unique categories
-export function getAllCategories(): string[] {
+export function getAllCategories(locale: Locale = defaultLocale): string[] {
+  const localeFaqs = getFAQs(locale);
   const categories = new Set<string>();
-  faqs.forEach((faq) => faq.categories.forEach((cat) => categories.add(cat)));
+  localeFaqs.forEach((faq) => faq.categories.forEach((cat) => categories.add(cat)));
   return Array.from(categories).sort();
 }
 
 // Category labels for display
-export const categoryLabels: Record<string, string> = {
+export const categoryLabelsNL: Record<string, string> = {
   algemeen: "Algemeen",
   tarieven: "Tarieven & Prijzen",
   betalingen: "Facturen & Betalingen",
@@ -188,3 +349,27 @@ export const categoryLabels: Record<string, string> = {
   seo: "SEO",
   marketing: "Marketing",
 };
+
+export const categoryLabelsEN: Record<string, string> = {
+  algemeen: "General",
+  tarieven: "Pricing & Rates",
+  betalingen: "Invoices & Payments",
+  hosting: "Hosting & Maintenance",
+  technisch: "Technical",
+  support: "Support",
+  proces: "Process & Collaboration",
+  seo: "SEO",
+  marketing: "Marketing",
+};
+
+export const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
+  nl: categoryLabelsNL,
+  en: categoryLabelsEN,
+};
+
+export function getCategoryLabels(locale: Locale = defaultLocale): Record<string, string> {
+  return categoryLabelsByLocale[locale] || categoryLabelsByLocale[defaultLocale];
+}
+
+// Legacy export for backward compatibility
+export const categoryLabels = categoryLabelsNL;

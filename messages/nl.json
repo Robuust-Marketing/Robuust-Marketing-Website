@@ -198,10 +198,19 @@
     "netherlands": "Nederland"
   },
   "hero": {
-    "title": "High-end digitale infrastructuur voor groeiende bedrijven",
+    "badge": "Dedicated servers in Duitsland & Finland",
+    "titleLine1": "High-end digitale",
+    "titleLine2": "infrastructuur voor",
+    "titleLine3": "groeiende bedrijven",
     "subtitle": "Robuust Marketing levert waterdichte development, hosting en security SLA's voor het MKB.",
     "cta": "Bekijk de Fundamenten",
-    "ctaSecondary": "Onze aanpak"
+    "ctaSecondary": "Onze aanpak",
+    "stats": {
+      "websites": "Websites beheerd",
+      "uptime": "Uptime garantie",
+      "experience": "Jaar ervaring",
+      "support": "Support"
+    }
   },
   "buttons": {
     "learnMore": "Meer informatie",
@@ -228,5 +237,45 @@
     "label": "Taal",
     "nl": "Nederlands",
     "en": "English"
+  },
+  "bentoGrid": {
+    "badge": "Wat Wij Leveren",
+    "titleLine1": "Alles wat u nodig heeft om",
+    "titleLine2": "online te domineren",
+    "subtitle": "Van pixel-perfect design tot kogelvrije hosting. Wij regelen elk aspect van uw digitale aanwezigheid.",
+    "features": {
+      "design": {
+        "title": "Maatwerk Design",
+        "description": "Op maat gemaakte UI/UX die uw merkidentiteit vastlegt en bezoekers omzet in klanten. Elk pixel met een doel."
+      },
+      "development": {
+        "title": "Moderne Development",
+        "description": "Gebouwd met React, Next.js en TypeScript voor razendsnelle performance en onderhoudbare code."
+      },
+      "hosting": {
+        "title": "Beheerde Hosting",
+        "description": "Enterprise-grade infrastructuur met NGINX en Cloudflare op dedicated servers in Duitsland & Finland."
+      },
+      "security": {
+        "title": "Waterdichte Security",
+        "description": "OAuth, 1Password integraties, DKIM/DMARC beheer en volledige AVG-compliance. Uw data blijft veilig."
+      },
+      "analytics": {
+        "title": "Slimme Analytics",
+        "description": "GA4, Meta Pixel, first-party tracking met Taggrs en bedrijfsherkenning met Snitcher voor complete inzichten."
+      },
+      "performance": {
+        "title": "Bliksemsnelle Performance",
+        "description": "Geoptimaliseerd voor Core Web Vitals met Varnish caching en edge delivery voor laadtijden onder de seconde."
+      },
+      "seo": {
+        "title": "SEO & Marketing",
+        "description": "Full-stack digital marketing inclusief Meta, TikTok en Google Ads deployment via Hello Its Me."
+      },
+      "support": {
+        "title": "Support Zonder Gedoe",
+        "description": "Persoonlijke support met harde SLA's. We zijn er als u ons nodig heeft. Geen wachttijden, geen excuses."
+      }
+    }
   }
 }

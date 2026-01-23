@@ -1,4 +1,5 @@
 import { pricing } from "./pricing";
+import { type Locale, defaultLocale } from "@/i18n/config";
 
 export interface Package {
   id: string;
@@ -10,7 +11,7 @@ export interface Package {
   popular?: boolean;
 }
 
-export const packages: Package[] = [
+const packagesNL: Package[] = [
   {
     id: "solid-start",
     name: pricing.packages["solid-start"].name,
@@ -44,3 +45,51 @@ export const packages: Package[] = [
     popular: pricing.packages["firm-foundation"].popular,
   },
 ];
+
+const packagesEN: Package[] = [
+  {
+    id: "solid-start",
+    name: pricing.packages["solid-start"].name,
+    tagline: "Perfect for starters",
+    description:
+      "A professional website with everything you need to be visible online.",
+    price: pricing.packages["solid-start"].displayPrice,
+    features: [
+      "Custom design",
+      "Responsive website",
+      "Basic SEO",
+      "Contact form",
+      "1 year hosting included",
+    ],
+    popular: pricing.packages["solid-start"].popular,
+  },
+  {
+    id: "firm-foundation",
+    name: pricing.packages["firm-foundation"].name,
+    tagline: "For growing businesses",
+    description:
+      "A complete digital infrastructure with advanced features and marketing tools.",
+    price: pricing.packages["firm-foundation"].displayPrice,
+    features: [
+      "Everything from Solid Start",
+      "Advanced features",
+      "Marketing integrations",
+      "Analytics dashboard",
+      "Premium support",
+    ],
+    popular: pricing.packages["firm-foundation"].popular,
+  },
+];
+
+export const packagesByLocale: Record<Locale, Package[]> = {
+  nl: packagesNL,
+  en: packagesEN,
+};
+
+// Helper function to get packages by locale
+export function getPackages(locale: Locale = defaultLocale): Package[] {
+  return packagesByLocale[locale] || packagesByLocale[defaultLocale];
+}
+
+// Legacy export for backward compatibility
+export const packages = packagesNL;
