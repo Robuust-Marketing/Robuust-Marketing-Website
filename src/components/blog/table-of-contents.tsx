@@ -11,9 +11,10 @@ export interface Heading {
 
 interface TableOfContentsProps {
   headings: Heading[];
+  onNavigate?: () => void;
 }
 
-export function TableOfContents({ headings }: TableOfContentsProps) {
+export function TableOfContents({ headings, onNavigate }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
@@ -21,10 +22,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the first heading that is intersecting
         const visibleEntries = entries.filter((entry) => entry.isIntersecting);
         if (visibleEntries.length > 0) {
-          // Get the one closest to the top
           const sorted = visibleEntries.sort(
             (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
           );
@@ -37,7 +36,6 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
       }
     );
 
-    // Observe all headings
     headings.forEach((heading) => {
       const element = document.getElementById(heading.id);
       if (element) {
@@ -59,6 +57,13 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
         top: offsetPosition,
         behavior: "smooth",
       });
+
+      // Move focus to heading for accessibility
+      element.setAttribute("tabindex", "-1");
+      element.focus({ preventScroll: true });
+
+      // Call onNavigate callback (for mobile drawer close)
+      onNavigate?.();
     }
   };
 
@@ -67,15 +72,18 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   }
 
   return (
-    <nav className="space-y-1">
-      <p className="text-sm font-medium text-white mb-3">Inhoudsopgave</p>
-      <ul className="space-y-1">
+    <nav aria-label="Inhoudsopgave" className="space-y-1">
+      <p className="text-sm font-medium text-white mb-3" id="toc-heading">
+        Inhoudsopgave
+      </p>
+      <ul role="list" aria-labelledby="toc-heading" className="space-y-1">
         {headings.map((heading) => (
           <li key={heading.id}>
             <button
               onClick={() => scrollToHeading(heading.id)}
+              aria-current={activeId === heading.id ? "location" : undefined}
               className={cn(
-                "w-full text-left text-sm py-1.5 transition-colors hover:text-accent",
+                "w-full text-left text-sm py-1.5 transition-colors hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface rounded",
                 heading.level === 3 && "pl-4",
                 activeId === heading.id
                   ? "text-accent font-medium"

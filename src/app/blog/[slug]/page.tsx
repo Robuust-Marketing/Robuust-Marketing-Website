@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
+import Image from "next/image";
+import { Clock, Tag, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -9,6 +10,9 @@ import {
   TableOfContents,
   ShareButtons,
   AuthorBio,
+  MobileActionBar,
+  ArticleNavigation,
+  Breadcrumbs,
 } from "@/components/blog";
 
 export async function generateStaticParams() {
@@ -44,6 +48,33 @@ function slugify(text: string): string {
     .replace(/\s+/g, "-")
     .replace(/--+/g, "-")
     .trim();
+}
+
+// Parse Dutch date format to ISO date
+function parseDate(dateStr: string): string {
+  const months: Record<string, string> = {
+    januari: "01",
+    februari: "02",
+    maart: "03",
+    april: "04",
+    mei: "05",
+    juni: "06",
+    juli: "07",
+    augustus: "08",
+    september: "09",
+    oktober: "10",
+    november: "11",
+    december: "12",
+  };
+
+  const parts = dateStr.toLowerCase().split(" ");
+  if (parts.length === 3) {
+    const day = parts[0].padStart(2, "0");
+    const month = months[parts[1]] || "01";
+    const year = parts[2];
+    return `${year}-${month}-${day}`;
+  }
+  return dateStr;
 }
 
 const createMdxComponents = () => ({
@@ -133,34 +164,45 @@ export default async function BlogPostPage({
 
   const headings = extractHeadings(post.content);
   const allPosts = getAllBlogPosts();
+  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+
+  // Get previous and next posts
+  const previousPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+
   const relatedPosts = allPosts
     .filter((p) => p.slug !== slug && p.category === post.category)
     .slice(0, 3);
 
   const articleUrl = `https://robuustmarketing.nl/blog/${slug}`;
+  const isoDate = parseDate(post.date);
 
   return (
     <>
+      {/* Skip Link */}
+      <a
+        href="#article-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded"
+      >
+        Ga direct naar artikel
+      </a>
+
       <ReadingProgress />
+      <MobileActionBar title={post.title} url={articleUrl} headings={headings} />
+
       <div className="min-h-screen pt-32 pb-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Back Link */}
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Terug naar blog
-          </Link>
+          {/* Breadcrumbs */}
+          <Breadcrumbs category={post.category} title={post.title} />
 
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             {/* Main Content */}
-            <article className="lg:col-span-8">
+            <article className="lg:col-span-8" id="article-content">
               {/* Header */}
-              <header className="mb-12">
+              <header className="mb-8">
                 <div className="flex items-center gap-4 mb-4">
                   <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
-                    <Tag className="h-3 w-3" />
+                    <Tag className="h-3 w-3" aria-hidden="true" />
                     {post.category}
                   </span>
                 </div>
@@ -172,17 +214,31 @@ export default async function BlogPostPage({
                 <p className="text-xl text-muted-foreground mb-6">{post.excerpt}</p>
 
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
+                  <time dateTime={isoDate} className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" aria-hidden="true" />
                     {post.date}
-                  </span>
+                  </time>
                   <span className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
+                    <Clock className="h-4 w-4" aria-hidden="true" />
                     {post.readTime} leestijd
                   </span>
                   {post.author && <span>Door {post.author}</span>}
                 </div>
               </header>
+
+              {/* Hero Image */}
+              {post.image && (
+                <div className="relative aspect-video w-full mb-8 rounded-xl overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
+                  />
+                </div>
+              )}
 
               {/* Content */}
               <div className="prose prose-invert max-w-none">
@@ -192,6 +248,11 @@ export default async function BlogPostPage({
               {/* Author Bio */}
               <section className="mt-12 pt-8 border-t border-white/10">
                 <AuthorBio author={post.author} />
+              </section>
+
+              {/* Article Navigation */}
+              <section className="mt-12 pt-8 border-t border-white/10">
+                <ArticleNavigation previousPost={previousPost} nextPost={nextPost} />
               </section>
 
               {/* Related Posts */}

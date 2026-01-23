@@ -7,4 +7,7 @@ export { TableOfContents } from "./table-of-contents";
 export { ReadingProgress } from "./reading-progress";
 export { ShareButtons } from "./share-buttons";
 export { AuthorBio } from "./author-bio";
+export { MobileActionBar } from "./mobile-action-bar";
+export { ArticleNavigation } from "./article-navigation";
+export { Breadcrumbs } from "./breadcrumbs";
 export type { Heading } from "./table-of-contents";
