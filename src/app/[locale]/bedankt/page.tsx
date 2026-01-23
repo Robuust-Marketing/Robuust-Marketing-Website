@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
   CheckCircle,
@@ -16,76 +17,34 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const thankYouContent: Record<
-  string,
-  {
-    icon: typeof CheckCircle;
-    title: string;
-    message: string;
-    nextSteps: string[];
-    cta: { label: string; href: string };
-    secondary?: { label: string; href: string };
-  }
-> = {
-  offerte: {
-    icon: FileText,
-    title: "Bedankt voor je offerte aanvraag!",
-    message:
-      "We hebben je aanvraag in goede orde ontvangen. Ons team bekijkt je project en stuurt je binnen 24 uur een gepersonaliseerde offerte.",
-    nextSteps: [
-      "Je ontvangt een bevestigingsmail",
-      "We analyseren je wensen en doelen",
-      "Je krijgt binnen 24 uur een offerte op maat",
-      "Optioneel: we plannen een vrijblijvend gesprek",
-    ],
-    cta: { label: "Bekijk ons werk", href: "/portfolio" },
-    secondary: { label: "Terug naar home", href: "/" },
-  },
-  contact: {
-    icon: MessageSquare,
-    title: "Bedankt voor je bericht!",
-    message:
-      "We hebben je bericht ontvangen en nemen zo snel mogelijk contact met je op. Meestal binnen 24 uur.",
-    nextSteps: [
-      "Je ontvangt een bevestigingsmail",
-      "We lezen je bericht zorgvuldig",
-      "Je hoort binnen 24 uur van ons",
-    ],
-    cta: { label: "Bekijk onze diensten", href: "/diensten" },
-    secondary: { label: "Terug naar home", href: "/" },
-  },
-  sollicitatie: {
-    icon: Briefcase,
-    title: "Bedankt voor je sollicitatie!",
-    message:
-      "Leuk dat je bij ons wilt werken! We hebben je sollicitatie ontvangen en nemen deze zorgvuldig door.",
-    nextSteps: [
-      "Je ontvangt een bevestigingsmail",
-      "We beoordelen je CV en motivatie",
-      "Binnen 5 werkdagen hoor je van ons",
-      "Bij interesse plannen we een kennismakingsgesprek",
-    ],
-    cta: { label: "Meer over Robuust", href: "/over-ons" },
-    secondary: { label: "Terug naar vacatures", href: "/vacatures" },
-  },
-  default: {
-    icon: CheckCircle,
-    title: "Bedankt!",
-    message:
-      "We hebben je aanvraag ontvangen en nemen zo snel mogelijk contact met je op.",
-    nextSteps: [
-      "Je ontvangt een bevestigingsmail",
-      "We nemen binnen 24 uur contact op",
-    ],
-    cta: { label: "Terug naar home", href: "/" },
-  },
+const iconMap = {
+  offerte: FileText,
+  contact: MessageSquare,
+  sollicitatie: Briefcase,
+  default: CheckCircle,
+};
+
+const ctaHrefMap: Record<string, { cta: string; secondary?: string }> = {
+  offerte: { cta: "/portfolio", secondary: "/" },
+  contact: { cta: "/diensten", secondary: "/" },
+  sollicitatie: { cta: "/over", secondary: "/vacatures" },
+  default: { cta: "/" },
 };
 
 function BedanktContent() {
+  const t = useTranslations("bedanktPage");
   const searchParams = useSearchParams();
   const type = searchParams.get("type") || "default";
-  const content = thankYouContent[type] || thankYouContent.default;
-  const Icon = content.icon;
+  const validType = ["offerte", "contact", "sollicitatie", "default"].includes(type) ? type : "default";
+
+  const Icon = iconMap[validType as keyof typeof iconMap];
+  const hrefs = ctaHrefMap[validType as keyof typeof ctaHrefMap];
+
+  const title = t(`${validType}.title`);
+  const message = t(`${validType}.message`);
+  const steps = t.raw(`${validType}.steps`) as string[];
+  const ctaLabel = t(`${validType}.cta`);
+  const secondaryLabel = validType !== "default" ? t(`${validType}.secondary`) : null;
 
   return (
     <div className="min-h-screen pt-32">
@@ -120,7 +79,7 @@ function BedanktContent() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl sm:text-5xl font-bold text-white mb-6"
           >
-            {content.title}
+            {title}
           </motion.h1>
 
           <motion.p
@@ -129,7 +88,7 @@ function BedanktContent() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-muted-foreground text-lg mb-8"
           >
-            {content.message}
+            {message}
           </motion.p>
         </div>
       </section>
@@ -145,10 +104,10 @@ function BedanktContent() {
           >
             <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
               <Clock className="h-5 w-5 text-accent" />
-              Wat gebeurt er nu?
+              {t("nextSteps")}
             </h2>
             <ol className="space-y-4">
-              {content.nextSteps.map((step, index) => (
+              {steps.map((step, index) => (
                 <motion.li
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
@@ -177,7 +136,7 @@ function BedanktContent() {
             className="rounded-2xl bg-accent/5 border border-accent/20 p-6"
           >
             <h3 className="text-lg font-semibold text-white mb-4">
-              Vragen? Neem contact op
+              {t("questions")}
             </h3>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -213,20 +172,20 @@ function BedanktContent() {
               size="lg"
               className="bg-accent hover:bg-accent-hover text-white"
             >
-              <Link href={content.cta.href} className="flex items-center gap-2">
-                {content.cta.label}
+              <Link href={hrefs.cta} className="flex items-center gap-2">
+                {ctaLabel}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            {content.secondary && (
+            {secondaryLabel && hrefs.secondary && (
               <Button
                 asChild
                 size="lg"
                 variant="outline"
                 className="border-white/20 text-white hover:bg-white/5"
               >
-                <Link href={content.secondary.href}>
-                  {content.secondary.label}
+                <Link href={hrefs.secondary}>
+                  {secondaryLabel}
                 </Link>
               </Button>
             )}
@@ -238,11 +197,13 @@ function BedanktContent() {
 }
 
 export default function BedanktPage() {
+  const t = useTranslations("bedanktPage");
+
   return (
     <Suspense
       fallback={
         <div className="min-h-screen pt-32 flex items-center justify-center">
-          <div className="animate-pulse text-white">Laden...</div>
+          <div className="animate-pulse text-white">{t("loading")}</div>
         </div>
       }
     >

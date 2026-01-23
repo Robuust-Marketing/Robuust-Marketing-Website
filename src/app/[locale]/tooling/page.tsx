@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -11,152 +12,100 @@ import {
   Cloud,
   Server,
   Zap,
-  Shield,
   Globe,
   CheckCircle,
   Terminal,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const techStack = [
-  {
-    id: "wordpress",
-    name: "WordPress & Avada",
-    icon: Globe,
-    category: "CMS Platform",
-    description:
-      "WordPress met het Avada theme is onze go-to oplossing voor klanten die zelf content willen beheren. Avada biedt uitgebreide designmogelijkheden en een intuïtieve drag-and-drop builder voor maximale flexibiliteit.",
-    benefits: [
-      "Gebruiksvriendelijk contentbeheer",
-      "Krachtige drag-and-drop builder",
-      "Uitgebreide designopties",
-      "Grote plugin ecosysteem",
-    ],
-    useCases: ["Zakelijke websites", "Blogs", "Portfolio sites"],
-  },
-  {
-    id: "nextjs",
-    name: "Next.js & React",
-    icon: Code2,
-    category: "Frontend Framework",
-    description:
-      "Next.js is ons primaire framework voor het bouwen van moderne websites. Met React als basis en features zoals Server Components, App Router en optimale SEO-ondersteuning is het de perfecte keuze voor elke website.",
-    benefits: [
-      "Server-side rendering voor betere SEO",
-      "Automatische code splitting",
-      "Ingebouwde image optimization",
-      "Snelle page loads met prefetching",
-    ],
-    useCases: ["Alle websites", "E-commerce", "Web applicaties"],
-  },
-  {
-    id: "typescript",
-    name: "TypeScript",
-    icon: FileText,
-    category: "Programmeertaal",
-    description:
-      "TypeScript voegt type-safety toe aan JavaScript, wat resulteert in minder bugs en beter onderhoudbare code. Elke lijn code die wij schrijven is type-safe.",
-    benefits: [
-      "Minder runtime errors",
-      "Betere developer experience",
-      "Eenvoudiger refactoring",
-      "Automatische documentatie",
-    ],
-    useCases: ["Al onze projecten"],
-  },
-  {
-    id: "tailwind",
-    name: "Tailwind CSS",
-    icon: Palette,
-    category: "Styling",
-    description:
-      "Tailwind CSS is ons utility-first CSS framework. Het stelt ons in staat om snel custom designs te bouwen zonder de overhead van traditionele CSS.",
-    benefits: [
-      "Snelle development",
-      "Consistent design systeem",
-      "Kleine bundle size",
-      "Dark mode out of the box",
-    ],
-    useCases: ["Al onze websites"],
-  },
-  {
-    id: "cms",
-    name: "Headless CMS",
-    icon: Database,
-    category: "Content Management",
-    description:
-      "We werken met diverse headless CMS oplossingen afhankelijk van jouw behoeften. Van Sanity tot Contentful, we kiezen de beste tool voor jouw situatie.",
-    benefits: [
-      "Flexibel contentbeheer",
-      "Gebruiksvriendelijke interface",
-      "API-first benadering",
-      "Schaalbaar en veilig",
-    ],
-    useCases: ["Blogs", "Marketing sites", "E-commerce"],
-  },
-  {
-    id: "cloudflare",
-    name: "Cloudflare",
-    icon: Cloud,
-    category: "CDN & Security",
-    description:
-      "Cloudflare beschermt en versnelt al onze websites. Van DDoS-bescherming tot caching, het is een essentieel onderdeel van onze infrastructuur.",
-    benefits: [
-      "Wereldwijd CDN netwerk",
-      "DDoS bescherming",
-      "SSL/TLS encryptie",
-      "Web Application Firewall",
-    ],
-    useCases: ["Alle hosting klanten"],
-  },
-  {
-    id: "nginx",
-    name: "NGINX",
-    icon: Server,
-    category: "Web Server",
-    description:
-      "NGINX is onze webserver van keuze. Met uitstekende performance en schaalbaarheid is het de ruggengraat van onze hosting infrastructuur.",
-    benefits: [
-      "High-performance",
-      "Load balancing",
-      "Reverse proxy",
-      "Efficiënt resource gebruik",
-    ],
-    useCases: ["Alle hosting"],
-  },
-];
-
-const additionalTools = [
-  { name: "GitHub", description: "Version control", icon: Terminal },
-  { name: "Figma", description: "Design tool", icon: Palette },
-  { name: "Resend", description: "Email API", icon: FileText },
-  { name: "ClickUp", description: "Project management", icon: CheckCircle },
-];
-
-const whyThisStack = [
-  {
-    title: "Performance",
-    description:
-      "Onze stack is geoptimaliseerd voor snelheid. Gemiddeld behalen onze websites een Lighthouse score van 95+.",
-  },
-  {
-    title: "SEO",
-    description:
-      "Server-side rendering en optimale meta-tags zorgen voor uitstekende vindbaarheid in Google.",
-  },
-  {
-    title: "Onderhoud",
-    description:
-      "Type-safe code en moderne tooling maken onderhoud eenvoudig en voorspelbaar.",
-  },
-  {
-    title: "Toekomst",
-    description:
-      "We gebruiken alleen technologie met een sterke community en actieve ontwikkeling.",
-  },
-];
-
 export default function ToolingPage() {
+  const t = useTranslations("toolingPage");
+
+  const techStack = [
+    {
+      id: "wordpress",
+      name: t("techStack.wordpress.name"),
+      icon: Globe,
+      category: t("techStack.wordpress.category"),
+      description: t("techStack.wordpress.description"),
+      benefits: t.raw("techStack.wordpress.benefits") as string[],
+    },
+    {
+      id: "nextjs",
+      name: t("techStack.nextjs.name"),
+      icon: Code2,
+      category: t("techStack.nextjs.category"),
+      description: t("techStack.nextjs.description"),
+      benefits: t.raw("techStack.nextjs.benefits") as string[],
+    },
+    {
+      id: "typescript",
+      name: t("techStack.typescript.name"),
+      icon: FileText,
+      category: t("techStack.typescript.category"),
+      description: t("techStack.typescript.description"),
+      benefits: t.raw("techStack.typescript.benefits") as string[],
+    },
+    {
+      id: "tailwind",
+      name: t("techStack.tailwind.name"),
+      icon: Palette,
+      category: t("techStack.tailwind.category"),
+      description: t("techStack.tailwind.description"),
+      benefits: t.raw("techStack.tailwind.benefits") as string[],
+    },
+    {
+      id: "cms",
+      name: t("techStack.cms.name"),
+      icon: Database,
+      category: t("techStack.cms.category"),
+      description: t("techStack.cms.description"),
+      benefits: t.raw("techStack.cms.benefits") as string[],
+    },
+    {
+      id: "cloudflare",
+      name: t("techStack.cloudflare.name"),
+      icon: Cloud,
+      category: t("techStack.cloudflare.category"),
+      description: t("techStack.cloudflare.description"),
+      benefits: t.raw("techStack.cloudflare.benefits") as string[],
+    },
+    {
+      id: "nginx",
+      name: t("techStack.nginx.name"),
+      icon: Server,
+      category: t("techStack.nginx.category"),
+      description: t("techStack.nginx.description"),
+      benefits: t.raw("techStack.nginx.benefits") as string[],
+    },
+  ];
+
+  const additionalTools = [
+    { name: t("additionalTools.github.name"), description: t("additionalTools.github.description"), icon: Terminal },
+    { name: t("additionalTools.figma.name"), description: t("additionalTools.figma.description"), icon: Palette },
+    { name: t("additionalTools.resend.name"), description: t("additionalTools.resend.description"), icon: FileText },
+    { name: t("additionalTools.clickup.name"), description: t("additionalTools.clickup.description"), icon: CheckCircle },
+  ];
+
+  const whyThisStack = [
+    {
+      title: t("whyThisStack.performance.title"),
+      description: t("whyThisStack.performance.description"),
+    },
+    {
+      title: t("whyThisStack.seo.title"),
+      description: t("whyThisStack.seo.description"),
+    },
+    {
+      title: t("whyThisStack.maintenance.title"),
+      description: t("whyThisStack.maintenance.description"),
+    },
+    {
+      title: t("whyThisStack.future.title"),
+      description: t("whyThisStack.future.description"),
+    },
+  ];
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -181,7 +130,7 @@ export default function ToolingPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Tooling
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -189,9 +138,9 @@ export default function ToolingPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Onze
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">tech stack</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -199,8 +148,7 @@ export default function ToolingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            We kiezen bewust voor moderne, betrouwbare technologie. Geen
-            verouderde frameworks, maar een stack die schaalt en presteert.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -271,7 +219,7 @@ export default function ToolingPage() {
                   {/* Benefits */}
                   <div className="lg:col-span-4">
                     <h4 className="text-sm font-semibold text-white mb-3">
-                      Voordelen
+                      {t("benefits")}
                     </h4>
                     <ul className="space-y-2">
                       {tech.benefits.map((benefit) => (
@@ -302,7 +250,7 @@ export default function ToolingPage() {
               viewport={{ once: true }}
               className="text-2xl font-bold text-white mb-4"
             >
-              Aanvullende tools
+              {t("additionalTools.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -310,8 +258,7 @@ export default function ToolingPage() {
               viewport={{ once: true }}
               className="text-muted-foreground"
             >
-              Naast onze core stack gebruiken we diverse tools voor specifieke
-              taken.
+              {t("additionalTools.subtitle")}
             </motion.p>
           </div>
 
@@ -347,7 +294,7 @@ export default function ToolingPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Benieuwd naar onze aanpak?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -355,8 +302,7 @@ export default function ToolingPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            We vertellen je graag meer over hoe wij deze technologie inzetten
-            voor jouw project.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -369,7 +315,7 @@ export default function ToolingPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/contact" className="flex items-center gap-2">
-                Neem contact op
+                {t("cta.button")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

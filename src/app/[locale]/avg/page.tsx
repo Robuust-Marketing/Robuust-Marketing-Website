@@ -1,48 +1,20 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Shield, Server, Lock, Eye, FileCheck, Users } from "lucide-react";
+import { Shield, Server, Lock, Eye, FileCheck, Users, LucideIcon } from "lucide-react";
 
-const avgFeatures = [
-  {
-    icon: Shield,
-    title: "Privacy by Design",
-    description:
-      "Alle websites die wij bouwen zijn vanaf de basis ontworpen met privacy in gedachten. Wij verzamelen alleen gegevens die strikt noodzakelijk zijn.",
-  },
-  {
-    icon: Server,
-    title: "EU Hosting",
-    description:
-      "Al onze servers staan in Europa (Duitsland en Finland). Uw data verlaat nooit de Europese Unie, wat volledige AVG-compliance garandeert.",
-  },
-  {
-    icon: Lock,
-    title: "Versleuteling",
-    description:
-      "Alle gegevensoverdracht is beveiligd met SSL/TLS encryptie. Data at rest wordt versleuteld opgeslagen op onze servers.",
-  },
-  {
-    icon: Eye,
-    title: "Transparantie",
-    description:
-      "Wij zijn volledig transparant over welke gegevens we verzamelen en waarom. Geen verborgen tracking of onverwachte dataverzameling.",
-  },
-  {
-    icon: FileCheck,
-    title: "Verwerkersovereenkomst",
-    description:
-      "Voor al onze klanten stellen wij een verwerkersovereenkomst op die voldoet aan alle AVG-vereisten.",
-  },
-  {
-    icon: Users,
-    title: "Rechten van betrokkenen",
-    description:
-      "Wij faciliteren alle rechten van betrokkenen: inzage, correctie, verwijdering, bezwaar en dataportabiliteit.",
-  },
+const avgFeatures: { id: string; icon: LucideIcon }[] = [
+  { id: "privacyByDesign", icon: Shield },
+  { id: "euHosting", icon: Server },
+  { id: "encryption", icon: Lock },
+  { id: "transparency", icon: Eye },
+  { id: "dpa", icon: FileCheck },
+  { id: "rights", icon: Users },
 ];
 
 export default function AVGPage() {
+  const t = useTranslations("avgPage");
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -67,7 +39,7 @@ export default function AVGPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            AVG Compliance
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -75,9 +47,9 @@ export default function AVGPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Volledig
+            {t("titleLine1")}
             <br />
-            <span className="text-gradient-accent">AVG-compliant</span>
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -85,9 +57,7 @@ export default function AVGPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Privacy en gegevensbescherming zijn geen optie, maar een vereiste.
-            Wij zorgen ervoor dat jouw website en data volledig voldoen aan de
-            Algemene Verordening Gegevensbescherming.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -98,7 +68,7 @@ export default function AVGPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {avgFeatures.map((feature, index) => (
               <motion.div
-                key={feature.title}
+                key={feature.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -109,10 +79,10 @@ export default function AVGPage() {
                   <feature.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {feature.title}
+                  {t(`features.${feature.id}.title`)}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {feature.description}
+                  {t(`features.${feature.id}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -131,90 +101,74 @@ export default function AVGPage() {
           >
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">
-                Wat is de AVG?
+                {t("info.whatIsGdpr.title")}
               </h2>
               <p className="text-muted-foreground">
-                De Algemene Verordening Gegevensbescherming (AVG), ook bekend als
-                GDPR, is de Europese privacywetgeving die sinds 25 mei 2018 van
-                kracht is. Deze wet regelt hoe organisaties persoonsgegevens
-                mogen verzamelen, verwerken en opslaan. Voor websites betekent
-                dit onder andere verplichtingen rondom cookies, contactformulieren
-                en analytics.
+                {t("info.whatIsGdpr.content")}
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">
-                Onze aanpak
+                {t("info.approach.title")}
               </h2>
               <p className="text-muted-foreground mb-4">
-                Bij elk project zorgen wij voor:
+                {t("info.approach.intro")}
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>
-                  <strong className="text-white">Cookie consent banner:</strong>{" "}
-                  Cookiebot integratie voor correcte toestemmingsverzameling
+                  <strong className="text-white">{t("info.approach.cookieBanner.title")}</strong>{" "}
+                  {t("info.approach.cookieBanner.description")}
                 </li>
                 <li>
-                  <strong className="text-white">Privacy-vriendelijke analytics:</strong>{" "}
-                  GA4 met geanonimiseerde IP-adressen of alternatieven zoals Plausible
+                  <strong className="text-white">{t("info.approach.analytics.title")}</strong>{" "}
+                  {t("info.approach.analytics.description")}
                 </li>
                 <li>
-                  <strong className="text-white">Beveiligde formulieren:</strong>{" "}
-                  Contactformulieren met minimale dataverzameling en versleuteling
+                  <strong className="text-white">{t("info.approach.forms.title")}</strong>{" "}
+                  {t("info.approach.forms.description")}
                 </li>
                 <li>
-                  <strong className="text-white">SSL certificaten:</strong>{" "}
-                  HTTPS op alle paginas voor veilige dataoverdracht
+                  <strong className="text-white">{t("info.approach.ssl.title")}</strong>{" "}
+                  {t("info.approach.ssl.description")}
                 </li>
                 <li>
-                  <strong className="text-white">Privacyverklaring:</strong>{" "}
-                  Op maat gemaakte privacy policy voor jouw website
+                  <strong className="text-white">{t("info.approach.privacy.title")}</strong>{" "}
+                  {t("info.approach.privacy.description")}
                 </li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">
-                Server-side tracking
+                {t("info.serverSide.title")}
               </h2>
               <p className="text-muted-foreground">
-                Als partner van Taggrs bieden wij server-side tracking
-                oplossingen. Dit betekent dat tracking data via jouw eigen server
-                loopt in plaats van direct naar Google of Meta. Dit geeft betere
-                data-kwaliteit, werkt zonder third-party cookies, en is
-                privacy-vriendelijker doordat je volledige controle hebt over
-                welke data wordt gedeeld.
+                {t("info.serverSide.content")}
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">
-                Verwerkersovereenkomst
+                {t("info.dpa.title")}
               </h2>
               <p className="text-muted-foreground">
-                Wanneer wij als verwerker optreden voor jouw persoonsgegevens
-                (bijvoorbeeld bij hosting of onderhoud), stellen wij een
-                verwerkersovereenkomst op. Dit document regelt de
-                verantwoordelijkheden, beveiligingsmaatregelen en rechten
-                conform de AVG. Vraag ons gerust naar een voorbeeld.
+                {t("info.dpa.content")}
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">
-                Vragen?
+                {t("info.questions.title")}
               </h2>
               <p className="text-muted-foreground">
-                Heb je vragen over AVG-compliance of wil je weten hoe wij jouw
-                website compliant kunnen maken? Neem contact met ons op via{" "}
+                {t("info.questions.content", { email: "" })}{" "}
                 <a
                   href="mailto:info@robuustmarketing.nl"
                   className="text-accent hover:underline"
                 >
                   info@robuustmarketing.nl
                 </a>
-                .
               </p>
             </section>
           </motion.div>

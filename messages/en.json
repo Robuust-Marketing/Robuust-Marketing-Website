@@ -368,6 +368,107 @@
       }
     }
   },
+  "offertePage": {
+    "badge": "Request a quote",
+    "titleLine1": "Request a",
+    "titleLine2": "free quote",
+    "titleLine3": "",
+    "subtitle": "Tell us about your project and receive a personalized quote within 24 hours.",
+    "trust": {
+      "response": "Response within 24 hours",
+      "noObligation": "100% no obligation",
+      "personalAdvice": "Personal advice"
+    },
+    "services": {
+      "title": "How can we help you?",
+      "subtitle": "Select one or more services",
+      "website": "Website development",
+      "webshop": "Webshop / E-commerce",
+      "redesign": "Website redesign",
+      "hosting": "Hosting & Maintenance",
+      "seo": "SEO / Search engine optimization",
+      "video": "Video production",
+      "branding": "Branding & Corporate identity",
+      "marketing": "Online marketing",
+      "other": "Other / Not sure yet"
+    },
+    "contact": {
+      "title": "Your details",
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "company": "Company name",
+      "companyPlaceholder": "Your company name",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "phone": "Phone number",
+      "phonePlaceholder": "06 12345678"
+    },
+    "budgetTimeline": {
+      "title": "Budget & Timeline",
+      "budgetLabel": "What is your budget?",
+      "timelineLabel": "When do you want to go live?",
+      "budgets": {
+        "1000-2500": "€1,000 - €2,500",
+        "2500-5000": "€2,500 - €5,000",
+        "5000-10000": "€5,000 - €10,000",
+        "10000+": "€10,000+",
+        "unknown": "Not sure yet"
+      },
+      "timelines": {
+        "asap": "As soon as possible",
+        "1-month": "Within 1 month",
+        "1-3-months": "Within 1-3 months",
+        "3-months+": "More than 3 months",
+        "unknown": "No deadline"
+      }
+    },
+    "description": {
+      "title": "Tell us more about your project",
+      "placeholder": "Describe your project, wishes and goals. The more information, the better we can help."
+    },
+    "submit": {
+      "required": "* Required fields. We treat your data confidentially.",
+      "button": "Submit request",
+      "submitting": "Submitting..."
+    },
+    "alternative": {
+      "title": "Prefer direct contact?",
+      "contact": "Get in touch",
+      "call": "Call us directly"
+    }
+  },
+  "bedanktPage": {
+    "loading": "Loading...",
+    "nextSteps": "What happens next?",
+    "questions": "Questions? Get in touch",
+    "offerte": {
+      "title": "Thank you for your quote request!",
+      "message": "We have received your request in good order. Our team will review your project and send you a personalized quote within 24 hours.",
+      "steps": ["You will receive a confirmation email", "We analyze your wishes and goals", "You will receive a custom quote within 24 hours", "Optional: we schedule a no-obligation meeting"],
+      "cta": "View our work",
+      "secondary": "Back to home"
+    },
+    "contact": {
+      "title": "Thank you for your message!",
+      "message": "We have received your message and will contact you as soon as possible. Usually within 24 hours.",
+      "steps": ["You will receive a confirmation email", "We carefully read your message", "You will hear from us within 24 hours"],
+      "cta": "View our services",
+      "secondary": "Back to home"
+    },
+    "sollicitatie": {
+      "title": "Thank you for your application!",
+      "message": "Great that you want to work with us! We have received your application and will review it carefully.",
+      "steps": ["You will receive a confirmation email", "We review your CV and motivation", "You will hear from us within 5 business days", "If interested, we schedule an introduction meeting"],
+      "cta": "More about Robuust",
+      "secondary": "Back to vacancies"
+    },
+    "default": {
+      "title": "Thank you!",
+      "message": "We have received your request and will contact you as soon as possible.",
+      "steps": ["You will receive a confirmation email", "We will contact you within 24 hours"],
+      "cta": "Back to home"
+    }
+  },
   "toolingPage": {
     "badge": "Tooling",
     "titleLine1": "Our",
@@ -684,6 +785,523 @@
       "title": "Ready to work together?",
       "subtitle": "Let's get acquainted and discuss how we can help your business grow.",
       "button": "Get in touch"
+    }
+  },
+  "partnersPage": {
+    "badge": "Partners",
+    "titleLine1": "Stronger through",
+    "titleLine2": "collaboration",
+    "subtitle": "We work together with specialized partners to offer you the best solutions. From marketing to infrastructure, every aspect is covered by experts.",
+    "benefits": {
+      "trusted": {
+        "title": "Trusted relationships",
+        "description": "Years of collaboration with proven partners who maintain the same quality standards."
+      },
+      "expertise": {
+        "title": "Combined expertise",
+        "description": "Access to specialized knowledge without having to manage multiple agencies."
+      },
+      "streamlined": {
+        "title": "Streamlined processes",
+        "description": "Efficient workflows between partners for faster delivery and better results."
+      }
+    },
+    "partners": {
+      "helloitsme": {
+        "category": "Online Marketing",
+        "name": "Hello Its Me",
+        "description": "Our marketing partner for Meta, TikTok and Google Ads. Together we provide a complete digital strategy from website to advertisements.",
+        "expertise": ["Meta Ads", "Google Ads", "TikTok Ads", "Performance Marketing"]
+      },
+      "taggrs": {
+        "category": "First-Party Tracking",
+        "name": "Taggrs",
+        "description": "Server-side tracking solutions for accurate data and better privacy compliance. We are a certified implementation partner.",
+        "expertise": ["Server-side GTM", "First-party data", "Privacy-first tracking", "Cookieless solutions"]
+      },
+      "cloudflare": {
+        "category": "CDN & Security",
+        "name": "Cloudflare",
+        "description": "Enterprise-grade security and performance for all our hosting clients. DDoS protection, CDN and more.",
+        "expertise": ["CDN", "DDoS Protection", "WAF", "SSL/TLS"]
+      },
+      "hetzner": {
+        "category": "Infrastructure",
+        "name": "Hetzner",
+        "description": "Reliable dedicated servers in Germany and Finland. European hosting for optimal privacy and speed.",
+        "expertise": ["Dedicated Servers", "EU Hosting", "GDPR-compliant", "High Performance"]
+      }
+    },
+    "tools": {
+      "badge": "Tools & Technologies",
+      "title": "What we work with",
+      "subtitle": "We work with the best tools and platforms in the industry to help your business grow. From analytics to e-commerce, we have the expertise.",
+      "categories": {
+        "advertising": {
+          "name": "Advertising & Social",
+          "tools": {
+            "meta": { "name": "Meta", "description": "Facebook & Instagram advertising" },
+            "googleAds": { "name": "Google Ads", "description": "Search & Display campaigns" },
+            "tiktok": { "name": "TikTok", "description": "Short-form video advertising" },
+            "linkedin": { "name": "LinkedIn", "description": "B2B marketing & advertising" },
+            "pinterest": { "name": "Pinterest", "description": "Visual discovery advertising" }
+          }
+        },
+        "crm": {
+          "name": "CRM & Marketing Automation",
+          "tools": {
+            "hubspot": { "name": "HubSpot", "description": "All-in-one CRM & marketing platform" },
+            "mailchimp": { "name": "Mailchimp", "description": "Email marketing & automation" },
+            "brevo": { "name": "Brevo", "description": "Marketing automation & transactional email" },
+            "activecampaign": { "name": "ActiveCampaign", "description": "Customer experience automation" },
+            "klaviyo": { "name": "Klaviyo", "description": "E-commerce email & SMS marketing" }
+          }
+        },
+        "analytics": {
+          "name": "Analytics & Tracking",
+          "tools": {
+            "ga": { "name": "Google Analytics", "description": "Website analytics & reporting" },
+            "gtm": { "name": "Google Tag Manager", "description": "Tag management & tracking" },
+            "clarity": { "name": "Microsoft Clarity", "description": "Heatmaps & session recordings" },
+            "hotjar": { "name": "Hotjar", "description": "Behavior analytics & feedback" },
+            "taggrs": { "name": "Taggrs", "description": "Server-side tracking" }
+          }
+        },
+        "ecommerce": {
+          "name": "E-commerce",
+          "tools": {
+            "woocommerce": { "name": "WooCommerce", "description": "WordPress e-commerce solution" },
+            "funnelkit": { "name": "FunnelKit", "description": "Sales funnels & cart optimization" },
+            "mollie": { "name": "Mollie", "description": "Payments & checkout" },
+            "sendcloud": { "name": "Sendcloud", "description": "Shipping & fulfillment" }
+          }
+        },
+        "cms": {
+          "name": "CMS & Development",
+          "tools": {
+            "wordpress": { "name": "WordPress", "description": "Content management system" },
+            "nextjs": { "name": "Next.js", "description": "React framework for web apps" },
+            "sanity": { "name": "Sanity", "description": "Headless CMS" },
+            "strapi": { "name": "Strapi", "description": "Open-source headless CMS" }
+          }
+        },
+        "design": {
+          "name": "Design & Creation",
+          "tools": {
+            "adobe": { "name": "Adobe Creative Cloud", "description": "Photoshop, Illustrator, XD" },
+            "figma": { "name": "Figma", "description": "UI/UX design & prototyping" },
+            "canva": { "name": "Canva", "description": "Visual content creation" },
+            "midjourney": { "name": "Midjourney", "description": "AI image generation" }
+          }
+        },
+        "productivity": {
+          "name": "Productivity & Communication",
+          "tools": {
+            "microsoft365": { "name": "Microsoft 365", "description": "Office suite & collaboration" },
+            "googleWorkspace": { "name": "Google Workspace", "description": "Productivity & collaboration" },
+            "slack": { "name": "Slack", "description": "Team communication" },
+            "clickup": { "name": "ClickUp", "description": "Project & task management" }
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Become a partner?",
+      "subtitle": "Are you specialized in a complementary service and looking for a reliable web partner? Let's talk.",
+      "button": "Get in touch"
+    }
+  },
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: January 2025",
+    "sections": {
+      "intro": {
+        "title": "1. Introduction",
+        "content": "Robuust Marketing, based in the Netherlands, is responsible for the processing of personal data as shown in this privacy statement. We respect the privacy of all users of our website and ensure that the personal information you provide is treated confidentially."
+      },
+      "dataCollection": {
+        "title": "2. What data do we collect?",
+        "intro": "We collect the following personal data:",
+        "items": ["Name and contact details (email, phone number)", "Company data (company name, position)", "Technical data (IP address, browser type, device information)", "Usage data (how you use our website, which pages you visit)"]
+      },
+      "dataUsage": {
+        "title": "3. What do we use your data for?",
+        "items": ["To contact you in response to a request", "To improve and personalize our services", "To inform you about our services (only with your consent)", "To comply with legal obligations", "For website analysis and optimization"]
+      },
+      "cookies": {
+        "title": "4. Cookies",
+        "intro": "Our website uses cookies. Cookies are small text files that are stored on your device. We use:",
+        "functional": { "title": "Functional cookies:", "description": "necessary for the functioning of the website" },
+        "analytical": { "title": "Analytical cookies:", "description": "to gain insight into the use of our website (Google Analytics)" },
+        "marketing": { "title": "Marketing cookies:", "description": "only with your consent, for showing relevant advertisements" },
+        "outro": "Via our cookie banner you can manage your preferences and give or withdraw consent."
+      },
+      "retention": {
+        "title": "5. Retention period",
+        "content": "We do not retain your personal data longer than strictly necessary to achieve the purposes for which your data is collected. Contact details are kept for a maximum of 2 years after the last contact, unless there is an ongoing customer relationship."
+      },
+      "thirdParties": {
+        "title": "6. Sharing with third parties",
+        "intro": "We only share your data with third parties if this is necessary for the execution of our services:",
+        "items": ["Hosting providers (servers in EU: Germany/Finland)", "Analytics services (Google Analytics - anonymized)", "Email service providers (for sending messages)"],
+        "outro": "We never sell your data to third parties."
+      },
+      "rights": {
+        "title": "7. Your rights",
+        "intro": "You have the right to:",
+        "items": ["Access your personal data", "Correct your personal data", "Have your personal data deleted", "Object to the processing", "Transfer your data (data portability)"],
+        "outro": "You can submit a request via {email}. We will respond within 30 days."
+      },
+      "security": {
+        "title": "8. Security",
+        "content": "We take the protection of your data seriously and take appropriate measures to prevent misuse, loss, unauthorized access, unwanted disclosure and unauthorized modification. Our website uses an SSL certificate and our servers are located in secure data centers in Europe."
+      },
+      "contact": {
+        "title": "9. Contact",
+        "content": "Do you have questions about this privacy statement or about the processing of your personal data? Please contact us via {email}."
+      }
+    }
+  },
+  "voorwaardenPage": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "Last updated: January 2025",
+    "articles": {
+      "definitions": {
+        "title": "Article 1 - Definitions",
+        "robuust": { "title": "Robuust Marketing:", "description": "the sole proprietorship based in the Netherlands, hereinafter referred to as \"contractor\"." },
+        "client": { "title": "Client:", "description": "the natural or legal person entering into an agreement with Robuust Marketing." },
+        "services": { "title": "Services:", "description": "all services offered by Robuust Marketing, including but not limited to web design, web development, hosting and maintenance." }
+      },
+      "applicability": {
+        "title": "Article 2 - Applicability",
+        "content1": "These general terms and conditions apply to all offers, quotations, work, agreements and deliveries of services by or on behalf of Robuust Marketing.",
+        "content2": "Deviations from these terms are only valid if they have been expressly agreed in writing."
+      },
+      "quotes": {
+        "title": "Article 3 - Quotations and offers",
+        "items": ["All quotations are without obligation and valid for 30 days, unless otherwise stated.", "Prices in quotations are exclusive of VAT, unless otherwise stated.", "An agreement is concluded after written acceptance of the quotation by the client."]
+      },
+      "execution": {
+        "title": "Article 4 - Execution of the agreement",
+        "items": ["Robuust Marketing will execute the agreement to the best of its knowledge and ability.", "The client ensures that all data necessary for execution is provided in a timely manner.", "Stated deadlines are indicative and not strict deadlines. Exceeding them does not entitle to compensation or termination."]
+      },
+      "payment": {
+        "title": "Article 5 - Payment terms",
+        "items": ["Payment must be made within 14 days of the invoice date, unless otherwise agreed.", "For projects above €2,500, a 50% advance payment may be requested before the work begins.", "In case of late payment, the client is legally in default and statutory interest is due.", "Hosting and maintenance costs are invoiced monthly or annually in advance."]
+      },
+      "ip": {
+        "title": "Article 6 - Intellectual property",
+        "items": ["All intellectual property rights to the developed materials rest with Robuust Marketing, unless otherwise agreed in writing.", "After full payment, the client obtains a right of use for the delivered materials.", "Robuust Marketing retains the right to use the design for its own promotional purposes, unless otherwise agreed."]
+      },
+      "hosting": {
+        "title": "Article 7 - Hosting and maintenance",
+        "items": ["Hosting services are provided with an uptime guarantee of 99.9%, measured annually.", "Maintenance work that falls outside the agreed package will be quoted separately.", "The client is responsible for making backups of their own content, unless a maintenance contract states otherwise."]
+      },
+      "liability": {
+        "title": "Article 8 - Liability",
+        "items": ["The liability of Robuust Marketing is limited to the amount that is paid out under the liability insurance in the relevant case.", "Robuust Marketing is not liable for indirect damage, including consequential damage, lost profits or missed savings.", "The client indemnifies Robuust Marketing against claims from third parties related to the delivered services."]
+      },
+      "termination": {
+        "title": "Article 9 - Cancellation and termination",
+        "items": ["Ongoing agreements (hosting, maintenance) can be terminated with a notice period of 1 month.", "When terminating projects that are in progress, the work performed until then is due.", "Robuust Marketing can terminate the agreement immediately in case of non-payment or bankruptcy of the client."]
+      },
+      "confidentiality": {
+        "title": "Article 10 - Confidentiality",
+        "content": "Both parties are obliged to maintain confidentiality of all confidential information obtained within the framework of the agreement. This obligation also applies after termination of the agreement."
+      },
+      "disputes": {
+        "title": "Article 11 - Applicable law and disputes",
+        "items": ["Dutch law applies exclusively to all agreements.", "Disputes will be submitted to the competent court in the district where Robuust Marketing is located.", "Parties will first attempt to resolve disputes through mutual consultation."]
+      },
+      "contact": {
+        "title": "Article 12 - Contact",
+        "content": "For questions about these general terms and conditions, please contact us via {email}."
+      }
+    }
+  },
+  "avgPage": {
+    "badge": "GDPR Compliance",
+    "titleLine1": "Fully",
+    "titleLine2": "GDPR-compliant",
+    "subtitle": "Privacy and data protection are not optional, but a requirement. We ensure that your website and data fully comply with the General Data Protection Regulation.",
+    "features": {
+      "privacyByDesign": {
+        "title": "Privacy by Design",
+        "description": "All websites we build are designed from the ground up with privacy in mind. We only collect data that is strictly necessary."
+      },
+      "euHosting": {
+        "title": "EU Hosting",
+        "description": "All our servers are located in Europe (Germany and Finland). Your data never leaves the European Union, guaranteeing full GDPR compliance."
+      },
+      "encryption": {
+        "title": "Encryption",
+        "description": "All data transfer is secured with SSL/TLS encryption. Data at rest is stored encrypted on our servers."
+      },
+      "transparency": {
+        "title": "Transparency",
+        "description": "We are fully transparent about what data we collect and why. No hidden tracking or unexpected data collection."
+      },
+      "dpa": {
+        "title": "Data Processing Agreement",
+        "description": "For all our clients, we draw up a data processing agreement that meets all GDPR requirements."
+      },
+      "rights": {
+        "title": "Data subject rights",
+        "description": "We facilitate all data subject rights: access, correction, deletion, objection and data portability."
+      }
+    },
+    "info": {
+      "whatIsGdpr": {
+        "title": "What is the GDPR?",
+        "content": "The General Data Protection Regulation (GDPR), also known as AVG in Dutch, is the European privacy legislation that has been in effect since May 25, 2018. This law regulates how organizations may collect, process and store personal data. For websites, this includes obligations regarding cookies, contact forms and analytics."
+      },
+      "approach": {
+        "title": "Our approach",
+        "intro": "For every project we ensure:",
+        "cookieBanner": { "title": "Cookie consent banner:", "description": "Cookiebot integration for correct consent collection" },
+        "analytics": { "title": "Privacy-friendly analytics:", "description": "GA4 with anonymized IP addresses or alternatives like Plausible" },
+        "forms": { "title": "Secured forms:", "description": "Contact forms with minimal data collection and encryption" },
+        "ssl": { "title": "SSL certificates:", "description": "HTTPS on all pages for secure data transfer" },
+        "privacy": { "title": "Privacy statement:", "description": "Custom privacy policy for your website" }
+      },
+      "serverSide": {
+        "title": "Server-side tracking",
+        "content": "As a partner of Taggrs, we offer server-side tracking solutions. This means tracking data runs through your own server instead of directly to Google or Meta. This provides better data quality, works without third-party cookies, and is more privacy-friendly because you have full control over what data is shared."
+      },
+      "dpa": {
+        "title": "Data Processing Agreement",
+        "content": "When we act as a processor for your personal data (for example with hosting or maintenance), we draw up a data processing agreement. This document regulates the responsibilities, security measures and rights in accordance with the GDPR. Feel free to ask us for an example."
+      },
+      "questions": {
+        "title": "Questions?",
+        "content": "Do you have questions about GDPR compliance or want to know how we can make your website compliant? Contact us via {email}."
+      }
+    }
+  },
+  "referentiesPage": {
+    "badge": "Testimonials",
+    "titleLine1": "What our clients",
+    "titleLine2": "say",
+    "subtitle": "Read the experiences of companies we've helped with their online presence.",
+    "stats": {
+      "clients": "Satisfied clients",
+      "projects": "Projects delivered",
+      "rating": "Average rating",
+      "recommend": "Would recommend us"
+    },
+    "roleAt": "at",
+    "testimonials": {
+      "tvdb": {
+        "name": "Thomas van der Berg",
+        "role": "Director",
+        "company": "Van der Berg Construction",
+        "quote": "Robuust completely transformed our website. The new site loads lightning-fast and we now receive quality leads daily. The collaboration was perfect."
+      },
+      "lb": {
+        "name": "Lisa Bakker",
+        "role": "Marketing Manager",
+        "company": "Fresh Organics",
+        "quote": "Finally a party that understands what we need. The team thinks proactively and always delivers more than expected. Our online sales increased by 200%."
+      },
+      "mj": {
+        "name": "Mark Jansen",
+        "role": "Owner",
+        "company": "Jansen Techniek",
+        "quote": "After years of working with a slow, outdated website, switching to Robuust was a relief. Fast delivery, good communication and a beautiful result."
+      },
+      "sdv": {
+        "name": "Sandra de Vries",
+        "role": "CEO",
+        "company": "De Vries Consultancy",
+        "quote": "The hosting and maintenance at Robuust gives me peace of mind. I don't have to worry about anything and can focus on my core business."
+      },
+      "pv": {
+        "name": "Peter Visser",
+        "role": "Founder",
+        "company": "Visser & Partners",
+        "quote": "What started as a website has grown into a complete digital strategy. Robuust is a real partner in our online growth."
+      },
+      "es": {
+        "name": "Emma Smit",
+        "role": "E-commerce Manager",
+        "company": "Style Studio",
+        "quote": "Our webshop performs better than ever. The Robuust team not only built a beautiful site, but also thinks along about conversion optimization."
+      }
+    },
+    "clients": {
+      "title": "They preceded you",
+      "subtitle": "A selection of companies we've been able to help"
+    },
+    "whyChoose": {
+      "title": "Why do companies choose Robuust?",
+      "subtitle": "We don't just deliver beautiful websites, but real results. Our clients appreciate our personal approach and technical expertise.",
+      "personal": {
+        "title": "Personal approach",
+        "description": "You always have contact with the same person"
+      },
+      "quality": {
+        "title": "Quality over quantity",
+        "description": "We take time for every project"
+      },
+      "partnership": {
+        "title": "Long-term partnerships",
+        "description": "Many clients have been working with us for years"
+      },
+      "featuredQuote": "Robuust is more than a supplier - they are a strategic partner in our growth."
+    },
+    "cta": {
+      "title": "Ready to be next?",
+      "subtitle": "Discover how we can help your business grow. Start with a no-obligation conversation.",
+      "primaryButton": "Request a quote",
+      "secondaryButton": "View our work"
+    }
+  },
+  "supportPage": {
+    "badge": "Support",
+    "titleLine1": "How can we",
+    "titleLine2": "help?",
+    "subtitle": "Have a question or problem? We're here for you. Choose below how you'd like to get in touch.",
+    "sla": {
+      "response": "Response within 24 hours",
+      "uptime": "99.9% uptime guarantee",
+      "maintenance": "Proactive maintenance"
+    },
+    "contactOptions": {
+      "available": "Available:",
+      "chat": {
+        "title": "Live Chat",
+        "description": "Get direct answers to your questions via our chat.",
+        "action": "Start chat",
+        "availability": "Mon-Fri 9:00-17:00"
+      },
+      "email": {
+        "title": "Email Support",
+        "description": "Send us an email and we'll respond within 24 hours.",
+        "action": "support@robuustmarketing.nl",
+        "availability": "24/7"
+      },
+      "phone": {
+        "title": "Phone",
+        "description": "Call us for urgent matters or complex questions.",
+        "action": "+31 85 060 48 77",
+        "availability": "Mon-Fri 9:00-17:00"
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Maybe the answer to your question is already here"
+    },
+    "resources": {
+      "title": "Useful resources",
+      "subtitle": "Want to get started yourself? Check out our documentation and guides",
+      "kennisbank": {
+        "title": "Knowledge Base",
+        "description": "Guides and tutorials for common tasks."
+      },
+      "documentation": {
+        "title": "Documentation",
+        "description": "Technical documentation for developers."
+      },
+      "status": {
+        "title": "Status Page",
+        "description": "Check the status of our services."
+      }
+    },
+    "emergency": {
+      "title": "Emergency issues?",
+      "subtitle": "For critical failures or security incidents, you can reach us 24/7 via our emergency line.",
+      "callButton": "Call emergency line",
+      "emailButton": "Email urgent@robuustmarketing.nl"
+    },
+    "cta": {
+      "title": "Question not found?",
+      "subtitle": "Feel free to contact us. We're happy to help.",
+      "button": "Get in touch"
+    }
+  },
+  "vacaturesPage": {
+    "badge": "Work at Robuust",
+    "titleLine1": "Become part of our",
+    "titleLine2": "team",
+    "subtitle": "We're always looking for talented people who are as passionate about the web as we are.",
+    "benefits": {
+      "title": "Why Robuust?",
+      "subtitle": "More than just a job - a place where you can grow",
+      "flexible": {
+        "title": "Flexible working",
+        "description": "Work from home, office or your favorite coffee shop."
+      },
+      "growth": {
+        "title": "Growth & Development",
+        "description": "Personal development budget and time to learn."
+      },
+      "coffee": {
+        "title": "Good coffee",
+        "description": "Unlimited premium coffee (and tea of course)."
+      },
+      "team": {
+        "title": "Young team",
+        "description": "Work together with motivated professionals."
+      },
+      "health": {
+        "title": "Health",
+        "description": "Contribution to gym membership or wellness."
+      },
+      "tools": {
+        "title": "Modern tools",
+        "description": "Work with the latest technologies and tools."
+      }
+    },
+    "positions": {
+      "title": "Open positions",
+      "countSingular": "We have {count} open position",
+      "countPlural": "We have {count} open positions",
+      "noPositions": "No open positions at the moment",
+      "apply": "Apply",
+      "requirements": "What we're looking for:",
+      "types": {
+        "fulltime": "Full-time",
+        "parttime": "Part-time",
+        "parttimeFulltime": "Part-time / Full-time"
+      },
+      "locations": {
+        "hybrid": "Hybrid",
+        "hybridRemote": "Hybrid / Remote",
+        "remote": "Remote"
+      }
+    },
+    "vacancies": {
+      "fullstackDeveloper": {
+        "title": "Full-Stack Developer",
+        "type": "fulltime",
+        "location": "hybridRemote",
+        "description": "Help build modern websites and web applications with Next.js, React and TypeScript.",
+        "requirements": ["3+ years experience with React/Next.js", "Knowledge of TypeScript", "Experience with headless CMS", "Proactive attitude"]
+      },
+      "uiuxDesigner": {
+        "title": "UI/UX Designer",
+        "type": "fulltime",
+        "location": "hybridRemote",
+        "description": "Design user-friendly interfaces that convert visitors into customers.",
+        "requirements": ["3+ years experience in UI/UX design", "Figma expert", "Eye for detail", "Portfolio with strong cases"]
+      },
+      "marketingSpecialist": {
+        "title": "Online Marketing Specialist",
+        "type": "parttimeFulltime",
+        "location": "hybrid",
+        "description": "Manage and optimize campaigns for our clients on Google, Meta and more.",
+        "requirements": ["2+ years experience with Google/Meta Ads", "Data-driven mindset", "Good communication", "Google certifications"]
+      }
+    },
+    "noVacancies": {
+      "title": "No vacancies at the moment",
+      "subtitle": "But we're always open to talent! Send an open application.",
+      "button": "Send open application"
+    },
+    "openApplication": {
+      "title": "Your dream job not listed?",
+      "subtitle": "We're always curious about talent. Send us your CV and motivation, who knows there might be a spot for you soon!",
+      "button": "Send open application"
     }
   },
   "contactPage": {

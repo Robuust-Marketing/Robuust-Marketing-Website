@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -16,86 +17,25 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const vacatures = [
-  {
-    title: "Full-Stack Developer",
-    type: "Fulltime",
-    location: "Hybride / Remote",
-    description:
-      "Bouw mee aan moderne websites en webapplicaties met Next.js, React en TypeScript.",
-    requirements: [
-      "3+ jaar ervaring met React/Next.js",
-      "Kennis van TypeScript",
-      "Ervaring met headless CMS",
-      "Proactieve houding",
-    ],
-    active: true,
-  },
-  {
-    title: "UI/UX Designer",
-    type: "Fulltime",
-    location: "Hybride / Remote",
-    description:
-      "Ontwerp gebruiksvriendelijke interfaces die bezoekers omzetten in klanten.",
-    requirements: [
-      "3+ jaar ervaring in UI/UX design",
-      "Figma expert",
-      "Oog voor detail",
-      "Portfolio met sterke cases",
-    ],
-    active: true,
-  },
-  {
-    title: "Online Marketing Specialist",
-    type: "Parttime / Fulltime",
-    location: "Hybride",
-    description:
-      "Beheer en optimaliseer campagnes voor onze klanten op Google, Meta en meer.",
-    requirements: [
-      "2+ jaar ervaring met Google/Meta Ads",
-      "Data-gedreven mindset",
-      "Goede communicatie",
-      "Google certificeringen",
-    ],
-    active: false,
-  },
-];
-
-const benefits = [
-  {
-    icon: Laptop,
-    title: "Flexibel werken",
-    description: "Werk vanuit huis, kantoor of je favoriete koffietent.",
-  },
-  {
-    icon: Rocket,
-    title: "Groei & Ontwikkeling",
-    description: "Persoonlijk ontwikkelbudget en tijd om te leren.",
-  },
-  {
-    icon: Coffee,
-    title: "Goede koffie",
-    description: "Onbeperkt premium koffie (en thee natuurlijk).",
-  },
-  {
-    icon: Users,
-    title: "Jong team",
-    description: "Werk samen met gemotiveerde professionals.",
-  },
-  {
-    icon: Heart,
-    title: "Gezondheid",
-    description: "Bijdrage aan sportabonnement of wellness.",
-  },
-  {
-    icon: Sparkles,
-    title: "Moderne tools",
-    description: "Werk met de nieuwste technologieën en tools.",
-  },
-];
-
 export default function VacaturesPage() {
-  const activeVacatures = vacatures.filter((v) => v.active);
+  const t = useTranslations("vacaturesPage");
+
+  const benefits = [
+    { id: "flexible", icon: Laptop },
+    { id: "growth", icon: Rocket },
+    { id: "coffee", icon: Coffee },
+    { id: "team", icon: Users },
+    { id: "health", icon: Heart },
+    { id: "tools", icon: Sparkles },
+  ];
+
+  const vacancies = [
+    { id: "fullstackDeveloper", active: true },
+    { id: "uiuxDesigner", active: true },
+    { id: "marketingSpecialist", active: false },
+  ];
+
+  const activeVacatures = vacancies.filter((v) => v.active);
 
   return (
     <div className="min-h-screen pt-32">
@@ -121,7 +61,7 @@ export default function VacaturesPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Werken bij Robuust
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -129,8 +69,8 @@ export default function VacaturesPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Word deel van ons{" "}
-            <span className="text-gradient-accent">team</span>
+            {t("titleLine1")}{" "}
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -138,8 +78,7 @@ export default function VacaturesPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            We zijn altijd op zoek naar getalenteerde mensen die net zo
-            gepassioneerd zijn over het web als wij.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -154,17 +93,17 @@ export default function VacaturesPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Waarom Robuust?
+              {t("benefits.title")}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Meer dan alleen een baan - een plek waar je kunt groeien
+              {t("benefits.subtitle")}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, index) => (
               <motion.div
-                key={benefit.title}
+                key={benefit.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -175,10 +114,10 @@ export default function VacaturesPage() {
                   <benefit.icon className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
-                  {benefit.title}
+                  {t(`benefits.${benefit.id}.title`)}
                 </h3>
                 <p className="text-muted-foreground text-sm">
-                  {benefit.description}
+                  {t(`benefits.${benefit.id}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -196,22 +135,20 @@ export default function VacaturesPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Openstaande vacatures
+              {t("positions.title")}
             </h2>
             <p className="text-muted-foreground">
               {activeVacatures.length > 0
-                ? `We hebben ${activeVacatures.length} openstaande ${
-                    activeVacatures.length === 1 ? "positie" : "posities"
-                  }`
-                : "Momenteel geen openstaande vacatures"}
+                ? t(activeVacatures.length === 1 ? "positions.countSingular" : "positions.countPlural", { count: activeVacatures.length })
+                : t("positions.noPositions")}
             </p>
           </motion.div>
 
           {activeVacatures.length > 0 ? (
             <div className="space-y-6">
-              {activeVacatures.map((vacature, index) => (
+              {activeVacatures.map((vacancy, index) => (
                 <motion.div
-                  key={vacature.title}
+                  key={vacancy.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -221,16 +158,16 @@ export default function VacaturesPage() {
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-white mb-2">
-                        {vacature.title}
+                        {t(`vacancies.${vacancy.id}.title`)}
                       </h3>
                       <div className="flex flex-wrap gap-3">
                         <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
                           <Briefcase className="h-4 w-4" />
-                          {vacature.type}
+                          {t(`positions.types.${t(`vacancies.${vacancy.id}.type`)}`)}
                         </span>
                         <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
                           <MapPin className="h-4 w-4" />
-                          {vacature.location}
+                          {t(`positions.locations.${t(`vacancies.${vacancy.id}.location`)}`)}
                         </span>
                       </div>
                     </div>
@@ -239,23 +176,23 @@ export default function VacaturesPage() {
                       className="bg-accent hover:bg-accent-hover text-white shrink-0"
                     >
                       <Link
-                        href={`/contact?subject=Sollicitatie: ${vacature.title}`}
+                        href={`/contact?subject=Application: ${t(`vacancies.${vacancy.id}.title`)}`}
                         className="flex items-center gap-2"
                       >
-                        Solliciteer
+                        {t("positions.apply")}
                         <ArrowRight className="h-4 w-4" />
                       </Link>
                     </Button>
                   </div>
                   <p className="text-muted-foreground mb-4">
-                    {vacature.description}
+                    {t(`vacancies.${vacancy.id}.description`)}
                   </p>
                   <div>
                     <h4 className="text-sm font-medium text-white mb-2">
-                      Wat we zoeken:
+                      {t("positions.requirements")}
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {vacature.requirements.map((req) => (
+                      {(t.raw(`vacancies.${vacancy.id}.requirements`) as string[]).map((req) => (
                         <li
                           key={req}
                           className="flex items-center gap-2 text-sm text-muted-foreground"
@@ -278,18 +215,17 @@ export default function VacaturesPage() {
             >
               <Briefcase className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">
-                Geen vacatures op dit moment
+                {t("noVacancies.title")}
               </h3>
               <p className="text-muted-foreground mb-6">
-                Maar we staan altijd open voor talent! Stuur een open
-                sollicitatie.
+                {t("noVacancies.subtitle")}
               </p>
               <Button
                 asChild
                 className="bg-accent hover:bg-accent-hover text-white"
               >
-                <Link href="/contact?subject=Open sollicitatie">
-                  Stuur open sollicitatie
+                <Link href="/contact?subject=Open application">
+                  {t("noVacancies.button")}
                 </Link>
               </Button>
             </motion.div>
@@ -306,7 +242,7 @@ export default function VacaturesPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Staat jouw droombaan er niet tussen?
+            {t("openApplication.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -314,8 +250,7 @@ export default function VacaturesPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            We zijn altijd benieuwd naar talent. Stuur ons je CV en motivatie,
-            wie weet is er binnenkort plek voor jou!
+            {t("openApplication.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -329,10 +264,10 @@ export default function VacaturesPage() {
               className="border-white/20 text-white hover:bg-white/5"
             >
               <Link
-                href="/contact?subject=Open sollicitatie"
+                href="/contact?subject=Open application"
                 className="flex items-center gap-2"
               >
-                Stuur open sollicitatie
+                {t("openApplication.button")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

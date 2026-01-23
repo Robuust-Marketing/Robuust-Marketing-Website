@@ -380,6 +380,107 @@
       }
     }
   },
+  "offertePage": {
+    "badge": "Offerte aanvragen",
+    "titleLine1": "Vraag een",
+    "titleLine2": "vrijblijvende offerte",
+    "titleLine3": "aan",
+    "subtitle": "Vertel ons over je project en ontvang binnen 24 uur een gepersonaliseerde offerte.",
+    "trust": {
+      "response": "Reactie binnen 24 uur",
+      "noObligation": "100% vrijblijvend",
+      "personalAdvice": "Persoonlijk advies"
+    },
+    "services": {
+      "title": "Waar kunnen we je mee helpen?",
+      "subtitle": "Selecteer een of meerdere diensten",
+      "website": "Website laten maken",
+      "webshop": "Webshop / E-commerce",
+      "redesign": "Website redesign",
+      "hosting": "Hosting & Onderhoud",
+      "seo": "SEO / Zoekmachine optimalisatie",
+      "video": "Video productie",
+      "branding": "Branding & Huisstijl",
+      "marketing": "Online marketing",
+      "other": "Anders / Weet ik nog niet"
+    },
+    "contact": {
+      "title": "Jouw gegevens",
+      "name": "Naam",
+      "namePlaceholder": "Je volledige naam",
+      "company": "Bedrijfsnaam",
+      "companyPlaceholder": "Je bedrijfsnaam",
+      "email": "E-mail",
+      "emailPlaceholder": "je@email.nl",
+      "phone": "Telefoonnummer",
+      "phonePlaceholder": "06 12345678"
+    },
+    "budgetTimeline": {
+      "title": "Budget & Planning",
+      "budgetLabel": "Wat is je budget?",
+      "timelineLabel": "Wanneer wil je live?",
+      "budgets": {
+        "1000-2500": "€1.000 - €2.500",
+        "2500-5000": "€2.500 - €5.000",
+        "5000-10000": "€5.000 - €10.000",
+        "10000+": "€10.000+",
+        "unknown": "Weet ik nog niet"
+      },
+      "timelines": {
+        "asap": "Zo snel mogelijk",
+        "1-month": "Binnen 1 maand",
+        "1-3-months": "Binnen 1-3 maanden",
+        "3-months+": "Meer dan 3 maanden",
+        "unknown": "Geen deadline"
+      }
+    },
+    "description": {
+      "title": "Vertel meer over je project",
+      "placeholder": "Beschrijf je project, wensen en doelen. Hoe meer informatie, hoe beter we kunnen helpen."
+    },
+    "submit": {
+      "required": "* Verplichte velden. We behandelen je gegevens vertrouwelijk.",
+      "button": "Verstuur aanvraag",
+      "submitting": "Verzenden..."
+    },
+    "alternative": {
+      "title": "Liever direct contact?",
+      "contact": "Neem contact op",
+      "call": "Bel ons direct"
+    }
+  },
+  "bedanktPage": {
+    "loading": "Laden...",
+    "nextSteps": "Wat gebeurt er nu?",
+    "questions": "Vragen? Neem contact op",
+    "offerte": {
+      "title": "Bedankt voor je offerte aanvraag!",
+      "message": "We hebben je aanvraag in goede orde ontvangen. Ons team bekijkt je project en stuurt je binnen 24 uur een gepersonaliseerde offerte.",
+      "steps": ["Je ontvangt een bevestigingsmail", "We analyseren je wensen en doelen", "Je krijgt binnen 24 uur een offerte op maat", "Optioneel: we plannen een vrijblijvend gesprek"],
+      "cta": "Bekijk ons werk",
+      "secondary": "Terug naar home"
+    },
+    "contact": {
+      "title": "Bedankt voor je bericht!",
+      "message": "We hebben je bericht ontvangen en nemen zo snel mogelijk contact met je op. Meestal binnen 24 uur.",
+      "steps": ["Je ontvangt een bevestigingsmail", "We lezen je bericht zorgvuldig", "Je hoort binnen 24 uur van ons"],
+      "cta": "Bekijk onze diensten",
+      "secondary": "Terug naar home"
+    },
+    "sollicitatie": {
+      "title": "Bedankt voor je sollicitatie!",
+      "message": "Leuk dat je bij ons wilt werken! We hebben je sollicitatie ontvangen en nemen deze zorgvuldig door.",
+      "steps": ["Je ontvangt een bevestigingsmail", "We beoordelen je CV en motivatie", "Binnen 5 werkdagen hoor je van ons", "Bij interesse plannen we een kennismakingsgesprek"],
+      "cta": "Meer over Robuust",
+      "secondary": "Terug naar vacatures"
+    },
+    "default": {
+      "title": "Bedankt!",
+      "message": "We hebben je aanvraag ontvangen en nemen zo snel mogelijk contact met je op.",
+      "steps": ["Je ontvangt een bevestigingsmail", "We nemen binnen 24 uur contact op"],
+      "cta": "Terug naar home"
+    }
+  },
   "toolingPage": {
     "badge": "Tooling",
     "titleLine1": "Onze",
@@ -698,6 +799,523 @@
       "button": "Neem contact op"
     }
   },
+  "partnersPage": {
+    "badge": "Partners",
+    "titleLine1": "Sterker door",
+    "titleLine2": "samenwerking",
+    "subtitle": "Wij werken samen met gespecialiseerde partners om jou de beste oplossingen te bieden. Van marketing tot infrastructuur, elk aspect wordt afgedekt door experts.",
+    "benefits": {
+      "trusted": {
+        "title": "Vertrouwde relaties",
+        "description": "Jarenlange samenwerkingen met bewezen partners die dezelfde kwaliteitseisen hanteren."
+      },
+      "expertise": {
+        "title": "Gecombineerde expertise",
+        "description": "Toegang tot specialistische kennis zonder dat jij meerdere bureaus hoeft te managen."
+      },
+      "streamlined": {
+        "title": "Gestroomlijnde processen",
+        "description": "Efficiënte workflows tussen partners voor snellere oplevering en betere resultaten."
+      }
+    },
+    "partners": {
+      "helloitsme": {
+        "category": "Online Marketing",
+        "name": "Hello Its Me",
+        "description": "Onze marketing partner voor Meta, TikTok en Google Ads. Samen zorgen we voor een complete digitale strategie van website tot advertenties.",
+        "expertise": ["Meta Ads", "Google Ads", "TikTok Ads", "Performance Marketing"]
+      },
+      "taggrs": {
+        "category": "First-Party Tracking",
+        "name": "Taggrs",
+        "description": "Server-side tracking oplossingen voor nauwkeurige data en betere privacy compliance. Wij zijn gecertificeerd implementatiepartner.",
+        "expertise": ["Server-side GTM", "First-party data", "Privacy-first tracking", "Cookieless solutions"]
+      },
+      "cloudflare": {
+        "category": "CDN & Security",
+        "name": "Cloudflare",
+        "description": "Enterprise-grade beveiliging en performance voor al onze hosting klanten. DDoS bescherming, CDN en meer.",
+        "expertise": ["CDN", "DDoS Protection", "WAF", "SSL/TLS"]
+      },
+      "hetzner": {
+        "category": "Infrastructure",
+        "name": "Hetzner",
+        "description": "Betrouwbare dedicated servers in Duitsland en Finland. Europese hosting voor optimale privacy en snelheid.",
+        "expertise": ["Dedicated Servers", "EU Hosting", "AVG-compliant", "High Performance"]
+      }
+    },
+    "tools": {
+      "badge": "Tools & Technologieën",
+      "title": "Waarmee wij werken",
+      "subtitle": "Wij werken met de beste tools en platforms in de industrie om jouw bedrijf te laten groeien. Van analytics tot e-commerce, wij hebben de expertise.",
+      "categories": {
+        "advertising": {
+          "name": "Advertising & Social",
+          "tools": {
+            "meta": { "name": "Meta", "description": "Facebook & Instagram advertenties" },
+            "googleAds": { "name": "Google Ads", "description": "Search & Display campagnes" },
+            "tiktok": { "name": "TikTok", "description": "Short-form video advertising" },
+            "linkedin": { "name": "LinkedIn", "description": "B2B marketing & advertenties" },
+            "pinterest": { "name": "Pinterest", "description": "Visual discovery advertising" }
+          }
+        },
+        "crm": {
+          "name": "CRM & Marketing Automation",
+          "tools": {
+            "hubspot": { "name": "HubSpot", "description": "All-in-one CRM & marketing platform" },
+            "mailchimp": { "name": "Mailchimp", "description": "E-mail marketing & automation" },
+            "brevo": { "name": "Brevo", "description": "Marketing automation & transactional email" },
+            "activecampaign": { "name": "ActiveCampaign", "description": "Customer experience automation" },
+            "klaviyo": { "name": "Klaviyo", "description": "E-commerce email & SMS marketing" }
+          }
+        },
+        "analytics": {
+          "name": "Analytics & Tracking",
+          "tools": {
+            "ga": { "name": "Google Analytics", "description": "Website analytics & rapportage" },
+            "gtm": { "name": "Google Tag Manager", "description": "Tag management & tracking" },
+            "clarity": { "name": "Microsoft Clarity", "description": "Heatmaps & session recordings" },
+            "hotjar": { "name": "Hotjar", "description": "Behavior analytics & feedback" },
+            "taggrs": { "name": "Taggrs", "description": "Server-side tracking" }
+          }
+        },
+        "ecommerce": {
+          "name": "E-commerce",
+          "tools": {
+            "woocommerce": { "name": "WooCommerce", "description": "WordPress e-commerce oplossing" },
+            "funnelkit": { "name": "FunnelKit", "description": "Sales funnels & cart optimization" },
+            "mollie": { "name": "Mollie", "description": "Betalingen & checkout" },
+            "sendcloud": { "name": "Sendcloud", "description": "Shipping & fulfillment" }
+          }
+        },
+        "cms": {
+          "name": "CMS & Development",
+          "tools": {
+            "wordpress": { "name": "WordPress", "description": "Content management systeem" },
+            "nextjs": { "name": "Next.js", "description": "React framework voor web apps" },
+            "sanity": { "name": "Sanity", "description": "Headless CMS" },
+            "strapi": { "name": "Strapi", "description": "Open-source headless CMS" }
+          }
+        },
+        "design": {
+          "name": "Design & Creatie",
+          "tools": {
+            "adobe": { "name": "Adobe Creative Cloud", "description": "Photoshop, Illustrator, XD" },
+            "figma": { "name": "Figma", "description": "UI/UX design & prototyping" },
+            "canva": { "name": "Canva", "description": "Visual content creation" },
+            "midjourney": { "name": "Midjourney", "description": "AI image generation" }
+          }
+        },
+        "productivity": {
+          "name": "Productiviteit & Communicatie",
+          "tools": {
+            "microsoft365": { "name": "Microsoft 365", "description": "Office suite & collaboration" },
+            "googleWorkspace": { "name": "Google Workspace", "description": "Productiviteit & samenwerking" },
+            "slack": { "name": "Slack", "description": "Team communicatie" },
+            "clickup": { "name": "ClickUp", "description": "Project & task management" }
+          }
+        }
+      }
+    },
+    "cta": {
+      "title": "Partner worden?",
+      "subtitle": "Ben je gespecialiseerd in een complementaire dienst en zoek je een betrouwbare webpartner? Laten we praten.",
+      "button": "Neem contact op"
+    }
+  },
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Laatst bijgewerkt: januari 2025",
+    "sections": {
+      "intro": {
+        "title": "1. Inleiding",
+        "content": "Robuust Marketing, gevestigd in Nederland, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring. Wij respecteren de privacy van alle gebruikers van onze website en dragen er zorg voor dat de persoonlijke informatie die u ons verschaft vertrouwelijk wordt behandeld."
+      },
+      "dataCollection": {
+        "title": "2. Welke gegevens verzamelen wij?",
+        "intro": "Wij verzamelen de volgende persoonsgegevens:",
+        "items": ["Naam en contactgegevens (e-mail, telefoonnummer)", "Bedrijfsgegevens (bedrijfsnaam, functie)", "Technische gegevens (IP-adres, browsertype, apparaatgegevens)", "Gebruiksgegevens (hoe u onze website gebruikt, welke pagina's u bezoekt)"]
+      },
+      "dataUsage": {
+        "title": "3. Waarvoor gebruiken wij uw gegevens?",
+        "items": ["Om contact met u op te nemen naar aanleiding van een aanvraag", "Om onze dienstverlening te verbeteren en te personaliseren", "Om u te informeren over onze diensten (alleen met uw toestemming)", "Om te voldoen aan wettelijke verplichtingen", "Voor website-analyse en optimalisatie"]
+      },
+      "cookies": {
+        "title": "4. Cookies",
+        "intro": "Onze website maakt gebruik van cookies. Cookies zijn kleine tekstbestanden die op uw apparaat worden opgeslagen. Wij gebruiken:",
+        "functional": { "title": "Functionele cookies:", "description": "noodzakelijk voor het functioneren van de website" },
+        "analytical": { "title": "Analytische cookies:", "description": "om inzicht te krijgen in het gebruik van onze website (Google Analytics)" },
+        "marketing": { "title": "Marketing cookies:", "description": "alleen met uw toestemming, voor het tonen van relevante advertenties" },
+        "outro": "Via onze cookiebanner kunt u uw voorkeuren beheren en toestemming geven of intrekken."
+      },
+      "retention": {
+        "title": "5. Bewaartermijn",
+        "content": "Wij bewaren uw persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren waarvoor uw gegevens worden verzameld. Contactgegevens worden maximaal 2 jaar na het laatste contact bewaard, tenzij er een lopende klantrelatie is."
+      },
+      "thirdParties": {
+        "title": "6. Delen met derden",
+        "intro": "Wij delen uw gegevens alleen met derden indien dit noodzakelijk is voor het uitvoeren van onze diensten:",
+        "items": ["Hostingproviders (servers in EU: Duitsland/Finland)", "Analytics diensten (Google Analytics - geanonimiseerd)", "E-mail dienstverleners (voor het verzenden van berichten)"],
+        "outro": "Wij verkopen uw gegevens nooit aan derden."
+      },
+      "rights": {
+        "title": "7. Uw rechten",
+        "intro": "U heeft het recht om:",
+        "items": ["Uw persoonsgegevens in te zien", "Uw persoonsgegevens te corrigeren", "Uw persoonsgegevens te laten verwijderen", "Bezwaar te maken tegen de verwerking", "Uw gegevens over te dragen (dataportabiliteit)"],
+        "outro": "U kunt een verzoek indienen via {email}. Wij reageren binnen 30 dagen."
+      },
+      "security": {
+        "title": "8. Beveiliging",
+        "content": "Wij nemen de bescherming van uw gegevens serieus en nemen passende maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. Onze website maakt gebruik van een SSL-certificaat en onze servers staan in beveiligde datacenters in Europa."
+      },
+      "contact": {
+        "title": "9. Contact",
+        "content": "Heeft u vragen over deze privacyverklaring of over de verwerking van uw persoonsgegevens? Neem dan contact met ons op via {email}."
+      }
+    }
+  },
+  "voorwaardenPage": {
+    "title": "Algemene Voorwaarden",
+    "lastUpdated": "Laatst bijgewerkt: januari 2025",
+    "articles": {
+      "definitions": {
+        "title": "Artikel 1 - Definities",
+        "robuust": { "title": "Robuust Marketing:", "description": "de eenmanszaak gevestigd in Nederland, hierna te noemen \"opdrachtnemer\"." },
+        "client": { "title": "Opdrachtgever:", "description": "de natuurlijke of rechtspersoon die met Robuust Marketing een overeenkomst aangaat." },
+        "services": { "title": "Diensten:", "description": "alle door Robuust Marketing aangeboden diensten, waaronder maar niet beperkt tot webdesign, webdevelopment, hosting en onderhoud." }
+      },
+      "applicability": {
+        "title": "Artikel 2 - Toepasselijkheid",
+        "content1": "Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes, werkzaamheden, overeenkomsten en leveringen van diensten door of namens Robuust Marketing.",
+        "content2": "Afwijkingen van deze voorwaarden zijn slechts geldig indien deze uitdrukkelijk schriftelijk zijn overeengekomen."
+      },
+      "quotes": {
+        "title": "Artikel 3 - Offertes en aanbiedingen",
+        "items": ["Alle offertes zijn vrijblijvend en geldig gedurende 30 dagen, tenzij anders aangegeven.", "Prijzen in offertes zijn exclusief BTW, tenzij anders vermeld.", "Een overeenkomst komt tot stand na schriftelijke aanvaarding van de offerte door de opdrachtgever."]
+      },
+      "execution": {
+        "title": "Artikel 4 - Uitvoering van de overeenkomst",
+        "items": ["Robuust Marketing voert de overeenkomst naar beste inzicht en vermogen uit.", "De opdrachtgever draagt er zorg voor dat alle gegevens die nodig zijn voor de uitvoering tijdig worden aangeleverd.", "Genoemde termijnen zijn indicatief en geen fatale termijnen. Overschrijding geeft geen recht op schadevergoeding of ontbinding."]
+      },
+      "payment": {
+        "title": "Artikel 5 - Betalingsvoorwaarden",
+        "items": ["Betaling dient te geschieden binnen 14 dagen na factuurdatum, tenzij anders overeengekomen.", "Bij projecten boven €2.500 kan een aanbetaling van 50% worden gevraagd voor aanvang van de werkzaamheden.", "Bij niet-tijdige betaling is de opdrachtgever van rechtswege in verzuim en is wettelijke rente verschuldigd.", "Hosting- en onderhoudskosten worden maandelijks of jaarlijks vooruit gefactureerd."]
+      },
+      "ip": {
+        "title": "Artikel 6 - Intellectueel eigendom",
+        "items": ["Alle rechten van intellectuele eigendom op de ontwikkelde materialen berusten bij Robuust Marketing, tenzij anders schriftelijk overeengekomen.", "Na volledige betaling verkrijgt de opdrachtgever een gebruiksrecht op de geleverde materialen.", "Robuust Marketing behoudt het recht om het ontwerp te gebruiken voor eigen promotiedoeleinden, tenzij anders overeengekomen."]
+      },
+      "hosting": {
+        "title": "Artikel 7 - Hosting en onderhoud",
+        "items": ["Hostingdiensten worden geleverd met een uptime garantie van 99.9%, gemeten op jaarbasis.", "Onderhoudswerkzaamheden die buiten het overeengekomen pakket vallen, worden apart geoffreerd.", "De opdrachtgever is verantwoordelijk voor het maken van backups van eigen content, tenzij een onderhoudscontract anders bepaalt."]
+      },
+      "liability": {
+        "title": "Artikel 8 - Aansprakelijkheid",
+        "items": ["De aansprakelijkheid van Robuust Marketing is beperkt tot het bedrag dat in het desbetreffende geval onder de aansprakelijkheidsverzekering wordt uitgekeerd.", "Robuust Marketing is niet aansprakelijk voor indirecte schade, waaronder gevolgschade, gederfde winst of gemiste besparingen.", "De opdrachtgever vrijwaart Robuust Marketing voor aanspraken van derden die verband houden met de geleverde diensten."]
+      },
+      "termination": {
+        "title": "Artikel 9 - Opzegging en ontbinding",
+        "items": ["Doorlopende overeenkomsten (hosting, onderhoud) kunnen worden opgezegd met inachtneming van een opzegtermijn van 1 maand.", "Bij opzegging van projecten die in uitvoering zijn, zijn de tot dan verrichte werkzaamheden verschuldigd.", "Robuust Marketing kan de overeenkomst per direct ontbinden bij wanbetaling of faillissement van de opdrachtgever."]
+      },
+      "confidentiality": {
+        "title": "Artikel 10 - Geheimhouding",
+        "content": "Beide partijen zijn verplicht tot geheimhouding van alle vertrouwelijke informatie die zij in het kader van de overeenkomst hebben verkregen. Deze verplichting geldt ook na beëindiging van de overeenkomst."
+      },
+      "disputes": {
+        "title": "Artikel 11 - Toepasselijk recht en geschillen",
+        "items": ["Op alle overeenkomsten is uitsluitend Nederlands recht van toepassing.", "Geschillen worden voorgelegd aan de bevoegde rechter in het arrondissement waar Robuust Marketing is gevestigd.", "Partijen zullen eerst trachten geschillen in onderling overleg op te lossen."]
+      },
+      "contact": {
+        "title": "Artikel 12 - Contact",
+        "content": "Voor vragen over deze algemene voorwaarden kunt u contact opnemen via {email}."
+      }
+    }
+  },
+  "avgPage": {
+    "badge": "AVG Compliance",
+    "titleLine1": "Volledig",
+    "titleLine2": "AVG-compliant",
+    "subtitle": "Privacy en gegevensbescherming zijn geen optie, maar een vereiste. Wij zorgen ervoor dat jouw website en data volledig voldoen aan de Algemene Verordening Gegevensbescherming.",
+    "features": {
+      "privacyByDesign": {
+        "title": "Privacy by Design",
+        "description": "Alle websites die wij bouwen zijn vanaf de basis ontworpen met privacy in gedachten. Wij verzamelen alleen gegevens die strikt noodzakelijk zijn."
+      },
+      "euHosting": {
+        "title": "EU Hosting",
+        "description": "Al onze servers staan in Europa (Duitsland en Finland). Uw data verlaat nooit de Europese Unie, wat volledige AVG-compliance garandeert."
+      },
+      "encryption": {
+        "title": "Versleuteling",
+        "description": "Alle gegevensoverdracht is beveiligd met SSL/TLS encryptie. Data at rest wordt versleuteld opgeslagen op onze servers."
+      },
+      "transparency": {
+        "title": "Transparantie",
+        "description": "Wij zijn volledig transparant over welke gegevens we verzamelen en waarom. Geen verborgen tracking of onverwachte dataverzameling."
+      },
+      "dpa": {
+        "title": "Verwerkersovereenkomst",
+        "description": "Voor al onze klanten stellen wij een verwerkersovereenkomst op die voldoet aan alle AVG-vereisten."
+      },
+      "rights": {
+        "title": "Rechten van betrokkenen",
+        "description": "Wij faciliteren alle rechten van betrokkenen: inzage, correctie, verwijdering, bezwaar en dataportabiliteit."
+      }
+    },
+    "info": {
+      "whatIsGdpr": {
+        "title": "Wat is de AVG?",
+        "content": "De Algemene Verordening Gegevensbescherming (AVG), ook bekend als GDPR, is de Europese privacywetgeving die sinds 25 mei 2018 van kracht is. Deze wet regelt hoe organisaties persoonsgegevens mogen verzamelen, verwerken en opslaan. Voor websites betekent dit onder andere verplichtingen rondom cookies, contactformulieren en analytics."
+      },
+      "approach": {
+        "title": "Onze aanpak",
+        "intro": "Bij elk project zorgen wij voor:",
+        "cookieBanner": { "title": "Cookie consent banner:", "description": "Cookiebot integratie voor correcte toestemmingsverzameling" },
+        "analytics": { "title": "Privacy-vriendelijke analytics:", "description": "GA4 met geanonimiseerde IP-adressen of alternatieven zoals Plausible" },
+        "forms": { "title": "Beveiligde formulieren:", "description": "Contactformulieren met minimale dataverzameling en versleuteling" },
+        "ssl": { "title": "SSL certificaten:", "description": "HTTPS op alle pagina's voor veilige dataoverdracht" },
+        "privacy": { "title": "Privacyverklaring:", "description": "Op maat gemaakte privacy policy voor jouw website" }
+      },
+      "serverSide": {
+        "title": "Server-side tracking",
+        "content": "Als partner van Taggrs bieden wij server-side tracking oplossingen. Dit betekent dat tracking data via jouw eigen server loopt in plaats van direct naar Google of Meta. Dit geeft betere data-kwaliteit, werkt zonder third-party cookies, en is privacy-vriendelijker doordat je volledige controle hebt over welke data wordt gedeeld."
+      },
+      "dpa": {
+        "title": "Verwerkersovereenkomst",
+        "content": "Wanneer wij als verwerker optreden voor jouw persoonsgegevens (bijvoorbeeld bij hosting of onderhoud), stellen wij een verwerkersovereenkomst op. Dit document regelt de verantwoordelijkheden, beveiligingsmaatregelen en rechten conform de AVG. Vraag ons gerust naar een voorbeeld."
+      },
+      "questions": {
+        "title": "Vragen?",
+        "content": "Heb je vragen over AVG-compliance of wil je weten hoe wij jouw website compliant kunnen maken? Neem contact met ons op via {email}."
+      }
+    }
+  },
+  "referentiesPage": {
+    "badge": "Referenties",
+    "titleLine1": "Wat onze klanten",
+    "titleLine2": "zeggen",
+    "subtitle": "Lees de ervaringen van bedrijven die we hebben geholpen met hun online aanwezigheid.",
+    "stats": {
+      "clients": "Tevreden klanten",
+      "projects": "Projecten opgeleverd",
+      "rating": "Gemiddelde beoordeling",
+      "recommend": "Zou ons aanbevelen"
+    },
+    "roleAt": "bij",
+    "testimonials": {
+      "tvdb": {
+        "name": "Thomas van der Berg",
+        "role": "Directeur",
+        "company": "Van der Berg Bouw",
+        "quote": "Robuust heeft onze website volledig getransformeerd. De nieuwe site laadt razendsnel en we krijgen nu dagelijks kwalitatieve leads binnen. De samenwerking verliep perfect."
+      },
+      "lb": {
+        "name": "Lisa Bakker",
+        "role": "Marketing Manager",
+        "company": "Fresh Organics",
+        "quote": "Eindelijk een partij die begrijpt wat we nodig hebben. Het team denkt proactief mee en levert altijd meer dan verwacht. Onze online verkopen zijn met 200% gestegen."
+      },
+      "mj": {
+        "name": "Mark Jansen",
+        "role": "Eigenaar",
+        "company": "Jansen Techniek",
+        "quote": "Na jaren met een trage, verouderde website te hebben gewerkt, was de overstap naar Robuust een verademing. Snelle oplevering, goede communicatie en een prachtig resultaat."
+      },
+      "sdv": {
+        "name": "Sandra de Vries",
+        "role": "CEO",
+        "company": "De Vries Consultancy",
+        "quote": "De hosting en het onderhoud bij Robuust geven me rust. Ik hoef me nergens zorgen over te maken en kan me focussen op mijn core business."
+      },
+      "pv": {
+        "name": "Peter Visser",
+        "role": "Oprichter",
+        "company": "Visser & Partners",
+        "quote": "Wat begon met een website, is uitgegroeid tot een complete digitale strategie. Robuust is een echte partner in onze online groei."
+      },
+      "es": {
+        "name": "Emma Smit",
+        "role": "E-commerce Manager",
+        "company": "Style Studio",
+        "quote": "Onze webshop presteert beter dan ooit. Het team van Robuust heeft niet alleen een mooie site gebouwd, maar denkt ook mee over conversie-optimalisatie."
+      }
+    },
+    "clients": {
+      "title": "Zij gingen je voor",
+      "subtitle": "Een selectie van bedrijven die we hebben mogen helpen"
+    },
+    "whyChoose": {
+      "title": "Waarom kiezen bedrijven voor Robuust?",
+      "subtitle": "We leveren niet alleen mooie websites, maar echte resultaten. Onze klanten waarderen onze persoonlijke aanpak en technische expertise.",
+      "personal": {
+        "title": "Persoonlijke aanpak",
+        "description": "Je hebt altijd contact met dezelfde persoon"
+      },
+      "quality": {
+        "title": "Kwaliteit boven kwantiteit",
+        "description": "We nemen de tijd voor elk project"
+      },
+      "partnership": {
+        "title": "Langdurige partnerships",
+        "description": "Veel klanten werken al jaren met ons"
+      },
+      "featuredQuote": "Robuust is meer dan een leverancier - ze zijn een strategische partner in onze groei."
+    },
+    "cta": {
+      "title": "Klaar om de volgende te zijn?",
+      "subtitle": "Ontdek hoe wij jouw bedrijf kunnen helpen groeien. Start met een vrijblijvend gesprek.",
+      "primaryButton": "Vraag een offerte aan",
+      "secondaryButton": "Bekijk ons werk"
+    }
+  },
+  "supportPage": {
+    "badge": "Support",
+    "titleLine1": "Hoe kunnen we",
+    "titleLine2": "helpen?",
+    "subtitle": "Heb je een vraag of probleem? We staan voor je klaar. Kies hieronder hoe je contact wilt opnemen.",
+    "sla": {
+      "response": "Reactie binnen 24 uur",
+      "uptime": "99.9% uptime garantie",
+      "maintenance": "Proactief onderhoud"
+    },
+    "contactOptions": {
+      "available": "Beschikbaar:",
+      "chat": {
+        "title": "Live Chat",
+        "description": "Direct antwoord op je vragen via onze chat.",
+        "action": "Start chat",
+        "availability": "Ma-Vr 9:00-17:00"
+      },
+      "email": {
+        "title": "Email Support",
+        "description": "Stuur ons een email en we reageren binnen 24 uur.",
+        "action": "support@robuustmarketing.nl",
+        "availability": "24/7"
+      },
+      "phone": {
+        "title": "Telefonisch",
+        "description": "Bel ons voor dringende zaken of complexe vragen.",
+        "action": "+31 85 060 48 77",
+        "availability": "Ma-Vr 9:00-17:00"
+      }
+    },
+    "faq": {
+      "title": "Veelgestelde vragen",
+      "subtitle": "Misschien staat het antwoord op je vraag hier al"
+    },
+    "resources": {
+      "title": "Handige bronnen",
+      "subtitle": "Zelf aan de slag? Bekijk onze documentatie en handleidingen",
+      "kennisbank": {
+        "title": "Kennisbank",
+        "description": "Handleidingen en tutorials voor veelvoorkomende taken."
+      },
+      "documentation": {
+        "title": "Documentatie",
+        "description": "Technische documentatie voor developers."
+      },
+      "status": {
+        "title": "Status Pagina",
+        "description": "Check de status van onze diensten."
+      }
+    },
+    "emergency": {
+      "title": "Spoedeisende problemen?",
+      "subtitle": "Bij kritieke storingen of beveiligingsincidenten kun je ons 24/7 bereiken via onze spoedlijn.",
+      "callButton": "Bel spoedlijn",
+      "emailButton": "Mail urgent@robuustmarketing.nl"
+    },
+    "cta": {
+      "title": "Vraag niet gevonden?",
+      "subtitle": "Neem gerust contact met ons op. We helpen je graag verder.",
+      "button": "Neem contact op"
+    }
+  },
+  "vacaturesPage": {
+    "badge": "Werken bij Robuust",
+    "titleLine1": "Word deel van ons",
+    "titleLine2": "team",
+    "subtitle": "We zijn altijd op zoek naar getalenteerde mensen die net zo gepassioneerd zijn over het web als wij.",
+    "benefits": {
+      "title": "Waarom Robuust?",
+      "subtitle": "Meer dan alleen een baan - een plek waar je kunt groeien",
+      "flexible": {
+        "title": "Flexibel werken",
+        "description": "Werk vanuit huis, kantoor of je favoriete koffietent."
+      },
+      "growth": {
+        "title": "Groei & Ontwikkeling",
+        "description": "Persoonlijk ontwikkelbudget en tijd om te leren."
+      },
+      "coffee": {
+        "title": "Goede koffie",
+        "description": "Onbeperkt premium koffie (en thee natuurlijk)."
+      },
+      "team": {
+        "title": "Jong team",
+        "description": "Werk samen met gemotiveerde professionals."
+      },
+      "health": {
+        "title": "Gezondheid",
+        "description": "Bijdrage aan sportabonnement of wellness."
+      },
+      "tools": {
+        "title": "Moderne tools",
+        "description": "Werk met de nieuwste technologieën en tools."
+      }
+    },
+    "positions": {
+      "title": "Openstaande vacatures",
+      "countSingular": "We hebben {count} openstaande positie",
+      "countPlural": "We hebben {count} openstaande posities",
+      "noPositions": "Momenteel geen openstaande vacatures",
+      "apply": "Solliciteer",
+      "requirements": "Wat we zoeken:",
+      "types": {
+        "fulltime": "Fulltime",
+        "parttime": "Parttime",
+        "parttimeFulltime": "Parttime / Fulltime"
+      },
+      "locations": {
+        "hybrid": "Hybride",
+        "hybridRemote": "Hybride / Remote",
+        "remote": "Remote"
+      }
+    },
+    "vacancies": {
+      "fullstackDeveloper": {
+        "title": "Full-Stack Developer",
+        "type": "fulltime",
+        "location": "hybridRemote",
+        "description": "Bouw mee aan moderne websites en webapplicaties met Next.js, React en TypeScript.",
+        "requirements": ["3+ jaar ervaring met React/Next.js", "Kennis van TypeScript", "Ervaring met headless CMS", "Proactieve houding"]
+      },
+      "uiuxDesigner": {
+        "title": "UI/UX Designer",
+        "type": "fulltime",
+        "location": "hybridRemote",
+        "description": "Ontwerp gebruiksvriendelijke interfaces die bezoekers omzetten in klanten.",
+        "requirements": ["3+ jaar ervaring in UI/UX design", "Figma expert", "Oog voor detail", "Portfolio met sterke cases"]
+      },
+      "marketingSpecialist": {
+        "title": "Online Marketing Specialist",
+        "type": "parttimeFulltime",
+        "location": "hybrid",
+        "description": "Beheer en optimaliseer campagnes voor onze klanten op Google, Meta en meer.",
+        "requirements": ["2+ jaar ervaring met Google/Meta Ads", "Data-gedreven mindset", "Goede communicatie", "Google certificeringen"]
+      }
+    },
+    "noVacancies": {
+      "title": "Geen vacatures op dit moment",
+      "subtitle": "Maar we staan altijd open voor talent! Stuur een open sollicitatie.",
+      "button": "Stuur open sollicitatie"
+    },
+    "openApplication": {
+      "title": "Staat jouw droombaan er niet tussen?",
+      "subtitle": "We zijn altijd benieuwd naar talent. Stuur ons je CV en motivatie, wie weet is er binnenkort plek voor jou!",
+      "button": "Stuur open sollicitatie"
+    }
+  },
   "contactPage": {
     "badge": "Contact",
     "titleLine1": "Laten we",
@@ -740,6 +1358,25 @@
       "question1": "Wat kost een website bij Robuust?",
       "question2": "Hoe lang duurt een project?",
       "question3": "Bieden jullie ook onderhoud?"
+    }
+  },
+  "blogPage": {
+    "badge": "Blog",
+    "titleLine1": "Insights &",
+    "titleLine2": "artikelen",
+    "subtitle": "Tips, trends en diepgaande artikelen over SEO, social media en online marketing.",
+    "newsletter": {
+      "title": "Blijf op de hoogte",
+      "subtitle": "Ontvang maandelijks de nieuwste artikelen en tips in je inbox.",
+      "placeholder": "je@email.nl",
+      "ariaLabel": "E-mailadres voor nieuwsbrief",
+      "button": "Inschrijven"
+    },
+    "categories": {
+      "title": "Categorieën",
+      "all": "Alle artikelen",
+      "noArticlesInCategory": "Geen artikelen gevonden in \"{category}\".",
+      "noArticles": "Nog geen artikelen beschikbaar."
     }
   }
 }

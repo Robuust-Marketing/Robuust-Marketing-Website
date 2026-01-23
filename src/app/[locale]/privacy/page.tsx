@@ -1,8 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 
 export default function PrivacyPage() {
+  const t = useTranslations("privacyPage");
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -27,7 +30,7 @@ export default function PrivacyPage() {
             transition={{ duration: 0.5 }}
             className="text-4xl sm:text-5xl font-bold text-white mb-6"
           >
-            Privacy Policy
+            {t("title")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -35,7 +38,7 @@ export default function PrivacyPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-muted-foreground"
           >
-            Laatst bijgewerkt: januari 2025
+            {t("lastUpdated")}
           </motion.p>
         </div>
       </section>
@@ -52,185 +55,134 @@ export default function PrivacyPage() {
             <div className="rounded-3xl bg-surface p-8 md:p-12 border border-white/5 space-y-8">
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  1. Inleiding
+                  {t("sections.intro.title")}
                 </h2>
                 <p className="text-muted-foreground">
-                  Robuust Marketing, gevestigd in Nederland, is verantwoordelijk
-                  voor de verwerking van persoonsgegevens zoals weergegeven in
-                  deze privacyverklaring. Wij respecteren de privacy van alle
-                  gebruikers van onze website en dragen er zorg voor dat de
-                  persoonlijke informatie die u ons verschaft vertrouwelijk wordt
-                  behandeld.
+                  {t("sections.intro.content")}
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  2. Welke gegevens verzamelen wij?
+                  {t("sections.dataCollection.title")}
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  Wij verzamelen de volgende persoonsgegevens:
+                  {t("sections.dataCollection.intro")}
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>Naam en contactgegevens (e-mail, telefoonnummer)</li>
-                  <li>Bedrijfsgegevens (bedrijfsnaam, functie)</li>
-                  <li>
-                    Technische gegevens (IP-adres, browsertype, apparaatgegevens)
-                  </li>
-                  <li>
-                    Gebruiksgegevens (hoe u onze website gebruikt, welke paginas
-                    u bezoekt)
-                  </li>
+                  {(t.raw("sections.dataCollection.items") as string[]).map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  3. Waarvoor gebruiken wij uw gegevens?
+                  {t("sections.dataUsage.title")}
                 </h2>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>
-                    Om contact met u op te nemen naar aanleiding van een
-                    aanvraag
-                  </li>
-                  <li>
-                    Om onze dienstverlening te verbeteren en te personaliseren
-                  </li>
-                  <li>
-                    Om u te informeren over onze diensten (alleen met uw
-                    toestemming)
-                  </li>
-                  <li>
-                    Om te voldoen aan wettelijke verplichtingen
-                  </li>
-                  <li>
-                    Voor website-analyse en optimalisatie
-                  </li>
+                  {(t.raw("sections.dataUsage.items") as string[]).map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  4. Cookies
+                  {t("sections.cookies.title")}
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  Onze website maakt gebruik van cookies. Cookies zijn kleine
-                  tekstbestanden die op uw apparaat worden opgeslagen. Wij
-                  gebruiken:
+                  {t("sections.cookies.intro")}
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                   <li>
-                    <strong className="text-white">Functionele cookies:</strong>{" "}
-                    noodzakelijk voor het functioneren van de website
+                    <strong className="text-white">{t("sections.cookies.functional.title")}</strong>{" "}
+                    {t("sections.cookies.functional.description")}
                   </li>
                   <li>
-                    <strong className="text-white">Analytische cookies:</strong>{" "}
-                    om inzicht te krijgen in het gebruik van onze website
-                    (Google Analytics)
+                    <strong className="text-white">{t("sections.cookies.analytical.title")}</strong>{" "}
+                    {t("sections.cookies.analytical.description")}
                   </li>
                   <li>
-                    <strong className="text-white">Marketing cookies:</strong>{" "}
-                    alleen met uw toestemming, voor het tonen van relevante
-                    advertenties
+                    <strong className="text-white">{t("sections.cookies.marketing.title")}</strong>{" "}
+                    {t("sections.cookies.marketing.description")}
                   </li>
                 </ul>
                 <p className="text-muted-foreground mt-4">
-                  Via onze cookiebanner kunt u uw voorkeuren beheren en
-                  toestemming geven of intrekken.
+                  {t("sections.cookies.outro")}
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  5. Bewaartermijn
+                  {t("sections.retention.title")}
                 </h2>
                 <p className="text-muted-foreground">
-                  Wij bewaren uw persoonsgegevens niet langer dan strikt nodig
-                  is om de doelen te realiseren waarvoor uw gegevens worden
-                  verzameld. Contactgegevens worden maximaal 2 jaar na het
-                  laatste contact bewaard, tenzij er een lopende
-                  klantrelatie is.
+                  {t("sections.retention.content")}
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  6. Delen met derden
+                  {t("sections.thirdParties.title")}
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  Wij delen uw gegevens alleen met derden indien dit noodzakelijk
-                  is voor het uitvoeren van onze diensten:
+                  {t("sections.thirdParties.intro")}
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>
-                    Hostingproviders (servers in EU: Duitsland/Finland)
-                  </li>
-                  <li>
-                    Analytics diensten (Google Analytics - geanonimiseerd)
-                  </li>
-                  <li>
-                    E-mail dienstverleners (voor het verzenden van berichten)
-                  </li>
+                  {(t.raw("sections.thirdParties.items") as string[]).map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
                 <p className="text-muted-foreground mt-4">
-                  Wij verkopen uw gegevens nooit aan derden.
+                  {t("sections.thirdParties.outro")}
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  7. Uw rechten
+                  {t("sections.rights.title")}
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  U heeft het recht om:
+                  {t("sections.rights.intro")}
                 </p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>Uw persoonsgegevens in te zien</li>
-                  <li>Uw persoonsgegevens te corrigeren</li>
-                  <li>Uw persoonsgegevens te laten verwijderen</li>
-                  <li>Bezwaar te maken tegen de verwerking</li>
-                  <li>Uw gegevens over te dragen (dataportabiliteit)</li>
+                  {(t.raw("sections.rights.items") as string[]).map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
                 <p className="text-muted-foreground mt-4">
-                  U kunt een verzoek indienen via{" "}
+                  {t("sections.rights.outro", { email: "" })}{" "}
                   <a
                     href="mailto:info@robuustmarketing.nl"
                     className="text-accent hover:underline"
                   >
                     info@robuustmarketing.nl
                   </a>
-                  . Wij reageren binnen 30 dagen.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  8. Beveiliging
+                  {t("sections.security.title")}
                 </h2>
                 <p className="text-muted-foreground">
-                  Wij nemen de bescherming van uw gegevens serieus en nemen
-                  passende maatregelen om misbruik, verlies, onbevoegde
-                  toegang, ongewenste openbaarmaking en ongeoorloofde wijziging
-                  tegen te gaan. Onze website maakt gebruik van een SSL-certificaat
-                  en onze servers staan in beveiligde datacenters in Europa.
+                  {t("sections.security.content")}
                 </p>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">
-                  9. Contact
+                  {t("sections.contact.title")}
                 </h2>
                 <p className="text-muted-foreground">
-                  Heeft u vragen over deze privacyverklaring of over de
-                  verwerking van uw persoonsgegevens? Neem dan contact met ons
-                  op via{" "}
+                  {t("sections.contact.content", { email: "" })}{" "}
                   <a
                     href="mailto:info@robuustmarketing.nl"
                     className="text-accent hover:underline"
                   >
                     info@robuustmarketing.nl
                   </a>
-                  .
                 </p>
               </section>
             </div>

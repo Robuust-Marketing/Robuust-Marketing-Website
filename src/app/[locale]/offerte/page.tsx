@@ -1,40 +1,43 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "@/components/motion";
 import { ArrowRight, Check, Clock, Shield, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-const services = [
-  { id: "website", label: "Website laten maken" },
-  { id: "webshop", label: "Webshop / E-commerce" },
-  { id: "redesign", label: "Website redesign" },
-  { id: "hosting", label: "Hosting & Onderhoud" },
-  { id: "seo", label: "SEO / Zoekmachine optimalisatie" },
-  { id: "video", label: "Video productie" },
-  { id: "branding", label: "Branding & Huisstijl" },
-  { id: "marketing", label: "Online marketing" },
-  { id: "anders", label: "Anders / Weet ik nog niet" },
-];
-
-const budgets = [
-  { id: "1000-2500", label: "€1.000 - €2.500" },
-  { id: "2500-5000", label: "€2.500 - €5.000" },
-  { id: "5000-10000", label: "€5.000 - €10.000" },
-  { id: "10000+", label: "€10.000+" },
-  { id: "unknown", label: "Weet ik nog niet" },
-];
-
-const timelines = [
-  { id: "asap", label: "Zo snel mogelijk" },
-  { id: "1-month", label: "Binnen 1 maand" },
-  { id: "1-3-months", label: "Binnen 1-3 maanden" },
-  { id: "3-months+", label: "Meer dan 3 maanden" },
-  { id: "unknown", label: "Geen deadline" },
-];
-
 export default function OffertePage() {
+  const t = useTranslations("offertePage");
+
+  const services = [
+    { id: "website", label: t("services.website") },
+    { id: "webshop", label: t("services.webshop") },
+    { id: "redesign", label: t("services.redesign") },
+    { id: "hosting", label: t("services.hosting") },
+    { id: "seo", label: t("services.seo") },
+    { id: "video", label: t("services.video") },
+    { id: "branding", label: t("services.branding") },
+    { id: "marketing", label: t("services.marketing") },
+    { id: "anders", label: t("services.other") },
+  ];
+
+  const budgets = [
+    { id: "1000-2500", label: t("budgetTimeline.budgets.1000-2500") },
+    { id: "2500-5000", label: t("budgetTimeline.budgets.2500-5000") },
+    { id: "5000-10000", label: t("budgetTimeline.budgets.5000-10000") },
+    { id: "10000+", label: t("budgetTimeline.budgets.10000+") },
+    { id: "unknown", label: t("budgetTimeline.budgets.unknown") },
+  ];
+
+  const timelines = [
+    { id: "asap", label: t("budgetTimeline.timelines.asap") },
+    { id: "1-month", label: t("budgetTimeline.timelines.1-month") },
+    { id: "1-3-months", label: t("budgetTimeline.timelines.1-3-months") },
+    { id: "3-months+", label: t("budgetTimeline.timelines.3-months+") },
+    { id: "unknown", label: t("budgetTimeline.timelines.unknown") },
+  ];
+
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -90,7 +93,7 @@ export default function OffertePage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Offerte aanvragen
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -98,9 +101,9 @@ export default function OffertePage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl font-bold text-white mb-6"
           >
-            Vraag een{" "}
-            <span className="text-gradient-accent">vrijblijvende offerte</span>{" "}
-            aan
+            {t("titleLine1")}{" "}
+            <span className="text-gradient-accent">{t("titleLine2")}</span>{" "}
+            {t("titleLine3")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -108,8 +111,7 @@ export default function OffertePage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground text-lg"
           >
-            Vertel ons over je project en ontvang binnen 24 uur een
-            gepersonaliseerde offerte.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -125,15 +127,15 @@ export default function OffertePage() {
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="h-4 w-4 text-accent" />
-              Reactie binnen 24 uur
+              {t("trust.response")}
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Shield className="h-4 w-4 text-accent" />
-              100% vrijblijvend
+              {t("trust.noObligation")}
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <MessageSquare className="h-4 w-4 text-accent" />
-              Persoonlijk advies
+              {t("trust.personalAdvice")}
             </div>
           </motion.div>
         </div>
@@ -152,10 +154,10 @@ export default function OffertePage() {
             {/* Services */}
             <div className="rounded-2xl bg-surface p-6 border border-white/5">
               <h2 className="text-xl font-semibold text-white mb-4">
-                Waar kunnen we je mee helpen?
+                {t("services.title")}
               </h2>
               <p className="text-sm text-muted-foreground mb-4">
-                Selecteer een of meerdere diensten
+                {t("services.subtitle")}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {services.map((service) => (
@@ -189,7 +191,7 @@ export default function OffertePage() {
             {/* Contact Info */}
             <div className="rounded-2xl bg-surface p-6 border border-white/5">
               <h2 className="text-xl font-semibold text-white mb-4">
-                Jouw gegevens
+                {t("contact.title")}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -197,7 +199,7 @@ export default function OffertePage() {
                     htmlFor="name"
                     className="block text-sm font-medium text-white mb-2"
                   >
-                    Naam *
+                    {t("contact.name")} *
                   </label>
                   <input
                     type="text"
@@ -209,7 +211,7 @@ export default function OffertePage() {
                       setFormData({ ...formData, name: e.target.value })
                     }
                     className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
-                    placeholder="Je volledige naam"
+                    placeholder={t("contact.namePlaceholder")}
                   />
                 </div>
                 <div>
@@ -217,7 +219,7 @@ export default function OffertePage() {
                     htmlFor="company"
                     className="block text-sm font-medium text-white mb-2"
                   >
-                    Bedrijfsnaam
+                    {t("contact.company")}
                   </label>
                   <input
                     type="text"
@@ -228,7 +230,7 @@ export default function OffertePage() {
                       setFormData({ ...formData, company: e.target.value })
                     }
                     className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
-                    placeholder="Je bedrijfsnaam"
+                    placeholder={t("contact.companyPlaceholder")}
                   />
                 </div>
                 <div>
@@ -236,7 +238,7 @@ export default function OffertePage() {
                     htmlFor="email"
                     className="block text-sm font-medium text-white mb-2"
                   >
-                    E-mail *
+                    {t("contact.email")} *
                   </label>
                   <input
                     type="email"
@@ -248,7 +250,7 @@ export default function OffertePage() {
                       setFormData({ ...formData, email: e.target.value })
                     }
                     className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
-                    placeholder="je@email.nl"
+                    placeholder={t("contact.emailPlaceholder")}
                   />
                 </div>
                 <div>
@@ -256,7 +258,7 @@ export default function OffertePage() {
                     htmlFor="phone"
                     className="block text-sm font-medium text-white mb-2"
                   >
-                    Telefoonnummer
+                    {t("contact.phone")}
                   </label>
                   <input
                     type="tel"
@@ -267,7 +269,7 @@ export default function OffertePage() {
                       setFormData({ ...formData, phone: e.target.value })
                     }
                     className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
-                    placeholder="06 12345678"
+                    placeholder={t("contact.phonePlaceholder")}
                   />
                 </div>
               </div>
@@ -276,12 +278,12 @@ export default function OffertePage() {
             {/* Budget & Timeline */}
             <div className="rounded-2xl bg-surface p-6 border border-white/5">
               <h2 className="text-xl font-semibold text-white mb-4">
-                Budget & Planning
+                {t("budgetTimeline.title")}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-white mb-3">
-                    Wat is je budget?
+                    {t("budgetTimeline.budgetLabel")}
                   </label>
                   <div className="space-y-2">
                     {budgets.map((budget) => (
@@ -317,7 +319,7 @@ export default function OffertePage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-white mb-3">
-                    Wanneer wil je live?
+                    {t("budgetTimeline.timelineLabel")}
                   </label>
                   <div className="space-y-2">
                     {timelines.map((timeline) => (
@@ -360,7 +362,7 @@ export default function OffertePage() {
             {/* Description */}
             <div className="rounded-2xl bg-surface p-6 border border-white/5">
               <h2 className="text-xl font-semibold text-white mb-4">
-                Vertel meer over je project
+                {t("description.title")}
               </h2>
               <textarea
                 id="description"
@@ -370,14 +372,14 @@ export default function OffertePage() {
                   setFormData({ ...formData, description: e.target.value })
                 }
                 className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent resize-none"
-                placeholder="Beschrijf je project, wensen en doelen. Hoe meer informatie, hoe beter we kunnen helpen."
+                placeholder={t("description.placeholder")}
               />
             </div>
 
             {/* Submit */}
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
               <p className="text-sm text-muted-foreground">
-                * Verplichte velden. We behandelen je gegevens vertrouwelijk.
+                {t("submit.required")}
               </p>
               <Button
                 type="submit"
@@ -386,10 +388,10 @@ export default function OffertePage() {
                 className="bg-accent hover:bg-accent-hover text-white w-full sm:w-auto"
               >
                 {isSubmitting ? (
-                  "Verzenden..."
+                  t("submit.submitting")
                 ) : (
                   <>
-                    Verstuur aanvraag
+                    {t("submit.button")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </>
                 )}
@@ -408,7 +410,7 @@ export default function OffertePage() {
             viewport={{ once: true }}
             className="text-muted-foreground mb-4"
           >
-            Liever direct contact?
+            {t("alternative.title")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -421,14 +423,14 @@ export default function OffertePage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/contact">Neem contact op</Link>
+              <Link href="/contact">{t("alternative.contact")}</Link>
             </Button>
             <Button
               asChild
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="tel:+31850604877">Bel ons direct</Link>
+              <Link href="tel:+31850604877">{t("alternative.call")}</Link>
             </Button>
           </motion.div>
         </div>

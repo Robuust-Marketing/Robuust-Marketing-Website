@@ -1,86 +1,47 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, Quote, Building2, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const testimonials = [
-  {
-    name: "Thomas van der Berg",
-    role: "Directeur",
-    company: "Van der Berg Bouw",
-    quote:
-      "Robuust heeft onze website volledig getransformeerd. De nieuwe site laadt razendsnel en we krijgen nu dagelijks kwalitatieve leads binnen. De samenwerking verliep perfect.",
-    rating: 5,
-    image: null,
-  },
-  {
-    name: "Lisa Bakker",
-    role: "Marketing Manager",
-    company: "Fresh Organics",
-    quote:
-      "Eindelijk een partij die begrijpt wat we nodig hebben. Het team denkt proactief mee en levert altijd meer dan verwacht. Onze online verkopen zijn met 200% gestegen.",
-    rating: 5,
-    image: null,
-  },
-  {
-    name: "Mark Jansen",
-    role: "Eigenaar",
-    company: "Jansen Techniek",
-    quote:
-      "Na jaren met een trage, verouderde website te hebben gewerkt, was de overstap naar Robuust een verademing. Snelle oplevering, goede communicatie en een prachtig resultaat.",
-    rating: 5,
-    image: null,
-  },
-  {
-    name: "Sandra de Vries",
-    role: "CEO",
-    company: "De Vries Consultancy",
-    quote:
-      "De hosting en het onderhoud bij Robuust geven me rust. Ik hoef me nergens zorgen over te maken en kan me focussen op mijn core business.",
-    rating: 5,
-    image: null,
-  },
-  {
-    name: "Peter Visser",
-    role: "Oprichter",
-    company: "Visser & Partners",
-    quote:
-      "Wat begon met een website, is uitgegroeid tot een complete digitale strategie. Robuust is een echte partner in onze online groei.",
-    rating: 5,
-    image: null,
-  },
-  {
-    name: "Emma Smit",
-    role: "E-commerce Manager",
-    company: "Style Studio",
-    quote:
-      "Onze webshop presteert beter dan ooit. Het team van Robuust heeft niet alleen een mooie site gebouwd, maar denkt ook mee over conversie-optimalisatie.",
-    rating: 5,
-    image: null,
-  },
-];
-
-const stats = [
-  { value: "50+", label: "Tevreden klanten" },
-  { value: "100+", label: "Projecten opgeleverd" },
-  { value: "4.9", label: "Gemiddelde beoordeling" },
-  { value: "98%", label: "Zou ons aanbevelen" },
-];
-
-const logos = [
-  "Van der Berg Bouw",
-  "Fresh Organics",
-  "Jansen Techniek",
-  "De Vries Consultancy",
-  "Visser & Partners",
-  "Style Studio",
-  "Tech Solutions",
-  "Green Energy NL",
-];
-
 export default function ReferentiesPage() {
+  const t = useTranslations("referentiesPage");
+
+  const testimonials = [
+    { id: "tvdb", rating: 5 },
+    { id: "lb", rating: 5 },
+    { id: "mj", rating: 5 },
+    { id: "sdv", rating: 5 },
+    { id: "pv", rating: 5 },
+    { id: "es", rating: 5 },
+  ];
+
+  const stats = [
+    { value: "50+", labelKey: "clients" },
+    { value: "100+", labelKey: "projects" },
+    { value: "4.9", labelKey: "rating" },
+    { value: "98%", labelKey: "recommend" },
+  ];
+
+  const logos = [
+    "Van der Berg Bouw",
+    "Fresh Organics",
+    "Jansen Techniek",
+    "De Vries Consultancy",
+    "Visser & Partners",
+    "Style Studio",
+    "Tech Solutions",
+    "Green Energy NL",
+  ];
+
+  const whyChooseItems = [
+    { id: "personal", icon: Users },
+    { id: "quality", icon: Award },
+    { id: "partnership", icon: Star },
+  ];
+
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -105,7 +66,7 @@ export default function ReferentiesPage() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Referenties
+            {t("badge")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -113,8 +74,8 @@ export default function ReferentiesPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Wat onze klanten{" "}
-            <span className="text-gradient-accent">zeggen</span>
+            {t("titleLine1")}{" "}
+            <span className="text-gradient-accent">{t("titleLine2")}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -122,8 +83,7 @@ export default function ReferentiesPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Lees de ervaringen van bedrijven die we hebben geholpen met hun
-            online aanwezigheid.
+            {t("subtitle")}
           </motion.p>
         </div>
       </section>
@@ -138,11 +98,11 @@ export default function ReferentiesPage() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
           >
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
+              <div key={stat.labelKey} className="text-center">
                 <div className="text-3xl sm:text-4xl font-bold text-accent mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-sm text-muted-foreground">{t(`stats.${stat.labelKey}`)}</div>
               </div>
             ))}
           </motion.div>
@@ -155,7 +115,7 @@ export default function ReferentiesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <motion.div
-                key={testimonial.name}
+                key={testimonial.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -172,23 +132,23 @@ export default function ReferentiesPage() {
                 </div>
                 <Quote className="h-8 w-8 text-accent/30 mb-4" />
                 <p className="text-white mb-6 leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
+                  &ldquo;{t(`testimonials.${testimonial.id}.quote`)}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
                     <span className="text-accent font-semibold text-sm">
-                      {testimonial.name
+                      {t(`testimonials.${testimonial.id}.name`)
                         .split(" ")
-                        .map((n) => n[0])
+                        .map((n: string) => n[0])
                         .join("")}
                     </span>
                   </div>
                   <div>
                     <div className="text-white font-medium text-sm">
-                      {testimonial.name}
+                      {t(`testimonials.${testimonial.id}.name`)}
                     </div>
                     <div className="text-muted-foreground text-xs">
-                      {testimonial.role} bij {testimonial.company}
+                      {t(`testimonials.${testimonial.id}.role`)} {t("roleAt")} {t(`testimonials.${testimonial.id}.company`)}
                     </div>
                   </div>
                 </div>
@@ -208,10 +168,10 @@ export default function ReferentiesPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Zij gingen je voor
+              {t("clients.title")}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Een selectie van bedrijven die we hebben mogen helpen
+              {t("clients.subtitle")}
             </p>
           </motion.div>
 
@@ -245,39 +205,21 @@ export default function ReferentiesPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Waarom kiezen bedrijven voor Robuust?
+                {t("whyChoose.title")}
               </h2>
               <p className="text-muted-foreground mb-8">
-                We leveren niet alleen mooie websites, maar echte resultaten.
-                Onze klanten waarderen onze persoonlijke aanpak en technische
-                expertise.
+                {t("whyChoose.subtitle")}
               </p>
               <ul className="space-y-4">
-                {[
-                  {
-                    icon: Users,
-                    title: "Persoonlijke aanpak",
-                    desc: "Je hebt altijd contact met dezelfde persoon",
-                  },
-                  {
-                    icon: Award,
-                    title: "Kwaliteit boven kwantiteit",
-                    desc: "We nemen de tijd voor elk project",
-                  },
-                  {
-                    icon: Star,
-                    title: "Langdurige partnerships",
-                    desc: "Veel klanten werken al jaren met ons",
-                  },
-                ].map((item) => (
-                  <li key={item.title} className="flex items-start gap-4">
+                {whyChooseItems.map((item) => (
+                  <li key={item.id} className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                       <item.icon className="h-5 w-5 text-accent" />
                     </div>
                     <div>
-                      <h3 className="text-white font-medium">{item.title}</h3>
+                      <h3 className="text-white font-medium">{t(`whyChoose.${item.id}.title`)}</h3>
                       <p className="text-muted-foreground text-sm">
-                        {item.desc}
+                        {t(`whyChoose.${item.id}.description`)}
                       </p>
                     </div>
                   </li>
@@ -297,8 +239,7 @@ export default function ReferentiesPage() {
                 ))}
               </div>
               <p className="text-2xl text-white font-medium mb-4">
-                &ldquo;Robuust is meer dan een leverancier - ze zijn een
-                strategische partner in onze groei.&rdquo;
+                &ldquo;{t("whyChoose.featuredQuote")}&rdquo;
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
@@ -306,10 +247,10 @@ export default function ReferentiesPage() {
                 </div>
                 <div>
                   <div className="text-white font-medium">
-                    Thomas van der Berg
+                    {t("testimonials.tvdb.name")}
                   </div>
                   <div className="text-muted-foreground text-sm">
-                    Directeur, Van der Berg Bouw
+                    {t("testimonials.tvdb.role")}, {t("testimonials.tvdb.company")}
                   </div>
                 </div>
               </div>
@@ -327,7 +268,7 @@ export default function ReferentiesPage() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl font-bold text-white mb-6"
           >
-            Klaar om de volgende te zijn?
+            {t("cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -335,8 +276,7 @@ export default function ReferentiesPage() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-8"
           >
-            Ontdek hoe wij jouw bedrijf kunnen helpen groeien. Start met een
-            vrijblijvend gesprek.
+            {t("cta.subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,7 +290,7 @@ export default function ReferentiesPage() {
               className="bg-accent hover:bg-accent-hover text-white"
             >
               <Link href="/offerte" className="flex items-center gap-2">
-                Vraag een offerte aan
+                {t("cta.primaryButton")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -360,7 +300,7 @@ export default function ReferentiesPage() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/portfolio">Bekijk ons werk</Link>
+              <Link href="/portfolio">{t("cta.secondaryButton")}</Link>
             </Button>
           </motion.div>
         </div>
