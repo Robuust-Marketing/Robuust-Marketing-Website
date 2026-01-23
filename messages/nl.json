@@ -1,0 +1,232 @@
+{
+  "metadata": {
+    "title": "Robuust Marketing - High-end digitale infrastructuur",
+    "description": "Robuust Marketing levert waterdichte development, hosting en security SLA's voor het MKB."
+  },
+  "navigation": {
+    "diensten": "Diensten",
+    "werkwijze": "Werkwijze",
+    "tooling": "Tooling",
+    "kennisbank": "Kennisbank",
+    "over": "Over",
+    "contact": "Contact",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten"
+  },
+  "header": {
+    "cta": "Start je project",
+    "ourServices": "Onze Diensten",
+    "packages": "Pakketten",
+    "popular": "Populair",
+    "viewAllPricing": "Bekijk alle tarieven",
+    "requestQuote": "Vraag een offerte aan",
+    "ourApproach": "Onze Werkwijze",
+    "readyToStart": "Klaar om te starten?",
+    "readyToStartDescription": "Plan een gratis kennismakingsgesprek en ontdek hoe wij jouw project kunnen realiseren.",
+    "scheduleCall": "Plan een gesprek",
+    "ourTechStack": "Onze Tech Stack",
+    "whyThisStack": "Waarom deze stack?",
+    "stackBenefits": {
+      "performance": "Razendsnelle performance",
+      "seo": "SEO-geoptimaliseerd",
+      "scalable": "Schaalbaar & onderhoudbaar",
+      "futureProof": "Toekomstbestendig"
+    },
+    "readMoreStack": "Lees meer over onze stack",
+    "learnAndDiscover": "Leren & Ontdekken",
+    "recentArticles": "Recente artikelen",
+    "viewAllArticles": "Bekijk alle artikelen",
+    "loadingArticles": "Artikelen laden...",
+    "aboutRobuust": "Over Robuust",
+    "directContact": "Direct contact?",
+    "weAreReady": "We staan voor je klaar"
+  },
+  "services": {
+    "design": {
+      "name": "Design",
+      "description": "UI/UX design die converteert"
+    },
+    "development": {
+      "name": "Development",
+      "description": "React, Next.js & TypeScript"
+    },
+    "hosting": {
+      "name": "Hosting",
+      "description": "Enterprise-grade infrastructuur"
+    },
+    "onderhoud": {
+      "name": "Onderhoud",
+      "description": "Proactief website onderhoud"
+    },
+    "tracking": {
+      "name": "Tracking & Analytics",
+      "description": "GA4, Meta Pixel & Taggrs"
+    },
+    "emailMarketing": {
+      "name": "Email Marketing",
+      "description": "Campagnes die converteren"
+    },
+    "onlineMarketing": {
+      "name": "Online Marketing",
+      "description": "Meta, TikTok & Google Ads"
+    },
+    "branding": {
+      "name": "Branding",
+      "description": "Logo & huisstijl"
+    },
+    "seo": {
+      "name": "SEO",
+      "description": "Organisch beter gevonden worden"
+    },
+    "crm": {
+      "name": "CRM",
+      "description": "Klantrelaties optimaliseren"
+    }
+  },
+  "packages": {
+    "solidStart": {
+      "name": "Solid Start",
+      "description": "Perfect voor starters",
+      "price": "vanaf €2.500"
+    },
+    "firmFoundation": {
+      "name": "Firm Foundation",
+      "description": "Voor groeiende bedrijven",
+      "price": "vanaf €7.500"
+    }
+  },
+  "werkwijze": {
+    "approach": {
+      "name": "Onze aanpak",
+      "description": "Van intake tot oplevering"
+    },
+    "phases": {
+      "name": "Projectfases",
+      "description": "Discovery, Design, Development"
+    },
+    "timeline": {
+      "name": "Tijdlijn",
+      "description": "Wat kun je verwachten?"
+    },
+    "collaboration": {
+      "name": "Samenwerking",
+      "description": "Hoe wij communiceren"
+    }
+  },
+  "tooling": {
+    "nextjs": {
+      "name": "Next.js & React",
+      "description": "Modern frontend framework"
+    },
+    "typescript": {
+      "name": "TypeScript",
+      "description": "Type-safe development"
+    },
+    "tailwind": {
+      "name": "Tailwind CSS",
+      "description": "Utility-first styling"
+    },
+    "cms": {
+      "name": "Headless CMS",
+      "description": "Contentbeheer oplossingen"
+    },
+    "cloudflare": {
+      "name": "Cloudflare",
+      "description": "CDN & Security"
+    },
+    "nginx": {
+      "name": "NGINX",
+      "description": "High-performance servers"
+    }
+  },
+  "resources": {
+    "blog": {
+      "name": "Blog",
+      "description": "Artikelen & insights"
+    },
+    "kennisbank": {
+      "name": "Kennisbank",
+      "description": "Diepgaande guides"
+    },
+    "faq": {
+      "name": "FAQ",
+      "description": "Veelgestelde vragen"
+    },
+    "support": {
+      "name": "Support",
+      "description": "Hulp & ondersteuning"
+    }
+  },
+  "company": {
+    "about": {
+      "name": "Over Robuust",
+      "description": "Ons verhaal & team"
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "description": "Onze beste projecten"
+    },
+    "referenties": {
+      "name": "Referenties",
+      "description": "Wat klanten zeggen"
+    },
+    "partners": {
+      "name": "Partners",
+      "description": "Samenwerkingen"
+    },
+    "vacatures": {
+      "name": "Vacatures",
+      "description": "Werken bij Robuust"
+    },
+    "contact": {
+      "name": "Contact",
+      "description": "Neem contact op"
+    }
+  },
+  "footer": {
+    "services": "Diensten",
+    "packages": "Pakketten",
+    "company": "Bedrijf",
+    "resources": "Resources",
+    "contact": "Contact",
+    "trustedBy": "Vertrouwd Door",
+    "websitesManaged": "Websites beheerd",
+    "uptimeGuarantee": "Uptime garantie",
+    "hostingServers": "Hosting op dedicated Europese servers (Duitsland/Finland)",
+    "gdprCompliant": "Volledig AVG-compliant",
+    "allRightsReserved": "Alle rechten voorbehouden",
+    "netherlands": "Nederland"
+  },
+  "hero": {
+    "title": "High-end digitale infrastructuur voor groeiende bedrijven",
+    "subtitle": "Robuust Marketing levert waterdichte development, hosting en security SLA's voor het MKB.",
+    "cta": "Bekijk de Fundamenten",
+    "ctaSecondary": "Onze aanpak"
+  },
+  "buttons": {
+    "learnMore": "Meer informatie",
+    "contact": "Neem contact op",
+    "viewAll": "Bekijk alles",
+    "requestQuote": "Offerte aanvragen",
+    "startProject": "Start je project",
+    "scheduleCall": "Plan een gesprek"
+  },
+  "common": {
+    "from": "vanaf",
+    "loading": "Laden...",
+    "error": "Er is iets misgegaan",
+    "readMore": "Lees meer",
+    "viewAll": "Bekijk alle",
+    "back": "Terug",
+    "next": "Volgende",
+    "previous": "Vorige"
+  },
+  "fallback": {
+    "notAvailable": "Deze content is nog niet beschikbaar in het Engels. De Nederlandse versie wordt getoond."
+  },
+  "languageSwitcher": {
+    "label": "Taal",
+    "nl": "Nederlands",
+    "en": "English"
+  }
+}

@@ -56,7 +56,7 @@ export function TechStack() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Aangedreven door <span className="text-gradient-accent">proven technology</span>
+            Aangedreven door <span className="text-gradient-accent">bewezen technologie</span>
             <br />
             <span className="text-white/80 text-2xl sm:text-3xl lg:text-4xl">versneld door AI</span>
           </motion.h2>

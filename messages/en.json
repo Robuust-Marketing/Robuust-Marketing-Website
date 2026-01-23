@@ -1,0 +1,232 @@
+{
+  "metadata": {
+    "title": "Robuust Marketing - High-end digital infrastructure",
+    "description": "Robuust Marketing delivers bulletproof development, hosting and security SLAs for SMBs."
+  },
+  "navigation": {
+    "diensten": "Services",
+    "werkwijze": "How We Work",
+    "tooling": "Tools",
+    "kennisbank": "Resources",
+    "over": "About",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "header": {
+    "cta": "Start your project",
+    "ourServices": "Our Services",
+    "packages": "Packages",
+    "popular": "Popular",
+    "viewAllPricing": "View all pricing",
+    "requestQuote": "Request a quote",
+    "ourApproach": "Our Approach",
+    "readyToStart": "Ready to start?",
+    "readyToStartDescription": "Schedule a free consultation and discover how we can bring your project to life.",
+    "scheduleCall": "Schedule a call",
+    "ourTechStack": "Our Tech Stack",
+    "whyThisStack": "Why this stack?",
+    "stackBenefits": {
+      "performance": "Lightning-fast performance",
+      "seo": "SEO-optimized",
+      "scalable": "Scalable & maintainable",
+      "futureProof": "Future-proof"
+    },
+    "readMoreStack": "Read more about our stack",
+    "learnAndDiscover": "Learn & Discover",
+    "recentArticles": "Recent articles",
+    "viewAllArticles": "View all articles",
+    "loadingArticles": "Loading articles...",
+    "aboutRobuust": "About Robuust",
+    "directContact": "Direct contact?",
+    "weAreReady": "We're here for you"
+  },
+  "services": {
+    "design": {
+      "name": "Design",
+      "description": "UI/UX design that converts"
+    },
+    "development": {
+      "name": "Development",
+      "description": "React, Next.js & TypeScript"
+    },
+    "hosting": {
+      "name": "Hosting",
+      "description": "Enterprise-grade infrastructure"
+    },
+    "onderhoud": {
+      "name": "Maintenance",
+      "description": "Proactive website maintenance"
+    },
+    "tracking": {
+      "name": "Tracking & Analytics",
+      "description": "GA4, Meta Pixel & Taggrs"
+    },
+    "emailMarketing": {
+      "name": "Email Marketing",
+      "description": "Campaigns that convert"
+    },
+    "onlineMarketing": {
+      "name": "Online Marketing",
+      "description": "Meta, TikTok & Google Ads"
+    },
+    "branding": {
+      "name": "Branding",
+      "description": "Logo & corporate identity"
+    },
+    "seo": {
+      "name": "SEO",
+      "description": "Get found organically"
+    },
+    "crm": {
+      "name": "CRM",
+      "description": "Optimize customer relationships"
+    }
+  },
+  "packages": {
+    "solidStart": {
+      "name": "Solid Start",
+      "description": "Perfect for starters",
+      "price": "from €2,500"
+    },
+    "firmFoundation": {
+      "name": "Firm Foundation",
+      "description": "For growing businesses",
+      "price": "from €7,500"
+    }
+  },
+  "werkwijze": {
+    "approach": {
+      "name": "Our approach",
+      "description": "From intake to delivery"
+    },
+    "phases": {
+      "name": "Project phases",
+      "description": "Discovery, Design, Development"
+    },
+    "timeline": {
+      "name": "Timeline",
+      "description": "What can you expect?"
+    },
+    "collaboration": {
+      "name": "Collaboration",
+      "description": "How we communicate"
+    }
+  },
+  "tooling": {
+    "nextjs": {
+      "name": "Next.js & React",
+      "description": "Modern frontend framework"
+    },
+    "typescript": {
+      "name": "TypeScript",
+      "description": "Type-safe development"
+    },
+    "tailwind": {
+      "name": "Tailwind CSS",
+      "description": "Utility-first styling"
+    },
+    "cms": {
+      "name": "Headless CMS",
+      "description": "Content management solutions"
+    },
+    "cloudflare": {
+      "name": "Cloudflare",
+      "description": "CDN & Security"
+    },
+    "nginx": {
+      "name": "NGINX",
+      "description": "High-performance servers"
+    }
+  },
+  "resources": {
+    "blog": {
+      "name": "Blog",
+      "description": "Articles & insights"
+    },
+    "kennisbank": {
+      "name": "Knowledge Base",
+      "description": "In-depth guides"
+    },
+    "faq": {
+      "name": "FAQ",
+      "description": "Frequently asked questions"
+    },
+    "support": {
+      "name": "Support",
+      "description": "Help & assistance"
+    }
+  },
+  "company": {
+    "about": {
+      "name": "About Robuust",
+      "description": "Our story & team"
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "description": "Our best projects"
+    },
+    "referenties": {
+      "name": "Testimonials",
+      "description": "What clients say"
+    },
+    "partners": {
+      "name": "Partners",
+      "description": "Partnerships"
+    },
+    "vacatures": {
+      "name": "Careers",
+      "description": "Work at Robuust"
+    },
+    "contact": {
+      "name": "Contact",
+      "description": "Get in touch"
+    }
+  },
+  "footer": {
+    "services": "Services",
+    "packages": "Packages",
+    "company": "Company",
+    "resources": "Resources",
+    "contact": "Contact",
+    "trustedBy": "Trusted By",
+    "websitesManaged": "Websites managed",
+    "uptimeGuarantee": "Uptime guarantee",
+    "hostingServers": "Hosted on dedicated European servers (Germany/Finland)",
+    "gdprCompliant": "Fully GDPR-compliant",
+    "allRightsReserved": "All rights reserved",
+    "netherlands": "Netherlands"
+  },
+  "hero": {
+    "title": "High-end digital infrastructure for growing businesses",
+    "subtitle": "Robuust Marketing delivers bulletproof development, hosting and security SLAs for SMBs.",
+    "cta": "View Our Packages",
+    "ctaSecondary": "Our approach"
+  },
+  "buttons": {
+    "learnMore": "Learn more",
+    "contact": "Get in touch",
+    "viewAll": "View all",
+    "requestQuote": "Request a quote",
+    "startProject": "Start your project",
+    "scheduleCall": "Schedule a call"
+  },
+  "common": {
+    "from": "from",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "fallback": {
+    "notAvailable": "This content is not yet available in English. Showing the Dutch version."
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "nl": "Nederlands",
+    "en": "English"
+  }
+}

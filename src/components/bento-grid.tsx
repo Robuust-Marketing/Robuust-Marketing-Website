@@ -97,57 +97,57 @@ function BentoCard({ title, description, icon, className, index, highlight }: Be
 
 const features = [
   {
-    title: "Custom Design",
-    description: "Bespoke UI/UX design that captures your brand identity and converts visitors into customers. We craft every pixel with purpose.",
+    title: "Maatwerk Design",
+    description: "Op maat gemaakte UI/UX die uw merkidentiteit vastlegt en bezoekers omzet in klanten. Elk pixel met een doel.",
     icon: <Palette className="h-6 w-6" />,
     className: "md:col-span-2 md:row-span-1",
     highlight: true,
   },
   {
-    title: "Modern Development",
-    description: "Built with React, Next.js, and TypeScript for blazing-fast performance and maintainable code.",
+    title: "Moderne Development",
+    description: "Gebouwd met React, Next.js en TypeScript voor razendsnelle performance en onderhoudbare code.",
     icon: <Code2 className="h-6 w-6" />,
     className: "md:col-span-1 md:row-span-2",
     highlight: false,
   },
   {
-    title: "Managed Hosting",
-    description: "Enterprise-grade infrastructure with NGINX and Cloudflare on dedicated servers in Germany & Finland.",
+    title: "Beheerde Hosting",
+    description: "Enterprise-grade infrastructuur met NGINX en Cloudflare op dedicated servers in Duitsland & Finland.",
     icon: <Server className="h-6 w-6" />,
     className: "md:col-span-1 md:row-span-1",
     highlight: false,
   },
   {
-    title: "Rock-Solid Security",
-    description: "OAuth, 1Password integrations, DKIM/DMARC management, and full AVG compliance. Your data stays safe.",
+    title: "Waterdichte Security",
+    description: "OAuth, 1Password integraties, DKIM/DMARC beheer en volledige AVG-compliance. Uw data blijft veilig.",
     icon: <Shield className="h-6 w-6" />,
     className: "md:col-span-1 md:row-span-1",
     highlight: true,
   },
   {
-    title: "Advanced Analytics",
-    description: "GA4, Meta Pixel, first-party tracking with Taggrs, and business recognition with Snitcher for complete insights.",
+    title: "Slimme Analytics",
+    description: "GA4, Meta Pixel, first-party tracking met Taggrs en bedrijfsherkenning met Snitcher voor complete inzichten.",
     icon: <BarChart3 className="h-6 w-6" />,
     className: "md:col-span-1 md:row-span-1",
     highlight: false,
   },
   {
-    title: "Lightning Performance",
-    description: "Optimized for Core Web Vitals with Varnish caching and edge delivery for sub-second load times that boost conversions.",
+    title: "Bliksemsnelle Performance",
+    description: "Geoptimaliseerd voor Core Web Vitals met Varnish caching en edge delivery voor laadtijden onder de seconde.",
     icon: <Zap className="h-6 w-6" />,
     className: "md:col-span-1 md:row-span-1",
     highlight: false,
   },
   {
     title: "SEO & Marketing",
-    description: "Full-stack digital marketing including Meta, TikTok, and Google Ads deployment via Hello Its Me.",
+    description: "Full-stack digital marketing inclusief Meta, TikTok en Google Ads deployment via Hello Its Me.",
     icon: <Globe className="h-6 w-6" />,
     className: "md:col-span-1 md:row-span-1",
     highlight: false,
   },
   {
-    title: "24/7 Support",
-    description: "Dedicated support with ironclad SLAs. We're there when you need us, every time. No waiting, no excuses.",
+    title: "Support Zonder Gedoe",
+    description: "Persoonlijke support met harde SLA's. We zijn er als u ons nodig heeft. Geen wachttijden, geen excuses.",
     icon: <Headphones className="h-6 w-6" />,
     className: "md:col-span-2 md:row-span-1",
     highlight: true,
@@ -198,7 +198,7 @@ export function BentoGrid() {
             transition={{ duration: 0.5 }}
             className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4"
           >
-            Features
+            Wat Wij Leveren
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -207,9 +207,9 @@ export function BentoGrid() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Everything you need to
+            Alles wat u nodig heeft om
             <br />
-            <span className="text-gradient-accent">dominate online</span>
+            <span className="text-gradient-accent">online te domineren</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -218,8 +218,8 @@ export function BentoGrid() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            From pixel-perfect design to bulletproof hosting, we handle every aspect
-            of your digital presence.
+            Van pixel-perfect design tot kogelvrije hosting. Wij regelen elk aspect
+            van uw digitale aanwezigheid.
           </motion.p>
         </div>
 

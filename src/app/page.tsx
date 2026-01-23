@@ -21,13 +21,23 @@ const Hero = dynamic(() => import("@/components/hero").then((mod) => mod.Hero), 
 });
 
 // Below-the-fold components loaded with ssr for SEO but chunked for performance
-const BentoGrid = dynamic(
-  () => import("@/components/bento-grid").then((mod) => mod.BentoGrid),
+const SocialProof = dynamic(
+  () => import("@/components/social-proof").then((mod) => mod.SocialProof),
   { ssr: true }
 );
 
-const SocialProof = dynamic(
-  () => import("@/components/social-proof").then((mod) => mod.SocialProof),
+const PortfolioShowcase = dynamic(
+  () => import("@/components/portfolio-showcase").then((mod) => mod.PortfolioShowcase),
+  { ssr: true }
+);
+
+const FounderIntro = dynamic(
+  () => import("@/components/founder-intro").then((mod) => mod.FounderIntro),
+  { ssr: true }
+);
+
+const BentoGrid = dynamic(
+  () => import("@/components/bento-grid").then((mod) => mod.BentoGrid),
   { ssr: true }
 );
 
@@ -52,12 +62,22 @@ export default function Home() {
       {/* Hero section - critical for LCP, loads first */}
       <Hero />
 
-      {/* Social proof - lightweight, loads immediately after hero */}
+      {/* Social proof - client logos */}
       <Suspense fallback={<SectionLoader />}>
         <SocialProof />
       </Suspense>
 
-      {/* Feature grid - heavy component with animations */}
+      {/* Portfolio showcase - featured work */}
+      <Suspense fallback={<SectionLoader />}>
+        <PortfolioShowcase />
+      </Suspense>
+
+      {/* Founder intro - personal touch */}
+      <Suspense fallback={<SectionLoader />}>
+        <FounderIntro />
+      </Suspense>
+
+      {/* Feature grid - what we deliver */}
       <Suspense fallback={<SectionLoader />}>
         <BentoGrid />
       </Suspense>
