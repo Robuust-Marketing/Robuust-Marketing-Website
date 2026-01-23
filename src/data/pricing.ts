@@ -227,7 +227,7 @@ export const pricing = {
     },
   } as Record<string, HourlyRate>,
 
-  // Service add-ons voor de calculator
+  // Service add-ons voor de offertecalculator
   serviceAddOns: {
     tracking: {
       price: 600,
