@@ -13,12 +13,38 @@ export { AnimatePresence, useReducedMotion };
 /**
  * Create a motion component that respects prefers-reduced-motion.
  * When reduced motion is preferred, animation props are stripped.
+ * Uses mounted state to prevent hydration mismatches.
  */
 function withReducedMotion<P extends object>(
   MotionComponent: React.ComponentType<P>
 ): React.FC<P> {
   const ReducedMotionComponent: React.FC<P> = (props) => {
+    const [mounted, setMounted] = React.useState(false);
     const prefersReducedMotion = useReducedMotion();
+
+    React.useEffect(() => {
+      setMounted(true);
+    }, []);
+
+    // Before mount, render without animation to prevent hydration mismatch
+    // The initial state should match what the server renders
+    if (!mounted) {
+      const {
+        initial,
+        animate,
+        exit,
+        whileHover,
+        whileTap,
+        whileInView,
+        whileFocus,
+        whileDrag,
+        transition,
+        variants,
+        ...rest
+      } = props as Record<string, unknown>;
+
+      return <MotionComponent {...(rest as P)} />;
+    }
 
     if (prefersReducedMotion) {
       // Strip animation props when reduced motion is preferred

@@ -238,10 +238,11 @@ export function Header() {
           className="flex lg:flex-1"
         >
           <Link href="/" className="-m-1.5 p-1.5 group">
-            <span className="text-2xl font-bold text-white transition-colors">
-              Robuust
-              <span className="text-accent group-hover:text-accent-hover transition-colors">.</span>
-            </span>
+            <img
+              src="/logo.png"
+              alt="Robuust"
+              className="h-10 w-auto"
+            />
           </Link>
         </motion.div>
 
@@ -741,9 +742,11 @@ export function Header() {
                 {/* Header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
                   <Link href="/" className="-m-1.5 p-1.5" onClick={closeMobileMenu}>
-                    <span className="text-2xl font-bold text-white">
-                      Robuust<span className="text-accent">.</span>
-                    </span>
+                    <img
+                      src="/logo.png"
+                      alt="Robuust"
+                      className="h-10 w-auto"
+                    />
                   </Link>
                   <button
                     type="button"

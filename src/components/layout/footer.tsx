@@ -217,9 +217,11 @@ export function Footer() {
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             {/* Logo & Copyright */}
             <div className="flex items-center gap-4">
-              <span className="text-xl font-bold text-white">
-                Robuust<span className="text-accent">.</span>
-              </span>
+              <img
+                src="/logo.png"
+                alt="Robuust"
+                className="h-8 w-auto"
+              />
               <p className="text-sm text-muted-foreground">
                 © {currentYear} Robuust Marketing. {t("allRightsReserved")}.
               </p>
