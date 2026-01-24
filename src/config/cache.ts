@@ -54,7 +54,7 @@ export const nextHeadersConfig = [
   },
   {
     // Blog afbeeldingen
-    source: "/blog/:path(.+\\.(jpg|jpeg|png|webp|avif|svg))",
+    source: "/blog/:path*",
     headers: [{ key: "Cache-Control", value: cacheHeaders.static }],
   },
   {
