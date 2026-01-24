@@ -1,0 +1,60 @@
+# Robuust Marketing
+
+> Nederlandse webdevelopment en hosting agency gespecialiseerd in high-performance websites, SEO en online marketing.
+
+Uitgebreide versie: https://robuustmarketing.nl/llms-full.txt
+
+Robuust Marketing is een full-service digital agency uit Zwijndrecht, Nederland. Wij bouwen snelle, veilige en schaalbare websites met moderne technologieën zoals Next.js, React en Tailwind CSS. Onze focus ligt op meetbare resultaten: hogere conversies, betere vindbaarheid en een sterke online aanwezigheid.
+
+## Diensten
+
+- **Webdesign & Development**: Maatwerk websites gebouwd met Next.js en React
+- **Hosting & Onderhoud**: Managed hosting op eigen infrastructuur met Cloudflare
+- **SEO**: Technische en content SEO voor betere vindbaarheid
+- **Online Marketing**: Google Ads, social media en conversie-optimalisatie
+- **Branding**: Huisstijl, logo-ontwerp en visuele identiteit
+- **E-mail Marketing**: Nieuwsbrieven en geautomatiseerde campagnes
+- **Tracking & Analytics**: Google Tag Manager, GA4 en conversie-tracking
+- **CRM Integratie**: HubSpot en andere CRM-systemen
+
+## Doelgroep
+
+- MKB-bedrijven in Nederland en België
+- Startups die een professionele online aanwezigheid zoeken
+- Bedrijven die hun bestaande website willen verbeteren
+- Ondernemers in de regio Drechtsteden (Zwijndrecht, Dordrecht, Ridderkerk, etc.)
+
+## Technische Stack
+
+- Next.js 16 met React 19 en App Router
+- Tailwind CSS voor styling
+- Vercel/Cloudflare voor deployment
+- Resend voor transactionele e-mails
+- HubSpot voor CRM en lead management
+
+## Contact
+
+- Website: https://robuustmarketing.nl
+- E-mail: info@robuustmarketing.nl
+- Telefoon: +31 78 203 1019
+- Locatie: Zwijndrecht, Nederland
+
+## Belangrijke Pagina's
+
+- /diensten - Overzicht van alle diensten
+- /portfolio - Voorbeelden van ons werk
+- /tarieven - Prijzen en pakketten
+- /blog - Artikelen over webdevelopment en marketing
+- /kennisbank - Uitgebreide handleidingen en tutorials
+- /offerte - Vrijblijvende offerte aanvragen
+- /contact - Neem contact met ons op
+
+## Talen
+
+De website is beschikbaar in:
+- Nederlands (primair): https://robuustmarketing.nl
+- Engels: https://robuustmarketing.nl/en
+
+## Licentie & Gebruik
+
+De inhoud van deze website is auteursrechtelijk beschermd. Voor vragen over hergebruik van content, neem contact met ons op via info@robuustmarketing.nl.

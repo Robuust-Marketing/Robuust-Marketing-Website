@@ -1,0 +1,351 @@
+# Robuust Marketing - Volledige Documentatie voor LLMs
+
+> Nederlandse webdevelopment en hosting agency gespecialiseerd in high-performance websites, SEO en online marketing.
+
+## Over Ons
+
+Robuust Marketing is een full-service digital agency opgericht in Zwijndrecht, Nederland. Wij combineren technische expertise met marketing-knowhow om bedrijven online succesvol te maken. Onze aanpak is data-driven: we meten alles en optimaliseren continu voor betere resultaten.
+
+### Onze Kernwaarden
+
+1. **Performance First** - Snelle websites converteren beter
+2. **Meetbare Resultaten** - Alles wordt getrackt en geanalyseerd
+3. **Persoonlijke Aanpak** - Direct contact met de developers
+4. **Transparante Prijzen** - Geen verborgen kosten
+
+### Team
+
+Klein, flexibel team van developers en marketeers met jarenlange ervaring in:
+- Frontend development (React, Next.js, TypeScript)
+- Backend development (Node.js, Python)
+- DevOps (Docker, Cloudflare, NGINX)
+- SEO en content marketing
+- Paid advertising (Google Ads, Meta Ads)
+
+---
+
+## Diensten in Detail
+
+### 1. Webdesign & Development
+**URL**: /diensten/design, /diensten/development
+
+Wij bouwen moderne, snelle websites met:
+- Next.js en React voor optimale performance
+- Server-side rendering voor SEO
+- Responsive design voor alle apparaten
+- Toegankelijkheid (WCAG 2.1)
+- Progressive Web App mogelijkheden
+
+**Prijsindicatie**: Vanaf €2.500 voor een basis website
+
+### 2. Managed Hosting
+**URL**: /diensten/hosting
+
+Zorgeloze hosting op onze eigen infrastructuur:
+- 99.9% uptime garantie
+- Dagelijkse backups
+- SSL certificaten inbegrepen
+- Cloudflare CDN en DDoS bescherming
+- 24/7 monitoring
+
+**Prijzen**:
+- Starter: €29/maand
+- Professional: €59/maand
+- Enterprise: €149/maand
+
+### 3. Website Onderhoud
+**URL**: /diensten/onderhoud
+
+Proactief onderhoud voor zorgeloze websites:
+- Security updates
+- Performance optimalisatie
+- Content updates
+- Technische ondersteuning
+- Maandelijkse rapportages
+
+**Prijzen**: Vanaf €99/maand
+
+### 4. SEO (Zoekmachine Optimalisatie)
+**URL**: /diensten/seo
+
+Complete SEO-aanpak:
+- Technische SEO audit
+- Keyword research
+- On-page optimalisatie
+- Content strategie
+- Link building
+- Local SEO
+
+**Prijsindicatie**: Vanaf €500/maand
+
+### 5. Online Marketing
+**URL**: /diensten/online-marketing
+
+Datagedreven marketing campagnes:
+- Google Ads beheer
+- Social media advertising
+- Remarketing
+- Conversie optimalisatie
+- A/B testing
+
+### 6. E-mail Marketing
+**URL**: /diensten/email-marketing
+
+Effectieve e-mailcampagnes:
+- Nieuwsbrief design en verzending
+- Marketing automation
+- Segmentatie en personalisatie
+- A/B testing
+- Deliverability optimalisatie
+
+### 7. Branding
+**URL**: /diensten/branding
+
+Sterke visuele identiteit:
+- Logo ontwerp
+- Huisstijl development
+- Brand guidelines
+- Visitekaartjes en drukwerk
+- Social media templates
+
+### 8. Tracking & Analytics
+**URL**: /diensten/tracking
+
+Meetbare marketing:
+- Google Tag Manager setup
+- GA4 configuratie
+- Conversie tracking
+- Custom dashboards
+- Privacy-compliant (AVG/GDPR)
+
+### 9. CRM Integratie
+**URL**: /diensten/crm
+
+Klantrelatiebeheer:
+- HubSpot implementatie
+- Salesforce integratie
+- Lead scoring
+- Workflow automation
+- Rapportages
+
+---
+
+## Portfolio
+
+**URL**: /portfolio
+
+Voorbeelden van recent werk:
+
+### Growteq
+- **Type**: B2B Corporate Website
+- **Industrie**: Business Intelligence & Consultancy
+- **URL**: https://growteq.nl
+- **Diensten**: Design, Development, SEO, Hosting
+
+### Den Hartog Energies
+- **Type**: Corporate Website
+- **Industrie**: Energie & Brandstoffen
+- **URL**: https://denhartogbv.com
+- **Diensten**: Design, Development, SEO, Hosting
+
+### Villary Buitenleven
+- **Type**: Portfolio Website
+- **Industrie**: Bouw & Tuinontwerp
+- **URL**: https://villary.nl
+- **Diensten**: Design, Development, Hosting
+
+### In Den RustWat (IDRW)
+- **Type**: Horeca Website
+- **Industrie**: Gastronomie
+- **URL**: https://idrw.nl
+- **Diensten**: Design, Development, Hosting
+
+### BnB Kinderdijk
+- **Type**: Hospitality Website
+- **Industrie**: Toerisme
+- **URL**: https://bnbkinderdijk.nl
+- **Diensten**: Design, Development, SEO, Hosting
+
+### Voltra Charging
+- **Type**: B2B Tech Website
+- **Industrie**: E-mobiliteit
+- **URL**: https://voltracharging.com
+- **Diensten**: Design, Development, Hosting
+
+### Woonstudio Joy
+- **Type**: Retail/Showroom Website
+- **Industrie**: Keukenspecialist
+- **URL**: https://woonstudiojoy.nl
+- **Diensten**: Design, Development, SEO, Hosting
+
+---
+
+## Pakketten
+
+### Solid Start - €2.500
+Ideaal voor startende ondernemers:
+- 5 pagina's
+- Responsive design
+- Basis SEO
+- Contactformulier
+- 3 maanden hosting inbegrepen
+
+### Firm Foundation - €5.000
+Voor groeiende bedrijven:
+- 10 pagina's
+- Custom design
+- Uitgebreide SEO
+- Blog functionaliteit
+- CRM integratie
+- 6 maanden hosting inbegrepen
+
+---
+
+## Kennisbank
+
+**URL**: /kennisbank
+
+Uitgebreide handleidingen en tutorials:
+
+### Development
+- Next.js vs Traditionele Websites
+- React Fundamenten
+- Git Versiebeheer Basics
+
+### SEO
+- Technische SEO Checklist
+- Keyword Research Guide
+- Local SEO voor MKB
+
+### Hosting
+- Cloudflare Configuratie
+- Performance Optimalisatie
+- Security Best Practices
+
+---
+
+## Blog
+
+**URL**: /blog
+
+Regelmatige artikelen over:
+- Webdevelopment trends
+- SEO tips en nieuws
+- Online marketing strategieën
+- Case studies
+- Technische tutorials
+
+---
+
+## Veelgestelde Vragen
+
+**URL**: /faq
+
+### Hoelang duurt het om een website te bouwen?
+Een standaard website duurt 4-8 weken. Complexere projecten kunnen langer duren.
+
+### Wat kost een website?
+Prijzen beginnen vanaf €2.500 voor een basis website. Neem contact op voor een offerte op maat.
+
+### Bieden jullie onderhoud aan?
+Ja, we bieden maandelijkse onderhoudspakketten vanaf €99/maand.
+
+### Kan ik mijn website zelf beheren?
+Ja, we bouwen websites met een gebruiksvriendelijk CMS of trainen je in het gebruik.
+
+### Werken jullie alleen in Nederland?
+Nee, we werken met klanten in heel Nederland en België. Remote samenwerking is geen probleem.
+
+---
+
+## Contact Informatie
+
+- **Website**: https://robuustmarketing.nl
+- **E-mail**: info@robuustmarketing.nl
+- **Telefoon**: +31 78 203 1019
+- **Adres**: Zwijndrecht, Nederland
+- **KvK**: [Op aanvraag]
+- **BTW**: [Op aanvraag]
+
+### Openingstijden
+- Maandag - Vrijdag: 09:00 - 17:30
+- Zaterdag - Zondag: Gesloten
+
+### Social Media
+- LinkedIn: /company/robuust-marketing
+- Instagram: @robuustmarketing
+
+---
+
+## Technische Informatie
+
+### Stack
+- **Framework**: Next.js 16 met React 19
+- **Styling**: Tailwind CSS 4
+- **UI Components**: shadcn/ui
+- **CMS**: MDX voor content
+- **Forms**: react-hook-form + zod
+- **Analytics**: Google Tag Manager + GA4
+- **CRM**: HubSpot
+- **E-mail**: Resend
+- **Hosting**: Cloudflare + eigen servers
+
+### Performance
+- Lighthouse score: 95+ op alle metrics
+- Core Web Vitals: Groen
+- TTFB: < 200ms
+- First Contentful Paint: < 1s
+
+### Security
+- HTTPS everywhere
+- Cloudflare WAF
+- Regular security audits
+- GDPR/AVG compliant
+
+---
+
+## Sitemap Structuur
+
+```
+/                           - Homepage
+/diensten                   - Diensten overzicht
+/diensten/[service]         - Individuele dienst pagina's
+/portfolio                  - Portfolio overzicht
+/portfolio/[project]        - Project case studies
+/tarieven                   - Prijzen en pakketten
+/blog                       - Blog overzicht
+/blog/[slug]                - Blog artikelen
+/kennisbank                 - Kennisbank overzicht
+/kennisbank/[category]      - Categorie pagina's
+/kennisbank/[cat]/[slug]    - Individuele guides
+/offerte                    - Offerte wizard
+/contact                    - Contact pagina
+/over                       - Over ons
+/faq                        - Veelgestelde vragen
+/privacy                    - Privacy beleid
+/voorwaarden                - Algemene voorwaarden
+```
+
+---
+
+## Juridisch
+
+### Privacy
+We respecteren privacy en verzamelen alleen noodzakelijke gegevens. Zie /privacy voor ons volledige privacybeleid.
+
+### Cookies
+We gebruiken functionele en analytische cookies. Gebruikers kunnen voorkeuren beheren via de cookie banner.
+
+### AVG/GDPR
+Volledig AVG-compliant. Gegevensverwerking volgens de Europese privacywetgeving.
+
+### Auteursrecht
+Alle content op deze website is auteursrechtelijk beschermd door Robuust Marketing. Voor vragen over hergebruik, neem contact op.
+
+---
+
+## Updates
+
+Dit document wordt regelmatig bijgewerkt. Laatste update: januari 2026.
+
+Voor de meest actuele informatie, bezoek https://robuustmarketing.nl.
