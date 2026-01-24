@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 import createNextIntlPlugin from "next-intl/plugin";
+import { nextHeadersConfig } from "./src/config/cache";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
@@ -19,6 +20,9 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+
+  // Caching headers voor Cloudflare - zie src/config/cache.ts
+  headers: async () => nextHeadersConfig,
 };
 
 const withMDX = createMDX({
