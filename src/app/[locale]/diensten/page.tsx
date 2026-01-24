@@ -108,6 +108,7 @@ export default function DienstenPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className="h-full"
                 >
                   <Link
                     href={localePath(service.href)}

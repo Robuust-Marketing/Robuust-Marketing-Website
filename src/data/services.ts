@@ -30,7 +30,7 @@ const servicesNL: Service[] = [
     description:
       "Op maat gemaakte UI/UX design die jouw merkidentiteit vastlegt en bezoekers omzet in klanten.",
     features: ["Custom webdesign", "UI/UX optimalisatie", "Brand identity", "Responsive design"],
-    href: "/diensten#design",
+    href: "/diensten/design",
   },
   {
     id: "development",
@@ -39,7 +39,7 @@ const servicesNL: Service[] = [
     description:
       "Moderne websites gebouwd met React, Next.js en TypeScript voor razendsnelle performance.",
     features: ["Next.js & React", "TypeScript", "Headless CMS", "API integraties"],
-    href: "/diensten#development",
+    href: "/diensten/development",
   },
   {
     id: "hosting",
@@ -48,7 +48,7 @@ const servicesNL: Service[] = [
     description:
       "Enterprise-grade infrastructuur met NGINX en Cloudflare op dedicated servers in Europa.",
     features: ["Dedicated servers", "99.9% uptime", "SSL certificaten", "CDN & caching"],
-    href: "/diensten#hosting",
+    href: "/diensten/hosting",
   },
   {
     id: "maintenance",
@@ -66,7 +66,7 @@ const servicesNL: Service[] = [
     description:
       "Geavanceerde analytics met GA4, Meta Pixel en first-party tracking via Taggrs.",
     features: ["GA4 setup", "Meta Pixel", "First-party tracking", "Conversie tracking"],
-    href: "/diensten#tracking",
+    href: "/diensten/tracking",
   },
   {
     id: "email-marketing",
@@ -75,7 +75,7 @@ const servicesNL: Service[] = [
     description:
       "Effectieve email campagnes die converteren. Van nieuwsbrieven tot geautomatiseerde flows.",
     features: ["Email campagnes", "Automatisering", "A/B testing", "Segmentatie"],
-    href: "/diensten#email-marketing",
+    href: "/diensten/email-marketing",
   },
   {
     id: "online-marketing",
@@ -84,7 +84,7 @@ const servicesNL: Service[] = [
     description:
       "Full-stack digital marketing inclusief Meta, TikTok en Google Ads via Hello Its Me.",
     features: ["Google Ads", "Meta Ads", "TikTok Ads", "Remarketing"],
-    href: "/diensten#online-marketing",
+    href: "/diensten/online-marketing",
   },
   {
     id: "branding",
@@ -93,7 +93,7 @@ const servicesNL: Service[] = [
     description:
       "Sterke merkidentiteit die blijft hangen. Van logo tot complete brand guidelines.",
     features: ["Logo design", "Brand guidelines", "Huisstijl", "Visual identity"],
-    href: "/diensten#branding",
+    href: "/diensten/branding",
   },
   {
     id: "seo",
@@ -102,7 +102,7 @@ const servicesNL: Service[] = [
     description:
       "Organisch beter gevonden worden in Google met technische SEO en content optimalisatie.",
     features: ["Technische SEO", "Content optimalisatie", "Linkbuilding", "Local SEO"],
-    href: "/diensten#seo",
+    href: "/diensten/seo",
   },
   {
     id: "crm",
@@ -111,7 +111,7 @@ const servicesNL: Service[] = [
     description:
       "Klantrelaties optimaliseren met slimme CRM integraties en automatiseringen.",
     features: ["CRM setup", "Integraties", "Automatisering", "Lead management"],
-    href: "/diensten#crm",
+    href: "/diensten/crm",
   },
 ];
 
@@ -123,7 +123,7 @@ const servicesEN: Service[] = [
     description:
       "Custom UI/UX design that captures your brand identity and converts visitors into customers.",
     features: ["Custom web design", "UI/UX optimization", "Brand identity", "Responsive design"],
-    href: "/en/services#design",
+    href: "/services/design",
   },
   {
     id: "development",
@@ -132,7 +132,7 @@ const servicesEN: Service[] = [
     description:
       "Modern websites built with React, Next.js and TypeScript for lightning-fast performance.",
     features: ["Next.js & React", "TypeScript", "Headless CMS", "API integrations"],
-    href: "/en/services#development",
+    href: "/services/development",
   },
   {
     id: "hosting",
@@ -141,7 +141,7 @@ const servicesEN: Service[] = [
     description:
       "Enterprise-grade infrastructure with NGINX and Cloudflare on dedicated European servers.",
     features: ["Dedicated servers", "99.9% uptime", "SSL certificates", "CDN & caching"],
-    href: "/en/services#hosting",
+    href: "/services/hosting",
   },
   {
     id: "maintenance",
@@ -150,7 +150,7 @@ const servicesEN: Service[] = [
     description:
       "Proactive website maintenance with bulletproof SLAs. From updates to security monitoring.",
     features: ["Plugin updates", "Security monitoring", "Backups", "Performance checks"],
-    href: "/en/services/maintenance",
+    href: "/services/maintenance",
   },
   {
     id: "tracking",
@@ -159,7 +159,7 @@ const servicesEN: Service[] = [
     description:
       "Advanced analytics with GA4, Meta Pixel and first-party tracking via Taggrs.",
     features: ["GA4 setup", "Meta Pixel", "First-party tracking", "Conversion tracking"],
-    href: "/en/services#tracking",
+    href: "/services/tracking",
   },
   {
     id: "email-marketing",
@@ -168,7 +168,7 @@ const servicesEN: Service[] = [
     description:
       "Effective email campaigns that convert. From newsletters to automated flows.",
     features: ["Email campaigns", "Automation", "A/B testing", "Segmentation"],
-    href: "/en/services#email-marketing",
+    href: "/services/email-marketing",
   },
   {
     id: "online-marketing",
@@ -177,7 +177,7 @@ const servicesEN: Service[] = [
     description:
       "Full-stack digital marketing including Meta, TikTok and Google Ads via Hello Its Me.",
     features: ["Google Ads", "Meta Ads", "TikTok Ads", "Remarketing"],
-    href: "/en/services#online-marketing",
+    href: "/services/online-marketing",
   },
   {
     id: "branding",
@@ -186,7 +186,7 @@ const servicesEN: Service[] = [
     description:
       "Strong brand identity that sticks. From logo to complete brand guidelines.",
     features: ["Logo design", "Brand guidelines", "Corporate identity", "Visual identity"],
-    href: "/en/services#branding",
+    href: "/services/branding",
   },
   {
     id: "seo",
@@ -195,7 +195,7 @@ const servicesEN: Service[] = [
     description:
       "Get found organically in Google with technical SEO and content optimization.",
     features: ["Technical SEO", "Content optimization", "Link building", "Local SEO"],
-    href: "/en/services#seo",
+    href: "/services/seo",
   },
   {
     id: "crm",
@@ -204,7 +204,7 @@ const servicesEN: Service[] = [
     description:
       "Optimize customer relationships with smart CRM integrations and automations.",
     features: ["CRM setup", "Integrations", "Automation", "Lead management"],
-    href: "/en/services#crm",
+    href: "/services/crm",
   },
 ];
 

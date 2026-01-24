@@ -6,6 +6,7 @@ import { Rocket, Shield, Check, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n/config";
+import { pricing, formatPrice } from "@/data/pricing";
 
 export function ProductStack() {
   const t = useTranslations("productStack");
@@ -117,7 +118,7 @@ export function ProductStack() {
               <div className="pt-6 border-t border-white/10">
                 <div className="flex items-baseline gap-2 mb-4">
                   <span className="text-3xl font-bold text-white">{t("from")}</span>
-                  <span className="text-4xl font-bold text-accent">€1.500</span>
+                  <span className="text-4xl font-bold text-accent">{formatPrice(pricing.packages["solid-start"].minPrice)}</span>
                 </div>
                 <Button
                   asChild
@@ -192,7 +193,7 @@ export function ProductStack() {
               <div className="relative pt-6 border-t border-white/10">
                 <div className="flex items-baseline gap-2 mb-4">
                   <span className="text-3xl font-bold text-white">{t("from")}</span>
-                  <span className="text-4xl font-bold text-accent">€5.000</span>
+                  <span className="text-4xl font-bold text-accent">{formatPrice(pricing.packages["firm-foundation"].minPrice)}</span>
                 </div>
                 <Button
                   asChild

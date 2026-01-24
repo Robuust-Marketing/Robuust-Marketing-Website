@@ -66,6 +66,7 @@ const werkwijzeIcons = {
 };
 
 const toolingIcons = {
+  wordpress: Layers,
   nextjs: Code2,
   typescript: FileText,
   tailwind: Palette,
@@ -139,18 +140,19 @@ export function Header() {
 
   const werkwijze = [
     { name: tWerkwijze("approach.name"), description: tWerkwijze("approach.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.approach },
-    { name: tWerkwijze("phases.name"), description: tWerkwijze("phases.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.phases },
-    { name: tWerkwijze("timeline.name"), description: tWerkwijze("timeline.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.timeline },
-    { name: tWerkwijze("collaboration.name"), description: tWerkwijze("collaboration.description"), href: "/werkwijze" as const, icon: werkwijzeIcons.collaboration },
+    { name: tWerkwijze("phases.name"), description: tWerkwijze("phases.description"), href: { pathname: "/werkwijze" as const, hash: "fases" }, icon: werkwijzeIcons.phases },
+    { name: tWerkwijze("timeline.name"), description: tWerkwijze("timeline.description"), href: { pathname: "/werkwijze" as const, hash: "tijdlijn" }, icon: werkwijzeIcons.timeline },
+    { name: tWerkwijze("collaboration.name"), description: tWerkwijze("collaboration.description"), href: { pathname: "/werkwijze" as const, hash: "samenwerking" }, icon: werkwijzeIcons.collaboration },
   ];
 
   const tooling = [
-    { name: tTooling("nextjs.name"), description: tTooling("nextjs.description"), href: "/tooling" as const, icon: toolingIcons.nextjs },
-    { name: tTooling("typescript.name"), description: tTooling("typescript.description"), href: "/tooling" as const, icon: toolingIcons.typescript },
-    { name: tTooling("tailwind.name"), description: tTooling("tailwind.description"), href: "/tooling" as const, icon: toolingIcons.tailwind },
-    { name: tTooling("cms.name"), description: tTooling("cms.description"), href: "/tooling" as const, icon: toolingIcons.cms },
-    { name: tTooling("cloudflare.name"), description: tTooling("cloudflare.description"), href: "/tooling" as const, icon: toolingIcons.cloudflare },
-    { name: tTooling("nginx.name"), description: tTooling("nginx.description"), href: "/tooling" as const, icon: toolingIcons.nginx },
+    { name: tTooling("wordpress.name"), description: tTooling("wordpress.description"), href: "/tooling/wordpress" as const, icon: toolingIcons.wordpress },
+    { name: tTooling("nextjs.name"), description: tTooling("nextjs.description"), href: "/tooling/nextjs" as const, icon: toolingIcons.nextjs },
+    { name: tTooling("typescript.name"), description: tTooling("typescript.description"), href: "/tooling/typescript" as const, icon: toolingIcons.typescript },
+    { name: tTooling("tailwind.name"), description: tTooling("tailwind.description"), href: "/tooling/tailwind" as const, icon: toolingIcons.tailwind },
+    { name: tTooling("cms.name"), description: tTooling("cms.description"), href: "/tooling/cms" as const, icon: toolingIcons.cms },
+    { name: tTooling("cloudflare.name"), description: tTooling("cloudflare.description"), href: "/tooling/cloudflare" as const, icon: toolingIcons.cloudflare },
+    { name: tTooling("nginx.name"), description: tTooling("nginx.description"), href: "/tooling/nginx" as const, icon: toolingIcons.nginx },
   ];
 
   const kennisbank = [

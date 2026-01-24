@@ -1,84 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Code2,
-  FileText,
-  Palette,
-  Database,
-  Cloud,
-  Server,
   Zap,
-  Globe,
   CheckCircle,
   Terminal,
+  Palette,
+  FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getTools } from "@/data/tools";
+import { type Locale } from "@/i18n/config";
 
 export default function ToolingPage() {
   const t = useTranslations("toolingPage");
-
-  const techStack = [
-    {
-      id: "wordpress",
-      name: t("techStack.wordpress.name"),
-      icon: Globe,
-      category: t("techStack.wordpress.category"),
-      description: t("techStack.wordpress.description"),
-      benefits: t.raw("techStack.wordpress.benefits") as string[],
-    },
-    {
-      id: "nextjs",
-      name: t("techStack.nextjs.name"),
-      icon: Code2,
-      category: t("techStack.nextjs.category"),
-      description: t("techStack.nextjs.description"),
-      benefits: t.raw("techStack.nextjs.benefits") as string[],
-    },
-    {
-      id: "typescript",
-      name: t("techStack.typescript.name"),
-      icon: FileText,
-      category: t("techStack.typescript.category"),
-      description: t("techStack.typescript.description"),
-      benefits: t.raw("techStack.typescript.benefits") as string[],
-    },
-    {
-      id: "tailwind",
-      name: t("techStack.tailwind.name"),
-      icon: Palette,
-      category: t("techStack.tailwind.category"),
-      description: t("techStack.tailwind.description"),
-      benefits: t.raw("techStack.tailwind.benefits") as string[],
-    },
-    {
-      id: "cms",
-      name: t("techStack.cms.name"),
-      icon: Database,
-      category: t("techStack.cms.category"),
-      description: t("techStack.cms.description"),
-      benefits: t.raw("techStack.cms.benefits") as string[],
-    },
-    {
-      id: "cloudflare",
-      name: t("techStack.cloudflare.name"),
-      icon: Cloud,
-      category: t("techStack.cloudflare.category"),
-      description: t("techStack.cloudflare.description"),
-      benefits: t.raw("techStack.cloudflare.benefits") as string[],
-    },
-    {
-      id: "nginx",
-      name: t("techStack.nginx.name"),
-      icon: Server,
-      category: t("techStack.nginx.category"),
-      description: t("techStack.nginx.description"),
-      benefits: t.raw("techStack.nginx.benefits") as string[],
-    },
-  ];
+  const locale = useLocale() as Locale;
+  const techStack = getTools(locale);
 
   const additionalTools = [
     { name: t("additionalTools.github.name"), description: t("additionalTools.github.description"), icon: Terminal },
@@ -193,47 +133,55 @@ export default function ToolingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.05 }}
-                className="rounded-3xl bg-surface border border-white/5 overflow-hidden"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 lg:p-8">
-                  {/* Header */}
-                  <div className="lg:col-span-3 flex items-start gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent">
-                      <tech.icon className="h-7 w-7" />
+                <Link
+                  href={`/tooling/${tech.slug}`}
+                  className="block rounded-3xl bg-surface border border-white/5 overflow-hidden hover:border-accent/30 transition-colors group"
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 lg:p-8">
+                    {/* Header */}
+                    <div className="lg:col-span-3 flex items-start gap-4">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
+                        <tech.icon className="h-7 w-7" />
+                      </div>
+                      <div>
+                        <span className="text-accent text-xs font-medium uppercase tracking-wider">
+                          {tech.category}
+                        </span>
+                        <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">
+                          {tech.name}
+                        </h3>
+                      </div>
                     </div>
-                    <div>
-                      <span className="text-accent text-xs font-medium uppercase tracking-wider">
-                        {tech.category}
-                      </span>
-                      <h3 className="text-xl font-bold text-white">
-                        {tech.name}
-                      </h3>
+
+                    {/* Description */}
+                    <div className="lg:col-span-5">
+                      <p className="text-muted-foreground">{tech.description}</p>
+                    </div>
+
+                    {/* Benefits */}
+                    <div className="lg:col-span-4">
+                      <h4 className="text-sm font-semibold text-white mb-3">
+                        {t("benefits")}
+                      </h4>
+                      <ul className="space-y-2">
+                        {tech.benefits.map((benefit) => (
+                          <li
+                            key={benefit}
+                            className="flex items-center gap-2 text-sm text-muted-foreground"
+                          >
+                            <Zap className="h-4 w-4 text-accent" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-4 flex items-center gap-2 text-accent text-sm font-medium">
+                        {t("moreInfo")}
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </div>
-
-                  {/* Description */}
-                  <div className="lg:col-span-5">
-                    <p className="text-muted-foreground">{tech.description}</p>
-                  </div>
-
-                  {/* Benefits */}
-                  <div className="lg:col-span-4">
-                    <h4 className="text-sm font-semibold text-white mb-3">
-                      {t("benefits")}
-                    </h4>
-                    <ul className="space-y-2">
-                      {tech.benefits.map((benefit) => (
-                        <li
-                          key={benefit}
-                          className="flex items-center gap-2 text-sm text-muted-foreground"
-                        >
-                          <Zap className="h-4 w-4 text-accent" />
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>

@@ -87,12 +87,12 @@
     "solidStart": {
       "name": "Solid Start",
       "description": "Perfect for starters",
-      "price": "from €2,500"
+      "price": "from €4,000"
     },
     "firmFoundation": {
       "name": "Firm Foundation",
       "description": "For growing businesses",
-      "price": "from €7,500"
+      "price": "from €9,000"
     }
   },
   "werkwijze": {
@@ -114,6 +114,10 @@
     }
   },
   "tooling": {
+    "wordpress": {
+      "name": "WordPress & Avada",
+      "description": "CMS for content management"
+    },
     "nextjs": {
       "name": "Next.js & React",
       "description": "Modern frontend framework"
@@ -408,10 +412,10 @@
       "budgetLabel": "What is your budget?",
       "timelineLabel": "When do you want to go live?",
       "budgets": {
-        "1000-2500": "€1,000 - €2,500",
-        "2500-5000": "€2,500 - €5,000",
-        "5000-10000": "€5,000 - €10,000",
-        "10000+": "€10,000+",
+        "4000-7500": "€4,000 - €7,500",
+        "7500-15000": "€7,500 - €15,000",
+        "15000-25000": "€15,000 - €25,000",
+        "25000+": "€25,000+",
         "unknown": "Not sure yet"
       },
       "timelines": {
@@ -475,6 +479,7 @@
     "titleLine2": "tech stack",
     "subtitle": "We deliberately choose modern, reliable technology. No outdated frameworks, but a stack that scales and performs.",
     "benefits": "Benefits",
+    "moreInfo": "More info",
     "whyThisStack": {
       "performance": {
         "title": "Performance",
@@ -549,6 +554,37 @@
       "title": "Curious about our approach?",
       "subtitle": "We'd love to tell you more about how we use this technology for your project.",
       "button": "Get in touch"
+    },
+    "moreInfo": "Learn more"
+  },
+  "toolDetailPage": {
+    "backToTooling": "Back to tooling",
+    "benefits": {
+      "title": "Benefits",
+      "subtitle": "Why we choose this technology"
+    },
+    "features": {
+      "title": "Features",
+      "subtitle": "What makes this tool so powerful"
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "subtitle": "How we use this technology"
+    },
+    "relatedTools": {
+      "title": "Related Tools",
+      "subtitle": "Other technologies that work well with this"
+    },
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "cta": {
+      "title": "Want to know how we can use this for you?",
+      "subtitle": "Contact us for a no-obligation conversation about your project.",
+      "primaryButton": "Get in touch",
+      "secondaryButton": "View all tools",
+      "contact": "Get in touch"
     }
   },
   "portfolioPage": {
@@ -987,7 +1023,7 @@
       },
       "payment": {
         "title": "Article 5 - Payment terms",
-        "items": ["Payment must be made within 14 days of the invoice date, unless otherwise agreed.", "For projects above €2,500, a 50% advance payment may be requested before the work begins.", "In case of late payment, the client is legally in default and statutory interest is due.", "Hosting and maintenance costs are invoiced monthly or annually in advance."]
+        "items": ["Payment must be made within 14 days of the invoice date, unless otherwise agreed.", "For projects above €4,000, a 50% advance payment may be requested before the work begins.", "In case of late payment, the client is legally in default and statutory interest is due.", "Hosting and maintenance costs are invoiced monthly or annually in advance."]
       },
       "ip": {
         "title": "Article 6 - Intellectual property",

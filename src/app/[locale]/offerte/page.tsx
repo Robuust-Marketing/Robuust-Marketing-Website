@@ -1,14 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "@/components/motion";
 import { ArrowRight, Check, Clock, Shield, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { pricing, getPricingLabels } from "@/data/pricing";
+import { type Locale } from "@/i18n/config";
 
 export default function OffertePage() {
   const t = useTranslations("offertePage");
+  const locale = useLocale() as Locale;
+  const pricingLabels = getPricingLabels(locale);
 
   const services = [
     { id: "website", label: t("services.website") },
@@ -22,21 +26,11 @@ export default function OffertePage() {
     { id: "anders", label: t("services.other") },
   ];
 
-  const budgets = [
-    { id: "1000-2500", label: t("budgetTimeline.budgets.1000-2500") },
-    { id: "2500-5000", label: t("budgetTimeline.budgets.2500-5000") },
-    { id: "5000-10000", label: t("budgetTimeline.budgets.5000-10000") },
-    { id: "10000+", label: t("budgetTimeline.budgets.10000+") },
-    { id: "unknown", label: t("budgetTimeline.budgets.unknown") },
-  ];
+  // Budget ranges from central pricing config
+  const budgets = pricingLabels.budgetRanges;
 
-  const timelines = [
-    { id: "asap", label: t("budgetTimeline.timelines.asap") },
-    { id: "1-month", label: t("budgetTimeline.timelines.1-month") },
-    { id: "1-3-months", label: t("budgetTimeline.timelines.1-3-months") },
-    { id: "3-months+", label: t("budgetTimeline.timelines.3-months+") },
-    { id: "unknown", label: t("budgetTimeline.timelines.unknown") },
-  ];
+  // Timelines from central pricing config
+  const timelines = pricingLabels.timelines;
 
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [formData, setFormData] = useState({
