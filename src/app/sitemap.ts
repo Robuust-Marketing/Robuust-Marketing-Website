@@ -1,5 +1,32 @@
 import { MetadataRoute } from "next";
-import { locales, defaultLocale } from "@/i18n/config";
+import { locales, defaultLocale, type Locale } from "@/i18n/config";
+
+// Route mapping for translated slugs (matching i18n/config.ts)
+const routeTranslations: Record<string, Record<Locale, string>> = {
+  diensten: { nl: "diensten", en: "services" },
+  tarieven: { nl: "tarieven", en: "pricing" },
+  offerte: { nl: "offerte", en: "quote" },
+  kennisbank: { nl: "kennisbank", en: "resources" },
+  werkwijze: { nl: "werkwijze", en: "approach" },
+  over: { nl: "over", en: "about" },
+  voorwaarden: { nl: "voorwaarden", en: "terms" },
+  avg: { nl: "avg", en: "gdpr" },
+  onderhoud: { nl: "onderhoud", en: "maintenance" },
+};
+
+function getLocalizedPath(path: string, locale: Locale): string {
+  if (locale === "nl") return path;
+
+  let localizedPath = path;
+  Object.entries(routeTranslations).forEach(([, mapping]) => {
+    localizedPath = localizedPath.replace(
+      new RegExp(`/${mapping.nl}(/|$)`, "g"),
+      `/${mapping[locale]}$1`
+    );
+  });
+
+  return localizedPath;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://robuustmarketing.nl";
@@ -67,17 +94,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const page of pages) {
     for (const locale of locales) {
+      // Get localized path for this locale
+      const localizedPath = getLocalizedPath(page.path, locale);
+
       // Build the URL based on locale
       const url = locale === defaultLocale
-        ? `${baseUrl}${page.path}`
-        : `${baseUrl}/${locale}${page.path}`;
+        ? `${baseUrl}${localizedPath}`
+        : `${baseUrl}/${locale}${localizedPath}`;
 
       // Build alternate language links
       const alternates: Record<string, string> = {};
       for (const altLocale of locales) {
+        const altLocalizedPath = getLocalizedPath(page.path, altLocale);
         const altUrl = altLocale === defaultLocale
-          ? `${baseUrl}${page.path}`
-          : `${baseUrl}/${altLocale}${page.path}`;
+          ? `${baseUrl}${altLocalizedPath}`
+          : `${baseUrl}/${altLocale}${altLocalizedPath}`;
         alternates[altLocale] = altUrl;
       }
       // Add x-default pointing to default locale

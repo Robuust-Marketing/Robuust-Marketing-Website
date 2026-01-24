@@ -34,7 +34,10 @@ const features: { id: string; icon: LucideIcon }[] = [
   { id: "cleanCode", icon: Code2 },
 ];
 
-const comparisonItems = ["item1", "item2", "item3", "item4", "item5"];
+interface ComparisonItem {
+  traditional: string;
+  modern: string;
+}
 
 export default function DevelopmentPage() {
   const t = useTranslations("developmentPage");
@@ -252,14 +255,14 @@ export default function DevelopmentPage() {
                 </span>
               </div>
             </div>
-            {comparisonItems.map((item, index) => (
+            {(t.raw("comparison.items") as ComparisonItem[]).map((item, index) => (
               <div key={index} className="grid grid-cols-2">
                 <div className="p-6 border-b border-r border-white/5 text-muted-foreground text-sm">
-                  {t(`comparison.${item}.traditional`)}
+                  {item.traditional}
                 </div>
                 <div className="p-6 border-b border-white/5 text-white text-sm flex items-center gap-2">
                   <Check className="h-4 w-4 text-accent flex-shrink-0" />
-                  {t(`comparison.${item}.modern`)}
+                  {item.modern}
                 </div>
               </div>
             ))}
