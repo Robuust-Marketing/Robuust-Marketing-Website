@@ -68,6 +68,9 @@ export async function generateMetadata({
         en: "/en",
       },
     },
+    appleWebApp: {
+      title: "Robuust",
+    },
   };
 }
 
