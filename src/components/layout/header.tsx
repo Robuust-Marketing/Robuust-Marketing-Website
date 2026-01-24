@@ -252,13 +252,31 @@ export function Header() {
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-white/80 hover:text-white hover:bg-white/5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Sluit menu" : "Open menu"}
           >
             <span className="sr-only">{tNav("openMenu")}</span>
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" aria-hidden="true" />
-            ) : (
-              <Menu className="h-6 w-6" aria-hidden="true" />
-            )}
+            {/* CSS-based hamburger icon for reliability */}
+            <div className="relative h-6 w-6 flex flex-col justify-center items-center">
+              <span
+                className={cn(
+                  "block h-0.5 w-5 bg-current transition-all duration-300 ease-out",
+                  mobileMenuOpen ? "rotate-45 translate-y-0" : "-translate-y-1.5"
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-0.5 w-5 bg-current transition-all duration-300 ease-out",
+                  mobileMenuOpen && "opacity-0"
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-0.5 w-5 bg-current transition-all duration-300 ease-out",
+                  mobileMenuOpen ? "-rotate-45 translate-y-0" : "translate-y-1.5"
+                )}
+              />
+            </div>
           </button>
         </div>
 
