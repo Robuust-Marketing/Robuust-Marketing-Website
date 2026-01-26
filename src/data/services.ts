@@ -107,11 +107,11 @@ const servicesNL: Service[] = [
   },
   {
     id: "crm",
-    name: "CRM",
+    name: "CRM Integraties",
     icon: Users,
     description:
-      "Klantrelaties optimaliseren met slimme CRM integraties en automatiseringen.",
-    features: ["CRM setup", "Integraties", "Automatisering", "Lead management"],
+      "Salesforce, HubSpot en Brevo koppelen aan je website. Wij doen basis configuraties en integraties, geen full-scale implementaties.",
+    features: ["HubSpot integratie", "Salesforce koppeling", "Brevo setup", "Website formulieren"],
     href: "/diensten/crm",
   },
   {
@@ -209,11 +209,11 @@ const servicesEN: Service[] = [
   },
   {
     id: "crm",
-    name: "CRM",
+    name: "CRM Integrations",
     icon: Users,
     description:
-      "Optimize customer relationships with smart CRM integrations and automations.",
-    features: ["CRM setup", "Integrations", "Automation", "Lead management"],
+      "Connect Salesforce, HubSpot and Brevo to your website. We handle basic configurations and integrations, not full-scale implementations.",
+    features: ["HubSpot integration", "Salesforce connection", "Brevo setup", "Website forms"],
     href: "/services/crm",
   },
   {

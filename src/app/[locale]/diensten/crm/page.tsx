@@ -17,17 +17,17 @@ import {
 } from "lucide-react";
 
 const services: { id: string; icon: LucideIcon }[] = [
-  { id: "crmSetup", icon: Users },
   { id: "integrations", icon: GitMerge },
-  { id: "automation", icon: Zap },
-  { id: "leadScoring", icon: BarChart3 },
+  { id: "formConnections", icon: Users },
+  { id: "basicSetup", icon: Zap },
+  { id: "leadCapture", icon: BarChart3 },
   { id: "notifications", icon: Bell },
-  { id: "dataManagement", icon: Shield },
+  { id: "dataSync", icon: Shield },
 ];
 
-const platforms = ["hubspot", "pipedrive", "activeCampaign", "notion"];
+const platforms = ["hubspot", "salesforce", "brevo"];
 
-const automations = ["formSubmitted", "quoteViewed", "noActivity"];
+const integrations = ["websiteForms", "leadNotifications", "contactSync"];
 
 export default function CRMPage() {
   const t = useTranslations("crmPage");
@@ -205,7 +205,7 @@ export default function CRMPage() {
         </div>
       </section>
 
-      {/* Automation Examples */}
+      {/* Integration Examples */}
       <section className="py-20 bg-surface/50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -215,7 +215,7 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
-              {t("automations.title")}
+              {t("integrationExamples.title")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -223,14 +223,14 @@ export default function CRMPage() {
               viewport={{ once: true }}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              {t("automations.subtitle")}
+              {t("integrationExamples.subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {automations.map((automation, index) => (
+            {integrations.map((integration, index) => (
               <motion.div
-                key={automation}
+                key={integration}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -238,24 +238,21 @@ export default function CRMPage() {
                 className="rounded-2xl bg-surface p-6 border border-white/5"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <Zap className="h-5 w-5 text-accent" />
+                  <GitMerge className="h-5 w-5 text-accent" />
                   <span className="font-medium text-white">
-                    {t("automations.triggerLabel")}
+                    {t(`integrationExamples.${integration}.title`)}
                   </span>
                 </div>
-                <div className="bg-accent/10 text-accent px-3 py-2 rounded-lg text-sm font-medium mb-4">
-                  {t(`automations.${automation}.trigger`)}
-                </div>
-                <div className="text-sm text-muted-foreground mb-2">
-                  {t("automations.actionsLabel")}
-                </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {t(`integrationExamples.${integration}.description`)}
+                </p>
                 <ul className="space-y-2">
                   {(
-                    t.raw(`automations.${automation}.actions`) as string[]
-                  ).map((action, idx) => (
+                    t.raw(`integrationExamples.${integration}.features`) as string[]
+                  ).map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm">
                       <Check className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                      <span className="text-white/80">{action}</span>
+                      <span className="text-white/80">{feature}</span>
                     </li>
                   ))}
                 </ul>

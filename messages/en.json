@@ -2255,122 +2255,120 @@
     }
   },
   "crmPage": {
-    "badge": "CRM & Automation",
-    "titleLine1": "Customer relationships",
-    "titleLine2": "optimized",
-    "subtitle": "Smart CRM integrations and automations that streamline your sales process. From lead to customer, fully automated.",
-    "primaryButton": "CRM consultation",
+    "badge": "CRM Integrations",
+    "titleLine1": "Connect your CRM",
+    "titleLine2": "to your website",
+    "subtitle": "We connect your website with Salesforce, HubSpot or Brevo. Basic configurations and integrations - not full-scale CRM implementations.",
+    "primaryButton": "Discuss integration",
     "secondaryButton": "Email Marketing",
     "services": {
       "title": "What we do",
-      "subtitle": "Complete CRM implementation and optimization",
-      "crmSetup": {
-        "title": "CRM Setup",
-        "description": "Implementation and configuration of your CRM system, tailored to your work processes."
-      },
+      "subtitle": "CRM connections and basic configurations for your website",
       "integrations": {
-        "title": "Integrations",
-        "description": "Connect your CRM to your website, email marketing, accounting and other tools."
+        "title": "Website Integrations",
+        "description": "Connect your website forms directly to your CRM system for automatic lead capture."
       },
-      "automation": {
-        "title": "Automation",
-        "description": "Automatic workflows for lead nurturing, follow-ups and task management."
+      "formConnections": {
+        "title": "Form Connections",
+        "description": "Every contact form, request or download directly in your CRM with the right tags."
       },
-      "leadScoring": {
-        "title": "Lead Scoring",
-        "description": "Identify your warmest leads based on behavior and interactions."
+      "basicSetup": {
+        "title": "Basic Configuration",
+        "description": "Set up fields, pipelines and properties so you can get started right away."
+      },
+      "leadCapture": {
+        "title": "Lead Capture",
+        "description": "Ensure every website visitor who converts automatically ends up in your CRM."
       },
       "notifications": {
         "title": "Notifications",
         "description": "Real-time alerts when leads take action on your website."
       },
-      "dataManagement": {
-        "title": "Data Management",
-        "description": "Clean, organized data with deduplication and validation."
+      "dataSync": {
+        "title": "Data Synchronization",
+        "description": "Keep your CRM and website data synchronized without manual work."
       }
     },
     "platforms": {
-      "title": "CRM Platforms",
-      "subtitle": "We work with the best CRM systems and help you make the right choice",
+      "title": "Platforms",
+      "subtitle": "We work with the three most used CRM platforms",
       "hubspot": {
         "name": "HubSpot",
-        "description": "All-in-one marketing, sales and service platform",
+        "description": "All-in-one marketing and sales platform with free CRM",
+        "type": "Marketing & Sales"
+      },
+      "salesforce": {
+        "name": "Salesforce",
+        "description": "Enterprise CRM for larger organizations",
         "type": "Enterprise"
       },
-      "pipedrive": {
-        "name": "Pipedrive",
-        "description": "Sales-focused CRM for growing teams",
-        "type": "Sales"
-      },
-      "activeCampaign": {
-        "name": "ActiveCampaign",
-        "description": "Marketing automation with CRM functionality",
-        "type": "Marketing"
-      },
-      "notion": {
-        "name": "Notion",
-        "description": "Flexible workspace with CRM templates",
-        "type": "Startup"
+      "brevo": {
+        "name": "Brevo",
+        "description": "Affordable CRM with strong email marketing",
+        "type": "Email & CRM"
       }
     },
-    "automations": {
-      "title": "Automation Examples",
-      "subtitle": "How automations can speed up your work processes",
-      "triggerLabel": "Trigger:",
-      "actionsLabel": "Automatic actions:",
-      "formSubmitted": {
-        "trigger": "Form submitted",
-        "actions": [
-          "Create contact in CRM",
-          "Assign tag based on interest",
-          "Send welcome email",
-          "Send sales notification"
+    "integrationExamples": {
+      "title": "Integration Examples",
+      "subtitle": "Practical examples of what we can set up for you",
+      "websiteForms": {
+        "title": "Form → CRM",
+        "description": "Every submitted form automatically becomes a contact in your CRM.",
+        "features": [
+          "Contact form to HubSpot/Salesforce",
+          "Automatic tags based on page",
+          "Send UTM parameters",
+          "Confirmation email via CRM"
         ]
       },
-      "quoteViewed": {
-        "trigger": "Quote viewed",
-        "actions": [
-          "Increase lead score",
-          "Create follow-up task",
-          "Reminder email after 3 days"
+      "leadNotifications": {
+        "title": "Lead Notifications",
+        "description": "Immediately notified when someone gets in touch.",
+        "features": [
+          "Email notification for new lead",
+          "Slack/Teams notification",
+          "Assignment to sales rep",
+          "Prioritization based on form"
         ]
       },
-      "noActivity": {
-        "trigger": "No activity for 30 days",
-        "actions": [
-          "Send re-engagement email",
-          "Change tag to 'cold'",
-          "Remove from active campaigns"
+      "contactSync": {
+        "title": "Contact Synchronization",
+        "description": "Keep your CRM up-to-date with website interactions.",
+        "features": [
+          "Newsletter signup to CRM",
+          "Download tracking per contact",
+          "Pageviews visible in CRM",
+          "Create deal/opportunity"
         ]
       }
     },
     "benefits": {
       "title": "Why",
-      "titleHighlight": "CRM automation?",
-      "subtitle": "A well-configured CRM system saves your team hours per week and ensures no lead slips through the cracks.",
+      "titleHighlight": "CRM integration?",
+      "subtitle": "With a good connection between your website and CRM, you never miss a lead and your team has all the information at hand.",
       "items": [
-        "Never forget to follow up on leads",
-        "360° customer view for better service",
-        "Shorter sales cycles through automation",
-        "Better collaboration between teams",
-        "Data-driven decisions",
-        "Scalable without extra manual work"
+        "Leads automatically in your CRM",
+        "No more manual copying",
+        "Direct insight into lead source",
+        "Faster follow-up possible",
+        "Better data quality",
+        "Less administrative work"
       ],
       "card": {
-        "title": "Website + CRM Integration",
-        "description": "The power of CRM lies in the integration with your website. Every form, every download, every pageview can automatically end up in your CRM.",
+        "title": "Not an implementation partner",
+        "description": "We're not a full-scale CRM implementation partner. Need a complex CRM rollout? We'll gladly refer you. We focus on the connection between your website and existing CRM.",
         "features": [
-          "Forms directly connected to CRM",
-          "Website behavior visible per contact",
-          "Automatic lead scoring",
-          "Real-time sales notifications"
+          "Website ↔ CRM connections",
+          "Form integrations",
+          "Basic fields and pipelines",
+          "Notification workflows"
         ],
         "button": "More about development →"
       }
     },
     "cta": {
-      "title": "Ready to streamline your sales?",
-      "subtitle": "Let's discuss how CRM automation can help your business grow.",
+      "title": "Connect CRM to your website?",
+      "subtitle": "Let's discuss which integration best fits your situation.",
       "primaryButton": "Schedule a call",
       "secondaryButton": "All services"
     }

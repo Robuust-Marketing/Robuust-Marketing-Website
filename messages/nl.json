@@ -2267,122 +2267,120 @@
     }
   },
   "crmPage": {
-    "badge": "CRM & Automatisering",
-    "titleLine1": "Klantrelaties",
-    "titleLine2": "geoptimaliseerd",
-    "subtitle": "Slimme CRM integraties en automatiseringen die je sales proces stroomlijnen. Van lead tot klant, volledig geautomatiseerd.",
-    "primaryButton": "CRM adviesgesprek",
+    "badge": "CRM Integraties",
+    "titleLine1": "CRM koppelen",
+    "titleLine2": "aan je website",
+    "subtitle": "Wij verbinden je website met Salesforce, HubSpot of Brevo. Basis configuraties en integraties - geen full-scale CRM implementaties.",
+    "primaryButton": "Integratie bespreken",
     "secondaryButton": "Email Marketing",
     "services": {
       "title": "Wat we doen",
-      "subtitle": "Complete CRM implementatie en optimalisatie",
-      "crmSetup": {
-        "title": "CRM Setup",
-        "description": "Implementatie en configuratie van je CRM systeem, afgestemd op jouw werkprocessen."
-      },
+      "subtitle": "CRM koppelingen en basis configuraties voor je website",
       "integrations": {
-        "title": "Integraties",
-        "description": "Koppel je CRM aan je website, email marketing, boekhouding en andere tools."
+        "title": "Website Integraties",
+        "description": "Koppel je website formulieren direct aan je CRM systeem voor automatische lead capture."
       },
-      "automation": {
-        "title": "Automatisering",
-        "description": "Automatische workflows voor lead nurturing, follow-ups en taakbeheer."
+      "formConnections": {
+        "title": "Formulier Koppelingen",
+        "description": "Elk contactformulier, aanvraag of download direct in je CRM met de juiste tags."
       },
-      "leadScoring": {
-        "title": "Lead Scoring",
-        "description": "Identificeer je warmste leads op basis van gedrag en interacties."
+      "basicSetup": {
+        "title": "Basis Configuratie",
+        "description": "Velden, pipelines en properties instellen zodat je direct aan de slag kunt."
+      },
+      "leadCapture": {
+        "title": "Lead Capture",
+        "description": "Zorg dat elke websitebezoeker die converteert automatisch in je CRM terechtkomt."
       },
       "notifications": {
         "title": "Notificaties",
         "description": "Real-time alerts wanneer leads actie ondernemen op je website."
       },
-      "dataManagement": {
-        "title": "Data Management",
-        "description": "Schone, georganiseerde data met deduplicatie en validatie."
+      "dataSync": {
+        "title": "Data Synchronisatie",
+        "description": "Houd je CRM en website data gesynchroniseerd zonder handmatig werk."
       }
     },
     "platforms": {
-      "title": "CRM Platforms",
-      "subtitle": "We werken met de beste CRM systemen en helpen je de juiste keuze maken",
+      "title": "Platforms",
+      "subtitle": "Wij werken met de drie meest gebruikte CRM platforms",
       "hubspot": {
         "name": "HubSpot",
-        "description": "All-in-one marketing, sales en service platform",
+        "description": "All-in-one marketing en sales platform met gratis CRM",
+        "type": "Marketing & Sales"
+      },
+      "salesforce": {
+        "name": "Salesforce",
+        "description": "Enterprise CRM voor grotere organisaties",
         "type": "Enterprise"
       },
-      "pipedrive": {
-        "name": "Pipedrive",
-        "description": "Sales-focused CRM voor groeiende teams",
-        "type": "Sales"
-      },
-      "activeCampaign": {
-        "name": "ActiveCampaign",
-        "description": "Marketing automation met CRM functionaliteit",
-        "type": "Marketing"
-      },
-      "notion": {
-        "name": "Notion",
-        "description": "Flexibele workspace met CRM templates",
-        "type": "Startup"
+      "brevo": {
+        "name": "Brevo",
+        "description": "Betaalbaar CRM met sterke email marketing",
+        "type": "Email & CRM"
       }
     },
-    "automations": {
-      "title": "Automatisering Voorbeelden",
-      "subtitle": "Zo kunnen automatiseringen jouw werkprocessen versnellen",
-      "triggerLabel": "Trigger:",
-      "actionsLabel": "Automatische acties:",
-      "formSubmitted": {
-        "trigger": "Formulier ingevuld",
-        "actions": [
-          "Contact aanmaken in CRM",
-          "Tag toekennen op basis van interesse",
-          "Welkomst email versturen",
-          "Sales notificatie sturen"
+    "integrationExamples": {
+      "title": "Integratie Voorbeelden",
+      "subtitle": "Praktische voorbeelden van wat wij voor je kunnen opzetten",
+      "websiteForms": {
+        "title": "Formulier → CRM",
+        "description": "Elk ingevuld formulier wordt automatisch een contact in je CRM.",
+        "features": [
+          "Contactformulier naar HubSpot/Salesforce",
+          "Automatische tags op basis van pagina",
+          "UTM parameters meesturen",
+          "Bevestigingsmail via CRM"
         ]
       },
-      "quoteViewed": {
-        "trigger": "Offerte bekeken",
-        "actions": [
-          "Lead score verhogen",
-          "Follow-up taak aanmaken",
-          "Reminder email na 3 dagen"
+      "leadNotifications": {
+        "title": "Lead Notificaties",
+        "description": "Direct op de hoogte wanneer iemand contact opneemt.",
+        "features": [
+          "Email notificatie bij nieuwe lead",
+          "Slack/Teams melding",
+          "Toewijzing aan sales medewerker",
+          "Prioritering op basis van formulier"
         ]
       },
-      "noActivity": {
-        "trigger": "Geen activiteit 30 dagen",
-        "actions": [
-          "Re-engagement email versturen",
-          "Tag wijzigen naar 'cold'",
-          "Verwijderen uit actieve campagnes"
+      "contactSync": {
+        "title": "Contact Synchronisatie",
+        "description": "Houd je CRM up-to-date met website interacties.",
+        "features": [
+          "Nieuwsbrief inschrijving naar CRM",
+          "Download tracking per contact",
+          "Pageviews zichtbaar in CRM",
+          "Deal/opportunity aanmaken"
         ]
       }
     },
     "benefits": {
       "title": "Waarom",
-      "titleHighlight": "CRM automatisering?",
-      "subtitle": "Een goed ingericht CRM systeem bespaart je team uren per week en zorgt ervoor dat geen enkele lead door de mazen van het net glipt.",
+      "titleHighlight": "CRM integratie?",
+      "subtitle": "Met een goede koppeling tussen je website en CRM mis je nooit meer een lead en heeft je team direct alle informatie bij de hand.",
       "items": [
-        "Nooit meer leads vergeten op te volgen",
-        "360° klantbeeld voor betere service",
-        "Kortere sales cycles door automatisering",
-        "Betere samenwerking tussen teams",
-        "Data-driven beslissingen",
-        "Schaalbaar zonder extra handwerk"
+        "Leads automatisch in je CRM",
+        "Geen handmatig overtypen meer",
+        "Direct inzicht in leadbron",
+        "Snellere opvolging mogelijk",
+        "Betere data kwaliteit",
+        "Minder administratief werk"
       ],
       "card": {
-        "title": "Website + CRM Integratie",
-        "description": "De kracht van CRM zit in de integratie met je website. Elk formulier, elke download, elke pageview kan automatisch in je CRM terechtkomen.",
+        "title": "Geen implementatiepartner",
+        "description": "Wij zijn geen full-scale CRM implementatiepartner. Heb je een complexe CRM uitrol nodig? Dan verwijzen we je graag door. Wij focussen op de koppeling tussen je website en bestaand CRM.",
         "features": [
-          "Formulieren direct gekoppeld aan CRM",
-          "Website gedrag zichtbaar per contact",
-          "Automatische lead scoring",
-          "Real-time sales notificaties"
+          "Website ↔ CRM koppelingen",
+          "Formulier integraties",
+          "Basis velden en pipelines",
+          "Notificatie workflows"
         ],
         "button": "Meer over development →"
       }
     },
     "cta": {
-      "title": "Klaar om je sales te stroomlijnen?",
-      "subtitle": "Laten we bespreken hoe CRM automatisering jouw bedrijf kan helpen groeien.",
+      "title": "CRM koppelen aan je website?",
+      "subtitle": "Laten we bespreken welke integratie het beste bij jouw situatie past.",
       "primaryButton": "Plan een gesprek",
       "secondaryButton": "Alle diensten"
     }
