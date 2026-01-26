@@ -10,6 +10,7 @@ export interface PortfolioItem {
   shortDescription: string;
   image: string;
   logo?: string;
+  icon?: string;
   tags: string[];
   url: string;
   featured: boolean;
@@ -215,7 +216,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     logo: "/portfolio/woonstudiojoy-logo.svg",
     tags: ["WordPress", "Showroom", "Lokale SEO"],
     url: "https://woonstudiojoy.nl",
-    featured: false,
+    featured: true,
     year: 2025,
     projectType: "redesign",
     challenge:

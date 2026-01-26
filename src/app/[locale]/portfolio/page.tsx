@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { portfolioItems } from "@/data/portfolio";
+import { getPortfolioItems, type PortfolioItem } from "@/data/portfolio";
+import type { Locale } from "@/i18n/config";
 
 export default function PortfolioPage() {
   const t = useTranslations("portfolioPage");
-  const featuredProjects = portfolioItems.filter((p) => p.featured);
-  const otherProjects = portfolioItems.filter((p) => !p.featured);
+  const locale = useLocale() as Locale;
+  const portfolioItems = getPortfolioItems(locale);
 
   return (
     <div className="min-h-screen pt-32">
@@ -59,44 +60,41 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Featured Projects Grid */}
+      {/* All Projects Grid */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h2 className="text-2xl font-bold text-white mb-2">
-              {t("featured.title")}
-            </h2>
-            <p className="text-muted-foreground">
-              {t("featured.subtitle")}
-            </p>
-          </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredProjects.map((project, index) => (
+            {portfolioItems.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <Link
                   href={`/portfolio/${project.slug}`}
                   className="group relative block overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300"
                 >
-                  {/* Image placeholder with gradient */}
-                  <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-white/20 text-6xl font-bold">
-                        {project.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
+                  {/* Project image */}
+                  <div className="aspect-video relative overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
+
+                    {/* Logo overlay */}
+                    {project.logo && (
+                      <div className="absolute bottom-4 left-4">
+                        <img
+                          src={project.logo}
+                          alt={`${project.name} logo`}
+                          className="h-8 w-auto max-w-[120px] object-contain brightness-0 invert opacity-80"
+                        />
+                      </div>
+                    )}
 
                     {/* Project type badge */}
                     <div className="absolute top-4 left-4">
@@ -155,71 +153,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Other Projects */}
-      {otherProjects.length > 0 && (
-        <section className="py-20 bg-surface/50">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl font-bold text-white mb-2">
-                {t("more.title")}
-              </h2>
-              <p className="text-muted-foreground">
-                {t("more.subtitle")}
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={`/portfolio/${project.slug}`}
-                    className="group block h-full rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-accent text-xs font-medium uppercase tracking-wider">
-                        {project.industry}
-                      </span>
-                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                        project.projectType === "new"
-                          ? "bg-green-500/20 text-green-400"
-                          : "bg-blue-500/20 text-blue-400"
-                      }`}>
-                        {project.projectType === "new" ? t("projectType.newShort") : t("projectType.redesign")}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                      {project.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {project.shortDescription}
-                    </p>
-
-                    <div className="flex items-center gap-4 pt-4 border-t border-white/5">
-                      <span className="text-sm font-medium text-accent group-hover:text-accent-hover transition-colors flex items-center gap-1">
-                        {t("caseStudy")}
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Stats Section */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -231,7 +164,7 @@ export default function PortfolioPage() {
               className="text-center"
             >
               <div className="text-4xl font-bold text-accent mb-2">
-                {portfolioItems.length}+
+                55+
               </div>
               <div className="text-muted-foreground text-sm">
                 {t("stats.websitesDelivered")}
@@ -244,9 +177,9 @@ export default function PortfolioPage() {
               transition={{ delay: 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-accent mb-2">100%</div>
+              <div className="text-4xl font-bold text-accent mb-2">8+</div>
               <div className="text-muted-foreground text-sm">
-                {t("stats.satisfiedClients")}
+                {t("stats.yearsExperience")}
               </div>
             </motion.div>
             <motion.div
@@ -256,9 +189,9 @@ export default function PortfolioPage() {
               transition={{ delay: 0.2 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-accent mb-2">WordPress</div>
+              <div className="text-4xl font-bold text-accent mb-2">100%</div>
               <div className="text-muted-foreground text-sm">
-                {t("stats.primaryTechnology")}
+                {t("stats.satisfiedClients")}
               </div>
             </motion.div>
             <motion.div
@@ -268,9 +201,9 @@ export default function PortfolioPage() {
               transition={{ delay: 0.3 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-accent mb-2">2024</div>
+              <div className="text-4xl font-bold text-accent mb-2">WordPress</div>
               <div className="text-muted-foreground text-sm">
-                {t("stats.mostProjects")}
+                {t("stats.primaryTechnology")}
               </div>
             </motion.div>
           </div>

@@ -5,6 +5,7 @@
   },
   "navigation": {
     "diensten": "Diensten",
+    "portfolio": "Portfolio",
     "werkwijze": "Werkwijze",
     "tooling": "Tooling",
     "kennisbank": "Kennisbank",
@@ -39,7 +40,18 @@
     "loadingArticles": "Artikelen laden...",
     "aboutRobuust": "Over Robuust",
     "directContact": "Direct contact?",
-    "weAreReady": "We staan voor je klaar"
+    "weAreReady": "We staan voor je klaar",
+    "ourWork": "Ons Werk",
+    "highlights": "Highlights",
+    "portfolioHighlights": {
+      "wordpress": "WordPress websites",
+      "nextjs": "Next.js applicaties",
+      "ecommerce": "E-commerce oplossingen",
+      "corporate": "Corporate websites"
+    },
+    "viewAllCases": "Bekijk alle cases",
+    "ourTools": "Onze Tools",
+    "viewAllTools": "Bekijk alle tools"
   },
   "services": {
     "design": {
@@ -621,9 +633,9 @@
     "caseStudy": "Case study",
     "stats": {
       "websitesDelivered": "Websites opgeleverd",
+      "yearsExperience": "Jaar ervaring",
       "satisfiedClients": "Tevreden klanten",
-      "primaryTechnology": "Primaire technologie",
-      "mostProjects": "Meeste projecten"
+      "primaryTechnology": "Primaire technologie"
     },
     "cta": {
       "title": "Jouw project als volgende?",

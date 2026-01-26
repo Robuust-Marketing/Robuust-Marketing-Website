@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { getPortfolioItems } from "@/data/portfolio";
 
 // Static icon mappings (translations are loaded in component)
 const dienstenIcons = {
@@ -91,7 +92,7 @@ const companyIcons = {
   contact: Phone,
 };
 
-type MegaMenuSection = "diensten" | "werkwijze" | "tooling" | "kennisbank" | "over" | null;
+type MegaMenuSection = "diensten" | "portfolio" | "werkwijze" | "kennisbank" | "over" | null;
 
 interface BlogPostMeta {
   slug: string;
@@ -162,9 +163,11 @@ export function Header() {
     { name: tResources("support.name"), description: tResources("support.description"), href: "/support" as const, icon: resourcesIcons.support },
   ];
 
+  // Portfolio items for mega menu
+  const portfolioItems = getPortfolioItems(locale);
+
   const overOns = [
     { name: tCompany("about.name"), description: tCompany("about.description"), href: "/over" as const, icon: companyIcons.about },
-    { name: tCompany("portfolio.name"), description: tCompany("portfolio.description"), href: "/portfolio" as const, icon: companyIcons.portfolio },
     { name: tCompany("referenties.name"), description: tCompany("referenties.description"), href: "/referenties" as const, icon: companyIcons.referenties },
     { name: tCompany("partners.name"), description: tCompany("partners.description"), href: "/partners" as const, icon: companyIcons.partners },
     { name: tCompany("vacatures.name"), description: tCompany("vacatures.description"), href: "/vacatures" as const, icon: companyIcons.vacatures },
@@ -173,8 +176,8 @@ export function Header() {
 
   const menuItems = [
     { name: tNav("diensten"), key: "diensten" as const, href: "/diensten" as const },
+    { name: tNav("portfolio"), key: "portfolio" as const, href: "/portfolio" as const },
     { name: tNav("werkwijze"), key: "werkwijze" as const, href: "/werkwijze" as const },
-    { name: tNav("tooling"), key: "tooling" as const, href: "/tooling" as const },
     { name: tNav("kennisbank"), key: "kennisbank" as const, href: "/kennisbank" as const },
     { name: tNav("over"), key: "over" as const, href: "/over" as const },
   ];
@@ -509,35 +512,48 @@ export function Header() {
                   </div>
                 )}
 
-                {/* Tooling Mega Menu */}
-                {activeMenu === "tooling" && (
+                {/* Portfolio Mega Menu */}
+                {activeMenu === "portfolio" && (
                   <div className="grid grid-cols-12 gap-8">
-                    <div className="col-span-8">
+                    <div className="col-span-9">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        {tHeader("ourTechStack")}
+                        {tHeader("ourWork")}
                       </p>
-                      <div className="grid grid-cols-3 gap-2">
-                        {tooling.map((item, index) => (
+                      <div className="grid grid-cols-4 gap-3">
+                        {portfolioItems.slice(0, 8).map((item, index) => (
                           <motion.div
-                            key={item.name}
+                            key={item.slug}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.03 }}
                           >
                             <Link
-                              href={item.href}
-                              className="group flex items-start gap-3 rounded-xl p-3 hover:bg-white/5 transition-all duration-200"
+                              href={{ pathname: "/portfolio/[slug]", params: { slug: item.slug } }}
+                              className="group block rounded-xl overflow-hidden bg-white/5 border border-white/5 hover:border-white/20 transition-all duration-200"
                               onClick={() => setActiveMenu(null)}
                             >
-                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:bg-accent/20 group-hover:text-accent transition-all duration-200">
-                                <item.icon className="h-5 w-5" />
+                              <div className="aspect-[16/10] relative overflow-hidden">
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                                {item.logo && (
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+                                    <img
+                                      src={item.logo}
+                                      alt={`${item.name} logo`}
+                                      className="h-6 w-auto max-w-[80%] object-contain brightness-0 invert"
+                                    />
+                                  </div>
+                                )}
                               </div>
-                              <div>
-                                <p className="font-medium text-white group-hover:text-accent transition-colors">
+                              <div className="p-3">
+                                <p className="font-medium text-white text-sm group-hover:text-accent transition-colors truncate">
                                   {item.name}
                                 </p>
-                                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
-                                  {item.description}
+                                <p className="text-xs text-white/50 truncate">
+                                  {item.category}
                                 </p>
                               </div>
                             </Link>
@@ -546,16 +562,16 @@ export function Header() {
                       </div>
                     </div>
 
-                    <div className="col-span-4 border-l border-white/10 pl-8">
+                    <div className="col-span-3 border-l border-white/10 pl-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        {tHeader("whyThisStack")}
+                        {tHeader("highlights")}
                       </p>
                       <ul className="space-y-3">
                         {[
-                          tHeader("stackBenefits.performance"),
-                          tHeader("stackBenefits.seo"),
-                          tHeader("stackBenefits.scalable"),
-                          tHeader("stackBenefits.futureProof"),
+                          tHeader("portfolioHighlights.wordpress"),
+                          tHeader("portfolioHighlights.nextjs"),
+                          tHeader("portfolioHighlights.ecommerce"),
+                          tHeader("portfolioHighlights.corporate"),
                         ].map((item, index) => (
                           <motion.li
                             key={index}
@@ -570,11 +586,11 @@ export function Header() {
                         ))}
                       </ul>
                       <Link
-                        href="/tooling"
+                        href="/portfolio"
                         className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                         onClick={() => setActiveMenu(null)}
                       >
-                        {tHeader("readMoreStack")}
+                        {tHeader("viewAllCases")}
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </div>
@@ -661,11 +677,11 @@ export function Header() {
                 {/* Over Mega Menu */}
                 {activeMenu === "over" && (
                   <div className="grid grid-cols-12 gap-8">
-                    <div className="col-span-6">
+                    <div className="col-span-4">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
                         {tHeader("aboutRobuust")}
                       </p>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="space-y-2">
                         {overOns.map((item, index) => (
                           <motion.div
                             key={item.name}
@@ -695,22 +711,57 @@ export function Header() {
                       </div>
                     </div>
 
-                    <div className="col-span-6 border-l border-white/10 pl-8">
-                      <div className="rounded-xl bg-white/5 border border-white/5 p-5">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="font-medium text-white">{tHeader("directContact")}</p>
-                            <p className="text-sm text-white/50">{tHeader("weAreReady")}</p>
-                          </div>
-                          <Button asChild size="sm" className="bg-accent hover:bg-accent-hover text-white">
-                            <Link href="/contact" onClick={() => setActiveMenu(null)}>
-                              {tNav("contact")}
+                    <div className="col-span-5 border-l border-white/10 pl-8">
+                      <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
+                        {tHeader("ourTools")}
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {tooling.map((item, index) => (
+                          <motion.div
+                            key={item.name}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.03 }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="group flex items-start gap-3 rounded-xl p-3 hover:bg-white/5 transition-all duration-200"
+                              onClick={() => setActiveMenu(null)}
+                            >
+                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-white/60 group-hover:bg-accent/20 group-hover:text-accent transition-all duration-200">
+                                <item.icon className="h-4 w-4" />
+                              </div>
+                              <div>
+                                <p className="font-medium text-sm text-white group-hover:text-accent transition-colors">
+                                  {item.name}
+                                </p>
+                              </div>
                             </Link>
-                          </Button>
-                        </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                      <Link
+                        href="/tooling"
+                        className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
+                        onClick={() => setActiveMenu(null)}
+                      >
+                        {tHeader("viewAllTools")}
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+
+                    <div className="col-span-3 border-l border-white/10 pl-8">
+                      <div className="rounded-xl bg-white/5 border border-white/5 p-5 mb-4">
+                        <p className="font-medium text-white mb-1">{tHeader("directContact")}</p>
+                        <p className="text-sm text-white/50 mb-3">{tHeader("weAreReady")}</p>
+                        <Button asChild size="sm" className="w-full bg-accent hover:bg-accent-hover text-white">
+                          <Link href="/contact" onClick={() => setActiveMenu(null)}>
+                            {tNav("contact")}
+                          </Link>
+                        </Button>
                       </div>
 
-                      <div className="mt-4 flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2">
                         {[
                           { name: "Privacy", href: "/privacy" as const },
                           { name: locale === "nl" ? "AVG" : "GDPR", href: "/avg" as const },
@@ -788,6 +839,20 @@ export function Header() {
                     onClose={closeMobileMenu}
                   />
 
+                  {/* Portfolio */}
+                  <MobileMenuItem
+                    name={tNav("portfolio")}
+                    href="/portfolio"
+                    isOpen={mobileSubmenu === "portfolio"}
+                    onToggle={() => setMobileSubmenu(mobileSubmenu === "portfolio" ? null : "portfolio")}
+                    items={portfolioItems.slice(0, 6).map(item => ({
+                      name: item.name,
+                      href: { pathname: "/portfolio/[slug]" as const, params: { slug: item.slug } },
+                      icon: Layout,
+                    }))}
+                    onClose={closeMobileMenu}
+                  />
+
                   {/* Werkwijze */}
                   <MobileMenuItem
                     name={tNav("werkwijze")}
@@ -795,16 +860,6 @@ export function Header() {
                     isOpen={mobileSubmenu === "werkwijze"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
                     items={werkwijze}
-                    onClose={closeMobileMenu}
-                  />
-
-                  {/* Tooling */}
-                  <MobileMenuItem
-                    name={tNav("tooling")}
-                    href="/tooling"
-                    isOpen={mobileSubmenu === "tooling"}
-                    onToggle={() => setMobileSubmenu(mobileSubmenu === "tooling" ? null : "tooling")}
-                    items={tooling}
                     onClose={closeMobileMenu}
                   />
 
@@ -824,7 +879,7 @@ export function Header() {
                     href="/over"
                     isOpen={mobileSubmenu === "over"}
                     onToggle={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
-                    items={overOns}
+                    items={[...overOns, ...tooling.slice(0, 3)]}
                     onClose={closeMobileMenu}
                   />
                 </div>

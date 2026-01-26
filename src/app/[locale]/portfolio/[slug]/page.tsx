@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { notFound } from "next/navigation";
 import {
@@ -15,13 +15,16 @@ import {
   Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { portfolioItems } from "@/data/portfolio";
+import { getPortfolioItems } from "@/data/portfolio";
+import type { Locale } from "@/i18n/config";
 
 export default function CaseStudyPage() {
   const t = useTranslations("portfolioDetailPage");
+  const locale = useLocale() as Locale;
   const params = useParams();
   const slug = params.slug as string;
 
+  const portfolioItems = getPortfolioItems(locale);
   const project = portfolioItems.find((p) => p.slug === slug);
 
   if (!project) {
@@ -156,18 +159,28 @@ export default function CaseStudyPage() {
               </motion.div>
             </div>
 
-            {/* Image placeholder */}
+            {/* Project image */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="aspect-video rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 relative overflow-hidden border border-white/10"
+              className="aspect-video rounded-3xl relative overflow-hidden border border-white/10"
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white/10 text-9xl font-bold">
-                  {project.name.charAt(0)}
-                </span>
-              </div>
+              <img
+                src={project.image}
+                alt={project.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              {project.logo && (
+                <div className="absolute bottom-6 left-6">
+                  <img
+                    src={project.logo}
+                    alt={`${project.name} logo`}
+                    className="h-12 w-auto max-w-[180px] object-contain brightness-0 invert"
+                  />
+                </div>
+              )}
             </motion.div>
           </div>
         </div>
@@ -323,18 +336,37 @@ export default function CaseStudyPage() {
             >
               <Link
                 href={`/portfolio/${prevProject.slug}`}
-                className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors group"
+                className="block rounded-2xl bg-surface overflow-hidden border border-white/5 hover:border-accent/30 transition-colors group"
               >
-                <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
-                  <ArrowLeft className="h-4 w-4" />
-                  {t("navigation.previous")}
+                <div className="aspect-[21/9] relative overflow-hidden">
+                  <img
+                    src={prevProject.image}
+                    alt={prevProject.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
+                  {prevProject.logo && (
+                    <div className="absolute bottom-3 left-4">
+                      <img
+                        src={prevProject.logo}
+                        alt={`${prevProject.name} logo`}
+                        className="h-6 w-auto max-w-[100px] object-contain brightness-0 invert opacity-70"
+                      />
+                    </div>
+                  )}
                 </div>
-                <h3 className="text-xl font-semibold text-white group-hover:text-accent transition-colors">
-                  {prevProject.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {prevProject.industry}
-                </p>
+                <div className="p-5">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
+                    <ArrowLeft className="h-4 w-4" />
+                    {t("navigation.previous")}
+                  </div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-accent transition-colors">
+                    {prevProject.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {prevProject.industry}
+                  </p>
+                </div>
               </Link>
             </motion.div>
 
@@ -346,18 +378,37 @@ export default function CaseStudyPage() {
             >
               <Link
                 href={`/portfolio/${nextProject.slug}`}
-                className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors group text-right"
+                className="block rounded-2xl bg-surface overflow-hidden border border-white/5 hover:border-accent/30 transition-colors group"
               >
-                <div className="flex items-center justify-end gap-2 text-muted-foreground text-sm mb-2">
-                  {t("navigation.next")}
-                  <ArrowRight className="h-4 w-4" />
+                <div className="aspect-[21/9] relative overflow-hidden">
+                  <img
+                    src={nextProject.image}
+                    alt={nextProject.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
+                  {nextProject.logo && (
+                    <div className="absolute bottom-3 right-4">
+                      <img
+                        src={nextProject.logo}
+                        alt={`${nextProject.name} logo`}
+                        className="h-6 w-auto max-w-[100px] object-contain brightness-0 invert opacity-70"
+                      />
+                    </div>
+                  )}
                 </div>
-                <h3 className="text-xl font-semibold text-white group-hover:text-accent transition-colors">
-                  {nextProject.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {nextProject.industry}
-                </p>
+                <div className="p-5 text-right">
+                  <div className="flex items-center justify-end gap-2 text-muted-foreground text-sm mb-2">
+                    {t("navigation.next")}
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-accent transition-colors">
+                    {nextProject.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {nextProject.industry}
+                  </p>
+                </div>
               </Link>
             </motion.div>
           </div>

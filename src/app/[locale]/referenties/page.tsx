@@ -25,14 +25,14 @@ export default function ReferentiesPage() {
   ];
 
   const logos = [
-    { name: "Growteq", url: "https://growteq.nl" },
-    { name: "Piano Select", url: "https://www.pianoselect.nl" },
-    { name: "Foto Lot", url: "https://foto-lot.nl" },
-    { name: "Dununba", url: "https://dununba.nl" },
-    { name: "Kapsalon Tine", url: "https://kapsalontine.nl" },
-    { name: "Den Hartog Energies", url: "https://denhartogbv.com" },
-    { name: "Villary Buitenleven", url: "https://villary.nl" },
-    { name: "Voltra Charging", url: "https://voltracharging.com" },
+    { name: "Growteq", url: "https://growteq.nl", logo: "/portfolio/growteq-logo.svg" },
+    { name: "Den Hartog Energies", url: "https://denhartogbv.com", logo: "/portfolio/denhartogenergies-logo.svg" },
+    { name: "Villary Buitenleven", url: "https://villary.nl", logo: "/portfolio/villary-logo.png" },
+    { name: "In Den RustWat", url: "https://idrw.nl", logo: "/portfolio/idrw-logo.svg" },
+    { name: "BnB Kinderdijk", url: "https://bnbkinderdijk.nl", logo: "/portfolio/bnbkinderdijk-logo.png" },
+    { name: "Voltra Charging", url: "https://voltracharging.com", logo: "/portfolio/voltracharging-logo.svg" },
+    { name: "Woonstudio Joy", url: "https://woonstudiojoy.nl", logo: "/portfolio/woonstudiojoy-logo.svg" },
+    { name: "Kapsalon Tine", url: "https://kapsalontine.nl", logo: "/portfolio/kapsalontine-logo.svg" },
   ];
 
   const whyChooseItems = [
@@ -201,12 +201,20 @@ export default function ReferentiesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="rounded-xl bg-surface p-6 border border-white/5 flex items-center justify-center hover:border-accent/30 transition-colors group"
+                className="rounded-xl bg-surface p-6 border border-white/5 flex items-center justify-center hover:border-accent/30 transition-colors group h-24"
               >
-                <div className="flex items-center gap-2 text-muted-foreground group-hover:text-white transition-colors">
-                  <Building2 className="h-5 w-5" />
-                  <span className="text-sm font-medium">{logo.name}</span>
-                </div>
+                {logo.logo ? (
+                  <img
+                    src={logo.logo}
+                    alt={logo.name}
+                    className="h-10 w-auto max-w-[140px] object-contain opacity-60 group-hover:opacity-100 transition-opacity"
+                  />
+                ) : (
+                  <div className="flex items-center gap-2 text-muted-foreground group-hover:text-white transition-colors">
+                    <Building2 className="h-5 w-5" />
+                    <span className="text-sm font-medium">{logo.name}</span>
+                  </div>
+                )}
               </motion.a>
             ))}
           </div>
