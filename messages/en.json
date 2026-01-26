@@ -974,52 +974,198 @@
   },
   "privacyPage": {
     "title": "Privacy Policy",
-    "lastUpdated": "Last updated: January 2025",
+    "lastUpdated": "Last updated: January 2026",
     "sections": {
       "intro": {
-        "title": "1. Introduction",
-        "content": "Robuust Marketing, based in the Netherlands, is responsible for the processing of personal data as shown in this privacy statement. We respect the privacy of all users of our website and ensure that the personal information you provide is treated confidentially."
+        "title": "1. Data Controller",
+        "content": "Robuust Marketing is responsible for the processing of personal data as set out in this privacy statement. We respect your privacy and process personal data in accordance with the General Data Protection Regulation (GDPR).",
+        "contactInfo": "Robuust Marketing\nEmail: info@robuustmarketing.nl\nPhone: +31 85 060 4877\nWebsite: robuustmarketing.nl\nChamber of Commerce: 82003033"
       },
       "dataCollection": {
-        "title": "2. What data do we collect?",
-        "intro": "We collect the following personal data:",
-        "items": ["Name and contact details (email, phone number)", "Company data (company name, position)", "Technical data (IP address, browser type, device information)", "Usage data (how you use our website, which pages you visit)"]
+        "title": "2. What personal data do we collect?",
+        "intro": "We collect personal data that you provide to us or that we automatically collect when you visit our website:",
+        "categories": {
+          "contact": {
+            "title": "Contact details (for inquiries and quotes)",
+            "items": ["First and last name", "Email address", "Phone number", "Company name and position"]
+          },
+          "technical": {
+            "title": "Technical data (automatically collected)",
+            "items": ["IP address (anonymized after 14 months)", "Browser type and version", "Device type (desktop, tablet, mobile)", "Operating system"]
+          },
+          "usage": {
+            "title": "Usage data (with your consent)",
+            "items": ["Pages visited and click behavior", "Session duration and interactions", "Referring website (referrer)", "Conversions and form submissions"]
+          }
+        },
+        "noSensitiveData": "We do not collect special categories of personal data (such as data about health, religion or political preference)."
       },
-      "dataUsage": {
-        "title": "3. What do we use your data for?",
-        "items": ["To contact you in response to a request", "To improve and personalize our services", "To inform you about our services (only with your consent)", "To comply with legal obligations", "For website analysis and optimization"]
+      "legalBasis": {
+        "title": "3. Legal basis for processing",
+        "intro": "We only process your personal data on the basis of a valid legal ground pursuant to Article 6 GDPR:",
+        "grounds": {
+          "consent": {
+            "title": "Consent (Art. 6(1)(a) GDPR)",
+            "description": "For placing analytical and marketing cookies via our cookie banner (Cookiebot). You can withdraw your consent at any time."
+          },
+          "contract": {
+            "title": "Performance of a contract (Art. 6(1)(b) GDPR)",
+            "description": "For processing quote requests, executing assignments and delivering our services."
+          },
+          "legitimate": {
+            "title": "Legitimate interest (Art. 6(1)(f) GDPR)",
+            "description": "For placing necessary cookies, improving our website and securing our systems."
+          },
+          "legal": {
+            "title": "Legal obligation (Art. 6(1)(c) GDPR)",
+            "description": "For retaining invoice data (7 years in accordance with tax legislation)."
+          }
+        }
+      },
+      "purposes": {
+        "title": "4. Purposes of processing",
+        "items": [
+          "Answering contact requests and quotes",
+          "Executing agreements (web design, hosting, maintenance)",
+          "Improving our website and services",
+          "Analyzing website usage to optimize user experience",
+          "Sending relevant information about our services (only with consent)",
+          "Complying with legal obligations (such as tax returns)"
+        ]
       },
       "cookies": {
-        "title": "4. Cookies",
-        "intro": "Our website uses cookies. Cookies are small text files that are stored on your device. We use:",
-        "functional": { "title": "Functional cookies:", "description": "necessary for the functioning of the website" },
-        "analytical": { "title": "Analytical cookies:", "description": "to gain insight into the use of our website (Google Analytics)" },
-        "marketing": { "title": "Marketing cookies:", "description": "only with your consent, for showing relevant advertisements" },
-        "outro": "Via our cookie banner you can manage your preferences and give or withdraw consent."
-      },
-      "retention": {
-        "title": "5. Retention period",
-        "content": "We do not retain your personal data longer than strictly necessary to achieve the purposes for which your data is collected. Contact details are kept for a maximum of 2 years after the last contact, unless there is an ongoing customer relationship."
+        "title": "5. Cookies and tracking",
+        "intro": "Our website uses cookies and similar technologies. Cookies are small text files that are stored on your device. We use Google Consent Mode v2 to respect your cookie preferences.",
+        "consentMode": {
+          "title": "Google Consent Mode v2",
+          "description": "We use Google Consent Mode v2 to ensure that Google services (such as Google Analytics and Google Ads) only collect data after you have given your consent. By default, all non-essential cookies are blocked until you make a choice via our cookie banner."
+        },
+        "categories": {
+          "necessary": {
+            "title": "Necessary cookies (always active)",
+            "description": "These cookies are essential for the functioning of the website and cannot be disabled.",
+            "examples": ["Cookiebot (CookieConsent): Remembers your cookie preferences, 12 months", "security_storage: Security features"]
+          },
+          "functional": {
+            "title": "Functional cookies (preference cookies)",
+            "description": "These cookies remember your preferences for a better user experience.",
+            "examples": ["Language preference (nl/en)", "Display settings"]
+          },
+          "analytical": {
+            "title": "Analytical cookies (statistics)",
+            "description": "With your consent, we use analytical cookies to gain insight into how visitors use our website.",
+            "examples": ["Google Analytics 4 (_ga, _ga_*): Website statistics, 2 years", "IP addresses are anonymized", "Data is processed within the EU"]
+          },
+          "marketing": {
+            "title": "Marketing cookies (advertising)",
+            "description": "With your consent, marketing cookies may be placed for showing relevant advertisements and measuring campaign effectiveness.",
+            "examples": ["Google Ads conversion tracking", "LinkedIn Insight Tag", "Facebook Pixel (if applicable)"]
+          }
+        },
+        "cookiebot": {
+          "title": "Cookie management with Cookiebot",
+          "description": "We use Cookiebot as our Consent Management Platform (CMP) to manage your cookie preferences. On your first visit, a cookie banner will appear where you can choose which categories of cookies you accept. You can change your preferences at any time by clicking 'Change cookie settings' at the bottom of this page.",
+          "declaration": "A complete overview of all cookies that our website places can be found in the Cookiebot declaration at the bottom of this page."
+        },
+        "browserSettings": "You can also block cookies via your browser settings. Please note: this may limit the functionality of the website."
       },
       "thirdParties": {
-        "title": "6. Sharing with third parties",
-        "intro": "We only share your data with third parties if this is necessary for the execution of our services:",
-        "items": ["Hosting providers (servers in EU: Germany/Finland)", "Analytics services (Google Analytics - anonymized)", "Email service providers (for sending messages)"],
-        "outro": "We never sell your data to third parties."
+        "title": "6. Recipients and transfers",
+        "intro": "We only share your personal data with third parties when this is necessary for our services or when we are legally obliged to do so. We have concluded data processing agreements with all processors.",
+        "recipients": {
+          "hosting": {
+            "title": "Hosting providers",
+            "items": ["Hetzner (Germany/Finland) - server hosting", "Cloudflare (US, EU Standard Contractual Clauses) - CDN and DDoS protection"]
+          },
+          "analytics": {
+            "title": "Analytics and tracking",
+            "items": ["Google Analytics 4 (Google Ireland Ltd) - website statistics", "Google Tag Manager - tag management"]
+          },
+          "crm": {
+            "title": "CRM and communication",
+            "items": ["HubSpot (US, EU Standard Contractual Clauses) - lead management", "Resend (US, EU Standard Contractual Clauses) - email delivery"]
+          },
+          "security": {
+            "title": "Security",
+            "items": ["Cloudflare Turnstile - bot protection for forms", "Cookiebot (Cybot, Denmark) - consent management"]
+          }
+        },
+        "transfers": "Some of our processors are located outside the EU (US). In those cases, we ensure appropriate safeguards through Standard Contractual Clauses (SCCs) in accordance with Article 46 GDPR.",
+        "noSale": "We never sell your personal data to third parties."
+      },
+      "retention": {
+        "title": "7. Retention periods",
+        "intro": "We do not retain your personal data longer than necessary for the purposes for which they were collected:",
+        "periods": {
+          "contact": {
+            "category": "Contact form / quote requests",
+            "period": "2 years after last contact"
+          },
+          "client": {
+            "category": "Customer data (ongoing agreement)",
+            "period": "Duration of agreement + 2 years"
+          },
+          "invoices": {
+            "category": "Invoice data",
+            "period": "7 years (legal retention obligation)"
+          },
+          "analytics": {
+            "category": "Analytical data",
+            "period": "14 months (Google Analytics)"
+          },
+          "cookies": {
+            "category": "Cookie preferences",
+            "period": "12 months"
+          }
+        }
       },
       "rights": {
-        "title": "7. Your rights",
-        "intro": "You have the right to:",
-        "items": ["Access your personal data", "Correct your personal data", "Have your personal data deleted", "Object to the processing", "Transfer your data (data portability)"],
-        "outro": "You can submit a request via {email}. We will respond within 30 days."
+        "title": "8. Your rights",
+        "intro": "Under the GDPR, you have the following rights regarding your personal data:",
+        "items": [
+          "Right of access: You can request which personal data we process about you",
+          "Right to rectification: You can have incorrect data corrected",
+          "Right to erasure: You can request to have your data deleted ('right to be forgotten')",
+          "Right to restriction: You can have the processing temporarily stopped",
+          "Right to data portability: You can receive your data in a common format",
+          "Right to object: You can object to processing based on legitimate interest",
+          "Right to withdraw consent: You can always withdraw previously given consent"
+        ],
+        "exercise": "To exercise your rights, you can contact us at info@robuustmarketing.nl. We will respond to your request within 30 days. We may ask you for identification to process a request.",
+        "complaint": "You also have the right to lodge a complaint with the Dutch Data Protection Authority (autoriteitpersoonsgegevens.nl) if you believe that we are not processing your personal data correctly."
       },
       "security": {
-        "title": "8. Security",
-        "content": "We take the protection of your data seriously and take appropriate measures to prevent misuse, loss, unauthorized access, unwanted disclosure and unauthorized modification. Our website uses an SSL certificate and our servers are located in secure data centers in Europe."
+        "title": "9. Security",
+        "content": "We take appropriate technical and organizational measures to protect your personal data against loss, misuse and unauthorized access:",
+        "measures": [
+          "SSL/TLS encryption for all data traffic (HTTPS)",
+          "Servers in secure EU data centers (Germany and Finland)",
+          "DDoS protection and Web Application Firewall via Cloudflare",
+          "Regular security updates and monitoring",
+          "Access restriction to personal data on a need-to-know basis",
+          "Encrypted backups"
+        ]
+      },
+      "minors": {
+        "title": "10. Minors",
+        "content": "Our website and services are not aimed at persons under the age of 16. We do not knowingly collect personal data from minors. If you suspect that we have collected personal data from a minor, please contact us at info@robuustmarketing.nl so that we can delete this data."
+      },
+      "automated": {
+        "title": "11. Automated decision-making",
+        "content": "We do not use automated decision-making or profiling that has legal or similarly significant effects on you."
+      },
+      "changes": {
+        "title": "12. Changes",
+        "content": "We may update this privacy statement from time to time, for example when changes occur in our services or in legislation. The most current version can always be found on this page. In case of significant changes, we will inform you."
       },
       "contact": {
-        "title": "9. Contact",
-        "content": "Do you have questions about this privacy statement or about the processing of your personal data? Please contact us via {email}."
+        "title": "13. Contact",
+        "content": "Do you have questions about this privacy statement or about the processing of your personal data? Please contact us:",
+        "details": "Robuust Marketing\nEmail: info@robuustmarketing.nl\nPhone: +31 85 060 4877"
+      },
+      "cookieDeclaration": {
+        "title": "Cookie Declaration",
+        "description": "Below you will find a current overview of all cookies used on our website, automatically generated by Cookiebot."
       }
     }
   },
