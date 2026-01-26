@@ -23,11 +23,6 @@ const Hero = dynamic(() => import("@/components/hero").then((mod) => mod.Hero), 
 });
 
 // Below-the-fold components loaded with ssr for SEO but chunked for performance
-const SocialProof = dynamic(
-  () => import("@/components/social-proof").then((mod) => mod.SocialProof),
-  { ssr: true }
-);
-
 const PortfolioShowcase = dynamic(
   () => import("@/components/portfolio-showcase").then((mod) => mod.PortfolioShowcase),
   { ssr: true }
@@ -70,11 +65,6 @@ export default async function Home({
     <>
       {/* Hero section - critical for LCP, loads first */}
       <Hero />
-
-      {/* Social proof - client logos */}
-      <Suspense fallback={<SectionLoader />}>
-        <SocialProof />
-      </Suspense>
 
       {/* Portfolio showcase - featured work */}
       <Suspense fallback={<SectionLoader />}>

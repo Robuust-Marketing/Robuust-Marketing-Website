@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "@/components/motion";
 import {
   Palette,
@@ -12,7 +13,8 @@ import {
   Headphones,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { type Locale } from "@/i18n/config";
 
 interface BentoCardProps {
   title: string;
@@ -21,9 +23,10 @@ interface BentoCardProps {
   className?: string;
   index: number;
   highlight?: boolean;
+  href?: string;
 }
 
-function BentoCard({ title, description, icon, className, index, highlight }: BentoCardProps) {
+function BentoCard({ title, description, icon, className, index, highlight, href }: BentoCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -40,6 +43,7 @@ function BentoCard({ title, description, icon, className, index, highlight }: Be
         "border border-white/5 hover:border-accent/30 transition-all duration-300",
         "hover:bg-surface-hover",
         highlight && "border-accent/20 bg-gradient-to-br from-surface to-accent/5",
+        href && "cursor-pointer",
         className
       )}
     >
@@ -92,6 +96,13 @@ function BentoCard({ title, description, icon, className, index, highlight }: Be
       {highlight && (
         <div className="absolute -top-2 -left-2 w-20 h-20 rounded-full bg-accent/10 blur-2xl" />
       )}
+
+      {/* Full card link overlay */}
+      {href && (
+        <Link href={href} className="absolute inset-0 z-20" aria-label={title}>
+          <span className="sr-only">{title}</span>
+        </Link>
+      )}
     </motion.div>
   );
 }
@@ -109,6 +120,10 @@ const containerVariants = {
 
 export function BentoGrid() {
   const t = useTranslations("bentoGrid");
+  const locale = useLocale() as Locale;
+
+  // Helper for locale-aware paths
+  const localePath = (path: string) => locale === "en" ? `/en${path.replace("/diensten/", "/services/")}` : path;
 
   const features = [
     {
@@ -116,48 +131,56 @@ export function BentoGrid() {
       icon: <Palette className="h-6 w-6" />,
       className: "md:col-span-2 md:row-span-1",
       highlight: true,
+      href: localePath("/diensten/design"),
     },
     {
       key: "development",
       icon: <Code2 className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-2",
       highlight: false,
+      href: localePath("/diensten/development"),
     },
     {
       key: "hosting",
       icon: <Server className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
+      href: localePath("/diensten/hosting"),
     },
     {
       key: "security",
       icon: <Shield className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: true,
+      href: localePath("/diensten/hosting"),
     },
     {
       key: "analytics",
       icon: <BarChart3 className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
+      href: localePath("/diensten/tracking"),
     },
     {
       key: "performance",
       icon: <Zap className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
+      href: localePath("/diensten/hosting"),
     },
     {
       key: "seo",
       icon: <Globe className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
+      href: localePath("/diensten/seo"),
     },
     {
       key: "support",
       icon: <Headphones className="h-6 w-6" />,
       className: "md:col-span-2 md:row-span-1",
       highlight: true,
+      href: localePath("/diensten/onderhoud"),
     },
   ];
 
@@ -234,6 +257,7 @@ export function BentoGrid() {
               className={feature.className}
               index={index}
               highlight={feature.highlight}
+              href={feature.href}
             />
           ))}
         </motion.div>

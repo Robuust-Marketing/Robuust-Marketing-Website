@@ -515,12 +515,14 @@ export function Header() {
                 {/* Portfolio Mega Menu */}
                 {activeMenu === "portfolio" && (
                   <div className="grid grid-cols-12 gap-8">
-                    <div className="col-span-9">
+                    <div className="col-span-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
                         {tHeader("ourWork")}
                       </p>
-                      <div className="grid grid-cols-4 gap-3">
-                        {portfolioItems.slice(0, 8).map((item, index) => (
+                      <div className="grid grid-cols-2 gap-4">
+                        {portfolioItems
+                          .filter((item) => ["growteq", "den-hartog", "villary", "idrw"].includes(item.slug))
+                          .map((item, index) => (
                           <motion.div
                             key={item.slug}
                             initial={{ opacity: 0, y: 10 }}
@@ -538,15 +540,16 @@ export function Header() {
                                   alt={item.name}
                                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
-                                {item.logo && (
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                <div className="absolute bottom-3 left-3">
+                                  <div className="bg-white rounded-lg p-1.5 shadow-lg">
                                     <img
-                                      src={item.logo}
-                                      alt={`${item.name} logo`}
-                                      className="h-6 w-auto max-w-[80%] object-contain brightness-0 invert"
+                                      src={`https://www.google.com/s2/favicons?domain=${new URL(item.url).hostname}&sz=256`}
+                                      alt={`${item.name} favicon`}
+                                      className="h-6 w-6 object-contain"
                                     />
                                   </div>
-                                )}
+                                </div>
                               </div>
                               <div className="p-3">
                                 <p className="font-medium text-white text-sm group-hover:text-accent transition-colors truncate">
@@ -562,32 +565,80 @@ export function Header() {
                       </div>
                     </div>
 
-                    <div className="col-span-3 border-l border-white/10 pl-8">
+                    <div className="col-span-4 border-l border-white/10 pl-8 flex flex-col">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
-                        {tHeader("highlights")}
+                        {tHeader("clientReview")}
                       </p>
-                      <ul className="space-y-3">
-                        {[
-                          tHeader("portfolioHighlights.wordpress"),
-                          tHeader("portfolioHighlights.nextjs"),
-                          tHeader("portfolioHighlights.ecommerce"),
-                          tHeader("portfolioHighlights.corporate"),
-                        ].map((item, index) => (
-                          <motion.li
-                            key={index}
-                            initial={{ opacity: 0, x: 10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.1 + index * 0.05 }}
-                            className="flex items-center gap-3 text-sm text-white/70"
-                          >
-                            <CheckCircle className="h-4 w-4 text-green-400" />
-                            {item}
-                          </motion.li>
-                        ))}
-                      </ul>
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="rounded-xl bg-white/5 border border-white/5 p-4"
+                      >
+                        <div className="flex gap-1 mb-2">
+                          {[...Array(5)].map((_, i) => (
+                            <svg key={i} className="h-3 w-3 text-accent fill-accent" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <p className="text-white/80 text-xs leading-relaxed mb-3">
+                          &ldquo;{tHeader("testimonialQuote")}&rdquo;
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <div className="h-6 w-6 rounded-full bg-accent/20 flex items-center justify-center">
+                            <span className="text-accent text-[10px] font-semibold">A</span>
+                          </div>
+                          <div>
+                            <p className="text-white text-xs font-medium">{tHeader("testimonialAuthor")}</p>
+                            <p className="text-white/50 text-[10px]">{tHeader("testimonialRole")} - Growteq</p>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      {/* Stats */}
+                      <div className="grid grid-cols-2 gap-2 mt-4">
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.15 }}
+                          className="rounded-lg bg-white/5 p-3 text-center"
+                        >
+                          <p className="text-accent font-bold text-lg">55+</p>
+                          <p className="text-white/50 text-[10px]">{tHeader("statsWebsites")}</p>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                          className="rounded-lg bg-white/5 p-3 text-center"
+                        >
+                          <p className="text-accent font-bold text-lg">8+</p>
+                          <p className="text-white/50 text-[10px]">{tHeader("statsYears")}</p>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.25 }}
+                          className="rounded-lg bg-white/5 p-3 text-center"
+                        >
+                          <p className="text-accent font-bold text-lg">100%</p>
+                          <p className="text-white/50 text-[10px]">{tHeader("statsSatisfied")}</p>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 }}
+                          className="rounded-lg bg-white/5 p-3 text-center"
+                        >
+                          <p className="text-accent font-bold text-sm">WordPress</p>
+                          <p className="text-white/50 text-[10px]">{tHeader("statsTech")}</p>
+                        </motion.div>
+                      </div>
+
                       <Link
                         href="/portfolio"
-                        className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
+                        className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover transition-colors group"
                         onClick={() => setActiveMenu(null)}
                       >
                         {tHeader("viewAllCases")}
@@ -677,7 +728,7 @@ export function Header() {
                 {/* Over Mega Menu */}
                 {activeMenu === "over" && (
                   <div className="grid grid-cols-12 gap-8">
-                    <div className="col-span-4">
+                    <div className="col-span-5">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
                         {tHeader("aboutRobuust")}
                       </p>
@@ -711,11 +762,11 @@ export function Header() {
                       </div>
                     </div>
 
-                    <div className="col-span-5 border-l border-white/10 pl-8">
+                    <div className="col-span-7 border-l border-white/10 pl-8">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
                         {tHeader("ourTools")}
                       </p>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-3 gap-2">
                         {tooling.map((item, index) => (
                           <motion.div
                             key={item.name}
@@ -748,35 +799,6 @@ export function Header() {
                         {tHeader("viewAllTools")}
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
-                    </div>
-
-                    <div className="col-span-3 border-l border-white/10 pl-8">
-                      <div className="rounded-xl bg-white/5 border border-white/5 p-5 mb-4">
-                        <p className="font-medium text-white mb-1">{tHeader("directContact")}</p>
-                        <p className="text-sm text-white/50 mb-3">{tHeader("weAreReady")}</p>
-                        <Button asChild size="sm" className="w-full bg-accent hover:bg-accent-hover text-white">
-                          <Link href="/contact" onClick={() => setActiveMenu(null)}>
-                            {tNav("contact")}
-                          </Link>
-                        </Button>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          { name: "Privacy", href: "/privacy" as const },
-                          { name: locale === "nl" ? "AVG" : "GDPR", href: "/avg" as const },
-                          { name: locale === "nl" ? "Voorwaarden" : "Terms", href: "/voorwaarden" as const },
-                        ].map((link) => (
-                          <Link
-                            key={link.name}
-                            href={link.href}
-                            className="px-3 py-1.5 text-sm text-white/50 bg-white/5 rounded-full hover:bg-white/10 hover:text-white/70 transition-all duration-200"
-                            onClick={() => setActiveMenu(null)}
-                          >
-                            {link.name}
-                          </Link>
-                        ))}
-                      </div>
                     </div>
                   </div>
                 )}

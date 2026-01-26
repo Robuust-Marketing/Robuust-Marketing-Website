@@ -1,48 +1,61 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "@/components/motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { type Locale } from "@/i18n/config";
 
 const clients = [
-  { name: "Growteq", logo: null },
-  { name: "Den Hartog Energies", logo: null },
-  { name: "Voltra Charging", logo: null },
-  { name: "Villary", logo: null },
-  { name: "Woonstudio JOY", logo: null },
+  { name: "Growteq", slug: "growteq", logo: "/portfolio/growteq-logo.svg" },
+  { name: "Den Hartog Energies", slug: "den-hartog", logo: "/portfolio/denhartogenergies-logo.svg" },
+  { name: "Voltra Charging", slug: "voltra-charging", logo: "/portfolio/voltracharging-logo.svg" },
+  { name: "Villary", slug: "villary", logo: "/portfolio/villary-logo.png" },
+  { name: "Woonstudio JOY", slug: "woonstudio-joy", logo: "/portfolio/woonstudiojoy-logo.svg" },
 ];
 
 export function SocialProof() {
   const t = useTranslations("socialProof");
+  const locale = useLocale() as Locale;
+
+  // Helper for locale-aware paths
+  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
 
   return (
-    <section className="relative py-16 border-y border-white/5">
+    <section className="relative py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center text-sm text-muted-foreground mb-10"
+          className="text-center text-sm text-muted-foreground mb-8"
         >
           {t("title")}
         </motion.p>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
-          {clients.map((client, index) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group relative"
-            >
-              {/* Logo placeholder - replace with actual logos when available */}
-              <span className="text-xl font-semibold text-white/30 hover:text-accent transition-colors duration-300 cursor-default grayscale hover:grayscale-0">
-                {client.name}
-              </span>
-            </motion.div>
-          ))}
+        <div className="rounded-2xl bg-white py-8 px-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+            {clients.map((client, index) => (
+              <motion.div
+                key={client.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <Link
+                  href={localePath(`/portfolio/${client.slug}`)}
+                  className="block hover:scale-105 transition-transform duration-300"
+                >
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="h-10 w-auto max-w-[160px] object-contain"
+                  />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

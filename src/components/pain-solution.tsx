@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { AlertTriangle, Shield, XCircle, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, Shield, XCircle, CheckCircle2, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const painPoints = [
   "Trage websites die klanten afschrikken",
@@ -90,12 +92,12 @@ export function PainSolution() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white">De Realiteit Nu</h3>
-                  <p className="text-sm text-muted-foreground">Zolderkamer-IT ontgroeid?</p>
+                  <p className="text-sm text-muted-foreground">Geïmproviseerde oplossingen?</p>
                 </div>
               </div>
 
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Is uw bedrijf de &apos;zolderkamer-IT&apos; ontgroeid? Trage sites, onzekere beveiliging
+                Werkt uw website nog met verouderde systemen? Trage sites, onzekere beveiliging
                 en geen garanties houden uw groei tegen.
               </p>
 
@@ -178,6 +180,26 @@ export function PainSolution() {
             </div>
           </motion.div>
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <Button
+            asChild
+            size="lg"
+            className="bg-accent hover:bg-accent-hover text-white font-medium px-8 py-6 glow-accent hover:glow-accent transition-all duration-300 group"
+          >
+            <Link href="/tarieven" className="flex items-center gap-2">
+              Bekijk onze tarieven
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

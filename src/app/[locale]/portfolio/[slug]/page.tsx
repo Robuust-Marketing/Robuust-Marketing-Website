@@ -73,24 +73,15 @@ export default function CaseStudyPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              {/* Category and type */}
+              {/* Category */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center gap-3 mb-4"
+                className="mb-4"
               >
                 <span className="text-accent font-medium text-sm uppercase tracking-wider">
                   {project.industry}
-                </span>
-                <span
-                  className={`text-xs font-medium px-2 py-1 rounded-full ${
-                    project.projectType === "new"
-                      ? "bg-green-500/20 text-green-400"
-                      : "bg-blue-500/20 text-blue-400"
-                  }`}
-                >
-                  {project.projectType === "new" ? t("projectType.new") : t("projectType.redesign")}
                 </span>
               </motion.div>
 
@@ -149,7 +140,7 @@ export default function CaseStudyPage() {
                   <a
                     href={project.url}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     className="flex items-center gap-2"
                   >
                     {t("viewLiveWebsite")}
@@ -172,15 +163,16 @@ export default function CaseStudyPage() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              {project.logo && (
-                <div className="absolute bottom-6 left-6">
+              {/* Favicon */}
+              <div className="absolute bottom-6 left-6">
+                <div className="bg-white rounded-xl p-3 shadow-lg">
                   <img
-                    src={project.logo}
-                    alt={`${project.name} logo`}
-                    className="h-12 w-auto max-w-[180px] object-contain brightness-0 invert"
+                    src={`https://www.google.com/s2/favicons?domain=${new URL(project.url).hostname}&sz=256`}
+                    alt={`${project.name} favicon`}
+                    className="h-12 w-12 object-contain"
                   />
                 </div>
-              )}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -345,15 +337,15 @@ export default function CaseStudyPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
-                  {prevProject.logo && (
-                    <div className="absolute bottom-3 left-4">
+                  <div className="absolute bottom-3 left-4">
+                    <div className="bg-white rounded-lg p-1.5 shadow-lg">
                       <img
-                        src={prevProject.logo}
-                        alt={`${prevProject.name} logo`}
-                        className="h-6 w-auto max-w-[100px] object-contain brightness-0 invert opacity-70"
+                        src={`https://www.google.com/s2/favicons?domain=${new URL(prevProject.url).hostname}&sz=256`}
+                        alt={`${prevProject.name} favicon`}
+                        className="h-6 w-6 object-contain"
                       />
                     </div>
-                  )}
+                  </div>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
@@ -387,15 +379,15 @@ export default function CaseStudyPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
-                  {nextProject.logo && (
-                    <div className="absolute bottom-3 right-4">
+                  <div className="absolute bottom-3 right-4">
+                    <div className="bg-white rounded-lg p-1.5 shadow-lg">
                       <img
-                        src={nextProject.logo}
-                        alt={`${nextProject.name} logo`}
-                        className="h-6 w-auto max-w-[100px] object-contain brightness-0 invert opacity-70"
+                        src={`https://www.google.com/s2/favicons?domain=${new URL(nextProject.url).hostname}&sz=256`}
+                        alt={`${nextProject.name} favicon`}
+                        className="h-6 w-6 object-contain"
                       />
                     </div>
-                  )}
+                  </div>
                 </div>
                 <div className="p-5 text-right">
                   <div className="flex items-center justify-end gap-2 text-muted-foreground text-sm mb-2">

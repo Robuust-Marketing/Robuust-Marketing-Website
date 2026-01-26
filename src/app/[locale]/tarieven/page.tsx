@@ -21,6 +21,15 @@ const tarievenFaqs = getFAQsByCategory("tarieven");
 
 export default function TarievenPage() {
   const t = useTranslations("tarievenPage");
+  const tOnderhoud = useTranslations("onderhoudPage");
+
+  // Generate SLA packages from central pricing config
+  const slaPackages = Object.entries(pricing.slaPackages).map(([id, pkg]) => ({
+    id,
+    name: pkg.name,
+    price: formatPrice(pkg.price),
+    popular: pkg.popular || false,
+  }));
 
   // Generate hosting plans from central pricing config
   const hostingPlans = Object.entries(pricing.hosting).map(([id, plan]) => ({
@@ -268,8 +277,98 @@ export default function TarievenPage() {
         </div>
       </section>
 
-      {/* Additional Services */}
+      {/* SLA Onderhoud Pakketten */}
       <section className="py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              {t("maintenance.title")}
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {t("maintenance.subtitle")}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {slaPackages.map((pkg, index) => (
+              <motion.div
+                key={pkg.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`relative rounded-2xl p-6 border ${
+                  pkg.popular
+                    ? "bg-accent/5 border-accent/30"
+                    : "bg-surface border-white/5"
+                }`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent text-white text-xs font-medium">
+                      <Star className="h-3 w-3" />
+                      {tOnderhoud("packages.popular")}
+                    </span>
+                  </div>
+                )}
+                <div className="text-center">
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {pkg.name}
+                  </h3>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-accent">
+                      {pkg.price}
+                    </span>
+                    <span className="text-muted-foreground text-sm">
+                      {tOnderhoud("packages.perMonth")}
+                    </span>
+                  </div>
+                  <ul className="text-left space-y-2 mb-6 text-sm">
+                    <li className="flex items-center gap-2 text-muted-foreground">
+                      <Check className="h-4 w-4 text-accent flex-shrink-0" />
+                      {pricing.slaPackages[pkg.id as keyof typeof pricing.slaPackages].features.preventief}
+                    </li>
+                    <li className="flex items-center gap-2 text-muted-foreground">
+                      <Check className="h-4 w-4 text-accent flex-shrink-0" />
+                      {pricing.slaPackages[pkg.id as keyof typeof pricing.slaPackages].features.incidenten}
+                    </li>
+                    <li className="flex items-center gap-2 text-muted-foreground">
+                      <Check className="h-4 w-4 text-accent flex-shrink-0" />
+                      {pricing.slaPackages[pkg.id as keyof typeof pricing.slaPackages].features.uptime} uptime
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 text-center"
+          >
+            <Button
+              asChild
+              variant="outline"
+              className="border-white/20 text-white hover:bg-white/5"
+            >
+              <Link href="/diensten/onderhoud" className="flex items-center gap-2">
+                {t("maintenance.viewAll")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Additional Services */}
+      <section className="py-20 bg-surface/50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

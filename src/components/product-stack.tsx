@@ -210,16 +210,25 @@ export function ProductStack() {
           </motion.div>
         </div>
 
-        {/* Bottom note */}
-        <motion.p
+        {/* Bottom note with link */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-center text-muted-foreground mt-12 text-sm"
+          className="text-center mt-12"
         >
-          {t("note")}
-        </motion.p>
+          <p className="text-muted-foreground text-sm mb-4">
+            {t("note")}
+          </p>
+          <Link
+            href={localePath("/tarieven")}
+            className="text-accent hover:text-accent-hover font-medium text-sm inline-flex items-center gap-1 transition-colors"
+          >
+            Bekijk alle tarieven
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

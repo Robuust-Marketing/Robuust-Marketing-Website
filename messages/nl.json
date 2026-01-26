@@ -51,7 +51,15 @@
     },
     "viewAllCases": "Bekijk alle cases",
     "ourTools": "Onze Tools",
-    "viewAllTools": "Bekijk alle tools"
+    "viewAllTools": "Bekijk alle tools",
+    "clientReview": "Klantervaring",
+    "testimonialQuote": "Ik zou Robuust zeker aanraden aan anderen. Om drie redenen: Robuust is vakinhoudelijk sterk, heeft creatieve marketing mensen in huis en wordt gekenmerkt door een resultaatgerichte aanpak.",
+    "testimonialAuthor": "Arnoud van der Heiden",
+    "testimonialRole": "Directeur Sales & Marketing",
+    "statsWebsites": "Websites opgeleverd",
+    "statsYears": "Jaar ervaring",
+    "statsSatisfied": "Tevreden klanten",
+    "statsTech": "Primaire technologie"
   },
   "services": {
     "design": {
@@ -660,12 +668,17 @@
       "requestQuote": "Offerte aanvragen"
     },
     "hosting": {
-      "title": "Hosting & Onderhoud",
-      "subtitle": "Betrouwbare hosting met premium support en onderhoud",
+      "title": "Hosting",
+      "subtitle": "Betrouwbare hosting met premium support",
       "popular": "Populair",
       "custom": "Op maat",
       "perMonth": "/maand",
       "moreInfo": "Meer info"
+    },
+    "maintenance": {
+      "title": "Onderhoudspakketten (SLA)",
+      "subtitle": "Pro-actief onderhoud met waterdichte SLA garanties. Alle prijzen excl. BTW.",
+      "viewAll": "Bekijk alle SLA pakketten"
     },
     "additionalServices": {
       "title": "Losse diensten",

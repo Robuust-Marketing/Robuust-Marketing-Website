@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { motion } from "@/components/motion";
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, Clock, HelpCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -263,26 +264,26 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              {/* FAQ teaser */}
-              <div className="rounded-2xl bg-accent/5 border border-accent/20 p-6">
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {t("faq.title")}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {t("faq.subtitle")}
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="text-white/80">
-                    • {t("faq.question1")}
-                  </li>
-                  <li className="text-white/80">
-                    • {t("faq.question2")}
-                  </li>
-                  <li className="text-white/80">
-                    • {t("faq.question3")}
-                  </li>
-                </ul>
-              </div>
+              {/* FAQ link */}
+              <Link
+                href="/faq"
+                className="block rounded-2xl bg-accent/5 border border-accent/20 p-6 hover:border-accent/40 transition-colors group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <HelpCircle className="h-5 w-5 text-accent" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-accent transition-colors">
+                      {t("faq.title")}
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      {t("faq.subtitle")}
+                    </p>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-accent transition-colors mt-2" />
+                </div>
+              </Link>
             </motion.div>
           </div>
         </div>

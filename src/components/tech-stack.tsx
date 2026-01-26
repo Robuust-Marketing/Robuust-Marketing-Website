@@ -1,11 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Server, Zap, Brain } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { Server, Zap, Brain, ArrowRight } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { type Locale } from "@/i18n/config";
+import { Button } from "@/components/ui/button";
 
 export function TechStack() {
   const t = useTranslations("techStack");
+  const locale = useLocale() as Locale;
+
+  // Helper for locale-aware paths
+  const localePath = (path: string) => locale === "en" ? `/en${path.replace("/diensten/", "/services/")}` : path;
 
   const techCategories = [
     {
@@ -14,6 +21,7 @@ export function TechStack() {
       description: t("categories.engine.description"),
       icon: Server,
       technologies: ["Node.js", "React", "Next.js", "WordPress", "WooCommerce"],
+      href: localePath("/diensten/development"),
     },
     {
       key: "speed",
@@ -21,6 +29,7 @@ export function TechStack() {
       description: t("categories.speed.description"),
       icon: Zap,
       technologies: ["Cloudflare", "NGINX", "Varnish", "Let's Encrypt", "Fail2ban"],
+      href: localePath("/diensten/hosting"),
     },
     {
       key: "intelligence",
@@ -28,6 +37,7 @@ export function TechStack() {
       description: t("categories.intelligence.description"),
       icon: Brain,
       technologies: ["GA4", "Taggrs", "Snitcher", "n8n", "AI Tooling"],
+      href: localePath("/diensten/tracking"),
     },
   ];
 
@@ -89,37 +99,60 @@ export function TechStack() {
               whileHover={{ y: -4 }}
               className="group"
             >
-              <div className="glass rounded-3xl p-6 sm:p-8 h-full border-white/5 hover:border-white/10 transition-all duration-300">
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <category.icon className="w-6 h-6 text-accent" />
+              <Link href={category.href} className="block h-full">
+                <div className="glass rounded-3xl p-6 sm:p-8 h-full border-white/5 hover:border-accent/30 transition-all duration-300">
+                  {/* Category Header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <category.icon className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white group-hover:text-accent transition-colors">{category.title}</h3>
+                      <p className="text-sm text-muted-foreground">{category.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">{category.title}</h3>
-                    <p className="text-sm text-muted-foreground">{category.description}</p>
-                  </div>
-                </div>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {category.technologies.map((tech, techIndex) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.3 + categoryIndex * 0.1 + techIndex * 0.05 }}
-                      className="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-3 py-1.5 text-sm text-white/70 hover:text-white hover:border-accent/30 hover:bg-accent/5 transition-all duration-200"
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2">
+                    {category.technologies.map((tech, techIndex) => (
+                      <motion.span
+                        key={tech}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: 0.3 + categoryIndex * 0.1 + techIndex * 0.05 }}
+                        className="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-3 py-1.5 text-sm text-white/70 group-hover:border-accent/20 transition-all duration-200"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-accent/50 text-white hover:bg-accent/10 hover:border-accent font-medium px-8 py-6 transition-all duration-300 group"
+          >
+            <Link href={localePath("/diensten/hosting")} className="flex items-center gap-2">
+              Meer over onze infrastructuur
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
+        </motion.div>
 
         {/* Bottom visual - Abstract tech lines */}
         <motion.div

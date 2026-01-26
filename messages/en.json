@@ -51,7 +51,15 @@
     },
     "viewAllCases": "View all cases",
     "ourTools": "Our Tools",
-    "viewAllTools": "View all tools"
+    "viewAllTools": "View all tools",
+    "clientReview": "Client Review",
+    "testimonialQuote": "I would definitely recommend Robuust to others. For three reasons: Robuust is professionally strong, has creative marketing people, and is characterized by a results-oriented approach.",
+    "testimonialAuthor": "Arnoud van der Heiden",
+    "testimonialRole": "Director Sales & Marketing",
+    "statsWebsites": "Websites delivered",
+    "statsYears": "Years experience",
+    "statsSatisfied": "Satisfied clients",
+    "statsTech": "Primary technology"
   },
   "services": {
     "design": {
@@ -648,12 +656,17 @@
       "requestQuote": "Request a quote"
     },
     "hosting": {
-      "title": "Hosting & Maintenance",
-      "subtitle": "Reliable hosting with premium support and maintenance",
+      "title": "Hosting",
+      "subtitle": "Reliable hosting with premium support",
       "popular": "Popular",
       "custom": "Custom",
       "perMonth": "/month",
       "moreInfo": "More info"
+    },
+    "maintenance": {
+      "title": "Maintenance Packages (SLA)",
+      "subtitle": "Pro-active maintenance with watertight SLA guarantees. All prices excl. VAT.",
+      "viewAll": "View all SLA packages"
     },
     "additionalServices": {
       "title": "Additional services",

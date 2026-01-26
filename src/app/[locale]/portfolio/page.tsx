@@ -85,26 +85,15 @@ export default function PortfolioPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
 
-                    {/* Logo overlay */}
-                    {project.logo && (
-                      <div className="absolute bottom-4 left-4">
+                    {/* Favicon */}
+                    <div className="absolute bottom-4 left-4">
+                      <div className="bg-white rounded-xl p-2 shadow-lg">
                         <img
-                          src={project.logo}
-                          alt={`${project.name} logo`}
-                          className="h-8 w-auto max-w-[120px] object-contain brightness-0 invert opacity-80"
+                          src={`https://www.google.com/s2/favicons?domain=${new URL(project.url).hostname}&sz=256`}
+                          alt={`${project.name} favicon`}
+                          className="h-10 w-10 object-contain"
                         />
                       </div>
-                    )}
-
-                    {/* Project type badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                        project.projectType === "new"
-                          ? "bg-green-500/20 text-green-400"
-                          : "bg-blue-500/20 text-blue-400"
-                      }`}>
-                        {project.projectType === "new" ? t("projectType.new") : t("projectType.redesign")}
-                      </span>
                     </div>
                   </div>
 

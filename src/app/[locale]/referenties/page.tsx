@@ -116,7 +116,7 @@ export default function ReferentiesPage() {
               const CardWrapper = testimonial.isInternal ? Link : "a";
               const cardProps = testimonial.isInternal
                 ? { href: testimonial.url }
-                : { href: testimonial.url, target: "_blank", rel: "noopener noreferrer" };
+                : { href: testimonial.url, target: "_blank", rel: "noopener" };
 
               return (
                 <motion.div
@@ -196,7 +196,7 @@ export default function ReferentiesPage() {
                 key={logo.name}
                 href={logo.url}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

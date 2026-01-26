@@ -21,7 +21,7 @@ const faqsNL: FAQ[] = [
     id: "verborgen-kosten",
     question: "Zijn er verborgen kosten?",
     answer:
-      "Nee, alle prijzen zijn transparant en inclusief BTW. Je betaalt precies wat je ziet, zonder verrassingen achteraf.",
+      "Nee, alle prijzen zijn transparant en exclusief BTW. Je betaalt precies wat je ziet, zonder verrassingen achteraf.",
     categories: ["tarieven", "algemeen"],
   },
   {
@@ -165,7 +165,7 @@ const faqsEN: FAQ[] = [
     id: "verborgen-kosten",
     question: "Are there any hidden costs?",
     answer:
-      "No, all prices are transparent and include VAT. You pay exactly what you see, no surprises afterward.",
+      "No, all prices are transparent and exclude VAT. You pay exactly what you see, no surprises afterward.",
     categories: ["tarieven", "algemeen"],
   },
   {

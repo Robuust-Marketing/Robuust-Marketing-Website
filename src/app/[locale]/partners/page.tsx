@@ -34,6 +34,47 @@ export default function PartnersPage() {
     { id: "streamlined", icon: Zap },
   ];
 
+  const toolUrls: Record<string, string> = {
+    // Advertising
+    meta: "https://business.facebook.com",
+    googleAds: "https://ads.google.com",
+    tiktok: "https://ads.tiktok.com",
+    linkedin: "https://business.linkedin.com",
+    pinterest: "https://business.pinterest.com",
+    // CRM
+    hubspot: "https://www.hubspot.com",
+    mailchimp: "https://mailchimp.com",
+    brevo: "https://www.brevo.com",
+    activecampaign: "https://www.activecampaign.com",
+    klaviyo: "https://www.klaviyo.com",
+    // Analytics
+    ga: "https://analytics.google.com",
+    gtm: "https://tagmanager.google.com",
+    clarity: "https://clarity.microsoft.com",
+    hotjar: "https://www.hotjar.com",
+    taggrs: "https://taggrs.io",
+    // Ecommerce
+    woocommerce: "https://woocommerce.com",
+    funnelkit: "https://funnelkit.com",
+    mollie: "https://www.mollie.com",
+    sendcloud: "https://www.sendcloud.nl",
+    // CMS
+    wordpress: "https://wordpress.org",
+    nextjs: "https://nextjs.org",
+    sanity: "https://www.sanity.io",
+    strapi: "https://strapi.io",
+    // Design
+    adobe: "https://www.adobe.com",
+    figma: "https://www.figma.com",
+    canva: "https://www.canva.com",
+    midjourney: "https://www.midjourney.com",
+    // Productivity
+    microsoft365: "https://www.microsoft.com/microsoft-365",
+    googleWorkspace: "https://workspace.google.com",
+    slack: "https://slack.com",
+    clickup: "https://clickup.com",
+  };
+
   const toolCategories = [
     {
       id: "advertising",
@@ -165,7 +206,7 @@ export default function PartnersPage() {
                   <a
                     href={partner.website}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     className="text-muted-foreground hover:text-accent transition-colors"
                   >
                     <ExternalLink className="h-5 w-5" />
@@ -227,16 +268,24 @@ export default function PartnersPage() {
                 </h3>
                 <ul className="space-y-3">
                   {category.tools.map((toolId) => (
-                    <li key={toolId} className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                      <div>
-                        <span className="text-white font-medium">
-                          {t(`tools.categories.${category.id}.tools.${toolId}.name`)}
-                        </span>
-                        <p className="text-sm text-muted-foreground">
-                          {t(`tools.categories.${category.id}.tools.${toolId}.description`)}
-                        </p>
-                      </div>
+                    <li key={toolId}>
+                      <a
+                        href={toolUrls[toolId]}
+                        target="_blank"
+                        rel="noopener"
+                        className="flex items-start gap-3 group"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                        <div>
+                          <span className="text-white font-medium group-hover:text-accent transition-colors">
+                            {t(`tools.categories.${category.id}.tools.${toolId}.name`)}
+                            <ExternalLink className="inline-block ml-1.5 h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </span>
+                          <p className="text-sm text-muted-foreground">
+                            {t(`tools.categories.${category.id}.tools.${toolId}.description`)}
+                          </p>
+                        </div>
+                      </a>
                     </li>
                   ))}
                 </ul>

@@ -2,12 +2,13 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "@/components/motion";
 import { ArrowRight, ChevronDown, HelpCircle, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { faqs, categoryLabels, getAllCategories, type FAQ } from "@/data/faqs";
+import { getFAQs, getCategoryLabels, getAllCategories, type FAQ } from "@/data/faqs";
+import type { Locale } from "@/i18n/config";
 
 function FAQItem({
   question,
@@ -53,11 +54,14 @@ function FAQItem({
 
 export default function FAQPage() {
   const t = useTranslations("faqPage");
+  const locale = useLocale() as Locale;
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const categories = getAllCategories();
+  const faqs = getFAQs(locale);
+  const categoryLabels = getCategoryLabels(locale);
+  const categories = getAllCategories(locale);
 
   // Filter FAQs based on search and category
   const filteredFaqs = useMemo(() => {
@@ -72,7 +76,7 @@ export default function FAQPage() {
 
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [faqs, searchQuery, selectedCategory]);
 
   // Group filtered FAQs by their first category
   const groupedFaqs = useMemo(() => {
@@ -97,7 +101,7 @@ export default function FAQPage() {
     });
 
     return groups;
-  }, [filteredFaqs, categories, selectedCategory]);
+  }, [filteredFaqs, categories, categoryLabels, selectedCategory]);
 
   const toggleItem = (id: string) => {
     setOpenItems((prev) => ({ ...prev, [id]: !prev[id] }));

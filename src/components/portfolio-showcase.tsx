@@ -15,7 +15,7 @@ export function PortfolioShowcase() {
 
   // Get featured portfolio items for the current locale
   const portfolioItems = getPortfolioItems(locale);
-  const featuredItems = portfolioItems.filter((item) => item.featured).slice(0, 4);
+  const featuredItems = portfolioItems.filter((item) => item.featured).slice(0, 6);
 
   // Helper for locale-aware paths
   const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
