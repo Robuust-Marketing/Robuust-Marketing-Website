@@ -9,9 +9,10 @@ export function generateAlternates(path: string, locale: string) {
   // Ensure path starts with /
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
 
-  // For homepage, don't add trailing path
-  const nlUrl = normalizedPath === "/" ? BASE_URL + "/" : BASE_URL + normalizedPath;
-  const enUrl = normalizedPath === "/" ? BASE_URL + "/en/" : BASE_URL + "/en" + normalizedPath;
+  // Build URLs - homepage gets trailing slash, other pages don't
+  const isHomepage = normalizedPath === "/";
+  const nlUrl = isHomepage ? `${BASE_URL}/` : `${BASE_URL}${normalizedPath}`;
+  const enUrl = isHomepage ? `${BASE_URL}/en/` : `${BASE_URL}/en${normalizedPath}`;
 
   return {
     canonical: locale === "nl" ? nlUrl : enUrl,

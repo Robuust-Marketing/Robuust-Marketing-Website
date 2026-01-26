@@ -43,6 +43,7 @@ export async function generateMetadata({
   };
 
   return {
+    metadataBase: new URL("https://robuustmarketing.nl"),
     title: titles[locale],
     description: descriptions[locale],
     keywords: [
