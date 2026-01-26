@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -163,24 +162,21 @@ export default function VoorwaardenPageClient() {
                 value="current"
                 className="rounded-2xl bg-surface border border-white/5 overflow-hidden"
               >
-                <AccordionTrigger className="px-6 md:px-8 py-6 hover:no-underline hover:bg-surface-hover transition-colors [&[data-state=open]>div>svg]:rotate-180">
-                  <div className="flex items-center justify-between w-full">
-                    <div className="text-left">
-                      <div className="flex items-center gap-3 mb-1">
-                        <h2 className="text-xl md:text-2xl font-bold text-white">
-                          {currentVersion.versionTitle}
-                        </h2>
-                        {currentVersion.versionBadge && (
-                          <span className="px-2 py-0.5 text-xs font-medium bg-accent/20 text-accent rounded-full">
-                            {currentVersion.versionBadge}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {currentVersion.versionSubtitle}
-                      </p>
+                <AccordionTrigger className="px-6 md:px-8 py-6 hover:no-underline hover:bg-surface-hover transition-colors">
+                  <div className="text-left">
+                    <div className="flex items-center gap-3 mb-1">
+                      <h2 className="text-xl md:text-2xl font-bold text-white">
+                        {currentVersion.versionTitle}
+                      </h2>
+                      {currentVersion.versionBadge && (
+                        <span className="px-2 py-0.5 text-xs font-medium bg-accent/20 text-accent rounded-full">
+                          {currentVersion.versionBadge}
+                        </span>
+                      )}
                     </div>
-                    <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform duration-200 shrink-0 ml-4" />
+                    <p className="text-sm text-muted-foreground">
+                      {currentVersion.versionSubtitle}
+                    </p>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 md:px-8 pb-8">
@@ -199,24 +195,21 @@ export default function VoorwaardenPageClient() {
                 value="new"
                 className="rounded-2xl bg-surface border border-white/5 overflow-hidden"
               >
-                <AccordionTrigger className="px-6 md:px-8 py-6 hover:no-underline hover:bg-surface-hover transition-colors [&[data-state=open]>div>svg]:rotate-180">
-                  <div className="flex items-center justify-between w-full">
-                    <div className="text-left">
-                      <div className="flex items-center gap-3 mb-1">
-                        <h2 className="text-xl md:text-2xl font-bold text-white">
-                          {newVersion.versionTitle}
-                        </h2>
-                        {newVersion.versionBadge && (
-                          <span className="px-2 py-0.5 text-xs font-medium bg-green-500/20 text-green-400 rounded-full">
-                            {newVersion.versionBadge}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {newVersion.versionSubtitle}
-                      </p>
+                <AccordionTrigger className="px-6 md:px-8 py-6 hover:no-underline hover:bg-surface-hover transition-colors">
+                  <div className="text-left">
+                    <div className="flex items-center gap-3 mb-1">
+                      <h2 className="text-xl md:text-2xl font-bold text-white">
+                        {newVersion.versionTitle}
+                      </h2>
+                      {newVersion.versionBadge && (
+                        <span className="px-2 py-0.5 text-xs font-medium bg-green-500/20 text-green-400 rounded-full">
+                          {newVersion.versionBadge}
+                        </span>
+                      )}
                     </div>
-                    <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform duration-200 shrink-0 ml-4" />
+                    <p className="text-sm text-muted-foreground">
+                      {newVersion.versionSubtitle}
+                    </p>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 md:px-8 pb-8">
