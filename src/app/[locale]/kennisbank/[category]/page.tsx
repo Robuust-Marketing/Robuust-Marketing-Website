@@ -65,8 +65,6 @@ export default async function CategoryPage({
   const guides = getGuidesByCategory(categorySlug, locale as Locale);
   const CategoryIcon = categoryIcons[categorySlug];
 
-  const basePath = locale === "nl" ? "" : `/${locale}`;
-
   // Translations
   const t = {
     backToKennisbank: locale === "en" ? "Back to knowledge base" : "Terug naar kennisbank",
@@ -84,7 +82,7 @@ export default async function CategoryPage({
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Back Link */}
         <Link
-          href={`${basePath}/kennisbank` as any}
+          href="/kennisbank"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -112,7 +110,7 @@ export default async function CategoryPage({
             {guides.map((guide) => (
               <Link
                 key={guide.slug}
-                href={`${basePath}/kennisbank/${category}/${guide.slug}` as any}
+                href={{ pathname: "/kennisbank/[category]/[slug]", params: { category, slug: guide.slug } }}
                 className="group rounded-2xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -158,7 +156,7 @@ export default async function CategoryPage({
                 return (
                   <Link
                     key={cat}
-                    href={`${basePath}/kennisbank/${cat}` as any}
+                    href={{ pathname: "/kennisbank/[category]", params: { category: cat } }}
                     className="flex items-center gap-4 rounded-xl bg-surface/50 border border-white/5 hover:border-accent/30 p-4 transition-all"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">

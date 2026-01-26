@@ -345,7 +345,7 @@ export default async function BlogPostPage({
                     {relatedPosts.map((relatedPost) => (
                       <Link
                         key={relatedPost.slug}
-                        href={`${basePath}/blog/${relatedPost.slug}` as any}
+                        href={{ pathname: "/blog/[slug]", params: { slug: relatedPost.slug } }}
                         className="group rounded-xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
                       >
                         <span className="text-xs font-medium text-accent mb-2 block">
@@ -372,7 +372,7 @@ export default async function BlogPostPage({
                   {t.helpDescription}
                 </p>
                 <Button asChild className="bg-accent hover:bg-accent-hover text-white">
-                  <Link href={`${basePath}/contact` as any}>{t.contactUs}</Link>
+                  <Link href="/contact">{t.contactUs}</Link>
                 </Button>
               </section>
             </article>

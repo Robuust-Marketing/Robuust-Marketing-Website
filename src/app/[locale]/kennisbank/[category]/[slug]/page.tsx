@@ -147,8 +147,6 @@ export default async function GuidePage({
     (g) => g.slug !== slug
   );
 
-  const basePath = locale === "nl" ? "" : `/${locale}`;
-
   // Translations
   const t = {
     backTo: locale === "en" ? "Back to" : "Terug naar",
@@ -167,7 +165,7 @@ export default async function GuidePage({
       <article className="mx-auto max-w-4xl px-6 lg:px-8">
         {/* Back Link */}
         <Link
-          href={`${basePath}/kennisbank/${category}` as any}
+          href={{ pathname: "/kennisbank/[category]", params: { category } }}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -212,7 +210,7 @@ export default async function GuidePage({
               {otherGuides.slice(0, 4).map((otherGuide) => (
                 <Link
                   key={otherGuide.slug}
-                  href={`${basePath}/kennisbank/${category}/${otherGuide.slug}` as any}
+                  href={{ pathname: "/kennisbank/[category]/[slug]", params: { category, slug: otherGuide.slug } }}
                   className="group rounded-xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
                 >
                   <h3 className="font-semibold text-white group-hover:text-accent transition-colors mb-2">
@@ -236,7 +234,7 @@ export default async function GuidePage({
             {t.helpDescription}
           </p>
           <Button asChild className="bg-accent hover:bg-accent-hover text-white">
-            <Link href={`${basePath}/contact` as any}>{t.contactUs}</Link>
+            <Link href="/contact">{t.contactUs}</Link>
           </Button>
         </section>
       </article>
