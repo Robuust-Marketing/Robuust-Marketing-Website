@@ -9,6 +9,7 @@ export interface PortfolioItem {
   description: string;
   shortDescription: string;
   image: string;
+  logo?: string;
   tags: string[];
   url: string;
   featured: boolean;
@@ -39,7 +40,8 @@ const portfolioItemsNL: PortfolioItem[] = [
       "Corporate website voor een snelgroeiend BI & Salesforce consultancy bedrijf.",
     description:
       "Growteq is een consultancy- en ontwikkelingsbedrijf dat organisaties inzicht en overzicht geeft in hun processen en prestaties. Met 57 experts en partners als Microsoft, Salesforce en Qlik hadden ze een website nodig die hun expertise en professionaliteit uitstraalt.",
-    image: "/portfolio/growteq.jpg",
+    image: "/portfolio/growteq.jpeg",
+    logo: "/portfolio/growteq-logo.svg",
     tags: ["WordPress", "Custom Design", "SEO"],
     url: "https://growteq.nl",
     featured: true,
@@ -69,7 +71,8 @@ const portfolioItemsNL: PortfolioItem[] = [
       "Moderne website voor een gevestigde Mobil-distributeur met 75+ jaar ervaring.",
     description:
       "Den Hartog Energies is al meer dan 75 jaar een toonaangevende naam in brandstoffen en smeermiddelen als officiële Mobil-distributeur in Nederland. Hun motto 'Energy for Progress' moest tot uiting komen in een moderne, betrouwbare website.",
-    image: "/portfolio/den-hartog.jpg",
+    image: "/portfolio/denhartogenergies.webp",
+    logo: "/portfolio/denhartogenergies-logo.svg",
     tags: ["WordPress", "Corporate Design", "SEO"],
     url: "https://denhartogbv.com",
     featured: true,
@@ -96,7 +99,8 @@ const portfolioItemsNL: PortfolioItem[] = [
       "Stijlvolle portfolio website voor een premium bouwer van maatwerk buitenverblijven.",
     description:
       "Villary Buitenleven is gespecialiseerd in het ontwerpen en bouwen van maatwerk tuinhuizen, overkappingen en tuinkamers. Hun vakmanschap en aandacht voor detail moest centraal staan in de nieuwe website.",
-    image: "/portfolio/villary.jpg",
+    image: "/portfolio/villary.jpeg",
+    logo: "/portfolio/villary-logo.png",
     tags: ["WordPress", "Portfolio", "Custom Design"],
     url: "https://villary.nl",
     featured: true,
@@ -124,6 +128,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     description:
       "IDRW (In Den RustWat) is een gastronomisch restaurant in Rotterdam, gehuisvest in een monumentaal pand uit 1597 met originele Delfts blauwe tegels. De website moest de unieke sfeer en culinaire excellentie uitstralen.",
     image: "/portfolio/idrw.jpg",
+    logo: "/portfolio/idrw-logo.svg",
     tags: ["WordPress", "Horeca", "Reserveringen"],
     url: "https://idrw.nl",
     featured: true,
@@ -150,7 +155,7 @@ const portfolioItemsNL: PortfolioItem[] = [
       "Charmante website voor een Bed & Breakfast bij de iconische molens van Kinderdijk.",
     description:
       "BnB Kinderdijk biedt gasten een unieke overnachtingservaring bij de wereldberoemde molens van Kinderdijk, UNESCO Werelderfgoed. De website moest de rust en schoonheid van deze locatie uitstralen.",
-    image: "/portfolio/bnb-kinderdijk.jpg",
+    image: "/portfolio/bnbkinderdijk.jpg",
     tags: ["WordPress", "Hospitality", "Boekingen"],
     url: "https://bnbkinderdijk.nl",
     featured: false,
@@ -177,7 +182,8 @@ const portfolioItemsNL: PortfolioItem[] = [
       "Moderne website voor een innovatieve leverancier van ultrasnelle laadinfrastructuur.",
     description:
       "Voltra is een leverancier van ultrasnelle DC-laadstations voor elektrische voertuigen. Met laadpunten tot 240kW richten ze zich op bedrijven die zorgeloos elektrisch willen laden.",
-    image: "/portfolio/voltra-charging.jpg",
+    image: "/portfolio/voltracharging.jpg",
+    logo: "/portfolio/voltracharging-logo.svg",
     tags: ["WordPress", "B2B", "Product Showcase"],
     url: "https://voltracharging.com",
     featured: true,
@@ -204,7 +210,8 @@ const portfolioItemsNL: PortfolioItem[] = [
       "Stijlvolle showroom website voor een keukenspecialist met oog voor detail.",
     description:
       "Woonstudio Joy is een keukenspecialist in Ridderkerk die zich onderscheidt door maatwerk en persoonlijke aandacht. Hun slogan 'Met aandacht voor details' moest terugkomen in elk aspect van de website.",
-    image: "/portfolio/woonstudio-joy.jpg",
+    image: "/portfolio/woonstudiojoy.webp",
+    logo: "/portfolio/woonstudiojoy-logo.svg",
     tags: ["WordPress", "Showroom", "Lokale SEO"],
     url: "https://woonstudiojoy.nl",
     featured: false,
@@ -234,7 +241,8 @@ const portfolioItemsEN: PortfolioItem[] = [
       "Corporate website for a fast-growing BI & Salesforce consultancy company.",
     description:
       "Growteq is a consultancy and development company that provides organizations with insight and overview of their processes and performance. With 57 experts and partners like Microsoft, Salesforce and Qlik, they needed a website that radiates their expertise and professionalism.",
-    image: "/portfolio/growteq.jpg",
+    image: "/portfolio/growteq.jpeg",
+    logo: "/portfolio/growteq-logo.svg",
     tags: ["WordPress", "Custom Design", "SEO"],
     url: "https://growteq.nl",
     featured: true,
@@ -264,7 +272,8 @@ const portfolioItemsEN: PortfolioItem[] = [
       "Modern website for an established Mobil distributor with 75+ years of experience.",
     description:
       "Den Hartog Energies has been a leading name in fuels and lubricants for over 75 years as an official Mobil distributor in the Netherlands. Their motto 'Energy for Progress' needed to be reflected in a modern, reliable website.",
-    image: "/portfolio/den-hartog.jpg",
+    image: "/portfolio/denhartogenergies.webp",
+    logo: "/portfolio/denhartogenergies-logo.svg",
     tags: ["WordPress", "Corporate Design", "SEO"],
     url: "https://denhartogbv.com",
     featured: true,
@@ -291,7 +300,8 @@ const portfolioItemsEN: PortfolioItem[] = [
       "Stylish portfolio website for a premium builder of custom outdoor living spaces.",
     description:
       "Villary Buitenleven specializes in designing and building custom garden houses, canopies and garden rooms. Their craftsmanship and attention to detail had to be central to the new website.",
-    image: "/portfolio/villary.jpg",
+    image: "/portfolio/villary.jpeg",
+    logo: "/portfolio/villary-logo.png",
     tags: ["WordPress", "Portfolio", "Custom Design"],
     url: "https://villary.nl",
     featured: true,
@@ -345,7 +355,7 @@ const portfolioItemsEN: PortfolioItem[] = [
       "Charming website for a Bed & Breakfast near the iconic windmills of Kinderdijk.",
     description:
       "BnB Kinderdijk offers guests a unique overnight experience near the world-famous windmills of Kinderdijk, UNESCO World Heritage Site. The website needed to radiate the tranquility and beauty of this location.",
-    image: "/portfolio/bnb-kinderdijk.jpg",
+    image: "/portfolio/bnbkinderdijk.jpg",
     tags: ["WordPress", "Hospitality", "Bookings"],
     url: "https://bnbkinderdijk.nl",
     featured: false,
@@ -372,7 +382,8 @@ const portfolioItemsEN: PortfolioItem[] = [
       "Modern website for an innovative supplier of ultra-fast charging infrastructure.",
     description:
       "Voltra is a supplier of ultra-fast DC charging stations for electric vehicles. With charging points up to 240kW, they target businesses that want to charge electrically without worry.",
-    image: "/portfolio/voltra-charging.jpg",
+    image: "/portfolio/voltracharging.jpg",
+    logo: "/portfolio/voltracharging-logo.svg",
     tags: ["WordPress", "B2B", "Product Showcase"],
     url: "https://voltracharging.com",
     featured: true,
@@ -399,7 +410,7 @@ const portfolioItemsEN: PortfolioItem[] = [
       "Stylish showroom website for a kitchen specialist with an eye for detail.",
     description:
       "Woonstudio Joy is a kitchen specialist in Ridderkerk that distinguishes itself through custom work and personal attention. Their slogan 'With attention to details' needed to be reflected in every aspect of the website.",
-    image: "/portfolio/woonstudio-joy.jpg",
+    image: "/portfolio/woonstudiojoy.webp",
     tags: ["WordPress", "Showroom", "Local SEO"],
     url: "https://woonstudiojoy.nl",
     featured: false,
