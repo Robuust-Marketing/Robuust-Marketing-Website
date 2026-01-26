@@ -21,6 +21,11 @@ export interface PortfolioItem {
     description: string;
   }[];
   services: string[];
+  testimonial?: {
+    quote: string;
+    author?: string;
+    role?: string;
+  };
 }
 
 const portfolioItemsNL: PortfolioItem[] = [
@@ -50,6 +55,9 @@ const portfolioItemsNL: PortfolioItem[] = [
       { metric: "SEO-geoptimaliseerd", description: "Beter vindbaar op relevante zoektermen" },
     ],
     services: ["design", "development", "seo", "hosting"],
+    testimonial: {
+      quote: "Ik zou Robuust zeker aanraden aan anderen. Om drie redenen, namelijk Robuust is vakinhoudelijk sterk, Robuust heeft creatieve marketing mensen in huis en ze worden gekenmerkt door een resultaatgerichte aanpak.",
+    },
   },
   {
     id: "den-hartog",
@@ -242,6 +250,9 @@ const portfolioItemsEN: PortfolioItem[] = [
       { metric: "SEO optimized", description: "Better findability on relevant search terms" },
     ],
     services: ["design", "development", "seo", "hosting"],
+    testimonial: {
+      quote: "I would definitely recommend Robuust to others. For three reasons: Robuust is professionally strong, Robuust has creative marketing people in-house, and they are characterized by a results-oriented approach.",
+    },
   },
   {
     id: "den-hartog",

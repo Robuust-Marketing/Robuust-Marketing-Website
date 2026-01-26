@@ -1139,41 +1139,35 @@
     },
     "roleAt": "bij",
     "testimonials": {
-      "tvdb": {
-        "name": "Thomas van der Berg",
-        "role": "Directeur",
-        "company": "Van der Berg Bouw",
-        "quote": "Robuust heeft onze website volledig getransformeerd. De nieuwe site laadt razendsnel en we krijgen nu dagelijks kwalitatieve leads binnen. De samenwerking verliep perfect."
+      "growteq": {
+        "name": "Growteq",
+        "role": "Klant",
+        "company": "Growteq",
+        "quote": "Ik zou Robuust zeker aanraden aan anderen. Om drie redenen, namelijk Robuust is vakinhoudelijk sterk, Robuust heeft creatieve marketing mensen in huis en ze worden gekenmerkt door een resultaatgerichte aanpak."
       },
-      "lb": {
-        "name": "Lisa Bakker",
-        "role": "Marketing Manager",
-        "company": "Fresh Organics",
-        "quote": "Eindelijk een partij die begrijpt wat we nodig hebben. Het team denkt proactief mee en levert altijd meer dan verwacht. Onze online verkopen zijn met 200% gestegen."
+      "pianoselect": {
+        "name": "Markes Mouthaan",
+        "role": "Mede-eigenaar",
+        "company": "Piano Select",
+        "quote": "De manier van samenwerken spreekt ons enorm aan, omdat er heel actief wordt meegedacht, heel enthousiast en ook in voorstellen, concepten, zowel eigen ideeën als ideeën van Robuust Marketing samenkomen. Door de samenwerking met Robuust Marketing zijn we zelf ook enthousiaster geworden in het uitdragen van ons merk."
       },
-      "mj": {
-        "name": "Mark Jansen",
-        "role": "Eigenaar",
-        "company": "Jansen Techniek",
-        "quote": "Na jaren met een trage, verouderde website te hebben gewerkt, was de overstap naar Robuust een verademing. Snelle oplevering, goede communicatie en een prachtig resultaat."
+      "fotolot": {
+        "name": "Lotte Willemsen",
+        "role": "Eigenaresse",
+        "company": "Foto Lot",
+        "quote": "Robuust Marketing is goed bereikbaar, de lijntjes zijn kort en snel en de kwaliteit was voor mij helemaal naar wens."
       },
-      "sdv": {
-        "name": "Sandra de Vries",
-        "role": "CEO",
-        "company": "De Vries Consultancy",
-        "quote": "De hosting en het onderhoud bij Robuust geven me rust. Ik hoef me nergens zorgen over te maken en kan me focussen op mijn core business."
+      "dununba": {
+        "name": "Dununba",
+        "role": "Klant",
+        "company": "Dununba Percussie Workshops",
+        "quote": "Topbedrijf met altijd zeer snelle service."
       },
-      "pv": {
-        "name": "Peter Visser",
-        "role": "Oprichter",
-        "company": "Visser & Partners",
-        "quote": "Wat begon met een website, is uitgegroeid tot een complete digitale strategie. Robuust is een echte partner in onze online groei."
-      },
-      "es": {
-        "name": "Emma Smit",
-        "role": "E-commerce Manager",
-        "company": "Style Studio",
-        "quote": "Onze webshop presteert beter dan ooit. Het team van Robuust heeft niet alleen een mooie site gebouwd, maar denkt ook mee over conversie-optimalisatie."
+      "kapsalontine": {
+        "name": "Tine",
+        "role": "Eigenaresse",
+        "company": "Kapsalon Tine",
+        "quote": "Goed luisteren naar de plannen en ideeën. Hierdoor is het visueel precies geworden waar ik op hoopte. Zeer snel in de communicatie. Perfectionistisch en goede samenwerking met collega's."
       }
     },
     "clients": {
@@ -1195,7 +1189,7 @@
         "title": "Langdurige partnerships",
         "description": "Veel klanten werken al jaren met ons"
       },
-      "featuredQuote": "Robuust is meer dan een leverancier - ze zijn een strategische partner in onze groei."
+      "featuredQuote": "Ik zou Robuust zeker aanraden aan anderen. Robuust is vakinhoudelijk sterk, heeft creatieve marketing mensen in huis en wordt gekenmerkt door een resultaatgerichte aanpak."
     },
     "cta": {
       "title": "Klaar om de volgende te zijn?",
@@ -2138,6 +2132,111 @@
       "secondaryButton": "Alle diensten"
     }
   },
+  "socialMediaPage": {
+    "badge": "Social Media Management",
+    "titleLine1": "Social media die",
+    "titleLine2": "echt werkt",
+    "subtitle": "Complete social media management inclusief content creatie, account setup en advertentie koppeling. Wij zorgen voor consistente groei op alle platforms.",
+    "primaryButton": "Plan een gesprek",
+    "secondaryButton": "Bekijk onze kennisbank",
+    "platforms": {
+      "title": "Platforms die we beheren",
+      "subtitle": "Van strategie tot uitvoering op alle relevante social media kanalen",
+      "instagram": {
+        "name": "Instagram",
+        "description": "Visuele storytelling voor merken. Reels, Stories en Feed posts die engageren."
+      },
+      "linkedin": {
+        "name": "LinkedIn",
+        "description": "B2B leadgeneratie en thought leadership. Zakelijke groei en netwerken."
+      },
+      "facebook": {
+        "name": "Facebook",
+        "description": "Community building en brede doelgroepen. Lokale zichtbaarheid en events."
+      },
+      "tiktok": {
+        "name": "TikTok",
+        "description": "Viral potentieel en jonge doelgroepen. Creatieve korte video content."
+      }
+    },
+    "services": {
+      "title": "Wat we doen",
+      "subtitle": "Alles wat je nodig hebt voor succesvolle social media",
+      "contentCreation": {
+        "title": "Content Creatie",
+        "description": "Professionele posts, reels en stories die je merk laten opvallen en engageren."
+      },
+      "accountSetup": {
+        "title": "Account Setup",
+        "description": "Complete setup en optimalisatie van je social media profielen voor maximale zichtbaarheid."
+      },
+      "adAccounts": {
+        "title": "Advertentie Accounts",
+        "description": "Koppeling en configuratie van Meta Business Suite, LinkedIn Campaign Manager en meer."
+      },
+      "contentCalendar": {
+        "title": "Content Kalender",
+        "description": "Strategische planning van al je content met een overzichtelijke kalender."
+      },
+      "communityManagement": {
+        "title": "Community Management",
+        "description": "Actieve interactie met je volgers. Reageren op comments en DM's namens jouw merk."
+      },
+      "reporting": {
+        "title": "Rapportage & Analyse",
+        "description": "Maandelijkse rapportages met inzichten, groei metrics en concrete verbeterpunten."
+      }
+    },
+    "package": {
+      "title": "Ons premium",
+      "titleHighlight": "pakket",
+      "subtitle": "Eén compleet pakket met alles wat je nodig hebt voor professionele social media. Geen verborgen kosten, geen gedoe.",
+      "included1": "20+ posts per maand (feed, reels, stories)",
+      "included2": "Complete account setup en optimalisatie",
+      "included3": "Advertentie account koppeling en configuratie",
+      "included4": "Strategische content kalender",
+      "included5": "Community management en engagement",
+      "included6": "Hashtag research en optimalisatie",
+      "included7": "Maandelijkse strategie call",
+      "included8": "Uitgebreide performance rapportage",
+      "card": {
+        "label": "Premium Pakket",
+        "price": "€3.000",
+        "period": "per maand",
+        "description": "Alles inbegrepen voor professionele social media presence die resultaat oplevert.",
+        "features": [
+          "Alle platforms inbegrepen",
+          "Dedicated social media manager",
+          "Onbeperkte revisies",
+          "24/7 support voor urgente zaken",
+          "Inclusief betaalde tools"
+        ],
+        "button": "Start met social media"
+      }
+    },
+    "whyUs": {
+      "title": "Waarom Robuust?",
+      "subtitle": "Wij zijn geen social media bureau dat alleen maar posts maakt",
+      "reason1": {
+        "title": "Strategie eerst",
+        "description": "We beginnen met een grondige analyse van je doelgroep en concurrentie voordat we content maken."
+      },
+      "reason2": {
+        "title": "Data-gedreven",
+        "description": "Elke beslissing is gebaseerd op data. We meten alles en optimaliseren continu."
+      },
+      "reason3": {
+        "title": "Full-service",
+        "description": "Van strategie tot content tot advertenties - wij regelen alles zodat jij kunt focussen op je business."
+      }
+    },
+    "cta": {
+      "title": "Klaar om je social media naar een hoger niveau te tillen?",
+      "subtitle": "Plan een vrijblijvend gesprek en ontdek hoe we je kunnen helpen groeien.",
+      "primaryButton": "Plan een gesprek",
+      "secondaryButton": "Alle diensten"
+    }
+  },
   "crmPage": {
     "badge": "CRM & Automatisering",
     "titleLine1": "Klantrelaties",
@@ -2410,7 +2509,8 @@
         "online-marketing": "Online Marketing",
         "branding": "Branding",
         "seo": "SEO",
-        "crm": "CRM"
+        "crm": "CRM",
+        "social-media": "Social Media"
       }
     },
     "navigation": {

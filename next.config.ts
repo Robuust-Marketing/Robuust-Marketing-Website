@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 
+  // Voorkom warning bij meerdere lockfiles in deployment structuur
+  turbopack: {
+    root: process.cwd(),
+  },
+
   // Caching headers voor Cloudflare - zie src/config/cache.ts
   headers: async () => nextHeadersConfig,
 };

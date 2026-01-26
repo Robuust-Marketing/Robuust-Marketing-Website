@@ -9,6 +9,7 @@ import {
   Fingerprint,
   Search,
   Users,
+  Share2,
   type LucideIcon,
 } from "lucide-react";
 import { type Locale, defaultLocale } from "@/i18n/config";
@@ -113,6 +114,15 @@ const servicesNL: Service[] = [
     features: ["CRM setup", "Integraties", "Automatisering", "Lead management"],
     href: "/diensten/crm",
   },
+  {
+    id: "social-media",
+    name: "Social Media",
+    icon: Share2,
+    description:
+      "Complete social media management inclusief content creatie, account setup en advertentie koppeling.",
+    features: ["Content creatie", "Account setup", "Advertentie koppeling", "Community management"],
+    href: "/diensten/social-media",
+  },
 ];
 
 const servicesEN: Service[] = [
@@ -205,6 +215,15 @@ const servicesEN: Service[] = [
       "Optimize customer relationships with smart CRM integrations and automations.",
     features: ["CRM setup", "Integrations", "Automation", "Lead management"],
     href: "/services/crm",
+  },
+  {
+    id: "social-media",
+    name: "Social Media",
+    icon: Share2,
+    description:
+      "Complete social media management including content creation, account setup and ad account linking.",
+    features: ["Content creation", "Account setup", "Ad account linking", "Community management"],
+    href: "/services/social-media",
   },
 ];
 

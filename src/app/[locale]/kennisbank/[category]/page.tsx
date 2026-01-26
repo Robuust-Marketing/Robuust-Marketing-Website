@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BookOpen, Code2, Search, Server } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Code2, Search, Server, Share2 } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import { getGuidesByCategory, getCategoryInfo, CategorySlug } from "@/lib/kennisbank";
 import { locales, type Locale } from "@/i18n/config";
@@ -9,9 +9,10 @@ const categoryIcons: Record<CategorySlug, React.ElementType> = {
   development: Code2,
   seo: Search,
   hosting: Server,
+  "social-media": Share2,
 };
 
-const validCategories: CategorySlug[] = ["development", "seo", "hosting"];
+const validCategories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
 
 export async function generateStaticParams() {
   const params: { locale: string; category: string }[] = [];

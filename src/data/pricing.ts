@@ -266,6 +266,11 @@ export const pricing = {
       type: "monthly" as const,
       label: "Onderhoud (maandelijks)",
     },
+    "social-media": {
+      price: 3000,
+      type: "monthly" as const,
+      label: "Social Media Management (maandelijks)",
+    },
   } as Record<string, ServiceAddOn>,
 
   // SEO audit apart (geen service add-on)
@@ -401,6 +406,7 @@ export const pricingLabels = {
       seo: "SEO optimalisatie",
       crm: "CRM integratie",
       maintenance: "Onderhoud (maandelijks)",
+      "social-media": "Social Media Management (maandelijks)",
     },
     budgetRanges: [
       { id: "4000-7500", label: "€4.000 - €7.500" },
@@ -503,6 +509,7 @@ export const pricingLabels = {
       seo: "SEO optimization",
       crm: "CRM integration",
       maintenance: "Maintenance (monthly)",
+      "social-media": "Social Media Management (monthly)",
     },
     budgetRanges: [
       { id: "4000-7500", label: "€4,000 - €7,500" },

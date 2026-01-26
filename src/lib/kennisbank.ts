@@ -37,7 +37,7 @@ export interface GuideMeta {
   isFallback?: boolean;
 }
 
-export type CategorySlug = "development" | "seo" | "hosting";
+export type CategorySlug = "development" | "seo" | "hosting" | "social-media";
 
 export const categoryInfo: Record<
   Locale,
@@ -56,6 +56,10 @@ export const categoryInfo: Record<
       name: "Hosting & Infrastructuur",
       description: "Servers, performance, Cloudflare en beveiliging",
     },
+    "social-media": {
+      name: "Social Media",
+      description: "Strategieën voor Instagram, LinkedIn en andere platforms",
+    },
   },
   en: {
     development: {
@@ -69,6 +73,10 @@ export const categoryInfo: Record<
     hosting: {
       name: "Hosting & Infrastructure",
       description: "Servers, performance, Cloudflare and security",
+    },
+    "social-media": {
+      name: "Social Media",
+      description: "Strategies for Instagram, LinkedIn and other platforms",
     },
   },
 };
@@ -204,7 +212,7 @@ export function getGuide(category: CategorySlug, slug: string, locale: Locale = 
 }
 
 export function getAllGuides(locale: Locale = defaultLocale): GuideMeta[] {
-  const categories: CategorySlug[] = ["development", "seo", "hosting"];
+  const categories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
   const allGuides: GuideMeta[] = [];
 
   categories.forEach((category) => {
@@ -216,7 +224,7 @@ export function getAllGuides(locale: Locale = defaultLocale): GuideMeta[] {
 }
 
 export function getAllGuideSlugs(locale: Locale = defaultLocale): { category: string; slug: string }[] {
-  const categories: CategorySlug[] = ["development", "seo", "hosting"];
+  const categories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
   const slugs: { category: string; slug: string }[] = [];
 
   categories.forEach((category) => {

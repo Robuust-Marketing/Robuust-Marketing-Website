@@ -1127,41 +1127,35 @@
     },
     "roleAt": "at",
     "testimonials": {
-      "tvdb": {
-        "name": "Thomas van der Berg",
-        "role": "Director",
-        "company": "Van der Berg Construction",
-        "quote": "Robuust completely transformed our website. The new site loads lightning-fast and we now receive quality leads daily. The collaboration was perfect."
+      "growteq": {
+        "name": "Growteq",
+        "role": "Client",
+        "company": "Growteq",
+        "quote": "I would definitely recommend Robuust to others. For three reasons: Robuust is professionally strong, Robuust has creative marketing people in-house, and they are characterized by a results-oriented approach."
       },
-      "lb": {
-        "name": "Lisa Bakker",
-        "role": "Marketing Manager",
-        "company": "Fresh Organics",
-        "quote": "Finally a party that understands what we need. The team thinks proactively and always delivers more than expected. Our online sales increased by 200%."
+      "pianoselect": {
+        "name": "Markes Mouthaan",
+        "role": "Co-owner",
+        "company": "Piano Select",
+        "quote": "The way of working together really appeals to us, because they actively participate in thinking, are very enthusiastic, and both our own ideas and ideas from Robuust Marketing come together in proposals and concepts. Through the collaboration with Robuust Marketing, we have also become more enthusiastic about expressing our brand."
       },
-      "mj": {
-        "name": "Mark Jansen",
+      "fotolot": {
+        "name": "Lotte Willemsen",
         "role": "Owner",
-        "company": "Jansen Techniek",
-        "quote": "After years of working with a slow, outdated website, switching to Robuust was a relief. Fast delivery, good communication and a beautiful result."
+        "company": "Foto Lot",
+        "quote": "Robuust Marketing is easy to reach, the lines are short and fast, and the quality was exactly what I wanted."
       },
-      "sdv": {
-        "name": "Sandra de Vries",
-        "role": "CEO",
-        "company": "De Vries Consultancy",
-        "quote": "The hosting and maintenance at Robuust gives me peace of mind. I don't have to worry about anything and can focus on my core business."
+      "dununba": {
+        "name": "Dununba",
+        "role": "Client",
+        "company": "Dununba Percussion Workshops",
+        "quote": "Top company with always very fast service."
       },
-      "pv": {
-        "name": "Peter Visser",
-        "role": "Founder",
-        "company": "Visser & Partners",
-        "quote": "What started as a website has grown into a complete digital strategy. Robuust is a real partner in our online growth."
-      },
-      "es": {
-        "name": "Emma Smit",
-        "role": "E-commerce Manager",
-        "company": "Style Studio",
-        "quote": "Our webshop performs better than ever. The Robuust team not only built a beautiful site, but also thinks along about conversion optimization."
+      "kapsalontine": {
+        "name": "Tine",
+        "role": "Owner",
+        "company": "Kapsalon Tine",
+        "quote": "Good listening to the plans and ideas. Because of this, the visual result became exactly what I hoped for. Very fast in communication. Perfectionist and good cooperation with colleagues."
       }
     },
     "clients": {
@@ -1183,7 +1177,7 @@
         "title": "Long-term partnerships",
         "description": "Many clients have been working with us for years"
       },
-      "featuredQuote": "Robuust is more than a supplier - they are a strategic partner in our growth."
+      "featuredQuote": "I would definitely recommend Robuust to others. Robuust is professionally strong, has creative marketing people in-house, and is characterized by a results-oriented approach."
     },
     "cta": {
       "title": "Ready to be next?",
@@ -2126,6 +2120,111 @@
       "secondaryButton": "All services"
     }
   },
+  "socialMediaPage": {
+    "badge": "Social Media Management",
+    "titleLine1": "Social media that",
+    "titleLine2": "actually works",
+    "subtitle": "Complete social media management including content creation, account setup and ad account linking. We ensure consistent growth across all platforms.",
+    "primaryButton": "Schedule a call",
+    "secondaryButton": "View our knowledge base",
+    "platforms": {
+      "title": "Platforms we manage",
+      "subtitle": "From strategy to execution on all relevant social media channels",
+      "instagram": {
+        "name": "Instagram",
+        "description": "Visual storytelling for brands. Reels, Stories and Feed posts that engage."
+      },
+      "linkedin": {
+        "name": "LinkedIn",
+        "description": "B2B lead generation and thought leadership. Business growth and networking."
+      },
+      "facebook": {
+        "name": "Facebook",
+        "description": "Community building and broad audiences. Local visibility and events."
+      },
+      "tiktok": {
+        "name": "TikTok",
+        "description": "Viral potential and younger audiences. Creative short video content."
+      }
+    },
+    "services": {
+      "title": "What we do",
+      "subtitle": "Everything you need for successful social media",
+      "contentCreation": {
+        "title": "Content Creation",
+        "description": "Professional posts, reels and stories that make your brand stand out and engage."
+      },
+      "accountSetup": {
+        "title": "Account Setup",
+        "description": "Complete setup and optimization of your social media profiles for maximum visibility."
+      },
+      "adAccounts": {
+        "title": "Ad Accounts",
+        "description": "Linking and configuration of Meta Business Suite, LinkedIn Campaign Manager and more."
+      },
+      "contentCalendar": {
+        "title": "Content Calendar",
+        "description": "Strategic planning of all your content with a clear calendar."
+      },
+      "communityManagement": {
+        "title": "Community Management",
+        "description": "Active interaction with your followers. Responding to comments and DMs on behalf of your brand."
+      },
+      "reporting": {
+        "title": "Reporting & Analysis",
+        "description": "Monthly reports with insights, growth metrics and concrete improvement points."
+      }
+    },
+    "package": {
+      "title": "Our premium",
+      "titleHighlight": "package",
+      "subtitle": "One complete package with everything you need for professional social media. No hidden costs, no hassle.",
+      "included1": "20+ posts per month (feed, reels, stories)",
+      "included2": "Complete account setup and optimization",
+      "included3": "Ad account linking and configuration",
+      "included4": "Strategic content calendar",
+      "included5": "Community management and engagement",
+      "included6": "Hashtag research and optimization",
+      "included7": "Monthly strategy call",
+      "included8": "Comprehensive performance reporting",
+      "card": {
+        "label": "Premium Package",
+        "price": "€3,000",
+        "period": "per month",
+        "description": "Everything included for a professional social media presence that delivers results.",
+        "features": [
+          "All platforms included",
+          "Dedicated social media manager",
+          "Unlimited revisions",
+          "24/7 support for urgent matters",
+          "Paid tools included"
+        ],
+        "button": "Start with social media"
+      }
+    },
+    "whyUs": {
+      "title": "Why Robuust?",
+      "subtitle": "We're not a social media agency that just creates posts",
+      "reason1": {
+        "title": "Strategy first",
+        "description": "We start with a thorough analysis of your audience and competition before creating content."
+      },
+      "reason2": {
+        "title": "Data-driven",
+        "description": "Every decision is based on data. We measure everything and optimize continuously."
+      },
+      "reason3": {
+        "title": "Full-service",
+        "description": "From strategy to content to ads - we handle everything so you can focus on your business."
+      }
+    },
+    "cta": {
+      "title": "Ready to take your social media to the next level?",
+      "subtitle": "Schedule a free consultation and discover how we can help you grow.",
+      "primaryButton": "Schedule a call",
+      "secondaryButton": "All services"
+    }
+  },
   "crmPage": {
     "badge": "CRM & Automation",
     "titleLine1": "Customer relationships",
@@ -2398,7 +2497,8 @@
         "online-marketing": "Online Marketing",
         "branding": "Branding",
         "seo": "SEO",
-        "crm": "CRM"
+        "crm": "CRM",
+        "social-media": "Social Media"
       }
     },
     "navigation": {

@@ -3,19 +3,18 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowRight, Star, Quote, Building2, Users, Award } from "lucide-react";
+import { ArrowRight, Star, Quote, Building2, Users, Award, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ReferentiesPage() {
   const t = useTranslations("referentiesPage");
 
   const testimonials = [
-    { id: "tvdb", rating: 5 },
-    { id: "lb", rating: 5 },
-    { id: "mj", rating: 5 },
-    { id: "sdv", rating: 5 },
-    { id: "pv", rating: 5 },
-    { id: "es", rating: 5 },
+    { id: "growteq", rating: 5, url: "/portfolio/growteq", isInternal: true },
+    { id: "pianoselect", rating: 5, url: "https://www.pianoselect.nl/", isInternal: false },
+    { id: "fotolot", rating: 5, url: "https://foto-lot.nl/", isInternal: false },
+    { id: "dununba", rating: 5, url: "https://dununba.nl/", isInternal: false },
+    { id: "kapsalontine", rating: 5, url: "https://kapsalontine.nl/", isInternal: false },
   ];
 
   const stats = [
@@ -26,14 +25,14 @@ export default function ReferentiesPage() {
   ];
 
   const logos = [
-    "Van der Berg Bouw",
-    "Fresh Organics",
-    "Jansen Techniek",
-    "De Vries Consultancy",
-    "Visser & Partners",
-    "Style Studio",
-    "Tech Solutions",
-    "Green Energy NL",
+    { name: "Growteq", url: "https://growteq.nl" },
+    { name: "Piano Select", url: "https://www.pianoselect.nl" },
+    { name: "Foto Lot", url: "https://foto-lot.nl" },
+    { name: "Dununba", url: "https://dununba.nl" },
+    { name: "Kapsalon Tine", url: "https://kapsalontine.nl" },
+    { name: "Den Hartog Energies", url: "https://denhartogbv.com" },
+    { name: "Villary Buitenleven", url: "https://villary.nl" },
+    { name: "Voltra Charging", url: "https://voltracharging.com" },
   ];
 
   const whyChooseItems = [
@@ -113,47 +112,63 @@ export default function ReferentiesPage() {
       <section className="py-20 bg-surface/50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="rounded-2xl bg-surface p-6 border border-white/5"
-              >
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-accent text-accent"
-                    />
-                  ))}
-                </div>
-                <Quote className="h-8 w-8 text-accent/30 mb-4" />
-                <p className="text-white mb-6 leading-relaxed">
-                  &ldquo;{t(`testimonials.${testimonial.id}.quote`)}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                    <span className="text-accent font-semibold text-sm">
-                      {t(`testimonials.${testimonial.id}.name`)
-                        .split(" ")
-                        .map((n: string) => n[0])
-                        .join("")}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="text-white font-medium text-sm">
-                      {t(`testimonials.${testimonial.id}.name`)}
+            {testimonials.map((testimonial, index) => {
+              const CardWrapper = testimonial.isInternal ? Link : "a";
+              const cardProps = testimonial.isInternal
+                ? { href: testimonial.url }
+                : { href: testimonial.url, target: "_blank", rel: "noopener noreferrer" };
+
+              return (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <CardWrapper
+                    {...cardProps}
+                    className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className="h-4 w-4 fill-accent text-accent"
+                          />
+                        ))}
+                      </div>
+                      {!testimonial.isInternal && (
+                        <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                      )}
                     </div>
-                    <div className="text-muted-foreground text-xs">
-                      {t(`testimonials.${testimonial.id}.role`)} {t("roleAt")} {t(`testimonials.${testimonial.id}.company`)}
+                    <Quote className="h-8 w-8 text-accent/30 mb-4" />
+                    <p className="text-white mb-6 leading-relaxed">
+                      &ldquo;{t(`testimonials.${testimonial.id}.quote`)}&rdquo;
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                        <span className="text-accent font-semibold text-sm">
+                          {t(`testimonials.${testimonial.id}.name`)
+                            .split(" ")
+                            .map((n: string) => n[0])
+                            .join("")}
+                        </span>
+                      </div>
+                      <div>
+                        <div className="text-white font-medium text-sm">
+                          {t(`testimonials.${testimonial.id}.name`)}
+                        </div>
+                        <div className="text-muted-foreground text-xs">
+                          {t(`testimonials.${testimonial.id}.role`)} {t("roleAt")} {t(`testimonials.${testimonial.id}.company`)}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                  </CardWrapper>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -177,19 +192,22 @@ export default function ReferentiesPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {logos.map((logo, index) => (
-              <motion.div
-                key={logo}
+              <motion.a
+                key={logo.name}
+                href={logo.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="rounded-xl bg-surface p-6 border border-white/5 flex items-center justify-center"
+                className="rounded-xl bg-surface p-6 border border-white/5 flex items-center justify-center hover:border-accent/30 transition-colors group"
               >
-                <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="flex items-center gap-2 text-muted-foreground group-hover:text-white transition-colors">
                   <Building2 className="h-5 w-5" />
-                  <span className="text-sm font-medium">{logo}</span>
+                  <span className="text-sm font-medium">{logo.name}</span>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>
@@ -243,14 +261,16 @@ export default function ReferentiesPage() {
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                  <span className="text-accent font-semibold">TvdB</span>
+                  <span className="text-accent font-semibold">G</span>
                 </div>
                 <div>
                   <div className="text-white font-medium">
-                    {t("testimonials.tvdb.name")}
+                    {t("testimonials.growteq.company")}
                   </div>
                   <div className="text-muted-foreground text-sm">
-                    {t("testimonials.tvdb.role")}, {t("testimonials.tvdb.company")}
+                    <Link href="/portfolio/growteq" className="hover:text-accent transition-colors">
+                      {t("cta.secondaryButton")}
+                    </Link>
                   </div>
                 </div>
               </div>
