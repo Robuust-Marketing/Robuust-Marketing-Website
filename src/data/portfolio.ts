@@ -156,6 +156,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     description:
       "BnB Kinderdijk biedt gasten een unieke overnachtingservaring bij de wereldberoemde molens van Kinderdijk, UNESCO Werelderfgoed. De website moest de rust en schoonheid van deze locatie uitstralen.",
     image: "/portfolio/bnbkinderdijk.jpg",
+    logo: "/portfolio/bnbkinderdijk-logo.png",
     tags: ["WordPress", "Hospitality", "Boekingen"],
     url: "https://bnbkinderdijk.nl",
     featured: false,
@@ -225,6 +226,34 @@ const portfolioItemsNL: PortfolioItem[] = [
       { metric: "Lokale vindbaarheid", description: "SEO voor Ridderkerk en omstreken" },
       { metric: "Showroom bezoeken", description: "Duidelijke route en contactinfo" },
       { metric: "Premium uitstraling", description: "Onderscheidend van ketens" },
+    ],
+    services: ["design", "development", "seo", "hosting"],
+  },
+  {
+    id: "kapsalon-tine",
+    slug: "kapsalon-tine",
+    name: "Kapsalon Tine",
+    category: "Retail",
+    industry: "Kapsalon & Webshop",
+    shortDescription:
+      "Persoonlijke website met webshop voor een kapsalon met expertise in krullend haar.",
+    description:
+      "Kapsalon Tine in Sliedrecht combineert vakmanschap met persoonlijk advies. Naast knip- en kleurdiensten biedt Tine ook online haarconsulten, kleuranalyses en een webshop met zorgvuldig geselecteerde haarproducten.",
+    image: "/portfolio/kapsalontine.jpg",
+    logo: "/portfolio/kapsalontine-logo.svg",
+    tags: ["WordPress", "WooCommerce", "Lokale SEO"],
+    url: "https://kapsalontine.nl",
+    featured: false,
+    year: 2025,
+    projectType: "new",
+    challenge:
+      "Tine wilde meer dan alleen een salon-website. Ze had een platform nodig dat haar expertise toont, online consulten mogelijk maakt én een webshop bevat voor haarproducten die ze zelf test en aanbeveelt.",
+    solution:
+      "We bouwden een veelzijdige website die de persoonlijke aanpak van Tine centraal stelt. De geïntegreerde WooCommerce webshop, gecombineerd met informatieve content over haarverzorging, maakt het een compleet platform.",
+    results: [
+      { metric: "Online verkoop", description: "Webshop met geteste haarproducten" },
+      { metric: "Persoonlijke branding", description: "Expertise en vertrouwen uitstralen" },
+      { metric: "Meerdere diensten", description: "Salon, consulten en e-commerce gecombineerd" },
     ],
     services: ["design", "development", "seo", "hosting"],
   },
@@ -329,6 +358,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     description:
       "IDRW (In Den RustWat) is a gastronomic restaurant in Rotterdam, housed in a monumental building from 1597 with original Delft blue tiles. The website needed to radiate the unique atmosphere and culinary excellence.",
     image: "/portfolio/idrw.jpg",
+    logo: "/portfolio/idrw-logo.svg",
     tags: ["WordPress", "Hospitality", "Reservations"],
     url: "https://idrw.nl",
     featured: true,
@@ -356,6 +386,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     description:
       "BnB Kinderdijk offers guests a unique overnight experience near the world-famous windmills of Kinderdijk, UNESCO World Heritage Site. The website needed to radiate the tranquility and beauty of this location.",
     image: "/portfolio/bnbkinderdijk.jpg",
+    logo: "/portfolio/bnbkinderdijk-logo.png",
     tags: ["WordPress", "Hospitality", "Bookings"],
     url: "https://bnbkinderdijk.nl",
     featured: false,
@@ -411,6 +442,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     description:
       "Woonstudio Joy is a kitchen specialist in Ridderkerk that distinguishes itself through custom work and personal attention. Their slogan 'With attention to details' needed to be reflected in every aspect of the website.",
     image: "/portfolio/woonstudiojoy.webp",
+    logo: "/portfolio/woonstudiojoy-logo.svg",
     tags: ["WordPress", "Showroom", "Local SEO"],
     url: "https://woonstudiojoy.nl",
     featured: false,
@@ -424,6 +456,34 @@ const portfolioItemsEN: PortfolioItem[] = [
       { metric: "Local findability", description: "SEO for Ridderkerk and surroundings" },
       { metric: "Showroom visits", description: "Clear route and contact info" },
       { metric: "Premium appearance", description: "Distinctive from chains" },
+    ],
+    services: ["design", "development", "seo", "hosting"],
+  },
+  {
+    id: "kapsalon-tine",
+    slug: "kapsalon-tine",
+    name: "Kapsalon Tine",
+    category: "Retail",
+    industry: "Hair Salon & Webshop",
+    shortDescription:
+      "Personal website with webshop for a hair salon specializing in curly hair.",
+    description:
+      "Kapsalon Tine in Sliedrecht combines craftsmanship with personal advice. In addition to cutting and coloring services, Tine also offers online hair consultations, color analysis, and a webshop with carefully selected hair products.",
+    image: "/portfolio/kapsalontine.jpg",
+    logo: "/portfolio/kapsalontine-logo.svg",
+    tags: ["WordPress", "WooCommerce", "Local SEO"],
+    url: "https://kapsalontine.nl",
+    featured: false,
+    year: 2025,
+    projectType: "new",
+    challenge:
+      "Tine wanted more than just a salon website. She needed a platform that showcases her expertise, enables online consultations, and includes a webshop for hair products she personally tests and recommends.",
+    solution:
+      "We built a versatile website that puts Tine's personal approach at the center. The integrated WooCommerce webshop, combined with informative content about hair care, makes it a complete platform.",
+    results: [
+      { metric: "Online sales", description: "Webshop with tested hair products" },
+      { metric: "Personal branding", description: "Radiating expertise and trust" },
+      { metric: "Multiple services", description: "Salon, consultations and e-commerce combined" },
     ],
     services: ["design", "development", "seo", "hosting"],
   },
