@@ -192,7 +192,10 @@ export default function VacaturesPageClient() {
                       {t("positions.requirements")}
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {(t.raw(`vacancies.${vacancy.id}.requirements`) as string[]).map((req) => (
+                      {(Array.isArray(t.raw(`vacancies.${vacancy.id}.requirements`))
+                        ? (t.raw(`vacancies.${vacancy.id}.requirements`) as string[])
+                        : []
+                      ).map((req) => (
                         <li
                           key={req}
                           className="flex items-center gap-2 text-sm text-muted-foreground"
