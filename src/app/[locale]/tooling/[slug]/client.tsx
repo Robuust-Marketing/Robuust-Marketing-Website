@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { notFound } from "next/navigation";
@@ -278,7 +278,7 @@ export default function ToolDetailPageClient() {
                   transition={{ delay: index * 0.1 }}
                 >
                   <Link
-                    href={`/tooling/${relatedTool!.slug}`}
+                    href={`/tooling/${relatedTool!.slug}` as any}
                     className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
                   >
                     <div className="flex items-center gap-4 mb-4">
@@ -316,7 +316,7 @@ export default function ToolDetailPageClient() {
               viewport={{ once: true }}
             >
               <Link
-                href={`/tooling/${prevTool.slug}`}
+                href={`/tooling/${prevTool.slug}` as any}
                 className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors group"
               >
                 <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
@@ -339,7 +339,7 @@ export default function ToolDetailPageClient() {
               viewport={{ once: true }}
             >
               <Link
-                href={`/tooling/${nextTool.slug}`}
+                href={`/tooling/${nextTool.slug}` as any}
                 className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors group text-right"
               >
                 <div className="flex items-center justify-end gap-2 text-muted-foreground text-sm mb-2">

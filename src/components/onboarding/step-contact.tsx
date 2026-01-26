@@ -2,7 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 import { motion } from "@/components/motion";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Check, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { OnboardingData } from "@/types/onboarding";

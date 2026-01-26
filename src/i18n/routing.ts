@@ -11,10 +11,6 @@ export const routing = defineRouting({
       nl: '/diensten',
       en: '/services',
     },
-    '/diensten/[slug]': {
-      nl: '/diensten/[slug]',
-      en: '/services/[slug]',
-    },
     '/diensten/design': {
       nl: '/diensten/design',
       en: '/services/design',

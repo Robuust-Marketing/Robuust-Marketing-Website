@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { motion } from "@/components/motion";
@@ -59,7 +59,7 @@ export function KennisbankFeaturedGuides({
                 {guide.description}
               </p>
               <Link
-                href={`/kennisbank/${guide.categorySlug}/${guide.slug}`}
+                href={`/kennisbank/${guide.categorySlug}/${guide.slug}` as any}
                 className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
               >
                 {t("readGuide")}

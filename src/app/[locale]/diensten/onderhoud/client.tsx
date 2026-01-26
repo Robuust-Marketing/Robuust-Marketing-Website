@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -321,7 +321,7 @@ export default function OnderhoudPageClient() {
                   asChild
                   className="mt-6 w-full bg-accent hover:bg-accent-hover text-white"
                 >
-                  <Link href="/contact?package=onderhoud">
+                  <Link href={"/contact?package=onderhoud" as any}>
                     {t("packages.choosePackage")}
                   </Link>
                 </Button>

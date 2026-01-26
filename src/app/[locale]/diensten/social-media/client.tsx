@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -134,7 +134,7 @@ export default function SocialMediaPageClient() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="/kennisbank/social-media">
+              <Link href={"/kennisbank/social-media" as any}>
                 {t("secondaryButton")}
               </Link>
             </Button>

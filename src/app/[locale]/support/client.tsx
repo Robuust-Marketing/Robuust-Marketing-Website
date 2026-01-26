@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
@@ -237,7 +237,7 @@ export default function SupportPageClient() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link
-                  href={resource.href}
+                  href={resource.href as any}
                   target={resource.external ? "_blank" : undefined}
                   rel={resource.external ? "noopener noreferrer" : undefined}
                   className="block rounded-xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"

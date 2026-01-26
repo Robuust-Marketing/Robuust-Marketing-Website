@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ArrowRight, Clock } from "lucide-react";
 import { motion } from "@/components/motion";
 
@@ -20,7 +20,7 @@ interface BlogFeaturedPostProps {
 
 export function BlogFeaturedPost({ post }: BlogFeaturedPostProps) {
   return (
-    <Link href={`/blog/${post.slug}`} className="block group">
+    <Link href={`/blog/${post.slug}` as any} className="block group">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

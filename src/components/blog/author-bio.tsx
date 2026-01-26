@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { User, Linkedin, Instagram, Facebook, Youtube, Twitter } from "lucide-react";
 
 interface AuthorBioProps {

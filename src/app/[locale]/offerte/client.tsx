@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "@/components/motion";
 import { ArrowRight, Check, Clock, Shield, MessageSquare } from "lucide-react";
@@ -424,7 +424,7 @@ export default function OffertePageClient() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="tel:+31850604877">{t("alternative.call")}</Link>
+              <a href="tel:+31850604877">{t("alternative.call")}</a>
             </Button>
           </motion.div>
         </div>

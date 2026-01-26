@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "@/components/motion";
 import { Menu, X } from "lucide-react";

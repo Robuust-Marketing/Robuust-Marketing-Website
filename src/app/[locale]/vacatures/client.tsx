@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
@@ -176,7 +176,7 @@ export default function VacaturesPageClient() {
                       className="bg-accent hover:bg-accent-hover text-white shrink-0"
                     >
                       <Link
-                        href={`/contact?subject=Application: ${t(`vacancies.${vacancy.id}.title`)}`}
+                        href={`/contact?subject=Application: ${t(`vacancies.${vacancy.id}.title`)}` as any}
                         className="flex items-center gap-2"
                       >
                         {t("positions.apply")}
@@ -227,7 +227,7 @@ export default function VacaturesPageClient() {
                 asChild
                 className="bg-accent hover:bg-accent-hover text-white"
               >
-                <Link href="/contact?subject=Open application">
+                <Link href={"/contact?subject=Open application" as any}>
                   {t("noVacancies.button")}
                 </Link>
               </Button>
@@ -267,7 +267,7 @@ export default function VacaturesPageClient() {
               className="border-white/20 text-white hover:bg-white/5"
             >
               <Link
-                href="/contact?subject=Open application"
+                href={"/contact?subject=Open application" as any}
                 className="flex items-center gap-2"
               >
                 {t("openApplication.button")}

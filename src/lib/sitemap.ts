@@ -16,7 +16,7 @@ const routeTranslations: Record<string, Record<Locale, string>> = {
   voorwaarden: { nl: "voorwaarden", en: "terms" },
   avg: { nl: "avg", en: "gdpr" },
   onderhoud: { nl: "onderhoud", en: "maintenance" },
-  referenties: { nl: "referenties", en: "references" },
+  referenties: { nl: "referenties", en: "testimonials" },
   vacatures: { nl: "vacatures", en: "careers" },
 };
 

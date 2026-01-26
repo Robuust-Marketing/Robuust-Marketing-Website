@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "@/components/motion";
 import { ArrowRight, Code2, Server, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";

@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Mail, Phone, MapPin, Server, Shield, Linkedin, Instagram, Facebook, Youtube, Twitter, Music2 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n/config";
+
+type FooterLink = { name: string; href: string };
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -12,51 +14,43 @@ export function Footer() {
   const locale = useLocale() as Locale;
   const currentYear = new Date().getFullYear();
 
-  // Helper to create locale-aware paths
-  const localePath = (path: string) => {
-    if (locale === "en") {
-      return `/en${path}`;
-    }
-    return path;
-  };
-
-  const services = [
-    { name: "Design", href: localePath("/diensten/design") },
-    { name: "Development", href: localePath("/diensten/development") },
-    { name: "Hosting", href: localePath("/diensten/hosting") },
-    { name: locale === "nl" ? "Onderhoud" : "Maintenance", href: localePath("/diensten/onderhoud") },
-    { name: "SEO", href: localePath("/diensten/seo") },
-    { name: "Online Marketing", href: localePath("/diensten/online-marketing") },
+  // Use internal (Dutch) paths - next-intl Link handles translation automatically
+  const services: FooterLink[] = [
+    { name: "Design", href: "/diensten/design" },
+    { name: "Development", href: "/diensten/development" },
+    { name: "Hosting", href: "/diensten/hosting" },
+    { name: locale === "nl" ? "Onderhoud" : "Maintenance", href: "/diensten/onderhoud" },
+    { name: "SEO", href: "/diensten/seo" },
+    { name: "Online Marketing", href: "/diensten/online-marketing" },
   ];
 
-  const packages = [
-    { name: "Solid Start", href: localePath("/tarieven") },
-    { name: "Firm Foundation", href: localePath("/tarieven") },
+  const packages: FooterLink[] = [
+    { name: "Solid Start", href: "/tarieven" },
+    { name: "Firm Foundation", href: "/tarieven" },
   ];
 
-  const company = [
-    { name: tCompany("about.name"), href: localePath("/over") },
-    { name: tCompany("portfolio.name"), href: localePath("/portfolio") },
-    { name: tCompany("referenties.name"), href: localePath("/referenties") },
-    { name: tCompany("partners.name"), href: localePath("/partners") },
-    { name: tCompany("vacatures.name"), href: localePath("/vacatures") },
-    { name: tCompany("contact.name"), href: localePath("/contact") },
+  const company: FooterLink[] = [
+    { name: tCompany("about.name"), href: "/over" },
+    { name: tCompany("portfolio.name"), href: "/portfolio" },
+    { name: tCompany("referenties.name"), href: "/referenties" },
+    { name: tCompany("partners.name"), href: "/partners" },
+    { name: tCompany("vacatures.name"), href: "/vacatures" },
+    { name: tCompany("contact.name"), href: "/contact" },
   ];
 
-  const resources = [
-    { name: tResources("blog.name"), href: localePath("/blog") },
-    { name: tResources("kennisbank.name"), href: localePath("/kennisbank") },
-    { name: tResources("faq.name"), href: localePath("/faq") },
-    { name: tResources("support.name"), href: localePath("/support") },
-    { name: locale === "nl" ? "Tooling" : "Tools", href: localePath("/tooling") },
-    { name: locale === "nl" ? "Tarieven" : "Pricing", href: localePath("/tarieven") },
+  const resources: FooterLink[] = [
+    { name: tResources("blog.name"), href: "/blog" },
+    { name: tResources("kennisbank.name"), href: "/kennisbank" },
+    { name: tResources("faq.name"), href: "/faq" },
+    { name: tResources("support.name"), href: "/support" },
+    { name: locale === "nl" ? "Tooling" : "Tools", href: "/tooling" },
+    { name: locale === "nl" ? "Tarieven" : "Pricing", href: "/tarieven" },
   ];
 
-  const legal = [
-    { name: "Privacy", href: localePath("/privacy") },
-    { name: locale === "nl" ? "AVG" : "GDPR", href: localePath("/avg") },
-    { name: locale === "nl" ? "Voorwaarden" : "Terms", href: localePath("/voorwaarden") },
-    { name: "Sitemap", href: "/sitemap.xml" },
+  const legal: FooterLink[] = [
+    { name: "Privacy", href: "/privacy" },
+    { name: locale === "nl" ? "AVG" : "GDPR", href: "/avg" },
+    { name: locale === "nl" ? "Voorwaarden" : "Terms", href: "/voorwaarden" },
   ];
 
   return (
@@ -73,7 +67,7 @@ export function Footer() {
               {services.map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href}
+                    href={item.href as any}
                     className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
@@ -92,7 +86,7 @@ export function Footer() {
               {packages.map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href}
+                    href={item.href as any}
                     className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
@@ -108,7 +102,7 @@ export function Footer() {
                 {company.map((item) => (
                   <li key={item.name}>
                     <Link
-                      href={item.href}
+                      href={item.href as any}
                       className="text-sm text-muted-foreground hover:text-white transition-colors"
                     >
                       {item.name}
@@ -128,7 +122,7 @@ export function Footer() {
               {resources.map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href}
+                    href={item.href as any}
                     className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
@@ -289,12 +283,18 @@ export function Footer() {
               {legal.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  href={item.href as any}
                   className="text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   {item.name}
                 </Link>
               ))}
+              <a
+                href="/sitemap.xml"
+                className="text-sm text-muted-foreground hover:text-white transition-colors"
+              >
+                Sitemap
+              </a>
             </div>
           </div>
         </div>

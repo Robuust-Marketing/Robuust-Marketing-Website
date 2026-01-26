@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -530,10 +530,10 @@ export default function WebsiteLatenMakenPageClient() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href="tel:+31850604877" className="flex items-center gap-2">
+              <a href="tel:+31850604877" className="flex items-center gap-2">
                 <Zap className="h-4 w-4" />
                 Bel direct
-              </Link>
+              </a>
             </Button>
           </motion.div>
         </div>

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ArrowLeft, ArrowRight, BookOpen, Code2, Search, Server, Share2 } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import { getGuidesByCategory, getCategoryInfo, CategorySlug } from "@/lib/kennisbank";
@@ -82,7 +82,7 @@ export default async function CategoryPage({
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Back Link */}
         <Link
-          href={`${basePath}/kennisbank`}
+          href={`${basePath}/kennisbank` as any}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -110,7 +110,7 @@ export default async function CategoryPage({
             {guides.map((guide) => (
               <Link
                 key={guide.slug}
-                href={`${basePath}/kennisbank/${category}/${guide.slug}`}
+                href={`${basePath}/kennisbank/${category}/${guide.slug}` as any}
                 className="group rounded-2xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -156,7 +156,7 @@ export default async function CategoryPage({
                 return (
                   <Link
                     key={cat}
-                    href={`${basePath}/kennisbank/${cat}`}
+                    href={`${basePath}/kennisbank/${cat}` as any}
                     className="flex items-center gap-4 rounded-xl bg-surface/50 border border-white/5 hover:border-accent/30 p-4 transition-all"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">

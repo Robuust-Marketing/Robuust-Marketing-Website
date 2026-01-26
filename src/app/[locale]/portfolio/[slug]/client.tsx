@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { notFound } from "next/navigation";
@@ -286,7 +286,7 @@ export default function CaseStudyPageClient() {
                 transition={{ delay: index * 0.05 }}
               >
                 <Link
-                  href={`/diensten/${service}`}
+                  href={`/diensten/${service}` as any}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-white/10 hover:border-accent/30 transition-colors"
                 >
                   <Wrench className="h-4 w-4 text-accent" />
@@ -327,7 +327,7 @@ export default function CaseStudyPageClient() {
               viewport={{ once: true }}
             >
               <Link
-                href={`/portfolio/${prevProject.slug}`}
+                href={`/portfolio/${prevProject.slug}` as any}
                 className="block rounded-2xl bg-surface overflow-hidden border border-white/5 hover:border-accent/30 transition-colors group"
               >
                 <div className="aspect-[21/9] relative overflow-hidden">
@@ -369,7 +369,7 @@ export default function CaseStudyPageClient() {
               viewport={{ once: true }}
             >
               <Link
-                href={`/portfolio/${nextProject.slug}`}
+                href={`/portfolio/${nextProject.slug}` as any}
                 className="block rounded-2xl bg-surface overflow-hidden border border-white/5 hover:border-accent/30 transition-colors group"
               >
                 <div className="aspect-[21/9] relative overflow-hidden">

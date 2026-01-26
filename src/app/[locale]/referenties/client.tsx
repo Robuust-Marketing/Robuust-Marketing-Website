@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, Quote, Building2, Users, Award, ExternalLink } from "lucide-react";
@@ -113,10 +113,45 @@ export default function ReferentiesPageClient() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => {
-              const CardWrapper = testimonial.isInternal ? Link : "a";
-              const cardProps = testimonial.isInternal
-                ? { href: testimonial.url }
-                : { href: testimonial.url, target: "_blank", rel: "noopener" };
+              const cardContent = (
+                <>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="h-4 w-4 fill-accent text-accent"
+                        />
+                      ))}
+                    </div>
+                    {!testimonial.isInternal && (
+                      <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                    )}
+                  </div>
+                  <Quote className="h-8 w-8 text-accent/30 mb-4" />
+                  <p className="text-white mb-6 leading-relaxed">
+                    &ldquo;{t(`testimonials.${testimonial.id}.quote`)}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                      <span className="text-accent font-semibold text-sm">
+                        {t(`testimonials.${testimonial.id}.name`)
+                          .split(" ")
+                          .map((n: string) => n[0])
+                          .join("")}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="text-white font-medium text-sm">
+                        {t(`testimonials.${testimonial.id}.name`)}
+                      </div>
+                      <div className="text-muted-foreground text-xs">
+                        {t(`testimonials.${testimonial.id}.role`)} {t("roleAt")} {t(`testimonials.${testimonial.id}.company`)}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
 
               return (
                 <motion.div
@@ -126,46 +161,23 @@ export default function ReferentiesPageClient() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <CardWrapper
-                    {...cardProps}
-                    className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-1">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="h-4 w-4 fill-accent text-accent"
-                          />
-                        ))}
-                      </div>
-                      {!testimonial.isInternal && (
-                        <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                      )}
-                    </div>
-                    <Quote className="h-8 w-8 text-accent/30 mb-4" />
-                    <p className="text-white mb-6 leading-relaxed">
-                      &ldquo;{t(`testimonials.${testimonial.id}.quote`)}&rdquo;
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                        <span className="text-accent font-semibold text-sm">
-                          {t(`testimonials.${testimonial.id}.name`)
-                            .split(" ")
-                            .map((n: string) => n[0])
-                            .join("")}
-                        </span>
-                      </div>
-                      <div>
-                        <div className="text-white font-medium text-sm">
-                          {t(`testimonials.${testimonial.id}.name`)}
-                        </div>
-                        <div className="text-muted-foreground text-xs">
-                          {t(`testimonials.${testimonial.id}.role`)} {t("roleAt")} {t(`testimonials.${testimonial.id}.company`)}
-                        </div>
-                      </div>
-                    </div>
-                  </CardWrapper>
+                  {testimonial.isInternal ? (
+                    <Link
+                      href={testimonial.url as any}
+                      className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
+                    >
+                      {cardContent}
+                    </Link>
+                  ) : (
+                    <a
+                      href={testimonial.url}
+                      target="_blank"
+                      rel="noopener"
+                      className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
+                    >
+                      {cardContent}
+                    </a>
+                  )}
                 </motion.div>
               );
             })}

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { AlertTriangle, Shield, XCircle, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -73,7 +73,7 @@ export default function PortfolioPageClient() {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <Link
-                  href={`/portfolio/${project.slug}`}
+                  href={`/portfolio/${project.slug}` as any}
                   className="group relative block overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300"
                 >
                   {/* Project image */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
@@ -172,7 +172,7 @@ function BedanktContent() {
               size="lg"
               className="bg-accent hover:bg-accent-hover text-white"
             >
-              <Link href={hrefs.cta} className="flex items-center gap-2">
+              <Link href={hrefs.cta as any} className="flex items-center gap-2">
                 {ctaLabel}
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -184,7 +184,7 @@ function BedanktContent() {
                 variant="outline"
                 className="border-white/20 text-white hover:bg-white/5"
               >
-                <Link href={hrefs.secondary}>
+                <Link href={hrefs.secondary as any}>
                   {secondaryLabel}
                 </Link>
               </Button>

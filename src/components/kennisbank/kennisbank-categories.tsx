@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { ArrowRight, BookOpen, Code2, Search, Server } from "lucide-react";
 import { motion } from "@/components/motion";
@@ -76,7 +76,7 @@ export function KennisbankCategories({ categories }: KennisbankCategoriesProps) 
                     {category.guides.slice(0, 4).map((guide) => (
                       <li key={guide.slug}>
                         <Link
-                          href={`/kennisbank/${category.slug}/${guide.slug}`}
+                          href={`/kennisbank/${category.slug}/${guide.slug}` as any}
                           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                         >
                           <span className="w-1 h-1 rounded-full bg-accent" />
@@ -92,7 +92,7 @@ export function KennisbankCategories({ categories }: KennisbankCategoriesProps) 
                 )}
 
                 <Link
-                  href={`/kennisbank/${category.slug}`}
+                  href={`/kennisbank/${category.slug}` as any}
                   className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
                 >
                   {t("allGuides", { category: category.name.toLowerCase() })}
