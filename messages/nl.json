@@ -1661,6 +1661,7 @@
         ]
       }
     }
+    }
   },
   "avgPage": {
     "badge": "AVG Compliance",
@@ -3121,5 +3122,4 @@
       "secondaryButton": "Bekijk meer projecten"
     }
   }
-}
 }

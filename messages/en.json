@@ -1649,6 +1649,7 @@
         ]
       }
     }
+    }
   },
   "avgPage": {
     "badge": "GDPR Compliance",
@@ -3109,5 +3110,4 @@
       "secondaryButton": "View more projects"
     }
   }
-}
 }
