@@ -12,6 +12,7 @@ import {
   KennisbankCTA,
 } from "@/components/kennisbank";
 import { type Locale } from "@/i18n/config";
+import { generateAlternates } from "@/lib/metadata";
 
 export async function generateMetadata({
   params,
@@ -33,6 +34,7 @@ export async function generateMetadata({
   return {
     title: titles[locale as Locale] || titles.nl,
     description: descriptions[locale as Locale] || descriptions.nl,
+    alternates: generateAlternates("/kennisbank", locale),
   };
 }
 

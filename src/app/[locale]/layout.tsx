@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlogTranslationProvider } from "@/contexts/blog-translation-context";
 import { locales, type Locale } from "@/i18n/config";
+import { generateAlternates } from "@/lib/metadata";
 import "../globals.css";
 
 const inter = Inter({
@@ -62,12 +63,7 @@ export async function generateMetadata({
       description: descriptions[locale],
       siteName: "Robuust Marketing",
     },
-    alternates: {
-      languages: {
-        nl: "/",
-        en: "/en",
-      },
-    },
+    alternates: generateAlternates("/", locale),
     appleWebApp: {
       title: "Robuust",
     },
@@ -161,11 +157,6 @@ export default async function LocaleLayout({
             }}
           />
         )}
-
-        {/* Hreflang tags */}
-        <link rel="alternate" hrefLang="nl" href="https://robuustmarketing.nl/" />
-        <link rel="alternate" hrefLang="en" href="https://robuustmarketing.nl/en/" />
-        <link rel="alternate" hrefLang="x-default" href="https://robuustmarketing.nl/" />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
         {/* Google Tag Manager (noscript) */}
