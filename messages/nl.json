@@ -985,53 +985,199 @@
     }
   },
   "privacyPage": {
-    "title": "Privacy Policy",
-    "lastUpdated": "Laatst bijgewerkt: januari 2025",
+    "title": "Privacybeleid",
+    "lastUpdated": "Laatst bijgewerkt: januari 2026",
     "sections": {
       "intro": {
-        "title": "1. Inleiding",
-        "content": "Robuust Marketing, gevestigd in Nederland, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring. Wij respecteren de privacy van alle gebruikers van onze website en dragen er zorg voor dat de persoonlijke informatie die u ons verschaft vertrouwelijk wordt behandeld."
+        "title": "1. Verwerkingsverantwoordelijke",
+        "content": "Robuust Marketing is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring. Wij respecteren uw privacy en verwerken persoonsgegevens in overeenstemming met de Algemene Verordening Gegevensbescherming (AVG).",
+        "contactInfo": "Robuust Marketing\nE-mail: info@robuustmarketing.nl\nTelefoon: 085 060 4877\nWebsite: robuustmarketing.nl\nKvK-nummer: 82003033"
       },
       "dataCollection": {
-        "title": "2. Welke gegevens verzamelen wij?",
-        "intro": "Wij verzamelen de volgende persoonsgegevens:",
-        "items": ["Naam en contactgegevens (e-mail, telefoonnummer)", "Bedrijfsgegevens (bedrijfsnaam, functie)", "Technische gegevens (IP-adres, browsertype, apparaatgegevens)", "Gebruiksgegevens (hoe u onze website gebruikt, welke pagina's u bezoekt)"]
+        "title": "2. Welke persoonsgegevens verzamelen wij?",
+        "intro": "Wij verzamelen persoonsgegevens die u zelf aan ons verstrekt of die wij automatisch verzamelen wanneer u onze website bezoekt:",
+        "categories": {
+          "contact": {
+            "title": "Contactgegevens (bij aanvragen en offertes)",
+            "items": ["Voor- en achternaam", "E-mailadres", "Telefoonnummer", "Bedrijfsnaam en functie"]
+          },
+          "technical": {
+            "title": "Technische gegevens (automatisch verzameld)",
+            "items": ["IP-adres (geanonimiseerd na 14 maanden)", "Browsertype en -versie", "Apparaattype (desktop, tablet, mobiel)", "Besturingssysteem"]
+          },
+          "usage": {
+            "title": "Gebruiksgegevens (met uw toestemming)",
+            "items": ["Bezochte pagina's en klikgedrag", "Sessieduur en interacties", "Verwijzende website (referrer)", "Conversies en formulierinzendingen"]
+          }
+        },
+        "noSensitiveData": "Wij verzamelen geen bijzondere persoonsgegevens (zoals gegevens over gezondheid, religie of politieke voorkeur)."
       },
-      "dataUsage": {
-        "title": "3. Waarvoor gebruiken wij uw gegevens?",
-        "items": ["Om contact met u op te nemen naar aanleiding van een aanvraag", "Om onze dienstverlening te verbeteren en te personaliseren", "Om u te informeren over onze diensten (alleen met uw toestemming)", "Om te voldoen aan wettelijke verplichtingen", "Voor website-analyse en optimalisatie"]
+      "legalBasis": {
+        "title": "3. Rechtsgronden voor verwerking",
+        "intro": "Wij verwerken uw persoonsgegevens uitsluitend op basis van een geldige rechtsgrond conform artikel 6 AVG:",
+        "grounds": {
+          "consent": {
+            "title": "Toestemming (art. 6 lid 1 sub a AVG)",
+            "description": "Voor het plaatsen van analytische en marketing cookies via onze cookiebanner (Cookiebot). U kunt uw toestemming te allen tijde intrekken."
+          },
+          "contract": {
+            "title": "Uitvoering overeenkomst (art. 6 lid 1 sub b AVG)",
+            "description": "Voor het verwerken van offerteaanvragen, het uitvoeren van opdrachten en het leveren van onze diensten."
+          },
+          "legitimate": {
+            "title": "Gerechtvaardigd belang (art. 6 lid 1 sub f AVG)",
+            "description": "Voor het plaatsen van noodzakelijke cookies, het verbeteren van onze website en het beveiligen van onze systemen."
+          },
+          "legal": {
+            "title": "Wettelijke verplichting (art. 6 lid 1 sub c AVG)",
+            "description": "Voor het bewaren van factuurgegevens (7 jaar conform fiscale wetgeving)."
+          }
+        }
+      },
+      "purposes": {
+        "title": "4. Doeleinden van verwerking",
+        "items": [
+          "Het beantwoorden van contactaanvragen en offertes",
+          "Het uitvoeren van overeenkomsten (webdesign, hosting, onderhoud)",
+          "Het verbeteren van onze website en dienstverlening",
+          "Het analyseren van websitegebruik om de gebruikerservaring te optimaliseren",
+          "Het versturen van relevante informatie over onze diensten (alleen met toestemming)",
+          "Het voldoen aan wettelijke verplichtingen (zoals belastingaangifte)"
+        ]
       },
       "cookies": {
-        "title": "4. Cookies",
-        "intro": "Onze website maakt gebruik van cookies. Cookies zijn kleine tekstbestanden die op uw apparaat worden opgeslagen. Wij gebruiken:",
-        "functional": { "title": "Functionele cookies:", "description": "noodzakelijk voor het functioneren van de website" },
-        "analytical": { "title": "Analytische cookies:", "description": "om inzicht te krijgen in het gebruik van onze website (Google Analytics)" },
-        "marketing": { "title": "Marketing cookies:", "description": "alleen met uw toestemming, voor het tonen van relevante advertenties" },
-        "outro": "Via onze cookiebanner kunt u uw voorkeuren beheren en toestemming geven of intrekken."
-      },
-      "retention": {
-        "title": "5. Bewaartermijn",
-        "content": "Wij bewaren uw persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren waarvoor uw gegevens worden verzameld. Contactgegevens worden maximaal 2 jaar na het laatste contact bewaard, tenzij er een lopende klantrelatie is."
+        "title": "5. Cookies en tracking",
+        "intro": "Onze website maakt gebruik van cookies en vergelijkbare technologieën. Cookies zijn kleine tekstbestanden die op uw apparaat worden opgeslagen. Wij maken gebruik van Google Consent Mode v2 om uw cookievoorkeuren te respecteren.",
+        "consentMode": {
+          "title": "Google Consent Mode v2",
+          "description": "Wij gebruiken Google Consent Mode v2 om ervoor te zorgen dat Google-diensten (zoals Google Analytics en Google Ads) pas data verzamelen nadat u hiervoor toestemming heeft gegeven. Standaard zijn alle niet-noodzakelijke cookies geblokkeerd totdat u een keuze maakt via onze cookiebanner."
+        },
+        "categories": {
+          "necessary": {
+            "title": "Noodzakelijke cookies (altijd actief)",
+            "description": "Deze cookies zijn essentieel voor het functioneren van de website en kunnen niet worden uitgeschakeld.",
+            "examples": ["Cookiebot (CookieConsent): Onthoudt uw cookievoorkeuren, 12 maanden", "security_storage: Beveiligingsfuncties"]
+          },
+          "functional": {
+            "title": "Functionele cookies (voorkeurscookies)",
+            "description": "Deze cookies onthouden uw voorkeuren voor een betere gebruikerservaring.",
+            "examples": ["Taalvoorkeur (nl/en)", "Weergave-instellingen"]
+          },
+          "analytical": {
+            "title": "Analytische cookies (statistieken)",
+            "description": "Met uw toestemming gebruiken wij analytische cookies om inzicht te krijgen in hoe bezoekers onze website gebruiken.",
+            "examples": ["Google Analytics 4 (_ga, _ga_*): Websitestatistieken, 2 jaar", "IP-adressen worden geanonimiseerd", "Data wordt verwerkt binnen de EU"]
+          },
+          "marketing": {
+            "title": "Marketing cookies (advertenties)",
+            "description": "Met uw toestemming kunnen marketing cookies worden geplaatst voor het tonen van relevante advertenties en het meten van campagne-effectiviteit.",
+            "examples": ["Google Ads conversion tracking", "LinkedIn Insight Tag", "Facebook Pixel (indien van toepassing)"]
+          }
+        },
+        "cookiebot": {
+          "title": "Cookiebeheer met Cookiebot",
+          "description": "Wij gebruiken Cookiebot als Consent Management Platform (CMP) om uw cookievoorkeuren te beheren. Bij uw eerste bezoek verschijnt een cookiebanner waarin u kunt kiezen welke categorieën cookies u accepteert. U kunt uw voorkeuren op elk moment wijzigen door onderaan deze pagina op 'Wijzig cookie-instellingen' te klikken.",
+          "declaration": "Een volledig overzicht van alle cookies die onze website plaatst vindt u in de Cookiebot-declaratie onderaan deze pagina."
+        },
+        "browserSettings": "U kunt cookies ook blokkeren via uw browserinstellingen. Let op: dit kan de functionaliteit van de website beperken."
       },
       "thirdParties": {
-        "title": "6. Delen met derden",
-        "intro": "Wij delen uw gegevens alleen met derden indien dit noodzakelijk is voor het uitvoeren van onze diensten:",
-        "items": ["Hostingproviders (servers in EU: Duitsland/Finland)", "Analytics diensten (Google Analytics - geanonimiseerd)", "E-mail dienstverleners (voor het verzenden van berichten)"],
-        "outro": "Wij verkopen uw gegevens nooit aan derden."
+        "title": "6. Ontvangers en doorgifte",
+        "intro": "Wij delen uw persoonsgegevens alleen met derden wanneer dit noodzakelijk is voor onze dienstverlening of wanneer wij hiertoe wettelijk verplicht zijn. Met alle verwerkers hebben wij verwerkersovereenkomsten gesloten.",
+        "recipients": {
+          "hosting": {
+            "title": "Hostingproviders",
+            "items": ["Hetzner (Duitsland/Finland) - serverhosting", "Cloudflare (VS, EU Standard Contractual Clauses) - CDN en DDoS-bescherming"]
+          },
+          "analytics": {
+            "title": "Analytics en tracking",
+            "items": ["Google Analytics 4 (Google Ireland Ltd) - websitestatistieken", "Google Tag Manager - tag management"]
+          },
+          "crm": {
+            "title": "CRM en communicatie",
+            "items": ["HubSpot (VS, EU Standard Contractual Clauses) - lead management", "Resend (VS, EU Standard Contractual Clauses) - e-mail verzending"]
+          },
+          "security": {
+            "title": "Beveiliging",
+            "items": ["Cloudflare Turnstile - bot-bescherming bij formulieren", "Cookiebot (Cybot, Denemarken) - consent management"]
+          }
+        },
+        "transfers": "Sommige van onze verwerkers zijn gevestigd buiten de EU (VS). In die gevallen zorgen wij voor passende waarborgen middels Standard Contractual Clauses (SCC's) conform artikel 46 AVG.",
+        "noSale": "Wij verkopen uw persoonsgegevens nooit aan derden."
+      },
+      "retention": {
+        "title": "7. Bewaartermijnen",
+        "intro": "Wij bewaren uw persoonsgegevens niet langer dan noodzakelijk voor de doeleinden waarvoor ze zijn verzameld:",
+        "periods": {
+          "contact": {
+            "category": "Contactformulier / offerteaanvragen",
+            "period": "2 jaar na laatste contact"
+          },
+          "client": {
+            "category": "Klantgegevens (lopende overeenkomst)",
+            "period": "Duur van de overeenkomst + 2 jaar"
+          },
+          "invoices": {
+            "category": "Factuurgegevens",
+            "period": "7 jaar (wettelijke bewaarplicht)"
+          },
+          "analytics": {
+            "category": "Analytische gegevens",
+            "period": "14 maanden (Google Analytics)"
+          },
+          "cookies": {
+            "category": "Cookievoorkeuren",
+            "period": "12 maanden"
+          }
+        }
       },
       "rights": {
-        "title": "7. Uw rechten",
-        "intro": "U heeft het recht om:",
-        "items": ["Uw persoonsgegevens in te zien", "Uw persoonsgegevens te corrigeren", "Uw persoonsgegevens te laten verwijderen", "Bezwaar te maken tegen de verwerking", "Uw gegevens over te dragen (dataportabiliteit)"],
-        "outro": "U kunt een verzoek indienen via {email}. Wij reageren binnen 30 dagen."
+        "title": "8. Uw rechten",
+        "intro": "Op grond van de AVG heeft u de volgende rechten met betrekking tot uw persoonsgegevens:",
+        "items": [
+          "Recht op inzage: U kunt opvragen welke persoonsgegevens wij van u verwerken",
+          "Recht op rectificatie: U kunt onjuiste gegevens laten corrigeren",
+          "Recht op verwijdering: U kunt verzoeken uw gegevens te verwijderen ('recht op vergetelheid')",
+          "Recht op beperking: U kunt de verwerking tijdelijk laten stopzetten",
+          "Recht op dataportabiliteit: U kunt uw gegevens in een gangbaar formaat ontvangen",
+          "Recht op bezwaar: U kunt bezwaar maken tegen verwerking op basis van gerechtvaardigd belang",
+          "Recht om toestemming in te trekken: U kunt eerder gegeven toestemming altijd intrekken"
+        ],
+        "exercise": "Om uw rechten uit te oefenen, kunt u contact met ons opnemen via info@robuustmarketing.nl. Wij reageren binnen 30 dagen op uw verzoek. Voor het verwerken van een verzoek kunnen wij u vragen om identificatie.",
+        "complaint": "U heeft ook het recht om een klacht in te dienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl) indien u van mening bent dat wij uw persoonsgegevens niet correct verwerken."
       },
       "security": {
-        "title": "8. Beveiliging",
-        "content": "Wij nemen de bescherming van uw gegevens serieus en nemen passende maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. Onze website maakt gebruik van een SSL-certificaat en onze servers staan in beveiligde datacenters in Europa."
+        "title": "9. Beveiliging",
+        "content": "Wij nemen passende technische en organisatorische maatregelen om uw persoonsgegevens te beschermen tegen verlies, misbruik en onbevoegde toegang:",
+        "measures": [
+          "SSL/TLS-versleuteling voor alle dataverkeer (HTTPS)",
+          "Servers in beveiligde EU-datacenters (Duitsland en Finland)",
+          "DDoS-bescherming en Web Application Firewall via Cloudflare",
+          "Regelmatige beveiligingsupdates en monitoring",
+          "Toegangsbeperking tot persoonsgegevens op need-to-know basis",
+          "Versleutelde backups"
+        ]
+      },
+      "minors": {
+        "title": "10. Minderjarigen",
+        "content": "Onze website en diensten zijn niet gericht op personen jonger dan 16 jaar. Wij verzamelen niet bewust persoonsgegevens van minderjarigen. Als u vermoedt dat wij persoonsgegevens van een minderjarige hebben verzameld, neem dan contact met ons op via info@robuustmarketing.nl zodat wij deze gegevens kunnen verwijderen."
+      },
+      "automated": {
+        "title": "11. Geautomatiseerde besluitvorming",
+        "content": "Wij maken geen gebruik van geautomatiseerde besluitvorming of profilering die juridische of vergelijkbare gevolgen voor u heeft."
+      },
+      "changes": {
+        "title": "12. Wijzigingen",
+        "content": "Wij kunnen deze privacyverklaring van tijd tot tijd aanpassen, bijvoorbeeld bij wijzigingen in onze dienstverlening of in de wetgeving. De meest actuele versie vindt u altijd op deze pagina. Bij ingrijpende wijzigingen zullen wij u hierover informeren."
       },
       "contact": {
-        "title": "9. Contact",
-        "content": "Heeft u vragen over deze privacyverklaring of over de verwerking van uw persoonsgegevens? Neem dan contact met ons op via {email}."
+        "title": "13. Contact",
+        "content": "Heeft u vragen over deze privacyverklaring of over de verwerking van uw persoonsgegevens? Neem dan contact met ons op:",
+        "details": "Robuust Marketing\nE-mail: info@robuustmarketing.nl\nTelefoon: 085 060 4877"
+      },
+      "cookieDeclaration": {
+        "title": "Cookie-declaratie",
+        "description": "Hieronder vindt u een actueel overzicht van alle cookies die op onze website worden gebruikt, automatisch gegenereerd door Cookiebot."
       }
     }
   },
@@ -2267,122 +2413,120 @@
     }
   },
   "crmPage": {
-    "badge": "CRM & Automatisering",
-    "titleLine1": "Klantrelaties",
-    "titleLine2": "geoptimaliseerd",
-    "subtitle": "Slimme CRM integraties en automatiseringen die je sales proces stroomlijnen. Van lead tot klant, volledig geautomatiseerd.",
-    "primaryButton": "CRM adviesgesprek",
+    "badge": "CRM Integraties",
+    "titleLine1": "CRM koppelen",
+    "titleLine2": "aan je website",
+    "subtitle": "Wij verbinden je website met Salesforce, HubSpot of Brevo. Basis configuraties en integraties - geen full-scale CRM implementaties.",
+    "primaryButton": "Integratie bespreken",
     "secondaryButton": "Email Marketing",
     "services": {
       "title": "Wat we doen",
-      "subtitle": "Complete CRM implementatie en optimalisatie",
-      "crmSetup": {
-        "title": "CRM Setup",
-        "description": "Implementatie en configuratie van je CRM systeem, afgestemd op jouw werkprocessen."
-      },
+      "subtitle": "CRM koppelingen en basis configuraties voor je website",
       "integrations": {
-        "title": "Integraties",
-        "description": "Koppel je CRM aan je website, email marketing, boekhouding en andere tools."
+        "title": "Website Integraties",
+        "description": "Koppel je website formulieren direct aan je CRM systeem voor automatische lead capture."
       },
-      "automation": {
-        "title": "Automatisering",
-        "description": "Automatische workflows voor lead nurturing, follow-ups en taakbeheer."
+      "formConnections": {
+        "title": "Formulier Koppelingen",
+        "description": "Elk contactformulier, aanvraag of download direct in je CRM met de juiste tags."
       },
-      "leadScoring": {
-        "title": "Lead Scoring",
-        "description": "Identificeer je warmste leads op basis van gedrag en interacties."
+      "basicSetup": {
+        "title": "Basis Configuratie",
+        "description": "Velden, pipelines en properties instellen zodat je direct aan de slag kunt."
+      },
+      "leadCapture": {
+        "title": "Lead Capture",
+        "description": "Zorg dat elke websitebezoeker die converteert automatisch in je CRM terechtkomt."
       },
       "notifications": {
         "title": "Notificaties",
         "description": "Real-time alerts wanneer leads actie ondernemen op je website."
       },
-      "dataManagement": {
-        "title": "Data Management",
-        "description": "Schone, georganiseerde data met deduplicatie en validatie."
+      "dataSync": {
+        "title": "Data Synchronisatie",
+        "description": "Houd je CRM en website data gesynchroniseerd zonder handmatig werk."
       }
     },
     "platforms": {
-      "title": "CRM Platforms",
-      "subtitle": "We werken met de beste CRM systemen en helpen je de juiste keuze maken",
+      "title": "Platforms",
+      "subtitle": "Wij werken met de drie meest gebruikte CRM platforms",
       "hubspot": {
         "name": "HubSpot",
-        "description": "All-in-one marketing, sales en service platform",
+        "description": "All-in-one marketing en sales platform met gratis CRM",
+        "type": "Marketing & Sales"
+      },
+      "salesforce": {
+        "name": "Salesforce",
+        "description": "Enterprise CRM voor grotere organisaties",
         "type": "Enterprise"
       },
-      "pipedrive": {
-        "name": "Pipedrive",
-        "description": "Sales-focused CRM voor groeiende teams",
-        "type": "Sales"
-      },
-      "activeCampaign": {
-        "name": "ActiveCampaign",
-        "description": "Marketing automation met CRM functionaliteit",
-        "type": "Marketing"
-      },
-      "notion": {
-        "name": "Notion",
-        "description": "Flexibele workspace met CRM templates",
-        "type": "Startup"
+      "brevo": {
+        "name": "Brevo",
+        "description": "Betaalbaar CRM met sterke email marketing",
+        "type": "Email & CRM"
       }
     },
-    "automations": {
-      "title": "Automatisering Voorbeelden",
-      "subtitle": "Zo kunnen automatiseringen jouw werkprocessen versnellen",
-      "triggerLabel": "Trigger:",
-      "actionsLabel": "Automatische acties:",
-      "formSubmitted": {
-        "trigger": "Formulier ingevuld",
-        "actions": [
-          "Contact aanmaken in CRM",
-          "Tag toekennen op basis van interesse",
-          "Welkomst email versturen",
-          "Sales notificatie sturen"
+    "integrationExamples": {
+      "title": "Integratie Voorbeelden",
+      "subtitle": "Praktische voorbeelden van wat wij voor je kunnen opzetten",
+      "websiteForms": {
+        "title": "Formulier → CRM",
+        "description": "Elk ingevuld formulier wordt automatisch een contact in je CRM.",
+        "features": [
+          "Contactformulier naar HubSpot/Salesforce",
+          "Automatische tags op basis van pagina",
+          "UTM parameters meesturen",
+          "Bevestigingsmail via CRM"
         ]
       },
-      "quoteViewed": {
-        "trigger": "Offerte bekeken",
-        "actions": [
-          "Lead score verhogen",
-          "Follow-up taak aanmaken",
-          "Reminder email na 3 dagen"
+      "leadNotifications": {
+        "title": "Lead Notificaties",
+        "description": "Direct op de hoogte wanneer iemand contact opneemt.",
+        "features": [
+          "Email notificatie bij nieuwe lead",
+          "Slack/Teams melding",
+          "Toewijzing aan sales medewerker",
+          "Prioritering op basis van formulier"
         ]
       },
-      "noActivity": {
-        "trigger": "Geen activiteit 30 dagen",
-        "actions": [
-          "Re-engagement email versturen",
-          "Tag wijzigen naar 'cold'",
-          "Verwijderen uit actieve campagnes"
+      "contactSync": {
+        "title": "Contact Synchronisatie",
+        "description": "Houd je CRM up-to-date met website interacties.",
+        "features": [
+          "Nieuwsbrief inschrijving naar CRM",
+          "Download tracking per contact",
+          "Pageviews zichtbaar in CRM",
+          "Deal/opportunity aanmaken"
         ]
       }
     },
     "benefits": {
       "title": "Waarom",
-      "titleHighlight": "CRM automatisering?",
-      "subtitle": "Een goed ingericht CRM systeem bespaart je team uren per week en zorgt ervoor dat geen enkele lead door de mazen van het net glipt.",
+      "titleHighlight": "CRM integratie?",
+      "subtitle": "Met een goede koppeling tussen je website en CRM mis je nooit meer een lead en heeft je team direct alle informatie bij de hand.",
       "items": [
-        "Nooit meer leads vergeten op te volgen",
-        "360° klantbeeld voor betere service",
-        "Kortere sales cycles door automatisering",
-        "Betere samenwerking tussen teams",
-        "Data-driven beslissingen",
-        "Schaalbaar zonder extra handwerk"
+        "Leads automatisch in je CRM",
+        "Geen handmatig overtypen meer",
+        "Direct inzicht in leadbron",
+        "Snellere opvolging mogelijk",
+        "Betere data kwaliteit",
+        "Minder administratief werk"
       ],
       "card": {
-        "title": "Website + CRM Integratie",
-        "description": "De kracht van CRM zit in de integratie met je website. Elk formulier, elke download, elke pageview kan automatisch in je CRM terechtkomen.",
+        "title": "Geen implementatiepartner",
+        "description": "Wij zijn geen full-scale CRM implementatiepartner. Heb je een complexe CRM uitrol nodig? Dan verwijzen we je graag door. Wij focussen op de koppeling tussen je website en bestaand CRM.",
         "features": [
-          "Formulieren direct gekoppeld aan CRM",
-          "Website gedrag zichtbaar per contact",
-          "Automatische lead scoring",
-          "Real-time sales notificaties"
+          "Website ↔ CRM koppelingen",
+          "Formulier integraties",
+          "Basis velden en pipelines",
+          "Notificatie workflows"
         ],
         "button": "Meer over development →"
       }
     },
     "cta": {
-      "title": "Klaar om je sales te stroomlijnen?",
-      "subtitle": "Laten we bespreken hoe CRM automatisering jouw bedrijf kan helpen groeien.",
+      "title": "CRM koppelen aan je website?",
+      "subtitle": "Laten we bespreken welke integratie het beste bij jouw situatie past.",
       "primaryButton": "Plan een gesprek",
       "secondaryButton": "Alle diensten"
     }

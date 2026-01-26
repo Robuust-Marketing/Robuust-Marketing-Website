@@ -21,23 +21,28 @@ interface BentoCardProps {
   description: string;
   icon: React.ReactNode;
   className?: string;
-  index: number;
   highlight?: boolean;
   href?: string;
 }
 
-function BentoCard({ title, description, icon, className, index, highlight, href }: BentoCardProps) {
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number]
+    }
+  }
+};
+
+function BentoCard({ title, description, icon, className, highlight, href }: BentoCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.08,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }}
-      whileHover={{ y: -6, scale: 1.02 }}
+      variants={cardVariants}
+      whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
       className={cn(
         "group relative overflow-hidden rounded-3xl bg-surface p-6 sm:p-8",
         "border border-white/5 hover:border-accent/30 transition-all duration-300",
@@ -70,17 +75,15 @@ function BentoCard({ title, description, icon, className, index, highlight, href
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col">
         {/* Icon */}
-        <motion.div
+        <div
           className={cn(
             "mb-4 inline-flex items-center justify-center w-12 h-12 rounded-2xl",
-            "bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors",
+            "bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors duration-300",
             highlight && "bg-accent/20"
           )}
-          whileHover={{ rotate: [0, -10, 10, 0] }}
-          transition={{ duration: 0.4 }}
         >
           {icon}
-        </motion.div>
+        </div>
 
         {/* Title */}
         <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
@@ -248,14 +251,13 @@ export function BentoGrid() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-3 auto-rows-[minmax(180px,auto)] gap-4 sm:gap-5"
         >
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <BentoCard
               key={feature.key}
               title={t(`features.${feature.key}.title`)}
               description={t(`features.${feature.key}.description`)}
               icon={feature.icon}
               className={feature.className}
-              index={index}
               highlight={feature.highlight}
               href={feature.href}
             />
