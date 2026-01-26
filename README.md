@@ -123,7 +123,7 @@ npm run lint         # ESLint
 title: "Titel van het artikel"
 excerpt: "Korte beschrijving"
 category: "SEO"
-date: "2024-01-15"
+date: "2025-01-15"
 author: "Robin van der Heide"
 featured: true
 image: "/blog/artikel-image.jpg"

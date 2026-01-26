@@ -43,7 +43,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     tags: ["WordPress", "Custom Design", "SEO"],
     url: "https://growteq.nl",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "Growteq groeide snel en hun oude website paste niet meer bij hun positie als serieuze speler in de BI-markt. Ze hadden een professionele uitstraling nodig die past bij klanten als grote retailers en energiebedrijven.",
@@ -73,7 +73,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     tags: ["WordPress", "Corporate Design", "SEO"],
     url: "https://denhartogbv.com",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "Als traditioneel energiebedrijf had Den Hartog een verouderde website die niet meer paste bij hun positie als innovatieve partner in de energietransitie. Ze wilden een moderne uitstraling die zowel hun historie als hun toekomstvisie communiceert.",
@@ -100,7 +100,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     tags: ["WordPress", "Portfolio", "Custom Design"],
     url: "https://villary.nl",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "new",
     challenge:
       "Villary wilde hun premium positionering versterken met een website die de kwaliteit van hun werk laat zien. Potentiële klanten moesten direct onder de indruk zijn van het vakmanschap.",
@@ -127,7 +127,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     tags: ["WordPress", "Horeca", "Reserveringen"],
     url: "https://idrw.nl",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "Het restaurant had een website nodig die de historische ambiance en gastronomische kwaliteit communiceert. Daarnaast moest het reserveringssysteem naadloos geïntegreerd worden.",
@@ -154,7 +154,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     tags: ["WordPress", "Hospitality", "Boekingen"],
     url: "https://bnbkinderdijk.nl",
     featured: false,
-    year: 2024,
+    year: 2025,
     projectType: "new",
     challenge:
       "Als kleinschalige B&B in een toeristische toplocatie was een professionele online aanwezigheid essentieel. De website moest de unieke locatie benadrukken en directe boekingen stimuleren naast Airbnb.",
@@ -181,7 +181,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     tags: ["WordPress", "B2B", "Product Showcase"],
     url: "https://voltracharging.com",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "new",
     challenge:
       "Voltra wilde zich positioneren als innovatieve, betrouwbare partner in de groeiende markt voor laadinfrastructuur. De website moest hun technische expertise en klantgerichte aanpak communiceren.",
@@ -208,7 +208,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     tags: ["WordPress", "Showroom", "Lokale SEO"],
     url: "https://woonstudiojoy.nl",
     featured: false,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "Als lokale keukenspecialist concurreert Woonstudio Joy met grote ketens. Ze hadden een website nodig die hun persoonlijke aanpak en kwaliteit benadrukt.",
@@ -238,7 +238,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     tags: ["WordPress", "Custom Design", "SEO"],
     url: "https://growteq.nl",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "Growteq was growing rapidly and their old website no longer matched their position as a serious player in the BI market. They needed a professional appearance that fits clients like major retailers and energy companies.",
@@ -268,7 +268,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     tags: ["WordPress", "Corporate Design", "SEO"],
     url: "https://denhartogbv.com",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "As a traditional energy company, Den Hartog had an outdated website that no longer matched their position as an innovative partner in the energy transition. They wanted a modern appearance that communicates both their history and their vision for the future.",
@@ -295,7 +295,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     tags: ["WordPress", "Portfolio", "Custom Design"],
     url: "https://villary.nl",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "new",
     challenge:
       "Villary wanted to strengthen their premium positioning with a website that showcases the quality of their work. Potential customers needed to be immediately impressed by the craftsmanship.",
@@ -322,7 +322,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     tags: ["WordPress", "Hospitality", "Reservations"],
     url: "https://idrw.nl",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "The restaurant needed a website that communicates the historic ambiance and gastronomic quality. Additionally, the reservation system had to be seamlessly integrated.",
@@ -349,7 +349,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     tags: ["WordPress", "Hospitality", "Bookings"],
     url: "https://bnbkinderdijk.nl",
     featured: false,
-    year: 2024,
+    year: 2025,
     projectType: "new",
     challenge:
       "As a small-scale B&B in a top tourist location, a professional online presence was essential. The website needed to emphasize the unique location and encourage direct bookings alongside Airbnb.",
@@ -376,7 +376,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     tags: ["WordPress", "B2B", "Product Showcase"],
     url: "https://voltracharging.com",
     featured: true,
-    year: 2024,
+    year: 2025,
     projectType: "new",
     challenge:
       "Voltra wanted to position themselves as an innovative, reliable partner in the growing market for charging infrastructure. The website needed to communicate their technical expertise and customer-focused approach.",
@@ -403,7 +403,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     tags: ["WordPress", "Showroom", "Local SEO"],
     url: "https://woonstudiojoy.nl",
     featured: false,
-    year: 2024,
+    year: 2025,
     projectType: "redesign",
     challenge:
       "As a local kitchen specialist, Woonstudio Joy competes with large chains. They needed a website that emphasizes their personal approach and quality.",
