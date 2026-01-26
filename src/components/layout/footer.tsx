@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone, MapPin, Server, Shield } from "lucide-react";
+import { Mail, Phone, MapPin, Server, Shield, Linkedin, Instagram, Facebook, Youtube, Twitter, Music2 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n/config";
 
@@ -169,6 +169,63 @@ export function Footer() {
                 </div>
               </li>
             </ul>
+            {/* Social Media Links */}
+            <div className="mt-6 flex gap-3">
+              <a
+                href="https://www.linkedin.com/company/18149224/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-muted-foreground hover:bg-accent/20 hover:text-accent transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/robuustmarketing/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-muted-foreground hover:bg-accent/20 hover:text-accent transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/RobuustMarketing/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-muted-foreground hover:bg-accent/20 hover:text-accent transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCqqewiSClIhuAeuWVh9eidQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-muted-foreground hover:bg-accent/20 hover:text-accent transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-4 w-4" />
+              </a>
+              <a
+                href="https://x.com/RobuustM"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-muted-foreground hover:bg-accent/20 hover:text-accent transition-colors"
+                aria-label="X (Twitter)"
+              >
+                <Twitter className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@robuustmarketing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-muted-foreground hover:bg-accent/20 hover:text-accent transition-colors"
+                aria-label="TikTok"
+              >
+                <Music2 className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           {/* Column 5: Trust Indicators */}

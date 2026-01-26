@@ -16,13 +16,26 @@ import {
   Check,
   Users,
   LucideIcon,
+  Facebook,
+  Youtube,
+  Twitter,
+  Music2,
 } from "lucide-react";
 
 const platforms: { id: string; icon: LucideIcon }[] = [
   { id: "instagram", icon: Instagram },
   { id: "linkedin", icon: Linkedin },
-  { id: "facebook", icon: Share2 },
-  { id: "tiktok", icon: Share2 },
+  { id: "facebook", icon: Facebook },
+  { id: "tiktok", icon: Music2 },
+];
+
+const socialLinks = [
+  { href: "https://www.linkedin.com/company/18149224/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://www.instagram.com/robuustmarketing/", icon: Instagram, label: "Instagram" },
+  { href: "https://www.facebook.com/RobuustMarketing/", icon: Facebook, label: "Facebook" },
+  { href: "https://www.youtube.com/channel/UCqqewiSClIhuAeuWVh9eidQ", icon: Youtube, label: "YouTube" },
+  { href: "https://x.com/RobuustM", icon: Twitter, label: "X" },
+  { href: "https://www.tiktok.com/@robuustmarketing", icon: Music2, label: "TikTok" },
 ];
 
 const services: { id: string; icon: LucideIcon }[] = [
@@ -354,8 +367,49 @@ export default function SocialMediaPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Follow Us Section */}
       <section className="py-20 bg-surface/50">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-bold text-white mb-4"
+          >
+            {t("followUs.title")}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-muted-foreground mb-8"
+          >
+            {t("followUs.subtitle")}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-accent/30 hover:bg-accent/10 transition-colors"
+              >
+                <social.icon className="h-5 w-5 text-accent" />
+                <span className="text-white font-medium">{social.label}</span>
+              </a>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
