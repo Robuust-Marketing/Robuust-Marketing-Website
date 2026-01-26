@@ -1183,59 +1183,487 @@
   },
   "voorwaardenPage": {
     "title": "Algemene Voorwaarden",
-    "lastUpdated": "Laatst bijgewerkt: januari 2025",
-    "articles": {
-      "definitions": {
-        "title": "Artikel 1 - Definities",
-        "robuust": { "title": "Robuust Marketing:", "description": "de eenmanszaak gevestigd in Nederland, hierna te noemen \"opdrachtnemer\"." },
-        "client": { "title": "Opdrachtgever:", "description": "de natuurlijke of rechtspersoon die met Robuust Marketing een overeenkomst aangaat." },
-        "services": { "title": "Diensten:", "description": "alle door Robuust Marketing aangeboden diensten, waaronder maar niet beperkt tot webdesign, webdevelopment, hosting en onderhoud." }
-      },
-      "applicability": {
-        "title": "Artikel 2 - Toepasselijkheid",
-        "content1": "Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes, werkzaamheden, overeenkomsten en leveringen van diensten door of namens Robuust Marketing.",
-        "content2": "Afwijkingen van deze voorwaarden zijn slechts geldig indien deze uitdrukkelijk schriftelijk zijn overeengekomen."
-      },
-      "quotes": {
-        "title": "Artikel 3 - Offertes en aanbiedingen",
-        "items": ["Alle offertes zijn vrijblijvend en geldig gedurende 30 dagen, tenzij anders aangegeven.", "Prijzen in offertes zijn exclusief BTW, tenzij anders vermeld.", "Een overeenkomst komt tot stand na schriftelijke aanvaarding van de offerte door de opdrachtgever."]
-      },
-      "execution": {
-        "title": "Artikel 4 - Uitvoering van de overeenkomst",
-        "items": ["Robuust Marketing voert de overeenkomst naar beste inzicht en vermogen uit.", "De opdrachtgever draagt er zorg voor dat alle gegevens die nodig zijn voor de uitvoering tijdig worden aangeleverd.", "Genoemde termijnen zijn indicatief en geen fatale termijnen. Overschrijding geeft geen recht op schadevergoeding of ontbinding."]
-      },
-      "payment": {
-        "title": "Artikel 5 - Betalingsvoorwaarden",
-        "items": ["Betaling dient te geschieden binnen 14 dagen na factuurdatum, tenzij anders overeengekomen.", "Bij projecten boven €4.000 kan een aanbetaling van 50% worden gevraagd voor aanvang van de werkzaamheden.", "Bij niet-tijdige betaling is de opdrachtgever van rechtswege in verzuim en is wettelijke rente verschuldigd.", "Hosting- en onderhoudskosten worden maandelijks of jaarlijks vooruit gefactureerd."]
-      },
-      "ip": {
-        "title": "Artikel 6 - Intellectueel eigendom",
-        "items": ["Alle rechten van intellectuele eigendom op de ontwikkelde materialen berusten bij Robuust Marketing, tenzij anders schriftelijk overeengekomen.", "Na volledige betaling verkrijgt de opdrachtgever een gebruiksrecht op de geleverde materialen.", "Robuust Marketing behoudt het recht om het ontwerp te gebruiken voor eigen promotiedoeleinden, tenzij anders overeengekomen."]
-      },
-      "hosting": {
-        "title": "Artikel 7 - Hosting en onderhoud",
-        "items": ["Hostingdiensten worden geleverd met een uptime garantie van 99.9%, gemeten op jaarbasis.", "Onderhoudswerkzaamheden die buiten het overeengekomen pakket vallen, worden apart geoffreerd.", "De opdrachtgever is verantwoordelijk voor het maken van backups van eigen content, tenzij een onderhoudscontract anders bepaalt."]
-      },
-      "liability": {
-        "title": "Artikel 8 - Aansprakelijkheid",
-        "items": ["De aansprakelijkheid van Robuust Marketing is beperkt tot het bedrag dat in het desbetreffende geval onder de aansprakelijkheidsverzekering wordt uitgekeerd.", "Robuust Marketing is niet aansprakelijk voor indirecte schade, waaronder gevolgschade, gederfde winst of gemiste besparingen.", "De opdrachtgever vrijwaart Robuust Marketing voor aanspraken van derden die verband houden met de geleverde diensten."]
-      },
-      "termination": {
-        "title": "Artikel 9 - Opzegging en ontbinding",
-        "items": ["Doorlopende overeenkomsten (hosting, onderhoud) kunnen worden opgezegd met inachtneming van een opzegtermijn van 1 maand.", "Bij opzegging van projecten die in uitvoering zijn, zijn de tot dan verrichte werkzaamheden verschuldigd.", "Robuust Marketing kan de overeenkomst per direct ontbinden bij wanbetaling of faillissement van de opdrachtgever."]
-      },
-      "confidentiality": {
-        "title": "Artikel 10 - Geheimhouding",
-        "content": "Beide partijen zijn verplicht tot geheimhouding van alle vertrouwelijke informatie die zij in het kader van de overeenkomst hebben verkregen. Deze verplichting geldt ook na beëindiging van de overeenkomst."
-      },
-      "disputes": {
-        "title": "Artikel 11 - Toepasselijk recht en geschillen",
-        "items": ["Op alle overeenkomsten is uitsluitend Nederlands recht van toepassing.", "Geschillen worden voorgelegd aan de bevoegde rechter in het arrondissement waar Robuust Marketing is gevestigd.", "Partijen zullen eerst trachten geschillen in onderling overleg op te lossen."]
-      },
-      "contact": {
-        "title": "Artikel 12 - Contact",
-        "content": "Voor vragen over deze algemene voorwaarden kunt u contact opnemen via {email}."
+    "subtitle": "Hieronder vindt u onze algemene voorwaarden. De Nederlandse versie is juridisch bindend.",
+    "legalNotice": "De Nederlandse versie van deze algemene voorwaarden is juridisch bindend. Eventuele vertalingen dienen uitsluitend ter informatie.",
+    "contact": {
+      "title": "Contact",
+      "content": "Voor vragen over deze algemene voorwaarden kunt u contact opnemen via"
+    },
+    "currentVersion": {
+      "versionTitle": "Huidige Voorwaarden",
+      "versionSubtitle": "Geldig tot 1 maart 2025 | Laatst bijgewerkt: 2 augustus 2024",
+      "versionBadge": "Nu geldig",
+      "articles": {
+        "art1": {
+          "title": "1. Definities",
+          "items": [
+            "1.1 Robuust Marketing: de gebruiker van de algemene voorwaarden.",
+            "1.2 Opdrachtgever: de particulier of rechtspersoon met wie Robuust Marketing een overeenkomst sluit tot het leveren van diensten.",
+            "1.3 Website: een op naam van de opdrachtgever gemaakte presentatie voor gebruik op internet, inclusief alle pagina's, documenten, afbeeldingen, cookies, video's en contactformulieren.",
+            "1.4 Benodigd Materiaal: belangrijke gegevens waarover Robuust Marketing moet beschikken om een website te bouwen voor de opdrachtgever.",
+            "1.5 Uurtarief: het tarief dat Robuust Marketing rekent voor zijn werkzaamheden, standaard €120,- exclusief BTW per uur, tenzij schriftelijk anders overeengekomen.",
+            "1.6 Schriftelijke Toezegging: een bevestiging per e-mail of ondertekend document in tweevoud. Telefonische of persoonlijke toezeggingen vallen hier niet onder.",
+            "1.7 Overmacht: elke omstandigheid buiten de macht van Robuust Marketing, waardoor nakoming van de overeenkomst redelijkerwijs niet van Robuust Marketing kan worden verlangd, zoals natuurrampen, oorlog, pandemieën, brand, overheidsmaatregelen, of storingen in telecommunicatie.",
+            "1.8 Dag: werkdagen tenzij anders aangegeven, inclusief weekenden en nationale feestdagen."
+          ]
+        },
+        "art2": {
+          "title": "2. Toepasbaarheid",
+          "items": [
+            "2.1 Door ondertekening van een overeenkomst met Robuust Marketing verklaart de opdrachtgever dat hij kennis heeft genomen van en akkoord gaat met deze algemene voorwaarden.",
+            "2.2 Tenzij schriftelijk anders is overeengekomen, zijn deze algemene voorwaarden van toepassing op elke aanbieding, opdracht of overeenkomst van of met Robuust Marketing.",
+            "2.3 Afwijkingen van deze algemene voorwaarden zijn alleen bindend als deze uitdrukkelijk schriftelijk door beide partijen zijn overeengekomen."
+          ]
+        },
+        "art3": {
+          "title": "3. Offertes",
+          "items": [
+            "3.1 Alle offertes van Robuust Marketing zijn vrijblijvend.",
+            "3.2 Robuust Marketing is alleen gebonden aan een offerte als de opdrachtgever deze binnen 7 dagen schriftelijk bevestigt.",
+            "3.3 Offertes zijn gebaseerd op de op dat moment bekende specificaties. Indien zich wijzigingen voordoen in de specificaties of de omvang van de opdracht, behoudt Robuust Marketing zich het recht voor de offerte aan te passen."
+          ]
+        },
+        "art4": {
+          "title": "4. Aanvang van de Overeenkomst",
+          "items": [
+            "4.1 Een overeenkomst komt tot stand op de dag dat aan de volgende voorwaarden is voldaan:",
+            "4.1.1 Schriftelijke overeenstemming over prijs en duur via e-mail of een contract in tweevoud.",
+            "4.1.2 Acceptatie van de betaalvoorwaarden door de opdrachtgever.",
+            "4.1.3 Afwijkingen kunnen gelden wanneer de opdrachtgever reeds bekend is bij Robuust Marketing, in het voordeel van Robuust Marketing."
+          ]
+        },
+        "art5": {
+          "title": "5. Uitvoering van de Overeenkomst",
+          "items": [
+            "5.1 Robuust Marketing zal de overeenkomst naar het beste inzicht en vermogen uitvoeren en heeft het recht om bepaalde werkzaamheden door derden te laten verrichten indien dit nodig is voor een goede uitvoering.",
+            "5.2 De opdrachtgever zorgt ervoor dat alle noodzakelijke gegevens tijdig aan Robuust Marketing worden verstrekt.",
+            "5.3 Robuust Marketing is niet aansprakelijk voor schade veroorzaakt door door de opdrachtgever verstrekte onjuiste of onvolledige gegevens, tenzij deze onjuistheid of onvolledigheid kenbaar behoorde te zijn voor Robuust Marketing.",
+            "5.4 Robuust Marketing streeft ernaar de overeengekomen termijnen na te komen. Overschrijding van een termijn geeft de opdrachtgever echter geen recht op schadevergoeding of ontbinding van de overeenkomst, tenzij anders schriftelijk overeengekomen."
+          ]
+        },
+        "art6": {
+          "title": "6. Levering en Levertijd",
+          "items": [
+            "6.1 Het ontwerp en de ontwikkeling van de website beginnen zo snel mogelijk na schriftelijke opdracht en aanlevering van benodigd materiaal.",
+            "6.2 Tussentijdse resultaten worden door Robuust Marketing op een tijdelijke internetlocatie geplaatst voor testdoeleinden.",
+            "6.3 In geval van overmacht wordt de leveringstermijn verlengd met de duur van de overmacht. Indien de overmacht langer dan drie maanden duurt, hebben beide partijen het recht de overeenkomst te ontbinden zonder dat een schadevergoeding verschuldigd is.",
+            "6.4 Robuust Marketing is niet aansprakelijk voor niet werkende functionaliteiten veroorzaakt door foutieve instellingen bij de hosting provider van de opdrachtgever, mits deze functionaliteiten wel goed werkten op het testdomein.",
+            "6.5 Oplevering van een website geschiedt zo spoedig mogelijk na het gereedkomen van de ontwikkeling van de website."
+          ]
+        },
+        "art7": {
+          "title": "7. Copyright",
+          "items": [
+            "7.1 Al het door Robuust Marketing vervaardigde materiaal mag niet zonder uitdrukkelijke schriftelijke toestemming worden bewerkt of verwerkt in andere producten dan waarvoor het oorspronkelijk bedoeld is. Robuust Marketing kan hiervoor een vergoeding vragen.",
+            "7.2 Het eigendom van door Robuust Marketing verstrekte ideeën, concepten of (proef)ontwerpen blijft bij Robuust Marketing, tenzij anders schriftelijk overeengekomen. Bij schending van dit eigendom heeft Robuust Marketing recht op een redelijke vergoeding.",
+            "7.3 Tenzij anders overeengekomen, blijven de door Robuust Marketing tot stand gebrachte resultaten eigendom van Robuust Marketing, ongeacht of deze aan de opdrachtgever of aan derden ter beschikking zijn gesteld.",
+            "7.4 Na voltooiing van de opdracht hebben noch de opdrachtgever noch Robuust Marketing een bewaarplicht ten aanzien van de gebruikte materialen en gegevens, tenzij anders overeengekomen.",
+            "7.5 Bij ongeoorloofd gebruik of wijziging van het resultaat heeft Robuust Marketing recht op een vergoeding van ten minste drie keer het overeengekomen honorarium of een redelijke vergoeding.",
+            "7.6 Het gebruiksrecht van de ter beschikking gestelde resultaten vervalt als de opdrachtgever zijn (betalings)verplichtingen niet nakomt, of in geval van faillissement, tenzij de rechten reeds zijn overgedragen.",
+            "7.7 Robuust Marketing heeft het recht om de resultaten te gebruiken voor eigen publiciteit en promotie, met inachtneming van de belangen van de opdrachtgever.",
+            "7.8 Bij volledige betaling verkrijgt de opdrachtgever het recht om het resultaat te gebruiken zoals overeengekomen. Zonder specifieke afspraken blijft het gebruiksrecht beperkt tot het doel waarvoor de opdracht is verstrekt.",
+            "7.9 De opdrachtgever verkrijgt het recht om het materiaal te gebruiken zoals overeengekomen. Het is de opdrachtgever niet toegestaan om deze materialen voor andere doeleinden te gebruiken zonder schriftelijke toestemming van Robuust Marketing, waarvoor Robuust Marketing een aanvullende vergoeding kan vragen."
+          ]
+        },
+        "art8": {
+          "title": "8. Aansprakelijkheid",
+          "items": [
+            "8.1 Robuust Marketing is niet aansprakelijk voor schade die ontstaat door de medewerking, diensten of leveranties van derden waarop Robuust Marketing weinig invloed heeft.",
+            "8.2 Robuust Marketing is niet verantwoordelijk voor de inhoud van door de opdrachtgever aangeleverd materiaal. De opdrachtgever moet zich ervan vergewissen dat alle aangeleverde materialen vrij zijn van copyright van derden.",
+            "8.3 Robuust Marketing is alleen aansprakelijk voor directe schade en tot het factuurbedrag in geval van toerekenbare tekortkoming in de nakoming van de overeenkomst. Iedere aansprakelijkheid voor indirecte schade, zoals gevolgschade of gederfde winst, is uitgesloten.",
+            "8.4 Robuust Marketing is niet aansprakelijk voor enige indirecte schade, gevolgschade, gederfde winst of omzet, of verlies van data, ongeacht of deze voortvloeit uit of verband houdt met de uitvoering van de overeenkomst."
+          ]
+        },
+        "art9": {
+          "title": "9. Reclame",
+          "items": [
+            "9.1 De opdrachtgever moet gebreken binnen 14 dagen na levering schriftelijk melden. Indien de klacht gegrond is, zal Robuust Marketing proberen de gebreken te verhelpen tegen uurtarief, tenzij anders overeengekomen. Na deze termijn wordt de levering als geaccepteerd beschouwd.",
+            "9.2 Reclamaties geven de opdrachtgever niet het recht om betalingen op te schorten of te compenseren, tenzij schriftelijk overeengekomen."
+          ]
+        },
+        "art10": {
+          "title": "10. Prijzen",
+          "items": [
+            "10.1 Alle prijzen zijn exclusief BTW, tenzij anders vermeld.",
+            "10.2 Extra wensen van de opdrachtgever die niet van tevoren zijn afgesproken zullen resulteren in extra werk, waarvoor Robuust Marketing naar uurtarief zal rekenen."
+          ]
+        },
+        "art11": {
+          "title": "11. Betaling",
+          "items": [
+            "11.1 Na ondertekening of schriftelijke toezegging van de opdrachtbevestiging krijgt deze de status van contract. Vanaf dat moment is de opdrachtgever verplicht om de werkzaamheden van Robuust Marketing te honoreren.",
+            "11.2 De opdrachtgever moet 25% van het bruto totaalbedrag van de offerte als aanbetaling voldoen.",
+            "11.2.1 De aanbetaling kan alleen worden teruggevorderd als Robuust Marketing de diensten niet of niet volgens de offerte heeft geleverd. Leidend hierbij is het testdomein waarop de website in eerste instantie wordt klaargezet.",
+            "11.3 Na afronding van de opdracht en nadat de website op het testdomein naar behoren functioneert, zal Robuust Marketing een factuur sturen voor het resterende bedrag, verminderd met de aanbetaling. De opdrachtgever moet binnen 14 dagen na factuurdatum betalen. De website wordt overgezet naar het hostingsdomein van de opdrachtgever nadat de restbetaling is voldaan.",
+            "11.4 Indien de betalingstermijn wordt overschreden, stuurt Robuust Marketing een betalingsherinnering.",
+            "11.5 Bij verdere wanbetaling volgt een aanmaning. De kosten hiervan komen voor rekening van de opdrachtgever. Na 14 dagen is de opdrachtgever wettelijke rente en incassokosten verschuldigd over het openstaande bedrag.",
+            "11.6 Bij niet-tijdige betaling is Robuust Marketing gerechtigd om de uitvoering van de opdracht op te schorten totdat volledige betaling is ontvangen. Dit laat de betalingsverplichting van de opdrachtgever onverlet."
+          ]
+        },
+        "art12": {
+          "title": "12. Wijziging van de Algemene Voorwaarden",
+          "items": [
+            "12.1 Robuust Marketing heeft het recht om deze algemene voorwaarden te wijzigen of aan te vullen.",
+            "12.2 Wijzigingen gelden ook voor reeds gesloten overeenkomsten, met inachtneming van een termijn van 30 dagen na schriftelijke bekendmaking.",
+            "12.3 Indien de opdrachtgever niet akkoord gaat met de gewijzigde algemene voorwaarden, kan hij de overeenkomst ontbinden binnen 14 dagen na ontvangst van de wijzigingen.",
+            "12.4 Indien de opdrachtgever niet akkoord gaat met de gewijzigde algemene voorwaarden, heeft hij het recht de overeenkomst te ontbinden binnen veertien dagen na ontvangst van de gewijzigde voorwaarden, zonder dat dit tot enige vorm van schadevergoeding of boete leidt."
+          ]
+        },
+        "art13": {
+          "title": "13. Veiligheid en Hosting",
+          "items": [
+            "13.1 Robuust Marketing biedt hostingdiensten aan via een derde partij (Versio). De opdrachtgever is gebonden aan de voorwaarden van deze derde partij.",
+            "13.2 Robuust Marketing is niet verantwoordelijk voor enige onderbrekingen, verlies van data of beveiligingsproblemen veroorzaakt door de hostingprovider. De opdrachtgever wordt geadviseerd om regelmatig back-ups te maken en zelf aanvullende beveiligingsmaatregelen te nemen.",
+            "13.3 Robuust Marketing zal zich inspannen om de veiligheid van de opgeleverde websites te waarborgen, maar kan geen absolute veiligheidsgaranties bieden. De opdrachtgever blijft verantwoordelijk voor de implementatie van verdere beveiligingsmaatregelen.",
+            "13.4 Robuust Marketing is niet aansprakelijk voor schade of verlies als gevolg van hackers, virussen of andere cyberaanvallen, tenzij dit te wijten is aan grove nalatigheid van Robuust Marketing.",
+            "13.5 Bij beëindiging van de hostingovereenkomst of het niet naleven van de betalingsverplichtingen van de opdrachtgever, kan Robuust Marketing de hostingdiensten opschorten of beëindigen. De opdrachtgever is zelf verantwoordelijk voor het veiligstellen van data bij beëindiging van de hosting."
+          ]
+        },
+        "art14": {
+          "title": "14. Overig",
+          "items": [
+            "14.1 Robuust Marketing verstrekt geen persoonlijke gegevens van de opdrachtgever aan derden zonder wettelijke plicht. Dit geldt ook voor vertrouwelijke informatie verstrekt voor de uitvoering van een overeenkomst.",
+            "14.2 Wanneer Robuust Marketing bemiddelt bij webhosting namens een opdrachtgever, is de opdrachtgever gebonden aan de voorwaarden van de webhostingpartij. Robuust Marketing is niet verantwoordelijk voor enige wanprestatie van de webhostingpartij.",
+            "14.3 Wijzigingen in een overeenkomst kunnen na schriftelijke bevestiging door beide partijen worden doorgevoerd. Dit kan de opleveringsdatum beïnvloeden. Robuust Marketing zal de opdrachtgever binnen 3 dagen informeren over de nieuwe datum en eventuele financiële consequenties.",
+            "14.4 Robuust Marketing is vrij om voor promotiedoeleinden als referentie te verwijzen naar de geleverde eindproducten, tenzij anders overeengekomen. Robuust Marketing behoudt zich het recht voor op een creditvermelding met hyperlink in de afgeleverde website, of logo en URL in video- en fotografie. Dit is af te kopen voor €800 exclusief BTW."
+          ]
+        },
+        "art15": {
+          "title": "15. Geschillenregeling en Toepasselijk Recht",
+          "items": [
+            "15.1 Op de overeenkomst is uitsluitend Nederlands recht van toepassing.",
+            "15.2 In geval van een geschil streven partijen ernaar dit eerst in onderling overleg of door middel van mediation op te lossen voordat juridische stappen worden ondernomen."
+          ]
+        }
       }
+    },
+    "newVersion": {
+      "versionTitle": "Nieuwe Voorwaarden",
+      "versionSubtitle": "Geldig vanaf 1 maart 2025",
+      "versionBadge": "Vanaf 1 maart",
+      "articles": {
+        "art1_definitions": {
+          "title": "Artikel 1 - Definities",
+          "content": "In deze algemene voorwaarden wordt verstaan onder:",
+          "items": [
+            "Robuust Marketing: de eenmanszaak Robuust Marketing, gevestigd te Nederland, hierna te noemen \"opdrachtnemer\".",
+            "Opdrachtgever: de natuurlijke persoon of rechtspersoon die met Robuust Marketing een overeenkomst aangaat of wenst aan te gaan.",
+          "Partijen: Robuust Marketing en opdrachtgever gezamenlijk.",
+          "Overeenkomst: elke afspraak tussen Robuust Marketing en opdrachtgever tot het leveren van diensten, vastgelegd in een offerte, opdrachtbevestiging of contract.",
+          "Diensten: alle door Robuust Marketing aangeboden werkzaamheden, waaronder webdesign en webdevelopment, hosting en serverbeheer, onderhoud en support, zoekmachineoptimalisatie (SEO), online marketing, content creatie en consultancy.",
+          "Projectdiensten: eenmalige werkzaamheden met een duidelijk gedefinieerd eindresultaat, zoals het ontwikkelen van een website of applicatie.",
+          "Doorlopende diensten: terugkerende werkzaamheden op basis van een abonnement of onderhoudscontract, zoals hosting, onderhoud of support.",
+          "Materialen: alle door opdrachtgever aan te leveren content, teksten, afbeeldingen, logo's, huisstijlelementen en overige gegevens benodigd voor de uitvoering van de opdracht.",
+          "Resultaat: alle door Robuust Marketing geleverde producten, waaronder websites, applicaties, ontwerpen, code en documentatie.",
+          "Uurtarief: het tarief dat Robuust Marketing hanteert voor werkzaamheden, zijnde €120,- exclusief BTW per uur, tenzij schriftelijk anders overeengekomen.",
+          "Schriftelijk: per e-mail, brief of ander elektronisch communicatiemiddel waarvan de ontvangst kan worden vastgesteld.",
+          "Werkdagen: maandag tot en met vrijdag, uitgezonderd algemeen erkende Nederlandse feestdagen."
+        ]
+      },
+      "art2_applicability": {
+        "title": "Artikel 2 - Toepasselijkheid",
+        "items": [
+          "Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes, werkzaamheden, overeenkomsten en leveringen van diensten door of namens Robuust Marketing.",
+          "Door het aangaan van een overeenkomst met Robuust Marketing verklaart opdrachtgever kennis te hebben genomen van deze algemene voorwaarden en hiermee akkoord te gaan.",
+          "De toepasselijkheid van eventuele inkoop- of andere voorwaarden van opdrachtgever wordt uitdrukkelijk van de hand gewezen.",
+          "Afwijkingen van deze algemene voorwaarden zijn slechts geldig indien deze uitdrukkelijk schriftelijk zijn overeengekomen en gelden uitsluitend voor de betreffende overeenkomst.",
+          "Indien enige bepaling van deze algemene voorwaarden nietig is of vernietigd wordt, blijven de overige bepalingen onverminderd van kracht."
+        ]
+      },
+      "art3_quotes": {
+        "title": "Artikel 3 - Offertes en aanbiedingen",
+        "items": [
+          "Alle offertes en aanbiedingen van Robuust Marketing zijn vrijblijvend, tenzij uitdrukkelijk anders is aangegeven.",
+          "Offertes zijn geldig gedurende 30 dagen na dagtekening, tenzij anders vermeld.",
+          "Alle prijzen in offertes zijn exclusief BTW en eventuele andere heffingen, tenzij uitdrukkelijk anders vermeld.",
+          "Offertes zijn gebaseerd op de door opdrachtgever verstrekte informatie. Indien deze informatie onjuist of onvolledig blijkt, behoudt Robuust Marketing zich het recht voor de offerte aan te passen.",
+          "Kennelijke fouten of vergissingen in offertes binden Robuust Marketing niet."
+        ]
+      },
+      "art4_agreement": {
+        "title": "Artikel 4 - Totstandkoming overeenkomst",
+        "items": [
+          "Een overeenkomst komt tot stand op het moment dat opdrachtgever een offerte schriftelijk heeft aanvaard, een opdrachtbevestiging heeft ondertekend, of Robuust Marketing is begonnen met de uitvoering van de opdracht op verzoek van opdrachtgever.",
+          "Mondelinge toezeggingen door of namens Robuust Marketing binden Robuust Marketing pas nadat deze schriftelijk zijn bevestigd.",
+          "Aanvullingen op of wijzigingen van de overeenkomst zijn slechts van kracht indien deze schriftelijk door beide partijen zijn overeengekomen."
+        ]
+      },
+      "art5_execution": {
+        "title": "Artikel 5 - Uitvoering en planning",
+        "items": [
+          "Robuust Marketing zal de overeenkomst naar beste inzicht en vermogen en volgens de eisen van goed vakmanschap uitvoeren.",
+          "Robuust Marketing heeft het recht om werkzaamheden te laten verrichten door derden indien dit noodzakelijk is voor een goede uitvoering van de overeenkomst.",
+          "Genoemde of overeengekomen (leverings)termijnen zijn indicatief en gelden nimmer als fatale termijnen, tenzij uitdrukkelijk schriftelijk anders is overeengekomen.",
+          "Bij overschrijding van een termijn dient opdrachtgever Robuust Marketing schriftelijk in gebreke te stellen en een redelijke termijn van minimaal 14 dagen te gunnen om alsnog aan de verplichtingen te voldoen.",
+          "Overschrijding van een termijn geeft opdrachtgever geen recht op schadevergoeding, ontbinding van de overeenkomst of opschorting van enige verplichting jegens Robuust Marketing.",
+          "Robuust Marketing is gerechtigd de uitvoering van de opdracht op te schorten indien opdrachtgever niet aan zijn verplichtingen voldoet."
+        ]
+      },
+      "art6_client_obligations": {
+        "title": "Artikel 6 - Verplichtingen opdrachtgever",
+        "items": [
+          "Opdrachtgever draagt er zorg voor dat alle gegevens en materialen die Robuust Marketing aangeeft nodig te hebben voor de uitvoering van de overeenkomst, tijdig en in de gewenste vorm worden aangeleverd.",
+          "Opdrachtgever staat in voor de juistheid, volledigheid en betrouwbaarheid van de door hem verstrekte gegevens en materialen, ook indien deze van derden afkomstig zijn.",
+          "Opdrachtgever vrijwaart Robuust Marketing voor aanspraken van derden met betrekking tot rechten van intellectuele eigendom op door opdrachtgever verstrekte materialen.",
+          "Indien opdrachtgever niet, niet tijdig of niet behoorlijk voldoet aan zijn verplichtingen, is Robuust Marketing gerechtigd de uitvoering van de overeenkomst op te schorten en/of de daaruit voortvloeiende extra kosten aan opdrachtgever in rekening te brengen tegen het geldende uurtarief.",
+          "Opdrachtgever is verantwoordelijk voor het verkrijgen van eventueel benodigde licenties voor door hem aangeleverde materialen, het tijdig verstrekken van feedback, het aanwijzen van een contactpersoon die bevoegd is beslissingen te nemen, en het beschikbaar stellen van toegang tot benodigde systemen en accounts."
+        ]
+      },
+      "art7_additional_work": {
+        "title": "Artikel 7 - Meerwerk en wijzigingen",
+        "items": [
+          "Indien opdrachtgever tijdens de uitvoering van de overeenkomst wijzigingen of aanvullingen wenst, is Robuust Marketing gerechtigd hiervoor aanvullende kosten in rekening te brengen.",
+          "Onder meerwerk wordt verstaan: werkzaamheden die buiten de scope van de oorspronkelijke offerte vallen, wijzigingen in reeds goedgekeurde ontwerpen of functionaliteiten, aanvullende revisierondes boven het in de offerte genoemde aantal, werkzaamheden als gevolg van door opdrachtgever onjuist of onvolledig aangeleverde informatie, en uitbreiding van de oorspronkelijke scope.",
+          "Robuust Marketing zal opdrachtgever zo spoedig mogelijk informeren over de noodzaak van meerwerk, de verwachte kosten en de impact op de planning.",
+          "Meerwerk wordt uitgevoerd na schriftelijke akkoordverklaring van opdrachtgever op de geoffreerde meerkosten. Bij kleinschalig meerwerk (minder dan 4 uur) kan ook een mondelinge akkoordverklaring volstaan, welke achteraf schriftelijk wordt bevestigd."
+        ]
+      },
+      "art8_payment": {
+        "title": "Artikel 8 - Prijzen en betaling",
+        "subsections": [
+          {
+            "title": "Prijzen",
+            "items": [
+              "Alle prijzen zijn exclusief BTW en eventuele andere heffingen van overheidswege, tenzij uitdrukkelijk anders vermeld.",
+              "Robuust Marketing is gerechtigd de overeengekomen prijzen jaarlijks te indexeren op basis van de consumentenprijsindex (CPI) zoals gepubliceerd door het CBS. Indexatie vindt plaats per 1 januari van elk kalenderjaar.",
+              "Prijswijzigingen anders dan indexatie worden minimaal 30 dagen voorafgaand aan de ingangsdatum schriftelijk medegedeeld. Bij een prijsverhoging van meer dan 10% heeft opdrachtgever het recht de overeenkomst te ontbinden binnen 14 dagen na kennisgeving."
+            ]
+          },
+          {
+            "title": "Betalingsvoorwaarden projectdiensten",
+            "items": [
+              "Projecten tot €5.000 exclusief BTW: 100% facturatie na oplevering.",
+              "Projecten vanaf €5.000 tot €10.000 exclusief BTW: 25% aanbetaling bij opdrachtverstrekking, 75% na oplevering.",
+              "Projecten vanaf €10.000 exclusief BTW: 50% aanbetaling bij opdrachtverstrekking, 50% na oplevering.",
+              "Werkzaamheden worden pas gestart na ontvangst van de aanbetaling, tenzij schriftelijk anders overeengekomen.",
+              "Aanbetalingen worden niet gerestitueerd, tenzij Robuust Marketing de opdracht niet of niet conform de overeenkomst uitvoert."
+            ]
+          },
+          {
+            "title": "Betalingsvoorwaarden doorlopende diensten",
+            "items": [
+              "Doorlopende diensten (hosting, onderhoud, support) worden maandelijks of jaarlijks vooruit gefactureerd, conform de in de overeenkomst vastgelegde frequentie.",
+              "Bij jaarlijkse vooruitbetaling kan een korting van toepassing zijn, zoals vermeld in de offerte."
+            ]
+          },
+          {
+            "title": "Betalingstermijn en verzuim",
+            "items": [
+              "Betaling dient te geschieden binnen 14 dagen na factuurdatum, tenzij schriftelijk anders overeengekomen.",
+              "Bezwaren tegen de hoogte van een factuur schorten de betalingsverplichting niet op.",
+              "Indien opdrachtgever niet binnen de betalingstermijn heeft betaald, is opdrachtgever van rechtswege in verzuim en is de wettelijke handelsrente verschuldigd over het openstaande bedrag, alsmede alle redelijke incassokosten met een minimum van 15% van het openstaande bedrag en minimaal €150,-.",
+              "Bij niet-tijdige betaling is Robuust Marketing gerechtigd de uitvoering van de opdracht op te schorten, de toegang tot geleverde diensten tijdelijk te blokkeren, en/of de overeenkomst geheel of gedeeltelijk te ontbinden."
+            ]
+          }
+        ]
+      },
+      "art9_delivery": {
+        "title": "Artikel 9 - Oplevering en acceptatie",
+        "subsections": [
+          {
+            "title": "Oplevering",
+            "items": [
+              "Robuust Marketing zal het resultaat opleveren zodra dit naar oordeel van Robuust Marketing gereed is voor acceptatie.",
+              "Oplevering van websites en applicaties geschiedt in eerste instantie op een testomgeving, waar opdrachtgever het resultaat kan beoordelen.",
+              "Na acceptatie door opdrachtgever wordt het resultaat overgezet naar de productieomgeving. Overdracht vindt plaats na ontvangst van volledige betaling."
+            ]
+          },
+          {
+            "title": "Acceptatie",
+            "items": [
+              "Opdrachtgever heeft na oplevering 14 dagen om het resultaat te beoordelen en eventuele gebreken schriftelijk te melden.",
+              "Gebreken die binnen de acceptatietermijn worden gemeld, worden door Robuust Marketing kosteloos hersteld, mits deze aantoonbaar het gevolg zijn van tekortkomingen van Robuust Marketing.",
+              "Het resultaat geldt als geaccepteerd na schriftelijke goedkeuring, na het verstrijken van de acceptatietermijn zonder gemelde gebreken, of indien opdrachtgever het resultaat in gebruik neemt.",
+              "Kleine gebreken die het functioneren niet wezenlijk belemmeren, vormen geen reden om acceptatie te weigeren."
+            ]
+          },
+          {
+            "title": "Garantie",
+            "items": [
+              "Na acceptatie geldt een garantieperiode van 30 dagen waarin Robuust Marketing kosteloos functionele gebreken herstelt die aantoonbaar het gevolg zijn van tekortkomingen van Robuust Marketing en binnen de garantieperiode schriftelijk zijn gemeld.",
+              "Gebreken die het gevolg zijn van normale slijtage, oneigenlijk gebruik, externe factoren of wijzigingen door derden vallen niet onder de garantie.",
+              "Na de garantieperiode worden herstelwerkzaamheden tegen het geldende uurtarief in rekening gebracht."
+            ]
+          }
+        ]
+      },
+      "art10_ip": {
+        "title": "Artikel 10 - Intellectueel eigendom",
+        "subsections": [
+          {
+            "title": "Eigendomsrechten",
+            "items": [
+              "Alle rechten van intellectuele eigendom op de door Robuust Marketing ontwikkelde resultaten berusten bij Robuust Marketing, tenzij schriftelijk anders overeengekomen.",
+              "Robuust Marketing behoudt het recht om generieke componenten, libraries, frameworks en herbruikbare code te hergebruiken voor andere projecten.",
+              "Het resultaat kan open-source componenten bevatten die onderworpen zijn aan eigen licentievoorwaarden. Opdrachtgever verkrijgt voor deze componenten de rechten conform de betreffende open-source licenties."
+            ]
+          },
+          {
+            "title": "Gebruiksrecht",
+            "items": [
+              "Na volledige betaling van alle verschuldigde bedragen verkrijgt opdrachtgever een exclusief, niet-overdraagbaar gebruiksrecht op het specifiek voor opdrachtgever ontwikkelde resultaat.",
+              "Het gebruiksrecht omvat niet het recht om het resultaat te verkopen of ter beschikking te stellen aan derden, wijzigingen aan te brengen zonder toestemming, of recht op de onderliggende broncode (tenzij schriftelijk anders overeengekomen).",
+              "Bij niet-tijdige of onvolledige betaling vervalt het gebruiksrecht tot het moment van volledige betaling."
+            ]
+          },
+          {
+            "title": "Broncode en creditvermelding",
+            "items": [
+              "Overdracht van broncode is geen standaard onderdeel van de overeenkomst. Indien opdrachtgever eigendom van de broncode wenst, dient dit vooraf schriftelijk te worden overeengekomen en zal hiervoor een aanvullende vergoeding gelden.",
+              "Robuust Marketing is gerechtigd om op het resultaat een creditvermelding te plaatsen, alsmede een hyperlink naar de website van Robuust Marketing.",
+              "Opdrachtgever kan de creditvermelding laten verwijderen na schriftelijke overeenstemming met Robuust Marketing over een vergoeding.",
+              "Robuust Marketing is gerechtigd om het resultaat te gebruiken voor eigen promotie- en portfoliodoeleinden, met inachtneming van de belangen van opdrachtgever."
+            ]
+          }
+        ]
+      },
+      "art11_hosting": {
+        "title": "Artikel 11 - Hosting en onderhoud",
+        "subsections": [
+          {
+            "title": "Hostingdiensten",
+            "items": [
+              "Robuust Marketing biedt hostingdiensten aan via gerenommeerde derde partijen, waaronder Cloudflare, Hetzner en AWS. De hosting wordt verzorgd op Europese servers.",
+              "Robuust Marketing spant zich in om een uptime van 99,9% te realiseren, gemeten op jaarbasis, exclusief gepland onderhoud en overmacht.",
+              "Robuust Marketing maakt dagelijks automatische backups van gehoste websites. Backups worden minimaal 14 dagen bewaard.",
+              "Opdrachtgever blijft te allen tijde verantwoordelijk voor het maken van eigen backups van content en data."
+            ]
+          },
+          {
+            "title": "Onderhoudsdiensten",
+            "items": [
+              "Onderhoudswerkzaamheden die binnen een onderhoudscontract vallen, worden uitgevoerd zonder aanvullende kosten. Dit betreft doorgaans software- en beveiligingsupdates, monitoring van beschikbaarheid en prestaties, en kleinschalige aanpassingen conform de overeengekomen scope.",
+              "Werkzaamheden die buiten de scope van het onderhoudscontract vallen, worden apart geoffreerd of tegen uurtarief uitgevoerd."
+            ]
+          },
+          {
+            "title": "Beëindiging hosting",
+            "items": [
+              "Bij beëindiging van de hostingovereenkomst stelt Robuust Marketing op verzoek en tegen vergoeding een kopie van de website en database beschikbaar aan opdrachtgever.",
+              "Na beëindiging van de hostingovereenkomst bewaart Robuust Marketing de data van opdrachtgever gedurende maximaal 30 dagen, waarna deze permanent worden verwijderd."
+            ]
+          }
+        ]
+      },
+      "art12_sla": {
+        "title": "Artikel 12 - Service Level Agreement (SLA)",
+        "content": "Voor opdrachtgevers met een hosting- of onderhoudscontract gelden de volgende service levels, tenzij schriftelijk anders overeengekomen:",
+        "items": [
+          "Prioriteit 1 - Kritiek (Website offline / Niet bereikbaar): Eerste reactie binnen 4 uur (op werkdagen), oplossing of workaround binnen 8 uur.",
+          "Prioriteit 2 - Hoog (Belangrijke functionaliteit niet werkend): Eerste reactie binnen 8 uur (op werkdagen), oplossing of workaround binnen 24 uur.",
+          "Prioriteit 3 - Normaal (Niet-kritieke problemen): Eerste reactie binnen 1 werkdag, oplossing binnen 5 werkdagen.",
+          "Prioriteit 4 - Laag (Wensen en kleine aanpassingen): Eerste reactie binnen 2 werkdagen, planning in overleg.",
+          "Bovengenoemde responstijden gelden tijdens kantooruren (maandag t/m vrijdag, 09:00 - 17:00 uur). Support buiten kantooruren is mogelijk tegen een toeslag van 50% op het geldende uurtarief."
+        ]
+      },
+      "art13_confidentiality": {
+        "title": "Artikel 13 - Geheimhouding",
+        "items": [
+          "Beide partijen zijn verplicht tot geheimhouding van alle vertrouwelijke informatie die zij in het kader van de overeenkomst van elkaar of uit andere bron hebben verkregen.",
+          "Onder vertrouwelijke informatie wordt verstaan alle informatie waarvan partijen redelijkerwijs kunnen begrijpen dat deze van vertrouwelijke aard is, waaronder bedrijfsgegevens, technische informatie, broncode, strategische plannen en persoonsgegevens.",
+          "De geheimhoudingsplicht geldt niet voor informatie die reeds openbaar was, na ontvangst openbaar is geworden zonder toedoen van de ontvangende partij, of op grond van wet- of regelgeving moet worden verstrekt.",
+          "De geheimhoudingsplicht blijft van kracht gedurende de looptijd van de overeenkomst en gedurende een periode van 3 jaar na beëindiging daarvan."
+        ]
+      },
+      "art14_privacy": {
+        "title": "Artikel 14 - Privacy en gegevensverwerking",
+        "items": [
+          "Voor zover Robuust Marketing bij de uitvoering van de overeenkomst persoonsgegevens verwerkt ten behoeve van opdrachtgever, kwalificeert Robuust Marketing als verwerker in de zin van de Algemene Verordening Gegevensbescherming (AVG).",
+          "Indien Robuust Marketing optreedt als verwerker, sluiten partijen een verwerkersovereenkomst die voldoet aan de eisen van de AVG.",
+          "Robuust Marketing heeft passende technische en organisatorische maatregelen getroffen om persoonsgegevens te beveiligen tegen verlies en onrechtmatige verwerking.",
+          "In geval van een datalek dat persoonsgegevens van opdrachtgever betreft, zal Robuust Marketing opdrachtgever hiervan zo spoedig mogelijk, doch uiterlijk binnen 48 uur na ontdekking, op de hoogte stellen.",
+          "Opdrachtgever is verantwoordelijk voor het naleven van de AVG ten aanzien van de door hem verzamelde en verwerkte persoonsgegevens."
+        ]
+      },
+      "art15_liability": {
+        "title": "Artikel 15 - Aansprakelijkheid",
+        "subsections": [
+          {
+            "title": "Beperking aansprakelijkheid",
+            "items": [
+              "De totale aansprakelijkheid van Robuust Marketing wegens een toerekenbare tekortkoming is beperkt tot vergoeding van directe schade tot maximaal het bedrag dat door de beroepsaansprakelijkheidsverzekering van Robuust Marketing wordt uitgekeerd, vermeerderd met het eigen risico.",
+              "Indien om welke reden dan ook geen uitkering krachtens de verzekering plaatsvindt, is de aansprakelijkheid beperkt tot het bedrag dat opdrachtgever in de 12 maanden voorafgaand aan de schadeveroorzakende gebeurtenis aan Robuust Marketing heeft betaald, met een maximum van €50.000,-.",
+              "Robuust Marketing is uitsluitend aansprakelijk voor directe schade: redelijke kosten ter vaststelling van de oorzaak en omvang van de schade, redelijke kosten om de gebrekkige prestatie aan de overeenkomst te laten beantwoorden, en redelijke kosten ter voorkoming of beperking van schade."
+            ]
+          },
+          {
+            "title": "Uitsluitingen",
+            "items": [
+              "Robuust Marketing is nimmer aansprakelijk voor indirecte schade, daaronder begrepen gevolgschade, gederfde winst of omzet, gemiste besparingen, verlies van data, schade door bedrijfsstagnatie en reputatieschade.",
+              "Robuust Marketing is niet aansprakelijk voor schade die het gevolg is van onjuiste of onvolledige informatie verstrekt door opdrachtgever, handelen of nalaten van opdrachtgever of door opdrachtgever ingeschakelde derden, storingen in netwerken of elektriciteitsvoorziening, of cyberaanvallen, tenzij dit te wijten is aan grove nalatigheid van Robuust Marketing.",
+              "Opdrachtgever vrijwaart Robuust Marketing voor alle aanspraken van derden die verband houden met de door Robuust Marketing geleverde diensten, tenzij de aanspraak het gevolg is van opzet of grove nalatigheid van Robuust Marketing.",
+              "Iedere aanspraak op schadevergoeding jegens Robuust Marketing vervalt door het enkele verloop van 12 maanden na het ontstaan van de aanspraak."
+            ]
+          }
+        ]
+      },
+      "art16_force_majeure": {
+        "title": "Artikel 16 - Overmacht",
+        "items": [
+          "Robuust Marketing is niet gehouden tot het nakomen van enige verplichting indien dit wordt verhinderd door een omstandigheid die niet is te wijten aan schuld, noch krachtens de wet of in het verkeer geldende opvattingen voor rekening van Robuust Marketing komt.",
+          "Onder overmacht wordt verstaan: natuurrampen, extreme weersomstandigheden, oorlog, terrorisme, pandemieën en epidemieën, brand, overheidsmaatregelen, stakingen, storingen in telecommunicatie, internet of elektriciteitsvoorziening, storingen bij of faillissement van leveranciers of hostingproviders, en grootschalige cyberaanvallen of DDoS-aanvallen.",
+          "Tijdens overmacht worden de verplichtingen van Robuust Marketing opgeschort. Indien de overmachtssituatie langer duurt dan 90 dagen, zijn beide partijen gerechtigd de overeenkomst schriftelijk te ontbinden, zonder dat daarbij een verplichting tot schadevergoeding ontstaat.",
+          "Indien Robuust Marketing bij het intreden van de overmacht al gedeeltelijk aan haar verplichtingen heeft voldaan, is Robuust Marketing gerechtigd het reeds geleverde afzonderlijk te factureren."
+        ]
+      },
+      "art17_termination": {
+        "title": "Artikel 17 - Opzegging en ontbinding",
+        "subsections": [
+          {
+            "title": "Opzegging projectdiensten",
+            "items": [
+              "Opdrachtgever kan een overeenkomst voor projectdiensten tussentijds opzeggen. In dat geval is opdrachtgever gehouden tot betaling van alle tot dan toe verrichte werkzaamheden en eventuele kosten die Robuust Marketing als gevolg van de opzegging moet maken.",
+              "Robuust Marketing kan een overeenkomst voor projectdiensten opzeggen met inachtneming van een opzegtermijn van 30 dagen, tenzij er sprake is van een situatie als bedoeld onder 'Ontbinding'."
+            ]
+          },
+          {
+            "title": "Opzegging doorlopende diensten",
+            "items": [
+              "Overeenkomsten voor doorlopende diensten worden aangegaan voor onbepaalde tijd, tenzij schriftelijk anders overeengekomen.",
+              "Beide partijen kunnen een overeenkomst voor doorlopende diensten opzeggen met inachtneming van een opzegtermijn van 1 maand, tegen het einde van een kalendermaand."
+            ]
+          },
+          {
+            "title": "Ontbinding",
+            "items": [
+              "Robuust Marketing is gerechtigd de overeenkomst met onmiddellijke ingang geheel of gedeeltelijk te ontbinden, zonder ingebrekestelling en zonder tot enige schadevergoeding gehouden te zijn, indien opdrachtgever in verzuim is met betalingsverplichtingen, surseance van betaling aanvraagt, failliet wordt verklaard, of anderszins niet langer in staat moet worden geacht zijn verplichtingen na te komen.",
+              "In geval van ontbinding zijn alle vorderingen van Robuust Marketing op opdrachtgever onmiddellijk opeisbaar."
+            ]
+          }
+        ]
+      },
+      "art18_consequences": {
+        "title": "Artikel 18 - Gevolgen beëindiging",
+        "items": [
+          "Bij beëindiging van de overeenkomst vervalt het gebruiksrecht van opdrachtgever op het resultaat indien nog niet alle betalingen zijn voldaan, worden alle openstaande facturen onmiddellijk opeisbaar, en eindigen alle verleende licenties.",
+          "Bepalingen die naar hun aard bestemd zijn om na beëindiging voort te duren, blijven na beëindiging van kracht, waaronder de bepalingen over intellectueel eigendom, geheimhouding, aansprakelijkheid en toepasselijk recht.",
+          "Op verzoek van opdrachtgever en tegen vergoeding van de gemaakte kosten zal Robuust Marketing na beëindiging assisteren bij de migratie naar een andere dienstverlener, waaronder het verstrekken van een kopie van de website en database, het overdragen van domeinnamen, en het verstrekken van technische documentatie.",
+          "Robuust Marketing is niet verplicht broncode te verstrekken, tenzij dit schriftelijk is overeengekomen."
+        ]
+      },
+      "art19_law": {
+        "title": "Artikel 19 - Toepasselijk recht en geschillen",
+        "items": [
+          "Op alle overeenkomsten tussen Robuust Marketing en opdrachtgever is uitsluitend Nederlands recht van toepassing.",
+          "Partijen zullen pas een beroep op de rechter doen nadat zij zich tot het uiterste hebben ingespannen een geschil in onderling overleg te beslechten.",
+          "Geschillen worden bij voorkeur voorgelegd aan een mediator voordat een gerechtelijke procedure wordt gestart. De kosten van mediation worden door partijen gelijk gedragen.",
+          "Indien partijen er niet in slagen een geschil in onderling overleg of via mediation te beslechten, is de rechtbank in het arrondissement waar Robuust Marketing is gevestigd exclusief bevoegd, tenzij de wet dwingend anders voorschrijft."
+        ]
+      },
+      "art20_final": {
+        "title": "Artikel 20 - Slotbepalingen",
+        "items": [
+          "Robuust Marketing is bevoegd deze algemene voorwaarden te wijzigen of aan te vullen.",
+          "Wijzigingen worden minimaal 30 dagen voor inwerkingtreding schriftelijk aan opdrachtgever medegedeeld.",
+          "Indien opdrachtgever niet akkoord gaat met de gewijzigde voorwaarden, kan opdrachtgever de overeenkomst opzeggen tegen de datum waarop de gewijzigde voorwaarden in werking treden, mits de opzegging binnen 14 dagen na kennisgeving plaatsvindt.",
+          "Robuust Marketing kan rechten en verplichtingen uit de overeenkomst aan derden overdragen. Opdrachtgever kan zijn rechten en verplichtingen niet zonder schriftelijke toestemming van Robuust Marketing aan derden overdragen.",
+          "Op de overeenkomst is de meest recente versie van deze algemene voorwaarden van toepassing, zoals gepubliceerd op de website van Robuust Marketing."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Voor vragen over deze algemene voorwaarden kunt u contact opnemen via"
     }
   },
   "avgPage": {

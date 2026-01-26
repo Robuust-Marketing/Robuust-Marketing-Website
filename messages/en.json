@@ -1171,59 +1171,330 @@
   },
   "voorwaardenPage": {
     "title": "Terms and Conditions",
-    "lastUpdated": "Last updated: January 2025",
+    "lastUpdated": "Effective from March 1, 2025 | This is a translation. The Dutch version is legally binding.",
     "articles": {
-      "definitions": {
+      "art1_definitions": {
         "title": "Article 1 - Definitions",
-        "robuust": { "title": "Robuust Marketing:", "description": "the sole proprietorship based in the Netherlands, hereinafter referred to as \"contractor\"." },
-        "client": { "title": "Client:", "description": "the natural or legal person entering into an agreement with Robuust Marketing." },
-        "services": { "title": "Services:", "description": "all services offered by Robuust Marketing, including but not limited to web design, web development, hosting and maintenance." }
+        "content": "In these general terms and conditions, the following terms are defined as:",
+        "items": [
+          "Robuust Marketing: the sole proprietorship Robuust Marketing, established in the Netherlands, hereinafter referred to as \"contractor\".",
+          "Client: the natural or legal person entering into or wishing to enter into an agreement with Robuust Marketing.",
+          "Parties: Robuust Marketing and the client collectively.",
+          "Agreement: any arrangement between Robuust Marketing and the client for the provision of services, recorded in a quotation, order confirmation or contract.",
+          "Services: all work offered by Robuust Marketing, including web design and web development, hosting and server management, maintenance and support, search engine optimization (SEO), online marketing, content creation and consultancy.",
+          "Project services: one-time work with a clearly defined end result, such as developing a website or application.",
+          "Ongoing services: recurring work based on a subscription or maintenance contract, such as hosting, maintenance or support.",
+          "Materials: all content, texts, images, logos, brand elements and other data to be provided by the client for the execution of the assignment.",
+          "Result: all products delivered by Robuust Marketing, including websites, applications, designs, code and documentation.",
+          "Hourly rate: the rate Robuust Marketing charges for work, being €120 excluding VAT per hour, unless otherwise agreed in writing.",
+          "Written: by email, letter or other electronic means of communication of which receipt can be established.",
+          "Working days: Monday through Friday, excluding Dutch national holidays."
+        ]
       },
-      "applicability": {
+      "art2_applicability": {
         "title": "Article 2 - Applicability",
-        "content1": "These general terms and conditions apply to all offers, quotations, work, agreements and deliveries of services by or on behalf of Robuust Marketing.",
-        "content2": "Deviations from these terms are only valid if they have been expressly agreed in writing."
+        "items": [
+          "These general terms and conditions apply to all offers, quotations, work, agreements and deliveries of services by or on behalf of Robuust Marketing.",
+          "By entering into an agreement with Robuust Marketing, the client declares to have read and agreed to these general terms and conditions.",
+          "The applicability of any purchase or other terms and conditions of the client is expressly rejected.",
+          "Deviations from these general terms and conditions are only valid if expressly agreed in writing and apply only to the relevant agreement.",
+          "If any provision of these general terms and conditions is void or annulled, the remaining provisions remain in full force."
+        ]
       },
-      "quotes": {
+      "art3_quotes": {
         "title": "Article 3 - Quotations and offers",
-        "items": ["All quotations are without obligation and valid for 30 days, unless otherwise stated.", "Prices in quotations are exclusive of VAT, unless otherwise stated.", "An agreement is concluded after written acceptance of the quotation by the client."]
+        "items": [
+          "All quotations and offers from Robuust Marketing are without obligation, unless expressly stated otherwise.",
+          "Quotations are valid for 30 days from the date of issue, unless otherwise stated.",
+          "All prices in quotations are exclusive of VAT and any other government levies, unless expressly stated otherwise.",
+          "Quotations are based on information provided by the client. If this information proves incorrect or incomplete, Robuust Marketing reserves the right to adjust the quotation.",
+          "Obvious errors or mistakes in quotations do not bind Robuust Marketing."
+        ]
       },
-      "execution": {
-        "title": "Article 4 - Execution of the agreement",
-        "items": ["Robuust Marketing will execute the agreement to the best of its knowledge and ability.", "The client ensures that all data necessary for execution is provided in a timely manner.", "Stated deadlines are indicative and not strict deadlines. Exceeding them does not entitle to compensation or termination."]
+      "art4_agreement": {
+        "title": "Article 4 - Formation of agreement",
+        "items": [
+          "An agreement is formed when the client has accepted a quotation in writing, has signed an order confirmation, or Robuust Marketing has started executing the assignment at the client's request.",
+          "Verbal commitments by or on behalf of Robuust Marketing only bind Robuust Marketing after written confirmation.",
+          "Additions to or changes in the agreement are only effective if agreed in writing by both parties."
+        ]
       },
-      "payment": {
-        "title": "Article 5 - Payment terms",
-        "items": ["Payment must be made within 14 days of the invoice date, unless otherwise agreed.", "For projects above €4,000, a 50% advance payment may be requested before the work begins.", "In case of late payment, the client is legally in default and statutory interest is due.", "Hosting and maintenance costs are invoiced monthly or annually in advance."]
+      "art5_execution": {
+        "title": "Article 5 - Execution and planning",
+        "items": [
+          "Robuust Marketing will execute the agreement to the best of its knowledge and ability and in accordance with the requirements of good workmanship.",
+          "Robuust Marketing has the right to have work performed by third parties if necessary for proper execution of the agreement.",
+          "Stated or agreed (delivery) deadlines are indicative and never constitute strict deadlines, unless expressly agreed otherwise in writing.",
+          "In case of deadline overrun, the client must give Robuust Marketing written notice of default and grant a reasonable period of at least 14 days to still meet the obligations.",
+          "Deadline overrun does not entitle the client to compensation, termination of the agreement or suspension of any obligation towards Robuust Marketing.",
+          "Robuust Marketing is entitled to suspend execution of the assignment if the client fails to meet their obligations."
+        ]
       },
-      "ip": {
-        "title": "Article 6 - Intellectual property",
-        "items": ["All intellectual property rights to the developed materials rest with Robuust Marketing, unless otherwise agreed in writing.", "After full payment, the client obtains a right of use for the delivered materials.", "Robuust Marketing retains the right to use the design for its own promotional purposes, unless otherwise agreed."]
+      "art6_client_obligations": {
+        "title": "Article 6 - Client obligations",
+        "items": [
+          "The client ensures that all data and materials Robuust Marketing indicates as necessary for execution are provided timely and in the desired format.",
+          "The client guarantees the accuracy, completeness and reliability of the data and materials provided, even if they originate from third parties.",
+          "The client indemnifies Robuust Marketing against claims from third parties regarding intellectual property rights on materials provided by the client.",
+          "If the client fails to meet their obligations properly or timely, Robuust Marketing is entitled to suspend execution and/or charge resulting additional costs at the applicable hourly rate.",
+          "The client is responsible for obtaining any necessary licenses for materials provided, providing timely feedback, appointing a contact person authorized to make decisions, and providing access to required systems and accounts."
+        ]
       },
-      "hosting": {
-        "title": "Article 7 - Hosting and maintenance",
-        "items": ["Hosting services are provided with an uptime guarantee of 99.9%, measured annually.", "Maintenance work that falls outside the agreed package will be quoted separately.", "The client is responsible for making backups of their own content, unless a maintenance contract states otherwise."]
+      "art7_additional_work": {
+        "title": "Article 7 - Additional work and changes",
+        "items": [
+          "If the client wishes changes or additions during execution of the agreement, Robuust Marketing is entitled to charge additional costs.",
+          "Additional work includes: work outside the scope of the original quotation, changes to already approved designs or functionalities, additional revision rounds beyond the number stated in the quotation, work resulting from incorrect or incomplete information provided by the client, and scope expansion.",
+          "Robuust Marketing will inform the client as soon as possible about the necessity of additional work, expected costs and impact on planning.",
+          "Additional work is executed after written approval from the client of the quoted additional costs. For small-scale additional work (less than 4 hours), verbal approval may suffice, which will be confirmed in writing afterwards."
+        ]
       },
-      "liability": {
-        "title": "Article 8 - Liability",
-        "items": ["The liability of Robuust Marketing is limited to the amount that is paid out under the liability insurance in the relevant case.", "Robuust Marketing is not liable for indirect damage, including consequential damage, lost profits or missed savings.", "The client indemnifies Robuust Marketing against claims from third parties related to the delivered services."]
+      "art8_payment": {
+        "title": "Article 8 - Prices and payment",
+        "subsections": [
+          {
+            "title": "Prices",
+            "items": [
+              "All prices are exclusive of VAT and any other government levies, unless expressly stated otherwise.",
+              "Robuust Marketing is entitled to annually index agreed prices based on the Consumer Price Index (CPI) as published by Statistics Netherlands (CBS). Indexation takes place on January 1 of each calendar year.",
+              "Price changes other than indexation will be communicated in writing at least 30 days before the effective date. For price increases exceeding 10%, the client has the right to terminate the agreement within 14 days of notification."
+            ]
+          },
+          {
+            "title": "Payment terms for project services",
+            "items": [
+              "Projects up to €5,000 excluding VAT: 100% invoiced upon delivery.",
+              "Projects from €5,000 to €10,000 excluding VAT: 25% advance payment upon order, 75% upon delivery.",
+              "Projects from €10,000 excluding VAT: 50% advance payment upon order, 50% upon delivery.",
+              "Work will only commence after receipt of the advance payment, unless otherwise agreed in writing.",
+              "Advance payments are non-refundable, unless Robuust Marketing fails to execute the assignment or does not execute it according to the agreement."
+            ]
+          },
+          {
+            "title": "Payment terms for ongoing services",
+            "items": [
+              "Ongoing services (hosting, maintenance, support) are invoiced monthly or annually in advance, according to the frequency specified in the agreement.",
+              "A discount may apply to annual advance payment, as stated in the quotation."
+            ]
+          },
+          {
+            "title": "Payment deadline and default",
+            "items": [
+              "Payment must be made within 14 days of the invoice date, unless otherwise agreed in writing.",
+              "Objections to the amount of an invoice do not suspend the payment obligation.",
+              "If the client fails to pay within the payment period, the client is legally in default and owes statutory commercial interest on the outstanding amount, as well as all reasonable collection costs with a minimum of 15% of the outstanding amount and at least €150.",
+              "In case of late payment, Robuust Marketing is entitled to suspend execution of the assignment, temporarily block access to delivered services, and/or terminate the agreement in whole or in part."
+            ]
+          }
+        ]
       },
-      "termination": {
-        "title": "Article 9 - Cancellation and termination",
-        "items": ["Ongoing agreements (hosting, maintenance) can be terminated with a notice period of 1 month.", "When terminating projects that are in progress, the work performed until then is due.", "Robuust Marketing can terminate the agreement immediately in case of non-payment or bankruptcy of the client."]
+      "art9_delivery": {
+        "title": "Article 9 - Delivery and acceptance",
+        "subsections": [
+          {
+            "title": "Delivery",
+            "items": [
+              "Robuust Marketing will deliver the result when, in Robuust Marketing's judgment, it is ready for acceptance.",
+              "Delivery of websites and applications initially takes place on a test environment where the client can evaluate the result.",
+              "After acceptance by the client, the result is transferred to the production environment. Transfer takes place after receipt of full payment."
+            ]
+          },
+          {
+            "title": "Acceptance",
+            "items": [
+              "The client has 14 days after delivery to evaluate the result and report any defects in writing.",
+              "Defects reported within the acceptance period will be repaired by Robuust Marketing free of charge, provided they are demonstrably the result of shortcomings by Robuust Marketing.",
+              "The result is deemed accepted after written approval, after expiration of the acceptance period without reported defects, or when the client puts the result into use.",
+              "Minor defects that do not substantially impair functionality do not constitute grounds for refusing acceptance."
+            ]
+          },
+          {
+            "title": "Warranty",
+            "items": [
+              "After acceptance, a warranty period of 30 days applies during which Robuust Marketing will repair functional defects free of charge that are demonstrably the result of shortcomings by Robuust Marketing and were reported in writing within the warranty period.",
+              "Defects resulting from normal wear and tear, improper use, external factors or modifications by third parties are not covered by the warranty.",
+              "After the warranty period, repair work is charged at the applicable hourly rate."
+            ]
+          }
+        ]
       },
-      "confidentiality": {
-        "title": "Article 10 - Confidentiality",
-        "content": "Both parties are obliged to maintain confidentiality of all confidential information obtained within the framework of the agreement. This obligation also applies after termination of the agreement."
+      "art10_ip": {
+        "title": "Article 10 - Intellectual property",
+        "subsections": [
+          {
+            "title": "Ownership rights",
+            "items": [
+              "All intellectual property rights to results developed by Robuust Marketing rest with Robuust Marketing, unless otherwise agreed in writing.",
+              "Robuust Marketing retains the right to reuse generic components, libraries, frameworks and reusable code for other projects.",
+              "The result may contain open-source components subject to their own license terms. The client obtains rights to these components in accordance with the relevant open-source licenses."
+            ]
+          },
+          {
+            "title": "Right of use",
+            "items": [
+              "After full payment of all amounts due, the client obtains an exclusive, non-transferable right of use for the result specifically developed for the client.",
+              "The right of use does not include the right to sell or make the result available to third parties, make modifications without permission, or right to the underlying source code (unless otherwise agreed in writing).",
+              "In case of late or incomplete payment, the right of use lapses until full payment is received."
+            ]
+          },
+          {
+            "title": "Source code and credit",
+            "items": [
+              "Transfer of source code is not a standard part of the agreement. If the client wishes ownership of the source code, this must be agreed in writing beforehand and an additional fee will apply.",
+              "Robuust Marketing is entitled to place a credit mention on the result, as well as a hyperlink to Robuust Marketing's website.",
+              "The client may have the credit mention removed after written agreement with Robuust Marketing on a fee.",
+              "Robuust Marketing is entitled to use the result for its own promotional and portfolio purposes, taking into account the client's interests."
+            ]
+          }
+        ]
       },
-      "disputes": {
-        "title": "Article 11 - Applicable law and disputes",
-        "items": ["Dutch law applies exclusively to all agreements.", "Disputes will be submitted to the competent court in the district where Robuust Marketing is located.", "Parties will first attempt to resolve disputes through mutual consultation."]
+      "art11_hosting": {
+        "title": "Article 11 - Hosting and maintenance",
+        "subsections": [
+          {
+            "title": "Hosting services",
+            "items": [
+              "Robuust Marketing offers hosting services through reputable third parties, including Cloudflare, Hetzner and AWS. Hosting is provided on European servers.",
+              "Robuust Marketing strives to achieve 99.9% uptime, measured annually, excluding scheduled maintenance and force majeure.",
+              "Robuust Marketing makes daily automatic backups of hosted websites. Backups are retained for at least 14 days.",
+              "The client remains responsible at all times for making their own backups of content and data."
+            ]
+          },
+          {
+            "title": "Maintenance services",
+            "items": [
+              "Maintenance work covered by a maintenance contract is performed at no additional cost. This typically includes software and security updates, availability and performance monitoring, and minor adjustments within the agreed scope.",
+              "Work outside the scope of the maintenance contract is quoted separately or performed at the hourly rate."
+            ]
+          },
+          {
+            "title": "Termination of hosting",
+            "items": [
+              "Upon termination of the hosting agreement, Robuust Marketing will provide a copy of the website and database to the client upon request and against reimbursement of costs.",
+              "After termination of the hosting agreement, Robuust Marketing will retain the client's data for a maximum of 30 days, after which it will be permanently deleted."
+            ]
+          }
+        ]
       },
-      "contact": {
-        "title": "Article 12 - Contact",
-        "content": "For questions about these general terms and conditions, please contact us via {email}."
+      "art12_sla": {
+        "title": "Article 12 - Service Level Agreement (SLA)",
+        "content": "For clients with a hosting or maintenance contract, the following service levels apply, unless otherwise agreed in writing:",
+        "items": [
+          "Priority 1 - Critical (Website offline / Unreachable): First response within 4 hours (on working days), solution or workaround within 8 hours.",
+          "Priority 2 - High (Important functionality not working): First response within 8 hours (on working days), solution or workaround within 24 hours.",
+          "Priority 3 - Normal (Non-critical issues): First response within 1 working day, solution within 5 working days.",
+          "Priority 4 - Low (Requests and minor adjustments): First response within 2 working days, planning by mutual agreement.",
+          "The above response times apply during office hours (Monday to Friday, 09:00 - 17:00). Support outside office hours is available at a 50% surcharge on the applicable hourly rate."
+        ]
+      },
+      "art13_confidentiality": {
+        "title": "Article 13 - Confidentiality",
+        "items": [
+          "Both parties are obliged to maintain confidentiality of all confidential information they have obtained from each other or from another source within the framework of the agreement.",
+          "Confidential information means all information that parties can reasonably understand to be of a confidential nature, including business data, technical information, source code, strategic plans and personal data.",
+          "The confidentiality obligation does not apply to information that was already public, became public after receipt without the receiving party's involvement, or must be disclosed by law or regulation.",
+          "The confidentiality obligation remains in force during the term of the agreement and for a period of 3 years after termination."
+        ]
+      },
+      "art14_privacy": {
+        "title": "Article 14 - Privacy and data processing",
+        "items": [
+          "Insofar as Robuust Marketing processes personal data on behalf of the client in the execution of the agreement, Robuust Marketing qualifies as a processor within the meaning of the General Data Protection Regulation (GDPR).",
+          "If Robuust Marketing acts as a processor, the parties will conclude a data processing agreement that meets GDPR requirements.",
+          "Robuust Marketing has taken appropriate technical and organizational measures to protect personal data against loss and unlawful processing.",
+          "In case of a data breach involving the client's personal data, Robuust Marketing will notify the client as soon as possible, but no later than 48 hours after discovery.",
+          "The client is responsible for complying with the GDPR regarding personal data collected and processed by the client."
+        ]
+      },
+      "art15_liability": {
+        "title": "Article 15 - Liability",
+        "subsections": [
+          {
+            "title": "Limitation of liability",
+            "items": [
+              "The total liability of Robuust Marketing for an attributable shortcoming is limited to compensation for direct damage up to the maximum amount paid out under Robuust Marketing's professional liability insurance, plus the deductible.",
+              "If for whatever reason no payment is made under the insurance, the liability is limited to the amount the client has paid to Robuust Marketing in the 12 months preceding the damage-causing event, with a maximum of €50,000.",
+              "Robuust Marketing is only liable for direct damage: reasonable costs to determine the cause and extent of the damage, reasonable costs to make the defective performance comply with the agreement, and reasonable costs to prevent or limit damage."
+            ]
+          },
+          {
+            "title": "Exclusions",
+            "items": [
+              "Robuust Marketing is never liable for indirect damage, including consequential damage, lost profits or turnover, missed savings, loss of data, damage from business interruption and reputational damage.",
+              "Robuust Marketing is not liable for damage resulting from incorrect or incomplete information provided by the client, actions or omissions of the client or third parties engaged by the client, network or power supply disruptions, or cyber attacks, unless due to gross negligence by Robuust Marketing.",
+              "The client indemnifies Robuust Marketing against all claims from third parties related to services delivered by Robuust Marketing, unless the claim results from intent or gross negligence by Robuust Marketing.",
+              "Any claim for compensation against Robuust Marketing expires by the mere lapse of 12 months after the claim arose."
+            ]
+          }
+        ]
+      },
+      "art16_force_majeure": {
+        "title": "Article 16 - Force majeure",
+        "items": [
+          "Robuust Marketing is not obliged to fulfill any obligation if prevented by a circumstance that is not due to fault, nor is for Robuust Marketing's account by law or generally accepted standards.",
+          "Force majeure includes: natural disasters, extreme weather conditions, war, terrorism, pandemics and epidemics, fire, government measures, strikes, disruptions in telecommunications, internet or power supply, disruptions at or bankruptcy of suppliers or hosting providers, and large-scale cyber attacks or DDoS attacks.",
+          "During force majeure, Robuust Marketing's obligations are suspended. If the force majeure situation lasts longer than 90 days, both parties are entitled to terminate the agreement in writing, without any obligation for compensation.",
+          "If Robuust Marketing has already partially fulfilled its obligations when force majeure occurs, Robuust Marketing is entitled to invoice the work already delivered separately."
+        ]
+      },
+      "art17_termination": {
+        "title": "Article 17 - Cancellation and termination",
+        "subsections": [
+          {
+            "title": "Cancellation of project services",
+            "items": [
+              "The client may cancel an agreement for project services prematurely. In that case, the client is obliged to pay for all work performed until then and any costs Robuust Marketing must incur as a result of the cancellation.",
+              "Robuust Marketing may cancel an agreement for project services with a notice period of 30 days, unless there is a situation as referred to under 'Termination'."
+            ]
+          },
+          {
+            "title": "Cancellation of ongoing services",
+            "items": [
+              "Agreements for ongoing services are entered into for an indefinite period, unless otherwise agreed in writing.",
+              "Both parties may cancel an agreement for ongoing services with a notice period of 1 month, effective at the end of a calendar month."
+            ]
+          },
+          {
+            "title": "Termination",
+            "items": [
+              "Robuust Marketing is entitled to terminate the agreement with immediate effect, in whole or in part, without notice of default and without being liable for any compensation, if the client is in default with payment obligations, applies for or is granted suspension of payments, is declared bankrupt, or must otherwise be deemed unable to fulfill their obligations.",
+              "In case of termination, all Robuust Marketing's claims against the client become immediately due and payable."
+            ]
+          }
+        ]
+      },
+      "art18_consequences": {
+        "title": "Article 18 - Consequences of termination",
+        "items": [
+          "Upon termination of the agreement, the client's right of use for the result lapses if not all payments have been made, all outstanding invoices become immediately due and payable, and all granted licenses end.",
+          "Provisions that by their nature are intended to survive termination remain in force after termination, including provisions on intellectual property, confidentiality, liability and applicable law.",
+          "Upon request and against reimbursement of costs, Robuust Marketing will assist after termination with migration to another service provider, including providing a copy of the website and database, transferring domain names, and providing technical documentation.",
+          "Robuust Marketing is not obliged to provide source code, unless agreed in writing."
+        ]
+      },
+      "art19_law": {
+        "title": "Article 19 - Applicable law and disputes",
+        "items": [
+          "Dutch law applies exclusively to all agreements between Robuust Marketing and the client.",
+          "Parties will only resort to the court after making every effort to settle a dispute by mutual consultation.",
+          "Disputes are preferably submitted to a mediator before initiating legal proceedings. Mediation costs are shared equally by both parties.",
+          "If parties fail to settle a dispute by mutual consultation or mediation, the court in the district where Robuust Marketing is located has exclusive jurisdiction, unless the law mandatorily provides otherwise."
+        ]
+      },
+      "art20_final": {
+        "title": "Article 20 - Final provisions",
+        "items": [
+          "Robuust Marketing is authorized to modify or supplement these general terms and conditions.",
+          "Modifications will be communicated in writing to the client at least 30 days before taking effect.",
+          "If the client does not agree with the modified terms, the client may cancel the agreement effective on the date the modified terms take effect, provided the cancellation takes place within 14 days of notification.",
+          "Robuust Marketing may transfer rights and obligations under the agreement to third parties. The client may not transfer their rights and obligations without written permission from Robuust Marketing.",
+          "The most recent version of these general terms and conditions, as published on Robuust Marketing's website, applies to the agreement."
+        ]
       }
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "For questions about these general terms and conditions, please contact us via"
     }
   },
   "avgPage": {
