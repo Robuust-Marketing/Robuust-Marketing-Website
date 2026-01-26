@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { Clock, Tag, Calendar, AlertCircle } from "lucide-react";
@@ -207,6 +207,15 @@ export default async function BlogPostPage({
 
   if (!post) {
     notFound();
+  }
+
+  // If showing fallback content and a translation exists, redirect to the translated slug
+  if (post.isFallback && post.translations) {
+    const translatedSlug = post.translations[locale as Locale];
+    if (translatedSlug && translatedSlug !== slug) {
+      const basePath = locale === "nl" ? "" : `/${locale}`;
+      redirect(`${basePath}/blog/${translatedSlug}`);
+    }
   }
 
   const headings = extractHeadings(post.content);

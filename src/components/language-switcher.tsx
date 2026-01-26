@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { Link, type Locale, type Pathnames } from "@/i18n/routing";
+import { Link, usePathname, type Locale, type Pathnames } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { useBlogTranslationOptional } from "@/contexts/blog-translation-context";
 import { usePathname as useNextPathname } from "next/navigation";
@@ -12,6 +12,9 @@ interface LanguageSwitcherProps {
 
 export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const locale = useLocale() as Locale;
+  // usePathname from next-intl returns the canonical pathname (e.g., "/werkwijze" not "/approach")
+  const pathname = usePathname();
+  // useNextPathname from next/navigation returns the raw URL path for extracting dynamic segments
   const nextPathname = useNextPathname();
   const blogContext = useBlogTranslationOptional();
   const otherLocale: Locale = locale === "nl" ? "en" : "nl";
@@ -30,20 +33,19 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     return { pathname: "/blog/[slug]", params: { slug: targetSlug } };
   };
 
-  // Get the base pathname without locale prefix for next-intl
-  const getBasePathname = (): Pathnames => {
-    const path = nextPathname.replace(/^\/en/, "") || "/";
-    // Check if path matches a known pathname pattern
+  // Get the canonical pathname for next-intl Link
+  const getCanonicalPathname = (): Pathnames => {
     // For dynamic routes like /blog/[slug], extract the base pattern
-    const blogMatch = path.match(/^\/blog\/([^/]+)$/);
+    const blogMatch = pathname.match(/^\/blog\/([^/]+)$/);
     if (blogMatch) {
       return "/blog/[slug]" as Pathnames;
     }
-    return path as Pathnames;
+    // pathname from next-intl is already the canonical pathname
+    return pathname as Pathnames;
   };
 
   const blogHref = getBlogTranslatedHref();
-  const basePath = getBasePathname();
+  const canonicalPath = getCanonicalPathname();
   const blogSlugMatch = nextPathname.match(/^(\/en)?\/blog\/([^/]+)$/);
   const currentSlug = blogSlugMatch?.[2];
 
@@ -51,7 +53,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const href = blogHref || (
     currentSlug
       ? { pathname: "/blog/[slug]" as const, params: { slug: currentSlug } }
-      : basePath
+      : canonicalPath
   );
 
   return (
