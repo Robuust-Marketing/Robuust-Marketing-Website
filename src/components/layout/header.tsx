@@ -808,116 +808,117 @@ export function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - Fullscreen */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <>
-            {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 lg:hidden"
+          >
+            {/* Fullscreen menu panel */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
-              onClick={closeMobileMenu}
-            />
-
-            {/* Menu panel */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 z-50 w-full max-w-sm lg:hidden"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="h-full w-full overflow-y-auto bg-background"
             >
-              <div className="h-full overflow-y-auto bg-surface border-l border-white/10">
-                {/* Header */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-                  <Link href="/" className="-m-1.5 p-1.5" onClick={closeMobileMenu}>
-                    <img
-                      src="/logo.png"
-                      alt="Robuust"
-                      className="h-10 w-auto"
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                <Link href="/" className="-m-1.5 p-1.5" onClick={closeMobileMenu}>
+                  <img
+                    src="/logo.png"
+                    alt="Robuust"
+                    className="h-10 w-auto"
+                  />
+                </Link>
+                <button
+                  type="button"
+                  className="-m-2.5 rounded-lg p-2.5 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  <span className="sr-only">{tNav("closeMenu")}</span>
+                  <X className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+
+              {/* Navigation - Centered content */}
+              <div className="flex flex-col min-h-[calc(100vh-73px)]">
+                <div className="flex-1 px-6 py-8">
+                  <nav className="space-y-2 max-w-md mx-auto">
+                    {/* Diensten */}
+                    <MobileMenuItem
+                      name={tNav("diensten")}
+                      href="/diensten"
+                      isOpen={mobileSubmenu === "diensten"}
+                      onToggle={() => setMobileSubmenu(mobileSubmenu === "diensten" ? null : "diensten")}
+                      items={diensten}
+                      onClose={closeMobileMenu}
                     />
-                  </Link>
-                  <button
-                    type="button"
-                    className="-m-2.5 rounded-lg p-2.5 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className="sr-only">{tNav("closeMenu")}</span>
-                    <X className="h-6 w-6" aria-hidden="true" />
-                  </button>
+
+                    {/* Portfolio */}
+                    <MobileMenuItem
+                      name={tNav("portfolio")}
+                      href="/portfolio"
+                      isOpen={mobileSubmenu === "portfolio"}
+                      onToggle={() => setMobileSubmenu(mobileSubmenu === "portfolio" ? null : "portfolio")}
+                      items={portfolioItems.slice(0, 6).map(item => ({
+                        name: item.name,
+                        href: { pathname: "/portfolio/[slug]" as const, params: { slug: item.slug } },
+                        icon: Layout,
+                      }))}
+                      onClose={closeMobileMenu}
+                    />
+
+                    {/* Werkwijze */}
+                    <MobileMenuItem
+                      name={tNav("werkwijze")}
+                      href="/werkwijze"
+                      isOpen={mobileSubmenu === "werkwijze"}
+                      onToggle={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
+                      items={werkwijze}
+                      onClose={closeMobileMenu}
+                    />
+
+                    {/* Kennisbank */}
+                    <MobileMenuItem
+                      name={tNav("kennisbank")}
+                      href="/kennisbank"
+                      isOpen={mobileSubmenu === "kennisbank"}
+                      onToggle={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
+                      items={kennisbank}
+                      onClose={closeMobileMenu}
+                    />
+
+                    {/* Over */}
+                    <MobileMenuItem
+                      name={tNav("over")}
+                      href="/over"
+                      isOpen={mobileSubmenu === "over"}
+                      onToggle={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
+                      items={[...overOns, ...tooling.slice(0, 3)]}
+                      onClose={closeMobileMenu}
+                    />
+                  </nav>
                 </div>
 
-                {/* Navigation */}
-                <div className="px-6 py-6 space-y-1">
-                  {/* Diensten */}
-                  <MobileMenuItem
-                    name={tNav("diensten")}
-                    href="/diensten"
-                    isOpen={mobileSubmenu === "diensten"}
-                    onToggle={() => setMobileSubmenu(mobileSubmenu === "diensten" ? null : "diensten")}
-                    items={diensten}
-                    onClose={closeMobileMenu}
-                  />
-
-                  {/* Portfolio */}
-                  <MobileMenuItem
-                    name={tNav("portfolio")}
-                    href="/portfolio"
-                    isOpen={mobileSubmenu === "portfolio"}
-                    onToggle={() => setMobileSubmenu(mobileSubmenu === "portfolio" ? null : "portfolio")}
-                    items={portfolioItems.slice(0, 6).map(item => ({
-                      name: item.name,
-                      href: { pathname: "/portfolio/[slug]" as const, params: { slug: item.slug } },
-                      icon: Layout,
-                    }))}
-                    onClose={closeMobileMenu}
-                  />
-
-                  {/* Werkwijze */}
-                  <MobileMenuItem
-                    name={tNav("werkwijze")}
-                    href="/werkwijze"
-                    isOpen={mobileSubmenu === "werkwijze"}
-                    onToggle={() => setMobileSubmenu(mobileSubmenu === "werkwijze" ? null : "werkwijze")}
-                    items={werkwijze}
-                    onClose={closeMobileMenu}
-                  />
-
-                  {/* Kennisbank */}
-                  <MobileMenuItem
-                    name={tNav("kennisbank")}
-                    href="/kennisbank"
-                    isOpen={mobileSubmenu === "kennisbank"}
-                    onToggle={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
-                    items={kennisbank}
-                    onClose={closeMobileMenu}
-                  />
-
-                  {/* Over */}
-                  <MobileMenuItem
-                    name={tNav("over")}
-                    href="/over"
-                    isOpen={mobileSubmenu === "over"}
-                    onToggle={() => setMobileSubmenu(mobileSubmenu === "over" ? null : "over")}
-                    items={[...overOns, ...tooling.slice(0, 3)]}
-                    onClose={closeMobileMenu}
-                  />
-                </div>
-
-                {/* Language Switcher & CTA */}
-                <div className="px-6 py-6 border-t border-white/10 space-y-4">
-                  <LanguageSwitcherCompact />
-                  <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
-                    <Link href="/start-project" onClick={closeMobileMenu}>
-                      {tHeader("cta")}
-                    </Link>
-                  </Button>
+                {/* Language Switcher & CTA - Fixed at bottom */}
+                <div className="px-6 py-6 border-t border-white/10">
+                  <div className="max-w-md mx-auto space-y-4">
+                    <LanguageSwitcherCompact />
+                    <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
+                      <Link href="/start-project" onClick={closeMobileMenu}>
+                        {tHeader("cta")}
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.header>
@@ -943,18 +944,18 @@ function MobileMenuItem({
   onClose: () => void;
 }) {
   return (
-    <div>
-      <div className="flex w-full items-center justify-between rounded-lg text-base font-medium text-white/80 hover:text-white transition-colors">
+    <div className="border-b border-white/5 last:border-b-0">
+      <div className="flex w-full items-center justify-between text-lg font-medium text-white/90 hover:text-white transition-colors">
         <Link
           href={href}
-          className="flex-1 px-3 py-2.5 hover:bg-white/5 rounded-lg transition-colors"
+          className="flex-1 px-4 py-4 hover:bg-white/5 rounded-lg transition-colors"
           onClick={onClose}
         >
           {name}
         </Link>
         <button
           onClick={onToggle}
-          className="px-3 py-2.5 hover:bg-white/5 rounded-lg transition-colors"
+          className="px-4 py-4 hover:bg-white/5 rounded-lg transition-colors"
           aria-label={`${isOpen ? "Sluit" : "Open"} ${name} submenu`}
         >
           <ChevronDown
@@ -974,15 +975,15 @@ function MobileMenuItem({
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="mt-1 space-y-1 pl-4">
+            <div className="pb-4 pl-4 space-y-1">
               {items.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-base text-white/60 hover:text-white hover:bg-white/5 transition-colors"
                   onClick={onClose}
                 >
-                  <item.icon className="h-4 w-4 text-accent" />
+                  <item.icon className="h-5 w-5 text-accent" />
                   {item.name}
                 </Link>
               ))}
