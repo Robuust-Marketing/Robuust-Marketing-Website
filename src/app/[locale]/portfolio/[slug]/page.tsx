@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { type Locale, defaultLocale } from "@/i18n/config";
+import { generateAlternates } from "@/lib/metadata";
 import { getPortfolioItems } from "@/data/portfolio";
 import CaseStudyPageClient from "./client";
 
@@ -33,6 +34,7 @@ export async function generateMetadata({
   return {
     title: titles[locale as Locale] || titles.nl,
     description: descriptions[locale as Locale] || descriptions.nl,
+    alternates: generateAlternates(`/portfolio/${slug}`, locale),
     openGraph: {
       title: titles[locale as Locale] || titles.nl,
       description: descriptions[locale as Locale] || descriptions.nl,

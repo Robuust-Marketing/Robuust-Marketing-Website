@@ -10,6 +10,7 @@ import {
   getCategoryInfo,
   CategorySlug,
 } from "@/lib/kennisbank";
+import { generateAlternates } from "@/lib/metadata";
 import { locales, type Locale } from "@/i18n/config";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
@@ -47,6 +48,7 @@ export async function generateMetadata({
   return {
     title: `${guide.title} | ${kennisbankLabel} | Robuust Marketing`,
     description: guide.description,
+    alternates: generateAlternates(`/kennisbank/${category}/${slug}`, locale),
   };
 }
 

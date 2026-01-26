@@ -3,6 +3,7 @@ import { Link } from "@/i18n/routing";
 import { ArrowLeft, ArrowRight, BookOpen, Code2, Search, Server, Share2 } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import { getGuidesByCategory, getCategoryInfo, CategorySlug } from "@/lib/kennisbank";
+import { generateAlternates } from "@/lib/metadata";
 import { locales, type Locale } from "@/i18n/config";
 
 const categoryIcons: Record<CategorySlug, React.ElementType> = {
@@ -43,6 +44,7 @@ export async function generateMetadata({
   return {
     title: `${info.name} Guides | ${locale === "en" ? "Knowledge Base" : "Kennisbank"} | Robuust Marketing`,
     description: info.description,
+    alternates: generateAlternates(`/kennisbank/${category}`, locale),
   };
 }
 

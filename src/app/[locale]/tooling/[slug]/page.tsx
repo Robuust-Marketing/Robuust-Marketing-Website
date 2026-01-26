@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { type Locale, defaultLocale } from "@/i18n/config";
+import { generateAlternates } from "@/lib/metadata";
 import { getTool, getAllToolSlugs } from "@/data/tools";
 import { notFound } from "next/navigation";
 import ToolDetailPageClient from "./client";
@@ -37,6 +38,7 @@ export async function generateMetadata({
   return {
     title: titles[locale as Locale] || titles[defaultLocale],
     description: descriptions[locale as Locale] || descriptions[defaultLocale],
+    alternates: generateAlternates(`/tooling/${slug}`, locale),
     openGraph: {
       title: titles[locale as Locale] || titles[defaultLocale],
       description: descriptions[locale as Locale] || descriptions[defaultLocale],
