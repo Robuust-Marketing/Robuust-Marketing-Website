@@ -17,9 +17,6 @@ export function PortfolioShowcase() {
   const portfolioItems = getPortfolioItems(locale);
   const featuredItems = portfolioItems.filter((item) => item.featured).slice(0, 6);
 
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
-
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
@@ -68,7 +65,7 @@ export function PortfolioShowcase() {
               transition={{ duration: 0.6 }}
               className="md:col-span-2 lg:col-span-2 lg:row-span-2"
             >
-              <Link href={localePath(`/portfolio/${featuredItems[0].slug}`)} className="group block h-full">
+              <Link href={`/portfolio/${featuredItems[0].slug}` as any} className="group block h-full">
                 <div className="relative h-full min-h-[400px] lg:min-h-[500px] rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Image */}
                   <div className="absolute inset-0">
@@ -111,7 +108,7 @@ export function PortfolioShowcase() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
             >
-              <Link href={localePath(`/portfolio/${item.slug}`)} className="group block h-full">
+              <Link href={`/portfolio/${item.slug}` as any} className="group block h-full">
                 <div className="relative h-full min-h-[240px] rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Image */}
                   <div className="absolute inset-0">
@@ -158,7 +155,7 @@ export function PortfolioShowcase() {
             variant="outline"
             className="border-accent/50 text-white hover:bg-accent/10 hover:border-accent font-medium px-8 py-6 transition-all duration-300 group"
           >
-            <Link href={localePath("/portfolio")} className="flex items-center gap-2">
+            <Link href="/portfolio" className="flex items-center gap-2">
               {t("viewAllProjects")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>

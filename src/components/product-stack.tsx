@@ -4,16 +4,11 @@ import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Rocket, Shield, Check, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTranslations, useLocale } from "next-intl";
-import { type Locale } from "@/i18n/config";
+import { useTranslations } from "next-intl";
 import { pricing, formatPrice } from "@/data/pricing";
 
 export function ProductStack() {
   const t = useTranslations("productStack");
-  const locale = useLocale() as Locale;
-
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
 
   // Get features from translations
   const solidStartFeatures = [
@@ -126,7 +121,7 @@ export function ProductStack() {
                   variant="outline"
                   className="w-full border-white/20 text-white hover:bg-white/5 hover:border-white/30 font-medium py-6 transition-all duration-300 group/btn"
                 >
-                  <Link href={localePath("/contact")} className="flex items-center justify-center gap-2">
+                  <Link href="/contact" className="flex items-center justify-center gap-2">
                     {t("solidStart.cta")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
@@ -200,7 +195,7 @@ export function ProductStack() {
                   size="lg"
                   className="w-full bg-accent hover:bg-accent-hover text-white font-medium py-6 glow-accent hover:glow-accent transition-all duration-300 group/btn"
                 >
-                  <Link href={localePath("/contact")} className="flex items-center justify-center gap-2">
+                  <Link href="/contact" className="flex items-center justify-center gap-2">
                     {t("firmFoundation.cta")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
@@ -222,7 +217,7 @@ export function ProductStack() {
             {t("note")}
           </p>
           <Link
-            href={localePath("/tarieven")}
+            href="/tarieven"
             className="text-accent hover:text-accent-hover font-medium text-sm inline-flex items-center gap-1 transition-colors"
           >
             Bekijk alle tarieven

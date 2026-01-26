@@ -85,7 +85,7 @@ export function Navbar() {
               transition={{ delay: 0.3 + index * 0.05, duration: 0.4 }}
             >
               <Link
-                href={item.href}
+                href={item.href as any}
                 className="text-sm font-medium text-white/70 transition-colors hover:text-white relative group"
               >
                 {item.name}
@@ -131,7 +131,7 @@ export function Navbar() {
                   transition={{ delay: index * 0.05 }}
                 >
                   <Link
-                    href={item.href}
+                    href={item.href as any}
                     className="block rounded-lg px-3 py-2 text-base font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >

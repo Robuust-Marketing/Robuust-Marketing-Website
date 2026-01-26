@@ -3,16 +3,11 @@
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Server, Zap, Brain, ArrowRight } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
-import { type Locale } from "@/i18n/config";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
 export function TechStack() {
   const t = useTranslations("techStack");
-  const locale = useLocale() as Locale;
-
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path.replace("/diensten/", "/services/")}` : path;
 
   const techCategories = [
     {
@@ -21,7 +16,7 @@ export function TechStack() {
       description: t("categories.engine.description"),
       icon: Server,
       technologies: ["Node.js", "React", "Next.js", "WordPress", "WooCommerce"],
-      href: localePath("/diensten/development"),
+      href: "/diensten/development",
     },
     {
       key: "speed",
@@ -29,7 +24,7 @@ export function TechStack() {
       description: t("categories.speed.description"),
       icon: Zap,
       technologies: ["Cloudflare", "NGINX", "Varnish", "Let's Encrypt", "Fail2ban"],
-      href: localePath("/diensten/hosting"),
+      href: "/diensten/hosting",
     },
     {
       key: "intelligence",
@@ -37,7 +32,7 @@ export function TechStack() {
       description: t("categories.intelligence.description"),
       icon: Brain,
       technologies: ["GA4", "Taggrs", "Snitcher", "n8n", "AI Tooling"],
-      href: localePath("/diensten/tracking"),
+      href: "/diensten/tracking",
     },
   ];
 
@@ -99,7 +94,7 @@ export function TechStack() {
               whileHover={{ y: -4 }}
               className="group"
             >
-              <Link href={category.href} className="block h-full">
+              <Link href={category.href as any} className="block h-full">
                 <div className="glass rounded-3xl p-6 sm:p-8 h-full border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Category Header */}
                   <div className="flex items-center gap-3 mb-6">
@@ -147,7 +142,7 @@ export function TechStack() {
             variant="outline"
             className="border-accent/50 text-white hover:bg-accent/10 hover:border-accent font-medium px-8 py-6 transition-all duration-300 group"
           >
-            <Link href={localePath("/diensten/hosting")} className="flex items-center gap-2">
+            <Link href="/diensten/hosting" className="flex items-center gap-2">
               Meer over onze infrastructuur
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>

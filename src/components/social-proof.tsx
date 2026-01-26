@@ -2,8 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { motion } from "@/components/motion";
-import { useTranslations, useLocale } from "next-intl";
-import { type Locale } from "@/i18n/config";
+import { useTranslations } from "next-intl";
 
 const clients = [
   { name: "Growteq", slug: "growteq", logo: "/portfolio/growteq-logo.svg" },
@@ -15,10 +14,6 @@ const clients = [
 
 export function SocialProof() {
   const t = useTranslations("socialProof");
-  const locale = useLocale() as Locale;
-
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
 
   return (
     <section className="relative py-16">
@@ -44,7 +39,7 @@ export function SocialProof() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
                 <Link
-                  href={localePath(`/portfolio/${client.slug}`)}
+                  href={`/portfolio/${client.slug}` as any}
                   className="block hover:scale-105 transition-transform duration-300"
                 >
                   <img

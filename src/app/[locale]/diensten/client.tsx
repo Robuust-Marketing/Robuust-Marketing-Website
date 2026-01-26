@@ -44,9 +44,6 @@ export default function DienstenPageClient() {
   const services = getServices(locale);
   const packages = getPackages(locale);
 
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
-
   return (
     <div className="min-h-screen pt-32">
       {/* Hero Section */}
@@ -111,7 +108,7 @@ export default function DienstenPageClient() {
                   className="h-full"
                 >
                   <Link
-                    href={localePath(service.href) as any}
+                    href={service.href as any}
                     className="group relative block h-full overflow-hidden rounded-3xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-all duration-300"
                   >
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -244,7 +241,7 @@ export default function DienstenPageClient() {
                       : "bg-white/10 hover:bg-white/20 text-white"
                   }`}
                 >
-                  <Link href={localePath("/contact") as any}>{tButtons("requestQuote")}</Link>
+                  <Link href="/contact">{tButtons("requestQuote")}</Link>
                 </Button>
               </motion.div>
             ))}
@@ -281,7 +278,7 @@ export default function DienstenPageClient() {
               size="lg"
               className="bg-accent hover:bg-accent-hover text-white"
             >
-              <Link href={localePath("/contact") as any} className="flex items-center gap-2">
+              <Link href="/contact" className="flex items-center gap-2">
                 {tButtons("scheduleCall")}
                 <ArrowRight className="h-4 w-4" />
               </Link>

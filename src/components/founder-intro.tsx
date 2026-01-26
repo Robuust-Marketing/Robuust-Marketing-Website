@@ -11,9 +11,6 @@ export function FounderIntro() {
   const t = useTranslations("founderIntro");
   const locale = useLocale() as Locale;
 
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path}` : path;
-
   const stats = [
     { icon: Code2, value: "15+", label: t("stats.experience") },
     { icon: Server, value: "70+", label: t("stats.websites") },
@@ -153,7 +150,7 @@ export function FounderIntro() {
                 size="lg"
                 className="bg-accent hover:bg-accent-hover text-white font-medium px-8 py-6 glow-accent hover:glow-accent transition-all duration-300 group"
               >
-                <Link href={localePath("/contact")} className="flex items-center gap-2">
+                <Link href="/contact" className="flex items-center gap-2">
                   {t("cta")}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>

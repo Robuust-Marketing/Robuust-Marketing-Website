@@ -13,8 +13,7 @@ import {
   Headphones,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslations, useLocale } from "next-intl";
-import { type Locale } from "@/i18n/config";
+import { useTranslations } from "next-intl";
 
 interface BentoCardProps {
   title: string;
@@ -102,7 +101,7 @@ function BentoCard({ title, description, icon, className, highlight, href }: Ben
 
       {/* Full card link overlay */}
       {href && (
-        <Link href={href} className="absolute inset-0 z-20" aria-label={title}>
+        <Link href={href as any} className="absolute inset-0 z-20" aria-label={title}>
           <span className="sr-only">{title}</span>
         </Link>
       )}
@@ -123,10 +122,6 @@ const containerVariants = {
 
 export function BentoGrid() {
   const t = useTranslations("bentoGrid");
-  const locale = useLocale() as Locale;
-
-  // Helper for locale-aware paths
-  const localePath = (path: string) => locale === "en" ? `/en${path.replace("/diensten/", "/services/")}` : path;
 
   const features = [
     {
@@ -134,56 +129,56 @@ export function BentoGrid() {
       icon: <Palette className="h-6 w-6" />,
       className: "md:col-span-2 md:row-span-1",
       highlight: true,
-      href: localePath("/diensten/design"),
+      href: "/diensten/design",
     },
     {
       key: "development",
       icon: <Code2 className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-2",
       highlight: false,
-      href: localePath("/diensten/development"),
+      href: "/diensten/development",
     },
     {
       key: "hosting",
       icon: <Server className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
-      href: localePath("/diensten/hosting"),
+      href: "/diensten/hosting",
     },
     {
       key: "security",
       icon: <Shield className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: true,
-      href: localePath("/diensten/hosting"),
+      href: "/diensten/hosting",
     },
     {
       key: "analytics",
       icon: <BarChart3 className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
-      href: localePath("/diensten/tracking"),
+      href: "/diensten/tracking",
     },
     {
       key: "performance",
       icon: <Zap className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
-      href: localePath("/diensten/hosting"),
+      href: "/diensten/hosting",
     },
     {
       key: "seo",
       icon: <Globe className="h-6 w-6" />,
       className: "md:col-span-1 md:row-span-1",
       highlight: false,
-      href: localePath("/diensten/seo"),
+      href: "/diensten/seo",
     },
     {
       key: "support",
       icon: <Headphones className="h-6 w-6" />,
       className: "md:col-span-2 md:row-span-1",
       highlight: true,
-      href: localePath("/diensten/onderhoud"),
+      href: "/diensten/onderhoud",
     },
   ];
 

@@ -189,7 +189,7 @@ export function Hero() {
             size="lg"
             className="bg-accent hover:bg-accent-hover text-white font-medium px-8 py-6 text-base glow-accent hover:glow-accent transition-all duration-300 group"
           >
-            <Link href="#pakketten" className="flex items-center gap-2">
+            <Link href={"#pakketten" as any} className="flex items-center gap-2">
               {t("cta")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -200,7 +200,7 @@ export function Hero() {
             variant="outline"
             className="border-accent/50 text-white hover:bg-accent/10 hover:border-accent font-medium px-8 py-6 text-base transition-all duration-300 group"
           >
-            <Link href="#aanpak" className="flex items-center gap-2">
+            <Link href={"#aanpak" as any} className="flex items-center gap-2">
               {t("ctaSecondary")}
               <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>

@@ -288,7 +288,7 @@ export default function ReferentiesPageClient() {
                     {t("testimonials.growteq.company")}
                   </div>
                   <div className="text-muted-foreground text-sm">
-                    <Link href="/portfolio/growteq" className="hover:text-accent transition-colors">
+                    <Link href={"/portfolio/growteq" as any} className="hover:text-accent transition-colors">
                       {t("cta.secondaryButton")}
                     </Link>
                   </div>
