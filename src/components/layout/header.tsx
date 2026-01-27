@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "@/components/motion";
 import { LanguageSwitcher, LanguageSwitcherCompact } from "@/components/language-switcher";
@@ -217,10 +217,14 @@ export function Header() {
     }, 150);
   };
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu = useCallback(() => {
     setMobileMenuOpen(false);
     setMobileSubmenu(null);
-  };
+  }, []);
+
+  const toggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen((prev) => !prev);
+  }, []);
 
   return (
     <motion.header
@@ -253,14 +257,18 @@ export function Header() {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-white/80 hover:text-white hover:bg-white/5 transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-white/80 hover:text-white hover:bg-white/5 transition-colors touch-manipulation"
+            onPointerDown={(e) => {
+              // Use pointerDown for faster mobile response
+              e.preventDefault();
+              toggleMobileMenu();
+            }}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Sluit menu" : "Open menu"}
           >
             <span className="sr-only">{tNav("openMenu")}</span>
             {/* CSS-based hamburger icon for reliability */}
-            <div className="relative h-6 w-6 flex flex-col justify-center items-center">
+            <div className="relative h-6 w-6 flex flex-col justify-center items-center pointer-events-none">
               <span
                 className={cn(
                   "block h-0.5 w-5 bg-current transition-all duration-300 ease-out",
@@ -837,11 +845,14 @@ export function Header() {
                 </Link>
                 <button
                   type="button"
-                  className="-m-2.5 rounded-lg p-2.5 text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-                  onClick={closeMobileMenu}
+                  className="-m-2.5 rounded-lg p-2.5 text-white/70 hover:text-white hover:bg-white/5 transition-colors touch-manipulation"
+                  onPointerDown={(e) => {
+                    e.preventDefault();
+                    closeMobileMenu();
+                  }}
                 >
                   <span className="sr-only">{tNav("closeMenu")}</span>
-                  <X className="h-6 w-6" aria-hidden="true" />
+                  <X className="h-6 w-6 pointer-events-none" aria-hidden="true" />
                 </button>
               </div>
 

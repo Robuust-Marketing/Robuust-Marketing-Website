@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { setRequestLocale } from "next-intl/server";
 import { type Locale } from "@/i18n/config";
+import { Hero } from "@/components/hero";
 
 // Static loading component for Suspense fallbacks
 function SectionLoader() {
@@ -11,16 +12,6 @@ function SectionLoader() {
     </div>
   );
 }
-
-// Dynamically import heavy client components to reduce initial bundle size
-// Hero loads immediately but is chunked separately
-const Hero = dynamic(() => import("@/components/hero").then((mod) => mod.Hero), {
-  loading: () => (
-    <section className="min-h-screen flex items-center justify-center">
-      <SectionLoader />
-    </section>
-  ),
-});
 
 // Below-the-fold components loaded with ssr for SEO but chunked for performance
 const PortfolioShowcase = dynamic(
