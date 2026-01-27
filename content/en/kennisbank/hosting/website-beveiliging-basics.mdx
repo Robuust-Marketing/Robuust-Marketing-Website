@@ -1,0 +1,469 @@
+---
+title: "Website Security: Essential Measures for Every Site"
+description: "Protect your website from hackers and malware. From SSL to backups - all security measures you need to take."
+category: "hosting"
+readTime: "11 min"
+order: 3
+icon: "shield"
+translations:
+  nl: "website-beveiliging-basics"
+---
+
+Website security is not a luxury but a necessity. Thousands of websites are hacked daily. In this guide, we cover all the essential security measures for your website.
+
+## Why Security is Important
+
+### The Risks
+
+**When hacked, you can:**
+- Lose customer data
+- Lose your Google ranking (blacklist)
+- Face legal problems (GDPR)
+- Damage your reputation
+- Lose money
+
+### Who is the Target?
+
+**Everyone.** Hackers use automated tools that scan websites en masse for vulnerabilities. Size does not matter - small sites are often easy targets.
+
+### Most Common Attacks
+
+1. **Brute force:** Guessing passwords
+2. **SQL Injection:** Database manipulation
+3. **XSS:** Injecting malicious scripts
+4. **Malware:** Infecting website files
+5. **DDoS:** Overwhelming site with traffic
+
+## SSL/HTTPS
+
+### What is SSL?
+
+SSL (Secure Sockets Layer) encrypts the connection between visitor and server. Recognizable by the padlock and https:// in the browser.
+
+### Why is it Required?
+
+- **Security:** Data is encrypted
+- **SEO:** Google ranking factor
+- **Trust:** Visitors expect it
+- **Legal:** Required for forms and payments
+
+### Implementing SSL
+
+**1. Obtain certificate:**
+- Let's Encrypt: Free, automated
+- Commercial: DV, OV, or EV certificate
+- Via Cloudflare: Free edge certificate
+
+**2. Install on server:**
+- Most hosts do this automatically
+- Verify everything loads via HTTPS
+
+**3. Set up redirect:**
+```apache
+# .htaccess
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+```
+
+**4. Fix mixed content:**
+All resources (images, scripts, styles) must load via HTTPS.
+
+## Strong Passwords
+
+### Password Requirements
+
+**Minimum:**
+- 12+ characters
+- Uppercase and lowercase letters
+- Numbers
+- Special characters
+
+**Example:**
+```
+Bad: welcome123
+Good: K9#mP2$nL7@xQ4
+Better: Correct-Horse-Battery-Staple-42!
+```
+
+### Password Manager
+
+Use a password manager:
+- **1Password**
+- **Bitwarden** (open source)
+- **LastPass**
+
+**Benefits:**
+- Unique password per site
+- Strong generated passwords
+- Secure storage
+- Autofill functionality
+
+### Two-Factor Authentication (2FA)
+
+**What is it?**
+Extra verification step besides your password.
+
+**Methods:**
+- Authenticator app (recommended)
+- SMS code (less secure)
+- Hardware key (most secure)
+
+**Implement 2FA for:**
+- Website admin panel
+- Hosting account
+- Domain registrar
+- Email account
+
+## WordPress Security
+
+### Basic Measures
+
+**1. Keep everything up-to-date:**
+- WordPress core
+- Themes
+- Plugins
+
+Updates often contain security patches.
+
+**2. Remove unused plugins/themes:**
+Inactive code is still a risk.
+
+**3. Change default admin username:**
+`admin` is the first thing hackers try.
+
+**4. Hide WordPress version:**
+```php
+// functions.php
+remove_action('wp_head', 'wp_generator');
+```
+
+**5. Limit login attempts:**
+Install a plugin like "Limit Login Attempts Reloaded"
+
+### Security Plugins
+
+**Recommended options:**
+
+**Wordfence:**
+- Firewall
+- Malware scanner
+- Login security
+- Free version available
+
+**Sucuri:**
+- Website firewall (paid)
+- Malware scanning
+- Security hardening
+
+**iThemes Security:**
+- Many options
+- Beginner-friendly
+- Free version available
+
+### Securing wp-config.php
+
+```php
+// Generate unique keys via:
+// https://api.wordpress.org/secret-key/1.1/salt/
+define('AUTH_KEY', 'unique-value');
+define('SECURE_AUTH_KEY', 'unique-value');
+// etc.
+
+// Change database prefix from wp_
+$table_prefix = 'xyz123_';
+
+// Disable file editing
+define('DISALLOW_FILE_EDIT', true);
+
+// Turn off debug on production
+define('WP_DEBUG', false);
+```
+
+### .htaccess Security
+
+```apache
+# Protect wp-config.php
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>
+
+# Protect .htaccess
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+# Prevent directory listing
+Options -Indexes
+
+# Block access to sensitive files
+<FilesMatch "^.*(error_log|wp-config\.php|php.ini|\.[hH][tT][aApP].*)$">
+Order deny,allow
+Deny from all
+</FilesMatch>
+```
+
+## Backups
+
+### Why Essential?
+
+Backups are your last resort for:
+- Hacks
+- Malware infection
+- Accidental changes
+- Server problems
+- Human errors
+
+### Backup Strategy
+
+**3-2-1 Rule:**
+- **3** copies of your data
+- **2** different media types
+- **1** off-site location
+
+### What to Backup?
+
+1. **Database:** All content and settings
+2. **Files:** WordPress core, themes, plugins, uploads
+3. **Configuration:** .htaccess, wp-config.php
+
+### Backup Frequency
+
+| Site Type | Frequency |
+|-----------|-----------|
+| Static site | Weekly |
+| Blog | Daily |
+| Online store | Continuous/Hourly |
+| High-traffic | Continuous |
+
+### Backup Solutions
+
+**WordPress Plugins:**
+- UpdraftPlus (free/paid)
+- BackWPup (free)
+- VaultPress/Jetpack Backup (paid)
+
+**Server Level:**
+- Hosting provider backups
+- Server snapshots
+- Rsync scripts
+
+**Cloud Storage:**
+- Google Drive
+- Dropbox
+- Amazon S3
+- Backblaze B2
+
+### Test Your Backups
+
+A backup is only reliable if you have tested it:
+1. Download the backup
+2. Set up in test environment
+3. Verify everything works
+4. Do this regularly
+
+## Firewall
+
+### Types of Firewalls
+
+**Network Firewall:**
+Protects the server at the network level.
+
+**Web Application Firewall (WAF):**
+Protects specifically against web attacks.
+
+### WAF Options
+
+**Cloud-based:**
+- Cloudflare (free tier available)
+- Sucuri (paid)
+- AWS WAF
+
+**Plugin-based:**
+- Wordfence
+- NinjaFirewall
+
+### What a WAF Blocks
+
+- SQL injection attempts
+- XSS attacks
+- Known malicious IPs
+- Bot attacks
+- Suspicious request patterns
+
+## Server Security
+
+### Software Updates
+
+Keep up-to-date:
+- Operating system
+- Web server (Apache/Nginx)
+- PHP version
+- Database server
+
+### File Permissions
+
+**Correct permissions:**
+```
+Directories: 755
+Files: 644
+wp-config.php: 400 or 440
+```
+
+**Check with:**
+```bash
+find /path/to/wordpress/ -type d -exec chmod 755 {} \;
+find /path/to/wordpress/ -type f -exec chmod 644 {} \;
+```
+
+### Disable Directory Listing
+
+```apache
+# .htaccess
+Options -Indexes
+```
+
+### Security Headers
+
+```apache
+# .htaccess
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header set Content-Security-Policy "default-src 'self';"
+```
+
+## Monitoring
+
+### Uptime Monitoring
+
+**Services:**
+- UptimeRobot (free)
+- Pingdom
+- StatusCake
+
+**Set up alerts for:**
+- Site down
+- Slow response time
+- SSL problems
+
+### Security Scanning
+
+**Regularly scan for:**
+- Malware
+- Outdated software
+- Vulnerabilities
+- Blacklist status
+
+**Tools:**
+- Sucuri SiteCheck (free)
+- Google Safe Browsing
+- VirusTotal
+
+### Log Monitoring
+
+**Review regularly:**
+- Access logs (suspicious traffic)
+- Error logs (attack attempts)
+- Login logs (brute force detection)
+
+## Incident Response
+
+### If You Have Been Hacked
+
+**Step 1: Isolate**
+- Take site offline or in maintenance mode
+- Change all passwords
+- Revoke all sessions
+
+**Step 2: Analyze**
+- When did it happen?
+- How did they get in?
+- What has been affected?
+
+**Step 3: Clean**
+- Restore from clean backup
+- Or manually remove malware
+- Update all software
+
+**Step 4: Strengthen**
+- Fix the vulnerability
+- Implement missing security
+- Document the incident
+
+**Step 5: Monitor**
+- Extra monitoring after incident
+- Check for re-infection
+- Analyze logs
+
+### In Case of Data Breach
+
+**GDPR requirements:**
+- Report within 72 hours to Data Protection Authority
+- Inform affected persons if necessary
+- Document the incident
+
+## Security Checklist
+
+### Basic (Everyone)
+- [ ] SSL certificate active
+- [ ] Strong, unique passwords
+- [ ] 2FA enabled
+- [ ] Software up-to-date
+- [ ] Daily backups
+- [ ] Backup test performed
+
+### Intermediate
+- [ ] WAF implemented
+- [ ] Security headers set
+- [ ] Login attempts limited
+- [ ] Admin username changed
+- [ ] File permissions correct
+- [ ] Uptime monitoring active
+
+### Advanced
+- [ ] Security audit performed
+- [ ] Penetration testing
+- [ ] Incident response plan
+- [ ] Log monitoring
+- [ ] Malware scanning
+- [ ] Zero-trust architecture
+
+## Frequently Asked Questions
+
+**How do I know if my site has been hacked?**
+- Google warning
+- Unknown files/users
+- Slow performance
+- Strange redirects
+- Spam in comments/messages
+
+**Is a free SSL good enough?**
+Yes, Let's Encrypt offers the same encryption as paid certificates.
+
+**How often should I update?**
+Security updates: Immediately. Regular updates: Within a week.
+
+**Are free security plugins sufficient?**
+For most sites: yes. Basic protection is better than no protection.
+
+## Conclusion
+
+Website security is a continuous process, not a one-time action:
+
+1. **Prevention:** Updates, strong passwords, firewall
+2. **Detection:** Monitoring, scanning
+3. **Recovery:** Backups, incident response plan
+
+Start with the basics and build from there. Perfect security does not exist, but you can make it as difficult as possible for hackers.
+
+Want a security audit of your website? [Contact us](/contact).
+
+## Related Articles
+
+- **[Website Security with Cloudflare](/en/blog/cloudflare-security-ddos-firewall)** - DDoS and firewall
+- **[Website Maintenance](/en/blog/website-maintenance-why-important)** - Updates and backups
+- **[Website Monitoring & Uptime](/en/resources/hosting/website-monitoring-uptime)** - Detection and alerts

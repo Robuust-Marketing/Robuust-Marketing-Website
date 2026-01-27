@@ -1,0 +1,441 @@
+---
+title: "Website Monitoring: Keep Your Site Online and Fast"
+description: "Learn how to monitor your website for uptime, performance, and errors. From free tools to professional monitoring solutions."
+category: "hosting"
+readTime: "9 min"
+order: 4
+icon: "activity"
+translations:
+  nl: "website-monitoring-uptime"
+---
+
+Your website can experience problems at any moment. Without monitoring, you only notice this when customers complain - or worse, when your revenue drops. In this guide, you will learn how to effectively implement website monitoring.
+
+## Why Monitoring is Important
+
+### The Problem
+
+- Average website has 3 hours of downtime per month
+- Every minute of downtime costs money and reputation
+- Without monitoring, you do not know when problems occur
+
+### The Solution
+
+Monitoring detects problems immediately:
+- **Uptime monitoring:** Is your site accessible?
+- **Performance monitoring:** How fast does the site load?
+- **Error monitoring:** Are errors occurring?
+- **Security monitoring:** Are there threats?
+
+## Uptime Monitoring
+
+### What is Uptime?
+
+Uptime is the percentage of time your website is accessible.
+
+| Uptime | Downtime/year | Downtime/month |
+|--------|---------------|----------------|
+| 99% | 3.65 days | 7.2 hours |
+| 99.9% | 8.76 hours | 43 minutes |
+| 99.99% | 52.6 minutes | 4.3 minutes |
+
+### How Does Uptime Monitoring Work?
+
+1. Service checks your site at fixed intervals
+2. If no response, this is marked as downtime
+3. You receive an alert immediately
+4. After recovery, this is also reported
+
+### Free Uptime Tools
+
+**UptimeRobot:**
+- 50 monitors free
+- Check every 5 minutes
+- Email/SMS alerts
+- Status pages
+- uptimerobot.com
+
+**Freshping:**
+- 50 checks free
+- 1-minute interval
+- Multi-location checks
+- freshworks.com/website-monitoring
+
+**Hetrix Tools:**
+- 15 monitors free
+- 1-minute interval
+- Blacklist monitoring
+- hetrixtools.com
+
+### Paid Uptime Tools
+
+**Pingdom:**
+- Advanced features
+- Real User Monitoring
+- Transaction monitoring
+- From ~$10/month
+
+**StatusCake:**
+- Good price/quality
+- Page speed testing
+- SSL monitoring
+- From ~$20/month
+
+**Better Uptime:**
+- Modern interface
+- Incident management
+- Status pages
+- From $20/month
+
+### Setting Up Uptime Monitoring
+
+**Step 1: Choose a tool**
+Start with UptimeRobot (free, reliable)
+
+**Step 2: Add your site**
+- URL: https://yoursite.com
+- Check interval: 5 minutes (or faster)
+- Type: HTTP(S)
+
+**Step 3: Configure alerts**
+- Email: Immediately
+- SMS: For critical sites
+- Slack/Teams: For team notifications
+
+**Step 4: Test the monitoring**
+- Simulate downtime (if possible)
+- Check if alerts work
+- Verify contact details
+
+### What to Monitor
+
+**Basic:**
+- Homepage
+- Most important product pages
+- Contact/checkout pages
+- API endpoints
+
+**Advanced:**
+- Login functionality
+- Payment flows
+- External integrations
+- Database connections
+
+## Performance Monitoring
+
+### Why Monitor Performance?
+
+- Slow sites lose visitors
+- Performance affects SEO
+- Problems get worse over time
+- Identify trends
+
+### Core Web Vitals
+
+Google's most important performance metrics:
+
+**LCP (Largest Contentful Paint):**
+- How fast the largest element loads
+- Goal: < 2.5 seconds
+- Load hero images quickly
+
+**INP (Interaction to Next Paint):**
+- How quickly the page responds to interaction
+- Goal: < 200 milliseconds
+- Optimize JavaScript
+
+**CLS (Cumulative Layout Shift):**
+- How much the layout shifts
+- Goal: < 0.1
+- Give images dimensions
+
+### Performance Monitoring Tools
+
+**Google PageSpeed Insights:**
+- Free
+- Lab and field data
+- Recommendations
+- pagespeed.web.dev
+
+**GTmetrix:**
+- Free tier
+- Waterfall analysis
+- Video playback
+- Historical data (paid)
+
+**WebPageTest:**
+- Free
+- Detailed analysis
+- Multi-location tests
+- webpagetest.org
+
+### Continuous Performance Monitoring
+
+**Google Search Console:**
+- Core Web Vitals report
+- Real user data
+- Free
+
+**SpeedCurve:**
+- Synthetic monitoring
+- Real User Monitoring
+- Competitor benchmarking
+- Paid
+
+**Calibre:**
+- Performance budgets
+- Pull request checks
+- Team dashboards
+- Paid
+
+### Performance Alerts
+
+Set up alerts for:
+- LCP above 2.5 seconds
+- CLS above 0.1
+- Page load time above X seconds
+- Page size above X MB
+
+## Error Monitoring
+
+### What is Error Monitoring?
+
+Automatically detecting and reporting errors on your website:
+- JavaScript errors
+- Server errors (500s)
+- Failed API calls
+- Broken functionality
+
+### Error Monitoring Tools
+
+**Sentry:**
+- Extensive error tracking
+- Stack traces
+- User context
+- Free tier available
+- sentry.io
+
+**LogRocket:**
+- Session replay
+- Error tracking
+- Performance monitoring
+- Free tier
+- logrocket.com
+
+**Bugsnag:**
+- Error monitoring
+- Stability scoring
+- Release tracking
+- Paid
+
+### Implementing Error Monitoring
+
+**Example with Sentry (JavaScript):**
+```javascript
+import * as Sentry from "@sentry/browser";
+
+Sentry.init({
+  dsn: "https://your-dsn@sentry.io/project",
+  environment: "production",
+  tracesSampleRate: 0.1,
+});
+```
+
+**What to track:**
+- Unexpected exceptions
+- Failed network requests
+- Console errors
+- Custom business events
+
+## Security Monitoring
+
+### What to Monitor?
+
+- SSL certificate validity
+- Malware infections
+- Blacklist status
+- Vulnerability scans
+- Unauthorized changes
+
+### Security Monitoring Tools
+
+**Sucuri SiteCheck:**
+- Free malware scan
+- Blacklist check
+- sitecheck.sucuri.net
+
+**Google Safe Browsing:**
+- Automatic in Search Console
+- Warns for malware
+
+**SSL Labs:**
+- SSL configuration test
+- ssllabs.com/ssltest
+
+**Detectify:**
+- Automated security scans
+- Continuous monitoring
+- Paid
+
+### SSL Monitoring
+
+**Why important:**
+- Expired certificate = site unreachable/warning
+- Some hosts do not renew automatically
+
+**Tools:**
+- UptimeRobot (SSL monitoring included)
+- SSL Cert Expiration Checker
+- Let's Encrypt auto-renewal logs
+
+## Dashboards and Reporting
+
+### Status Pages
+
+Communicate status to users:
+
+**Free options:**
+- UptimeRobot Status Pages
+- Freshping Status Pages
+- Cachet (self-hosted)
+
+**Paid options:**
+- Statuspage (Atlassian)
+- Better Uptime
+- Instatus
+
+**What to show:**
+- Current status
+- Uptime history
+- Incident log
+- Planned maintenance
+
+### Team Dashboards
+
+**For internal use:**
+- Combined metrics
+- Trends over time
+- Alert overview
+- Team performance
+
+**Tools:**
+- Grafana (open source)
+- Datadog
+- New Relic
+
+## Alert Strategy
+
+### Preventing Alert Fatigue
+
+**Too many alerts = ignoring alerts**
+
+**Best practices:**
+- Only alert on actionable events
+- Group related alerts
+- Set correct thresholds
+- Review and tune regularly
+
+### Alert Priorities
+
+| Priority | Type | Notification | Response |
+|----------|------|--------------|----------|
+| P1 Critical | Site down | SMS + Call | Immediate |
+| P2 High | Major degradation | SMS + Email | < 30 min |
+| P3 Medium | Performance issues | Email + Slack | < 4 hours |
+| P4 Low | Minor issues | Email | Next day |
+
+### Escalation
+
+**Example escalation:**
+1. Alert to responsible developer
+2. After 15 min: to senior developer
+3. After 30 min: to team lead
+4. After 1 hour: to management
+
+### Alert Channels
+
+**Per situation:**
+- **Email:** All alerts, not urgent
+- **Slack/Teams:** Team awareness
+- **SMS:** Critical issues, after hours
+- **Phone call:** Only P1, auto-dial
+
+## Monitoring Checklist
+
+### Basic Setup
+- [ ] Uptime monitoring for homepage
+- [ ] Uptime monitoring for critical pages
+- [ ] Email alerts configured
+- [ ] SSL monitoring active
+- [ ] Weekly performance check (manual)
+
+### Intermediate
+- [ ] Multi-location uptime checks
+- [ ] Performance monitoring active
+- [ ] Error monitoring implemented
+- [ ] Status page live
+- [ ] Slack/Teams integration
+
+### Advanced
+- [ ] Real User Monitoring
+- [ ] Synthetic monitoring
+- [ ] Custom dashboards
+- [ ] Automated incident response
+- [ ] SLA tracking
+- [ ] Capacity planning metrics
+
+## Practical Example
+
+### SMB Website Setup
+
+**Tools:**
+1. **UptimeRobot** (free) - Uptime monitoring
+2. **Google Search Console** (free) - SEO & Core Web Vitals
+3. **Sentry** (free tier) - Error monitoring
+
+**Monitors:**
+- Homepage: every 5 min
+- Contact page: every 5 min
+- SSL certificate: daily
+
+**Alerts:**
+- Email to owner
+- SMS for downtime > 10 min
+
+**Cost:** $0/month
+
+### E-commerce Setup
+
+**Tools:**
+1. **Better Uptime** (~$20/month) - Uptime + Status page
+2. **Sentry** (paid) - Error monitoring
+3. **SpeedCurve** (~$20/month) - Performance
+
+**Monitors:**
+- All critical pages: every minute
+- Checkout flow: synthetic monitoring
+- API endpoints: every 30 sec
+
+**Alerts:**
+- Email + SMS for downtime
+- Slack for all issues
+- PagerDuty for critical
+
+## Conclusion
+
+Effective monitoring requires:
+
+1. **Uptime monitoring:** Know when your site is down
+2. **Performance monitoring:** Track trends and problems
+3. **Error monitoring:** Catch bugs before users report them
+4. **Security monitoring:** Detect threats early
+
+Start simple with free tools and expand as your site grows. The most important thing is that you monitor at all - even basic monitoring is better than no monitoring.
+
+Need help setting up monitoring? [Contact us](/contact).
+
+## Related Articles
+
+- **[Website Security Basics](/en/resources/hosting/website-beveiliging-basics)** - Protection
+- **[Website Maintenance](/en/blog/website-maintenance-why-important)** - Proactive management
+- **[Core Web Vitals Explained](/en/blog/core-web-vitals-explained)** - Measuring performance
