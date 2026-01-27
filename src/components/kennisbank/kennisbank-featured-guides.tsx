@@ -35,37 +35,38 @@ export function KennisbankFeaturedGuides({
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {guides.map((guide, index) => (
-            <motion.div
+            <motion.article
               key={guide.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group rounded-2xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
             >
-              <div className="flex items-center gap-2 mb-3">
-                <BookOpen className="h-4 w-4 text-accent" />
-                <span className="text-xs font-medium text-accent">
-                  {guide.category}
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  - {guide.readTime}
-                </span>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                {guide.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                {guide.description}
-              </p>
               <Link
                 href={`/kennisbank/${guide.categorySlug}/${guide.slug}` as any}
-                className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
+                className="group block h-full rounded-2xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
               >
-                {t("readGuide")}
-                <ArrowRight className="h-4 w-4" />
+                <div className="flex items-center gap-2 mb-3">
+                  <BookOpen className="h-4 w-4 text-accent" aria-hidden="true" />
+                  <span className="text-xs font-medium text-accent">
+                    {guide.category}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    - {guide.readTime}
+                  </span>
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                  {guide.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  {guide.description}
+                </p>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-accent group-hover:gap-3 transition-all">
+                  {t("readGuide")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </span>
               </Link>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
