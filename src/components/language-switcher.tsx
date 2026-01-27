@@ -42,39 +42,43 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   };
 
   // Get href for dynamic routes that need params
+  // Use nextPathname as fallback since usePathname from next-intl can sometimes return patterns
   const getDynamicHref = (): DynamicHref | null => {
+    // Strip locale prefix from nextPathname for matching
+    const rawPath = nextPathname.replace(/^\/(en|nl)/, "") || "/";
+
     // Blog: /blog/[slug]
-    const blogMatch = pathname.match(/^\/blog\/([^/]+)$/);
+    const blogMatch = rawPath.match(/^\/blog\/([^/\[]+)$/);
     if (blogMatch) {
       return { pathname: "/blog/[slug]", params: { slug: blogMatch[1] } };
     }
 
     // Portfolio: /portfolio/[slug]
-    const portfolioMatch = pathname.match(/^\/portfolio\/([^/]+)$/);
+    const portfolioMatch = rawPath.match(/^\/portfolio\/([^/\[]+)$/);
     if (portfolioMatch) {
       return { pathname: "/portfolio/[slug]", params: { slug: portfolioMatch[1] } };
     }
 
-    // Kennisbank guide: /kennisbank/[category]/[slug]
-    const kennisbankGuideMatch = pathname.match(/^\/kennisbank\/([^/]+)\/([^/]+)$/);
+    // Kennisbank guide: /kennisbank/[category]/[slug] or /resources/[category]/[slug]
+    const kennisbankGuideMatch = rawPath.match(/^\/(kennisbank|resources)\/([^/\[]+)\/([^/\[]+)$/);
     if (kennisbankGuideMatch) {
       return {
         pathname: "/kennisbank/[category]/[slug]",
-        params: { category: kennisbankGuideMatch[1], slug: kennisbankGuideMatch[2] },
+        params: { category: kennisbankGuideMatch[2], slug: kennisbankGuideMatch[3] },
       };
     }
 
-    // Kennisbank category: /kennisbank/[category]
-    const kennisbankCategoryMatch = pathname.match(/^\/kennisbank\/([^/]+)$/);
-    if (kennisbankCategoryMatch && !["glossary"].includes(kennisbankCategoryMatch[1])) {
+    // Kennisbank category: /kennisbank/[category] or /resources/[category]
+    const kennisbankCategoryMatch = rawPath.match(/^\/(kennisbank|resources)\/([^/\[]+)$/);
+    if (kennisbankCategoryMatch && !["glossary"].includes(kennisbankCategoryMatch[2])) {
       return {
         pathname: "/kennisbank/[category]",
-        params: { category: kennisbankCategoryMatch[1] },
+        params: { category: kennisbankCategoryMatch[2] },
       };
     }
 
     // Tooling: /tooling/[slug]
-    const toolingMatch = pathname.match(/^\/tooling\/([^/]+)$/);
+    const toolingMatch = rawPath.match(/^\/tooling\/([^/\[]+)$/);
     if (toolingMatch) {
       return { pathname: "/tooling/[slug]", params: { slug: toolingMatch[1] } };
     }

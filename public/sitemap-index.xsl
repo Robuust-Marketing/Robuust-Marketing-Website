@@ -206,12 +206,12 @@
                     <div class="sitemap-name">
                       <xsl:variable name="filename" select="substring-after(sitemap:loc, '/sitemap/')"/>
                       <xsl:choose>
+                        <xsl:when test="contains($filename, 'landing')">Lokale Pagina's</xsl:when>
                         <xsl:when test="contains($filename, 'pages')">Pagina's</xsl:when>
                         <xsl:when test="contains($filename, 'services')">Diensten</xsl:when>
                         <xsl:when test="contains($filename, 'blog')">Blog</xsl:when>
                         <xsl:when test="contains($filename, 'kennisbank')">Kennisbank</xsl:when>
                         <xsl:when test="contains($filename, 'portfolio')">Portfolio</xsl:when>
-                        <xsl:when test="contains($filename, 'landing')">Landing Pages</xsl:when>
                         <xsl:otherwise><xsl:value-of select="$filename"/></xsl:otherwise>
                       </xsl:choose>
                     </div>
