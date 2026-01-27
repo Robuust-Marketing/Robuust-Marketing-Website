@@ -3,15 +3,16 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getPortfolioItems } from "@/data/portfolio";
+import { getPortfolioItems, getLegacyPortfolioItems } from "@/data/portfolio";
 import type { Locale } from "@/i18n/config";
 
 export default function PortfolioPageClient() {
   const t = useTranslations("portfolioPage");
   const locale = useLocale() as Locale;
   const portfolioItems = getPortfolioItems(locale);
+  const legacyItems = getLegacyPortfolioItems(locale);
 
   return (
     <div className="min-h-screen pt-32">
@@ -137,6 +138,56 @@ export default function PortfolioPageClient() {
                   </div>
                 </Link>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Legacy Projects Section */}
+      <section className="py-20 bg-surface/30">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              {t("legacy.title")}
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {t("legacy.subtitle")}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {legacyItems.map((project, index) => (
+              <motion.a
+                key={project.id}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
+                className="group flex flex-col items-center p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 hover:bg-surface-hover transition-all duration-300"
+              >
+                <div className="bg-white rounded-lg p-2 mb-3 shadow-md">
+                  <img
+                    src={`https://www.google.com/s2/favicons?domain=${new URL(project.url).hostname}&sz=128`}
+                    alt={`${project.name} favicon`}
+                    className="h-8 w-8 object-contain"
+                  />
+                </div>
+                <span className="text-sm font-medium text-white text-center group-hover:text-accent transition-colors line-clamp-2">
+                  {project.name}
+                </span>
+                <span className="text-xs text-muted-foreground mt-1">
+                  {project.category}
+                </span>
+                <ExternalLink className="h-3 w-3 text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.a>
             ))}
           </div>
         </div>

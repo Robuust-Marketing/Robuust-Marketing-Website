@@ -503,6 +503,290 @@ export function getPortfolioItems(locale: Locale = defaultLocale): PortfolioItem
 // Legacy export for backward compatibility
 export const portfolioItems = portfolioItemsNL;
 
+// Legacy portfolio items - smaller projects shown at the bottom of the portfolio page
+export interface LegacyPortfolioItem {
+  id: string;
+  slug: string;
+  name: string;
+  url: string;
+  category: string;
+  year?: number;
+}
+
+const legacyPortfolioItemsNL: LegacyPortfolioItem[] = [
+  {
+    id: "ribouw",
+    slug: "ribouw",
+    name: "Ribouw",
+    url: "https://ribouw.nl",
+    category: "Bouw",
+    year: 2020,
+  },
+  {
+    id: "woningkeur",
+    slug: "woningkeur",
+    name: "Woningkeur",
+    url: "https://woningkeur.nl",
+    category: "Vastgoed",
+    year: 2019,
+  },
+  {
+    id: "perfectkeur",
+    slug: "perfectkeur",
+    name: "Perfectkeur",
+    url: "https://perfectkeur.nl",
+    category: "Vastgoed",
+    year: 2019,
+  },
+  {
+    id: "pianoselect",
+    slug: "pianoselect",
+    name: "Pianoselect",
+    url: "https://pianoselect.nl",
+    category: "Retail",
+    year: 2018,
+  },
+  {
+    id: "finance-to-the-point",
+    slug: "finance-to-the-point",
+    name: "Finance to the Point",
+    url: "https://financetothepoint.nl",
+    category: "Financieel",
+    year: 2021,
+  },
+  {
+    id: "spotlight-advies",
+    slug: "spotlight-advies",
+    name: "Spotlight Advies",
+    url: "https://spotlightadvies.nl",
+    category: "Consultancy",
+    year: 2020,
+  },
+  {
+    id: "ross-lovell",
+    slug: "ross-lovell",
+    name: "Ross Lovell",
+    url: "https://rosslovell.nl",
+    category: "Muziek",
+    year: 2019,
+  },
+  {
+    id: "hamstermieden",
+    slug: "hamstermieden",
+    name: "Hamstermieden",
+    url: "https://www.hamstermieden.nl",
+    category: "Recreatie",
+    year: 2020,
+  },
+  {
+    id: "energielabel-com",
+    slug: "energielabel-com",
+    name: "Energielabel.com",
+    url: "https://energielabel.com",
+    category: "Energie",
+    year: 2019,
+  },
+  {
+    id: "home-keukens",
+    slug: "home-keukens",
+    name: "Home Keukens",
+    url: "https://homekeukens.nl",
+    category: "Retail",
+    year: 2018,
+  },
+  {
+    id: "houtwijck",
+    slug: "houtwijck",
+    name: "Houtwijck",
+    url: "https://houtwijck.nl",
+    category: "Bouw",
+    year: 2019,
+  },
+  {
+    id: "tuuur",
+    slug: "tuuur",
+    name: "Tuuur",
+    url: "https://tuuur.nl",
+    category: "Dienstverlening",
+    year: 2020,
+  },
+  {
+    id: "veersedijk",
+    slug: "veersedijk",
+    name: "Veersedijk",
+    url: "https://veersedijk.nl",
+    category: "Horeca",
+    year: 2019,
+  },
+  {
+    id: "fruity-pack",
+    slug: "fruity-pack",
+    name: "Fruity Pack",
+    url: "https://fruitypack.nl",
+    category: "Food",
+    year: 2018,
+  },
+  {
+    id: "propendum",
+    slug: "propendum",
+    name: "Propendum",
+    url: "https://propendum.nl",
+    category: "Consultancy",
+    year: 2019,
+  },
+  {
+    id: "foto-lot",
+    slug: "foto-lot",
+    name: "Foto Lot",
+    url: "https://fotolot.nl",
+    category: "Fotografie",
+    year: 2018,
+  },
+];
+
+const legacyPortfolioItemsEN: LegacyPortfolioItem[] = [
+  {
+    id: "ribouw",
+    slug: "ribouw",
+    name: "Ribouw",
+    url: "https://ribouw.nl",
+    category: "Construction",
+    year: 2020,
+  },
+  {
+    id: "woningkeur",
+    slug: "woningkeur",
+    name: "Woningkeur",
+    url: "https://woningkeur.nl",
+    category: "Real Estate",
+    year: 2019,
+  },
+  {
+    id: "perfectkeur",
+    slug: "perfectkeur",
+    name: "Perfectkeur",
+    url: "https://perfectkeur.nl",
+    category: "Real Estate",
+    year: 2019,
+  },
+  {
+    id: "pianoselect",
+    slug: "pianoselect",
+    name: "Pianoselect",
+    url: "https://pianoselect.nl",
+    category: "Retail",
+    year: 2018,
+  },
+  {
+    id: "finance-to-the-point",
+    slug: "finance-to-the-point",
+    name: "Finance to the Point",
+    url: "https://financetothepoint.nl",
+    category: "Financial",
+    year: 2021,
+  },
+  {
+    id: "spotlight-advies",
+    slug: "spotlight-advies",
+    name: "Spotlight Advies",
+    url: "https://spotlightadvies.nl",
+    category: "Consultancy",
+    year: 2020,
+  },
+  {
+    id: "ross-lovell",
+    slug: "ross-lovell",
+    name: "Ross Lovell",
+    url: "https://rosslovell.nl",
+    category: "Music",
+    year: 2019,
+  },
+  {
+    id: "hamstermieden",
+    slug: "hamstermieden",
+    name: "Hamstermieden",
+    url: "https://www.hamstermieden.nl",
+    category: "Recreation",
+    year: 2020,
+  },
+  {
+    id: "energielabel-com",
+    slug: "energielabel-com",
+    name: "Energielabel.com",
+    url: "https://energielabel.com",
+    category: "Energy",
+    year: 2019,
+  },
+  {
+    id: "home-keukens",
+    slug: "home-keukens",
+    name: "Home Keukens",
+    url: "https://homekeukens.nl",
+    category: "Retail",
+    year: 2018,
+  },
+  {
+    id: "houtwijck",
+    slug: "houtwijck",
+    name: "Houtwijck",
+    url: "https://houtwijck.nl",
+    category: "Construction",
+    year: 2019,
+  },
+  {
+    id: "tuuur",
+    slug: "tuuur",
+    name: "Tuuur",
+    url: "https://tuuur.nl",
+    category: "Services",
+    year: 2020,
+  },
+  {
+    id: "veersedijk",
+    slug: "veersedijk",
+    name: "Veersedijk",
+    url: "https://veersedijk.nl",
+    category: "Hospitality",
+    year: 2019,
+  },
+  {
+    id: "fruity-pack",
+    slug: "fruity-pack",
+    name: "Fruity Pack",
+    url: "https://fruitypack.nl",
+    category: "Food",
+    year: 2018,
+  },
+  {
+    id: "propendum",
+    slug: "propendum",
+    name: "Propendum",
+    url: "https://propendum.nl",
+    category: "Consultancy",
+    year: 2019,
+  },
+  {
+    id: "foto-lot",
+    slug: "foto-lot",
+    name: "Foto Lot",
+    url: "https://fotolot.nl",
+    category: "Photography",
+    year: 2018,
+  },
+];
+
+export const legacyPortfolioItemsByLocale: Record<Locale, LegacyPortfolioItem[]> = {
+  nl: legacyPortfolioItemsNL,
+  en: legacyPortfolioItemsEN,
+};
+
+export function getLegacyPortfolioItems(locale: Locale = defaultLocale): LegacyPortfolioItem[] {
+  return legacyPortfolioItemsByLocale[locale] || legacyPortfolioItemsByLocale[defaultLocale];
+}
+
+// Legacy export for backward compatibility
+export const legacyPortfolioItems = legacyPortfolioItemsNL;
+
 const categoriesNL = [
   "Alle",
   "B2B Corporate",

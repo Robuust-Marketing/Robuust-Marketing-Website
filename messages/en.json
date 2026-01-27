@@ -637,6 +637,11 @@
       "title": "Your project next?",
       "subtitle": "Let's discuss together how we can make your digital ambitions a reality.",
       "button": "Start your project"
+    },
+    "legacy": {
+      "title": "Previous projects",
+      "subtitle": "A selection of websites we've built over the years.",
+      "visitWebsite": "Visit website"
     }
   },
   "tarievenPage": {

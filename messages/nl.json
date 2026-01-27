@@ -649,6 +649,11 @@
       "title": "Jouw project als volgende?",
       "subtitle": "Laten we samen bespreken hoe we jouw digitale ambities kunnen waarmaken.",
       "button": "Start je project"
+    },
+    "legacy": {
+      "title": "Eerdere projecten",
+      "subtitle": "Een selectie van websites die we in de afgelopen jaren hebben gerealiseerd.",
+      "visitWebsite": "Bezoek website"
     }
   },
   "tarievenPage": {

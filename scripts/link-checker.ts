@@ -183,6 +183,10 @@ function parsePage(html: string, pageUrl: string): Omit<PageResult, "url" | "sta
     if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:")) {
       return;
     }
+    // Skip Cloudflare email protection URLs (false positives)
+    if (href.includes("/cdn-cgi/l/email-protection")) {
+      return;
+    }
 
     const normalized = normalizeUrl(href, pageUrl);
     if (!normalized) {
@@ -587,8 +591,17 @@ function printReport(report: CrawlReport) {
     console.log("─".repeat(60));
     for (const link of report.brokenLinks.slice(0, 20)) {
       console.log(`  ${link.status === 0 ? "ERR" : link.status} ${link.url}`);
-      if (verbose && link.foundOn.length > 0) {
-        console.log(`      Found on: ${link.foundOn.slice(0, 3).join(", ")}${link.foundOn.length > 3 ? "..." : ""}`);
+      // Always show where the broken link was found
+      if (link.foundOn.length > 0) {
+        console.log(`      Found on:`);
+        for (const source of link.foundOn.slice(0, 5)) {
+          console.log(`        - ${source}`);
+        }
+        if (link.foundOn.length > 5) {
+          console.log(`        ... and ${link.foundOn.length - 5} more pages`);
+        }
+      } else {
+        console.log(`      Found on: (source unknown - possibly from sitemap)`);
       }
     }
     if (report.brokenLinks.length > 20) {
