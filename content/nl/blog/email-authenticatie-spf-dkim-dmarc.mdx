@@ -1,0 +1,376 @@
+---
+title: "E-mail authenticatie uitgelegd: SPF, DKIM en DMARC instellen"
+excerpt: "Voorkom dat je e-mails in spam belanden en bescherm je domein tegen spoofing. Leer hoe SPF, DKIM en DMARC werken en hoe je ze instelt."
+category: "E-mail"
+date: "2025-01-27"
+readTime: "11 min"
+author: "Robuust Marketing"
+translations:
+  en: "email-authentication-spf-dkim-dmarc"
+---
+
+> **Bij Robuust regelen wij dit voor je.** Alle domeinen die wij beheren zijn voorzien van correcte SPF, DKIM en DMARC configuratie. Wil je weten hoe het werkt of zelf aan de slag? Lees dan verder.
+
+Je hebt vast wel eens meegemaakt dat een belangrijke e-mail in de spamfolder van je klant belandde. Of misschien ontvingen je klanten verdachte e-mails die zogenaamd van jouw bedrijf kwamen. Dit zijn precies de problemen die e-mail authenticatie oplost.
+
+## Waarom e-mail authenticatie essentieel is
+
+De cijfers zijn alarmerend:
+
+- **94%** van malware wordt via e-mail verspreid
+- **3,4 miljard** phishing e-mails worden dagelijks verzonden
+- **83%** van bedrijven was in 2023 slachtoffer van phishing
+- E-mails zonder authenticatie hebben **10x** meer kans om als spam gemarkeerd te worden
+
+Zonder correcte e-mail authenticatie:
+- Kunnen criminelen e-mails versturen die van jouw domein lijken te komen (spoofing)
+- Belanden je legitieme e-mails sneller in spam
+- Kun je reputatieschade oplopen
+- Loop je klanten mis door onbezorgde e-mails
+
+## De drie pijlers van e-mail authenticatie
+
+E-mail authenticatie bestaat uit drie DNS-records die samenwerken:
+
+| Protocol | Functie |
+|----------|---------|
+| **SPF** | Wie mag namens jouw domein e-mails versturen? |
+| **DKIM** | Is de e-mail onderweg niet aangepast? |
+| **DMARC** | Wat moet er gebeuren met e-mails die niet kloppen? |
+
+Laten we ze stuk voor stuk bekijken.
+
+## SPF: Sender Policy Framework
+
+### Wat is SPF?
+
+SPF is een DNS-record dat aangeeft welke mailservers e-mails mogen versturen namens jouw domein. Ontvangende mailservers controleren dit record om te verifiëren of de afzender legitiem is.
+
+### Hoe werkt SPF?
+
+1. Je verstuurt een e-mail vanaf @jouwbedrijf.nl
+2. De ontvangende server vraagt het SPF-record op van jouwbedrijf.nl
+3. De server controleert of de verzendende server in het SPF-record staat
+4. Zo ja: de e-mail wordt geaccepteerd
+5. Zo nee: de e-mail wordt gemarkeerd of geweigerd
+
+### SPF-record instellen
+
+Een SPF-record is een TXT-record in je DNS:
+
+```
+v=spf1 include:_spf.google.com include:spf.protection.outlook.com -all
+```
+
+**Onderdelen uitgelegd:**
+
+- `v=spf1` — Versie indicator (verplicht)
+- `include:_spf.google.com` — Sta Google Workspace toe
+- `include:spf.protection.outlook.com` — Sta Microsoft 365 toe
+- `-all` — Weiger alle andere servers (strict)
+
+### Veelgebruikte SPF includes
+
+| Dienst | SPF include |
+|--------|-------------|
+| Google Workspace | `include:_spf.google.com` |
+| Microsoft 365 | `include:spf.protection.outlook.com` |
+| Mailchimp | `include:servers.mcsv.net` |
+| Sendinblue/Brevo | `include:spf.sendinblue.com` |
+| HubSpot | `include:spf.hubspot.com` |
+| Resend | `include:amazonses.com` |
+| SendGrid | `include:sendgrid.net` |
+| Mailgun | `include:mailgun.org` |
+| Zoho Mail | `include:zoho.eu` |
+
+### SPF qualifiers
+
+De qualifier bepaalt wat er gebeurt met niet-overeenkomende e-mails:
+
+| Qualifier | Betekenis | Aanbevolen |
+|-----------|-----------|------------|
+| `-all` | Hard fail — weiger | Ja, voor productie |
+| `~all` | Soft fail — markeer als verdacht | Ja, voor testen |
+| `?all` | Neutraal — geen actie | Nee |
+| `+all` | Sta alles toe | Nooit gebruiken |
+
+### SPF limitaties
+
+- **Maximum 10 DNS lookups**: Elke `include` telt als lookup
+- **Maximum 255 karakters per string**: Splits langere records
+- **Geen overerving**: Subdomeinen hebben eigen SPF nodig
+
+**Tip:** Gebruik tools zoals [MXToolbox SPF Lookup](https://mxtoolbox.com/spf.aspx) om je lookups te tellen.
+
+## DKIM: DomainKeys Identified Mail
+
+### Wat is DKIM?
+
+DKIM voegt een digitale handtekening toe aan je e-mails. Hiermee kan de ontvanger verifiëren dat:
+1. De e-mail daadwerkelijk van jouw domein komt
+2. De inhoud onderweg niet is aangepast
+
+### Hoe werkt DKIM?
+
+1. Je mailserver ondertekent elke uitgaande e-mail met een **private key**
+2. De handtekening wordt toegevoegd aan de e-mail header
+3. De ontvanger haalt de **public key** op via DNS
+4. Met de public key wordt de handtekening gecontroleerd
+5. Als de handtekening klopt, is de e-mail authentiek
+
+### DKIM-record instellen
+
+Een DKIM-record is een TXT-record met een specifieke naam:
+
+```
+selector1._domainkey.jouwbedrijf.nl
+```
+
+Met als waarde:
+
+```
+v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC...
+```
+
+**Onderdelen uitgelegd:**
+
+- `v=DKIM1` — Versie (verplicht)
+- `k=rsa` — Encryptie algoritme
+- `p=...` — De public key (base64 encoded)
+
+### DKIM selector
+
+De "selector" identificeert welke sleutel wordt gebruikt. Dit maakt het mogelijk om:
+- Meerdere services met eigen DKIM te hebben
+- Keys te roteren zonder downtime
+
+**Voorbeelden van selectors:**
+- Google Workspace: `google._domainkey`
+- Microsoft 365: `selector1._domainkey` en `selector2._domainkey`
+- Mailchimp: `k1._domainkey`
+
+### DKIM instellen per provider
+
+**Google Workspace:**
+1. Ga naar Admin Console → Apps → Google Workspace → Gmail
+2. Klik op "E-mail verifiëren"
+3. Genereer een nieuwe DKIM-sleutel
+4. Voeg het getoonde TXT-record toe aan je DNS
+5. Activeer DKIM in Google Admin
+
+**Microsoft 365:**
+1. Ga naar Microsoft 365 Defender → Email & collaboration
+2. Klik op Policies → DKIM
+3. Selecteer je domein
+4. Kopieer de CNAME-records en voeg ze toe aan DNS
+5. Activeer DKIM-ondertekening
+
+## DMARC: Domain-based Message Authentication
+
+### Wat is DMARC?
+
+DMARC bouwt voort op SPF en DKIM. Het bepaalt:
+1. Hoe streng SPF en DKIM worden gecontroleerd
+2. Wat er moet gebeuren met e-mails die falen
+3. Waar rapporten naartoe gestuurd moeten worden
+
+### Hoe werkt DMARC?
+
+1. Ontvanger controleert SPF en DKIM
+2. DMARC checkt of het "From" domein overeenkomt (alignment)
+3. Bij falen: volg het DMARC-beleid (none/quarantine/reject)
+4. Stuur rapport naar opgegeven adres
+
+### DMARC alignment
+
+DMARC controleert of de domeinen "aligned" zijn:
+
+**SPF alignment:** Het `Return-Path` domein moet overeenkomen met het `From` domein.
+
+**DKIM alignment:** Het `d=` domein in de DKIM-handtekening moet overeenkomen met het `From` domein.
+
+### DMARC-record instellen
+
+Een DMARC-record is een TXT-record op `_dmarc.jouwbedrijf.nl`:
+
+```
+v=DMARC1; p=reject; rua=mailto:dmarc@jouwbedrijf.nl; ruf=mailto:dmarc@jouwbedrijf.nl; adkim=s; aspf=s
+```
+
+**Onderdelen uitgelegd:**
+
+| Tag | Betekenis | Waarde |
+|-----|-----------|--------|
+| `v=DMARC1` | Versie | Verplicht, altijd DMARC1 |
+| `p=` | Policy | none, quarantine, of reject |
+| `rua=` | Aggregate reports | E-mailadres voor dagelijkse rapporten |
+| `ruf=` | Forensic reports | E-mailadres voor failure reports |
+| `adkim=` | DKIM alignment | s (strict) of r (relaxed) |
+| `aspf=` | SPF alignment | s (strict) of r (relaxed) |
+| `pct=` | Percentage | Hoeveel % van e-mails het beleid toepassen |
+
+### DMARC policies
+
+| Policy | Actie | Wanneer gebruiken |
+|--------|-------|-------------------|
+| `p=none` | Alleen monitoren, geen actie | Start hier, analyseer rapporten |
+| `p=quarantine` | Naar spam verplaatsen | Na analyse, als SPF/DKIM kloppen |
+| `p=reject` | Volledig weigeren | Einddoel, maximale bescherming |
+
+### Gefaseerde DMARC implementatie
+
+**Stap 1: Monitor mode (2-4 weken)**
+```
+v=DMARC1; p=none; rua=mailto:dmarc@jouwbedrijf.nl
+```
+Verzamel data, identificeer alle legitieme mailbronnen.
+
+**Stap 2: Quarantine (2-4 weken)**
+```
+v=DMARC1; p=quarantine; pct=25; rua=mailto:dmarc@jouwbedrijf.nl
+```
+Start met 25%, verhoog geleidelijk naar 100%.
+
+**Stap 3: Reject**
+```
+v=DMARC1; p=reject; rua=mailto:dmarc@jouwbedrijf.nl; adkim=s; aspf=s
+```
+Volledige bescherming actief.
+
+### DMARC rapporten lezen
+
+DMARC aggregate reports zijn XML-bestanden. Gebruik tools om ze te analyseren:
+
+- [DMARC Analyzer](https://www.dmarcanalyzer.com/) (betaald)
+- [Postmark DMARC](https://dmarc.postmarkapp.com/) (gratis)
+- [Valimail](https://www.valimail.com/) (enterprise)
+
+## Volledige configuratie voorbeeld
+
+Stel je hebt een bedrijf dat:
+- Google Workspace gebruikt voor e-mail
+- Mailchimp voor nieuwsbrieven
+- Je website via onze servers voor contactformulieren
+
+### DNS Records
+
+**SPF Record** (TXT op @):
+```
+v=spf1 include:_spf.google.com include:servers.mcsv.net include:amazonses.com -all
+```
+
+**DKIM Records** (TXT):
+```
+google._domainkey    → [Google DKIM public key]
+k1._domainkey        → [Mailchimp DKIM public key]
+```
+
+**DMARC Record** (TXT op _dmarc):
+```
+v=DMARC1; p=reject; rua=mailto:dmarc@jouwbedrijf.nl; adkim=r; aspf=r
+```
+
+## Testen en valideren
+
+### Online tools
+
+| Tool | Wat het test |
+|------|--------------|
+| [MXToolbox](https://mxtoolbox.com/SuperTool.aspx) | SPF, DKIM, DMARC, blacklists |
+| [Mail Tester](https://www.mail-tester.com/) | Complete e-mail score |
+| [DKIM Validator](https://dkimvalidator.com/) | DKIM-specifieke test |
+| [Google Postmaster](https://postmaster.google.com/) | Reputatie bij Gmail |
+
+### Test e-mail versturen
+
+1. Stuur een e-mail naar check-auth@verifier.port25.com
+2. Je ontvangt een geautomatiseerd rapport
+3. Controleer of SPF, DKIM en DMARC allemaal "pass" tonen
+
+### Controleer e-mail headers
+
+In de ontvangen e-mail, bekijk de headers voor:
+
+```
+Authentication-Results:
+  spf=pass (sender IP is 209.85.220.41)
+  dkim=pass (signature verified)
+  dmarc=pass (policy=reject)
+```
+
+## Veelgemaakte fouten
+
+### 1. Te snel naar reject
+
+**Probleem:** Direct `p=reject` instellen zonder te monitoren.
+**Gevolg:** Legitieme e-mails worden geblokkeerd.
+**Oplossing:** Begin altijd met `p=none`, analyseer rapporten.
+
+### 2. SPF record te lang
+
+**Probleem:** Meer dan 10 DNS lookups in SPF.
+**Gevolg:** SPF permanent fail.
+**Oplossing:** Consolideer includes, gebruik SPF flattening tools.
+
+### 3. DKIM niet geactiveerd
+
+**Probleem:** DNS record toegevoegd maar DKIM niet aangezet in de service.
+**Gevolg:** E-mails worden niet ondertekend.
+**Oplossing:** Controleer altijd de provider-specifieke activatiestap.
+
+### 4. Subdomeinen vergeten
+
+**Probleem:** DMARC alleen op hoofddomein, subdomeinen onbeschermd.
+**Gevolg:** Spoofing via subdomeinen mogelijk.
+**Oplossing:** Voeg `sp=reject` toe aan je DMARC of configureer elk subdomein.
+
+### 5. Forwarding breekt authenticatie
+
+**Probleem:** Doorgestuurde e-mails falen SPF.
+**Gevolg:** Legitieme forwards als spam gemarkeerd.
+**Oplossing:** Gebruik ARC (Authenticated Received Chain) of relaxed alignment.
+
+## E-mail authenticatie checklist
+
+### Basis
+
+- [ ] SPF-record aangemaakt met alle mailbronnen
+- [ ] SPF eindigt op `-all` of `~all`
+- [ ] DKIM ingesteld voor primaire mailprovider
+- [ ] DMARC record met `p=none` voor monitoring
+- [ ] Monitoring e-mailadres ingesteld voor DMARC rapporten
+
+### Geavanceerd
+
+- [ ] DKIM ingesteld voor alle services (nieuwsbrief, CRM, etc.)
+- [ ] DMARC policy verhoogd naar `quarantine`
+- [ ] DMARC rapporten regelmatig geanalyseerd
+- [ ] Subdomeinen geconfigureerd met `sp=` tag
+- [ ] Alignment op strict (`adkim=s; aspf=s`)
+
+### Expert
+
+- [ ] DMARC policy op `reject`
+- [ ] BIMI record voor logo in inbox (optioneel)
+- [ ] MTA-STS voor versleuteld transport
+- [ ] TLS-RPT voor TLS foutrapportage
+- [ ] Regelmatige audits en key rotation
+
+## Conclusie
+
+E-mail authenticatie met SPF, DKIM en DMARC is essentieel voor:
+
+- **Deliverability**: Je e-mails bereiken de inbox, niet de spam
+- **Beveiliging**: Criminelen kunnen je domein niet spoofen
+- **Reputatie**: Je domein bouwt een positieve verzendreputatie op
+- **Compliance**: Voldoe aan moderne e-mail standaarden
+
+Begin vandaag nog met monitoren (`p=none`) en werk toe naar volledige bescherming (`p=reject`). Het kost even moeite om in te richten, maar beschermt je bedrijf en klanten op de lange termijn.
+
+Hulp nodig bij het instellen van e-mail authenticatie? [Neem contact op](/contact) voor ondersteuning.
+
+## Gerelateerd
+
+- **[Website beveiligen met Cloudflare](/blog/cloudflare-beveiligen-ddos-firewall)** — DDoS bescherming en firewall
+- **[Cloudflare DNS Beheer](/blog/cloudflare-dns-beheer-meerdere-klanten)** — DNS configuratie uitgelegd
+- **[Website Onderhoud](/blog/website-onderhoud-waarom-belangrijk)** — Waarom regelmatig onderhoud cruciaal is

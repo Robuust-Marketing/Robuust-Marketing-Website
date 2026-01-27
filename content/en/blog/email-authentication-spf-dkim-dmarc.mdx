@@ -1,0 +1,376 @@
+---
+title: "Email Authentication Explained: How to Set Up SPF, DKIM and DMARC"
+excerpt: "Prevent your emails from landing in spam and protect your domain against spoofing. Learn how SPF, DKIM and DMARC work and how to configure them."
+category: "Email"
+date: "2025-01-27"
+readTime: "11 min"
+author: "Robuust Marketing"
+translations:
+  nl: "email-authenticatie-spf-dkim-dmarc"
+---
+
+> **At Robuust, we handle this for you.** All domains we manage are configured with proper SPF, DKIM and DMARC settings. Want to know how it works or set it up yourself? Read on.
+
+You've probably experienced an important email landing in your client's spam folder. Or perhaps your clients received suspicious emails that appeared to come from your business. These are exactly the problems that email authentication solves.
+
+## Why email authentication is essential
+
+The numbers are alarming:
+
+- **94%** of malware is spread via email
+- **3.4 billion** phishing emails are sent daily
+- **83%** of businesses were victims of phishing in 2023
+- Emails without authentication are **10x** more likely to be marked as spam
+
+Without proper email authentication:
+- Criminals can send emails that appear to come from your domain (spoofing)
+- Your legitimate emails are more likely to land in spam
+- You can suffer reputational damage
+- You lose customers due to undelivered emails
+
+## The three pillars of email authentication
+
+Email authentication consists of three DNS records that work together:
+
+| Protocol | Function |
+|----------|----------|
+| **SPF** | Who is allowed to send emails on behalf of your domain? |
+| **DKIM** | Has the email been modified in transit? |
+| **DMARC** | What should happen with emails that fail authentication? |
+
+Let's look at each one in detail.
+
+## SPF: Sender Policy Framework
+
+### What is SPF?
+
+SPF is a DNS record that indicates which mail servers are authorized to send emails on behalf of your domain. Receiving mail servers check this record to verify if the sender is legitimate.
+
+### How does SPF work?
+
+1. You send an email from @yourcompany.com
+2. The receiving server queries the SPF record for yourcompany.com
+3. The server checks if the sending server is listed in the SPF record
+4. If yes: the email is accepted
+5. If no: the email is flagged or rejected
+
+### Setting up an SPF record
+
+An SPF record is a TXT record in your DNS:
+
+```
+v=spf1 include:_spf.google.com include:spf.protection.outlook.com -all
+```
+
+**Components explained:**
+
+- `v=spf1` — Version indicator (required)
+- `include:_spf.google.com` — Authorize Google Workspace
+- `include:spf.protection.outlook.com` — Authorize Microsoft 365
+- `-all` — Reject all other servers (strict)
+
+### Common SPF includes
+
+| Service | SPF include |
+|---------|-------------|
+| Google Workspace | `include:_spf.google.com` |
+| Microsoft 365 | `include:spf.protection.outlook.com` |
+| Mailchimp | `include:servers.mcsv.net` |
+| Sendinblue/Brevo | `include:spf.sendinblue.com` |
+| HubSpot | `include:spf.hubspot.com` |
+| Resend | `include:amazonses.com` |
+| SendGrid | `include:sendgrid.net` |
+| Mailgun | `include:mailgun.org` |
+| Zoho Mail | `include:zoho.eu` |
+
+### SPF qualifiers
+
+The qualifier determines what happens with non-matching emails:
+
+| Qualifier | Meaning | Recommended |
+|-----------|---------|-------------|
+| `-all` | Hard fail — reject | Yes, for production |
+| `~all` | Soft fail — mark as suspicious | Yes, for testing |
+| `?all` | Neutral — no action | No |
+| `+all` | Allow everything | Never use |
+
+### SPF limitations
+
+- **Maximum 10 DNS lookups**: Each `include` counts as a lookup
+- **Maximum 255 characters per string**: Split longer records
+- **No inheritance**: Subdomains need their own SPF
+
+**Tip:** Use tools like [MXToolbox SPF Lookup](https://mxtoolbox.com/spf.aspx) to count your lookups.
+
+## DKIM: DomainKeys Identified Mail
+
+### What is DKIM?
+
+DKIM adds a digital signature to your emails. This allows the recipient to verify that:
+1. The email actually comes from your domain
+2. The content hasn't been modified in transit
+
+### How does DKIM work?
+
+1. Your mail server signs each outgoing email with a **private key**
+2. The signature is added to the email header
+3. The recipient retrieves the **public key** via DNS
+4. The signature is verified using the public key
+5. If the signature matches, the email is authentic
+
+### Setting up a DKIM record
+
+A DKIM record is a TXT record with a specific name:
+
+```
+selector1._domainkey.yourcompany.com
+```
+
+With a value like:
+
+```
+v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC...
+```
+
+**Components explained:**
+
+- `v=DKIM1` — Version (required)
+- `k=rsa` — Encryption algorithm
+- `p=...` — The public key (base64 encoded)
+
+### DKIM selector
+
+The "selector" identifies which key is being used. This makes it possible to:
+- Have multiple services with their own DKIM
+- Rotate keys without downtime
+
+**Examples of selectors:**
+- Google Workspace: `google._domainkey`
+- Microsoft 365: `selector1._domainkey` and `selector2._domainkey`
+- Mailchimp: `k1._domainkey`
+
+### Setting up DKIM per provider
+
+**Google Workspace:**
+1. Go to Admin Console → Apps → Google Workspace → Gmail
+2. Click "Authenticate email"
+3. Generate a new DKIM key
+4. Add the displayed TXT record to your DNS
+5. Activate DKIM in Google Admin
+
+**Microsoft 365:**
+1. Go to Microsoft 365 Defender → Email & collaboration
+2. Click on Policies → DKIM
+3. Select your domain
+4. Copy the CNAME records and add them to DNS
+5. Enable DKIM signing
+
+## DMARC: Domain-based Message Authentication
+
+### What is DMARC?
+
+DMARC builds on SPF and DKIM. It determines:
+1. How strictly SPF and DKIM are enforced
+2. What should happen with emails that fail
+3. Where reports should be sent
+
+### How does DMARC work?
+
+1. Recipient checks SPF and DKIM
+2. DMARC checks if the "From" domain matches (alignment)
+3. On failure: follow the DMARC policy (none/quarantine/reject)
+4. Send report to specified address
+
+### DMARC alignment
+
+DMARC checks if the domains are "aligned":
+
+**SPF alignment:** The `Return-Path` domain must match the `From` domain.
+
+**DKIM alignment:** The `d=` domain in the DKIM signature must match the `From` domain.
+
+### Setting up a DMARC record
+
+A DMARC record is a TXT record at `_dmarc.yourcompany.com`:
+
+```
+v=DMARC1; p=reject; rua=mailto:dmarc@yourcompany.com; ruf=mailto:dmarc@yourcompany.com; adkim=s; aspf=s
+```
+
+**Components explained:**
+
+| Tag | Meaning | Value |
+|-----|---------|-------|
+| `v=DMARC1` | Version | Required, always DMARC1 |
+| `p=` | Policy | none, quarantine, or reject |
+| `rua=` | Aggregate reports | Email address for daily reports |
+| `ruf=` | Forensic reports | Email address for failure reports |
+| `adkim=` | DKIM alignment | s (strict) or r (relaxed) |
+| `aspf=` | SPF alignment | s (strict) or r (relaxed) |
+| `pct=` | Percentage | What % of emails to apply policy to |
+
+### DMARC policies
+
+| Policy | Action | When to use |
+|--------|--------|-------------|
+| `p=none` | Monitor only, no action | Start here, analyze reports |
+| `p=quarantine` | Move to spam | After analysis, when SPF/DKIM are correct |
+| `p=reject` | Fully reject | End goal, maximum protection |
+
+### Phased DMARC implementation
+
+**Step 1: Monitor mode (2-4 weeks)**
+```
+v=DMARC1; p=none; rua=mailto:dmarc@yourcompany.com
+```
+Collect data, identify all legitimate mail sources.
+
+**Step 2: Quarantine (2-4 weeks)**
+```
+v=DMARC1; p=quarantine; pct=25; rua=mailto:dmarc@yourcompany.com
+```
+Start at 25%, gradually increase to 100%.
+
+**Step 3: Reject**
+```
+v=DMARC1; p=reject; rua=mailto:dmarc@yourcompany.com; adkim=s; aspf=s
+```
+Full protection active.
+
+### Reading DMARC reports
+
+DMARC aggregate reports are XML files. Use tools to analyze them:
+
+- [DMARC Analyzer](https://www.dmarcanalyzer.com/) (paid)
+- [Postmark DMARC](https://dmarc.postmarkapp.com/) (free)
+- [Valimail](https://www.valimail.com/) (enterprise)
+
+## Complete configuration example
+
+Let's say you have a business that:
+- Uses Google Workspace for email
+- Mailchimp for newsletters
+- Your website through our servers for contact forms
+
+### DNS Records
+
+**SPF Record** (TXT on @):
+```
+v=spf1 include:_spf.google.com include:servers.mcsv.net include:amazonses.com -all
+```
+
+**DKIM Records** (TXT):
+```
+google._domainkey    → [Google DKIM public key]
+k1._domainkey        → [Mailchimp DKIM public key]
+```
+
+**DMARC Record** (TXT on _dmarc):
+```
+v=DMARC1; p=reject; rua=mailto:dmarc@yourcompany.com; adkim=r; aspf=r
+```
+
+## Testing and validation
+
+### Online tools
+
+| Tool | What it tests |
+|------|---------------|
+| [MXToolbox](https://mxtoolbox.com/SuperTool.aspx) | SPF, DKIM, DMARC, blacklists |
+| [Mail Tester](https://www.mail-tester.com/) | Complete email score |
+| [DKIM Validator](https://dkimvalidator.com/) | DKIM-specific test |
+| [Google Postmaster](https://postmaster.google.com/) | Reputation with Gmail |
+
+### Send a test email
+
+1. Send an email to check-auth@verifier.port25.com
+2. You'll receive an automated report
+3. Verify that SPF, DKIM and DMARC all show "pass"
+
+### Check email headers
+
+In the received email, look at the headers for:
+
+```
+Authentication-Results:
+  spf=pass (sender IP is 209.85.220.41)
+  dkim=pass (signature verified)
+  dmarc=pass (policy=reject)
+```
+
+## Common mistakes
+
+### 1. Moving to reject too quickly
+
+**Problem:** Setting `p=reject` immediately without monitoring.
+**Result:** Legitimate emails get blocked.
+**Solution:** Always start with `p=none`, analyze reports.
+
+### 2. SPF record too long
+
+**Problem:** More than 10 DNS lookups in SPF.
+**Result:** SPF permanent fail.
+**Solution:** Consolidate includes, use SPF flattening tools.
+
+### 3. DKIM not activated
+
+**Problem:** DNS record added but DKIM not enabled in the service.
+**Result:** Emails don't get signed.
+**Solution:** Always verify the provider-specific activation step.
+
+### 4. Forgetting subdomains
+
+**Problem:** DMARC only on main domain, subdomains unprotected.
+**Result:** Spoofing via subdomains possible.
+**Solution:** Add `sp=reject` to your DMARC or configure each subdomain.
+
+### 5. Forwarding breaks authentication
+
+**Problem:** Forwarded emails fail SPF.
+**Result:** Legitimate forwards marked as spam.
+**Solution:** Use ARC (Authenticated Received Chain) or relaxed alignment.
+
+## Email authentication checklist
+
+### Basics
+
+- [ ] SPF record created with all mail sources
+- [ ] SPF ends with `-all` or `~all`
+- [ ] DKIM set up for primary mail provider
+- [ ] DMARC record with `p=none` for monitoring
+- [ ] Monitoring email address set for DMARC reports
+
+### Advanced
+
+- [ ] DKIM set up for all services (newsletter, CRM, etc.)
+- [ ] DMARC policy upgraded to `quarantine`
+- [ ] DMARC reports analyzed regularly
+- [ ] Subdomains configured with `sp=` tag
+- [ ] Alignment set to strict (`adkim=s; aspf=s`)
+
+### Expert
+
+- [ ] DMARC policy set to `reject`
+- [ ] BIMI record for inbox logo (optional)
+- [ ] MTA-STS for encrypted transport
+- [ ] TLS-RPT for TLS error reporting
+- [ ] Regular audits and key rotation
+
+## Conclusion
+
+Email authentication with SPF, DKIM and DMARC is essential for:
+
+- **Deliverability**: Your emails reach the inbox, not spam
+- **Security**: Criminals cannot spoof your domain
+- **Reputation**: Your domain builds a positive sending reputation
+- **Compliance**: Meet modern email standards
+
+Start monitoring today (`p=none`) and work towards full protection (`p=reject`). It takes some effort to set up, but it protects your business and customers in the long run.
+
+Need help setting up email authentication? [Contact us](/contact) for support.
+
+## Related
+
+- **[Website Security with Cloudflare](/blog/cloudflare-security-ddos-firewall)** — DDoS protection and firewall
+- **[Cloudflare DNS Management](/blog/cloudflare-dns-management-multiple-clients)** — DNS configuration explained
+- **[Website Maintenance](/blog/website-maintenance-why-important)** — Why regular maintenance is crucial

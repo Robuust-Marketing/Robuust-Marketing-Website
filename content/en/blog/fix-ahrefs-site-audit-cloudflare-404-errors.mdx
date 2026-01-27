@@ -1,0 +1,184 @@
+---
+title: "How to Fix Ahrefs Site Audit 'Broken Page' 404 Errors from Cloudflare"
+excerpt: "Getting 'Page has links to broken page' errors in Ahrefs Site Audit for /cdn-cgi/l/email-protection URLs? Learn how to fix this with Cloudflare Configuration Rules."
+category: "Cloudflare"
+date: "January 27, 2026"
+readTime: "7 min"
+author: "Robuust Marketing"
+translations:
+  nl: "ahrefs-site-audit-cloudflare-404-fixen"
+---
+
+> **At Robuust, we handle this for you.** All websites we host are properly configured for SEO tools like Ahrefs. Want to know how to fix this yourself? Read on.
+
+Running an Ahrefs Site Audit only to find it flooded with "Page has links to broken page" errors? If these 404 errors all point to URLs containing `/cdn-cgi/l/email-protection`, you've found the culprit: a common conflict with Cloudflare's Email Address Obfuscation feature.
+
+This issue is specific to how the Ahrefs Site Audit crawler interprets the protected email links that Cloudflare generates. The crawler flags these dynamically generated links as internal broken pages, skewing your audit results and making it difficult to identify genuine issues on your site.
+
+This guide will show you how to configure Cloudflare to specifically allow the Ahrefs Site Audit to run without error. We will start with the most secure method, which involves whitelisting Ahrefs' IP addresses.
+
+## Why Editing robots.txt Won't Fix Your Site Audit
+
+You might be tempted to disallow the `/cdn-cgi/` directory in your robots.txt file. However, this will not solve the problem in your Ahrefs Site Audit. The crawler will still discover the links on your pages and, because it cannot crawl them, will continue to report them as broken. The only effective solution is to create a specific rule within your Cloudflare settings.
+
+## Method 1: The Most Secure Fix (IP Whitelist)
+
+This is the preferred and most secure method for resolving the Ahrefs 404 error. It works by verifying that the crawler is genuinely from Ahrefs' network before disabling email obfuscation.
+
+**Note:** This method requires access to create and manage IP Lists within your Cloudflare account (Manage Account > Settings > Lists). If you do not have this access due to your plan level or user permissions, please proceed to Method 2.
+
+### Step 1: Create an IP List in Cloudflare
+
+First, you need to tell Cloudflare which IP addresses belong to Ahrefs.
+
+1. In your Cloudflare dashboard, go to **Manage Account > Settings**
+2. Select the **Lists** tab and click **Create list**
+3. Name it something memorable like `ahrefs_crawlers`
+4. Choose **IP** as the content type
+5. Add the official Ahrefs IPs (see below)
+6. Save the list
+
+**Complete list of Ahrefs IP addresses:**
+
+```
+5.39.1.224/27
+5.39.109.160/27
+15.235.27.0/24
+15.235.96.0/24
+15.235.98.0/24
+37.59.204.128/27
+51.68.247.192/27
+51.75.236.128/27
+51.89.129.0/24
+51.161.37.0/24
+51.161.65.0/24
+51.195.183.0/24
+51.195.215.0/24
+51.195.244.0/24
+51.222.95.0/24
+51.222.168.0/24
+51.222.253.0/26
+54.36.148.0/24
+54.36.149.0/24
+54.37.118.64/27
+54.38.147.0/24
+54.39.0.0/24
+54.39.6.0/24
+54.39.89.0/24
+54.39.136.0/24
+54.39.210.0/24
+92.222.104.192/27
+92.222.108.96/27
+94.23.188.192/27
+142.44.220.0/24
+142.44.225.0/24
+142.44.228.0/24
+142.44.233.0/24
+148.113.128.0/24
+148.113.130.0/24
+168.100.149.0/24
+167.114.139.0/24
+176.31.139.0/27
+198.244.168.0/24
+198.244.183.0/24
+198.244.186.193
+198.244.186.194
+198.244.186.195
+198.244.186.196
+198.244.186.197
+198.244.186.198
+198.244.186.199
+198.244.186.200
+198.244.186.201
+198.244.186.202
+198.244.226.0/24
+198.244.240.0/24
+198.244.242.0/24
+202.8.40.0/22
+202.94.84.110
+202.94.84.111
+202.94.84.112
+202.94.84.113
+```
+
+### Step 2: Create the Configuration Rule
+
+Now, create the rule that uses this list.
+
+1. Navigate back to your domain, then go to **Rules > Configuration Rules**
+2. Click **Create rule**
+3. Name the rule (e.g., "Ahrefs IP Whitelist for Site Audit")
+4. For the condition "When incoming requests match...", select **IP Source Address**, use the **is in list** operator, and choose your `ahrefs_crawlers` list from the dropdown
+5. Under "Then...", set **Email Obfuscation** to **Off**
+6. Click **Deploy**
+
+## Method 2: A Reliable Alternative (User-Agent Rule)
+
+If you cannot create IP lists (lack of access to that part of the account), this method is a perfectly functional alternative. It uses the crawler's user-agent to identify it. While effective, it's considered less secure, which we will explain below.
+
+### Step-by-Step Guide
+
+1. Log into your Cloudflare dashboard and select your domain
+2. From the left-hand menu, navigate to **Rules > Configuration Rules**
+3. Click **Create rule**
+4. Name your rule something clear, like "Ahrefs Site Audit - Fix Email 404s"
+5. In the "When incoming requests match..." section, select **Edit expression**
+6. Paste the following expression:
+
+```
+(http.user_agent eq "Mozilla/5.0 (compatible; AhrefsSiteAudit/6.1; +http://ahrefs.com/robot/site-audit)") or (http.user_agent eq "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.128 Mobile Safari/537.36 (compatible; AhrefsSiteAudit/6.1; +http://ahrefs.com/robot/site-audit)") or (http.user_agent eq "Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)")
+```
+
+7. Under "Then...", set **Email Obfuscation** to **Off**
+8. Click **Deploy**
+
+### Why This is an Alternative Solution
+
+The main reason the user-agent approach is not the top recommendation is security. A user-agent is a piece of text sent by a browser or bot that can be easily copied and faked (spoofed) by malicious actors.
+
+A bad bot could potentially mimic the Ahrefs user-agent to bypass your email protection and harvest email addresses. The IP Whitelist method is more secure because it verifies the request is coming from Ahrefs' actual servers, which is significantly harder to fake.
+
+## Get Accurate SEO Audits
+
+By implementing one of these methods, you will resolve the "Page has links to broken page" 404 errors within your Ahrefs Site Audit. This ensures your audit data is accurate and actionable.
+
+- **For the highest level of security:** Use the IP Whitelist (Method 1)
+- **If you lack the necessary permissions:** The User-Agent Rule (Method 2) is a reliable alternative
+
+In either case, your SEO audits will run smoothly, and your email addresses will remain protected from unwanted bots.
+
+## Frequently Asked Questions
+
+### Why is my Ahrefs Site Audit report full of 404 errors for /cdn-cgi/l/email-protection URLs?
+
+This is a common issue caused by a conflict between the Ahrefs Site Audit crawler and Cloudflare's Email Address Obfuscation feature. The crawler mistakenly interprets the dynamically protected email links as broken internal pages, which skews your audit results.
+
+### Can I fix this by adding /cdn-cgi/ to my robots.txt file?
+
+No. The Ahrefs crawler will still discover the links on your pages. Because it's blocked from crawling them, it will continue to report them as broken. The only effective solution is to create a Cloudflare Configuration Rule.
+
+### What is the most secure method?
+
+The IP Whitelist method (Method 1) is the most secure. It verifies that the crawler is genuinely from Ahrefs' network before disabling email obfuscation.
+
+### What if my Cloudflare plan doesn't support IP Lists?
+
+Use the User-Agent Rule (Method 2). It's functional and solves the problem, but is slightly less secure because user-agents can be spoofed.
+
+### Do I need to do this for other SEO tools?
+
+Most SEO tools don't have this problem. If you see similar issues with other crawlers (like Screaming Frog or SEMrush), you can use the same approach with their specific IP addresses or user-agents.
+
+## More About Cloudflare
+
+This article is part of our Cloudflare series:
+
+- **[Speed up your website with Cloudflare CDN](/en/blog/cloudflare-cdn-website-faster)** - Performance optimization
+- **[Secure your website with Cloudflare](/en/blog/cloudflare-security-ddos-firewall)** - DDoS protection and firewall
+- **[Cloudflare DNS Management](/en/blog/cloudflare-dns-management-multiple-clients)** - DNS configuration explained
+- **[Cloudflare Page Rules](/en/blog/cloudflare-page-rules-redirect)** - Redirects and caching configuration
+
+## Related
+
+- **[Getting Started with SEO](/en/blog/getting-started-with-seo)** - SEO basics for beginners
+- **[Core Web Vitals Explained](/en/blog/core-web-vitals-explained)** - Performance metrics that matter
