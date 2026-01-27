@@ -18,6 +18,7 @@ This is a **Next.js 16 marketing website** for Robuust Marketing, a Dutch web de
 ### Tech Stack
 - **Framework**: Next.js 16 with React 19 and App Router
 - **React Compiler**: Enabled (babel-plugin-react-compiler)
+- **Internationalization**: next-intl for i18n routing (nl/en)
 - **Styling**: Tailwind CSS 4 with CSS variables for theming
 - **UI Components**: shadcn/ui (new-york style) in `src/components/ui/`
 - **Content**: MDX support for blog/kennisbank pages
@@ -91,16 +92,19 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 
 | To add/edit... | Go to... | How |
 |----------------|----------|-----|
-| **Blog article** | `content/blog/` | Create `slug.mdx` with frontmatter |
+| **Blog article (NL)** | `content/blog/nl/` | Create `slug.mdx` with frontmatter |
+| **Blog article (EN)** | `content/blog/en/` | Create `slug.mdx`, add `translations` field |
 | **Kennisbank guide** | `content/kennisbank/{category}/` | Create `slug.mdx` in correct category |
 | **Portfolio item** | `src/data/portfolio.ts` | Add to `portfolioItems` array |
 | **Service** | `src/data/services.ts` | Add to `services` array |
 | **Pricing** | `src/data/pricing.ts` | Edit `pricing` object |
 | **FAQ** | `src/data/faqs.ts` | Add to FAQs array |
+| **UI translations** | `messages/{locale}.json` | Add key-value pairs |
+| **New route** | `src/i18n/routing.ts` | Add pathname mapping |
 
 ### MDX Frontmatter Schemas
 
-**Blog Post** (`content/blog/*.mdx`):
+**Blog Post** (`content/blog/{locale}/*.mdx`):
 ```typescript
 {
   title: string;          // Required
@@ -110,6 +114,10 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
   author?: string;        // Optional
   featured?: boolean;     // Optional - shows on homepage
   image?: string;         // Optional - "/blog/image.jpg"
+  translations?: {        // Optional - link to translations
+    nl?: string;          // Dutch slug
+    en?: string;          // English slug
+  };
 }
 ```
 
@@ -122,6 +130,56 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
   icon?: string;          // Optional
 }
 ```
+
+---
+
+## SEO & Metadata
+
+### Metadata Generation
+
+Every page uses `generateMetadata()` for dynamic SEO metadata with hreflang tags:
+
+```typescript
+import { generateAlternates } from "@/lib/metadata";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: titles[locale as Locale],
+    description: descriptions[locale as Locale],
+    alternates: generateAlternates("/diensten", locale),  // Generates hreflang
+    openGraph: {
+      title: titles[locale as Locale],
+      description: descriptions[locale as Locale],
+    },
+  };
+}
+```
+
+### Metadata Library Functions
+
+**`lib/metadata.ts`**:
+- `generateAlternates(path, locale)` - Generate hreflang tags for static routes
+- `generateDynamicAlternates(nlPath, enPath, locale)` - For routes with different slugs per locale
+
+### SEO Checklist for New Pages
+
+1. **Add `generateMetadata()`** with localized title/description
+2. **Include `alternates`** using `generateAlternates()` or `generateDynamicAlternates()`
+3. **Add OpenGraph** metadata for social sharing
+4. **Update sitemap** in `src/lib/sitemap.ts` if it's a new route type
+5. **Add route translation** in `src/i18n/routing.ts` if path differs per locale
+
+### hreflang Implementation
+
+All pages automatically include:
+- `<link rel="alternate" hreflang="nl">` - Dutch version
+- `<link rel="alternate" hreflang="en">` - English version
+- `<link rel="alternate" hreflang="x-default">` - Default (Dutch)
+- `<link rel="canonical">` - Current page URL
+
+---
 
 ### Key Library Functions
 
@@ -152,6 +210,20 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 **`components/ui/turnstile.tsx`** (React component):
 - `<Turnstile onVerify={} theme="dark" />` - Bot protection widget
 
+**`lib/metadata.ts`** (SEO Metadata):
+- `generateAlternates(path, locale)` - Generate hreflang alternates for static routes
+- `generateDynamicAlternates(nlPath, enPath, locale)` - For blog posts with translations
+
+**`lib/sitemap.ts`** (Sitemap Generation):
+- `getSitemapIndex()` - Returns sitemap index entries
+- `getPagesSitemap()` - Main pages with hreflang
+- `getServicesSitemap()` - Service pages
+- `getBlogSitemap()` - Blog posts with translation mappings
+- `getKennisbankSitemap()` - Knowledge base guides
+- `getPortfolioSitemap()` - Portfolio items
+- `getLandingPagesSitemap()` - Local SEO pages (Dutch only)
+- `generateSitemapXml(entries)` - Generate XML from entries
+
 **`lib/gtm.ts`** (Google Tag Manager + Consent Mode v2):
 - `initConsentMode()` - Initialize consent defaults (called in layout.tsx)
 - `updateConsent(consent)` - Update consent after user choice
@@ -171,41 +243,184 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 
 ---
 
+## Internationalization (i18n)
+
+This website supports Dutch (nl) and English (en) using **next-intl**.
+
+### Configuration Files
+
+| File | Purpose |
+|------|---------|
+| `src/i18n/config.ts` | Locale definitions (`nl`, `en`), default locale |
+| `src/i18n/routing.ts` | Route translations and pathname mappings |
+| `src/i18n/request.ts` | Server request configuration |
+| `src/middleware.ts` | next-intl middleware for locale detection |
+| `messages/nl.json` | Dutch UI translations |
+| `messages/en.json` | English UI translations |
+
+### URL Structure
+
+- **Default locale (nl)**: No prefix - `robuustmarketing.nl/diensten`
+- **English**: Prefix + translated path - `robuustmarketing.nl/en/services`
+
+### Translated Routes
+
+Dutch paths are automatically translated to English equivalents:
+
+| Dutch (default) | English |
+|-----------------|---------|
+| `/diensten` | `/en/services` |
+| `/diensten/onderhoud` | `/en/services/maintenance` |
+| `/tarieven` | `/en/pricing` |
+| `/offerte` | `/en/quote` |
+| `/kennisbank` | `/en/resources` |
+| `/werkwijze` | `/en/approach` |
+| `/over` | `/en/about` |
+| `/voorwaarden` | `/en/terms` |
+| `/avg` | `/en/gdpr` |
+| `/referenties` | `/en/testimonials` |
+| `/vacatures` | `/en/careers` |
+| `/afspraak` | `/en/schedule-call` |
+| `/bedankt` | `/en/thank-you` |
+
+Non-translated routes (same in both locales):
+- `/blog`, `/portfolio`, `/contact`, `/faq`, `/privacy`, `/partners`, `/support`
+- `/tooling/*`, `/start-project`
+
+### Using Localized Links
+
+Always use the `Link` component from `@/i18n/routing` for automatic locale handling:
+
+```typescript
+import { Link } from "@/i18n/routing";
+
+// Automatically uses current locale and translates path
+<Link href="/diensten">Services</Link>
+
+// For programmatic navigation
+import { useRouter } from "@/i18n/routing";
+const router = useRouter();
+router.push("/offerte");
+```
+
+### Adding Translations
+
+1. Add UI strings to `messages/nl.json` and `messages/en.json`
+2. Use with `useTranslations()` hook:
+
+```typescript
+import { useTranslations } from "next-intl";
+
+function Component() {
+  const t = useTranslations("namespace");
+  return <h1>{t("key")}</h1>;
+}
+```
+
+---
+
+## Sitemap
+
+The sitemap is split into multiple XML files for better organization and SEO.
+
+### Sitemap Index Structure
+
+| Sitemap | URL | Content |
+|---------|-----|---------|
+| Index | `/sitemap.xml` | Links to all sub-sitemaps |
+| Pages | `/sitemap/pages.xml` | Main pages (home, contact, etc.) |
+| Services | `/sitemap/services.xml` | All service pages |
+| Blog | `/sitemap/blog.xml` | Blog posts with translations |
+| Kennisbank | `/sitemap/kennisbank.xml` | Knowledge base guides |
+| Portfolio | `/sitemap/portfolio.xml` | Portfolio items |
+| Landing Pages | `/sitemap/landing-pages.xml` | Local SEO pages (Dutch only) |
+
+### Key Features
+
+- **hreflang tags**: All multilingual pages include `<xhtml:link rel="alternate">` for both locales + `x-default`
+- **Automatic path translation**: Uses `src/lib/sitemap.ts` for URL localization
+- **XSL stylesheets**: Human-readable sitemap views at `/sitemap.xsl` and `/sitemap-index.xsl`
+- **Daily revalidation**: Sitemaps cache for 24 hours (`revalidate: 86400`)
+
+### Sitemap Library Functions
+
+**`lib/sitemap.ts`**:
+- `getSitemapIndex()` - Returns sitemap index entries
+- `getPagesSitemap()` - Main pages with alternates
+- `getServicesSitemap()` - Service pages with alternates
+- `getBlogSitemap()` - Blog posts (handles translation mappings)
+- `getKennisbankSitemap()` - Knowledge base guides
+- `getPortfolioSitemap()` - Portfolio items
+- `getLandingPagesSitemap()` - Local SEO pages (Dutch only)
+- `generateSitemapXml(entries)` - Generate XML from entries
+- `generateSitemapIndexXml(sitemaps)` - Generate index XML
+
+---
+
 ## Project Structure
 
 ```
 robuust-marketing-website/
 │
 ├── content/                        # MDX CONTENT
-│   ├── blog/                       # Blog articles (22 posts)
-│   │   └── *.mdx
-│   └── kennisbank/                 # Knowledge base guides (15 guides)
+│   ├── blog/
+│   │   ├── nl/                     # Dutch blog posts
+│   │   └── en/                     # English blog posts
+│   └── kennisbank/                 # Knowledge base guides
 │       ├── development/
 │       ├── seo/
-│       └── hosting/
+│       ├── hosting/
+│       └── social-media/
+│
+├── messages/                       # I18N TRANSLATIONS
+│   ├── nl.json                     # Dutch UI strings
+│   └── en.json                     # English UI strings
 │
 ├── src/
-│   ├── app/                        # PAGES (App Router)
-│   │   ├── layout.tsx              # Root layout (GTM, Cookiebot)
-│   │   ├── page.tsx                # Homepage
-│   │   ├── api/
-│   │   │   ├── hubspot/submit-lead/route.ts  # Lead submission
-│   │   │   ├── blog/route.ts                 # Blog API
-│   │   │   └── kennisbank/route.ts           # Kennisbank API
-│   │   ├── blog/
-│   │   │   ├── page.tsx            # Blog listing
-│   │   │   └── [slug]/page.tsx     # Blog detail
-│   │   ├── kennisbank/
-│   │   │   ├── page.tsx            # Kennisbank home
-│   │   │   ├── [category]/page.tsx # Category listing
-│   │   │   └── [category]/[slug]/page.tsx  # Guide detail
-│   │   ├── portfolio/
-│   │   │   ├── page.tsx            # Portfolio listing
-│   │   │   └── [slug]/page.tsx     # Case study detail
-│   │   ├── diensten/               # 10 service pages
-│   │   ├── offerte/page.tsx        # Quote wizard
-│   │   ├── start-project/page.tsx  # Project wizard
-│   │   └── tarieven/page.tsx       # Pricing page
+│   ├── app/                        # APP ROUTER
+│   │   ├── layout.tsx              # Root layout (minimal)
+│   │   ├── not-found.tsx           # Global 404 page
+│   │   ├── global-error.tsx        # Global error boundary
+│   │   │
+│   │   ├── [locale]/               # LOCALE-SPECIFIC PAGES
+│   │   │   ├── layout.tsx          # Locale layout (GTM, Cookiebot, providers)
+│   │   │   ├── page.tsx            # Homepage
+│   │   │   ├── not-found.tsx       # Localized 404 page
+│   │   │   ├── error.tsx           # Localized error page
+│   │   │   ├── blog/
+│   │   │   │   ├── page.tsx        # Blog listing
+│   │   │   │   └── [slug]/page.tsx # Blog detail
+│   │   │   ├── kennisbank/
+│   │   │   │   ├── page.tsx        # Kennisbank home
+│   │   │   │   ├── [category]/page.tsx
+│   │   │   │   └── [category]/[slug]/page.tsx
+│   │   │   ├── portfolio/
+│   │   │   │   ├── page.tsx        # Portfolio listing
+│   │   │   │   └── [slug]/page.tsx # Case study detail
+│   │   │   ├── diensten/           # Service pages (11 total)
+│   │   │   ├── offerte/page.tsx    # Quote wizard
+│   │   │   ├── tarieven/page.tsx   # Pricing page
+│   │   │   ├── afspraak/page.tsx   # Meeting scheduler
+│   │   │   └── ...                 # Other pages
+│   │   │
+│   │   ├── api/                    # API ROUTES (no locale)
+│   │   │   ├── hubspot/submit-lead/route.ts
+│   │   │   ├── blog/route.ts
+│   │   │   └── kennisbank/route.ts
+│   │   │
+│   │   ├── sitemap.xml/route.ts    # Sitemap index
+│   │   └── sitemap/                # Individual sitemaps
+│   │       ├── pages.xml/route.ts
+│   │       ├── services.xml/route.ts
+│   │       ├── blog.xml/route.ts
+│   │       ├── kennisbank.xml/route.ts
+│   │       ├── portfolio.xml/route.ts
+│   │       └── landing-pages.xml/route.ts
+│   │
+│   ├── i18n/                       # I18N CONFIGURATION
+│   │   ├── config.ts               # Locale definitions
+│   │   ├── routing.ts              # Route translations
+│   │   └── request.ts              # Server config
 │   │
 │   ├── components/
 │   │   ├── ui/                     # shadcn/ui components
@@ -241,6 +456,7 @@ robuust-marketing-website/
 │   │   ├── hubspot.ts              # HubSpot Contacts API
 │   │   ├── email.ts                # Resend emails
 │   │   ├── gtm.ts                  # GTM + Consent Mode v2 tracking
+│   │   ├── sitemap.ts              # Sitemap generation with hreflang
 │   │   └── utils.ts                # cn() helper
 │   │
 │   └── types/                      # TYPE DEFINITIONS
@@ -249,9 +465,13 @@ robuust-marketing-website/
 │       ├── case-study.ts
 │       └── onboarding.ts           # Wizard form schema
 │
-└── public/
-    ├── portfolio/                  # Portfolio images
-    └── blog/                       # Blog images
+├── public/
+│   ├── portfolio/                  # Portfolio images
+│   ├── blog/                       # Blog images
+│   ├── sitemap.xsl                 # Sitemap stylesheet
+│   └── sitemap-index.xsl           # Sitemap index stylesheet
+│
+└── src/middleware.ts               # next-intl locale middleware
 ```
 
 ---
