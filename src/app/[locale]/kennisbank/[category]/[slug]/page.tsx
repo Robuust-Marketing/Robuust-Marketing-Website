@@ -14,7 +14,7 @@ import { generateAlternates } from "@/lib/metadata";
 import { locales, type Locale } from "@/i18n/config";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
-const validCategories: CategorySlug[] = ["development", "seo", "hosting"];
+const validCategories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
 
 export async function generateStaticParams() {
   const params: { locale: string; category: string; slug: string }[] = [];
