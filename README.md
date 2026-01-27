@@ -36,19 +36,16 @@ npm run lint         # ESLint
 │                           DATA OPSLAG                                        │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
-│  content/                          src/data/                                 │
-│  ├── blog/*.mdx          ←→       ├── services.ts      (10 diensten)        │
-│  │   (22 artikelen)               ├── portfolio.ts     (7 case studies)     │
-│  │                                ├── pricing.ts       (tarieven)           │
-│  ├── kennisbank/                  ├── packages.ts      (Solid/Firm)         │
-│  │   ├── development/*.mdx        ├── partners.ts      (partners)           │
-│  │   ├── seo/*.mdx                └── faqs.ts          (FAQ content)        │
-│  │   └── hosting/*.mdx                                                       │
-│  │   (15 guides)                                                             │
-│  │                                                                           │
-│  ├── case-studies/     (leeg - toekomstig)                                  │
-│  ├── packages/         (leeg - toekomstig)                                  │
-│  └── services/         (leeg - toekomstig)                                  │
+│  content/{locale}/                 src/data/                                 │
+│  ├── blog/*.mdx          ←→       ├── services.ts      (11 diensten)        │
+│  │   (21 artikelen per taal)      ├── portfolio.ts     (8 case studies)     │
+│  │                                ├── tools.ts         (7 tools)            │
+│  ├── kennisbank/                  ├── pricing.ts       (tarieven)           │
+│  │   ├── development/*.mdx        ├── packages.ts      (Solid/Firm)         │
+│  │   ├── seo/*.mdx                ├── partners.ts      (partners)           │
+│  │   ├── hosting/*.mdx            └── faqs.ts          (FAQ content)        │
+│  │   └── social-media/*.mdx                                                  │
+│  │   (16 guides per taal)                                                    │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     │
@@ -57,8 +54,8 @@ npm run lint         # ESLint
 │                         VERWERKING (lib/)                                    │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
-│  lib/blog.ts           → Leest content/blog/*.mdx                           │
-│  lib/kennisbank.ts     → Leest content/kennisbank/**/*.mdx                  │
+│  lib/blog.ts           → Leest content/{locale}/blog/*.mdx                  │
+│  lib/kennisbank.ts     → Leest content/{locale}/kennisbank/**/*.mdx         │
 │  lib/pricing.ts        → Prijsberekeningen voor wizard                      │
 │  lib/hubspot.ts        → Lead submission naar HubSpot (Contacts API)        │
 │  lib/email.ts          → Email verzending via Resend                        │
@@ -179,27 +176,39 @@ Guide content in MDX...
 
 ```
 robuust-marketing-website/
-├── content/                        # DYNAMISCHE CONTENT (MDX bestanden)
-│   ├── blog/                       # Blog artikelen (*.mdx)
-│   ├── kennisbank/                 # Kennisbank guides
-│   │   ├── development/            # Development guides
-│   │   ├── seo/                    # SEO guides
-│   │   └── hosting/                # Hosting guides
-│   ├── case-studies/               # (toekomstig)
-│   ├── packages/                   # (toekomstig)
-│   └── services/                   # (toekomstig)
+├── content/                        # DYNAMISCHE CONTENT (MDX bestanden per locale)
+│   ├── nl/                         # Nederlandse content
+│   │   ├── blog/                   # Blog artikelen (21 stuks)
+│   │   └── kennisbank/             # Kennisbank guides
+│   │       ├── development/        # Development guides (4)
+│   │       ├── seo/                # SEO guides (4)
+│   │       ├── hosting/            # Hosting guides (4)
+│   │       └── social-media/       # Social media guides (4)
+│   └── en/                         # Engelse content
+│       ├── blog/                   # Blog artikelen (21 stuks)
+│       └── kennisbank/             # Kennisbank guides
+│           ├── development/
+│           ├── seo/
+│           ├── hosting/
+│           └── social-media/
 │
 ├── src/
 │   ├── app/                        # Next.js App Router
-│   │   ├── layout.tsx              # Root layout
-│   │   ├── page.tsx                # Homepage
-│   │   ├── api/                    # API endpoints
-│   │   ├── blog/                   # Blog pagina's
-│   │   ├── diensten/               # 10 diensten pagina's
-│   │   ├── kennisbank/             # Kennisbank pagina's
-│   │   ├── portfolio/              # Portfolio pagina's
-│   │   ├── offerte/                # Offerte wizard
-│   │   └── start-project/          # Project wizard
+│   │   ├── layout.tsx              # Root layout (minimal)
+│   │   ├── not-found.tsx           # Global 404 page
+│   │   ├── global-error.tsx        # Global error boundary
+│   │   ├── [locale]/               # LOCALE-SPECIFIEKE PAGINA'S
+│   │   │   ├── layout.tsx          # Locale layout (GTM, Cookiebot, providers)
+│   │   │   ├── page.tsx            # Homepage
+│   │   │   ├── blog/               # Blog pagina's
+│   │   │   ├── diensten/           # 11 diensten pagina's
+│   │   │   ├── tooling/            # 7 tool pagina's
+│   │   │   ├── kennisbank/         # Kennisbank pagina's
+│   │   │   ├── portfolio/          # Portfolio pagina's
+│   │   │   ├── offerte/            # Offerte wizard
+│   │   │   └── start-project/      # Project wizard
+│   │   ├── api/                    # API endpoints (no locale)
+│   │   └── sitemap/                # Sitemap XML routes
 │   │
 │   ├── components/
 │   │   ├── ui/                     # shadcn/ui componenten

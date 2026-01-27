@@ -41,14 +41,15 @@ This is a **Next.js 16 marketing website** for Robuust Marketing, a Dutch web de
 │  - Uses gray-matter for frontmatter  │  - Type-safe TypeScript        │
 ├────────────────────────────────────────────────────────────────────────┤
 │                                      │                                 │
-│  content/blog/*.mdx                  │  services.ts     → 10 services │
-│  └─ Read by: lib/blog.ts             │  portfolio.ts    → 7 cases     │
+│  content/{locale}/blog/*.mdx         │  services.ts     → 11 services │
+│  └─ Read by: lib/blog.ts             │  portfolio.ts    → 8 cases     │
 │                                      │  pricing.ts      → all prices  │
-│  content/kennisbank/{cat}/*.mdx      │  packages.ts     → 2 packages  │
-│  └─ Read by: lib/kennisbank.ts       │  partners.ts     → partners    │
-│                                      │  faqs.ts         → FAQ items   │
+│  content/{locale}/kennisbank/        │  packages.ts     → 2 packages  │
+│    {category}/*.mdx                  │  partners.ts     → partners    │
+│  └─ Read by: lib/kennisbank.ts       │  faqs.ts         → FAQ items   │
+│                                      │  tools.ts        → 7 tools     │
 │  Categories: development, seo,       │                                 │
-│              hosting                 │                                 │
+│    hosting, social-media             │                                 │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -56,7 +57,7 @@ This is a **Next.js 16 marketing website** for Robuust Marketing, a Dutch web de
 
 **Pattern 1: MDX Content (Blog/Kennisbank)**
 ```
-content/*.mdx → lib/{blog,kennisbank}.ts → Server Component → Page
+content/{locale}/*.mdx → lib/{blog,kennisbank}.ts → Server Component → Page
 ```
 - MDX files with frontmatter metadata
 - Library functions read filesystem, parse with `gray-matter`
@@ -92,11 +93,13 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 
 | To add/edit... | Go to... | How |
 |----------------|----------|-----|
-| **Blog article (NL)** | `content/blog/nl/` | Create `slug.mdx` with frontmatter |
-| **Blog article (EN)** | `content/blog/en/` | Create `slug.mdx`, add `translations` field |
-| **Kennisbank guide** | `content/kennisbank/{category}/` | Create `slug.mdx` in correct category |
-| **Portfolio item** | `src/data/portfolio.ts` | Add to `portfolioItems` array |
-| **Service** | `src/data/services.ts` | Add to `services` array |
+| **Blog article (NL)** | `content/nl/blog/` | Create `slug.mdx` with frontmatter |
+| **Blog article (EN)** | `content/en/blog/` | Create `slug.mdx`, add `translations` field |
+| **Kennisbank guide (NL)** | `content/nl/kennisbank/{category}/` | Create `slug.mdx` in correct category |
+| **Kennisbank guide (EN)** | `content/en/kennisbank/{category}/` | Create `slug.mdx` in correct category |
+| **Portfolio item** | `src/data/portfolio.ts` | Add to `portfolioItemsNL` and `portfolioItemsEN` arrays |
+| **Service** | `src/data/services.ts` | Add to `servicesNL` and `servicesEN` arrays |
+| **Tool** | `src/data/tools.ts` | Add to `toolsNL` and `toolsEN` arrays |
 | **Pricing** | `src/data/pricing.ts` | Edit `pricing` object |
 | **FAQ** | `src/data/faqs.ts` | Add to FAQs array |
 | **UI translations** | `messages/{locale}.json` | Add key-value pairs |
@@ -104,7 +107,7 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 
 ### MDX Frontmatter Schemas
 
-**Blog Post** (`content/blog/{locale}/*.mdx`):
+**Blog Post** (`content/{locale}/blog/*.mdx`):
 ```typescript
 {
   title: string;          // Required
@@ -121,7 +124,7 @@ User Action → lib/gtm.ts → dataLayer → GTM → GA4/LinkedIn/etc.
 }
 ```
 
-**Kennisbank Guide** (`content/kennisbank/{category}/*.mdx`):
+**Kennisbank Guide** (`content/{locale}/kennisbank/{category}/*.mdx`):
 ```typescript
 {
   title: string;          // Required
@@ -362,15 +365,21 @@ The sitemap is split into multiple XML files for better organization and SEO.
 ```
 robuust-marketing-website/
 │
-├── content/                        # MDX CONTENT
-│   ├── blog/
-│   │   ├── nl/                     # Dutch blog posts
-│   │   └── en/                     # English blog posts
-│   └── kennisbank/                 # Knowledge base guides
-│       ├── development/
-│       ├── seo/
-│       ├── hosting/
-│       └── social-media/
+├── content/                        # MDX CONTENT (per locale)
+│   ├── nl/                         # Dutch content
+│   │   ├── blog/                   # Dutch blog posts (21 articles)
+│   │   └── kennisbank/             # Dutch knowledge base guides
+│   │       ├── development/        # Development guides (4)
+│   │       ├── seo/                # SEO guides (4)
+│   │       ├── hosting/            # Hosting guides (4)
+│   │       └── social-media/       # Social media guides (4)
+│   └── en/                         # English content
+│       ├── blog/                   # English blog posts (21 articles)
+│       └── kennisbank/             # English knowledge base guides
+│           ├── development/
+│           ├── seo/
+│           ├── hosting/
+│           └── social-media/
 │
 ├── messages/                       # I18N TRANSLATIONS
 │   ├── nl.json                     # Dutch UI strings
@@ -439,8 +448,9 @@ robuust-marketing-website/
 │   │       └── hubspot-calendar.tsx    # Meeting scheduler
 │   │
 │   ├── data/                       # STATIC DATA
-│   │   ├── services.ts             # Service definitions (10)
-│   │   ├── portfolio.ts            # Portfolio items (7)
+│   │   ├── services.ts             # Service definitions (11)
+│   │   ├── portfolio.ts            # Portfolio items (8 featured + 20 legacy)
+│   │   ├── tools.ts                # Tool/technology pages (7)
 │   │   ├── pricing.ts              # All pricing config
 │   │   ├── packages.ts             # Solid Start & Firm Foundation
 │   │   ├── partners.ts             # Partner logos/info
@@ -670,7 +680,7 @@ npm start
 npx remotion render portfolio-growteq out/growteq.mp4
 
 # Render alle portfolio video's
-for slug in growteq den-hartog villary idrw bnb-kinderdijk voltra-charging woonstudio-joy; do
+for slug in growteq den-hartog villary idrw bnb-kinderdijk voltra-charging woonstudio-joy kapsalon-tine; do
   npx remotion render portfolio-$slug out/$slug.mp4
 done
 ```

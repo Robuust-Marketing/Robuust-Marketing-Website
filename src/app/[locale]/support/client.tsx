@@ -34,8 +34,14 @@ const groupedFaqs = supportFaqCategories.map((category) => ({
 export default function SupportPageClient() {
   const t = useTranslations("supportPage");
 
+  const openHubSpotChat = () => {
+    if (typeof window !== "undefined" && window.HubSpotConversations?.widget) {
+      window.HubSpotConversations.widget.open();
+    }
+  };
+
   const supportOptions = [
-    { id: "chat", icon: MessageCircle, href: "#chat" },
+    { id: "chat", icon: MessageCircle, href: "#", onClick: openHubSpotChat },
     { id: "email", icon: Mail, href: "mailto:support@robuustmarketing.nl" },
     { id: "phone", icon: Phone, href: "tel:+31850604877" },
   ];
@@ -142,13 +148,23 @@ export default function SupportPageClient() {
                 <p className="text-xs text-muted-foreground mb-4">
                   {t("contactOptions.available")} {t(`contactOptions.${option.id}.availability`)}
                 </p>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/5"
-                >
-                  <a href={option.href}>{t(`contactOptions.${option.id}.action`)}</a>
-                </Button>
+                {option.onClick ? (
+                  <Button
+                    variant="outline"
+                    className="border-white/20 text-white hover:bg-white/5"
+                    onClick={option.onClick}
+                  >
+                    {t(`contactOptions.${option.id}.action`)}
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-white/20 text-white hover:bg-white/5"
+                  >
+                    <a href={option.href}>{t(`contactOptions.${option.id}.action`)}</a>
+                  </Button>
+                )}
               </motion.div>
             ))}
           </div>

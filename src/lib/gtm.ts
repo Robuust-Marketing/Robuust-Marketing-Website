@@ -15,6 +15,14 @@ declare global {
       declined: boolean;
       hasResponse: boolean;
     };
+    HubSpotConversations?: {
+      widget: {
+        open: () => void;
+        close: () => void;
+        remove: () => void;
+        status: () => { loaded: boolean; open: boolean };
+      };
+    };
   }
 }
 
