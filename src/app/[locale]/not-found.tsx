@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import NextLink from "next/link";
 import { Search, FileText, Briefcase, BookOpen, Loader2 } from "lucide-react";
 import type { SearchResult } from "@/app/api/search/route";
 
@@ -95,10 +96,12 @@ export default function NotFound() {
                   <ul className="divide-y divide-border">
                     {results.map((result, index) => {
                       const Icon = typeIcons[result.type];
+                      // Use NextLink for dynamic hrefs from search results
+                      const href = `/${locale}${result.href}`;
                       return (
                         <li key={index}>
-                          <Link
-                            href={result.href}
+                          <NextLink
+                            href={href}
                             className="flex items-start gap-3 px-4 py-3 hover:bg-surface-hover transition-colors"
                           >
                             <Icon className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
@@ -113,7 +116,7 @@ export default function NotFound() {
                                 {t(`notFound.resultTypes.${result.type}`)}
                               </div>
                             </div>
-                          </Link>
+                          </NextLink>
                         </li>
                       );
                     })}
