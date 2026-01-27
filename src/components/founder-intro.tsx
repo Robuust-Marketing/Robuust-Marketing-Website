@@ -34,9 +34,11 @@ export function FounderIntro() {
           >
             <div className="relative aspect-video max-w-lg mx-auto lg:mx-0 rounded-3xl overflow-hidden bg-surface border border-white/10">
               <iframe
-                src="https://www.youtube-nocookie.com/embed/xFctedUSpKo"
-                title="Robuust Marketing"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                src="https://www.youtube.com/embed/xFctedUSpKo?si=R5h-TAn3DxlvaaXq"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
               />
