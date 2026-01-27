@@ -77,10 +77,16 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       };
     }
 
-    // Tooling: /tooling/[slug]
+    // Tooling: check for static routes first, then fall back to dynamic
     const toolingMatch = rawPath.match(/^\/tooling\/([^/\[]+)$/);
     if (toolingMatch) {
-      return { pathname: "/tooling/[slug]", params: { slug: toolingMatch[1] } };
+      const slug = toolingMatch[1];
+      // These have static routes in routing.ts - return null to use pathname directly
+      const staticToolingSlugs = ["wordpress", "nextjs", "typescript", "tailwind", "cms", "cloudflare", "nginx"];
+      if (staticToolingSlugs.includes(slug)) {
+        return null; // Will use static pathname from usePathname()
+      }
+      return { pathname: "/tooling/[slug]", params: { slug } };
     }
 
     return null;
