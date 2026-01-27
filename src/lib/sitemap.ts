@@ -1,5 +1,5 @@
-import { getAllBlogPosts } from "./blog";
-import { getAllGuides, type CategorySlug } from "./kennisbank";
+import { getAllBlogPosts, type BlogPostMeta } from "./blog";
+import { getAllGuides, type CategorySlug, type GuideMeta } from "./kennisbank";
 import { getPortfolioItems } from "@/data/portfolio";
 import { type Locale, locales, defaultLocale } from "@/i18n/config";
 
@@ -63,6 +63,30 @@ function buildAlternates(path: string): { locale: string; url: string }[] {
   alternates.push({
     locale: "x-default",
     url: `${BASE_URL}${path}`,
+  });
+
+  return alternates;
+}
+
+// Build alternates with different slugs per locale (for blog posts with translations)
+function buildAlternatesWithTranslations(
+  basePath: string,
+  slugs: Record<Locale, string>
+): { locale: string; url: string }[] {
+  const alternates: { locale: string; url: string }[] = [];
+
+  for (const locale of locales) {
+    const path = `${basePath}/${slugs[locale]}`;
+    alternates.push({
+      locale,
+      url: buildUrl(path, locale),
+    });
+  }
+
+  // Add x-default pointing to default locale
+  alternates.push({
+    locale: "x-default",
+    url: `${BASE_URL}${basePath}/${slugs[defaultLocale]}`,
   });
 
   return alternates;
@@ -183,6 +207,7 @@ export function getServicesSitemap(): SitemapEntry[] {
     { path: "/diensten/email-marketing", priority: 0.8 },
     { path: "/diensten/branding", priority: 0.8 },
     { path: "/diensten/tracking", priority: 0.8 },
+    { path: "/diensten/social-media", priority: 0.8 },
     { path: "/diensten/crm", priority: 0.8 },
   ];
 
@@ -218,20 +243,68 @@ export function getBlogSitemap(): SitemapEntry[] {
     });
   }
 
-  // Individual blog posts - use Dutch posts as source of truth
-  const posts = getAllBlogPosts("nl");
+  // Get posts for each locale
+  const nlPosts = getAllBlogPosts("nl");
+  const enPosts = getAllBlogPosts("en");
 
-  for (const post of posts) {
-    const path = `/blog/${post.slug}`;
+  // Create a map of English posts by slug for quick lookup
+  const enPostsBySlug = new Map<string, BlogPostMeta>();
+  for (const post of enPosts) {
+    enPostsBySlug.set(post.slug, post);
+  }
 
-    for (const locale of locales) {
+  // Track which English posts have been added (to avoid duplicates)
+  const addedEnSlugs = new Set<string>();
+
+  // Process Dutch posts and their translations
+  for (const nlPost of nlPosts) {
+    const enSlug = nlPost.translations?.en;
+    const enPost = enSlug ? enPostsBySlug.get(enSlug) : null;
+
+    // Generate entry for Dutch locale
+    entries.push({
+      loc: buildUrl(`/blog/${nlPost.slug}`, "nl"),
+      lastmod: formatDate(nlPost.date),
+      changefreq: "monthly",
+      priority: 0.7,
+      alternates: enPost
+        ? buildAlternatesWithTranslations("/blog", {
+            nl: nlPost.slug,
+            en: enSlug!,
+          })
+        : undefined, // No alternates if no translation exists
+    });
+
+    // Generate entry for English locale if translation exists
+    if (enPost && enSlug) {
       entries.push({
-        loc: buildUrl(path, locale),
-        lastmod: formatDate(post.date),
+        loc: buildUrl(`/blog/${enSlug}`, "en"),
+        lastmod: formatDate(enPost.date),
         changefreq: "monthly",
         priority: 0.7,
-        alternates: buildAlternates(path),
+        alternates: buildAlternatesWithTranslations("/blog", {
+          nl: nlPost.slug,
+          en: enSlug,
+        }),
       });
+      addedEnSlugs.add(enSlug);
+    }
+  }
+
+  // Add any English-only posts that don't have Dutch translations
+  for (const enPost of enPosts) {
+    if (!addedEnSlugs.has(enPost.slug)) {
+      const nlSlug = enPost.translations?.nl;
+      // Only add if there's no Dutch translation (otherwise it was already added above)
+      if (!nlSlug) {
+        entries.push({
+          loc: buildUrl(`/blog/${enPost.slug}`, "en"),
+          lastmod: formatDate(enPost.date),
+          changefreq: "monthly",
+          priority: 0.7,
+          // No alternates for English-only posts
+        });
+      }
     }
   }
 
@@ -239,11 +312,18 @@ export function getBlogSitemap(): SitemapEntry[] {
 }
 
 // Kennisbank sitemap
+// Note: Currently only Dutch kennisbank content exists, so we only generate Dutch URLs
+// When English translations are added, this should be updated similar to getBlogSitemap()
 export function getKennisbankSitemap(): SitemapEntry[] {
   const entries: SitemapEntry[] = [];
-  const categories: CategorySlug[] = ["development", "seo", "hosting"];
+  const categories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
 
-  // Kennisbank index pages
+  // Get guides for each locale to check what content exists
+  const nlGuides = getAllGuides("nl");
+  const enGuides = getAllGuides("en");
+  const hasEnglishContent = enGuides.length > 0;
+
+  // Kennisbank index pages - both locales (the index page exists for both)
   for (const locale of locales) {
     entries.push({
       loc: buildUrl("/kennisbank", locale),
@@ -263,11 +343,10 @@ export function getKennisbankSitemap(): SitemapEntry[] {
     });
   }
 
-  // Category pages and guides
+  // Category pages - both locales (category pages exist for both)
   for (const category of categories) {
     const categoryPath = `/kennisbank/${category}`;
 
-    // Category index
     for (const locale of locales) {
       entries.push({
         loc: buildUrl(categoryPath, locale),
@@ -277,22 +356,33 @@ export function getKennisbankSitemap(): SitemapEntry[] {
         alternates: buildAlternates(categoryPath),
       });
     }
+  }
 
-    // Individual guides - use Dutch as source
-    const guides = getAllGuides("nl").filter((g) => g.categorySlug === category);
+  // Individual guides - only Dutch for now (no English translations exist)
+  // When English translations are added, they should have a translations field in frontmatter
+  for (const guide of nlGuides) {
+    const guidePath = `/kennisbank/${guide.categorySlug}/${guide.slug}`;
 
-    for (const guide of guides) {
-      const guidePath = `/kennisbank/${category}/${guide.slug}`;
+    // Only generate Dutch URL since no English content exists
+    entries.push({
+      loc: buildUrl(guidePath, "nl"),
+      lastmod: formatDate(),
+      changefreq: "monthly",
+      priority: 0.6,
+      // No alternates until English translations exist
+    });
+  }
 
-      for (const locale of locales) {
-        entries.push({
-          loc: buildUrl(guidePath, locale),
-          lastmod: formatDate(),
-          changefreq: "monthly",
-          priority: 0.6,
-          alternates: buildAlternates(guidePath),
-        });
-      }
+  // Add English guides if they exist (for future use)
+  if (hasEnglishContent) {
+    for (const guide of enGuides) {
+      const guidePath = `/kennisbank/${guide.categorySlug}/${guide.slug}`;
+      entries.push({
+        loc: buildUrl(guidePath, "en"),
+        lastmod: formatDate(),
+        changefreq: "monthly",
+        priority: 0.6,
+      });
     }
   }
 

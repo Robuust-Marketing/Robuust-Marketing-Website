@@ -51,6 +51,10 @@ export const routing = defineRouting({
       nl: '/diensten/crm',
       en: '/services/crm',
     },
+    '/diensten/social-media': {
+      nl: '/diensten/social-media',
+      en: '/services/social-media',
+    },
     '/tarieven': {
       nl: '/tarieven',
       en: '/pricing',

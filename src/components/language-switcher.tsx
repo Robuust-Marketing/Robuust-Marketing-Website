@@ -10,6 +10,14 @@ interface LanguageSwitcherProps {
   className?: string;
 }
 
+// Type for dynamic route hrefs
+type DynamicHref =
+  | { pathname: "/blog/[slug]"; params: { slug: string } }
+  | { pathname: "/portfolio/[slug]"; params: { slug: string } }
+  | { pathname: "/kennisbank/[category]"; params: { category: string } }
+  | { pathname: "/kennisbank/[category]/[slug]"; params: { category: string; slug: string } }
+  | { pathname: "/tooling/[slug]"; params: { slug: string } };
+
 export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const locale = useLocale() as Locale;
   // usePathname from next-intl returns the canonical pathname (e.g., "/werkwijze" not "/approach")
@@ -33,28 +41,56 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     return { pathname: "/blog/[slug]", params: { slug: targetSlug } };
   };
 
-  // Get the canonical pathname for next-intl Link
-  const getCanonicalPathname = (): Pathnames => {
-    // For dynamic routes like /blog/[slug], extract the base pattern
+  // Get href for dynamic routes that need params
+  const getDynamicHref = (): DynamicHref | null => {
+    // Blog: /blog/[slug]
     const blogMatch = pathname.match(/^\/blog\/([^/]+)$/);
     if (blogMatch) {
-      return "/blog/[slug]" as Pathnames;
+      return { pathname: "/blog/[slug]", params: { slug: blogMatch[1] } };
     }
-    // pathname from next-intl is already the canonical pathname
-    return pathname as Pathnames;
+
+    // Portfolio: /portfolio/[slug]
+    const portfolioMatch = pathname.match(/^\/portfolio\/([^/]+)$/);
+    if (portfolioMatch) {
+      return { pathname: "/portfolio/[slug]", params: { slug: portfolioMatch[1] } };
+    }
+
+    // Kennisbank guide: /kennisbank/[category]/[slug]
+    const kennisbankGuideMatch = pathname.match(/^\/kennisbank\/([^/]+)\/([^/]+)$/);
+    if (kennisbankGuideMatch) {
+      return {
+        pathname: "/kennisbank/[category]/[slug]",
+        params: { category: kennisbankGuideMatch[1], slug: kennisbankGuideMatch[2] },
+      };
+    }
+
+    // Kennisbank category: /kennisbank/[category]
+    const kennisbankCategoryMatch = pathname.match(/^\/kennisbank\/([^/]+)$/);
+    if (kennisbankCategoryMatch && !["glossary"].includes(kennisbankCategoryMatch[1])) {
+      return {
+        pathname: "/kennisbank/[category]",
+        params: { category: kennisbankCategoryMatch[1] },
+      };
+    }
+
+    // Tooling: /tooling/[slug]
+    const toolingMatch = pathname.match(/^\/tooling\/([^/]+)$/);
+    if (toolingMatch) {
+      return { pathname: "/tooling/[slug]", params: { slug: toolingMatch[1] } };
+    }
+
+    return null;
   };
 
+  // For blog pages with translations, use the translated slug
   const blogHref = getBlogTranslatedHref();
-  const canonicalPath = getCanonicalPathname();
-  const blogSlugMatch = nextPathname.match(/^(\/en)?\/blog\/([^/]+)$/);
-  const currentSlug = blogSlugMatch?.[2];
+
+  // For other dynamic routes, get proper href with params
+  const dynamicHref = getDynamicHref();
 
   // Determine the href for the other locale
-  const href = blogHref || (
-    currentSlug
-      ? { pathname: "/blog/[slug]" as const, params: { slug: currentSlug } }
-      : canonicalPath
-  );
+  // Priority: blog translation > dynamic route with params > static pathname
+  const href = blogHref || dynamicHref || (pathname as Pathnames);
 
   return (
     <Link
