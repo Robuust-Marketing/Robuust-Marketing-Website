@@ -12,19 +12,19 @@ export async function generateMetadata({
   const { locale } = await params;
 
   const titles = {
-    nl: "Website Laten Maken Rotterdam-Zuid | Robuust Marketing",
-    en: "Website Development Rotterdam South | Robuust Marketing",
+    nl: "Website Laten Maken Rotterdam | Robuust Marketing",
+    en: "Website Development Rotterdam | Robuust Marketing",
   };
 
   const descriptions = {
-    nl: "Website laten maken in Rotterdam-Zuid? Robuust Marketing is uw lokale webbureau voor snelle, professionele websites in Feijenoord, Charlois en IJsselmonde.",
-    en: "Looking for website development in Rotterdam South? Robuust Marketing is your local web agency for fast, professional websites in the Rotterdam area.",
+    nl: "Website laten maken in Rotterdam? Robuust Marketing is uw lokale webbureau voor snelle, professionele websites in Feijenoord, Charlois en IJsselmonde.",
+    en: "Looking for website development in Rotterdam? Robuust Marketing is your local web agency for fast, professional websites in the Rotterdam area.",
   };
 
   return {
     title: titles[locale as Locale] || titles.nl,
     description: descriptions[locale as Locale] || descriptions.nl,
-    alternates: generateAlternates("/website-laten-maken-rotterdam-zuid", locale),
+    alternates: generateAlternates("/website-laten-maken-rotterdam", locale),
     openGraph: {
       title: titles[locale as Locale] || titles.nl,
       description: descriptions[locale as Locale] || descriptions.nl,

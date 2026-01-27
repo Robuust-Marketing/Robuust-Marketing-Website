@@ -1,0 +1,435 @@
+---
+title: "Technical SEO Checklist: The Complete Guide"
+description: "All technical SEO aspects your website needs. From indexing to site structure - ensure your foundation is solid."
+category: "seo"
+readTime: "15 min"
+order: 1
+icon: "settings"
+---
+
+Technical SEO is the foundation of your online visibility. Without a solid technical base, content and link building efforts are largely wasted. This checklist helps you verify all technical aspects.
+
+## Crawling and Indexing
+
+### Robots.txt
+
+The robots.txt file tells search engines which pages they can crawl.
+
+**Location:** `https://yoursite.com/robots.txt`
+
+**Basic example:**
+```txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Sitemap: https://yoursite.com/sitemap.xml
+```
+
+**Checklist:**
+- [ ] Robots.txt exists and is accessible
+- [ ] Important pages are not blocked
+- [ ] Sitemap URL is included
+- [ ] Admin/API routes are blocked
+
+### XML Sitemap
+
+The sitemap helps search engines find all your pages.
+
+**Requirements:**
+- All important pages included
+- No blocked URLs
+- Correct lastmod dates
+- Maximum 50,000 URLs per sitemap
+
+**Example structure:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yoursite.com/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://yoursite.com/services</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+```
+
+**Checklist:**
+- [ ] Sitemap is submitted to Search Console
+- [ ] All important pages are included
+- [ ] No 404 or redirect URLs
+- [ ] Automatically updated when changes occur
+
+### Indexability
+
+Check whether pages can be indexed:
+
+**Meta robots tag:**
+```html
+<!-- Allow (default) -->
+<meta name="robots" content="index, follow">
+
+<!-- Block -->
+<meta name="robots" content="noindex, nofollow">
+```
+
+**X-Robots-Tag header:**
+```
+X-Robots-Tag: noindex
+```
+
+**Checklist:**
+- [ ] Important pages do not have noindex
+- [ ] Duplicate content has canonical or noindex
+- [ ] Pagination is correctly configured
+- [ ] Filter parameters are handled
+
+## Site Architecture
+
+### URL Structure
+
+**Good URLs:**
+- Readable for humans
+- Descriptive of content
+- Consistent in structure
+- Lowercase with hyphens
+
+**Examples:**
+```
+✓ /services/webdesign
+✓ /blog/seo-tips-for-beginners
+✗ /page.php?id=123
+✗ /Services/WebDesign
+```
+
+**Checklist:**
+- [ ] URLs are descriptive
+- [ ] Consistent structure
+- [ ] No uppercase letters
+- [ ] No special characters
+- [ ] No unnecessary parameters
+
+### Site Hierarchy
+
+**Ideal depth:** Maximum 3 clicks from homepage
+
+```
+Homepage
+├── Services (level 1)
+│   ├── Web Design (level 2)
+│   └── Development (level 2)
+├── About Us (level 1)
+└── Blog (level 1)
+    └── Article (level 2)
+```
+
+**Checklist:**
+- [ ] Logical category structure
+- [ ] Maximum 3 levels deep
+- [ ] Breadcrumbs implemented
+- [ ] Internal links between related content
+
+### Internal Linking
+
+**Best practices:**
+- Link from content to related pages
+- Use descriptive anchor text
+- Ensure important pages receive many internal links
+- Avoid orphan pages (pages without internal links)
+
+**Checklist:**
+- [ ] All pages have at least one internal link
+- [ ] Anchor text is descriptive
+- [ ] Important pages are well linked
+- [ ] No broken internal links
+
+## Technical Foundation
+
+### HTTPS
+
+HTTPS is mandatory for modern websites.
+
+**Checklist:**
+- [ ] SSL certificate installed
+- [ ] HTTP redirects to HTTPS
+- [ ] No mixed content warnings
+- [ ] HSTS header configured
+
+### Mobile-Friendliness
+
+Google uses mobile-first indexing.
+
+**Checklist:**
+- [ ] Responsive design
+- [ ] Viewport meta tag present
+- [ ] Touch targets large enough (48x48px)
+- [ ] No horizontal scrolling
+- [ ] Text readable without zooming
+
+**Viewport tag:**
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+### Page Speed
+
+Speed is a ranking factor.
+
+**Targets:**
+- LCP: < 2.5 seconds
+- INP: < 200 milliseconds
+- CLS: < 0.1
+
+**Checklist:**
+- [ ] Images optimized
+- [ ] CSS and JS minified
+- [ ] Caching configured
+- [ ] CDN in use
+- [ ] Server response time < 200ms
+
+## Structured Data
+
+### What is Structured Data?
+
+Structured data (Schema.org) helps search engines understand your content.
+
+**Benefits:**
+- Rich snippets in search results
+- Better CTR
+- Voice search optimization
+
+### Important Schema Types
+
+**Organization:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Robuust Marketing",
+  "url": "https://robuustmarketing.nl",
+  "logo": "https://robuustmarketing.nl/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+31-XX-XXXXXXX",
+    "contactType": "customer service"
+  }
+}
+```
+
+**LocalBusiness:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Robuust Marketing",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Street Name 123",
+    "addressLocality": "City",
+    "postalCode": "1234 AB",
+    "addressCountry": "NL"
+  }
+}
+```
+
+**BreadcrumbList:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://robuustmarketing.nl"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://robuustmarketing.nl/services"
+    }
+  ]
+}
+```
+
+**Checklist:**
+- [ ] Organization/LocalBusiness schema
+- [ ] Breadcrumb schema
+- [ ] Article schema for blog posts
+- [ ] FAQ schema where relevant
+- [ ] Validate with Google's Rich Results Test
+
+## Meta Tags
+
+### Title Tag
+
+**Best practices:**
+- 50-60 characters
+- Most important keyword at the beginning
+- Unique per page
+- Brand name at the end
+
+**Example:**
+```html
+<title>Web Design The Hague | Professional Websites | Robuust Marketing</title>
+```
+
+### Meta Description
+
+**Best practices:**
+- 150-160 characters
+- Include call-to-action
+- Unique per page
+- Include keyword (appears bold)
+
+**Example:**
+```html
+<meta name="description" content="Professional web design in The Hague. We build fast, SEO-optimized websites. Request a free quote!">
+```
+
+### Canonical Tag
+
+Prevent duplicate content issues:
+
+```html
+<link rel="canonical" href="https://yoursite.com/page">
+```
+
+**When to use:**
+- Pages with URL parameters
+- Print versions of pages
+- Mobile versions (m. subdomain)
+- Content syndication
+
+### Open Graph Tags
+
+For social media sharing:
+
+```html
+<meta property="og:title" content="Page Title">
+<meta property="og:description" content="Description">
+<meta property="og:image" content="https://yoursite.com/image.jpg">
+<meta property="og:url" content="https://yoursite.com/page">
+<meta property="og:type" content="website">
+```
+
+**Checklist:**
+- [ ] Unique title per page
+- [ ] Unique meta description per page
+- [ ] Canonical tags correct
+- [ ] Open Graph tags present
+- [ ] Twitter Card tags present
+
+## International SEO
+
+### Hreflang Tags
+
+For multilingual or multi-regional sites:
+
+```html
+<link rel="alternate" hreflang="nl" href="https://yoursite.nl/">
+<link rel="alternate" hreflang="en" href="https://yoursite.nl/en/">
+<link rel="alternate" hreflang="x-default" href="https://yoursite.nl/">
+```
+
+**Checklist:**
+- [ ] Hreflang for each language/region
+- [ ] X-default for fallback
+- [ ] Return links present
+- [ ] Consistent implementation
+
+## Error Handling
+
+### 404 Page
+
+**Best practices:**
+- Clear message
+- Navigation to important pages
+- Search functionality
+- Report 404s in Search Console
+
+### Redirects
+
+**301 Redirect:** Permanent move
+**302 Redirect:** Temporary move
+
+**Checklist:**
+- [ ] Old URLs redirect to new ones
+- [ ] No redirect chains
+- [ ] No redirect loops
+- [ ] Monitor and fix 404s
+
+## Monitoring and Tools
+
+### Google Search Console
+
+**Essential reports:**
+- Performance (impressions, clicks, CTR)
+- Coverage (indexing status)
+- Core Web Vitals
+- Mobile Usability
+
+### Technical SEO Tools
+
+**Free:**
+- Google Search Console
+- Google PageSpeed Insights
+- Screaming Frog (500 URLs free)
+- Lighthouse
+
+**Paid:**
+- Ahrefs
+- SEMrush
+- Sitebulb
+- DeepCrawl
+
+## Complete Checklist
+
+### Crawling & Indexing
+- [ ] Robots.txt correctly configured
+- [ ] XML Sitemap present and submitted
+- [ ] No unintended noindex tags
+- [ ] Canonicals correctly set
+
+### Site Structure
+- [ ] Logical URL structure
+- [ ] Maximum 3 click depth
+- [ ] Breadcrumbs implemented
+- [ ] Good internal linking
+
+### Technical Foundation
+- [ ] HTTPS active
+- [ ] Mobile-friendly
+- [ ] Core Web Vitals green
+- [ ] Fast server response
+
+### Meta Tags & Structured Data
+- [ ] Unique titles and descriptions
+- [ ] Structured data implemented
+- [ ] Open Graph tags present
+- [ ] Hreflang (if multilingual)
+
+### Monitoring
+- [ ] Search Console connected
+- [ ] 404s being monitored
+- [ ] Core Web Vitals tracking
+- [ ] Regular technical audits
+
+## Conclusion
+
+Technical SEO is the foundation for all other SEO efforts. Use this checklist to audit your website and resolve issues.
+
+Want a professional technical SEO audit? [Contact us](/contact).
+
+## Related Articles
+
+- **[Core Web Vitals Explained](/blog/core-web-vitals-explained)** - Performance metrics in detail
+- **[Website Performance Optimization](/en/kennisbank/development/website-performance-optimalisatie)** - Improving speed
+- **[Getting Started with SEO](/blog/getting-started-with-seo)** - SEO basics explained

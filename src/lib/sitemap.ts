@@ -433,7 +433,7 @@ export function getLandingPagesSitemap(): SitemapEntry[] {
     { path: "/website-laten-maken-dordrecht", priority: 0.8 },
     { path: "/website-laten-maken-ridderkerk", priority: 0.8 },
     { path: "/website-laten-maken-barendrecht", priority: 0.8 },
-    { path: "/website-laten-maken-rotterdam-zuid", priority: 0.8 },
+    { path: "/website-laten-maken-rotterdam", priority: 0.8 },
     { path: "/website-laten-maken-papendrecht", priority: 0.8 },
     { path: "/website-laten-maken-sliedrecht", priority: 0.8 },
     { path: "/website-laten-maken-hendrik-ido-ambacht", priority: 0.8 },
