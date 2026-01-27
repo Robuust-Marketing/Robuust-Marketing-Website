@@ -626,6 +626,48 @@ const legacyPortfolioItemsNL: LegacyPortfolioItem[] = [
     category: "Fotografie",
     year: 2018,
   },
+  {
+    id: "immanuelkerk-krimpen",
+    slug: "immanuelkerk-krimpen",
+    name: "Immanuelkerk Krimpen",
+    url: "https://www.immanuelkerkkrimpen.nl",
+    category: "Kerk",
+  },
+  {
+    id: "de-online-academy",
+    slug: "de-online-academy",
+    name: "De Online Academy",
+    url: "https://deonlineacademy.nl",
+    category: "Onderwijs",
+  },
+  {
+    id: "bureau-delight",
+    slug: "bureau-delight",
+    name: "Bureau Delight",
+    url: "https://bureaudelight.nl",
+    category: "Coaching",
+  },
+  {
+    id: "bioboss",
+    slug: "bioboss",
+    name: "Bioboss",
+    url: "https://bioboss.nl",
+    category: "Bouwmaterialen",
+  },
+  {
+    id: "restaurant-en-verre",
+    slug: "restaurant-en-verre",
+    name: "Restaurant En Verre",
+    url: "https://restaurantenverre.nl",
+    category: "Horeca",
+  },
+  {
+    id: "vdv-logistics",
+    slug: "vdv-logistics",
+    name: "VDV Logistics",
+    url: "https://vdvlogistics.eu",
+    category: "Logistiek",
+  },
 ];
 
 const legacyPortfolioItemsEN: LegacyPortfolioItem[] = [
@@ -740,6 +782,48 @@ const legacyPortfolioItemsEN: LegacyPortfolioItem[] = [
     url: "https://foto-lot.nl",
     category: "Photography",
     year: 2018,
+  },
+  {
+    id: "immanuelkerk-krimpen",
+    slug: "immanuelkerk-krimpen",
+    name: "Immanuelkerk Krimpen",
+    url: "https://www.immanuelkerkkrimpen.nl",
+    category: "Church",
+  },
+  {
+    id: "de-online-academy",
+    slug: "de-online-academy",
+    name: "De Online Academy",
+    url: "https://deonlineacademy.nl",
+    category: "Education",
+  },
+  {
+    id: "bureau-delight",
+    slug: "bureau-delight",
+    name: "Bureau Delight",
+    url: "https://bureaudelight.nl",
+    category: "Coaching",
+  },
+  {
+    id: "bioboss",
+    slug: "bioboss",
+    name: "Bioboss",
+    url: "https://bioboss.nl",
+    category: "Construction Materials",
+  },
+  {
+    id: "restaurant-en-verre",
+    slug: "restaurant-en-verre",
+    name: "Restaurant En Verre",
+    url: "https://restaurantenverre.nl",
+    category: "Hospitality",
+  },
+  {
+    id: "vdv-logistics",
+    slug: "vdv-logistics",
+    name: "VDV Logistics",
+    url: "https://vdvlogistics.eu",
+    category: "Logistics",
   },
 ];
 

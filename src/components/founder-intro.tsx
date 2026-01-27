@@ -24,7 +24,7 @@ export function FounderIntro() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Photo/Avatar side */}
+          {/* Video side */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -32,31 +32,16 @@ export function FounderIntro() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            {/* Photo placeholder - replace with actual photo */}
-            <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 rounded-3xl overflow-hidden bg-surface border border-white/10">
-              {/* Gradient placeholder until photo is available */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(135deg, rgba(37, 49, 59, 1) 0%, rgba(24, 36, 46, 1) 100%)",
-                }}
+            <div className="relative aspect-video max-w-lg mx-auto lg:mx-0 rounded-3xl overflow-hidden bg-surface border border-white/10">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/xFctedUSpKo"
+                title="Robuust Marketing"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
               />
-
-              {/* Decorative accent */}
-              <div
-                className="absolute bottom-0 left-0 right-0 h-1/2"
-                style={{
-                  background: "linear-gradient(to top, rgba(197, 60, 11, 0.1) 0%, transparent 100%)",
-                }}
-              />
-
-              {/* Initials as placeholder */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-8xl font-bold text-white/10">RH</span>
-              </div>
-
               {/* Corner accent */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-full bg-accent/20 blur-3xl" />
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
             </div>
 
             {/* Floating badge */}
