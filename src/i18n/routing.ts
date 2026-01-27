@@ -134,6 +134,10 @@ export const routing = defineRouting({
       nl: '/video-laten-maken',
       en: '/video-production',
     },
+    '/afspraak': {
+      nl: '/afspraak',
+      en: '/schedule-call',
+    },
   },
 });
 

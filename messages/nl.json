@@ -3141,5 +3141,15 @@
       "tryAgain": "Probeer opnieuw",
       "backHome": "Terug naar home"
     }
+  },
+  "afspraak": {
+    "title": "Plan een gesprek",
+    "subtitle": "Kies een moment dat jou uitkomt voor een vrijblijvend kennismakingsgesprek. We bespreken graag je plannen en ideeën.",
+    "benefit1Title": "30 minuten",
+    "benefit1Desc": "Kort maar krachtig gesprek",
+    "benefit2Title": "Video of telefoon",
+    "benefit2Desc": "Jij kiest hoe we verbinden",
+    "benefit3Title": "Vrijblijvend",
+    "benefit3Desc": "Geen verplichtingen"
   }
 }

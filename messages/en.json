@@ -3129,5 +3129,15 @@
       "tryAgain": "Try again",
       "backHome": "Back to home"
     }
+  },
+  "afspraak": {
+    "title": "Schedule a call",
+    "subtitle": "Choose a time that suits you for a free introductory call. We'd love to discuss your plans and ideas.",
+    "benefit1Title": "30 minutes",
+    "benefit1Desc": "Short but powerful conversation",
+    "benefit2Title": "Video or phone",
+    "benefit2Desc": "You choose how we connect",
+    "benefit3Title": "No obligation",
+    "benefit3Desc": "No commitments"
   }
 }

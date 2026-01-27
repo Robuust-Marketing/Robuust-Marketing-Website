@@ -18,6 +18,7 @@ const routeTranslations: Record<string, Record<Locale, string>> = {
   onderhoud: { nl: "onderhoud", en: "maintenance" },
   referenties: { nl: "referenties", en: "testimonials" },
   vacatures: { nl: "vacatures", en: "careers" },
+  afspraak: { nl: "afspraak", en: "schedule-call" },
 };
 
 export interface SitemapEntry {
@@ -175,6 +176,7 @@ export function getPagesSitemap(): SitemapEntry[] {
     { path: "/privacy", priority: 0.4, changefreq: "yearly" as const },
     { path: "/avg", priority: 0.4, changefreq: "yearly" as const },
     { path: "/voorwaarden", priority: 0.4, changefreq: "yearly" as const },
+    { path: "/afspraak", priority: 0.8, changefreq: "monthly" as const },
   ];
 
   const entries: SitemapEntry[] = [];
