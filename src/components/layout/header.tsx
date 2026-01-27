@@ -948,8 +948,8 @@ export function Header() {
                   </nav>
                 </div>
 
-                {/* Language Switcher & CTA - Fixed at bottom */}
-                <div className="px-6 py-6 border-t border-white/10">
+                {/* Language Switcher & CTA - Fixed at bottom with extra padding for mobile browser UI */}
+                <div className="px-6 pt-6 pb-24 border-t border-white/10">
                   <div className="max-w-md mx-auto space-y-4">
                     <LanguageSwitcherCompact />
                     <Button asChild className="w-full bg-accent hover:bg-accent-hover text-white glow-accent-sm">
