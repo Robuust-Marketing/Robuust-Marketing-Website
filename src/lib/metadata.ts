@@ -47,13 +47,14 @@ export function generateAlternates(path: string, locale: string) {
   // Ensure path starts with /
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
 
-  // Build URLs - homepage gets trailing slash, other pages don't
+  // Build URLs - no trailing slashes (except NL homepage which is just the domain)
   const isHomepage = normalizedPath === "/";
   const nlUrl = isHomepage ? `${BASE_URL}/` : `${BASE_URL}${normalizedPath}`;
 
   // Translate path for English URL using routing configuration
   const enPath = translatePathToEnglish(normalizedPath);
-  const enUrl = isHomepage ? `${BASE_URL}/en/` : `${BASE_URL}/en${enPath}`;
+  // EN homepage: /en (no trailing slash to avoid redirect)
+  const enUrl = isHomepage ? `${BASE_URL}/en` : `${BASE_URL}/en${enPath}`;
 
   return {
     canonical: locale === "nl" ? nlUrl : enUrl,
