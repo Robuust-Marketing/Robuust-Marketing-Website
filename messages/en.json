@@ -3121,7 +3121,16 @@
       "description": "The page you're looking for doesn't exist or has been moved. Check the URL or go back to the homepage.",
       "searchPlaceholder": "Search the website...",
       "backHome": "Back to home",
-      "contact": "Contact us"
+      "contact": "Contact us",
+      "searching": "Searching...",
+      "noResults": "No results found",
+      "resultsFound": "{count} results found",
+      "resultTypes": {
+        "service": "Service",
+        "portfolio": "Portfolio",
+        "blog": "Blog",
+        "kennisbank": "Resources"
+      }
     },
     "serverError": {
       "title": "Something went wrong",

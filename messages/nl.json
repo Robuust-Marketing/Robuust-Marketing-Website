@@ -3133,7 +3133,16 @@
       "description": "De pagina die je zoekt bestaat niet of is verplaatst. Controleer de URL of ga terug naar de homepage.",
       "searchPlaceholder": "Zoek op de website...",
       "backHome": "Terug naar home",
-      "contact": "Neem contact op"
+      "contact": "Neem contact op",
+      "searching": "Zoeken...",
+      "noResults": "Geen resultaten gevonden",
+      "resultsFound": "{count} resultaten gevonden",
+      "resultTypes": {
+        "service": "Dienst",
+        "portfolio": "Portfolio",
+        "blog": "Blog",
+        "kennisbank": "Kennisbank"
+      }
     },
     "serverError": {
       "title": "Er ging iets mis",
