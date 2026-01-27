@@ -1,4 +1,42 @@
+import { routing } from "@/i18n/routing";
+
 const BASE_URL = "https://robuustmarketing.nl";
+
+/**
+ * Translate a Dutch path to its English equivalent using the routing configuration.
+ * Handles exact matches and prefix matches for nested routes.
+ */
+function translatePathToEnglish(nlPath: string): string {
+  const pathnames = routing.pathnames;
+
+  // Try exact match first
+  if (nlPath in pathnames) {
+    const config = pathnames[nlPath as keyof typeof pathnames];
+    if (typeof config === "object" && "en" in config) {
+      return config.en;
+    }
+    // Same path for both languages
+    return nlPath;
+  }
+
+  // Try prefix matches for dynamic routes (e.g., /kennisbank/development/slug)
+  // Sort by length descending to match most specific prefix first
+  const prefixes = Object.keys(pathnames)
+    .filter((key) => !key.includes("["))
+    .sort((a, b) => b.length - a.length);
+
+  for (const prefix of prefixes) {
+    if (nlPath.startsWith(prefix + "/")) {
+      const config = pathnames[prefix as keyof typeof pathnames];
+      if (typeof config === "object" && "en" in config) {
+        return config.en + nlPath.slice(prefix.length);
+      }
+    }
+  }
+
+  // No translation needed
+  return nlPath;
+}
 
 /**
  * Generate alternates object for hreflang tags
@@ -12,7 +50,10 @@ export function generateAlternates(path: string, locale: string) {
   // Build URLs - homepage gets trailing slash, other pages don't
   const isHomepage = normalizedPath === "/";
   const nlUrl = isHomepage ? `${BASE_URL}/` : `${BASE_URL}${normalizedPath}`;
-  const enUrl = isHomepage ? `${BASE_URL}/en/` : `${BASE_URL}/en${normalizedPath}`;
+
+  // Translate path for English URL using routing configuration
+  const enPath = translatePathToEnglish(normalizedPath);
+  const enUrl = isHomepage ? `${BASE_URL}/en/` : `${BASE_URL}/en${enPath}`;
 
   return {
     canonical: locale === "nl" ? nlUrl : enUrl,
