@@ -1,44 +1,95 @@
 ---
-title: "How to Fix Ahrefs Site Audit 'Broken Page' 404 Errors from Cloudflare"
-excerpt: "Getting 'Page has links to broken page' errors in Ahrefs Site Audit for /cdn-cgi/l/email-protection URLs? Learn how to fix this with Cloudflare Configuration Rules."
+title: "Ahrefs Site Audit and Cloudflare: fixing those annoying 404 errors"
+excerpt: "Dozens of 'broken page' errors in your Ahrefs report all pointing to /cdn-cgi/? Here's the fix - solved in 5 minutes via Cloudflare."
 category: "Cloudflare"
 date: "January 27, 2026"
-readTime: "7 min"
+readTime: "6 min"
 author: "Robuust Marketing"
 translations:
   nl: "ahrefs-site-audit-cloudflare-404-fixen"
 ---
 
-> **At Robuust, we handle this for you.** All websites we host are properly configured for SEO tools like Ahrefs. Want to know how to fix this yourself? Read on.
+> **At Robuust, we handle this for you.** All websites we host are properly configured for SEO tools. Want to know how to fix this yourself? Read on.
 
-Running an Ahrefs Site Audit only to find it flooded with "Page has links to broken page" errors? If these 404 errors all point to URLs containing `/cdn-cgi/l/email-protection`, you've found the culprit: a common conflict with Cloudflare's Email Address Obfuscation feature.
+## The quick fix
 
-This issue is specific to how the Ahrefs Site Audit crawler interprets the protected email links that Cloudflare generates. The crawler flags these dynamically generated links as internal broken pages, skewing your audit results and making it difficult to identify genuine issues on your site.
+Don't feel like reading the whole story? Here's what you need to do:
 
-This guide will show you how to configure Cloudflare to specifically allow the Ahrefs Site Audit to run without error. We will start with the most secure method, which involves whitelisting Ahrefs' IP addresses.
+**In Cloudflare:**
+1. Go to **Rules > Configuration Rules**
+2. Create a new rule with this expression:
 
-## Why Editing robots.txt Won't Fix Your Site Audit
+```
+(http.user_agent contains "AhrefsSiteAudit") or (http.user_agent contains "AhrefsBot")
+```
 
-You might be tempted to disallow the `/cdn-cgi/` directory in your robots.txt file. However, this will not solve the problem in your Ahrefs Site Audit. The crawler will still discover the links on your pages and, because it cannot crawl them, will continue to report them as broken. The only effective solution is to create a specific rule within your Cloudflare settings.
+3. Set **Email Obfuscation** to **Off**
+4. Deploy
 
-## Method 1: The Most Secure Fix (IP Whitelist)
+Done. Your next Ahrefs audit will be clean. Want to know why this works and what the safest approach is? Read on.
 
-This is the preferred and most secure method for resolving the Ahrefs 404 error. It works by verifying that the crawler is genuinely from Ahrefs' network before disabling email obfuscation.
+## What's going on?
 
-**Note:** This method requires access to create and manage IP Lists within your Cloudflare account (Manage Account > Settings > Lists). If you do not have this access due to your plan level or user permissions, please proceed to Method 2.
+You know the drill: you run a site audit in Ahrefs and suddenly you see dozens (or hundreds) of "Page has links to broken page" warnings. All 404 errors. And they all point to URLs that look something like this:
 
-### Step 1: Create an IP List in Cloudflare
+```
+/cdn-cgi/l/email-protection#a8c9cccdc6e8cfc5c9c1c486cbc7c5
+```
 
-First, you need to tell Cloudflare which IP addresses belong to Ahrefs.
+These aren't actual broken links on your website. It's a side effect of two features that don't play nice together:
 
-1. In your Cloudflare dashboard, go to **Manage Account > Settings**
-2. Select the **Lists** tab and click **Create list**
-3. Name it something memorable like `ahrefs_crawlers`
-4. Choose **IP** as the content type
-5. Add the official Ahrefs IPs (see below)
-6. Save the list
+**Cloudflare's Email Obfuscation** replaces email addresses on your website with encrypted versions. This protects against spam bots harvesting email addresses. Real visitors see `info@yourcompany.com` as expected, but the HTML contains a cryptic `/cdn-cgi/` link.
 
-**Complete list of Ahrefs IP addresses:**
+**The Ahrefs crawler** sees those links, tries to follow them, gets a 404, and flags them as broken pages.
+
+The result: a polluted audit report where you can't spot the real issues anymore.
+
+## Why robots.txt doesn't work
+
+Your first thought might be: "I'll just block `/cdn-cgi/` in robots.txt."
+
+That doesn't work. The crawler still discovers the links in your HTML. It just can't follow them. Result: you still get broken page warnings, because a link to a blocked URL is also considered a problem by Ahrefs.
+
+The solution lies in Cloudflare itself: make sure email obfuscation isn't active when Ahrefs comes crawling.
+
+## Option 1: User-Agent rule (quick and simple)
+
+The easiest solution is a Configuration Rule that recognizes the Ahrefs crawler by its user-agent.
+
+1. Open your Cloudflare dashboard and select your domain
+2. Go to **Rules > Configuration Rules**
+3. Click **Create rule**
+4. Choose a name, for example "SEO crawlers - disable email obfuscation"
+5. Click **Edit expression** and paste:
+
+```
+(http.user_agent contains "AhrefsSiteAudit") or (http.user_agent contains "AhrefsBot")
+```
+
+6. Scroll down, find **Email Obfuscation** and set it to **Off**
+7. Click **Deploy**
+
+That's it. The rule will be active within a few minutes.
+
+**Bonus:** You can add other SEO tools to the same rule:
+
+```
+(http.user_agent contains "AhrefsSiteAudit") or (http.user_agent contains "AhrefsBot") or (http.user_agent contains "Screaming Frog") or (http.user_agent contains "SEMrush")
+```
+
+## Option 2: IP whitelist (more secure)
+
+User-agents can be spoofed. A malicious bot could pretend to be Ahrefs to bypass your email protection. In practice this rarely happens, but if you want maximum security, use IP whitelisting.
+
+This method requires you to create IP Lists in Cloudflare (under **Manage Account > Settings > Lists**). Not all plans support this.
+
+### Creating the IP list
+
+1. Go to **Manage Account > Settings > Lists**
+2. Click **Create list**
+3. Name it `ahrefs-crawlers`
+4. Select **IP** as the type
+5. Add all Ahrefs IP ranges:
 
 ```
 5.39.1.224/27
@@ -76,8 +127,8 @@ First, you need to tell Cloudflare which IP addresses belong to Ahrefs.
 142.44.233.0/24
 148.113.128.0/24
 148.113.130.0/24
-168.100.149.0/24
 167.114.139.0/24
+168.100.149.0/24
 176.31.139.0/27
 198.244.168.0/24
 198.244.183.0/24
@@ -101,75 +152,37 @@ First, you need to tell Cloudflare which IP addresses belong to Ahrefs.
 202.94.84.113
 ```
 
-### Step 2: Create the Configuration Rule
+### Creating the rule
 
-Now, create the rule that uses this list.
+1. Go to your domain > **Rules > Configuration Rules**
+2. Create a new rule
+3. Select **IP Source Address** > **is in list** > `ahrefs-crawlers`
+4. Set **Email Obfuscation** to **Off**
+5. Deploy
 
-1. Navigate back to your domain, then go to **Rules > Configuration Rules**
-2. Click **Create rule**
-3. Name the rule (e.g., "Ahrefs IP Whitelist for Site Audit")
-4. For the condition "When incoming requests match...", select **IP Source Address**, use the **is in list** operator, and choose your `ahrefs_crawlers` list from the dropdown
-5. Under "Then...", set **Email Obfuscation** to **Off**
-6. Click **Deploy**
+Now email obfuscation is only disabled for traffic that actually comes from Ahrefs' servers.
 
-## Method 2: A Reliable Alternative (User-Agent Rule)
+## Which option should you choose?
 
-If you cannot create IP lists (lack of access to that part of the account), this method is a perfectly functional alternative. It uses the crawler's user-agent to identify it. While effective, it's considered less secure, which we will explain below.
+| Situation | Recommendation |
+|-----------|----------------|
+| Small business website | User-Agent rule (Option 1) |
+| Webshop with customer data | IP whitelist (Option 2) |
+| Enterprise / strict security requirements | IP whitelist (Option 2) |
+| No access to IP Lists | User-Agent rule (Option 1) |
 
-### Step-by-Step Guide
+For most websites, the user-agent method is fine. The risk of someone specifically targeting your site by spoofing the Ahrefs user-agent is negligibly small.
 
-1. Log into your Cloudflare dashboard and select your domain
-2. From the left-hand menu, navigate to **Rules > Configuration Rules**
-3. Click **Create rule**
-4. Name your rule something clear, like "Ahrefs Site Audit - Fix Email 404s"
-5. In the "When incoming requests match..." section, select **Edit expression**
-6. Paste the following expression:
+## After the fix
 
-```
-(http.user_agent eq "Mozilla/5.0 (compatible; AhrefsSiteAudit/6.1; +http://ahrefs.com/robot/site-audit)") or (http.user_agent eq "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.128 Mobile Safari/537.36 (compatible; AhrefsSiteAudit/6.1; +http://ahrefs.com/robot/site-audit)") or (http.user_agent eq "Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)")
-```
+Run a new Site Audit in Ahrefs. The `/cdn-cgi/l/email-protection` warnings should be gone. If you still see them, wait a moment - Cloudflare rules can take a few minutes to become active.
 
-7. Under "Then...", set **Email Obfuscation** to **Off**
-8. Click **Deploy**
+Still seeing issues? Check if:
+- The rule is actually deployed (not in draft)
+- You used the correct expression
+- Email Obfuscation is actually set to "Off" in the rule
 
-### Why This is an Alternative Solution
-
-The main reason the user-agent approach is not the top recommendation is security. A user-agent is a piece of text sent by a browser or bot that can be easily copied and faked (spoofed) by malicious actors.
-
-A bad bot could potentially mimic the Ahrefs user-agent to bypass your email protection and harvest email addresses. The IP Whitelist method is more secure because it verifies the request is coming from Ahrefs' actual servers, which is significantly harder to fake.
-
-## Get Accurate SEO Audits
-
-By implementing one of these methods, you will resolve the "Page has links to broken page" 404 errors within your Ahrefs Site Audit. This ensures your audit data is accurate and actionable.
-
-- **For the highest level of security:** Use the IP Whitelist (Method 1)
-- **If you lack the necessary permissions:** The User-Agent Rule (Method 2) is a reliable alternative
-
-In either case, your SEO audits will run smoothly, and your email addresses will remain protected from unwanted bots.
-
-## Frequently Asked Questions
-
-### Why is my Ahrefs Site Audit report full of 404 errors for /cdn-cgi/l/email-protection URLs?
-
-This is a common issue caused by a conflict between the Ahrefs Site Audit crawler and Cloudflare's Email Address Obfuscation feature. The crawler mistakenly interprets the dynamically protected email links as broken internal pages, which skews your audit results.
-
-### Can I fix this by adding /cdn-cgi/ to my robots.txt file?
-
-No. The Ahrefs crawler will still discover the links on your pages. Because it's blocked from crawling them, it will continue to report them as broken. The only effective solution is to create a Cloudflare Configuration Rule.
-
-### What is the most secure method?
-
-The IP Whitelist method (Method 1) is the most secure. It verifies that the crawler is genuinely from Ahrefs' network before disabling email obfuscation.
-
-### What if my Cloudflare plan doesn't support IP Lists?
-
-Use the User-Agent Rule (Method 2). It's functional and solves the problem, but is slightly less secure because user-agents can be spoofed.
-
-### Do I need to do this for other SEO tools?
-
-Most SEO tools don't have this problem. If you see similar issues with other crawlers (like Screaming Frog or SEMrush), you can use the same approach with their specific IP addresses or user-agents.
-
-## More About Cloudflare
+## More about Cloudflare
 
 This article is part of our Cloudflare series:
 

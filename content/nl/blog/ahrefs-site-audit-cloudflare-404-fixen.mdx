@@ -1,44 +1,95 @@
 ---
-title: "Ahrefs Site Audit 404 Fouten Oplossen door Cloudflare Email Obfuscation"
-excerpt: "Krijg je 'Page has links to broken page' fouten in Ahrefs Site Audit voor /cdn-cgi/l/email-protection URLs? Ontdek hoe je dit oplost met Cloudflare Configuration Rules."
+title: "Ahrefs Site Audit en Cloudflare: zo fix je die vervelende 404 meldingen"
+excerpt: "Tientallen 'broken page' fouten in je Ahrefs rapport die allemaal naar /cdn-cgi/ verwijzen? Dit is de fix - in 5 minuten opgelost via Cloudflare."
 category: "Cloudflare"
 date: "27 januari 2026"
-readTime: "7 min"
+readTime: "6 min"
 author: "Robuust Marketing"
 translations:
   en: "fix-ahrefs-site-audit-cloudflare-404-errors"
 ---
 
-> **Bij Robuust regelen wij dit voor je.** Alle websites die wij hosten zijn correct geconfigureerd voor SEO tools zoals Ahrefs. Wil je weten hoe je dit zelf oplost? Lees dan verder.
+> **Bij Robuust regelen wij dit voor je.** Alle websites die wij hosten zijn correct geconfigureerd voor SEO tools. Wil je weten hoe je dit zelf oplost? Lees dan verder.
 
-Draai je een Ahrefs Site Audit en zie je tientallen "Page has links to broken page" fouten? Als al deze 404 fouten verwijzen naar URLs met `/cdn-cgi/l/email-protection`, dan heb je de boosdoener gevonden: een conflict met Cloudflare's Email Address Obfuscation feature.
+## De snelle fix
 
-Dit probleem ontstaat doordat de Ahrefs Site Audit crawler de beschermde e-maillinks die Cloudflare genereert interpreteert als interne broken pages. Dit vertekent je auditresultaten en maakt het lastig om echte problemen op je website te identificeren.
+Geen zin om het hele verhaal te lezen? Hier is wat je moet doen:
 
-In deze guide laten we zien hoe je Cloudflare configureert om de Ahrefs Site Audit foutloos te laten draaien. We beginnen met de meest veilige methode: het whitelisten van Ahrefs' IP-adressen.
+**In Cloudflare:**
+1. Ga naar **Rules > Configuration Rules**
+2. Maak een nieuwe regel met deze expression:
 
-## Waarom robots.txt bewerken niet werkt
+```
+(http.user_agent contains "AhrefsSiteAudit") or (http.user_agent contains "AhrefsBot")
+```
 
-Je zou kunnen denken: "Ik disallow gewoon de `/cdn-cgi/` directory in mijn robots.txt." Helaas lost dit het probleem niet op. De Ahrefs crawler ontdekt de links nog steeds op je pagina's en omdat hij ze niet kan crawlen, blijft hij ze rapporteren als broken. De enige effectieve oplossing is een specifieke regel maken binnen je Cloudflare instellingen.
+3. Zet **Email Obfuscation** op **Off**
+4. Deploy
 
-## Methode 1: De veiligste oplossing (IP Whitelist)
+Klaar. Je volgende Ahrefs audit zal schoon zijn. Wil je weten waarom dit werkt en wat de veiligste aanpak is? Lees dan verder.
 
-Dit is de aanbevolen en meest veilige methode. Het werkt door te verifiëren dat de crawler daadwerkelijk van Ahrefs' netwerk komt voordat email obfuscation wordt uitgeschakeld.
+## Wat is er aan de hand?
 
-**Let op:** Deze methode vereist toegang tot IP Lists in je Cloudflare account (Manage Account > Settings > Lists). Als je deze toegang niet hebt vanwege je plan of gebruikersrechten, ga dan naar Methode 2.
+Je kent het wel: je draait een site audit in Ahrefs en plotseling zie je tientallen (of honderden) "Page has links to broken page" meldingen. Allemaal 404 errors. En ze wijzen allemaal naar URLs die er ongeveer zo uitzien:
 
-### Stap 1: Maak een IP List in Cloudflare
+```
+/cdn-cgi/l/email-protection#a8c9cccdc6e8cfc5c9c1c486cbc7c5
+```
 
-Eerst moet je Cloudflare vertellen welke IP-adressen bij Ahrefs horen.
+Dit zijn geen echte broken links op je website. Het is een bijwerking van twee features die niet goed samenwerken:
 
-1. Ga in je Cloudflare dashboard naar **Manage Account > Settings**
-2. Selecteer het **Lists** tabblad en klik **Create list**
-3. Geef het een duidelijke naam zoals `ahrefs_crawlers`
-4. Kies **IP** als content type
-5. Voeg de officiële Ahrefs IP's toe (zie hieronder)
-6. Sla de lijst op
+**Cloudflare's Email Obfuscation** vervangt e-mailadressen op je website door versleutelde versies. Dit beschermt tegen spam bots die e-mailadressen harvesten. De echte bezoeker ziet gewoon `info@jouwbedrijf.nl`, maar in de HTML staat een cryptische `/cdn-cgi/` link.
 
-**Volledige lijst met Ahrefs IP-adressen:**
+**De Ahrefs crawler** ziet die links, probeert ze te volgen, krijgt een 404, en markeert ze als broken pages.
+
+Het resultaat: een vervuild audit rapport waar je de echte problemen niet meer tussen ziet.
+
+## Waarom robots.txt niet werkt
+
+Je eerste gedachte is misschien: "Ik blokkeer `/cdn-cgi/` gewoon in robots.txt."
+
+Dat werkt niet. De crawler ontdekt de links nog steeds in je HTML. Hij kan ze alleen niet meer volgen. Resultaat: nog steeds broken page meldingen, want een link naar een geblokkeerde URL is voor Ahrefs ook een probleem.
+
+De oplossing zit in Cloudflare zelf: zorg dat de email obfuscation niet actief is wanneer Ahrefs langskomt.
+
+## Optie 1: User-Agent regel (snel en simpel)
+
+De makkelijkste oplossing is een Configuration Rule die de Ahrefs crawler herkent aan zijn user-agent.
+
+1. Open je Cloudflare dashboard en selecteer je domein
+2. Ga naar **Rules > Configuration Rules**
+3. Klik **Create rule**
+4. Kies een naam, bijvoorbeeld "SEO crawlers - disable email obfuscation"
+5. Klik op **Edit expression** en plak:
+
+```
+(http.user_agent contains "AhrefsSiteAudit") or (http.user_agent contains "AhrefsBot")
+```
+
+6. Scroll naar beneden, vind **Email Obfuscation** en zet deze op **Off**
+7. Klik **Deploy**
+
+Dat is alles. Binnen een paar minuten is de regel actief.
+
+**Bonus:** Je kunt ook andere SEO tools toevoegen aan dezelfde regel:
+
+```
+(http.user_agent contains "AhrefsSiteAudit") or (http.user_agent contains "AhrefsBot") or (http.user_agent contains "Screaming Frog") or (http.user_agent contains "SEMrush")
+```
+
+## Optie 2: IP whitelist (veiliger)
+
+User-agents kunnen gespoofed worden. Een kwaadwillende bot zou zich kunnen voordoen als Ahrefs om je e-mailbescherming te omzeilen. In de praktijk gebeurt dit zelden, maar als je maximale security wilt, gebruik dan IP whitelisting.
+
+Deze methode vereist dat je IP Lists kunt aanmaken in Cloudflare (onder **Manage Account > Settings > Lists**). Niet alle plannen ondersteunen dit.
+
+### De IP lijst aanmaken
+
+1. Ga naar **Manage Account > Settings > Lists**
+2. Klik **Create list**
+3. Noem het `ahrefs-crawlers`
+4. Selecteer **IP** als type
+5. Voeg alle Ahrefs IP-ranges toe:
 
 ```
 5.39.1.224/27
@@ -76,8 +127,8 @@ Eerst moet je Cloudflare vertellen welke IP-adressen bij Ahrefs horen.
 142.44.233.0/24
 148.113.128.0/24
 148.113.130.0/24
-168.100.149.0/24
 167.114.139.0/24
+168.100.149.0/24
 176.31.139.0/27
 198.244.168.0/24
 198.244.183.0/24
@@ -101,73 +152,35 @@ Eerst moet je Cloudflare vertellen welke IP-adressen bij Ahrefs horen.
 202.94.84.113
 ```
 
-### Stap 2: Maak de Configuration Rule
+### De regel aanmaken
 
-Nu maken we de regel die deze lijst gebruikt.
+1. Ga naar je domein > **Rules > Configuration Rules**
+2. Maak een nieuwe regel
+3. Selecteer **IP Source Address** > **is in list** > `ahrefs-crawlers`
+4. Zet **Email Obfuscation** op **Off**
+5. Deploy
 
-1. Navigeer naar je domein en ga naar **Rules > Configuration Rules**
-2. Klik **Create rule**
-3. Geef de regel een naam (bijv. "Ahrefs IP Whitelist voor Site Audit")
-4. Bij de conditie "When incoming requests match...", selecteer **IP Source Address**, gebruik de operator **is in list**, en kies je `ahrefs_crawlers` lijst
-5. Onder "Then...", zet **Email Obfuscation** op **Off**
-6. Klik **Deploy**
+Nu wordt email obfuscation alleen uitgeschakeld voor verkeer dat daadwerkelijk van Ahrefs' servers komt.
 
-## Methode 2: Alternatieve oplossing (User-Agent Rule)
+## Welke optie moet je kiezen?
 
-Als je geen IP lists kunt maken, is deze methode een prima alternatief. Het gebruikt de user-agent van de crawler om deze te identificeren. Hoewel effectief, is het minder veilig dan de IP whitelist methode.
+| Situatie | Aanbeveling |
+|----------|-------------|
+| Kleine bedrijfswebsite | User-Agent regel (Optie 1) |
+| Webshop met klantgegevens | IP whitelist (Optie 2) |
+| Enterprise / strenge security eisen | IP whitelist (Optie 2) |
+| Geen toegang tot IP Lists | User-Agent regel (Optie 1) |
 
-### Stap-voor-stap
+Voor de meeste websites is de user-agent methode prima. Het risico dat iemand specifiek jouw site target door de Ahrefs user-agent te spoofen is verwaarloosbaar klein.
 
-1. Log in op je Cloudflare dashboard en selecteer je domein
-2. Navigeer naar **Rules > Configuration Rules**
-3. Klik **Create rule**
-4. Geef de regel een naam, zoals "Ahrefs Site Audit - Fix Email 404s"
-5. Klik bij "When incoming requests match..." op **Edit expression**
-6. Plak de volgende expressie:
+## Na de fix
 
-```
-(http.user_agent eq "Mozilla/5.0 (compatible; AhrefsSiteAudit/6.1; +http://ahrefs.com/robot/site-audit)") or (http.user_agent eq "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.128 Mobile Safari/537.36 (compatible; AhrefsSiteAudit/6.1; +http://ahrefs.com/robot/site-audit)") or (http.user_agent eq "Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)")
-```
+Draai een nieuwe Site Audit in Ahrefs. De `/cdn-cgi/l/email-protection` meldingen zouden verdwenen moeten zijn. Als je ze nog steeds ziet, wacht dan even - Cloudflare rules kunnen een paar minuten nodig hebben om actief te worden.
 
-7. Onder "Then...", zet **Email Obfuscation** op **Off**
-8. Klik **Deploy**
-
-### Waarom is de User-Agent methode minder veilig?
-
-De belangrijkste reden dat we de IP whitelist methode aanbevelen is security. Een user-agent is simpelweg een stukje tekst dat door een browser of bot wordt verstuurd en gemakkelijk gekopieerd en gefaked (spoofed) kan worden door kwaadwillenden.
-
-Een bad bot zou de Ahrefs user-agent kunnen nabootsen om je e-mailbescherming te omzeilen en e-mailadressen te harvesten. De IP Whitelist methode is veiliger omdat het verifieert dat de request daadwerkelijk van Ahrefs' servers komt, wat aanzienlijk moeilijker te faken is.
-
-## Resultaat
-
-Door een van deze methodes te implementeren, los je de "Page has links to broken page" 404 fouten op in je Ahrefs Site Audit. Dit zorgt ervoor dat je auditdata accuraat en actionable is.
-
-- **Voor maximale veiligheid:** Gebruik de IP Whitelist (Methode 1)
-- **Geen toegang tot IP Lists?** De User-Agent Rule (Methode 2) werkt ook prima
-
-In beide gevallen draaien je SEO audits soepel én blijven je e-mailadressen beschermd tegen ongewenste bots.
-
-## Veelgestelde vragen
-
-### Waarom staat mijn Ahrefs Site Audit vol met 404 fouten voor /cdn-cgi/l/email-protection URLs?
-
-Dit is een bekend conflict tussen de Ahrefs crawler en Cloudflare's Email Address Obfuscation. De crawler interpreteert de dynamisch beschermde e-maillinks als broken internal pages, wat je auditresultaten vertekent.
-
-### Kan ik dit oplossen door /cdn-cgi/ toe te voegen aan robots.txt?
-
-Nee. De Ahrefs crawler ontdekt de links nog steeds op je pagina's. Omdat hij ze niet kan crawlen, blijft hij ze als broken rapporteren. De enige oplossing is een Cloudflare Configuration Rule.
-
-### Welke methode is het veiligst?
-
-De IP Whitelist methode (Methode 1) is het veiligst. Deze verifieert dat de crawler echt van Ahrefs' netwerk komt voordat email obfuscation wordt uitgeschakeld.
-
-### Wat als mijn Cloudflare plan geen IP Lists ondersteunt?
-
-Gebruik dan de User-Agent Rule (Methode 2). Deze is functioneel en lost het probleem op, maar is iets minder veilig omdat user-agents gefaked kunnen worden.
-
-### Moet ik dit ook doen voor andere SEO tools?
-
-De meeste SEO tools hebben dit probleem niet. Als je vergelijkbare issues ziet met andere crawlers (zoals Screaming Frog of SEMrush), kun je dezelfde aanpak gebruiken met hun specifieke IP-adressen of user-agents.
+Zie je nog steeds problemen? Controleer of:
+- De regel daadwerkelijk deployed is (niet in draft staat)
+- Je de juiste expression hebt gebruikt
+- Email Obfuscation daadwerkelijk op "Off" staat in de regel
 
 ## Meer over Cloudflare
 
