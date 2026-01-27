@@ -3114,5 +3114,20 @@
       "primaryButton": "Start your project",
       "secondaryButton": "View more projects"
     }
+  },
+  "error": {
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you're looking for doesn't exist or has been moved. Check the URL or go back to the homepage.",
+      "searchPlaceholder": "Search the website...",
+      "backHome": "Back to home",
+      "contact": "Contact us"
+    },
+    "serverError": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred. Please try again or contact us if the problem persists.",
+      "tryAgain": "Try again",
+      "backHome": "Back to home"
+    }
   }
 }

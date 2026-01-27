@@ -3126,5 +3126,20 @@
       "primaryButton": "Start je project",
       "secondaryButton": "Bekijk meer projecten"
     }
+  },
+  "error": {
+    "notFound": {
+      "title": "Pagina niet gevonden",
+      "description": "De pagina die je zoekt bestaat niet of is verplaatst. Controleer de URL of ga terug naar de homepage.",
+      "searchPlaceholder": "Zoek op de website...",
+      "backHome": "Terug naar home",
+      "contact": "Neem contact op"
+    },
+    "serverError": {
+      "title": "Er ging iets mis",
+      "description": "Er is een onverwachte fout opgetreden. Probeer het opnieuw of neem contact met ons op als het probleem aanhoudt.",
+      "tryAgain": "Probeer opnieuw",
+      "backHome": "Terug naar home"
+    }
   }
 }
