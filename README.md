@@ -103,10 +103,11 @@ npm run lint         # ESLint
 
 | Content Type | Locatie | Formaat | Beheer |
 |-------------|---------|---------|--------|
-| **Blog artikelen** | `content/blog/` | MDX + frontmatter | Bestanden toevoegen/bewerken |
-| **Kennisbank guides** | `content/kennisbank/{category}/` | MDX + frontmatter | Bestanden in juiste categorie |
-| **Portfolio items** | `src/data/portfolio.ts` | TypeScript array | Array items bewerken |
-| **Diensten** | `src/data/services.ts` | TypeScript array | Array items bewerken |
+| **Blog artikelen** | `content/{locale}/blog/` | MDX + frontmatter | Bestanden toevoegen/bewerken |
+| **Kennisbank guides** | `content/{locale}/kennisbank/{category}/` | MDX + frontmatter | Bestanden in juiste categorie |
+| **Portfolio items** | `src/data/portfolio.ts` | TypeScript array | Array items bewerken (NL + EN) |
+| **Diensten** | `src/data/services.ts` | TypeScript array | Array items bewerken (NL + EN) |
+| **Tools** | `src/data/tools.ts` | TypeScript array | Array items bewerken (NL + EN) |
 | **Prijzen/tarieven** | `src/data/pricing.ts` | TypeScript object | Object properties bewerken |
 | **FAQ content** | `src/data/faqs.ts` | TypeScript array | Array items bewerken |
 | **Partners** | `src/data/partners.ts` | TypeScript array | Array items bewerken |
@@ -114,7 +115,7 @@ npm run lint         # ESLint
 
 ### MDX Content Structuur
 
-**Blog artikel** (`content/blog/artikel-naam.mdx`):
+**Blog artikel** (`content/{locale}/blog/artikel-naam.mdx`):
 ```mdx
 ---
 title: "Titel van het artikel"
@@ -129,7 +130,7 @@ image: "/blog/artikel-image.jpg"
 Artikel content in MDX...
 ```
 
-**Kennisbank guide** (`content/kennisbank/development/guide-naam.mdx`):
+**Kennisbank guide** (`content/{locale}/kennisbank/{category}/guide-naam.mdx`):
 ```mdx
 ---
 title: "Guide titel"
@@ -216,8 +217,9 @@ robuust-marketing-website/
 │   │   └── onboarding/             # Wizard componenten
 │   │
 │   ├── data/                       # STATISCHE DATA (TypeScript)
-│   │   ├── services.ts             # Diensten definities
-│   │   ├── portfolio.ts            # Portfolio items
+│   │   ├── services.ts             # Diensten definities (11)
+│   │   ├── portfolio.ts            # Portfolio items (8 featured + 20 legacy)
+│   │   ├── tools.ts                # Tool/technologie pagina's (7)
 │   │   ├── pricing.ts              # Alle prijzen/tarieven
 │   │   ├── packages.ts             # Pakketten
 │   │   ├── partners.ts             # Partners
