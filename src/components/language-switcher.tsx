@@ -48,9 +48,12 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     const rawPath = nextPathname.replace(/^\/(en|nl)/, "") || "/";
 
     // Blog: /blog/[slug]
+    // DON'T handle blog here - let getBlogTranslatedHref() handle it with proper translations
+    // This prevents SSR from using the wrong slug before translations context is hydrated
     const blogMatch = rawPath.match(/^\/blog\/([^/\[]+)$/);
     if (blogMatch) {
-      return { pathname: "/blog/[slug]", params: { slug: blogMatch[1] } };
+      // Return null - blog pages are handled by getBlogTranslatedHref() or fall back to blog index
+      return null;
     }
 
     // Portfolio: /portfolio/[slug]
@@ -98,9 +101,14 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   // For other dynamic routes, get proper href with params
   const dynamicHref = getDynamicHref();
 
+  // Check if we're on a blog detail page (for fallback handling)
+  const rawPath = nextPathname.replace(/^\/(en|nl)/, "") || "/";
+  const isOnBlogDetailPage = /^\/blog\/[^/]+$/.test(rawPath);
+
   // Determine the href for the other locale
-  // Priority: blog translation > dynamic route with params > static pathname
-  const href = blogHref || dynamicHref || (pathname as Pathnames);
+  // Priority: blog translation > dynamic route with params > blog index (for blog pages) > static pathname
+  // When on a blog detail page without translations context, link to blog index to avoid wrong slug
+  const href = blogHref || dynamicHref || (isOnBlogDetailPage ? "/blog" : (pathname as Pathnames));
 
   return (
     <Link
