@@ -45,9 +45,8 @@ function getLocalizedPath(path: string, locale: Locale): string {
 
 function buildUrl(path: string, locale: Locale): string {
   const localizedPath = getLocalizedPath(path, locale);
-  return locale === defaultLocale
-    ? `${BASE_URL}${localizedPath}`
-    : `${BASE_URL}/${locale}${localizedPath}`;
+  // Always include locale prefix (localePrefix: 'always' in routing)
+  return `${BASE_URL}/${locale}${localizedPath}`;
 }
 
 function buildAlternates(path: string): { locale: string; url: string }[] {
@@ -60,10 +59,10 @@ function buildAlternates(path: string): { locale: string; url: string }[] {
     });
   }
 
-  // Add x-default pointing to default locale
+  // Add x-default pointing to default locale (with /nl/ prefix)
   alternates.push({
     locale: "x-default",
-    url: `${BASE_URL}${path}`,
+    url: `${BASE_URL}/${defaultLocale}${path}`,
   });
 
   return alternates;
@@ -84,10 +83,10 @@ function buildAlternatesWithTranslations(
     });
   }
 
-  // Add x-default pointing to default locale
+  // Add x-default pointing to default locale (with /nl/ prefix)
   alternates.push({
     locale: "x-default",
-    url: `${BASE_URL}${basePath}/${slugs[defaultLocale]}`,
+    url: `${BASE_URL}/${defaultLocale}${getLocalizedPath(basePath, defaultLocale)}/${slugs[defaultLocale]}`,
   });
 
   return alternates;
@@ -474,9 +473,9 @@ export function getLandingPagesSitemap(): SitemapEntry[] {
     { path: "/video-laten-maken", priority: 0.8 },
   ];
 
-  // Only Dutch for local SEO landing pages
+  // Only Dutch for local SEO landing pages (with /nl/ prefix)
   return landingPages.map((page) => ({
-    loc: `${BASE_URL}${page.path}`,
+    loc: `${BASE_URL}/nl${page.path}`,
     lastmod: formatDate(),
     changefreq: "monthly" as const,
     priority: page.priority,

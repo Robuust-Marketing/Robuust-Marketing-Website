@@ -47,13 +47,12 @@ export function generateAlternates(path: string, locale: string) {
   // Ensure path starts with /
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
 
-  // Build URLs - no trailing slashes (except NL homepage which is just the domain)
+  // Build URLs with locale prefix (localePrefix: 'always' in routing)
   const isHomepage = normalizedPath === "/";
-  const nlUrl = isHomepage ? `${BASE_URL}/` : `${BASE_URL}${normalizedPath}`;
+  const nlUrl = isHomepage ? `${BASE_URL}/nl` : `${BASE_URL}/nl${normalizedPath}`;
 
   // Translate path for English URL using routing configuration
   const enPath = translatePathToEnglish(normalizedPath);
-  // EN homepage: /en (no trailing slash to avoid redirect)
   const enUrl = isHomepage ? `${BASE_URL}/en` : `${BASE_URL}/en${enPath}`;
 
   return {
@@ -79,9 +78,10 @@ export function generateDynamicAlternates(
 ) {
   const languages: Record<string, string> = {};
 
+  // Always include /nl/ prefix for Dutch URLs (localePrefix: 'always' in routing)
   if (nlPath) {
-    languages.nl = BASE_URL + nlPath;
-    languages["x-default"] = BASE_URL + nlPath;
+    languages.nl = BASE_URL + "/nl" + nlPath;
+    languages["x-default"] = BASE_URL + "/nl" + nlPath;
   }
 
   if (enPath) {
@@ -93,11 +93,11 @@ export function generateDynamicAlternates(
   if (locale === "en" && enPath) {
     canonical = BASE_URL + "/en" + enPath;
   } else if (nlPath) {
-    canonical = BASE_URL + nlPath;
+    canonical = BASE_URL + "/nl" + nlPath;
   } else if (enPath) {
     canonical = BASE_URL + "/en" + enPath;
   } else {
-    canonical = BASE_URL + "/";
+    canonical = BASE_URL + "/nl";
   }
 
   return {
