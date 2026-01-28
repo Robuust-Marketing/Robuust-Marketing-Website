@@ -260,9 +260,8 @@ export function Header() {
 
   return (
     <motion.header
-      initial={{ y: -100, opacity: 0 }}
+      initial={false}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
         "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
         scrolled ? "glass-darker shadow-lg shadow-black/10" : "bg-transparent"
@@ -270,12 +269,7 @@ export function Header() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="flex lg:flex-1"
-        >
+        <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 group">
             <img
               src="/logo.png"
@@ -283,7 +277,7 @@ export function Header() {
               className="h-10 w-auto"
             />
           </Link>
-        </motion.div>
+        </div>
 
         {/* Mobile menu button */}
         <div className="flex lg:hidden">
@@ -324,19 +318,13 @@ export function Header() {
         </div>
 
         {/* Desktop navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
+        <div
           className="hidden lg:flex lg:items-center lg:gap-x-1"
           onMouseLeave={handleMouseLeave}
         >
-          {menuItems.map((item, index) => (
-            <motion.div
+          {menuItems.map((item) => (
+            <div
               key={item.key}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + index * 0.05, duration: 0.4 }}
               className="relative"
               onMouseEnter={() => handleMouseEnter(item.key)}
             >
@@ -357,17 +345,12 @@ export function Header() {
                   )}
                 />
               </Link>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Language Switcher & CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4"
-        >
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <LanguageSwitcher />
           <Button
             asChild
@@ -376,17 +359,17 @@ export function Header() {
           >
             <Link href="/start-project">{tHeader("cta")}</Link>
           </Button>
-        </motion.div>
+        </div>
       </nav>
 
       {/* Mega Menu Dropdown */}
       <AnimatePresence>
         {activeMenu && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
             className="absolute left-0 right-0 top-full hidden lg:block"
             onMouseEnter={() => handleMouseEnter(activeMenu)}
             onMouseLeave={handleMouseLeave}
