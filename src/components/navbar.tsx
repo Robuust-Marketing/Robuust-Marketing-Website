@@ -8,11 +8,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Diensten", href: "/diensten" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Over", href: "/over" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "/" as const },
+  { name: "Diensten", href: "/diensten" as const },
+  { name: "Portfolio", href: "/portfolio" as const },
+  { name: "Over", href: "/over" as const },
+  { name: "Contact", href: "/contact" as const },
 ];
 
 export function Navbar() {
@@ -85,7 +85,7 @@ export function Navbar() {
               transition={{ delay: 0.3 + index * 0.05, duration: 0.4 }}
             >
               <Link
-                href={item.href as any}
+                href={item.href}
                 className="text-sm font-medium text-white/70 transition-colors hover:text-white relative group"
               >
                 {item.name}
@@ -131,7 +131,7 @@ export function Navbar() {
                   transition={{ delay: index * 0.05 }}
                 >
                   <Link
-                    href={item.href as any}
+                    href={item.href}
                     className="block rounded-lg px-3 py-2 text-base font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >

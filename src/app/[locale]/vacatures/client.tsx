@@ -176,7 +176,7 @@ export default function VacaturesPageClient() {
                       className="bg-accent hover:bg-accent-hover text-white shrink-0"
                     >
                       <Link
-                        href={`/contact?subject=Application: ${t(`vacancies.${vacancy.id}.title`)}` as any}
+                        href={{ pathname: '/contact', query: { subject: `Application: ${t(`vacancies.${vacancy.id}.title`)}` } }}
                         className="flex items-center gap-2"
                       >
                         {t("positions.apply")}
@@ -227,7 +227,7 @@ export default function VacaturesPageClient() {
                 asChild
                 className="bg-accent hover:bg-accent-hover text-white"
               >
-                <Link href={"/contact?subject=Open application" as any}>
+                <Link href={{ pathname: '/contact', query: { subject: 'Open application' } }}>
                   {t("noVacancies.button")}
                 </Link>
               </Button>
@@ -267,7 +267,7 @@ export default function VacaturesPageClient() {
               className="border-white/20 text-white hover:bg-white/5"
             >
               <Link
-                href={"/contact?subject=Open application" as any}
+                href={{ pathname: '/contact', query: { subject: 'Open application' } }}
                 className="flex items-center gap-2"
               >
                 {t("openApplication.button")}

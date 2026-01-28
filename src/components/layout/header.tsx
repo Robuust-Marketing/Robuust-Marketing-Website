@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "@/components/motion";
 import { LanguageSwitcher, LanguageSwitcherCompact } from "@/components/language-switcher";
 import { Link, type Locale } from "@/i18n/routing";
 import {
-  Menu,
   X,
   ChevronDown,
   Palette,
@@ -103,7 +102,6 @@ interface BlogPostMeta {
 
 export function Header() {
   const locale = useLocale() as Locale;
-  const t = useTranslations();
   const tNav = useTranslations("navigation");
   const tHeader = useTranslations("header");
   const tServices = useTranslations("services");

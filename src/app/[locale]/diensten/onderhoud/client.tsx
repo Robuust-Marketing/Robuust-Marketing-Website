@@ -321,7 +321,7 @@ export default function OnderhoudPageClient() {
                   asChild
                   className="mt-6 w-full bg-accent hover:bg-accent-hover text-white"
                 >
-                  <Link href={"/contact?package=onderhoud" as any}>
+                  <Link href={"/contact?package=onderhoud" as Parameters<typeof Link>[0]["href"]}>
                     {t("packages.choosePackage")}
                   </Link>
                 </Button>

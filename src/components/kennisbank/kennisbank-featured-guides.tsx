@@ -43,7 +43,7 @@ export function KennisbankFeaturedGuides({
               transition={{ delay: index * 0.1 }}
             >
               <Link
-                href={`/kennisbank/${guide.categorySlug}/${guide.slug}` as any}
+                href={{ pathname: '/kennisbank/[category]/[slug]', params: { category: guide.categorySlug, slug: guide.slug } }}
                 className="group block h-full rounded-2xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
               >
                 <div className="flex items-center gap-2 mb-3">

@@ -94,7 +94,7 @@ export function TechStack() {
               whileHover={{ y: -4 }}
               className="group"
             >
-              <Link href={category.href as any} className="block h-full">
+              <Link href={category.href as "/diensten/development" | "/diensten/hosting" | "/diensten/tracking"} className="block h-full">
                 <div className="glass rounded-3xl p-6 sm:p-8 h-full border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Category Header */}
                   <div className="flex items-center gap-3 mb-6">

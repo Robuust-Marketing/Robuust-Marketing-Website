@@ -28,7 +28,7 @@ export function BlogPostCard({ post, index }: BlogPostCardProps) {
       transition={{ delay: index * 0.1 }}
     >
       <Link
-        href={`/blog/${post.slug}` as any}
+        href={{ pathname: '/blog/[slug]', params: { slug: post.slug } }}
         className="group block h-full rounded-2xl bg-surface border border-white/5 hover:border-accent/30 overflow-hidden transition-all"
       >
         <div className="p-6">

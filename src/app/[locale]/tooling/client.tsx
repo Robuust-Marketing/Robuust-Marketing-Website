@@ -135,7 +135,7 @@ export default function ToolingPageClient() {
                 transition={{ delay: index * 0.05 }}
               >
                 <Link
-                  href={`/tooling/${tech.slug}` as any}
+                  href={{ pathname: '/tooling/[slug]', params: { slug: tech.slug } }}
                   className="block rounded-3xl bg-surface border border-white/5 overflow-hidden hover:border-accent/30 transition-colors group"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 lg:p-8">

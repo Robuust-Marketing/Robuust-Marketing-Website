@@ -11,7 +11,6 @@ import {
   Check,
   Zap,
   Target,
-  Layers,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getTools, getTool } from "@/data/tools";
@@ -278,7 +277,7 @@ export default function ToolDetailPageClient() {
                   transition={{ delay: index * 0.1 }}
                 >
                   <Link
-                    href={`/tooling/${relatedTool!.slug}` as any}
+                    href={{ pathname: '/tooling/[slug]', params: { slug: relatedTool!.slug } }}
                     className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
                   >
                     <div className="flex items-center gap-4 mb-4">
@@ -316,7 +315,7 @@ export default function ToolDetailPageClient() {
               viewport={{ once: true }}
             >
               <Link
-                href={`/tooling/${prevTool.slug}` as any}
+                href={{ pathname: '/tooling/[slug]', params: { slug: prevTool.slug } }}
                 className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors group"
               >
                 <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
@@ -339,7 +338,7 @@ export default function ToolDetailPageClient() {
               viewport={{ once: true }}
             >
               <Link
-                href={`/tooling/${nextTool.slug}` as any}
+                href={{ pathname: '/tooling/[slug]', params: { slug: nextTool.slug } }}
                 className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-white/10 transition-colors group text-right"
               >
                 <div className="flex items-center justify-end gap-2 text-muted-foreground text-sm mb-2">

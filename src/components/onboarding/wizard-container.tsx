@@ -12,7 +12,6 @@ import { StepServices } from "./step-services";
 import { StepContact } from "./step-contact";
 import { StepSummary } from "./step-summary";
 import { PriceCalculator } from "./price-calculator";
-import { Turnstile } from "@/components/ui/turnstile";
 
 import {
   onboardingSchema,

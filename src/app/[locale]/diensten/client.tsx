@@ -108,7 +108,7 @@ export default function DienstenPageClient() {
                   className="h-full"
                 >
                   <Link
-                    href={service.href as any}
+                    href={service.href as Parameters<typeof Link>[0]["href"]}
                     className="group relative block h-full overflow-hidden rounded-3xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-all duration-300"
                   >
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"

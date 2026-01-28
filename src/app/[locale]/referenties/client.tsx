@@ -10,12 +10,12 @@ export default function ReferentiesPageClient() {
   const t = useTranslations("referentiesPage");
 
   const testimonials = [
-    { id: "growteq", rating: 5, url: "/portfolio/growteq", isInternal: true },
+    { id: "growteq", rating: 5, portfolioSlug: "growteq", isInternal: true },
     { id: "pianoselect", rating: 5, url: "https://www.pianoselect.nl/", isInternal: false },
     { id: "fotolot", rating: 5, url: "https://foto-lot.nl/", isInternal: false },
     { id: "dununba", rating: 5, url: "https://dununba.nl/", isInternal: false },
     { id: "kapsalontine", rating: 5, url: "https://kapsalontine.nl/", isInternal: false },
-  ];
+  ] as const;
 
   const stats = [
     { value: "50+", labelKey: "clients" },
@@ -161,16 +161,16 @@ export default function ReferentiesPageClient() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  {testimonial.isInternal ? (
+                  {testimonial.isInternal && 'portfolioSlug' in testimonial ? (
                     <Link
-                      href={testimonial.url as any}
+                      href={{ pathname: '/portfolio/[slug]', params: { slug: testimonial.portfolioSlug } }}
                       className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
                     >
                       {cardContent}
                     </Link>
                   ) : (
                     <a
-                      href={testimonial.url}
+                      href={'url' in testimonial ? testimonial.url : '#'}
                       target="_blank"
                       rel="noopener"
                       className="block rounded-2xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
@@ -288,7 +288,7 @@ export default function ReferentiesPageClient() {
                     {t("testimonials.growteq.company")}
                   </div>
                   <div className="text-muted-foreground text-sm">
-                    <Link href={"/portfolio/growteq" as any} className="hover:text-accent transition-colors">
+                    <Link href={{ pathname: '/portfolio/[slug]', params: { slug: 'growteq' } }} className="hover:text-accent transition-colors">
                       {t("cta.secondaryButton")}
                     </Link>
                   </div>

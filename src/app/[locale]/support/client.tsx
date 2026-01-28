@@ -47,8 +47,8 @@ export default function SupportPageClient() {
   ];
 
   const resources = [
-    { id: "kennisbank", icon: Book, href: "/kennisbank", external: false },
-    { id: "documentation", icon: FileText, href: "/faq", external: false },
+    { id: "kennisbank", icon: Book, href: "/kennisbank" as const, external: false },
+    { id: "documentation", icon: FileText, href: "/faq" as const, external: false },
     { id: "status", icon: Wrench, href: "https://status.robuustmarketing.nl", external: true },
   ];
 
@@ -252,27 +252,44 @@ export default function SupportPageClient() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Link
-                  href={resource.href as any}
-                  target={resource.external ? "_blank" : undefined}
-                  rel={resource.external ? "noopener noreferrer" : undefined}
-                  className="block rounded-xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                      <resource.icon className="h-6 w-6 text-accent" />
-                    </div>
-                    {resource.external && (
+                {resource.external ? (
+                  <a
+                    href={resource.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block rounded-xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                        <resource.icon className="h-6 w-6 text-accent" />
+                      </div>
                       <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                    )}
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                    {t(`resources.${resource.id}.title`)}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {t(`resources.${resource.id}.description`)}
-                  </p>
-                </Link>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                      {t(`resources.${resource.id}.title`)}
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      {t(`resources.${resource.id}.description`)}
+                    </p>
+                  </a>
+                ) : (
+                  <Link
+                    href={resource.href as "/kennisbank" | "/faq"}
+                    className="block rounded-xl bg-surface p-6 border border-white/5 hover:border-accent/30 transition-colors group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                        <resource.icon className="h-6 w-6 text-accent" />
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
+                      {t(`resources.${resource.id}.title`)}
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      {t(`resources.${resource.id}.description`)}
+                    </p>
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>

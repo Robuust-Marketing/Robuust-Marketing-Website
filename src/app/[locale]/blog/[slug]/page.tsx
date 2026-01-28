@@ -3,7 +3,7 @@ import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { Clock, Tag, Calendar, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings, getTranslatedSlug } from "@/lib/blog";
+import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { setRequestLocale } from "next-intl/server";
 import { locales, type Locale } from "@/i18n/config";
@@ -48,17 +48,17 @@ export async function generateMetadata({
 
   // Build hreflang alternates
   const alternates: { canonical: string; languages: Record<string, string> } = {
-    canonical: `https://robuustmarketing.nl${locale === "nl" ? "" : `/${locale}`}/blog/${slug}`,
+    canonical: `https://robuustmarketing.nl/${locale}/blog/${slug}`,
     languages: {},
   };
 
-  // Add current locale
+  // Add current locale - get translated slugs from frontmatter
   const nlSlug = locale === "nl" ? slug : (post.translations?.nl || null);
   const enSlug = locale === "en" ? slug : (post.translations?.en || null);
 
   if (nlSlug) {
-    alternates.languages["nl"] = `https://robuustmarketing.nl/blog/${nlSlug}`;
-    alternates.languages["x-default"] = `https://robuustmarketing.nl/blog/${nlSlug}`;
+    alternates.languages["nl"] = `https://robuustmarketing.nl/nl/blog/${nlSlug}`;
+    alternates.languages["x-default"] = `https://robuustmarketing.nl/nl/blog/${nlSlug}`;
   }
   if (enSlug) {
     alternates.languages["en"] = `https://robuustmarketing.nl/en/blog/${enSlug}`;

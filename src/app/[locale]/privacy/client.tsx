@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import Script from "next/script";
 import { useEffect, useRef } from "react";
 
 const COOKIEBOT_ID = process.env.NEXT_PUBLIC_COOKIEBOT_ID || "";

@@ -172,7 +172,7 @@ function BedanktContent() {
               size="lg"
               className="bg-accent hover:bg-accent-hover text-white"
             >
-              <Link href={hrefs.cta as any} className="flex items-center gap-2">
+              <Link href={hrefs.cta as Parameters<typeof Link>[0]["href"]} className="flex items-center gap-2">
                 {ctaLabel}
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -184,7 +184,7 @@ function BedanktContent() {
                 variant="outline"
                 className="border-white/20 text-white hover:bg-white/5"
               >
-                <Link href={hrefs.secondary as any}>
+                <Link href={hrefs.secondary as Parameters<typeof Link>[0]["href"]}>
                   {secondaryLabel}
                 </Link>
               </Button>

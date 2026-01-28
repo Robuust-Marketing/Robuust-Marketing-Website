@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "@/components/motion";
 import { Calculator, TrendingUp, Server, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { getPackageName } from "@/lib/pricing";
 import type { PriceEstimate, OnboardingData } from "@/types/onboarding";
 

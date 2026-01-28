@@ -39,7 +39,7 @@ export function SocialProof() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
                 <Link
-                  href={`/portfolio/${client.slug}` as any}
+                  href={{ pathname: '/portfolio/[slug]', params: { slug: client.slug } }}
                   className="block hover:scale-105 transition-transform duration-300"
                 >
                   <img

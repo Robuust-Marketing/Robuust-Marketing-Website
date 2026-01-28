@@ -9,7 +9,7 @@ interface HubSpotContactProperties {
 
 export async function submitToHubSpot(
   data: HubSpotSubmission,
-  pageUri: string
+  _pageUri: string
 ): Promise<{ success: boolean; error?: string; contactId?: string }> {
   if (!HUBSPOT_ACCESS_TOKEN) {
     console.warn("HubSpot access token not configured");

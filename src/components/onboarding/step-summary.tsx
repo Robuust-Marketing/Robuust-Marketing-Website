@@ -6,7 +6,6 @@ import {
   Check,
   Calendar,
   Send,
-  ArrowRight,
   Building2,
   Target,
   Server,
@@ -55,7 +54,6 @@ export function StepSummary({
   const selectedSize = companySizes.find((s) => s.id === formData.companySize);
   const selectedHosting = pricing.hosting[formData.hostingTier as keyof typeof pricing.hosting];
   const selectedBudget = pricing.budgetRanges.find((b) => b.id === formData.budgetRange);
-  const selectedTimeline = pricing.timelines.find((t) => t.id === timeline);
   const packageName = getPackageName(formData.companySize, formData.projectGoal);
 
   const selectedServiceNames = formData.selectedServices

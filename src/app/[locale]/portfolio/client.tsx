@@ -74,7 +74,7 @@ export default function PortfolioPageClient() {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
               >
                 <Link
-                  href={`/portfolio/${project.slug}` as any}
+                  href={{ pathname: '/portfolio/[slug]', params: { slug: project.slug } }}
                   className="group relative block overflow-hidden rounded-3xl bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300"
                 >
                   {/* Project image */}

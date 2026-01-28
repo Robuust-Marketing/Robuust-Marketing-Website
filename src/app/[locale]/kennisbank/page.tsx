@@ -1,7 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import {
   getGuidesByCategory,
-  categoryInfo,
   getCategoryInfo,
   type CategorySlug,
 } from "@/lib/kennisbank";

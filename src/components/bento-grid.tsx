@@ -15,13 +15,21 @@ import {
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
+type ServicePathname =
+  | "/diensten/design"
+  | "/diensten/development"
+  | "/diensten/hosting"
+  | "/diensten/onderhoud"
+  | "/diensten/tracking"
+  | "/diensten/seo";
+
 interface BentoCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
   className?: string;
   highlight?: boolean;
-  href?: string;
+  href?: ServicePathname;
 }
 
 const cardVariants = {
@@ -101,7 +109,7 @@ function BentoCard({ title, description, icon, className, highlight, href }: Ben
 
       {/* Full card link overlay */}
       {href && (
-        <Link href={href as any} className="absolute inset-0 z-20" aria-label={title}>
+        <Link href={href} className="absolute inset-0 z-20" aria-label={title}>
           <span className="sr-only">{title}</span>
         </Link>
       )}
@@ -123,7 +131,13 @@ const containerVariants = {
 export function BentoGrid() {
   const t = useTranslations("bentoGrid");
 
-  const features = [
+  const features: Array<{
+    key: string;
+    icon: React.ReactNode;
+    className: string;
+    highlight: boolean;
+    href: ServicePathname;
+  }> = [
     {
       key: "design",
       icon: <Palette className="h-6 w-6" />,

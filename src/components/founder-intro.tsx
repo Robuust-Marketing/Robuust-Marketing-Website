@@ -5,12 +5,10 @@ import { motion } from "@/components/motion";
 import { ArrowRight, Code2, Server, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LazyYouTube } from "@/components/ui/lazy-youtube";
-import { useTranslations, useLocale } from "next-intl";
-import { type Locale } from "@/i18n/config";
+import { useTranslations } from "next-intl";
 
 export function FounderIntro() {
   const t = useTranslations("founderIntro");
-  const locale = useLocale() as Locale;
 
   const stats = [
     { icon: Code2, value: "15+", label: t("stats.experience") },

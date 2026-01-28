@@ -5,7 +5,42 @@ import { Mail, Phone, MapPin, Server, Shield, Linkedin, Instagram, Facebook, You
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n/config";
 
-type FooterLink = { name: string; href: string };
+// Static routes used in the footer (excluding dynamic route patterns)
+type StaticPathname =
+  | "/"
+  | "/diensten"
+  | "/diensten/design"
+  | "/diensten/development"
+  | "/diensten/hosting"
+  | "/diensten/onderhoud"
+  | "/diensten/tracking"
+  | "/diensten/email-marketing"
+  | "/diensten/online-marketing"
+  | "/diensten/branding"
+  | "/diensten/seo"
+  | "/diensten/crm"
+  | "/diensten/social-media"
+  | "/tarieven"
+  | "/offerte"
+  | "/kennisbank"
+  | "/werkwijze"
+  | "/tooling"
+  | "/over"
+  | "/voorwaarden"
+  | "/avg"
+  | "/blog"
+  | "/portfolio"
+  | "/contact"
+  | "/faq"
+  | "/privacy"
+  | "/referenties"
+  | "/partners"
+  | "/vacatures"
+  | "/support"
+  | "/bedankt"
+  | "/afspraak";
+
+type FooterLink = { name: string; href: StaticPathname };
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -67,7 +102,7 @@ export function Footer() {
               {services.map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href as any}
+                    href={item.href}
                     className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
@@ -86,7 +121,7 @@ export function Footer() {
               {packages.map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href as any}
+                    href={item.href}
                     className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
@@ -102,7 +137,7 @@ export function Footer() {
                 {company.map((item) => (
                   <li key={item.name}>
                     <Link
-                      href={item.href as any}
+                      href={item.href}
                       className="text-sm text-muted-foreground hover:text-white transition-colors"
                     >
                       {item.name}
@@ -122,7 +157,7 @@ export function Footer() {
               {resources.map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href as any}
+                    href={item.href}
                     className="text-sm text-muted-foreground hover:text-white transition-colors"
                   >
                     {item.name}
@@ -283,7 +318,7 @@ export function Footer() {
               {legal.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href as any}
+                  href={item.href}
                   className="text-sm text-muted-foreground hover:text-white transition-colors"
                 >
                   {item.name}

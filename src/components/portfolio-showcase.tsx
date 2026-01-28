@@ -65,7 +65,7 @@ export function PortfolioShowcase() {
               transition={{ duration: 0.6 }}
               className="md:col-span-2 lg:col-span-2 lg:row-span-2"
             >
-              <Link href={`/portfolio/${featuredItems[0].slug}` as any} className="group block h-full">
+              <Link href={{ pathname: '/portfolio/[slug]', params: { slug: featuredItems[0].slug } }} className="group block h-full">
                 <div className="relative h-full min-h-[400px] lg:min-h-[500px] rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Image */}
                   <div className="absolute inset-0">
@@ -108,7 +108,7 @@ export function PortfolioShowcase() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
             >
-              <Link href={`/portfolio/${item.slug}` as any} className="group block h-full">
+              <Link href={{ pathname: '/portfolio/[slug]', params: { slug: item.slug } }} className="group block h-full">
                 <div className="relative h-full min-h-[240px] rounded-3xl overflow-hidden bg-surface border border-white/5 hover:border-accent/30 transition-all duration-300">
                   {/* Image */}
                   <div className="absolute inset-0">

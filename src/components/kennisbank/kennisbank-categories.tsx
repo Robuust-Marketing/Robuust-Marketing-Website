@@ -76,7 +76,7 @@ export function KennisbankCategories({ categories }: KennisbankCategoriesProps) 
                     {category.guides.slice(0, 4).map((guide) => (
                       <li key={guide.slug}>
                         <Link
-                          href={`/kennisbank/${category.slug}/${guide.slug}` as any}
+                          href={{ pathname: '/kennisbank/[category]/[slug]', params: { category: category.slug, slug: guide.slug } }}
                           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
                         >
                           <span className="w-1 h-1 rounded-full bg-accent" />
@@ -92,7 +92,7 @@ export function KennisbankCategories({ categories }: KennisbankCategoriesProps) 
                 )}
 
                 <Link
-                  href={`/kennisbank/${category.slug}` as any}
+                  href={{ pathname: '/kennisbank/[category]', params: { category: category.slug } }}
                   className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
                 >
                   {t("allGuides", { category: category.name.toLowerCase() })}
