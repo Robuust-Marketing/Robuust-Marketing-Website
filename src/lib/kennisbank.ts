@@ -22,6 +22,10 @@ export interface Guide {
   icon?: string;
   locale: Locale;
   isFallback?: boolean;
+  translations?: {
+    nl?: string;
+    en?: string;
+  };
 }
 
 export interface GuideMeta {
@@ -35,6 +39,10 @@ export interface GuideMeta {
   icon?: string;
   locale: Locale;
   isFallback?: boolean;
+  translations?: {
+    nl?: string;
+    en?: string;
+  };
 }
 
 export type CategorySlug = "development" | "seo" | "hosting" | "social-media";
@@ -147,6 +155,7 @@ export function getGuidesByCategory(category: CategorySlug, locale: Locale = def
         icon: data.icon,
         locale: isFallback ? defaultLocale : locale,
         isFallback,
+        translations: data.translations as { nl?: string; en?: string } | undefined,
       };
     })
     .sort((a, b) => a.order - b.order);
@@ -208,6 +217,7 @@ export function getGuide(category: CategorySlug, slug: string, locale: Locale = 
     icon: data.icon,
     locale: isFallback ? defaultLocale : locale,
     isFallback,
+    translations: data.translations as { nl?: string; en?: string } | undefined,
   };
 }
 

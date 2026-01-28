@@ -313,19 +313,25 @@ export function getBlogSitemap(): SitemapEntry[] {
   return entries;
 }
 
-// Kennisbank sitemap
-// Note: Currently only Dutch kennisbank content exists, so we only generate Dutch URLs
-// When English translations are added, this should be updated similar to getBlogSitemap()
+// Kennisbank sitemap with translation support (similar to blog)
 export function getKennisbankSitemap(): SitemapEntry[] {
   const entries: SitemapEntry[] = [];
   const categories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
 
-  // Get guides for each locale to check what content exists
+  // Get guides for each locale
   const nlGuides = getAllGuides("nl");
   const enGuides = getAllGuides("en");
-  const hasEnglishContent = enGuides.length > 0;
 
-  // Kennisbank index pages - both locales (the index page exists for both)
+  // Create a map of English guides by slug for quick lookup
+  const enGuidesBySlug = new Map<string, GuideMeta>();
+  for (const guide of enGuides) {
+    enGuidesBySlug.set(guide.slug, guide);
+  }
+
+  // Track which English guides have been added (to avoid duplicates)
+  const addedEnSlugs = new Set<string>();
+
+  // Kennisbank index pages - both locales
   for (const locale of locales) {
     entries.push({
       loc: buildUrl("/kennisbank", locale),
@@ -345,7 +351,7 @@ export function getKennisbankSitemap(): SitemapEntry[] {
     });
   }
 
-  // Category pages - both locales (category pages exist for both)
+  // Category pages - both locales
   for (const category of categories) {
     const categoryPath = `/kennisbank/${category}`;
 
@@ -360,31 +366,56 @@ export function getKennisbankSitemap(): SitemapEntry[] {
     }
   }
 
-  // Individual guides - only Dutch for now (no English translations exist)
-  // When English translations are added, they should have a translations field in frontmatter
-  for (const guide of nlGuides) {
-    const guidePath = `/kennisbank/${guide.categorySlug}/${guide.slug}`;
+  // Process Dutch guides and their translations
+  for (const nlGuide of nlGuides) {
+    const enSlug = nlGuide.translations?.en;
+    const enGuide = enSlug ? enGuidesBySlug.get(enSlug) : null;
+    const basePath = `/kennisbank/${nlGuide.categorySlug}`;
 
-    // Only generate Dutch URL since no English content exists
+    // Generate entry for Dutch locale
     entries.push({
-      loc: buildUrl(guidePath, "nl"),
+      loc: buildUrl(`${basePath}/${nlGuide.slug}`, "nl"),
       lastmod: formatDate(),
       changefreq: "monthly",
       priority: 0.6,
-      // No alternates until English translations exist
+      alternates: enGuide
+        ? buildAlternatesWithTranslations(basePath, {
+            nl: nlGuide.slug,
+            en: enSlug!,
+          })
+        : undefined, // No alternates if no translation exists
     });
-  }
 
-  // Add English guides if they exist (for future use)
-  if (hasEnglishContent) {
-    for (const guide of enGuides) {
-      const guidePath = `/kennisbank/${guide.categorySlug}/${guide.slug}`;
+    // Generate entry for English locale if translation exists
+    if (enGuide && enSlug) {
       entries.push({
-        loc: buildUrl(guidePath, "en"),
+        loc: buildUrl(`${basePath}/${enSlug}`, "en"),
         lastmod: formatDate(),
         changefreq: "monthly",
         priority: 0.6,
+        alternates: buildAlternatesWithTranslations(basePath, {
+          nl: nlGuide.slug,
+          en: enSlug,
+        }),
       });
+      addedEnSlugs.add(enSlug);
+    }
+  }
+
+  // Add any English-only guides that don't have Dutch translations
+  for (const enGuide of enGuides) {
+    if (!addedEnSlugs.has(enGuide.slug)) {
+      const nlSlug = enGuide.translations?.nl;
+      // Only add if there's no Dutch translation (otherwise it was already added above)
+      if (!nlSlug) {
+        entries.push({
+          loc: buildUrl(`/kennisbank/${enGuide.categorySlug}/${enGuide.slug}`, "en"),
+          lastmod: formatDate(),
+          changefreq: "monthly",
+          priority: 0.6,
+          // No alternates for English-only guides
+        });
+      }
     }
   }
 
