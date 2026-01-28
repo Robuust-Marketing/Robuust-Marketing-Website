@@ -8,6 +8,7 @@ interface LazyYouTubeProps {
   videoId: string;
   title?: string;
   className?: string;
+  thumbnail?: string; // Local thumbnail path (e.g., "/video-thumbnails/intro.jpg")
 }
 
 // YouTube domains to preconnect to
@@ -23,7 +24,7 @@ const PRECONNECT_URLS = [
  * Preconnects to YouTube on hover for faster iframe load.
  * Improves page load performance by deferring heavy iframe.
  */
-export function LazyYouTube({ videoId, title = "Video", className = "" }: LazyYouTubeProps) {
+export function LazyYouTube({ videoId, title = "Video", className = "", thumbnail }: LazyYouTubeProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPreconnected, setIsPreconnected] = useState(false);
 
@@ -45,10 +46,9 @@ export function LazyYouTube({ videoId, title = "Video", className = "" }: LazyYo
     setIsPreconnected(true);
   }, [isPreconnected]);
 
-  // YouTube thumbnail URL - maxresdefault for highest quality
-  const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
-  // Fallback to hqdefault if maxresdefault doesn't exist
-  const fallbackThumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+  // Use local thumbnail if provided, otherwise use YouTube's thumbnail URL
+  const thumbnailUrl = thumbnail || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+  const isLocalThumbnail = !!thumbnail;
 
   if (isLoaded) {
     return (
@@ -72,21 +72,32 @@ export function LazyYouTube({ videoId, title = "Video", className = "" }: LazyYo
       className={`relative w-full h-full group cursor-pointer ${className}`}
       aria-label={`Play video: ${title}`}
     >
-      {/* Thumbnail */}
-      <Image
-        src={thumbnailUrl}
-        alt={title}
-        fill
-        sizes="(max-width: 768px) 100vw, 512px"
-        className="object-cover"
-        onError={(e) => {
-          // Fallback to lower quality thumbnail if maxres doesn't exist
-          const target = e.target as HTMLImageElement;
-          if (target.src !== fallbackThumbnailUrl) {
-            target.src = fallbackThumbnailUrl;
-          }
-        }}
-      />
+      {/* Thumbnail - use Next.js Image for local, regular img for external */}
+      {isLocalThumbnail ? (
+        <Image
+          src={thumbnailUrl}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 512px"
+          className="object-cover"
+        />
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={thumbnailUrl}
+          alt={title}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          onError={(e) => {
+            // Fallback to lower quality thumbnail if maxres doesn't exist
+            const target = e.target as HTMLImageElement;
+            const fallbackUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+            if (!target.src.includes("hqdefault")) {
+              target.src = fallbackUrl;
+            }
+          }}
+        />
+      )}
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />

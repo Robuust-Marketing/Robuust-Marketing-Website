@@ -37,6 +37,7 @@ export function FounderIntro() {
               <LazyYouTube
                 videoId="xFctedUSpKo"
                 title="Introductie Robuust Marketing"
+                thumbnail="/video-thumbnails/intro-robuust.jpg"
                 className="absolute inset-0"
               />
               {/* Corner accent */}
