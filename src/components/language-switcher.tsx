@@ -63,11 +63,13 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     }
 
     // Kennisbank guide: /kennisbank/[category]/[slug] or /resources/[category]/[slug]
+    // DON'T handle kennisbank guides here - slugs differ per locale and there's no client-side
+    // translation context. Fall back to the category page to avoid wrong slug.
     const kennisbankGuideMatch = rawPath.match(/^\/(kennisbank|resources)\/([^/\[]+)\/([^/\[]+)$/);
     if (kennisbankGuideMatch) {
       return {
-        pathname: "/kennisbank/[category]/[slug]",
-        params: { category: kennisbankGuideMatch[2], slug: kennisbankGuideMatch[3] },
+        pathname: "/kennisbank/[category]",
+        params: { category: kennisbankGuideMatch[2] },
       };
     }
 
