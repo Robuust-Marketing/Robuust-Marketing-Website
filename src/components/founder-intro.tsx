@@ -4,6 +4,7 @@ import { Link } from "@/i18n/routing";
 import { motion } from "@/components/motion";
 import { ArrowRight, Code2, Server, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LazyYouTube } from "@/components/ui/lazy-youtube";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n/config";
 
@@ -33,14 +34,10 @@ export function FounderIntro() {
             className="relative"
           >
             <div className="relative aspect-video max-w-lg mx-auto lg:mx-0 rounded-3xl overflow-hidden bg-surface border border-white/10">
-              <iframe
-                src="https://www.youtube.com/embed/xFctedUSpKo?si=R5h-TAn3DxlvaaXq"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
+              <LazyYouTube
+                videoId="xFctedUSpKo"
+                title="Introductie Robuust Marketing"
+                className="absolute inset-0"
               />
               {/* Corner accent */}
               <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
