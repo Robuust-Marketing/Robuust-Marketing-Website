@@ -182,6 +182,25 @@ All pages automatically include:
 - `<link rel="alternate" hreflang="x-default">` - Default (Dutch)
 - `<link rel="canonical">` - Current page URL
 
+### Blog/Kennisbank Slug Redirects
+
+Blog posts and kennisbank guides have **different slugs per locale** (e.g., `wordpress-media-beheren` vs `wordpress-media-management`).
+
+**Problem:** The language switcher component uses client-side React context to get translations, but due to SSR/hydration timing, it can generate wrong URLs (e.g., `/nl/blog/wordpress-media-management` instead of `/nl/blog/wordpress-media-beheren`).
+
+**Solution:** Redirects in `next.config.ts` ensure wrong slug URLs redirect to correct ones:
+- `/en/blog/{nl-slug}` → `/en/blog/{en-slug}`
+- `/nl/blog/{en-slug}` → `/nl/blog/{nl-slug}`
+- Same for `/kennisbank/` and `/resources/` paths
+
+**When adding new blog/kennisbank content with translations:**
+1. Add the translation mapping to MDX frontmatter (`translations: { en: "..." }`)
+2. If slugs differ, add redirect mappings to `next.config.ts`:
+   - `blogSlugMappings` array for blog posts
+   - `kennisbankSlugMappings` array for kennisbank guides
+
+**Future improvement:** Refactor language switcher to receive translations via server component props instead of client-side context.
+
 ---
 
 ### Key Library Functions
