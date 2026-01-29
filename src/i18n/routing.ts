@@ -5,6 +5,9 @@ export const routing = defineRouting({
   locales: ['nl', 'en'],
   defaultLocale: 'nl',
   localePrefix: 'always',
+  // Disable automatic HTTP Link headers for hreflang - we use sitemap + generateMetadata instead
+  // This prevents incorrect hreflang for dynamic routes (blog/kennisbank) where slugs differ per locale
+  alternateLinks: false,
   pathnames: {
     '/': '/',
     '/diensten': {
