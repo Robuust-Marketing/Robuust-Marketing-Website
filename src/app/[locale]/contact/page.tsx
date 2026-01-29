@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { type Locale } from "@/i18n/config";
-import { generateAlternates } from "@/lib/metadata";
+import { generateAlternates, getOGImageUrl, defaultTwitterMetadata } from "@/lib/metadata";
 import ContactPageClient from "./client";
 
 export async function generateMetadata({
@@ -22,6 +22,8 @@ export async function generateMetadata({
   };
 
   const alternates = generateAlternates("/contact", locale);
+  const pageTitle = locale === "nl" ? "Neem contact op" : "Contact Us";
+  const ogImageUrl = getOGImageUrl(pageTitle, "Robuust Marketing");
 
   return {
     title: titles[locale as Locale] || titles.nl,
@@ -31,15 +33,9 @@ export async function generateMetadata({
       title: titles[locale as Locale] || titles.nl,
       description: descriptions[locale as Locale] || descriptions.nl,
       url: alternates.canonical,
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: "Robuust Marketing",
-        },
-      ],
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
     },
+    twitter: defaultTwitterMetadata,
   };
 }
 

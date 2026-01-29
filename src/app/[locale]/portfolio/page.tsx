@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { type Locale } from "@/i18n/config";
-import { generateAlternates } from "@/lib/metadata";
+import { generateAlternates, getOGImageUrl, defaultTwitterMetadata } from "@/lib/metadata";
 import PortfolioPageClient from "./client";
 
 export async function generateMetadata({
@@ -21,6 +21,9 @@ export async function generateMetadata({
     en: "View our completed web projects. From corporate websites to webshops. Discover how we help businesses grow with professional websites.",
   };
 
+  const pageTitle = locale === "nl" ? "Portfolio" : "Portfolio";
+  const ogImageUrl = getOGImageUrl(pageTitle, "Robuust Marketing", "portfolio");
+
   return {
     title: titles[locale as Locale] || titles.nl,
     description: descriptions[locale as Locale] || descriptions.nl,
@@ -28,7 +31,9 @@ export async function generateMetadata({
     openGraph: {
       title: titles[locale as Locale] || titles.nl,
       description: descriptions[locale as Locale] || descriptions.nl,
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
     },
+    twitter: defaultTwitterMetadata,
   };
 }
 

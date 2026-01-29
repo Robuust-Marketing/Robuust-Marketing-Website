@@ -1,7 +1,37 @@
 import { routing } from "@/i18n/routing";
+import type { Metadata } from "next";
 
 const BASE_URL = "https://robuustmarketing.nl";
 const DEFAULT_OG_IMAGE = "/og-image.png";
+
+export type OGImageType = "default" | "blog" | "kennisbank" | "portfolio" | "service";
+
+/**
+ * Generate dynamic OG image URL for static pages
+ * @param title - Main heading text
+ * @param subtitle - Optional category or section name
+ * @param type - Page type for styling variations
+ */
+export function getOGImageUrl(
+  title: string,
+  subtitle?: string,
+  type?: OGImageType
+): string {
+  const params = new URLSearchParams();
+  params.set("title", title);
+  if (subtitle) params.set("subtitle", subtitle);
+  if (type) params.set("type", type);
+  return `${BASE_URL}/api/og?${params.toString()}`;
+}
+
+/**
+ * Default Twitter metadata configuration
+ * Use summary_large_image for best preview appearance
+ */
+export const defaultTwitterMetadata: Metadata["twitter"] = {
+  card: "summary_large_image",
+  site: "@robuustmarketing",
+};
 
 /**
  * Generate OpenGraph metadata with url and image

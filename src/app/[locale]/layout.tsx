@@ -9,7 +9,7 @@ import { Footer } from "@/components/layout/footer";
 import { BlogTranslationProvider } from "@/contexts/blog-translation-context";
 import { KennisbankTranslationProvider } from "@/contexts/kennisbank-translation-context";
 import { locales, type Locale } from "@/i18n/config";
-import { generateAlternates } from "@/lib/metadata";
+import { generateAlternates, getOGImageUrl, defaultTwitterMetadata } from "@/lib/metadata";
 import "../globals.css";
 
 const inter = Inter({
@@ -43,6 +43,11 @@ export async function generateMetadata({
     en: "Premium web development and hosting for SMBs. Bulletproof SLAs, 70+ websites managed, custom solutions with React and WordPress.",
   };
 
+  const ogImageUrl = getOGImageUrl(
+    titles[locale],
+    locale === "nl" ? "Web Development & Hosting" : "Web Development & Hosting"
+  );
+
   return {
     metadataBase: new URL("https://robuustmarketing.nl"),
     title: titles[locale],
@@ -64,7 +69,16 @@ export async function generateMetadata({
       title: titles[locale],
       description: descriptions[locale],
       siteName: "Robuust Marketing",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: titles[locale],
+        },
+      ],
     },
+    twitter: defaultTwitterMetadata,
     alternates: generateAlternates("/", locale),
     appleWebApp: {
       title: "Robuust",
