@@ -52,8 +52,9 @@ export async function generateMetadata({
   // Use dynamic alternates if translations exist, otherwise fall back to same slug
   let alternates;
   if (guide.translations && (nlSlug || enSlug)) {
+    // NL uses /kennisbank/, EN uses /resources/ (as defined in routing.ts)
     const nlPath = nlSlug ? `/kennisbank/${category}/${nlSlug}` : null;
-    const enPath = enSlug ? `/kennisbank/${category}/${enSlug}` : null;
+    const enPath = enSlug ? `/resources/${category}/${enSlug}` : null;
     alternates = generateDynamicAlternates(nlPath, enPath, locale);
   } else {
     // No translations, use same slug for both locales
