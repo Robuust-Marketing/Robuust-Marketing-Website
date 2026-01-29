@@ -4,6 +4,7 @@ import { useLocale } from "next-intl";
 import { Link, usePathname, type Locale, type Pathnames } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { useBlogTranslationOptional } from "@/contexts/blog-translation-context";
+import { useKennisbankTranslationOptional } from "@/contexts/kennisbank-translation-context";
 import { usePathname as useNextPathname } from "next/navigation";
 
 interface LanguageSwitcherProps {
@@ -25,6 +26,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   // useNextPathname from next/navigation returns the raw URL path for extracting dynamic segments
   const nextPathname = useNextPathname();
   const blogContext = useBlogTranslationOptional();
+  const kennisbankContext = useKennisbankTranslationOptional();
   const otherLocale: Locale = locale === "nl" ? "en" : "nl";
 
   // Check if we're on a blog page and have translations
@@ -39,6 +41,20 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     if (!targetSlug) return null;
 
     return { pathname: "/blog/[slug]", params: { slug: targetSlug } };
+  };
+
+  // Check if we're on a kennisbank guide page and have translations
+  const getKennisbankTranslatedHref = (): { pathname: "/kennisbank/[category]/[slug]"; params: { category: string; slug: string } } | null => {
+    if (!kennisbankContext?.translations || !kennisbankContext.category) return null;
+
+    // Check if this is a kennisbank guide page
+    const kennisbankMatch = nextPathname.match(/^(\/en)?\/(kennisbank|resources)\/([^/]+)\/([^/]+)$/);
+    if (!kennisbankMatch) return null;
+
+    const targetSlug = kennisbankContext.translations[otherLocale];
+    if (!targetSlug) return null;
+
+    return { pathname: "/kennisbank/[category]/[slug]", params: { category: kennisbankContext.category, slug: targetSlug } };
   };
 
   // Get href for dynamic routes that need params
@@ -63,14 +79,11 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     }
 
     // Kennisbank guide: /kennisbank/[category]/[slug] or /resources/[category]/[slug]
-    // DON'T handle kennisbank guides here - slugs differ per locale and there's no client-side
-    // translation context. Fall back to the category page to avoid wrong slug.
+    // DON'T handle kennisbank guides here - let getKennisbankTranslatedHref() handle it
+    // with proper translations. Falls back to category page if no translations available.
     const kennisbankGuideMatch = rawPath.match(/^\/(kennisbank|resources)\/([^/\[]+)\/([^/\[]+)$/);
     if (kennisbankGuideMatch) {
-      return {
-        pathname: "/kennisbank/[category]",
-        params: { category: kennisbankGuideMatch[2] },
-      };
+      return null;
     }
 
     // Kennisbank category: /kennisbank/[category] or /resources/[category]
@@ -100,17 +113,25 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   // For blog pages with translations, use the translated slug
   const blogHref = getBlogTranslatedHref();
 
+  // For kennisbank guide pages with translations, use the translated slug
+  const kennisbankHref = getKennisbankTranslatedHref();
+
   // For other dynamic routes, get proper href with params
   const dynamicHref = getDynamicHref();
 
-  // Check if we're on a blog detail page (for fallback handling)
+  // Check if we're on a blog or kennisbank detail page (for fallback handling)
   const rawPath = nextPathname.replace(/^\/(en|nl)/, "") || "/";
   const isOnBlogDetailPage = /^\/blog\/[^/]+$/.test(rawPath);
+  const kennisbankGuidePageMatch = rawPath.match(/^\/(kennisbank|resources)\/([^/]+)\/[^/]+$/);
+
+  // Fallback for kennisbank guide pages without translations: go to category page
+  const kennisbankCategoryFallback = kennisbankGuidePageMatch
+    ? { pathname: "/kennisbank/[category]" as const, params: { category: kennisbankGuidePageMatch[2] } }
+    : null;
 
   // Determine the href for the other locale
-  // Priority: blog translation > dynamic route with params > blog index (for blog pages) > static pathname
-  // When on a blog detail page without translations context, link to blog index to avoid wrong slug
-  const href = blogHref || dynamicHref || (isOnBlogDetailPage ? "/blog" : (pathname as Pathnames));
+  // Priority: blog translation > kennisbank translation > dynamic route with params > fallback pages > static pathname
+  const href = blogHref || kennisbankHref || dynamicHref || (isOnBlogDetailPage ? "/blog" : null) || kennisbankCategoryFallback || (pathname as Pathnames);
 
   return (
     <Link

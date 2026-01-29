@@ -7,6 +7,7 @@ import Script from "next/script";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BlogTranslationProvider } from "@/contexts/blog-translation-context";
+import { KennisbankTranslationProvider } from "@/contexts/kennisbank-translation-context";
 import { locales, type Locale } from "@/i18n/config";
 import { generateAlternates } from "@/lib/metadata";
 import "../globals.css";
@@ -174,6 +175,7 @@ export default async function LocaleLayout({
 
         <NextIntlClientProvider messages={messages}>
           <BlogTranslationProvider>
+          <KennisbankTranslationProvider>
             {/* Navigation */}
             <Header />
 
@@ -182,6 +184,7 @@ export default async function LocaleLayout({
 
             {/* Footer */}
             <Footer />
+          </KennisbankTranslationProvider>
           </BlogTranslationProvider>
         </NextIntlClientProvider>
       </body>

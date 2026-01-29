@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { ArrowLeft, Clock, BookOpen, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
 import { generateDynamicAlternates } from "@/lib/metadata";
 import { locales, type Locale } from "@/i18n/config";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { KennisbankTranslationSetter } from "@/components/kennisbank/kennisbank-translation-setter";
 
 const validCategories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
 
@@ -146,6 +147,16 @@ export default async function GuidePage({
     notFound();
   }
 
+  // If showing fallback content and a translation exists, redirect to the translated slug
+  if (guide.isFallback && guide.translations) {
+    const translatedSlug = guide.translations[locale as Locale];
+    if (translatedSlug && translatedSlug !== slug) {
+      const basePath = locale === "nl" ? "" : `/${locale}`;
+      const resourcePath = locale === "en" ? "resources" : "kennisbank";
+      redirect(`${basePath}/${resourcePath}/${category}/${translatedSlug}`);
+    }
+  }
+
   const categoryInfoData = getCategoryInfo(categorySlug, locale as Locale);
   const otherGuides = getGuidesByCategory(categorySlug, locale as Locale).filter(
     (g) => g.slug !== slug
@@ -165,6 +176,15 @@ export default async function GuidePage({
   };
 
   return (
+    <>
+      {/* Set kennisbank translations for language switcher */}
+      <KennisbankTranslationSetter
+        translations={guide.translations}
+        currentSlug={slug}
+        currentLocale={locale as "nl" | "en"}
+        category={category}
+      />
+
     <div className="min-h-screen pt-32 pb-20">
       <article className="mx-auto max-w-4xl px-6 lg:px-8">
         {/* Back Link */}
@@ -243,5 +263,6 @@ export default async function GuidePage({
         </section>
       </article>
     </div>
+    </>
   );
 }
