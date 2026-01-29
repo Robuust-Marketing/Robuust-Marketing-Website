@@ -13,7 +13,7 @@ export async function generateMetadata({
 
   const titles = {
     nl: "Contact | Robuust Marketing",
-    en: "Contact | Robuust Marketing",
+    en: "Contact Us | Robuust Marketing",
   };
 
   const descriptions = {
@@ -21,13 +21,24 @@ export async function generateMetadata({
     en: "Get in touch with Robuust Marketing. Call us, email or fill in the contact form. We respond within 24 hours on business days.",
   };
 
+  const alternates = generateAlternates("/contact", locale);
+
   return {
     title: titles[locale as Locale] || titles.nl,
     description: descriptions[locale as Locale] || descriptions.nl,
-    alternates: generateAlternates("/contact", locale),
+    alternates,
     openGraph: {
       title: titles[locale as Locale] || titles.nl,
       description: descriptions[locale as Locale] || descriptions.nl,
+      url: alternates.canonical,
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Robuust Marketing",
+        },
+      ],
     },
   };
 }

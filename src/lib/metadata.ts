@@ -1,6 +1,31 @@
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = "https://robuustmarketing.nl";
+const DEFAULT_OG_IMAGE = "/og-image.png";
+
+/**
+ * Generate OpenGraph metadata with url and image
+ */
+export function generateOpenGraph(
+  title: string,
+  description: string,
+  canonicalUrl: string,
+  image?: string
+) {
+  return {
+    title,
+    description,
+    url: canonicalUrl,
+    images: [
+      {
+        url: image || DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Robuust Marketing",
+      },
+    ],
+  };
+}
 
 /**
  * Translate a Dutch path to its English equivalent using the routing configuration.
