@@ -13,6 +13,7 @@ import {
 import { generateAlternates, generateDynamicAlternates } from "@/lib/metadata";
 import { locales, type Locale } from "@/i18n/config";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { KennisbankTranslationSetter } from "@/components/kennisbank";
 
 const validCategories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
 
@@ -177,9 +178,18 @@ export default async function GuidePage({
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <article className="mx-auto max-w-4xl px-6 lg:px-8">
-        {/* Back Link */}
+    <>
+      {/* Set kennisbank translations for language switcher */}
+      <KennisbankTranslationSetter
+        translations={guide.translations}
+        currentSlug={slug}
+        currentLocale={locale as "nl" | "en"}
+        category={category}
+      />
+
+      <div className="min-h-screen pt-32 pb-20">
+        <article className="mx-auto max-w-4xl px-6 lg:px-8">
+          {/* Back Link */}
         <Link
           href={{ pathname: "/kennisbank/[category]", params: { category } }}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors mb-8"
@@ -255,5 +265,6 @@ export default async function GuidePage({
         </section>
       </article>
     </div>
+    </>
   );
 }
