@@ -5,6 +5,10 @@ export const routing = defineRouting({
   locales: ['nl', 'en'],
   defaultLocale: 'nl',
   localePrefix: 'always',
+  // Disable automatic Link HTTP headers for hreflang - these are incorrect for
+  // dynamic routes like /blog/[slug] where slugs differ per locale.
+  // We rely on HTML <link rel="alternate"> tags from generateMetadata() instead.
+  alternateLinks: false,
   pathnames: {
     '/': '/',
     '/diensten': {

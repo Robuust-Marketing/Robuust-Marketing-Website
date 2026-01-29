@@ -10,7 +10,7 @@ import {
   getCategoryInfo,
   CategorySlug,
 } from "@/lib/kennisbank";
-import { generateAlternates } from "@/lib/metadata";
+import { generateAlternates, generateDynamicAlternates } from "@/lib/metadata";
 import { locales, type Locale } from "@/i18n/config";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
@@ -45,10 +45,25 @@ export async function generateMetadata({
 
   const kennisbankLabel = locale === "en" ? "Knowledge Base" : "Kennisbank";
 
+  // Determine slugs for each locale (guides may have different slugs per locale)
+  const nlSlug = locale === "nl" ? slug : (guide.translations?.nl || null);
+  const enSlug = locale === "en" ? slug : (guide.translations?.en || null);
+
+  // Use dynamic alternates if translations exist, otherwise fall back to same slug
+  let alternates;
+  if (guide.translations && (nlSlug || enSlug)) {
+    const nlPath = nlSlug ? `/kennisbank/${category}/${nlSlug}` : null;
+    const enPath = enSlug ? `/kennisbank/${category}/${enSlug}` : null;
+    alternates = generateDynamicAlternates(nlPath, enPath, locale);
+  } else {
+    // No translations, use same slug for both locales
+    alternates = generateAlternates(`/kennisbank/${category}/${slug}`, locale);
+  }
+
   return {
     title: `${guide.title} | ${kennisbankLabel} | Robuust Marketing`,
     description: guide.description,
-    alternates: generateAlternates(`/kennisbank/${category}/${slug}`, locale),
+    alternates,
   };
 }
 

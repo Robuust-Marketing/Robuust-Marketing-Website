@@ -7,6 +7,7 @@ import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings, getTran
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { setRequestLocale } from "next-intl/server";
 import { locales, type Locale } from "@/i18n/config";
+import { generateDynamicAlternates } from "@/lib/metadata";
 import {
   ReadingProgress,
   TableOfContents,
@@ -46,23 +47,14 @@ export async function generateMetadata({
     };
   }
 
-  // Build hreflang alternates
-  const alternates: { canonical: string; languages: Record<string, string> } = {
-    canonical: `https://robuustmarketing.nl${locale === "nl" ? "" : `/${locale}`}/blog/${slug}`,
-    languages: {},
-  };
-
-  // Add current locale
+  // Determine slugs for each locale
   const nlSlug = locale === "nl" ? slug : (post.translations?.nl || null);
   const enSlug = locale === "en" ? slug : (post.translations?.en || null);
 
-  if (nlSlug) {
-    alternates.languages["nl"] = `https://robuustmarketing.nl/blog/${nlSlug}`;
-    alternates.languages["x-default"] = `https://robuustmarketing.nl/blog/${nlSlug}`;
-  }
-  if (enSlug) {
-    alternates.languages["en"] = `https://robuustmarketing.nl/en/blog/${enSlug}`;
-  }
+  // Build hreflang alternates using helper (correctly adds /nl/ and /en/ prefixes)
+  const nlPath = nlSlug ? `/blog/${nlSlug}` : null;
+  const enPath = enSlug ? `/blog/${enSlug}` : null;
+  const alternates = generateDynamicAlternates(nlPath, enPath, locale);
 
   return {
     title: `${post.title} | Blog | Robuust Marketing`,
