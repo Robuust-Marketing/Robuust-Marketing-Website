@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { getAllBlogPosts, getBlogCategories } from "@/lib/blog";
 import { BlogHero, BlogCategoryFilter, BlogNewsletter } from "@/components/blog";
 import { type Locale } from "@/i18n/config";
-import { generateAlternates } from "@/lib/metadata";
+import { generateAlternates, getOGImageUrl, defaultTwitterMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
   params,
@@ -21,10 +21,19 @@ export async function generateMetadata({
     en: "Tips, trends and in-depth articles about SEO, social media and online marketing.",
   };
 
+  const pageTitle = locale === "nl" ? "Blog" : "Blog";
+  const ogImageUrl = getOGImageUrl(pageTitle, "Robuust Marketing", "blog");
+
   return {
     title: titles[locale as Locale] || titles.nl,
     description: descriptions[locale as Locale] || descriptions.nl,
     alternates: generateAlternates("/blog", locale),
+    openGraph: {
+      title: titles[locale as Locale] || titles.nl,
+      description: descriptions[locale as Locale] || descriptions.nl,
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
+    },
+    twitter: defaultTwitterMetadata,
   };
 }
 
