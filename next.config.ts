@@ -28,6 +28,7 @@ const blogSlugMappings = [
   ["wordpress-media-beheren", "wordpress-media-management"],
   ["wordpress-menu-aanpassen", "wordpress-menu-customization"],
   ["wordpress-pagina-dupliceren", "wordpress-duplicate-page"],
+  ["tiktok-hooks-video-aandacht", "tiktok-hooks-video-attention"],
 ];
 
 // Kennisbank guides with different slugs per locale (NL category/slug | EN slug)
