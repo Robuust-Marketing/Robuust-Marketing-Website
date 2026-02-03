@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { Mail, Phone, MapPin, Server, Shield, Linkedin, Instagram, Facebook, Youtube, Twitter, Music2, Activity } from "lucide-react";
+import { Mail, Phone, MapPin, Server, Shield, Linkedin, Instagram, Facebook, Youtube, Twitter, Music2 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { type Locale } from "@/i18n/config";
 
@@ -299,9 +299,8 @@ export function Footer() {
                 href="https://status.robuustmarketing.nl/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-white transition-colors"
+                className="text-sm text-muted-foreground hover:text-white transition-colors"
               >
-                <Activity className="h-3.5 w-3.5" />
                 Status
               </a>
             </div>
