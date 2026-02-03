@@ -42,6 +42,7 @@ const kennisbankSlugMappings = [
   ["seo", "lokale-seo-strategie", "local-seo-strategy"],
   ["seo", "on-page-seo-optimalisatie", "on-page-seo-optimization"],
   ["seo", "technische-seo-checklist", "technical-seo-checklist"],
+  ["seo", "website-autoriteit-linkbuilding", "website-authority-link-building"],
   ["social-media", "instagram-voor-bedrijven", "instagram-for-business"],
   ["social-media", "linkedin-strategie-b2b", "linkedin-b2b-strategy"],
   ["social-media", "waarom-social-media-belangrijk", "why-social-media-matters"],

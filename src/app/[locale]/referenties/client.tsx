@@ -1,13 +1,18 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowRight, Star, Quote, Building2, Users, Award, ExternalLink } from "lucide-react";
+import { ArrowRight, Star, Quote, Users, Award, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getPortfolioItems, getLegacyPortfolioItems } from "@/data/portfolio";
+import type { Locale } from "@/i18n/config";
 
 export default function ReferentiesPageClient() {
   const t = useTranslations("referentiesPage");
+  const locale = useLocale() as Locale;
+  const portfolioItems = getPortfolioItems(locale);
+  const legacyItems = getLegacyPortfolioItems(locale);
 
   const testimonials = [
     { id: "growteq", rating: 5, url: "/portfolio/growteq", isInternal: true },
@@ -22,17 +27,6 @@ export default function ReferentiesPageClient() {
     { value: "100+", labelKey: "projects" },
     { value: "4.9", labelKey: "rating" },
     { value: "98%", labelKey: "recommend" },
-  ];
-
-  const logos = [
-    { name: "Growteq", url: "https://growteq.nl", logo: "/portfolio/growteq-logo.svg" },
-    { name: "Den Hartog Energies", url: "https://denhartogbv.com", logo: "/portfolio/denhartogenergies-logo.svg" },
-    { name: "Villary Buitenleven", url: "https://villary.nl", logo: "/portfolio/villary-logo.png" },
-    { name: "In Den RustWat", url: "https://idrw.nl", logo: "/portfolio/idrw-logo.svg" },
-    { name: "BnB Kinderdijk", url: "https://bnbkinderdijk.nl", logo: "/portfolio/bnbkinderdijk-logo.png" },
-    { name: "Voltra Charging", url: "https://voltracharging.com", logo: "/portfolio/voltracharging-logo.svg" },
-    { name: "Woonstudio Joy", url: "https://woonstudiojoy.nl", logo: "/portfolio/woonstudiojoy-logo.svg" },
-    { name: "Kapsalon Tine", url: "https://kapsalontine.nl", logo: "/portfolio/kapsalontine-logo.svg" },
   ];
 
   const whyChooseItems = [
@@ -185,8 +179,8 @@ export default function ReferentiesPageClient() {
         </div>
       </section>
 
-      {/* Client Logos */}
-      <section className="py-20">
+      {/* All Projects Grid */}
+      <section className="py-20 bg-surface/30">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -202,31 +196,63 @@ export default function ReferentiesPageClient() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {logos.map((logo, index) => (
-              <motion.a
-                key={logo.name}
-                href={logo.url}
-                target="_blank"
-                rel="noopener"
-                initial={{ opacity: 0, y: 20 }}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {/* Featured portfolio items with case studies */}
+            {portfolioItems.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="rounded-xl bg-surface p-6 border border-white/5 flex items-center justify-center hover:border-accent/30 transition-colors group h-24"
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
               >
-                {logo.logo ? (
-                  <img
-                    src={logo.logo}
-                    alt={logo.name}
-                    className="h-10 w-auto max-w-[140px] object-contain opacity-60 group-hover:opacity-100 transition-opacity"
-                  />
-                ) : (
-                  <div className="flex items-center gap-2 text-muted-foreground group-hover:text-white transition-colors">
-                    <Building2 className="h-5 w-5" />
-                    <span className="text-sm font-medium">{logo.name}</span>
+                <Link
+                  href={`/portfolio/${project.slug}` as any}
+                  className="group flex flex-col items-center justify-center p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 hover:bg-surface-hover transition-all duration-300 h-full"
+                >
+                  <div className="bg-white rounded-lg p-2 mb-3 shadow-md">
+                    <img
+                      src={`https://www.google.com/s2/favicons?domain=${new URL(project.url).hostname}&sz=128`}
+                      alt={`${project.name} favicon`}
+                      className="h-8 w-8 object-contain"
+                    />
                   </div>
-                )}
+                  <span className="text-sm font-medium text-white text-center group-hover:text-accent transition-colors line-clamp-2">
+                    {project.name}
+                  </span>
+                  <span className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                    {project.industry}
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+
+            {/* Legacy items - external links */}
+            {legacyItems.map((project, index) => (
+              <motion.a
+                key={project.id}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.3, delay: (portfolioItems.length + index) * 0.03 }}
+                className="group flex flex-col items-center justify-center p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 hover:bg-surface-hover transition-all duration-300 h-full"
+              >
+                <div className="bg-white rounded-lg p-2 mb-3 shadow-md">
+                  <img
+                    src={`https://www.google.com/s2/favicons?domain=${new URL(project.url).hostname}&sz=128`}
+                    alt={`${project.name} favicon`}
+                    className="h-8 w-8 object-contain"
+                  />
+                </div>
+                <span className="text-sm font-medium text-white text-center group-hover:text-accent transition-colors line-clamp-2">
+                  {project.name}
+                </span>
+                <span className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                  {project.category}
+                </span>
               </motion.a>
             ))}
           </div>
