@@ -171,7 +171,7 @@ export default function PortfolioPageClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.3, delay: index * 0.03 }}
-                className="group flex flex-col items-center p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 hover:bg-surface-hover transition-all duration-300"
+                className="group flex flex-col items-center justify-center p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 hover:bg-surface-hover transition-all duration-300 h-full"
               >
                 <div className="bg-white rounded-lg p-2 mb-3 shadow-md">
                   <img
@@ -183,10 +183,9 @@ export default function PortfolioPageClient() {
                 <span className="text-sm font-medium text-white text-center group-hover:text-accent transition-colors line-clamp-2">
                   {project.name}
                 </span>
-                <span className="text-xs text-muted-foreground mt-1">
+                <span className="text-xs text-muted-foreground mt-1 line-clamp-1">
                   {project.category}
                 </span>
-                <ExternalLink className="h-3 w-3 text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.a>
             ))}
           </div>

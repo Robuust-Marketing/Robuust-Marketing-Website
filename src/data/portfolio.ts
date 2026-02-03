@@ -36,7 +36,7 @@ const portfolioItemsNL: PortfolioItem[] = [
     slug: "growteq",
     name: "Growteq",
     category: "B2B Corporate",
-    industry: "Business Intelligence & Consultancy",
+    industry: "BI & Consultancy",
     shortDescription:
       "Corporate website voor een snelgroeiend BI & Salesforce consultancy bedrijf.",
     description:
@@ -266,7 +266,7 @@ const portfolioItemsEN: PortfolioItem[] = [
     slug: "growteq",
     name: "Growteq",
     category: "B2B Corporate",
-    industry: "Business Intelligence & Consultancy",
+    industry: "BI & Consultancy",
     shortDescription:
       "Corporate website for a fast-growing BI & Salesforce consultancy company.",
     description:
