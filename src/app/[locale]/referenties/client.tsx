@@ -15,11 +15,11 @@ export default function ReferentiesPageClient() {
   const legacyItems = getLegacyPortfolioItems(locale);
 
   const testimonials = [
-    { id: "growteq", rating: 5, url: "/portfolio/growteq", isInternal: true },
-    { id: "pianoselect", rating: 5, url: "https://www.pianoselect.nl/", isInternal: false },
-    { id: "fotolot", rating: 5, url: "https://foto-lot.nl/", isInternal: false },
-    { id: "dununba", rating: 5, url: "https://dununba.nl/", isInternal: false },
-    { id: "kapsalontine", rating: 5, url: "https://kapsalontine.nl/", isInternal: false },
+    { id: "growteq", rating: 5, url: "/portfolio/growteq", isInternal: true, website: "https://growteq.nl" },
+    { id: "pianoselect", rating: 5, url: "https://www.pianoselect.nl/", isInternal: false, website: "https://pianoselect.nl" },
+    { id: "fotolot", rating: 5, url: "https://foto-lot.nl/", isInternal: false, website: "https://foto-lot.nl" },
+    { id: "dununba", rating: 5, url: "https://dununba.nl/", isInternal: false, website: "https://dununba.nl" },
+    { id: "kapsalontine", rating: 5, url: "https://kapsalontine.nl/", isInternal: false, website: "https://kapsalontine.nl" },
   ];
 
   const stats = [
@@ -127,13 +127,12 @@ export default function ReferentiesPageClient() {
                     &ldquo;{t(`testimonials.${testimonial.id}.quote`)}&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                      <span className="text-accent font-semibold text-sm">
-                        {t(`testimonials.${testimonial.id}.name`)
-                          .split(" ")
-                          .map((n: string) => n[0])
-                          .join("")}
-                      </span>
+                    <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                      <img
+                        src={`https://www.google.com/s2/favicons?domain=${new URL(testimonial.website).hostname}&sz=128`}
+                        alt={t(`testimonials.${testimonial.id}.company`)}
+                        className="h-6 w-6 object-contain"
+                      />
                     </div>
                     <div>
                       <div className="text-white font-medium text-sm">
