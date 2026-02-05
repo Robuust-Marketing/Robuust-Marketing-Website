@@ -22,7 +22,6 @@ import {
   ArrowRight,
   CheckCircle,
   FileText,
-  BookOpen,
   Newspaper,
   HelpCircle,
   Phone,
@@ -78,7 +77,6 @@ const toolingIcons = {
 
 const resourcesIcons = {
   blog: Newspaper,
-  kennisbank: BookOpen,
   faq: HelpCircle,
   support: Phone,
 };
@@ -92,7 +90,7 @@ const companyIcons = {
   contact: Phone,
 };
 
-type MegaMenuSection = "diensten" | "portfolio" | "werkwijze" | "kennisbank" | "over" | null;
+type MegaMenuSection = "diensten" | "portfolio" | "werkwijze" | "blog" | "over" | null;
 
 interface BlogPostMeta {
   slug: string;
@@ -156,9 +154,8 @@ export function Header() {
     { name: tTooling("nginx.name"), description: tTooling("nginx.description"), href: "/tooling/nginx" as const, icon: toolingIcons.nginx },
   ];
 
-  const kennisbank = [
+  const resources = [
     { name: tResources("blog.name"), description: tResources("blog.description"), href: "/blog" as const, icon: resourcesIcons.blog },
-    { name: tResources("kennisbank.name"), description: tResources("kennisbank.description"), href: "/kennisbank" as const, icon: resourcesIcons.kennisbank },
     { name: tResources("faq.name"), description: tResources("faq.description"), href: "/faq" as const, icon: resourcesIcons.faq },
     { name: tResources("support.name"), description: tResources("support.description"), href: "/support" as const, icon: resourcesIcons.support },
   ];
@@ -178,7 +175,7 @@ export function Header() {
     { name: tNav("diensten"), key: "diensten" as const, href: "/diensten" as const },
     { name: tNav("portfolio"), key: "portfolio" as const, href: "/portfolio" as const },
     { name: tNav("werkwijze"), key: "werkwijze" as const, href: "/werkwijze" as const },
-    { name: tNav("kennisbank"), key: "kennisbank" as const, href: "/kennisbank" as const },
+    { name: tNav("blog"), key: "blog" as const, href: "/blog" as const },
     { name: tNav("over"), key: "over" as const, href: "/over" as const },
   ];
 
@@ -671,15 +668,15 @@ export function Header() {
                   </div>
                 )}
 
-                {/* Kennisbank Mega Menu */}
-                {activeMenu === "kennisbank" && (
+                {/* Blog/Resources Mega Menu */}
+                {activeMenu === "blog" && (
                   <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-5">
                       <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-4">
                         {tHeader("learnAndDiscover")}
                       </p>
                       <div className="space-y-2">
-                        {kennisbank.map((item, index) => (
+                        {resources.map((item, index) => (
                           <motion.div
                             key={item.name}
                             initial={{ opacity: 0, y: 10 }}
@@ -909,13 +906,13 @@ export function Header() {
                       onClose={closeMobileMenu}
                     />
 
-                    {/* Kennisbank */}
+                    {/* Blog/Resources */}
                     <MobileMenuItem
-                      name={tNav("kennisbank")}
-                      href="/kennisbank"
-                      isOpen={mobileSubmenu === "kennisbank"}
-                      onToggle={() => setMobileSubmenu(mobileSubmenu === "kennisbank" ? null : "kennisbank")}
-                      items={kennisbank}
+                      name={tNav("blog")}
+                      href="/blog"
+                      isOpen={mobileSubmenu === "blog"}
+                      onToggle={() => setMobileSubmenu(mobileSubmenu === "blog" ? null : "blog")}
+                      items={resources}
                       onClose={closeMobileMenu}
                     />
 

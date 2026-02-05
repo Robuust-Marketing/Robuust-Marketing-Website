@@ -40,7 +40,6 @@ export function Footer() {
 
   const resources: FooterLink[] = [
     { name: tResources("blog.name"), href: "/blog" },
-    { name: tResources("kennisbank.name"), href: "/kennisbank" },
     { name: tResources("faq.name"), href: "/faq" },
     { name: tResources("support.name"), href: "/support" },
     { name: locale === "nl" ? "Tooling" : "Tools", href: "/tooling" },

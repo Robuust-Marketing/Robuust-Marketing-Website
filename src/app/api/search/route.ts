@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServices } from "@/data/services";
 import { getPortfolioItems } from "@/data/portfolio";
 import { getAllBlogPosts } from "@/lib/blog";
-import { getAllGuides } from "@/lib/kennisbank";
 import { type Locale, defaultLocale } from "@/i18n/config";
 
 export interface SearchResult {
-  type: "service" | "portfolio" | "blog" | "kennisbank";
+  type: "service" | "portfolio" | "blog";
   title: string;
   description: string;
   href: string;
@@ -81,25 +80,6 @@ export async function GET(request: NextRequest) {
     }
   } catch {
     // Blog might not have content, continue
-  }
-
-  // Search kennisbank guides
-  try {
-    const guides = await getAllGuides(locale);
-    for (const guide of guides) {
-      const searchableText = `${guide.title} ${guide.description} ${guide.category}`;
-      if (matchesQuery(searchableText, query)) {
-        const kennisbankPath = locale === "en" ? "/resources" : "/kennisbank";
-        results.push({
-          type: "kennisbank",
-          title: guide.title,
-          description: guide.description,
-          href: `${kennisbankPath}/${guide.categorySlug}/${guide.slug}`,
-        });
-      }
-    }
-  } catch {
-    // Kennisbank might not have content, continue
   }
 
   return NextResponse.json({

@@ -68,22 +68,6 @@ export const routing = defineRouting({
       en: '/quote',
     },
     '/start-project': '/start-project',
-    '/kennisbank': {
-      nl: '/kennisbank',
-      en: '/resources',
-    },
-    '/kennisbank/[category]': {
-      nl: '/kennisbank/[category]',
-      en: '/resources/[category]',
-    },
-    '/kennisbank/[category]/[slug]': {
-      nl: '/kennisbank/[category]/[slug]',
-      en: '/resources/[category]/[slug]',
-    },
-    '/kennisbank/glossary': {
-      nl: '/kennisbank/glossary',
-      en: '/resources/glossary',
-    },
     '/werkwijze': {
       nl: '/werkwijze',
       en: '/approach',

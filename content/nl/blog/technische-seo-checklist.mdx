@@ -1,0 +1,438 @@
+---
+title: "Technische SEO Checklist: De Complete Gids"
+excerpt: "Alle technische SEO aspecten die je website moet hebben. Van indexering tot site structuur - zorg dat je fundament op orde is."
+category: "Zoekmachine Optimalisatie"
+date: "15 januari 2025"
+readTime: "15 min"
+author: "Robuust Marketing"
+type: "guide"
+translations:
+  en: "technical-seo-checklist"
+---
+
+Technische SEO is het fundament van je online vindbaarheid. Zonder een solide technische basis hebben content en linkbuilding weinig zin. Deze checklist helpt je alle technische aspecten te controleren.
+
+## Crawling en Indexering
+
+### Robots.txt
+
+Het robots.txt bestand vertelt zoekmachines welke pagina's ze mogen crawlen.
+
+**Locatie:** `https://jouwsite.nl/robots.txt`
+
+**Basis voorbeeld:**
+```txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Sitemap: https://jouwsite.nl/sitemap.xml
+```
+
+**Checklist:**
+- [ ] Robots.txt bestaat en is bereikbaar
+- [ ] Belangrijke pagina's zijn niet geblokkeerd
+- [ ] Sitemap URL is vermeld
+- [ ] Admin/API routes zijn geblokkeerd
+
+### XML Sitemap
+
+De sitemap helpt zoekmachines alle pagina's te vinden.
+
+**Vereisten:**
+- Alle belangrijke pagina's opgenomen
+- Geen geblokkeerde URL's
+- Correcte lastmod dates
+- Maximaal 50.000 URL's per sitemap
+
+**Voorbeeld structuur:**
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jouwsite.nl/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://jouwsite.nl/diensten</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+```
+
+**Checklist:**
+- [ ] Sitemap is aangemeld in Search Console
+- [ ] Alle belangrijke pagina's zijn opgenomen
+- [ ] Geen 404 of redirect URL's
+- [ ] Automatisch geüpdatet bij wijzigingen
+
+### Indexeerbaarheid
+
+Controleer of pagina's geïndexeerd kunnen worden:
+
+**Meta robots tag:**
+```html
+<!-- Toestaan (default) -->
+<meta name="robots" content="index, follow">
+
+<!-- Blokkeren -->
+<meta name="robots" content="noindex, nofollow">
+```
+
+**X-Robots-Tag header:**
+```
+X-Robots-Tag: noindex
+```
+
+**Checklist:**
+- [ ] Belangrijke pagina's hebben geen noindex
+- [ ] Duplicate content heeft canonical of noindex
+- [ ] Pagination is correct geconfigureerd
+- [ ] Filterparamaers zijn afgehandeld
+
+## Site Architectuur
+
+### URL Structuur
+
+**Goede URL's:**
+- Leesbaar voor mensen
+- Beschrijvend voor inhoud
+- Consistent in structuur
+- Lowercase en met hyphens
+
+**Voorbeelden:**
+```
+✓ /diensten/webdesign
+✓ /blog/seo-tips-voor-beginners
+✗ /page.php?id=123
+✗ /Diensten/WebDesign
+```
+
+**Checklist:**
+- [ ] URL's zijn beschrijvend
+- [ ] Consistente structuur
+- [ ] Geen uppercase letters
+- [ ] Geen speciale karakters
+- [ ] Geen onnodige parameters
+
+### Site Hiërarchie
+
+**Ideale diepte:** Maximaal 3 klikken vanaf homepage
+
+```
+Homepage
+├── Diensten (niveau 1)
+│   ├── Webdesign (niveau 2)
+│   └── Development (niveau 2)
+├── Over Ons (niveau 1)
+└── Blog (niveau 1)
+    └── Artikel (niveau 2)
+```
+
+**Checklist:**
+- [ ] Logische categorie structuur
+- [ ] Maximaal 3 niveaus diep
+- [ ] Breadcrumbs geïmplementeerd
+- [ ] Interne links tussen gerelateerde content
+
+### Interne Linking
+
+**Best practices:**
+- Link vanuit content naar gerelateerde pagina's
+- Gebruik beschrijvende anchor text
+- Zorg dat belangrijke pagina's veel interne links krijgen
+- Vermijd orphan pages (pagina's zonder interne links)
+
+**Checklist:**
+- [ ] Alle pagina's hebben minstens één interne link
+- [ ] Anchor text is beschrijvend
+- [ ] Belangrijke pagina's zijn goed gelinkt
+- [ ] Geen broken internal links
+
+## Technische Basis
+
+### HTTPS
+
+HTTPS is verplicht voor moderne websites.
+
+**Checklist:**
+- [ ] SSL certificaat geïnstalleerd
+- [ ] HTTP redirect naar HTTPS
+- [ ] Geen mixed content warnings
+- [ ] HSTS header geconfigureerd
+
+### Mobile-Friendliness
+
+Google gebruikt mobile-first indexing.
+
+**Checklist:**
+- [ ] Responsive design
+- [ ] Viewport meta tag aanwezig
+- [ ] Touch targets groot genoeg (48x48px)
+- [ ] Geen horizontal scrolling
+- [ ] Tekst leesbaar zonder zoomen
+
+**Viewport tag:**
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+### Page Speed
+
+Snelheid is een ranking factor.
+
+**Doelen:**
+- LCP: < 2.5 seconden
+- INP: < 200 milliseconden
+- CLS: < 0.1
+
+**Checklist:**
+- [ ] Afbeeldingen geoptimaliseerd
+- [ ] CSS en JS geminified
+- [ ] Caching geconfigureerd
+- [ ] CDN in gebruik
+- [ ] Server response tijd < 200ms
+
+## Structured Data
+
+### Wat is Structured Data?
+
+Structured data (Schema.org) helpt zoekmachines je content te begrijpen.
+
+**Voordelen:**
+- Rich snippets in zoekresultaten
+- Betere CTR
+- Voice search optimalisatie
+
+### Belangrijke Schema Types
+
+**Organization:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Robuust Marketing",
+  "url": "https://robuustmarketing.nl",
+  "logo": "https://robuustmarketing.nl/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+31-XX-XXXXXXX",
+    "contactType": "customer service"
+  }
+}
+```
+
+**LocalBusiness:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Robuust Marketing",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Straatnaam 123",
+    "addressLocality": "Stad",
+    "postalCode": "1234 AB",
+    "addressCountry": "NL"
+  }
+}
+```
+
+**BreadcrumbList:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://robuustmarketing.nl"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Diensten",
+      "item": "https://robuustmarketing.nl/diensten"
+    }
+  ]
+}
+```
+
+**Checklist:**
+- [ ] Organization/LocalBusiness schema
+- [ ] Breadcrumb schema
+- [ ] Article schema voor blog posts
+- [ ] FAQ schema waar relevant
+- [ ] Valideer met Google's Rich Results Test
+
+## Meta Tags
+
+### Title Tag
+
+**Best practices:**
+- 50-60 karakters
+- Belangrijkste keyword vooraan
+- Uniek per pagina
+- Brandnaam aan het einde
+
+**Voorbeeld:**
+```html
+<title>Webdesign Den Haag | Professionele Websites | Robuust Marketing</title>
+```
+
+### Meta Description
+
+**Best practices:**
+- 150-160 karakters
+- Call-to-action opnemen
+- Uniek per pagina
+- Keyword opnemen (wordt vet weergegeven)
+
+**Voorbeeld:**
+```html
+<meta name="description" content="Professioneel webdesign in Den Haag. Wij bouwen snelle, SEO-geoptimaliseerde websites. Vraag een gratis offerte aan!">
+```
+
+### Canonical Tag
+
+Voorkom duplicate content problemen:
+
+```html
+<link rel="canonical" href="https://jouwsite.nl/pagina">
+```
+
+**Wanneer gebruiken:**
+- Pagina's met URL parameters
+- Print versies van pagina's
+- Mobiele versies (m. subdomain)
+- Syndicatie van content
+
+### Open Graph Tags
+
+Voor social media sharing:
+
+```html
+<meta property="og:title" content="Titel van de pagina">
+<meta property="og:description" content="Beschrijving">
+<meta property="og:image" content="https://jouwsite.nl/image.jpg">
+<meta property="og:url" content="https://jouwsite.nl/pagina">
+<meta property="og:type" content="website">
+```
+
+**Checklist:**
+- [ ] Unieke title per pagina
+- [ ] Unieke meta description per pagina
+- [ ] Canonical tags correct
+- [ ] Open Graph tags aanwezig
+- [ ] Twitter Card tags aanwezig
+
+## International SEO
+
+### Hreflang Tags
+
+Voor meertalige of multi-regionale sites:
+
+```html
+<link rel="alternate" hreflang="nl" href="https://jouwsite.nl/">
+<link rel="alternate" hreflang="en" href="https://jouwsite.nl/en/">
+<link rel="alternate" hreflang="x-default" href="https://jouwsite.nl/">
+```
+
+**Checklist:**
+- [ ] Hreflang voor elke taal/regio
+- [ ] X-default voor fallback
+- [ ] Return links aanwezig
+- [ ] Consistente implementatie
+
+## Error Handling
+
+### 404 Pagina
+
+**Best practices:**
+- Duidelijke boodschap
+- Navigatie naar belangrijke pagina's
+- Zoekfunctie
+- Rapporteer 404's in Search Console
+
+### Redirects
+
+**301 Redirect:** Permanente verhuizing
+**302 Redirect:** Tijdelijke verhuizing
+
+**Checklist:**
+- [ ] Oude URL's redirecten naar nieuwe
+- [ ] Geen redirect chains
+- [ ] Geen redirect loops
+- [ ] 404's monitoren en fixen
+
+## Monitoring en Tools
+
+### Google Search Console
+
+**Essentiële rapporten:**
+- Performance (impressies, clicks, CTR)
+- Coverage (indexering status)
+- Core Web Vitals
+- Mobile Usability
+
+### Technische SEO Tools
+
+**Gratis:**
+- Google Search Console
+- Google PageSpeed Insights
+- Screaming Frog (500 URL's gratis)
+- Lighthouse
+
+**Betaald:**
+- Ahrefs
+- SEMrush
+- Sitebulb
+- DeepCrawl
+
+## Complete Checklist
+
+### Crawling & Indexering
+- [ ] Robots.txt correct geconfigureerd
+- [ ] XML Sitemap aanwezig en aangemeld
+- [ ] Geen onbedoelde noindex tags
+- [ ] Canonicals correct ingesteld
+
+### Site Structuur
+- [ ] Logische URL structuur
+- [ ] Maximaal 3 klik diepte
+- [ ] Breadcrumbs geïmplementeerd
+- [ ] Goede interne linking
+
+### Technische Basis
+- [ ] HTTPS actief
+- [ ] Mobile-friendly
+- [ ] Core Web Vitals groen
+- [ ] Snelle server response
+
+### Meta Tags & Structured Data
+- [ ] Unieke titles en descriptions
+- [ ] Structured data geïmplementeerd
+- [ ] Open Graph tags aanwezig
+- [ ] Hreflang (indien meertalig)
+
+### Monitoring
+- [ ] Search Console gekoppeld
+- [ ] 404's worden gemonitord
+- [ ] Core Web Vitals tracking
+- [ ] Regelmatige technical audits
+
+## Conclusie
+
+Technische SEO is de basis voor alle andere SEO inspanningen. Gebruik deze checklist om je website door te lichten en problemen op te lossen.
+
+Wil je een professionele technische SEO audit? [Neem contact met ons op](/contact).
+
+## Gerelateerde artikelen
+
+- **[Core Web Vitals uitgelegd](/blog/core-web-vitals-uitgelegd)** - Performance metrics in detail
+- **[Website Performance Optimalisatie](/blog/website-performance-optimalisatie)** - Snelheid verbeteren
+- **[Goed van Start met SEO](/blog/goed-van-start-met-seo)** - SEO basis uitgelegd

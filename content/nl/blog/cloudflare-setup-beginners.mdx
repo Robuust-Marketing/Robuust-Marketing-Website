@@ -1,0 +1,429 @@
+---
+title: "Cloudflare Instellen: Complete Beginners Guide"
+excerpt: "Stap-voor-stap handleiding om Cloudflare in te stellen voor je website. Van aanmelden tot configureren - alles voor een snellere, veiligere site."
+category: "Hosting & Servers"
+date: "15 januari 2025"
+readTime: "12 min"
+author: "Robuust Marketing"
+type: "guide"
+translations:
+  en: "cloudflare-setup-beginners"
+---
+
+Cloudflare is een van de krachtigste gratis tools om je website sneller en veiliger te maken. In deze guide nemen we je stap voor stap mee door de setup en configuratie.
+
+## Wat is Cloudflare?
+
+Cloudflare is een service die tussen je bezoekers en je server staat. Het biedt:
+
+- **CDN (Content Delivery Network):** Je content wordt wereldwijd gecached
+- **DDoS Bescherming:** Aanvallen worden automatisch geblokkeerd
+- **SSL Certificaat:** Gratis HTTPS voor je website
+- **Performance:** Optimalisaties voor snellere laadtijden
+- **Beveiliging:** Firewall en bot bescherming
+
+### Hoe Werkt Het?
+
+```
+Bezoeker → Cloudflare → Jouw Server
+                ↓
+         Cache, Security, Optimization
+```
+
+Cloudflare onderschept alle traffic naar je site, filtert kwaadaardig verkeer, serveert gecachte content waar mogelijk, en stuurt alleen legitieme verzoeken door naar je server.
+
+## Account Aanmaken
+
+### Stap 1: Registreren
+
+1. Ga naar cloudflare.com
+2. Klik op "Sign Up"
+3. Vul je e-mailadres en wachtwoord in
+4. Bevestig je e-mail
+
+### Stap 2: Site Toevoegen
+
+1. Klik op "Add a Site"
+2. Voer je domeinnaam in (zonder www)
+3. Selecteer het Free plan (of betaald als je dat wilt)
+4. Cloudflare scant je huidige DNS records
+
+### Stap 3: DNS Records Controleren
+
+Cloudflare importeert je huidige DNS records. Controleer:
+
+- [ ] Alle records zijn geïmporteerd
+- [ ] A records wijzen naar juiste IP
+- [ ] MX records voor e-mail zijn correct
+- [ ] Eventuele subdomeinen zijn aanwezig
+
+**Oranje wolk = Traffic gaat via Cloudflare (proxied)**
+**Grijze wolk = Direct naar server (DNS only)**
+
+### Stap 4: Nameservers Wijzigen
+
+Cloudflare geeft je twee nameservers, bijvoorbeeld:
+```
+adam.ns.cloudflare.com
+bella.ns.cloudflare.com
+```
+
+**Bij je domeinregistrar:**
+1. Log in bij je domeinprovider
+2. Ga naar DNS instellingen
+3. Wijzig nameservers naar Cloudflare's nameservers
+4. Wacht op propagatie (tot 24 uur, meestal sneller)
+
+**Let op:** Na wijziging beheer je DNS volledig via Cloudflare.
+
+## Basis Configuratie
+
+### SSL/TLS Instellingen
+
+**Ga naar:** SSL/TLS → Overview
+
+**Encryption mode keuzes:**
+
+| Mode | Beschrijving | Wanneer gebruiken |
+|------|--------------|-------------------|
+| Off | Geen encryptie | Nooit |
+| Flexible | HTTPS naar Cloudflare, HTTP naar server | Tijdelijke oplossing |
+| Full | HTTPS end-to-end, self-signed cert OK | Als je eigen SSL hebt |
+| Full (Strict) | HTTPS end-to-end, geldig cert vereist | Aanbevolen |
+
+**Aanbeveling:** Full (Strict) met een geldig SSL certificaat op je server.
+
+**Edge Certificates:**
+- Schakel "Always Use HTTPS" in
+- Schakel "Automatic HTTPS Rewrites" in
+
+### Caching Instellingen
+
+**Ga naar:** Caching → Configuration
+
+**Caching Level:**
+- Standard: Aanbevolen voor de meeste sites
+- Aggressive: Meer cachen, controleer of dynamische content correct werkt
+
+**Browser Cache TTL:**
+- Respect Existing Headers: Gebruik instellingen van je server
+- Of kies een specifieke tijd (4 uur is een goed startpunt)
+
+**Purge Cache:**
+Wanneer je wijzigingen maakt die niet zichtbaar worden:
+1. Ga naar Caching → Configuration
+2. Klik "Purge Everything"
+3. Of purge specifieke URL's
+
+### Speed Optimalisaties
+
+**Ga naar:** Speed → Optimization
+
+**Auto Minify:**
+- JavaScript: Aan
+- CSS: Aan
+- HTML: Aan
+
+**Brotli:**
+- Schakel in voor betere compressie
+
+**Rocket Loader (experimenteel):**
+- Test goed, kan JavaScript problemen veroorzaken
+- Uitschakelen als je problemen ervaart
+
+**Polish (Pro plan):**
+- Automatische afbeelding optimalisatie
+- WebP conversie
+
+### Firewall Instellingen
+
+**Ga naar:** Security → WAF
+
+**Security Level:**
+- Essentially Off: Geen bescherming
+- Low: Alleen ergste dreigingen
+- Medium: Aanbevolen
+- High: Strenger, kan false positives geven
+- I'm Under Attack: Alleen bij actieve aanval
+
+**Bot Fight Mode:**
+- Schakel in voor basisbescherming tegen bots
+
+**Browser Integrity Check:**
+- Schakel in (controleert op verdachte headers)
+
+## DNS Beheer
+
+### Records Toevoegen
+
+**Ga naar:** DNS → Records
+
+**A Record (IPv4):**
+```
+Type: A
+Name: @ (voor root domein) of subdomain
+IPv4 address: Je server IP
+Proxy status: Proxied (oranje wolk)
+```
+
+**CNAME Record:**
+```
+Type: CNAME
+Name: www
+Target: example.com
+Proxy status: Proxied
+```
+
+**MX Record (e-mail):**
+```
+Type: MX
+Name: @
+Mail server: mail.provider.com
+Priority: 10
+Proxy status: DNS only (grijs - MOET voor e-mail)
+```
+
+**TXT Record (verificatie, SPF, etc.):**
+```
+Type: TXT
+Name: @
+Content: v=spf1 include:_spf.google.com ~all
+```
+
+### Belangrijke Tips
+
+1. **E-mail records:** Nooit proxied, altijd DNS only
+2. **Subdomains:** Elk subdomain apart toevoegen
+3. **TTL:** Auto is prima voor de meeste gevallen
+4. **Proxy:** Schakel in voor CDN/security voordelen
+
+## Page Rules
+
+Page Rules laten je specifiek gedrag instellen per URL patroon.
+
+**Ga naar:** Rules → Page Rules
+
+### Nuttige Page Rules
+
+**Cache alles voor statische assets:**
+```
+URL: *example.com/wp-content/*
+Setting: Cache Level → Cache Everything
+Setting: Edge Cache TTL → a month
+```
+
+**Bypass cache voor admin:**
+```
+URL: *example.com/wp-admin/*
+Setting: Cache Level → Bypass
+Setting: Security Level → High
+```
+
+**Redirect www naar non-www:**
+```
+URL: www.example.com/*
+Setting: Forwarding URL (301)
+Target: https://example.com/$1
+```
+
+**Redirect HTTP naar HTTPS:**
+```
+URL: http://*example.com/*
+Setting: Always Use HTTPS
+```
+
+**Let op:** Free plan heeft 3 page rules. Prioriteit: van boven naar beneden.
+
+## Geavanceerde Features
+
+### Firewall Rules
+
+**Ga naar:** Security → WAF → Custom rules
+
+**Voorbeeld: Blokkeer specifieke landen:**
+```
+(ip.geoip.country in {"CN" "RU"})
+Action: Block
+```
+
+**Voorbeeld: Bescherm login pagina:**
+```
+(http.request.uri.path contains "/wp-login.php")
+Action: Managed Challenge
+```
+
+### Rate Limiting
+
+**Ga naar:** Security → WAF → Rate limiting rules
+
+Beperk het aantal verzoeken per IP:
+```
+If: URI Path contains /api/
+Rate: 100 requests per 10 seconds
+Action: Block
+```
+
+### Workers (geavanceerd)
+
+Cloudflare Workers zijn serverless functies aan de edge.
+
+**Gebruik cases:**
+- Custom redirects
+- A/B testing
+- Header modificatie
+- Edge-side includes
+
+**Ga naar:** Workers & Pages
+
+## WordPress Specifieke Setup
+
+### Aanbevolen Instellingen
+
+**SSL/TLS:**
+- Full (Strict) met SSL op server
+
+**Caching:**
+- Caching Level: Standard
+- Browser Cache TTL: 4 hours
+
+**Speed:**
+- Auto Minify: Alles aan
+- Brotli: Aan
+- Rocket Loader: Test eerst, vaak uit
+
+**Page Rules:**
+```
+1. *example.com/wp-admin/*
+   - Cache Level: Bypass
+   - Security Level: High
+
+2. *example.com/wp-content/*
+   - Cache Level: Cache Everything
+   - Edge Cache TTL: 1 month
+```
+
+### WordPress Plugin
+
+Installeer de officiële Cloudflare plugin:
+1. Plugins → Add New
+2. Zoek "Cloudflare"
+3. Installeer en activeer
+4. Koppel met je Cloudflare account
+
+**Features:**
+- Automatisch cache purgen bij wijzigingen
+- Optimale instellingen toepassen
+- APO (Automatic Platform Optimization) activeren
+
+### APO (Pro feature)
+
+Automatic Platform Optimization voor WordPress:
+- Cached complete HTML pagina's
+- Drastische snelheidsverbetering
+- $5/maand extra of inbegrepen bij Pro
+
+## Problemen Oplossen
+
+### Site Niet Bereikbaar
+
+**Controleer:**
+1. Zijn nameservers correct gewijzigd?
+2. Is propagatie compleet? (check via whatsmydns.net)
+3. Wijst het A record naar de juiste IP?
+4. Is je server bereikbaar? (test via DNS only mode)
+
+**Tijdelijke fix:**
+Zet Proxy status op DNS only (grijze wolk) om Cloudflare te bypassen.
+
+### SSL Errors
+
+**Error 525: SSL Handshake Failed**
+- Je server heeft geen geldig SSL certificaat
+- Fix: Installeer SSL op server of gebruik Flexible mode tijdelijk
+
+**Error 526: Invalid SSL Certificate**
+- SSL certificaat op server is ongeldig/verlopen
+- Fix: Vernieuw of installeer geldig certificaat
+
+**Redirect Loop:**
+- Cloudflare en server beide redirecten naar HTTPS
+- Fix: Schakel SSL redirect uit op server of gebruik Full mode
+
+### Cache Problemen
+
+**Wijzigingen niet zichtbaar:**
+1. Purge cache in Cloudflare
+2. Clear browser cache
+3. Test in incognito mode
+4. Check page rules die cachen forceren
+
+**Dynamische content gecached:**
+- Voeg query string toe: ?nocache=1
+- Maak page rule om te bypassen
+- Gebruik Cache-Control headers
+
+### Performance Problemen
+
+**Site traag via Cloudflare:**
+1. Check of origin server snel is (bypass Cloudflare om te testen)
+2. Review Rocket Loader (zet uit als JavaScript problemen)
+3. Check voor grote niet-gecachte resources
+4. Analyseer met Browser DevTools
+
+## Best Practices
+
+### Beveiliging
+
+- [ ] SSL op Full (Strict) met geldig cert
+- [ ] Security Level op Medium
+- [ ] Bot Fight Mode aan
+- [ ] Firewall rules voor admin pagina's
+- [ ] Twee-factor authenticatie voor Cloudflare account
+
+### Performance
+
+- [ ] Auto Minify aan voor JS, CSS, HTML
+- [ ] Brotli compressie aan
+- [ ] Juiste cache instellingen
+- [ ] Page rules voor statische content
+- [ ] APO voor WordPress (betaald)
+
+### Onderhoud
+
+- [ ] Monitor Analytics voor issues
+- [ ] Regelmatig security events checken
+- [ ] Cache purgen na grote wijzigingen
+- [ ] DNS records up-to-date houden
+
+## Checklist Na Setup
+
+- [ ] Nameservers gewijzigd en gepropageerd
+- [ ] SSL/TLS op correcte mode
+- [ ] Always HTTPS ingeschakeld
+- [ ] Auto Minify geconfigureerd
+- [ ] Brotli aan
+- [ ] Security Level ingesteld
+- [ ] Bot bescherming aan
+- [ ] Page rules geconfigureerd
+- [ ] WordPress plugin geïnstalleerd (indien van toepassing)
+- [ ] Test site volledig door
+
+## Conclusie
+
+Cloudflare is een krachtige, grotendeels gratis tool die elke website zou moeten gebruiken. De basis setup is eenvoudig:
+
+1. Account aanmaken
+2. Site toevoegen
+3. Nameservers wijzigen
+4. Basis instellingen configureren
+
+Begin met de standaard instellingen en optimaliseer gaandeweg. De meeste problemen komen door te agressieve cache instellingen of SSL misconfiguratie.
+
+Hulp nodig bij Cloudflare configuratie? [Neem contact met ons op](/contact).
+
+## Verdiepende artikelen
+
+- **[Website sneller met Cloudflare CDN](/blog/cloudflare-cdn-website-sneller)** - CDN optimalisatie
+- **[Cloudflare DNS Beheer](/blog/cloudflare-dns-beheer-meerdere-klanten)** - Geavanceerd DNS
+- **[Website Beveiligen met Cloudflare](/blog/cloudflare-beveiligen-ddos-firewall)** - DDoS bescherming
+- **[Cloudflare Page Rules](/blog/cloudflare-page-rules-redirect)** - Redirects en caching

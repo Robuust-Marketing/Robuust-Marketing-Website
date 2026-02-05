@@ -29,31 +29,59 @@ const blogSlugMappings = [
   ["wordpress-menu-aanpassen", "wordpress-menu-customization"],
   ["wordpress-pagina-dupliceren", "wordpress-duplicate-page"],
   ["tiktok-hooks-video-aandacht", "tiktok-hooks-video-attention"],
+  // Migrated from kennisbank (development)
+  ["react-fundamenten", "react-fundamentals"],
+  ["git-versiebeheer-basics", "git-version-control-basics"],
+  ["next-js-vs-traditionele-websites", "next-js-vs-traditional-websites"],
+  ["website-performance-optimalisatie", "website-performance-optimization"],
+  // Migrated from kennisbank (seo)
+  ["technische-seo-checklist", "technical-seo-checklist"],
+  ["lokale-seo-strategie", "local-seo-strategy"],
+  ["on-page-seo-optimalisatie", "on-page-seo-optimization"],
+  ["keyword-research-strategie", "keyword-research-strategy"],
+  ["website-autoriteit-linkbuilding", "website-authority-link-building"],
+  // Migrated from kennisbank (hosting)
+  ["cloudflare-setup-beginners", "cloudflare-setup-beginners"],
+  ["webhosting-kiezen-beginners", "web-hosting-for-beginners"],
+  ["website-beveiliging-basics", "website-security-basics"],
+  ["website-monitoring-uptime", "website-monitoring-uptime"],
+  // Migrated from kennisbank (social-media)
+  ["instagram-voor-bedrijven", "instagram-for-business"],
+  ["linkedin-strategie-b2b", "linkedin-b2b-strategy"],
+  ["waarom-social-media-belangrijk", "why-social-media-matters"],
+  ["content-planning", "content-planning"],
 ];
 
-// Kennisbank guides with different slugs per locale (NL category/slug | EN slug)
-const kennisbankSlugMappings = [
-  ["development", "git-versiebeheer-basics", "git-version-control-basics"],
-  ["development", "next-js-vs-traditionele-websites", "next-js-vs-traditional-websites"],
-  ["development", "react-fundamenten", "react-fundamentals"],
-  ["development", "website-performance-optimalisatie", "website-performance-optimization"],
-  ["hosting", "webhosting-kiezen-beginners", "web-hosting-for-beginners"],
-  ["hosting", "website-beveiliging-basics", "website-security-basics"],
-  ["seo", "keyword-research-strategie", "keyword-research-strategy"],
-  ["seo", "lokale-seo-strategie", "local-seo-strategy"],
-  ["seo", "on-page-seo-optimalisatie", "on-page-seo-optimization"],
-  ["seo", "technische-seo-checklist", "technical-seo-checklist"],
-  ["seo", "website-autoriteit-linkbuilding", "website-authority-link-building"],
-  ["social-media", "instagram-voor-bedrijven", "instagram-for-business"],
-  ["social-media", "linkedin-strategie-b2b", "linkedin-b2b-strategy"],
-  ["social-media", "waarom-social-media-belangrijk", "why-social-media-matters"],
+// Kennisbank migration redirects - redirect old kennisbank URLs to new blog URLs
+const kennisbankMigrationMappings = [
+  // development
+  { category: "development", nlSlug: "react-fundamenten", enSlug: "react-fundamentals" },
+  { category: "development", nlSlug: "git-versiebeheer-basics", enSlug: "git-version-control-basics" },
+  { category: "development", nlSlug: "next-js-vs-traditionele-websites", enSlug: "next-js-vs-traditional-websites" },
+  { category: "development", nlSlug: "website-performance-optimalisatie", enSlug: "website-performance-optimization" },
+  // seo
+  { category: "seo", nlSlug: "technische-seo-checklist", enSlug: "technical-seo-checklist" },
+  { category: "seo", nlSlug: "lokale-seo-strategie", enSlug: "local-seo-strategy" },
+  { category: "seo", nlSlug: "on-page-seo-optimalisatie", enSlug: "on-page-seo-optimization" },
+  { category: "seo", nlSlug: "keyword-research-strategie", enSlug: "keyword-research-strategy" },
+  { category: "seo", nlSlug: "website-autoriteit-linkbuilding", enSlug: "website-authority-link-building" },
+  // hosting
+  { category: "hosting", nlSlug: "cloudflare-setup-beginners", enSlug: "cloudflare-setup-beginners" },
+  { category: "hosting", nlSlug: "webhosting-kiezen-beginners", enSlug: "web-hosting-for-beginners" },
+  { category: "hosting", nlSlug: "website-beveiliging-basics", enSlug: "website-security-basics" },
+  { category: "hosting", nlSlug: "website-monitoring-uptime", enSlug: "website-monitoring-uptime" },
+  // social-media
+  { category: "social-media", nlSlug: "instagram-voor-bedrijven", enSlug: "instagram-for-business" },
+  { category: "social-media", nlSlug: "linkedin-strategie-b2b", enSlug: "linkedin-b2b-strategy" },
+  { category: "social-media", nlSlug: "waarom-social-media-belangrijk", enSlug: "why-social-media-matters" },
+  { category: "social-media", nlSlug: "content-planning", enSlug: "content-planning" },
 ];
 
-// Generate redirects for wrong slug usage on opposite locale
+// Generate redirects for blog slug corrections and kennisbank migration
 function generateSlugRedirects() {
   const redirects: Array<{ source: string; destination: string; permanent: boolean }> = [];
 
-  // Blog redirects
+  // Blog redirects - correct wrong locale slugs
   for (const [nlSlug, enSlug] of blogSlugMappings) {
     // EN path with NL slug → EN path with EN slug
     redirects.push({
@@ -69,18 +97,45 @@ function generateSlugRedirects() {
     });
   }
 
-  // Kennisbank redirects
-  for (const [category, nlSlug, enSlug] of kennisbankSlugMappings) {
-    // EN path (resources) with NL slug → EN path with EN slug
+  // Kennisbank migration redirects - old kennisbank URLs → new blog URLs
+  for (const { category, nlSlug, enSlug } of kennisbankMigrationMappings) {
+    // NL: /kennisbank/{category}/{slug} → /blog/{slug}
     redirects.push({
-      source: `/en/resources/${category}/${nlSlug}`,
-      destination: `/en/resources/${category}/${enSlug}`,
+      source: `/nl/kennisbank/${category}/${nlSlug}`,
+      destination: `/nl/blog/${nlSlug}`,
       permanent: true,
     });
-    // NL path (kennisbank) with EN slug → NL path with NL slug
+    // EN: /resources/{category}/{slug} → /blog/{slug}
     redirects.push({
-      source: `/nl/kennisbank/${category}/${enSlug}`,
-      destination: `/nl/kennisbank/${category}/${nlSlug}`,
+      source: `/en/resources/${category}/${enSlug}`,
+      destination: `/en/blog/${enSlug}`,
+      permanent: true,
+    });
+  }
+
+  // Kennisbank index redirects
+  redirects.push({
+    source: "/nl/kennisbank",
+    destination: "/nl/blog",
+    permanent: true,
+  });
+  redirects.push({
+    source: "/en/resources",
+    destination: "/en/blog",
+    permanent: true,
+  });
+
+  // Kennisbank category redirects
+  const categories = ["development", "seo", "hosting", "social-media"];
+  for (const category of categories) {
+    redirects.push({
+      source: `/nl/kennisbank/${category}`,
+      destination: "/nl/blog",
+      permanent: true,
+    });
+    redirects.push({
+      source: `/en/resources/${category}`,
+      destination: "/en/blog",
       permanent: true,
     });
   }

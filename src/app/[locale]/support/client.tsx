@@ -47,7 +47,7 @@ export default function SupportPageClient() {
   ];
 
   const resources = [
-    { id: "kennisbank", icon: Book, href: "/kennisbank", external: false },
+    { id: "blog", icon: Book, href: "/blog", external: false },
     { id: "documentation", icon: FileText, href: "/faq", external: false },
     { id: "status", icon: Wrench, href: "https://status.robuustmarketing.nl", external: true },
   ];

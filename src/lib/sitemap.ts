@@ -1,5 +1,4 @@
 import { getAllBlogPosts, type BlogPostMeta } from "./blog";
-import { getAllGuides, type CategorySlug, type GuideMeta } from "./kennisbank";
 import { getPortfolioItems } from "@/data/portfolio";
 import { type Locale, locales, defaultLocale } from "@/i18n/config";
 
@@ -10,7 +9,6 @@ const routeTranslations: Record<string, Record<Locale, string>> = {
   diensten: { nl: "diensten", en: "services" },
   tarieven: { nl: "tarieven", en: "pricing" },
   offerte: { nl: "offerte", en: "quote" },
-  kennisbank: { nl: "kennisbank", en: "resources" },
   werkwijze: { nl: "werkwijze", en: "approach" },
   over: { nl: "over", en: "about" },
   voorwaarden: { nl: "voorwaarden", en: "terms" },
@@ -151,7 +149,6 @@ export function getSitemapIndex(): { loc: string; lastmod: string }[] {
     { loc: `${BASE_URL}/sitemap/pages.xml`, lastmod: today },
     { loc: `${BASE_URL}/sitemap/services.xml`, lastmod: today },
     { loc: `${BASE_URL}/sitemap/blog.xml`, lastmod: today },
-    { loc: `${BASE_URL}/sitemap/kennisbank.xml`, lastmod: today },
     { loc: `${BASE_URL}/sitemap/portfolio.xml`, lastmod: today },
     { loc: `${BASE_URL}/sitemap/landing-pages.xml`, lastmod: today },
   ];
@@ -304,115 +301,6 @@ export function getBlogSitemap(): SitemapEntry[] {
           changefreq: "monthly",
           priority: 0.7,
           // No alternates for English-only posts
-        });
-      }
-    }
-  }
-
-  return entries;
-}
-
-// Kennisbank sitemap with translation support (similar to blog)
-export function getKennisbankSitemap(): SitemapEntry[] {
-  const entries: SitemapEntry[] = [];
-  const categories: CategorySlug[] = ["development", "seo", "hosting", "social-media"];
-
-  // Get guides for each locale
-  const nlGuides = getAllGuides("nl");
-  const enGuides = getAllGuides("en");
-
-  // Create a map of English guides by slug for quick lookup
-  const enGuidesBySlug = new Map<string, GuideMeta>();
-  for (const guide of enGuides) {
-    enGuidesBySlug.set(guide.slug, guide);
-  }
-
-  // Track which English guides have been added (to avoid duplicates)
-  const addedEnSlugs = new Set<string>();
-
-  // Kennisbank index pages - both locales
-  for (const locale of locales) {
-    entries.push({
-      loc: buildUrl("/kennisbank", locale),
-      lastmod: formatDate(),
-      changefreq: "weekly",
-      priority: 0.8,
-      alternates: buildAlternates("/kennisbank"),
-    });
-
-    // Glossary page
-    entries.push({
-      loc: buildUrl("/kennisbank/glossary", locale),
-      lastmod: formatDate(),
-      changefreq: "monthly",
-      priority: 0.6,
-      alternates: buildAlternates("/kennisbank/glossary"),
-    });
-  }
-
-  // Category pages - both locales
-  for (const category of categories) {
-    const categoryPath = `/kennisbank/${category}`;
-
-    for (const locale of locales) {
-      entries.push({
-        loc: buildUrl(categoryPath, locale),
-        lastmod: formatDate(),
-        changefreq: "weekly",
-        priority: 0.7,
-        alternates: buildAlternates(categoryPath),
-      });
-    }
-  }
-
-  // Process Dutch guides and their translations
-  for (const nlGuide of nlGuides) {
-    const enSlug = nlGuide.translations?.en;
-    const enGuide = enSlug ? enGuidesBySlug.get(enSlug) : null;
-    const basePath = `/kennisbank/${nlGuide.categorySlug}`;
-
-    // Generate entry for Dutch locale
-    entries.push({
-      loc: buildUrl(`${basePath}/${nlGuide.slug}`, "nl"),
-      lastmod: formatDate(),
-      changefreq: "monthly",
-      priority: 0.6,
-      alternates: enGuide
-        ? buildAlternatesWithTranslations(basePath, {
-            nl: nlGuide.slug,
-            en: enSlug!,
-          })
-        : undefined, // No alternates if no translation exists
-    });
-
-    // Generate entry for English locale if translation exists
-    if (enGuide && enSlug) {
-      entries.push({
-        loc: buildUrl(`${basePath}/${enSlug}`, "en"),
-        lastmod: formatDate(),
-        changefreq: "monthly",
-        priority: 0.6,
-        alternates: buildAlternatesWithTranslations(basePath, {
-          nl: nlGuide.slug,
-          en: enSlug,
-        }),
-      });
-      addedEnSlugs.add(enSlug);
-    }
-  }
-
-  // Add any English-only guides that don't have Dutch translations
-  for (const enGuide of enGuides) {
-    if (!addedEnSlugs.has(enGuide.slug)) {
-      const nlSlug = enGuide.translations?.nl;
-      // Only add if there's no Dutch translation (otherwise it was already added above)
-      if (!nlSlug) {
-        entries.push({
-          loc: buildUrl(`/kennisbank/${enGuide.categorySlug}/${enGuide.slug}`, "en"),
-          lastmod: formatDate(),
-          changefreq: "monthly",
-          priority: 0.6,
-          // No alternates for English-only guides
         });
       }
     }

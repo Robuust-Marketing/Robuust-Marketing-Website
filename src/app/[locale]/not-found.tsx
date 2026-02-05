@@ -4,14 +4,13 @@ import { useState, useEffect, useCallback } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import NextLink from "next/link";
-import { Search, FileText, Briefcase, BookOpen, Loader2 } from "lucide-react";
+import { Search, FileText, Briefcase, Loader2 } from "lucide-react";
 import type { SearchResult } from "@/app/api/search/route";
 
 const typeIcons = {
   service: Briefcase,
   portfolio: FileText,
   blog: FileText,
-  kennisbank: BookOpen,
 };
 
 export default function NotFound() {
