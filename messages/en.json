@@ -8,6 +8,7 @@
     "portfolio": "Portfolio",
     "werkwijze": "How We Work",
     "tooling": "Tools",
+    "blog": "Resources",
     "kennisbank": "Resources",
     "over": "About",
     "contact": "Contact",
@@ -1979,11 +1980,26 @@
       "question3": "Do you also offer maintenance?"
     }
   },
+  "blogCategoryPage": {
+    "blogTitle": "Blog | Robuust Marketing",
+    "metaDescription": "Articles about {category} - tips, trends and in-depth guides.",
+    "backToOverview": "Back to overview",
+    "category": "Category",
+    "articleCount": "{count, plural, =1 {# article} other {# articles}}",
+    "heroSubtitle": "All articles about {category}",
+    "relatedService": "Related service",
+    "viewService": "View service",
+    "allCategories": "Categories",
+    "allArticles": "All articles",
+    "noArticles": "No articles in this category yet."
+  },
   "blogPage": {
     "badge": "Blog",
     "titleLine1": "Insights &",
     "titleLine2": "articles",
     "subtitle": "Tips, trends and in-depth articles about SEO, social media and online marketing.",
+    "featured": "Featured",
+    "readArticle": "Read article",
     "newsletter": {
       "title": "Stay informed",
       "subtitle": "Receive the latest articles and tips in your inbox monthly.",

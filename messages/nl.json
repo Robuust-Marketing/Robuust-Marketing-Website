@@ -8,6 +8,7 @@
     "portfolio": "Portfolio",
     "werkwijze": "Werkwijze",
     "tooling": "Tooling",
+    "blog": "Kennisbank",
     "kennisbank": "Kennisbank",
     "over": "Over",
     "contact": "Contact",
@@ -1991,11 +1992,26 @@
       "question3": "Bieden jullie ook onderhoud?"
     }
   },
+  "blogCategoryPage": {
+    "blogTitle": "Blog | Robuust Marketing",
+    "metaDescription": "Artikelen over {category} - tips, trends en diepgaande guides.",
+    "backToOverview": "Terug naar overzicht",
+    "category": "Categorie",
+    "articleCount": "{count, plural, =1 {# artikel} other {# artikelen}}",
+    "heroSubtitle": "Alle artikelen over {category}",
+    "relatedService": "Gerelateerde dienst",
+    "viewService": "Bekijk dienst",
+    "allCategories": "Categorieën",
+    "allArticles": "Alle artikelen",
+    "noArticles": "Nog geen artikelen in deze categorie."
+  },
   "blogPage": {
     "badge": "Blog",
     "titleLine1": "Insights &",
     "titleLine2": "artikelen",
     "subtitle": "Tips, trends en diepgaande artikelen over SEO, social media en online marketing.",
+    "featured": "Uitgelicht",
+    "readArticle": "Lees artikel",
     "newsletter": {
       "title": "Blijf op de hoogte",
       "subtitle": "Ontvang maandelijks de nieuwste artikelen en tips in je inbox.",
