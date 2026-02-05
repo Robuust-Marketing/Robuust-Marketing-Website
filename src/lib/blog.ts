@@ -3,6 +3,10 @@ import path from "path";
 import matter from "gray-matter";
 import { type Locale, defaultLocale } from "@/i18n/config";
 
+// Re-export categoryToSlug from utils for server-side usage
+export { categoryToSlug } from "./category-utils";
+import { categoryToSlug } from "./category-utils";
+
 function getBlogDir(locale: Locale): string {
   return path.join(process.cwd(), `content/${locale}/blog`);
 }
@@ -224,6 +228,34 @@ export function getBlogPostsByCategory(category: string, locale: Locale = defaul
   return allPosts.filter(
     (post) => post.category.toLowerCase() === category.toLowerCase()
   );
+}
+
+/**
+ * Get category info by slug
+ */
+export function getCategoryBySlug(slug: string, locale: Locale = defaultLocale): { name: string; count: number } | null {
+  const categories = getBlogCategories(locale);
+  return categories.find((cat) => categoryToSlug(cat.name) === slug) || null;
+}
+
+/**
+ * Get all unique category slugs for static params generation
+ */
+export function getAllCategorySlugs(locale: Locale = defaultLocale): string[] {
+  const categories = getBlogCategories(locale);
+  const allLabel = locale === "en" ? "All articles" : "Alle artikelen";
+  return categories
+    .filter((cat) => cat.name !== allLabel)
+    .map((cat) => categoryToSlug(cat.name));
+}
+
+/**
+ * Get posts by category slug
+ */
+export function getBlogPostsByCategorySlug(slug: string, locale: Locale = defaultLocale): BlogPostMeta[] {
+  const category = getCategoryBySlug(slug, locale);
+  if (!category) return [];
+  return getBlogPostsByCategory(category.name, locale);
 }
 
 export function getFeaturedBlogPost(locale: Locale = defaultLocale): BlogPostMeta | null {

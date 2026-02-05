@@ -134,7 +134,7 @@ export default function SocialMediaPageClient() {
               variant="outline"
               className="border-white/20 text-white hover:bg-white/5"
             >
-              <Link href={{ pathname: "/kennisbank/[category]", params: { category: "social-media" } }}>
+              <Link href="/blog">
                 {t("secondaryButton")}
               </Link>
             </Button>

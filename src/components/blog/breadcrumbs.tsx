@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/routing";
 import { ChevronRight, Home } from "lucide-react";
+import { categoryToSlug } from "@/lib/category-utils";
 
 interface BreadcrumbsProps {
   category: string;
@@ -7,6 +8,8 @@ interface BreadcrumbsProps {
 }
 
 export function Breadcrumbs({ category, title }: BreadcrumbsProps) {
+  const categorySlug = categoryToSlug(category);
+  
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
       <ol className="flex items-center flex-wrap gap-1 text-sm text-muted-foreground">
@@ -31,7 +34,12 @@ export function Breadcrumbs({ category, title }: BreadcrumbsProps) {
           <ChevronRight className="h-4 w-4 mx-1" />
         </li>
         <li className="flex items-center">
-          <span className="text-accent">{category}</span>
+          <Link 
+            href={{ pathname: "/blog/category/[slug]", params: { slug: categorySlug } }}
+            className="text-accent hover:text-accent/80 transition-colors"
+          >
+            {category}
+          </Link>
         </li>
         <li className="flex items-center" aria-hidden="true">
           <ChevronRight className="h-4 w-4 mx-1" />

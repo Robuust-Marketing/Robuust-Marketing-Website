@@ -95,6 +95,7 @@ export const routing = defineRouting({
     },
     '/blog': '/blog',
     '/blog/[slug]': '/blog/[slug]',
+    '/blog/category/[slug]': '/blog/category/[slug]',
     '/portfolio': '/portfolio',
     '/portfolio/[slug]': '/portfolio/[slug]',
     '/contact': '/contact',
