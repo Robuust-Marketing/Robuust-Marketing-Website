@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Clock, Tag, Calendar, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings, getTranslatedSlug } from "@/lib/blog";
+import { categoryToSlug } from "@/lib/category-utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { setRequestLocale } from "next-intl/server";
 import { locales, type Locale } from "@/i18n/config";
@@ -273,10 +274,13 @@ export default async function BlogPostPage({
               {/* Header */}
               <header className="mb-8">
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
+                  <Link
+                    href={{ pathname: "/blog/category/[slug]", params: { slug: categoryToSlug(post.category) } }}
+                    className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
+                  >
                     <Tag className="h-3 w-3" aria-hidden="true" />
                     {post.category}
-                  </span>
+                  </Link>
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
