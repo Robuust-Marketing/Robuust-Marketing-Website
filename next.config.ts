@@ -41,15 +41,15 @@ const blogSlugMappings = [
   ["keyword-research-strategie", "keyword-research-strategy"],
   ["website-autoriteit-linkbuilding", "website-authority-link-building"],
   // Migrated from kennisbank (hosting)
-  ["cloudflare-setup-beginners", "cloudflare-setup-beginners"],
+  ["cloudflare-instellen-beginners", "cloudflare-setup-beginners"],
   ["webhosting-kiezen-beginners", "web-hosting-for-beginners"],
   ["website-beveiliging-basics", "website-security-basics"],
-  ["website-monitoring-uptime", "website-monitoring-uptime"],
+  ["website-monitoring-beschikbaarheid", "website-monitoring-uptime"],
   // Migrated from kennisbank (social-media)
   ["instagram-voor-bedrijven", "instagram-for-business"],
   ["linkedin-strategie-b2b", "linkedin-b2b-strategy"],
   ["waarom-social-media-belangrijk", "why-social-media-matters"],
-  ["content-planning", "content-planning"],
+  ["social-media-contentplanning", "content-planning"],
 ];
 
 // Kennisbank migration redirects - redirect old kennisbank URLs to new blog URLs
@@ -66,15 +66,15 @@ const kennisbankMigrationMappings = [
   { category: "seo", nlSlug: "keyword-research-strategie", enSlug: "keyword-research-strategy" },
   { category: "seo", nlSlug: "website-autoriteit-linkbuilding", enSlug: "website-authority-link-building" },
   // hosting
-  { category: "hosting", nlSlug: "cloudflare-setup-beginners", enSlug: "cloudflare-setup-beginners" },
+  { category: "hosting", nlSlug: "cloudflare-instellen-beginners", enSlug: "cloudflare-setup-beginners" },
   { category: "hosting", nlSlug: "webhosting-kiezen-beginners", enSlug: "web-hosting-for-beginners" },
   { category: "hosting", nlSlug: "website-beveiliging-basics", enSlug: "website-security-basics" },
-  { category: "hosting", nlSlug: "website-monitoring-uptime", enSlug: "website-monitoring-uptime" },
+  { category: "hosting", nlSlug: "website-monitoring-beschikbaarheid", enSlug: "website-monitoring-uptime" },
   // social-media
   { category: "social-media", nlSlug: "instagram-voor-bedrijven", enSlug: "instagram-for-business" },
   { category: "social-media", nlSlug: "linkedin-strategie-b2b", enSlug: "linkedin-b2b-strategy" },
   { category: "social-media", nlSlug: "waarom-social-media-belangrijk", enSlug: "why-social-media-matters" },
-  { category: "social-media", nlSlug: "content-planning", enSlug: "content-planning" },
+  { category: "social-media", nlSlug: "social-media-contentplanning", enSlug: "content-planning" },
 ];
 
 // Generate redirects for blog slug corrections and kennisbank migration
@@ -83,6 +83,9 @@ function generateSlugRedirects() {
 
   // Blog redirects - correct wrong locale slugs
   for (const [nlSlug, enSlug] of blogSlugMappings) {
+    // Skip when slugs are identical (would cause infinite redirect loop)
+    if (nlSlug === enSlug) continue;
+
     // EN path with NL slug → EN path with EN slug
     redirects.push({
       source: `/en/blog/${nlSlug}`,
