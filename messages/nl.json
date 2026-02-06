@@ -1838,6 +1838,10 @@
     "resources": {
       "title": "Handige bronnen",
       "subtitle": "Zelf aan de slag? Bekijk onze documentatie en handleidingen",
+      "blog": {
+        "title": "Blog",
+        "description": "Artikelen en tips over webontwikkeling en online marketing."
+      },
       "kennisbank": {
         "title": "Kennisbank",
         "description": "Handleidingen en tutorials voor veelvoorkomende taken."

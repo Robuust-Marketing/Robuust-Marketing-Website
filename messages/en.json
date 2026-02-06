@@ -1826,6 +1826,10 @@
     "resources": {
       "title": "Useful resources",
       "subtitle": "Want to get started yourself? Check out our documentation and guides",
+      "blog": {
+        "title": "Blog",
+        "description": "Articles and tips about web development and online marketing."
+      },
       "kennisbank": {
         "title": "Knowledge Base",
         "description": "Guides and tutorials for common tasks."

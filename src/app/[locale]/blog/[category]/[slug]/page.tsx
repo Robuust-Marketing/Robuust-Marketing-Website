@@ -272,7 +272,7 @@ export default async function BlogPostPage({
       <div className="min-h-screen pt-32 pb-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {/* Breadcrumbs */}
-          <Breadcrumbs category={post.category} title={post.title} />
+          <Breadcrumbs category={post.category} title={post.title} categorySlug={correctCategorySlug} />
 
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             {/* Main Content */}
