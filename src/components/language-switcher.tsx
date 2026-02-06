@@ -5,6 +5,7 @@ import { Link, usePathname, type Locale, type Pathnames } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { useBlogTranslationOptional } from "@/contexts/blog-translation-context";
 import { usePathname as useNextPathname } from "next/navigation";
+import { translateCategorySlug } from "@/lib/category-utils";
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -12,8 +13,8 @@ interface LanguageSwitcherProps {
 
 // Type for dynamic route hrefs
 type DynamicHref =
-  | { pathname: "/blog/[slug]"; params: { slug: string } }
-  | { pathname: "/blog/category/[slug]"; params: { slug: string } }
+  | { pathname: "/blog/[category]/[slug]"; params: { category: string; slug: string } }
+  | { pathname: "/blog/[category]"; params: { category: string } }
   | { pathname: "/portfolio/[slug]"; params: { slug: string } }
   | { pathname: "/tooling/[slug]"; params: { slug: string } };
 
@@ -26,36 +27,49 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const blogContext = useBlogTranslationOptional();
   const otherLocale: Locale = locale === "nl" ? "en" : "nl";
 
-  // Check if we're on a blog page and have translations
-  const getBlogTranslatedHref = (): { pathname: "/blog/[slug]"; params: { slug: string } } | null => {
+  // Check if we're on a blog post page and have translations
+  const getBlogTranslatedHref = (): { pathname: "/blog/[category]/[slug]"; params: { category: string; slug: string } } | null => {
     if (!blogContext?.translations) return null;
 
-    // Check if this is a blog page (but not a category page)
-    const blogMatch = nextPathname.match(/^(\/en|\/nl)?\/blog\/(?!category\/)([^/]+)$/);
+    // Match blog post: /blog/[category]/[slug]
+    const blogMatch = nextPathname.match(/^(\/en|\/nl)?\/blog\/([^/]+)\/([^/]+)$/);
     if (!blogMatch) return null;
 
+    const currentCategorySlug = blogMatch[2];
     const targetSlug = blogContext.translations[otherLocale];
     if (!targetSlug) return null;
 
-    return { pathname: "/blog/[slug]", params: { slug: targetSlug } };
+    // Translate category slug
+    const targetCategorySlug = translateCategorySlug(currentCategorySlug, locale, otherLocale) || currentCategorySlug;
+
+    // Use categorySlug from context if available
+    const finalCategorySlug = blogContext.categorySlug
+      ? (locale === otherLocale ? blogContext.categorySlug : targetCategorySlug)
+      : targetCategorySlug;
+
+    return { pathname: "/blog/[category]/[slug]", params: { category: finalCategorySlug, slug: targetSlug } };
   };
 
   // Get href for dynamic routes that need params
-  // Use nextPathname as fallback since usePathname from next-intl can sometimes return patterns
   const getDynamicHref = (): DynamicHref | null => {
     // Strip locale prefix from nextPathname for matching
     const rawPath = nextPathname.replace(/^\/(en|nl)/, "") || "/";
 
-    // Blog category: /blog/category/[slug]
-    const blogCategoryMatch = rawPath.match(/^\/blog\/category\/([^/\[]+)$/);
-    if (blogCategoryMatch) {
-      return { pathname: "/blog/category/[slug]", params: { slug: blogCategoryMatch[1] } };
+    // Blog post: /blog/[category]/[slug]
+    const blogPostMatch = rawPath.match(/^\/blog\/([^/]+)\/([^/]+)$/);
+    if (blogPostMatch) {
+      const categorySlug = blogPostMatch[1];
+      const postSlug = blogPostMatch[2];
+      const translatedCategory = translateCategorySlug(categorySlug, locale, otherLocale) || categorySlug;
+      return { pathname: "/blog/[category]/[slug]", params: { category: translatedCategory, slug: postSlug } };
     }
 
-    // Blog: /blog/[slug] (but not category pages)
-    const blogMatch = rawPath.match(/^\/blog\/(?!category\/)([^/\[]+)$/);
-    if (blogMatch) {
-      return { pathname: "/blog/[slug]", params: { slug: blogMatch[1] } };
+    // Blog category: /blog/[category]
+    const blogCategoryMatch = rawPath.match(/^\/blog\/([^/]+)$/);
+    if (blogCategoryMatch) {
+      const categorySlug = blogCategoryMatch[1];
+      const translatedCategory = translateCategorySlug(categorySlug, locale, otherLocale) || categorySlug;
+      return { pathname: "/blog/[category]", params: { category: translatedCategory } };
     }
 
     // Portfolio: /portfolio/[slug]

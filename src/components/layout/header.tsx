@@ -97,6 +97,7 @@ interface BlogPostMeta {
   title: string;
   excerpt: string;
   category: string;
+  categorySlug: string;
 }
 
 export function Header() {
@@ -718,7 +719,7 @@ export function Header() {
                             transition={{ delay: 0.1 + index * 0.05 }}
                           >
                             <Link
-                              href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }}
+                              href={{ pathname: "/blog/[category]/[slug]", params: { category: post.categorySlug, slug: post.slug } }}
                               className="block rounded-xl bg-white/5 border border-white/5 p-4 hover:bg-white/10 hover:border-white/10 transition-all duration-200 group"
                               onClick={() => setActiveMenu(null)}
                             >

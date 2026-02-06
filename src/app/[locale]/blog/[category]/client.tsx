@@ -194,7 +194,7 @@ export function BlogCategoryPage({
                   {categories.map((cat) => (
                     <li key={cat.slug}>
                       <Link
-                        href={{ pathname: "/blog/category/[slug]", params: { slug: cat.slug } }}
+                        href={{ pathname: "/blog/[category]", params: { category: cat.slug } }}
                         className={cn(
                           "flex items-center justify-between w-full px-3 py-2 rounded-lg text-left transition-colors",
                           cat.isActive

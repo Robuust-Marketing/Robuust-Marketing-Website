@@ -5,11 +5,12 @@ import { categoryToSlug } from "@/lib/category-utils";
 interface BreadcrumbsProps {
   category: string;
   title: string;
+  categorySlug?: string;
 }
 
-export function Breadcrumbs({ category, title }: BreadcrumbsProps) {
-  const categorySlug = categoryToSlug(category);
-  
+export function Breadcrumbs({ category, title, categorySlug }: BreadcrumbsProps) {
+  const catSlug = categorySlug || categoryToSlug(category);
+
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
       <ol className="flex items-center flex-wrap gap-1 text-sm text-muted-foreground">
@@ -34,8 +35,8 @@ export function Breadcrumbs({ category, title }: BreadcrumbsProps) {
           <ChevronRight className="h-4 w-4 mx-1" />
         </li>
         <li className="flex items-center">
-          <Link 
-            href={{ pathname: "/blog/category/[slug]", params: { slug: categorySlug } }}
+          <Link
+            href={{ pathname: "/blog/[category]", params: { category: catSlug } }}
             className="text-accent hover:text-accent/80 transition-colors"
           >
             {category}

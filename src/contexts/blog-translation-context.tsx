@@ -10,41 +10,46 @@ interface BlogTranslations {
 
 interface BlogTranslationContextValue {
   translations: BlogTranslations | null;
-  setTranslations: (translations: BlogTranslations | null) => void;
+  categorySlug?: string;
+  setTranslations: (translations: BlogTranslations | null, categorySlug?: string) => void;
   getTranslatedPath: (currentLocale: Locale, targetLocale: Locale, currentPath: string) => string;
 }
 
 const BlogTranslationContext = createContext<BlogTranslationContextValue | null>(null);
 
 export function BlogTranslationProvider({ children }: { children: ReactNode }) {
-  const [translations, setTranslations] = useState<BlogTranslations | null>(null);
+  const [translations, setTranslationsState] = useState<BlogTranslations | null>(null);
+  const [categorySlug, setCategorySlug] = useState<string | undefined>();
+
+  const setTranslations = useCallback((translations: BlogTranslations | null, catSlug?: string) => {
+    setTranslationsState(translations);
+    setCategorySlug(catSlug);
+  }, []);
 
   const getTranslatedPath = useCallback(
     (currentLocale: Locale, targetLocale: Locale, currentPath: string): string => {
-      // Only handle blog paths
-      const blogMatch = currentPath.match(/^(\/en)?\/blog\/([^/]+)$/);
+      // Match blog post paths: /blog/[category]/[slug]
+      const blogMatch = currentPath.match(/^(\/en|\/nl)?\/blog\/([^/]+)\/([^/]+)$/);
       if (!blogMatch || !translations) {
-        // Not a blog path or no translations, use default behavior
         return null as unknown as string;
       }
 
-      const currentSlug = blogMatch[2];
       const targetSlug = translations[targetLocale];
 
       if (targetSlug) {
-        // We have a translated slug
         const basePath = targetLocale === "nl" ? "" : "/en";
-        return `${basePath}/blog/${targetSlug}`;
+        // categorySlug is already locale-specific from context
+        const catSlug = categorySlug || blogMatch[2];
+        return `${basePath}/blog/${catSlug}/${targetSlug}`;
       }
 
-      // No translation available, return null to indicate fallback to default behavior
       return null as unknown as string;
     },
-    [translations]
+    [translations, categorySlug]
   );
 
   return (
-    <BlogTranslationContext.Provider value={{ translations, setTranslations, getTranslatedPath }}>
+    <BlogTranslationContext.Provider value={{ translations, categorySlug, setTranslations, getTranslatedPath }}>
       {children}
     </BlogTranslationContext.Provider>
   );

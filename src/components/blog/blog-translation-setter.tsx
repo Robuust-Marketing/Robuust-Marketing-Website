@@ -12,12 +12,14 @@ interface BlogTranslationSetterProps {
   translations?: BlogTranslations;
   currentSlug: string;
   currentLocale: "nl" | "en";
+  categorySlug?: string;
 }
 
 export function BlogTranslationSetter({
   translations,
   currentSlug,
   currentLocale,
+  categorySlug,
 }: BlogTranslationSetterProps) {
   const { setTranslations } = useBlogTranslation();
 
@@ -28,13 +30,13 @@ export function BlogTranslationSetter({
       [currentLocale]: currentSlug,
     };
 
-    setTranslations(fullTranslations);
+    setTranslations(fullTranslations, categorySlug);
 
     // Clean up when unmounting
     return () => {
       setTranslations(null);
     };
-  }, [translations, currentSlug, currentLocale, setTranslations]);
+  }, [translations, currentSlug, currentLocale, categorySlug, setTranslations]);
 
   // This component doesn't render anything
   return null;

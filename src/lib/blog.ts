@@ -5,7 +5,7 @@ import { type Locale, defaultLocale } from "@/i18n/config";
 
 // Re-export categoryToSlug from utils for server-side usage
 export { categoryToSlug } from "./category-utils";
-import { categoryToSlug } from "./category-utils";
+import { categoryToSlug, getCategorySlug } from "./category-utils";
 
 function getBlogDir(locale: Locale): string {
   return path.join(process.cwd(), `content/${locale}/blog`);
@@ -25,6 +25,7 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   category: string;
+  categorySlug: string;
   date: string;
   readTime: string;
   author?: string;
@@ -40,6 +41,7 @@ export interface BlogPostMeta {
   title: string;
   excerpt: string;
   category: string;
+  categorySlug: string;
   date: string;
   readTime: string;
   author?: string;
@@ -90,24 +92,28 @@ export function getAllBlogPosts(locale: Locale = defaultLocale): BlogPostMeta[] 
 
   const files = fs.readdirSync(dir).filter((file) => file.endsWith(".mdx"));
 
+  const effectiveLocale = isFallback ? defaultLocale : locale;
+
   const posts = files
     .map((file) => {
       const slug = file.replace(".mdx", "");
       const filePath = path.join(dir, file);
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data, content } = matter(fileContent);
+      const category = data.category || "Algemeen";
 
       return {
         slug,
         title: data.title || "",
         excerpt: data.excerpt || "",
-        category: data.category || "Algemeen",
+        category,
+        categorySlug: getCategorySlug(category, effectiveLocale),
         date: data.date || "",
         readTime: data.readTime || calculateReadTime(content),
         author: data.author,
         featured: data.featured || false,
         image: data.image,
-        locale: isFallback ? defaultLocale : locale,
+        locale: effectiveLocale,
         isFallback,
         translations: data.translations,
       };
@@ -157,19 +163,22 @@ export function getBlogPost(slug: string, locale: Locale = defaultLocale): BlogP
 
   const fileContent = fs.readFileSync(actualPath, "utf-8");
   const { data, content } = matter(fileContent);
+  const effectiveLocale = isFallback ? defaultLocale : locale;
+  const category = data.category || "Algemeen";
 
   return {
     slug,
     title: data.title || "",
     excerpt: data.excerpt || "",
     content,
-    category: data.category || "Algemeen",
+    category,
+    categorySlug: getCategorySlug(category, effectiveLocale),
     date: data.date || "",
     readTime: data.readTime || calculateReadTime(content),
     author: data.author,
     featured: data.featured || false,
     image: data.image,
-    locale: isFallback ? defaultLocale : locale,
+    locale: effectiveLocale,
     isFallback,
     translations: data.translations,
   };
@@ -223,6 +232,20 @@ export function getAllBlogSlugsWithTranslations(locale: Locale): {
     });
 }
 
+/**
+ * Get all blog slugs with their category slugs for static params generation
+ */
+export function getAllBlogSlugsWithCategories(locale: Locale): {
+  category: string;
+  slug: string;
+}[] {
+  const posts = getAllBlogPosts(locale);
+  return posts.map((post) => ({
+    category: post.categorySlug,
+    slug: post.slug,
+  }));
+}
+
 export function getBlogPostsByCategory(category: string, locale: Locale = defaultLocale): BlogPostMeta[] {
   const allPosts = getAllBlogPosts(locale);
   return allPosts.filter(
@@ -235,7 +258,7 @@ export function getBlogPostsByCategory(category: string, locale: Locale = defaul
  */
 export function getCategoryBySlug(slug: string, locale: Locale = defaultLocale): { name: string; count: number } | null {
   const categories = getBlogCategories(locale);
-  return categories.find((cat) => categoryToSlug(cat.name) === slug) || null;
+  return categories.find((cat) => categoryToSlug(cat.name, locale) === slug) || null;
 }
 
 /**
@@ -246,7 +269,7 @@ export function getAllCategorySlugs(locale: Locale = defaultLocale): string[] {
   const allLabel = locale === "en" ? "All articles" : "Alle artikelen";
   return categories
     .filter((cat) => cat.name !== allLabel)
-    .map((cat) => categoryToSlug(cat.name));
+    .map((cat) => categoryToSlug(cat.name, locale));
 }
 
 /**

@@ -16,7 +16,7 @@ export function ArticleNavigation({ previousPost, nextPost }: ArticleNavigationP
     <nav aria-label="Artikelnavigatie" className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {previousPost ? (
         <Link
-          href={`/blog/${previousPost.slug}` as any}
+          href={{ pathname: "/blog/[category]/[slug]", params: { category: previousPost.categorySlug, slug: previousPost.slug } }}
           className="group flex flex-col p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 transition-all"
         >
           <span className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
@@ -34,7 +34,7 @@ export function ArticleNavigation({ previousPost, nextPost }: ArticleNavigationP
 
       {nextPost ? (
         <Link
-          href={`/blog/${nextPost.slug}` as any}
+          href={{ pathname: "/blog/[category]/[slug]", params: { category: nextPost.categorySlug, slug: nextPost.slug } }}
           className="group flex flex-col p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 transition-all md:text-right"
         >
           <span className="flex items-center gap-2 text-sm text-muted-foreground mb-2 md:justify-end">

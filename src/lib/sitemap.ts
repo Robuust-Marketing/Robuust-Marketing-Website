@@ -1,6 +1,7 @@
-import { getAllBlogPosts, type BlogPostMeta } from "./blog";
+import { getAllBlogPosts, getBlogCategories, type BlogPostMeta } from "./blog";
 import { getPortfolioItems } from "@/data/portfolio";
 import { type Locale, locales, defaultLocale } from "@/i18n/config";
+import { getCategorySlug, getAllCategorySlugsForLocale, translateCategorySlug } from "./category-utils";
 
 const BASE_URL = "https://robuustmarketing.nl";
 
@@ -88,6 +89,32 @@ function buildAlternatesWithTranslations(
   });
 
   return alternates;
+}
+
+// Build alternates for blog posts with translated category slugs and post slugs
+function buildBlogPostAlternates(
+  nlCategorySlug: string,
+  enCategorySlug: string,
+  nlPostSlug: string,
+  enPostSlug: string
+): { locale: string; url: string }[] {
+  return [
+    { locale: "nl", url: `${BASE_URL}/nl/blog/${nlCategorySlug}/${nlPostSlug}` },
+    { locale: "en", url: `${BASE_URL}/en/blog/${enCategorySlug}/${enPostSlug}` },
+    { locale: "x-default", url: `${BASE_URL}/nl/blog/${nlCategorySlug}/${nlPostSlug}` },
+  ];
+}
+
+// Build alternates for blog category pages with translated category slugs
+function buildCategoryAlternates(
+  nlCategorySlug: string,
+  enCategorySlug: string
+): { locale: string; url: string }[] {
+  return [
+    { locale: "nl", url: `${BASE_URL}/nl/blog/${nlCategorySlug}` },
+    { locale: "en", url: `${BASE_URL}/en/blog/${enCategorySlug}` },
+    { locale: "x-default", url: `${BASE_URL}/nl/blog/${nlCategorySlug}` },
+  ];
 }
 
 function formatDate(date?: string | Date): string {
@@ -241,6 +268,30 @@ export function getBlogSitemap(): SitemapEntry[] {
     });
   }
 
+  // Category listing pages
+  const nlCategorySlugs = getAllCategorySlugsForLocale("nl");
+  for (const nlSlug of nlCategorySlugs) {
+    const enSlug = translateCategorySlug(nlSlug, "nl", "en") || nlSlug;
+
+    // NL category page
+    entries.push({
+      loc: `${BASE_URL}/nl/blog/${nlSlug}`,
+      lastmod: formatDate(),
+      changefreq: "weekly",
+      priority: 0.7,
+      alternates: buildCategoryAlternates(nlSlug, enSlug),
+    });
+
+    // EN category page
+    entries.push({
+      loc: `${BASE_URL}/en/blog/${enSlug}`,
+      lastmod: formatDate(),
+      changefreq: "weekly",
+      priority: 0.7,
+      alternates: buildCategoryAlternates(nlSlug, enSlug),
+    });
+  }
+
   // Get posts for each locale
   const nlPosts = getAllBlogPosts("nl");
   const enPosts = getAllBlogPosts("en");
@@ -259,31 +310,37 @@ export function getBlogSitemap(): SitemapEntry[] {
     const enSlug = nlPost.translations?.en;
     const enPost = enSlug ? enPostsBySlug.get(enSlug) : null;
 
+    const nlCategorySlug = nlPost.categorySlug;
+
     // Generate entry for Dutch locale
     entries.push({
-      loc: buildUrl(`/blog/${nlPost.slug}`, "nl"),
+      loc: `${BASE_URL}/nl/blog/${nlCategorySlug}/${nlPost.slug}`,
       lastmod: formatDate(nlPost.date),
       changefreq: "monthly",
       priority: 0.7,
       alternates: enPost
-        ? buildAlternatesWithTranslations("/blog", {
-            nl: nlPost.slug,
-            en: enSlug!,
-          })
-        : undefined, // No alternates if no translation exists
+        ? buildBlogPostAlternates(
+            nlCategorySlug,
+            enPost.categorySlug,
+            nlPost.slug,
+            enSlug!,
+          )
+        : undefined,
     });
 
     // Generate entry for English locale if translation exists
     if (enPost && enSlug) {
       entries.push({
-        loc: buildUrl(`/blog/${enSlug}`, "en"),
+        loc: `${BASE_URL}/en/blog/${enPost.categorySlug}/${enSlug}`,
         lastmod: formatDate(enPost.date),
         changefreq: "monthly",
         priority: 0.7,
-        alternates: buildAlternatesWithTranslations("/blog", {
-          nl: nlPost.slug,
-          en: enSlug,
-        }),
+        alternates: buildBlogPostAlternates(
+          nlCategorySlug,
+          enPost.categorySlug,
+          nlPost.slug,
+          enSlug,
+        ),
       });
       addedEnSlugs.add(enSlug);
     }
@@ -296,11 +353,10 @@ export function getBlogSitemap(): SitemapEntry[] {
       // Only add if there's no Dutch translation (otherwise it was already added above)
       if (!nlSlug) {
         entries.push({
-          loc: buildUrl(`/blog/${enPost.slug}`, "en"),
+          loc: `${BASE_URL}/en/blog/${enPost.categorySlug}/${enPost.slug}`,
           lastmod: formatDate(enPost.date),
           changefreq: "monthly",
           priority: 0.7,
-          // No alternates for English-only posts
         });
       }
     }

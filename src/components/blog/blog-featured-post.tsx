@@ -11,6 +11,7 @@ interface BlogPostMeta {
   title: string;
   excerpt: string;
   category: string;
+  categorySlug?: string;
   date: string;
   readTime: string;
   featured?: boolean;
@@ -21,7 +22,7 @@ interface BlogFeaturedPostProps {
 }
 
 export function BlogFeaturedPost({ post }: BlogFeaturedPostProps) {
-  const categorySlug = categoryToSlug(post.category);
+  const catSlug = post.categorySlug || categoryToSlug(post.category);
   const t = useTranslations("blogPage");
 
   return (
@@ -38,13 +39,13 @@ export function BlogFeaturedPost({ post }: BlogFeaturedPostProps) {
               {t("featured")}
             </span>
             <Link
-              href={{ pathname: "/blog/category/[slug]", params: { slug: categorySlug } }}
+              href={{ pathname: "/blog/[category]", params: { category: catSlug } }}
               className="text-sm text-muted-foreground hover:text-accent transition-colors"
             >
               {post.category}
             </Link>
           </div>
-          <Link href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }}>
+          <Link href={{ pathname: "/blog/[category]/[slug]", params: { category: catSlug, slug: post.slug } }}>
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-accent transition-colors">
               {post.title}
             </h2>
@@ -57,8 +58,8 @@ export function BlogFeaturedPost({ post }: BlogFeaturedPostProps) {
               {post.readTime}
             </span>
           </div>
-          <Link 
-            href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }}
+          <Link
+            href={{ pathname: "/blog/[category]/[slug]", params: { category: catSlug, slug: post.slug } }}
             className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all"
           >
             {t("readArticle")}

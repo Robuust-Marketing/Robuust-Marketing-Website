@@ -3,8 +3,8 @@ import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { Clock, Tag, Calendar, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getBlogPost, getAllBlogSlugs, getAllBlogPosts, extractHeadings, getTranslatedSlug } from "@/lib/blog";
-import { categoryToSlug } from "@/lib/category-utils";
+import { getBlogPost, getAllBlogSlugsWithCategories, getAllBlogPosts, extractHeadings, getTranslatedSlug } from "@/lib/blog";
+import { getCategorySlug, translateCategorySlug } from "@/lib/category-utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { setRequestLocale } from "next-intl/server";
 import { locales, type Locale } from "@/i18n/config";
@@ -21,13 +21,12 @@ import {
 } from "@/components/blog";
 
 export async function generateStaticParams() {
-  // Generate params for all locales
-  const params: { locale: string; slug: string }[] = [];
+  const params: { locale: string; category: string; slug: string }[] = [];
 
   for (const locale of locales) {
-    const slugs = getAllBlogSlugs(locale);
-    for (const slug of slugs) {
-      params.push({ locale, slug });
+    const slugsWithCategories = getAllBlogSlugsWithCategories(locale);
+    for (const { category, slug } of slugsWithCategories) {
+      params.push({ locale, category, slug });
     }
   }
 
@@ -37,7 +36,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ locale: string; category: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
   const post = getBlogPost(slug, locale as Locale);
@@ -52,9 +51,13 @@ export async function generateMetadata({
   const nlSlug = locale === "nl" ? slug : (post.translations?.nl || null);
   const enSlug = locale === "en" ? slug : (post.translations?.en || null);
 
-  // Build hreflang alternates using helper (correctly adds /nl/ and /en/ prefixes)
-  const nlPath = nlSlug ? `/blog/${nlSlug}` : null;
-  const enPath = enSlug ? `/blog/${enSlug}` : null;
+  // Get category slugs for each locale
+  const nlCategorySlug = getCategorySlug(post.category, "nl" as Locale);
+  const enCategorySlug = getCategorySlug(post.category, "en" as Locale);
+
+  // Build hreflang alternates with category in path
+  const nlPath = nlSlug ? `/blog/${nlCategorySlug}/${nlSlug}` : null;
+  const enPath = enSlug ? `/blog/${enCategorySlug}/${enSlug}` : null;
   const alternates = generateDynamicAlternates(nlPath, enPath, locale);
 
   return {
@@ -191,9 +194,9 @@ function FallbackNotice({ locale }: { locale: Locale }) {
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ locale: string; category: string; slug: string }>;
 }) {
-  const { locale, slug } = await params;
+  const { locale, category: categoryParam, slug } = await params;
   setRequestLocale(locale as Locale);
 
   const post = getBlogPost(slug, locale as Locale);
@@ -202,12 +205,18 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  // Validate that the category param matches the post's actual category slug
+  const correctCategorySlug = post.categorySlug;
+  if (categoryParam !== correctCategorySlug) {
+    redirect(`/${locale}/blog/${correctCategorySlug}/${slug}`);
+  }
+
   // If showing fallback content and a translation exists, redirect to the translated slug
   if (post.isFallback && post.translations) {
     const translatedSlug = post.translations[locale as Locale];
     if (translatedSlug && translatedSlug !== slug) {
-      const basePath = locale === "nl" ? "" : `/${locale}`;
-      redirect(`${basePath}/blog/${translatedSlug}`);
+      const translatedCategorySlug = getCategorySlug(post.category, locale as Locale);
+      redirect(`/${locale}/blog/${translatedCategorySlug}/${translatedSlug}`);
     }
   }
 
@@ -223,8 +232,7 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== slug && p.category === post.category)
     .slice(0, 3);
 
-  const basePath = locale === "nl" ? "" : `/${locale}`;
-  const articleUrl = `https://robuustmarketing.nl${basePath}/blog/${slug}`;
+  const articleUrl = `https://robuustmarketing.nl/${locale}/blog/${correctCategorySlug}/${slug}`;
   const isoDate = parseDate(post.date);
 
   // Translations
@@ -247,6 +255,7 @@ export default async function BlogPostPage({
         translations={post.translations}
         currentSlug={slug}
         currentLocale={locale as "nl" | "en"}
+        categorySlug={correctCategorySlug}
       />
 
       {/* Skip Link */}
@@ -275,7 +284,7 @@ export default async function BlogPostPage({
               <header className="mb-8">
                 <div className="flex items-center gap-4 mb-4">
                   <Link
-                    href={{ pathname: "/blog/category/[slug]", params: { slug: categoryToSlug(post.category) } }}
+                    href={{ pathname: "/blog/[category]", params: { category: correctCategorySlug } }}
                     className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
                   >
                     <Tag className="h-3 w-3" aria-hidden="true" />
@@ -341,7 +350,7 @@ export default async function BlogPostPage({
                     {relatedPosts.map((relatedPost) => (
                       <Link
                         key={relatedPost.slug}
-                        href={{ pathname: "/blog/[slug]", params: { slug: relatedPost.slug } }}
+                        href={{ pathname: "/blog/[category]/[slug]", params: { category: relatedPost.categorySlug, slug: relatedPost.slug } }}
                         className="group rounded-xl bg-surface border border-white/5 hover:border-accent/30 p-6 transition-all"
                       >
                         <span className="text-xs font-medium text-accent mb-2 block">

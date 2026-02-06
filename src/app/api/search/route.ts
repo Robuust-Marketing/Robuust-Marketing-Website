@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
           type: "blog",
           title: post.title,
           description: post.excerpt,
-          href: `/blog/${post.slug}`,
+          href: `/blog/${post.categorySlug}/${post.slug}`,
         });
       }
     }

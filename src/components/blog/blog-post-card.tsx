@@ -10,6 +10,7 @@ interface BlogPostMeta {
   title: string;
   excerpt: string;
   category: string;
+  categorySlug?: string;
   date: string;
   readTime: string;
   featured?: boolean;
@@ -21,8 +22,8 @@ interface BlogPostCardProps {
 }
 
 export function BlogPostCard({ post, index }: BlogPostCardProps) {
-  const categorySlug = categoryToSlug(post.category);
-  
+  const catSlug = post.categorySlug || categoryToSlug(post.category);
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -35,7 +36,7 @@ export function BlogPostCard({ post, index }: BlogPostCardProps) {
         <div className="flex items-center gap-2 mb-3">
           <Tag className="h-4 w-4 text-accent" />
           <Link
-            href={{ pathname: "/blog/category/[slug]", params: { slug: categorySlug } }}
+            href={{ pathname: "/blog/[category]", params: { category: catSlug } }}
             className="text-xs font-medium text-accent hover:text-accent/80 transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
@@ -43,7 +44,7 @@ export function BlogPostCard({ post, index }: BlogPostCardProps) {
           </Link>
         </div>
         <Link
-          href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }}
+          href={{ pathname: "/blog/[category]/[slug]", params: { category: catSlug, slug: post.slug } }}
           className="flex-1 flex flex-col"
         >
           <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent transition-colors">
