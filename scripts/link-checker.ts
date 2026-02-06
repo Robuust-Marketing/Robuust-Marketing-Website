@@ -157,7 +157,7 @@ async function followRedirects(url: string, maxRedirects = 5): Promise<{
 }
 
 // Parse page and extract links, canonical, hreflang
-function parsePage(html: string, pageUrl: string): Omit<PageResult, "url" | "status" | "redirectedTo" | "canonicalStatus" | "canonicalRedirectsTo"> {
+function parsePage(html: string, pageUrl: string): Omit<PageResult, "url" | "status" | "isHtml" | "redirectedTo" | "canonicalStatus" | "canonicalRedirectsTo"> {
   const $ = cheerio.load(html);
   const errors: string[] = [];
   const warnings: string[] = [];
