@@ -42,6 +42,7 @@ for (const [nlName, nlSlug, enName, enSlug] of categoryMappings) {
 
 /**
  * Convert category name to URL-safe slug (locale-aware).
+ * If the category name belongs to the other locale, translates the slug to the target locale.
  * Falls back to generic slugification if category not found in mapping.
  */
 export function categoryToSlug(category: string, locale?: Locale): string {
@@ -50,12 +51,18 @@ export function categoryToSlug(category: string, locale?: Locale): string {
   if (locale === "en") {
     const slug = enNameToSlug.get(lower);
     if (slug) return slug;
+    // Category name might be NL — find the NL slug and translate to EN
+    const nlSlug = nlNameToSlug.get(lower);
+    if (nlSlug) return nlSlugToEnSlug.get(nlSlug) ?? nlSlug;
   } else if (locale === "nl") {
     const slug = nlNameToSlug.get(lower);
     if (slug) return slug;
+    // Category name might be EN — find the EN slug and translate to NL
+    const enSlug = enNameToSlug.get(lower);
+    if (enSlug) return enSlugToNlSlug.get(enSlug) ?? enSlug;
   }
 
-  // Try both maps if no locale or not found
+  // Try both maps if no locale specified
   const nlSlug = nlNameToSlug.get(lower);
   if (nlSlug) return nlSlug;
   const enSlug = enNameToSlug.get(lower);

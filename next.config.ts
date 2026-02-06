@@ -106,6 +106,21 @@ function generateSlugRedirects() {
       permanent: true,
     });
 
+    // Fully wrong locale: EN category + EN slug on NL path → NL category + NL slug
+    if (nlCatSlug !== enCatSlug) {
+      redirects.push({
+        source: `/nl/blog/${enCatSlug}/${enSlug}`,
+        destination: `/nl/blog/${nlCatSlug}/${nlSlug}`,
+        permanent: true,
+      });
+      // Fully wrong locale: NL category + NL slug on EN path → EN category + EN slug
+      redirects.push({
+        source: `/en/blog/${nlCatSlug}/${nlSlug}`,
+        destination: `/en/blog/${enCatSlug}/${enSlug}`,
+        permanent: true,
+      });
+    }
+
     // Also catch old flat URLs with wrong locale slug
     // EN flat with NL slug → new categorized EN
     redirects.push({
