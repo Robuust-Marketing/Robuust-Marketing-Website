@@ -24,7 +24,7 @@ export default function PartnersPageClient() {
     },
     {
       id: "hetzner",
-      website: "https://hetzner.com",
+      website: "https://www.hetzner.com",
     },
   ];
 
@@ -38,7 +38,7 @@ export default function PartnersPageClient() {
     // Advertising
     meta: "https://business.facebook.com",
     googleAds: "https://ads.google.com",
-    tiktok: "https://ads.tiktok.com",
+    tiktok: "https://ads.tiktok.com/business/",
     linkedin: "https://business.linkedin.com",
     pinterest: "https://business.pinterest.com",
     // CRM
@@ -57,7 +57,7 @@ export default function PartnersPageClient() {
     woocommerce: "https://woocommerce.com",
     funnelkit: "https://funnelkit.com",
     mollie: "https://www.mollie.com",
-    sendcloud: "https://www.sendcloud.nl",
+    sendcloud: "https://www.sendcloud.com/nl/",
     // CMS
     wordpress: "https://wordpress.org",
     nextjs: "https://nextjs.org",
