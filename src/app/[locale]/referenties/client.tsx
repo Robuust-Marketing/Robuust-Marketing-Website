@@ -16,7 +16,7 @@ export default function ReferentiesPageClient() {
 
   const testimonials = [
     { id: "growteq", rating: 5, url: "/portfolio/growteq", isInternal: true, website: "https://growteq.nl" },
-    { id: "pianoselect", rating: 5, url: "https://www.pianoselect.nl/", isInternal: false, website: "https://pianoselect.nl" },
+    { id: "pianoselect", rating: 5, url: "https://pianoselect.nl/", isInternal: false, website: "https://pianoselect.nl" },
     { id: "fotolot", rating: 5, url: "https://foto-lot.nl/", isInternal: false, website: "https://foto-lot.nl" },
     { id: "dununba", rating: 5, url: "https://dununba.nl/", isInternal: false, website: "https://dununba.nl" },
     { id: "kapsalontine", rating: 5, url: "https://kapsalontine.nl/", isInternal: false, website: "https://kapsalontine.nl" },

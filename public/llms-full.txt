@@ -145,13 +145,13 @@ Voorbeelden van recent werk:
 ### Den Hartog Energies
 - **Type**: Corporate Website
 - **Industrie**: Energie & Brandstoffen
-- **URL**: https://denhartogbv.com
+- **URL**: https://www.denhartogbv.com
 - **Diensten**: Design, Development, SEO, Hosting
 
 ### Villary Buitenleven
 - **Type**: Portfolio Website
 - **Industrie**: Bouw & Tuinontwerp
-- **URL**: https://villary.nl
+- **URL**: https://www.villary.nl
 - **Diensten**: Design, Development, Hosting
 
 ### In Den RustWat (IDRW)
@@ -175,7 +175,7 @@ Voorbeelden van recent werk:
 ### Woonstudio Joy
 - **Type**: Retail/Showroom Website
 - **Industrie**: Keukenspecialist
-- **URL**: https://woonstudiojoy.nl
+- **URL**: https://www.woonstudiojoy.nl
 - **Diensten**: Design, Development, SEO, Hosting
 
 ---
