@@ -24,7 +24,7 @@ export const partners: Partner[] = [
     description:
       "Dedicated server partner met datacenters in Duitsland en Finland voor optimale privacy.",
     category: "hosting",
-    url: "https://hetzner.com",
+    url: "https://www.hetzner.com",
   },
   {
     id: "resend",

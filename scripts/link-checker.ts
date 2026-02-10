@@ -32,6 +32,7 @@ const checkExternal = args.includes("--external");
 interface PageResult {
   url: string;
   status: number;
+  isHtml: boolean;
   redirectedTo?: string;
   canonical?: string;
   canonicalStatus?: number;
@@ -156,7 +157,7 @@ async function followRedirects(url: string, maxRedirects = 5): Promise<{
 }
 
 // Parse page and extract links, canonical, hreflang
-function parsePage(html: string, pageUrl: string): Omit<PageResult, "url" | "status" | "redirectedTo" | "canonicalStatus" | "canonicalRedirectsTo"> {
+function parsePage(html: string, pageUrl: string): Omit<PageResult, "url" | "status" | "isHtml" | "redirectedTo" | "canonicalStatus" | "canonicalRedirectsTo"> {
   const $ = cheerio.load(html);
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -273,6 +274,7 @@ async function crawlPage(url: string): Promise<PageResult> {
   const result: PageResult = {
     url,
     status: 0,
+    isHtml: false,
     hreflang: [],
     internalLinks: [],
     externalLinks: [],
@@ -296,6 +298,8 @@ async function crawlPage(url: string): Promise<PageResult> {
   if (!fetchResult.html) {
     return result;
   }
+
+  result.isHtml = true;
 
   const parsed = parsePage(fetchResult.html, url);
   Object.assign(result, parsed);
@@ -486,8 +490,9 @@ async function crawl(): Promise<CrawlReport> {
     }
   }
 
-  // Check canonical issues
+  // Check canonical issues (skip redirected and non-HTML pages)
   for (const result of allResults) {
+    if (result.redirectedTo || !result.isHtml) continue;
     if (result.canonical) {
       // Check if canonical points to a redirect
       if (result.canonicalRedirectsTo) {
@@ -519,8 +524,9 @@ async function crawl(): Promise<CrawlReport> {
     }
   }
 
-  // Check hreflang issues
+  // Check hreflang issues (skip redirected and non-HTML pages)
   for (const result of allResults) {
+    if (result.redirectedTo || !result.isHtml) continue;
     if (result.hreflang.length === 0) {
       report.hreflangIssues.push({
         url: result.url,
